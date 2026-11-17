@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C-to-Rust Re-Test Explorer</title>
+<style>
+:root {
+  --bg: #f7f7f5; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6b66; --line: #e3e2dd;
+  --accent: #2f5bd3; --bad: #b42318; --bad-bg: #fdecea; --warn: #a15c00; --warn-bg: #fff4e0;
+  --ok: #18794e; --ok-bg: #e6f4ea; --neutral-bg: #efefec; --code: #f2f1ee;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141413; --panel: #1d1d1b; --ink: #ecebe6; --muted: #a09f99; --line: #33332f;
+    --accent: #8aa8ff; --bad: #ff8a80; --bad-bg: #3a1d1b; --warn: #ffc46b; --warn-bg: #3a2c14;
+    --ok: #6fd3a0; --ok-bg: #16301f; --neutral-bg: #2a2a27; --code: #252522;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141413; --panel: #1d1d1b; --ink: #ecebe6; --muted: #a09f99; --line: #33332f;
+  --accent: #8aa8ff; --bad: #ff8a80; --bad-bg: #3a1d1b; --warn: #ffc46b; --warn-bg: #3a2c14;
+  --ok: #6fd3a0; --ok-bg: #16301f; --neutral-bg: #2a2a27; --code: #252522;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+header { padding: 18px 24px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header h1 { margin: 0; font-size: 19px; }
+header p { margin: 4px 0 0; color: var(--muted); font-size: 13.5px; max-width: 900px; }
+.layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 80px); }
+nav { border-right: 1px solid var(--line); background: var(--panel); padding: 12px; }
+nav button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--ink);
+  padding: 10px 12px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; font: inherit; }
+nav button:hover { background: var(--neutral-bg); }
+nav button.active { background: var(--neutral-bg); box-shadow: inset 3px 0 0 var(--accent); }
+nav .n { font-weight: 600; }
+nav .h { font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+main { padding: 20px 24px 60px; min-width: 0; }
+h2 { margin: 0 0 4px; font-size: 22px; }
+.unit { color: var(--muted); margin-bottom: 14px; }
+.headline { font-weight: 600; margin-bottom: 18px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 22px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.card h3 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.card .src { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.card table { border-collapse: collapse; margin-top: 8px; font-size: 12.5px; width: 100%; }
+.card td { border-top: 1px solid var(--line); padding: 3px 6px 3px 0; vertical-align: top; }
+.ev { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; color: var(--muted); word-break: break-all; }
+.toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+.toolbar input, .toolbar select { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); color: var(--ink); }
+.toolbar input { flex: 1; min-width: 200px; }
+.count { color: var(--muted); font-size: 13px; }
+.list { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 210px; gap: 12px; padding: 10px 14px;
+  border-top: 1px solid var(--line); cursor: pointer; align-items: center; }
+.row:first-child { border-top: 0; }
+.row:hover { background: var(--neutral-bg); }
+.row .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; overflow-wrap: anywhere; }
+.row .fam { color: var(--muted); font-size: 13px; }
+.tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--neutral-bg); }
+.tag.bad { background: var(--bad-bg); color: var(--bad); }
+.tag.warn { background: var(--warn-bg); color: var(--warn); }
+.tag.ok { background: var(--ok-bg); color: var(--ok); }
+.detail { padding: 4px 14px 16px; border-top: 1px dashed var(--line); background: var(--bg); cursor: default; }
+.ex { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 10px; }
+.ex .in { grid-column: 1 / -1; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.box b { font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); display: block; margin-bottom: 4px; }
+.box.c b { color: var(--ok); } .box.r b { color: var(--bad); }
+pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.code { background: var(--code); border-radius: 8px; padding: 8px 10px; max-height: 320px; overflow: auto; }
+.meta { font-size: 13px; margin-top: 10px; }
+.meta span { margin-right: 14px; }
+details { margin-top: 10px; }
+summary { cursor: pointer; color: var(--accent); font-size: 13px; }
+.more { text-align: center; padding: 10px; }
+.more button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink); padding: 6px 14px; border-radius: 8px; cursor: pointer; }
+.codepair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 10px; }
+.codepair .pane { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; min-width: 0; display: flex; flex-direction: column; }
+.pane .ph { padding: 6px 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.pane .ph b { color: var(--ink); }
+.pane .ph select, .pane .ph input { font: inherit; font-size: 12px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); }
+.pane .ph select { max-width: 100%; flex: 1 1 200px; }
+.pane .ph input { width: 140px; }
+.pane .ph button { font: inherit; font-size: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 6px; padding: 3px 8px; cursor: pointer; }
+.src-view { overflow: auto; max-height: 560px; background: var(--code); border-radius: 0 0 8px 8px; }
+.src-view.short { max-height: 360px; }
+.src-view table { border-collapse: collapse; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; width: 100%; }
+.src-view td.ln { color: var(--muted); text-align: right; padding: 0 8px 0 6px; user-select: none; vertical-align: top; width: 1%; white-space: nowrap; }
+.src-view td.tx { white-space: pre; padding-right: 10px; }
+.src-view tr.hit td { background: var(--warn-bg); }
+.src-view tr.cur td { background: var(--bad-bg); }
+.links { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 4px; }
+.links a, .ev a { color: var(--accent); text-decoration: none; font-size: 12.5px; }
+.links a:hover, .ev a:hover { text-decoration: underline; }
+.section-title { margin: 24px 0 8px; font-size: 16px; }
+.hint { color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+.pane.c .ph b { color: var(--ok); } .pane.r .ph b { color: var(--bad); }
+@media (max-width: 900px) {
+  .codepair { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  nav { border-right: 0; border-bottom: 1px solid var(--line); display: flex; overflow-x: auto; gap: 4px; }
+  nav button { min-width: 160px; }
+  .cards { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; gap: 4px; }
+  .ex { grid-template-columns: 1fr; }
+  main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Re-testing LLM-based C-to-Rust translations against their original C: defect explorer</h1>
+  <p>For each of the eleven re-tested systems: its own check, what we re-tested, and every candidate defect: the
+     160 we count and the ones we do not, each with its reason. Each defect shows its mechanism, an input that
+     exposes it, what the original C and the released Rust do, what the system's records say, and the evidence.
+     Built from <span class="ev">results/defect_ledger.json</span> by <span class="ev">scripts/build_explorer.py</span>.</p>
+</header>
+<div class="layout">
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const CODE = /*__CODE__*/null;
+const PAGE = 100;
+let cur = 0, shown = PAGE, open = new Set();
+
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function tagClass(v) {
+  v = v.toLowerCase();
+  if (v.startsWith("not counted") || v.startsWith("passes") || v.startsWith("not graded")) return "";
+  if (v.includes("s1") || v.includes("wrong") || v.includes("fail")) return "bad";
+  if (v.includes("crash") || v.includes("panic") || v.includes("hang") || v.includes("segfault")) return "warn";
+  if (v.includes("build") && !v.includes("fail")) return "ok";
+  return "";
+}
+
+function codeTable(text) {
+  const lines = String(text ?? "").split("\n");
+  return "<table>" + lines.map((l, i) => `<tr data-n="${i + 1}"><td class="ln">${i + 1}</td><td class="tx">${esc(l)}</td></tr>`).join("") + "</table>";
+}
+function pane(side, label, text, cls) {
+  return `<div class="pane ${cls}"><div class="ph"><b>${side}</b><span>${esc(label)}</span></div><div class="src-view short">${codeTable(text)}</div></div>`;
+}
+function search(view, q, info, step) {
+  const rows = [...view.querySelectorAll("tr")];
+  rows.forEach(r => r.classList.remove("hit", "cur"));
+  if (!q) { info.textContent = ""; view.dataset.i = "-1"; return; }
+  const ql = q.toLowerCase();
+  const hits = rows.filter(r => r.lastChild.textContent.toLowerCase().includes(ql));
+  hits.forEach(r => r.classList.add("hit"));
+  if (!hits.length) { info.textContent = "0 matches"; return; }
+  let i = (+(view.dataset.i ?? -1) + step + hits.length) % hits.length;
+  if (step === 0) i = 0;
+  view.dataset.i = i;
+  hits[i].classList.add("cur");
+  view.scrollTop = hits[i].offsetTop - 60;
+  info.textContent = `${i + 1} / ${hits.length}`;
+}
+function viewer(side, files, cls, jump) {
+  const opts = files.map((f, i) => `<option value="${i}">${esc(f.label)}</option>`).join("");
+  const id = "v" + side;
+  return `<div class="pane ${cls}" id="${id}"><div class="ph"><b>${side === "c" ? "Original C" : "Translated Rust"}</b>
+      <select>${opts}</select><input placeholder="Find in file…"><button data-d="-1">&uarr;</button><button data-d="1">&darr;</button><span class="info"></span></div>
+      <div class="src-view"></div><div class="ev" style="padding:4px 10px"></div></div>`;
+}
+function wireViewer(id, files, jump) {
+  const el = document.getElementById(id); if (!el) return;
+  const sel = el.querySelector("select"), inp = el.querySelector("input"), info = el.querySelector(".info"),
+        view = el.querySelector(".src-view"), ev = el.querySelector(".ev");
+  const load = () => { const f = files[+sel.value]; view.innerHTML = codeTable(CODE[f.path]);
+                       ev.innerHTML = esc(f.path) + (f.url ? ` &middot; <a href="${esc(f.url)}" target="_blank" rel="noopener">open upstream &#8599;</a>` : "");
+                       view.dataset.i = "-1"; if (inp.value) search(view, inp.value, info, 0); };
+  sel.onchange = load; inp.oninput = () => search(view, inp.value, info, 0);
+  inp.onkeydown = e => { if (e.key === "Enter") search(view, inp.value, info, e.shiftKey ? -1 : 1); };
+  el.querySelectorAll("button").forEach(b => b.onclick = () => search(view, inp.value, info, +b.dataset.d));
+  load();
+  if (jump) { inp.value = jump; search(view, jump, info, 0); }
+}
+
+function linkList(ls) {
+  if (!ls || !ls.length) return "";
+  return '<div class="links">' + ls.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} &#8599;</a>`).join("") + "</div>";
+}
+
+function renderNav() {
+  document.getElementById("nav").innerHTML = DATA.map((s, i) =>
+    `<button class="${i === cur ? "active" : ""}" data-i="${i}"><div class="n">${esc(s.name)}</div><div class="h">${esc(s.headline)}</div></button>`).join("");
+  document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+    cur = +b.dataset.i; shown = PAGE; open.clear(); renderNav(); renderMain(); window.scrollTo(0, 0);
+  });
+}
+
+function card(title, o) {
+  let t = "";
+  if (o.table) t = "<table>" + o.table.map((r, i) => "<tr>" + r.map(c => i === 0 ? `<td><b>${esc(c)}</b></td>` : `<td>${esc(c)}</td>`).join("") + "</tr>").join("") + "</table>";
+  const ev = (o.evidence || []).map(e => `<div class="ev">${esc(e)}</div>`).join("");
+  const lk = linkList(o.links);
+  return lk ? `<div class="card"><h3>${title}</h3><div>${esc(o.text)}</div>${t}${o.source ? `<div class="src">Source: ${esc(o.source)}</div>` : ""}<div class="src">${lk}</div>${ev ? `<div class="src">${ev}</div>` : ""}</div>` : `<div class="card"><h3>${title}</h3><div>${esc(o.text)}</div>${t}${o.source ? `<div class="src">Source: ${esc(o.source)}</div>` : ""}${ev ? `<div class="src">${ev}</div>` : ""}</div>`;
+}
+
+function detail(c) {
+  const ex = c.examples.map(e => `<div class="ex">
+      <div class="box in"><b>Input</b><pre>${esc(e.input)}</pre></div>
+      <div class="box c"><b>Original C (oracle)</b><pre>${esc(e.c)}</pre></div>
+      <div class="box r"><b>Released Rust</b><pre>${esc(e.rust)}</pre></div></div>`).join("");
+  const recE = Object.entries(c.their_record || {});
+  const rec = recE.length ? `<span><b>What ${esc(DATA[cur].name)}'s own records say</b> &rarr; </span>` + recE.map(([k, v]) => `<span><b>${esc(k)}</b>: ${esc(v)}</span>`).join("") : "";
+  const kani = c.kani ? `<span><b>Kani re-run</b>: ${esc(c.kani.verdict)}, equivalence assertion ${esc(c.kani.equivalence_assertion || "n/a")}</span>` : "";
+  const counts = (c.inputs_tried != null ? `<span><b>inputs tried</b>: ${c.inputs_tried}</span>` : "") +
+                 (c.diverging_inputs != null ? `<span><b>our inputs that expose it</b>: ${c.diverging_inputs}</span>` : "");
+  const code = ((c.c_src || c.rust_src) ? `<div class="codepair">${pane("Original C", "", c.c_src || "(not shown for this case; see the code viewer above)", "c")}${pane("Translated Rust", "", c.rust_src || "(not shown for this case; see the code viewer above)", "r")}</div>` : "") +
+               (c.kani_log ? `<details><summary>Kani log (extract)</summary><div class="code"><pre>${esc(c.kani_log)}</pre></div></details>` : "");
+  const ev = (c.evidence || []).map(e => `<div class="ev">${esc(e)}</div>`).join("");
+  const prov = c.provenance ? `<div class="meta"><b>Is this Rust really the translation of this C?</b> ${esc(c.provenance)}</div>` : "";
+  const up = c.links && c.links.length ? `<div class="meta"><b>Upstream source</b> (at the tested commit): ${linkList(c.links)}</div>` : "";
+  const chk = c.checks ? `<div class="meta"><b>VERT's record vs. what actually happens</b><table>` + c.checks.map((r, i) => "<tr>" + r.map(x => i === 0 ? `<td><b>${esc(x)}</b></td>` : `<td>${esc(x)}</td>`).join("") + "</tr>").join("") + `</table></div>` : "";
+  const cmds = c.commands ? `<div class="meta"><b>Check it yourself</b> (run from the study repo root; each line is independent)<div class="code"><pre>${esc(c.commands.join("\n\n"))}</pre></div></div>` : "";
+  const logs = (c.logs || []).map(l => `<details><summary>${esc(l.label)}</summary><div class="code"><pre>${esc(l.text)}</pre></div></details>`).join("");
+  const mech = (c.mechanism ? `<div class="meta"><b>Mechanism</b>: ${esc(c.mechanism)}</div>` : "") +
+    (c.translation ? `<div class="meta"><b>Translation</b>: ${esc(c.translation)}</div>` : "") +
+    (c.location ? `<div class="meta"><b>Location</b>: ${esc(c.location)}</div>` : "");
+  return `<div class="detail">${mech}${ex}${chk}${cmds}${logs}${prov}${up}<div class="meta">${counts}${rec ? "<br>" + rec : ""}${kani ? "<br>" + kani : ""}</div>${code}<details><summary>Evidence files</summary>${ev}</details></div>`;
+}
+
+function renderMain() {
+  const s = DATA[cur];
+  const fams = [...new Set(s.cases.map(c => c.family))];
+  const verds = [...new Set(s.cases.map(c => c.verdict))];
+  document.getElementById("main").innerHTML = `
+    <h2>${esc(s.name)}</h2><div class="unit">${esc(s.unit)}</div>
+    <div class="headline">${esc(s.headline)}</div>
+    <div class="cards">${card("What we re-tested", s.claim)}${card("Its own check", s.their_check)}${card("What we found", s.our_test)}</div>
+    ${s.provenance ? `<div class="cards" style="grid-template-columns:1fr">${card("Is this Rust really their translation of this C? (provenance)", s.provenance)}</div>` : ""}
+    ${s.code ? `<h3 class="section-title">Original and translated code</h3>
+      <div class="hint">Pick a file on each side; type in "Find in file" (Enter / arrows for next and previous match).</div>
+      <div class="codepair">${viewer("c", s.code.c, "c")}${viewer("r", s.code.rust, "r")}</div>` : ""}
+    <h3 class="section-title">Candidate defects</h3>
+    <div class="toolbar">
+      <input id="q" placeholder="Search defects (id, mechanism, input, output)…">
+      <select id="fam"><option value="">All classes</option>${fams.map(f => `<option>${esc(f)}</option>`).join("")}</select>
+      <select id="ver"><option value="">All kinds</option>${verds.map(f => `<option>${esc(f)}</option>`).join("")}</select>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="list" id="list"></div><div class="more" id="more"></div>`;
+  ["q", "fam", "ver"].forEach(id => document.getElementById(id).oninput = () => { shown = PAGE; renderList(); });
+  if (s.code) { wireViewer("vc", s.code.c, (s.code.jump || {}).c); wireViewer("vr", s.code.rust, (s.code.jump || {}).rust); }
+  renderList();
+}
+
+function renderList() {
+  const s = DATA[cur];
+  const q = document.getElementById("q").value.toLowerCase();
+  const fam = document.getElementById("fam").value, ver = document.getElementById("ver").value;
+  const rows = s.cases.filter(c => (!fam || c.family === fam) && (!ver || c.verdict === ver) &&
+    (!q || JSON.stringify([c.id, c.mechanism, c.translation, c.examples]).toLowerCase().includes(q)));
+  document.getElementById("count").textContent = `${rows.length} of ${s.cases.length} candidate defects`;
+  document.getElementById("list").innerHTML = rows.slice(0, shown).map(c => {
+    const key = s.name + "|" + c.id;
+    return `<div class="row" data-k="${esc(key)}"><div class="id">${esc(c.id)}</div><div class="fam">${esc(c.family)}</div>
+      <div><span class="tag ${tagClass(c.verdict)}">${esc(c.verdict)}</span></div></div>${open.has(key) ? detail(c) : ""}`;
+  }).join("") || `<div class="row"><div class="fam">No cases match.</div></div>`;
+  document.getElementById("more").innerHTML = rows.length > shown ? `<button id="mb">Show ${Math.min(PAGE, rows.length - shown)} more</button>` : "";
+  const mb = document.getElementById("mb"); if (mb) mb.onclick = () => { shown += PAGE; renderList(); };
+  document.querySelectorAll(".row[data-k]").forEach(r => r.onclick = () => {
+    const k = r.dataset.k; open.has(k) ? open.delete(k) : open.add(k); renderList();
+  });
+}
+
+renderNav(); renderMain();
+</script>
+</body>
+</html>

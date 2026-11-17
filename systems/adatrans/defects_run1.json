@@ -1,0 +1,149 @@
+{
+ "run": "run1",
+ "note": "Hand triage of every run1 translation with a counted divergence (results/adatrans_diff_run1.json). One entry per mechanism. rust_location = line in the final Rust as written by extract_final.py (artifacts/adatrans/results/adatrans_full/run1/conversations/<inst>.json, last non-empty history[].extracted_code); c_location = line in artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_<c>_p<p>.c. patch_id = the one-mechanism patch in patches_run1.json that confirm.py applies; null = confirmed by reading only.",
+ "defects": [
+  {
+   "id": "run1-C_432_4",
+   "inst": "C_432_4",
+   "severity": "panic",
+   "mechanism": "Ring-buffer deque sized exactly n with emptiness tested as front == rear and no size field: after n pushes rear wraps onto front, the full deque reads as empty, front() returns None and unwrap panics. The C keeps an explicit size (dequeIsEmpty: size == 0).",
+   "rust_location": "C_432_4.rs:45-47 (is_empty: self.front == self.rear), :130 (Deque::new(n)), panic at :138 (q.front().unwrap())",
+   "c_location": "weekly_contest_432_p4.c:75-76 (dequeIsEmpty: size == 0), :184 (createDeque(numsSize))",
+   "patch_id": "run1-C_432_4",
+   "patch_summary": "Deque::new(n) -> Deque::new(n + 1)"
+  },
+  {
+   "id": "run1-C_425_4",
+   "inst": "C_425_4",
+   "severity": "S1",
+   "mechanism": "Reads edge lines until EOF/blank line and sets n = max node + 1, instead of reading exactly n-1 edges after the header 'n k' as the C does. Differs only when stdin carries more than n-1 edge lines; the two diverging inputs are AdaTrans's own LeetCode example inputs, whose header gives the edge count (4) where the C expects the node count, so the C reads 3 of the 4 edges. The Rust's own comments say the change was made to 'fix input semantic mismatch' with 'the C test example'.",
+   "rust_location": "C_425_4.rs:39 (while let Some(Ok(line)) = lines.next()), :59 (let n = max_node + 1)",
+   "c_location": "weekly_contest_425_p4.c:201 (int edgesSize = n - 1)",
+   "only_on_format_violating_inputs": true,
+   "patch_id": "run1-C_425_4",
+   "patch_summary": "stop after n_input-1 edge lines"
+  },
+  {
+   "id": "run1-C_426_1",
+   "inst": "C_426_1",
+   "severity": "S1",
+   "mechanism": "Bit count computed as ceil(log2 n) instead of floor(log2 n)+1, wrong exactly when n is a power of two (n=32: C 63, Rust 31).",
+   "rust_location": "C_426_1.rs:4",
+   "c_location": "weekly_contest_426_p1.c:8",
+   "patch_id": "run1-C_426_1",
+   "patch_summary": "(n as f64).log2() as i32 + 1"
+  },
+  {
+   "id": "run1-C_438_3",
+   "inst": "C_438_3",
+   "severity": "S1",
+   "mechanism": "Prints the boolean result as 1/0; the C prints true/false. AdaTrans's example file for this problem records 1/0 as the expected outputs, the fuzz oracle (generated from the C) records true/false.",
+   "rust_location": "C_438_3.rs:100",
+   "c_location": "weekly_contest_438_p3.c:97",
+   "patch_id": "run1-C_438_3",
+   "patch_summary": "print \"true\"/\"false\""
+  },
+  {
+   "id": "run1-C_421_2",
+   "inst": "C_421_2",
+   "severity": "panic",
+   "mechanism": "Final answer summed as lst.iter().sum::<i32>() and reduced modulo afterwards; the 26 counts (each < 1e9+7) overflow i32 and the debug build panics ('attempt to add with overflow'). The C reduces after every addition.",
+   "rust_location": "C_421_2.rs:25",
+   "c_location": "weekly_contest_421_p2.c:18",
+   "patch_id": "run1-C_421_2",
+   "patch_summary": "fold with % after each addition"
+  },
+  {
+   "id": "run1-C_430_2",
+   "inst": "C_430_2",
+   "severity": "panic",
+   "mechanism": "Returns &word[ans..ans + n] without clamping to the string end; the C truncates only when ans + n < len. When the best start lies within n of the end the slice is out of bounds and the program panics.",
+   "rust_location": "C_430_2.rs:18",
+   "c_location": "weekly_contest_430_p2.c:14",
+   "patch_id": "run1-C_430_2",
+   "patch_summary": "&word[ans..(ans + n).min(len)]",
+   "note": "Rust also compares whole suffixes (:13) where the C uses strncmp(.., n); with the clamp patch every divergent case agrees, so that difference is not observed on our inputs."
+  },
+  {
+   "id": "run1-C_417_2",
+   "inst": "C_417_2",
+   "severity": "S1",
+   "mechanism": "Counts substrings that contain the vowels PRESENT in the word, not all five vowels as the C requires; differs whenever the word lacks some vowel. AdaTrans's example file records the wrong expected output 1 for the LeetCode example 'aeioqq', k=1 (LeetCode and the C give 0).",
+   "rust_location": "C_417_2.rs:28-34 (vowels_present), :59",
+   "c_location": "weekly_contest_417_p2.c:27",
+   "patch_id": "run1-C_417_2",
+   "patch_summary": "require all five vowel counts > 0"
+  },
+  {
+   "id": "run1-C_434_4",
+   "inst": "C_434_4",
+   "severity": "S1",
+   "mechanism": "Sorts the valid subsets ascending before printing; the C prints them in its enumeration order (descending submasks of mask1). Output rows come out in a different order whenever more than one subset is valid.",
+   "rust_location": "C_434_4.rs:132",
+   "c_location": "weekly_contest_434_p4.c:106-135 (no sort)",
+   "patch_id": "run1-C_434_4",
+   "patch_summary": "remove the sort"
+  },
+  {
+   "id": "run1-C_416_4",
+   "inst": "C_416_4",
+   "severity": "S3",
+   "mechanism": "Indexes the string with word1.chars().nth(i) inside the sliding-window loop, an O(n) scan per access, so the O(n) C algorithm becomes O(n^2); on large inputs the Rust does not finish (hang: no result within 60 s of CPU while the C finishes within 10 s).",
+   "rust_location": "C_416_4.rs:32, :39",
+   "c_location": "weekly_contest_416_p4.c:33, :39 (word1[r], word1[l])",
+   "patch_id": "run1-C_416_4",
+   "patch_summary": "byte indexing"
+  },
+  {
+   "id": "run1-C_415_4",
+   "inst": "C_415_4",
+   "severity": "S1",
+   "mechanism": "Greedy cover extends the reach only from the start of the current segment (while cur_r < n ...), not from every position i as the C's for-loop does; returns -1 where the C finds a cover.",
+   "rust_location": "C_415_4.rs:48-66",
+   "c_location": "weekly_contest_415_p4.c:144-160 (for i in 0..n, jump when i == cur_r)",
+   "patch_id": "run1-C_415_4-AB",
+   "patch_summary": "C's loop structure (patch A) together with rolling prefix hashes (patch B). B only removes quadratic hashing (a speed-up that cannot change a result); it is needed so the patched program finishes within confirm.py's 10 s CPU limit.",
+   "note": "Single patches (adatrans_confirm_run1.json): A alone makes no case agree within 10 s CPU (the quadratic hashing remains); B alone leaves every S1 case wrong; A+B makes every counted case agree. The quadratic hashing itself (C_415_4.rs:37, :50; the C rolls prefix hashes) makes the Rust slow but it finishes within the 60 s CPU hang limit on every input, so it is not counted as a defect."
+  },
+  {
+   "id": "run1-C_434_2",
+   "inst": "C_434_2",
+   "severity": "S1",
+   "mechanism": "count_mentions is not a translation of the C's countMentions: ALL/HERE mentions are never counted (extract_id_number of 'ALL'/'HERE' is None), and after every event every user whose online counter is 0 gains a mention; events are read one per line where the C reads exactly three tokens per event. Several mechanisms in one rewritten function; counted as ONE defect (lower bound). Rejected by AdaTrans's own loop (status FAILURE).",
+   "rust_location": "C_434_2.rs:7-72 (count_mentions; :26-43 MESSAGE, :61-69 per-event increment), :85-90 (line-based event parse)",
+   "c_location": "weekly_contest_434_p2.c:67-69 (ALL/HERE), :144 (scanf %s per token)",
+   "patch_id": null,
+   "patch_summary": null
+  }
+ ],
+ "not_counted": [
+  {
+   "inst": "C_424_4",
+   "why": "Rust panics ('attempt to subtract with overflow', C_424_4.rs:28) on 3 of our inputs where the C prints a value and passes gcc ASan+UBSan, -O1/-O2 and char-signedness checks; the clang leg of the UB rule cannot run because the C uses GCC nested functions (clang: 'function definition is not allowed here'). Not counted under the rule; candidate panic."
+  },
+  {
+   "inst": "C_433_3",
+   "why": "Rust overflows its stack (deep recursion) on 26 of our and 8 of AdaTrans's fuzz inputs where the plain C prints a value; clang ASan reports stack-overflow in the C on the same inputs, so the UB rule excludes them."
+  },
+  {
+   "inst": "C_416_3",
+   "why": "C itself segfaults (stack overflow, ASan stack-overflow) on 12 of our and 1 fuzz input; Rust prints a value. C-UB, excluded."
+  },
+  {
+   "inst": "C_418_3",
+   "why": "1 input: C heap-buffer-overflow (ASan), Rust panics index out of bounds. C-UB, excluded."
+  },
+  {
+   "inst": "C_420_4",
+   "why": "1 input: Rust stack overflow; clang ASan stack-overflow in the C. Excluded."
+  },
+  {
+   "inst": "C_421_2",
+   "why": "2 of its panic cases: input longer than the C's fixed buffer (stack-buffer-overflow). Excluded; the other 81 panics are counted."
+  },
+  {
+   "inst": "C_415_4, C_416_4",
+   "why": "1 hang case each where the C output depends on -O2 or char signedness. Excluded."
+  }
+ ]
+}

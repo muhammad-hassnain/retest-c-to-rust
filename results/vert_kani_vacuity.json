@@ -1,0 +1,850 @@
+{
+ "summary": {
+  "kani_version": "cargo-kani 0.55.0",
+  "command": "cargo kani --no-unwinding-checks --default-unwind 10 (VERT evaluation.py:76)",
+  "functions_bounded_kani_1": 90,
+  "verdict_counts": {
+   "SUCCESSFUL": 81,
+   "COMPILE_ERROR": 5,
+   "FAILED": 3,
+   "TIMEOUT": 1
+  },
+  "assertion_status_counts": {
+   "UNREACHABLE": 84,
+   "None": 6
+  },
+  "vacuous_success": 81,
+  "non_vacuous_success": 0,
+  "of_the_scalar_wrong_answers": {
+   "bounded_kani_1": 12,
+   "vacuous_success": 12
+  },
+  "crate_rename": "each function's crate is renamed to a short unique name (k<i>): Kani 0.55 ICEs (\"File name too long\") on VERT's long names, and a single shared name with a shared CARGO_TARGET_DIR made runs reuse a stale model (audit 5). Full logs: results/kani_logs/",
+  "all_90": {
+   "verdict_counts": {
+    "SUCCESSFUL": 81,
+    "COMPILE_ERROR": 5,
+    "FAILED": 3,
+    "TIMEOUT": 1
+   },
+   "vacuous_success": 81,
+   "failed_other_check_assertion_unreachable": 3,
+   "compile_error_recorded_as_pass_by_vert": 5,
+   "timeout": 1,
+   "equivalence_assertion_reached": 0,
+   "note": "VERT's evaluation.py counts any run whose output lacks 'VERIFICATION:- FAILED' as a pass, so the 5 compile errors (E0277, f32 functions) are recorded as Kani successes"
+  }
+ },
+ "rows": [
+  {
+   "crate_renamed": true,
+   "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 53.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "NEWMAN_CONWAY_SEQUENCE_1",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 34.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 38.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "HEXAGONAL_NUMBER",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 28.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "NTH_NON_FIBONACCI_NUMBER",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 29.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 29.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 41.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 36.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_BINOMIAL_COEFFICIENTS",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 35.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "in_scalar_wrong_answers": true,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "AREA_OF_A_HEXAGON",
+   "in_scalar_wrong_answers": false,
+   "verdict": "COMPILE_ERROR",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 0.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 45.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 194.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 39.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "COMPUTE_NCR_P_SET_1_INTRODUCTION_AND_DYNAMIC_PROGRAMMING_SOLUTION",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 32.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N",
+   "in_scalar_wrong_answers": false,
+   "verdict": "FAILED",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "failed/timeout",
+   "seconds": 27.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "DICE_THROW_PROBLEM_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 40.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "FAILED",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "failed/timeout",
+   "seconds": 28.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "FAILED",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "failed/timeout",
+   "seconds": 35.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "WRITE_YOU_OWN_POWER_WITHOUT_USING_MULTIPLICATION_AND_DIVISION",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_3",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "SQUARE_ROOT_OF_AN_INTEGER_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 28.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "TRIANGULAR_MATCHSTICK_NUMBER",
+   "in_scalar_wrong_answers": false,
+   "verdict": "TIMEOUT",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "failed/timeout",
+   "seconds": 900.0
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_SUM_EVEN_INDEX_BINOMIAL_COEFFICIENTS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 37.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "C_PROGRAM_FACTORIAL_NUMBER_2",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 27.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_STRINGS_ADJACENT_CHARACTERS_DIFFERENCE_ONE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 41.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 37.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 34.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_2",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_MINIMUM_NUMBER_OF_COINS_THAT_MAKE_A_CHANGE_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "PADOVAN_SEQUENCE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNTS_PATHS_POINT_REACH_ORIGIN_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 33.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 38.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_WAYS_TILE_FLOOR_SIZE_N_X_M_USING_1_X_M_SIZE_TILES",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 27.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "BIRTHDAY_PARADOX",
+   "in_scalar_wrong_answers": false,
+   "verdict": "COMPILE_ERROR",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 0.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 33.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_DERANGEMENTS_PERMUTATION_SUCH_THAT_NO_ELEMENT_APPEARS_IN_ITS_ORIGINAL_POSITION_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 27.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "EULERIAN_NUMBER_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 36.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.0
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_UNIT_DIGIT_X_RAISED_POWER_Y",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_PRINT_SUM_GIVEN_NTH_TERM",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_WAYS_REACH_GIVEN_SCORE_GAME",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 29.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 39.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_EVEN_LENGTH_BINARY_SEQUENCES_WITH_SAME_SUM_OF_FIRST_AND_SECOND_HALF_BITS_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.0
+  },
+  {
+   "crate_renamed": true,
+   "function": "DICE_THROW_PROBLEM",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 38.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_OF_WAYS_TO_FILL_A_N_X_4_GRID_USING_1_X_4_TILES",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 29.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_PAIRWISE_PRODUCTS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 22.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "NUMBER_N_DIGITS_NON_DECREASING_INTEGERS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 28.0
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_PAIRWISE_PRODUCTS_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 22.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 40.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "HIGHWAY_BILLBOARD_PROBLEM",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 36.0
+  },
+  {
+   "crate_renamed": true,
+   "function": "MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNTING_PAIRS_PERSON_CAN_FORM_PAIR_ONE_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "DELANNOY_NUMBER_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_CALCULATE_AREA_OCTAGON",
+   "in_scalar_wrong_answers": false,
+   "verdict": "COMPILE_ERROR",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 0.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "LEONARDO_NUMBER_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.2
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_FOR_SURFACE_AREA_OF_OCTAHEDRON",
+   "in_scalar_wrong_answers": false,
+   "verdict": "COMPILE_ERROR",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 0.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "DYCK_PATH",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 22.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 22.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_N_TH_ELEMENT_FROM_STERNS_DIATOMIC_SERIES",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIBONACCI_MODULO_P",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 21.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "TILING_WITH_DOMINOES",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_SQUARES_BINOMIAL_COEFFICIENTS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "SEQUENCES_GIVEN_LENGTH_EVERY_ELEMENT_EQUAL_TWICE_PREVIOUS_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 30.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 22.5
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_DIVISORS_1_N_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 21.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "FRIENDS_PAIRING_PROBLEM",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_FIBONACCI_NUMBERS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_STRINGS_WITH_CONSECUTIVE_1S",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 26.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "FRIENDS_PAIRING_PROBLEM_2",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 23.8
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 28.4
+  },
+  {
+   "crate_renamed": true,
+   "function": "FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 33.3
+  },
+  {
+   "crate_renamed": true,
+   "function": "MAXIMUM_VALUE_CHOICE_EITHER_DIVIDING_CONSIDERING",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 25.6
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 31.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "SUM_K_TH_GROUP_ODD_POSITIVE_NUMBERS",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 21.9
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_INCREASING_SUBSEQUENCES_SIZE_K",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 43.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "COUNT_NUMBER_BINARY_STRINGS_WITHOUT_CONSECUTIVE_1S",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 24.7
+  },
+  {
+   "crate_renamed": true,
+   "function": "PROGRAM_CALCULATE_VOLUME_OCTAHEDRON",
+   "in_scalar_wrong_answers": false,
+   "verdict": "COMPILE_ERROR",
+   "equivalence_assertion": null,
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 0.1
+  },
+  {
+   "crate_renamed": true,
+   "function": "DYNAMIC_PROGRAMMING_SET_11_EGG_DROPPING_PUZZLE_1",
+   "in_scalar_wrong_answers": false,
+   "verdict": "SUCCESSFUL",
+   "equivalence_assertion": "UNREACHABLE",
+   "vert_evaluator_would_print": "succesful",
+   "seconds": 39.9
+  }
+ ]
+}

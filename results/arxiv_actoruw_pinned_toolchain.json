@@ -1,0 +1,6838 @@
+{
+ "_provenance": {
+  "git_commit": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_code": null,
+  "generated_utc": "2026-11-17T07:26:32Z",
+  "arch": "x86_64",
+  "os": "Linux 7.0.0-38-generic",
+  "in_container": true,
+  "image": "crust-heldout:latest",
+  "step": null,
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.94.0 (4a4ef493e 2026-03-02)",
+  "argv": [
+   "arxiv_pinned_toolchain.py",
+   "-j",
+   "4",
+   "--out",
+   "/w/out/arxiv_actoruw_pinned_toolchain.json"
+  ]
+ },
+ "provenance": {
+  "script": "systems/actoruw/arxiv_pinned_toolchain.py",
+  "command": "systems/actoruw/run_in_container.sh arxiv_pinned_toolchain.py -j 4 --out /w/out/arxiv_actoruw_pinned_toolchain.json",
+  "git_commit_of_study_repo": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_note": "scripts/ = systems/actoruw/*.py + systems/enumerate_inputs.py + harness/oracle_ub_common.py + scripts/provenance.py, copied from the study repo working tree at that commit plus uncommitted changes (this script new; run_in_container.sh RUST_TC_DIR option new); in/ = the shipped results files named in inputs",
+  "host": "desktop",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "image": "crust-heldout:latest",
+  "image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchain_dir_name": "1.94.0-x86_64-unknown-linux-gnu",
+  "rustc_pinned": "rustc 1.94.0 (4a4ef493e 2026-03-02)\nbinary: rustc\ncommit-hash: 4a4ef493e3a1488c6e321570238084b38948f6db\ncommit-date: 2026-03-02\nhost: x86_64-unknown-linux-gnu\nrelease: 1.94.0\nLLVM version: 21.1.8",
+  "cargo_pinned": "cargo 1.94.0 (85eff7c80 2026-01-15)",
+  "toolchain_install": "rustup 1.29.1 of the crust-heldout image, `rustup toolchain install 1.94.0 --profile minimal` with RUSTUP_HOME outside ~/.rustup (network on for that step only); the toolchain dir is mounted read-only at /rust (run_in_container.sh RUST_TC_DIR)",
+  "pinned_by_artifact": "ACTOR @1b1e70a rust-toolchain.toml: channel = \"1.94.0\", components = [\"rust-src\", \"rustfmt\", \"clippy\"] (installed with --profile minimal: rustc, cargo, rust-std; rust-src, rustfmt and clippy serve ACTOR's own compile-fail tests and lint gates, not a crate build)",
+  "shipped_toolchain": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.94.0-nightly (a3f2d5abe 2026-01-09)\nbinary: rustc\ncommit-hash: a3f2d5abe45a9acfaccbf09266b33e1fd7ab193e\ncommit-date: 2026-01-09\nhost: x86_64-unknown-linux-gnu\nrelease: 1.94.0-nightly\nLLVM version: 21.1.8",
+   "cargo": "cargo 1.94.0-nightly (8c133afcd 2026-01-09)"
+  },
+  "work_dir": "build/ copied from the shipped run's work dir (~/work/regrade-actoruw) without target/, target_tc2/, rust_tc2/ (C oracles and the crates with their resolved Cargo.lock); artifact/ copied from there; crates resolved --offline from the host cargo cache (read-only)",
+  "inputs": {
+   "results/defect_ledger.json": "89dba18bbeb6da0d58f04c5924ff2d8828aaa207d19e7a0919d8552c91ee4721",
+   "results/actoruw_summary.json": "586eeb0cdb45522aeeec4200467e1716eb73ec265e572bedd565a0f3071dd4a8",
+   "results/actoruw_difftest.json": "21e7ae5907c23185b509c9eb4cac488fbb3ee69770d1560ed1ac3f3a57a6dcb2",
+   "results/actoruw_lib_difftest.json": "503ef634fa75b4421efe6ffd1289448346f13b297b0abc8af615d42890c9bb81",
+   "results/actoruw_build.json": "93919299415ca8e6039577d48984b341bb6e7c2f7f6d83c7d16185fe88041258",
+   "results/actoruw_lib_build.json": "f676fbf1bac65ab212acdd77cedd9b3b4c6a8b784792d3437a16b741ac43d697",
+   "results/actoruw_second_rater_memmove.json": "29743177490696cf83af3d893e34ebfdddd00294ddff1362b12f219a5c73896e"
+  },
+  "seconds": 3.5,
+  "date": "2026-11-17T07:26:32+0000"
+ },
+ "rule": "Each exposing input is then run as the shipped comparison runs it: difftest.run_one on the C oracle the\nshipped run built (build/<b>/<c>/c/driver, or c_driver for a library; gcc, not rebuilt) and on the new\nRust, compared with difftest.same (executables: stdout, exit code, stderr and timeout, byte for byte)\nor lib_harness.same_lib (libraries: relative 1e-6 on a float #ret), and classified with\ndifftest.classify. The exposing inputs are the defect's case_ids in results/actoruw_summary.json (all\ncounted by the shipped UB rule, which depends on the C only; the C is unchanged) and, for memmove's\nsecond-annotator row, the three inputs of second_rater_memmove.py. A defect's verdict is unchanged\nwhen every exposing input still diverges from the C with the same class.",
+ "summary": {
+  "pinned_toolchain": "rustc 1.94.0 (4a4ef493e 2026-03-02)",
+  "counted_defects": 57,
+  "translations_rebuilt": {
+   "exe": 35,
+   "lib": 1
+  },
+  "build_failures": [],
+  "inputs_rerun": 607,
+  "defects_verdict_unchanged": 57,
+  "defects_verdict_changed": [],
+  "inputs_rust_output_same_as_shipped": 607,
+  "inputs_c_output_same_as_shipped": 607,
+  "pinned_class_counts": {
+   "S1": 435,
+   "S2": 6,
+   "rust_crash": 166
+  }
+ },
+ "translations": {
+  "B01_synthetic/005_static_loop": {
+   "cargo_lock_sha256": "3091964c41b2b2e67a369674647d45f4c45ad6964a9c1e3f51d29a4004ca96d3",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "099f29f6ebeaddb0db2a8344d36de91883cf30eac5146126a76247d21880a1d7",
+   "c_oracle_sha256": "4c9976f9b04dce458b7bb7a018d3107dc486a57d369c21e4b90db549744597ad"
+  },
+  "B01_synthetic/007_errno-pow": {
+   "cargo_lock_sha256": "cfb84192148cf59a4cadf00ae667137285713e9e6f39fe219f9fae2a29bb6d08",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "3a6fc5c57fd122f0b24b11d8cc02aec8692c06cded8865c77ca0fec351de05c3",
+   "c_oracle_sha256": "3c2ac1d087556726e91b5e8bc7a5f525dbe9d866dde94fe1f1a3d070625f1779"
+  },
+  "B01_synthetic/011_uninit_char_ptr": {
+   "cargo_lock_sha256": "b78380badbd9b5a57a1edf11b9bb252e693a41626ada70d70ddee0dfc23405f8",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "08a4d2072064ecc95130b4ffbae1a1fe1ea41105a9798495e4cfe63ac1060210",
+   "c_oracle_sha256": "0a1fb5a781cd999ece3b49a43b04c3ae84732680ba97d279aefc56bed0e34c68"
+  },
+  "B01_synthetic/015_return_stack_buffer": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "e37177042f4a096a4745e311659f8748c24ecbbccc12d2529f23a9b7c52e9aae",
+   "c_oracle_sha256": "6645e0f7635f936a78f3d25740fabc60aee1fbd4070a09797d236396beaf695f"
+  },
+  "B01_synthetic/019_integer_overflow_char_max_multiply": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "fc6910f94966918e50fc66d6abc497855b9be5a0534102c50a9dc13509789894",
+   "c_oracle_sha256": "028b72e5413b02b911fed08bfd5ccb0d18e0d9db342e6fa64204cf16752bc0c4"
+  },
+  "B01_synthetic/021_complex_goto": {
+   "cargo_lock_sha256": "b78380badbd9b5a57a1edf11b9bb252e693a41626ada70d70ddee0dfc23405f8",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "bcb44099fc8d9454fe705ec86e607c9dd89b95cb98ad53116e3c7b2313149a47",
+   "c_oracle_sha256": "f27a1fde90c9d70c62e17582bd1c939e9289bc1ad79cdeb931f0677ab08e073e"
+  },
+  "B01_synthetic/022_stdlib_div": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "d9e0ae9648949d280d30c47122f7a2e186acb8a5420f5f61f12989c02a6a247a",
+   "c_oracle_sha256": "1dbde27e0dbc678b32c100a2ae452d0bf935360eb5cadf09ed0c781e7647fab8"
+  },
+  "B01_synthetic/026_goto_and_static": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "b6763a3cf2f3b3fcd30496a82f73d761fcd717d5e06fc8bbf183fad8b0979b2d",
+   "c_oracle_sha256": "5c0254e7a0f9f27a1bb02fdb4f76234e25d2ff148f060a9b684ea76dec4c8632"
+  },
+  "B01_synthetic/029_strcspn": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "95b94e39b7e78a67285de4c82f1406bed8d282884178f28b29160f77c43bbbf7",
+   "c_oracle_sha256": "4ed2e173c2f98090c2a1ac6ede3be6ff0c7cf627cda8c1a662689842d5564990"
+  },
+  "B01_synthetic/030_mutable_buffer_overlap_extrahard": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "bc9ea95f4e3b875447b98afa24c4bb141927396b9f15caae8e9bbea9eb16bba8",
+   "c_oracle_sha256": "af53d35249de3bd5fb486ce1ed14bfb756ef8c69cc0fac49a704bc75597d6591"
+  },
+  "B01_synthetic/031_disjoint_arrays": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "4190b4fa9af8866b3cde336035f045d654128dc3a4c8ea3e410c2e16213d899c",
+   "c_oracle_sha256": "daf0c2d9e33286fb06e50ff272a69ad83a45dafedb51dec3c6358307aa9dd2bd"
+  },
+  "B01_synthetic/032_comma_operator": {
+   "cargo_lock_sha256": "6a8ef26100e2f628b7001c7ccb13c9460071936226191be764f9e7eb293ef024",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "f40fea491025f08aadcc5a89a799fc380706624ec9251cbb546ef1faf496a6b5",
+   "c_oracle_sha256": "41c08f6141593c3ac63bee20ae8d346ace50f7a03eb446d9e62d8e4fc7733ff0"
+  },
+  "B01_synthetic/033_bitfield": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "ceb85468e5b509df4ed27aae6b51359015c09aead908c69ea11b6c1df091ac22",
+   "c_oracle_sha256": "8b25aa5e3347b469c8a743258e2eac585074cf6115ad924eaefa860880ae9715"
+  },
+  "B01_synthetic/034_cast_to_char_ptr_int": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "0db5d5918a8086220ecaba455c6352c1a4552ed671813b2231c9a96646389f65",
+   "c_oracle_sha256": "daae858aef73b20b7f15bbceff50d4bd4417b9b8a3c2e23b08725e877c358039"
+  },
+  "B01_synthetic/036_cast_to_char_ptr_struct": {
+   "cargo_lock_sha256": "b78380badbd9b5a57a1edf11b9bb252e693a41626ada70d70ddee0dfc23405f8",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "5ed90768b0fcd622e0d78f249d7fa6e3429e4f14575f6c026a099f30988ff27c",
+   "c_oracle_sha256": "33768657f40a65d5aadd70ab58658cbd4294ebb5c304e4d7ad3524100dc59d03"
+  },
+  "B01_synthetic/037_cast_to_char_ptr_int_no_strict_aliasing": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "0db5d5918a8086220ecaba455c6352c1a4552ed671813b2231c9a96646389f65",
+   "c_oracle_sha256": "70461735c5c6f799e3398b1f1983b58d76f8c0dc2330d40ec4b7855445f2af1c"
+  },
+  "B01_synthetic/039_cast_to_char_ptr_struct_no_strict_aliasing": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "33e948455154d6457d2eeeecc0e1e4ac4e29e45ae39c11cc4caf12f3ca5da4d6",
+   "c_oracle_sha256": "3243e4425b54ecbcb0cdfcefec45cf5f250805ea47c2bb0470469ebb630a4957"
+  },
+  "B01_synthetic/040_storage_class_auto": {
+   "cargo_lock_sha256": "b78380badbd9b5a57a1edf11b9bb252e693a41626ada70d70ddee0dfc23405f8",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "75836ba9a6006f64c896c427daa3a4428e5c3d814ce13ac327f7177a38587073",
+   "c_oracle_sha256": "2bef697d26313e0154fd06c277a62cac3d71e4ac08b7566696d0747e8a58ad0f"
+  },
+  "B01_synthetic/041_storage_class_register": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "985f1be0d955381826f19da79c9fabcc000c98df8cbdc9ff8ba993c0e2d48024",
+   "c_oracle_sha256": "03cfcd8250bb80928046b2fc91ad7fa46a52540c754083e6bdf47200aa6e749c"
+  },
+  "B01_synthetic/042_float_union": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "176c0e18548e89e38dcb39c39ce3e54df0af035280b075e9d1ea26013043ca8d",
+   "c_oracle_sha256": "affc5a54cb496d0ed1c7c568259370ce58846c622845a739ae9db9166e3a8a63"
+  },
+  "B01_synthetic/043_iso646_and_digraphs": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "0ba905541cc4ab3430aa1e86473354e0101e5251e09a6a9b3a225c510148c535",
+   "c_oracle_sha256": "b920a41c411010bf31ca04f411cd10b53f41c324f319c6d9a42a63858ae3488a"
+  },
+  "B02_organic/qmath": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "17c0410b2bc8d88708ddd177e02dcdd363ac73b2e0cb40a8414c0a2ba8b33a12",
+   "c_oracle_sha256": "a85f6e889523e0bb3c9f55d59b1f484f3276e2fb98e4b0865e247d2038a71ed1"
+  },
+  "B02_synthetic/char-to-bool": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "9d04b74767933cca30cfc31efd682bec0a28690fda270195d3899e6de09df7df",
+   "c_oracle_sha256": "7b8a85311c906c0514d974679ef5fb2472a985c0db4408754020a5b4379da928"
+  },
+  "B02_synthetic/checkshift_lib": {
+   "cargo_lock_sha256": "6a8ef26100e2f628b7001c7ccb13c9460071936226191be764f9e7eb293ef024",
+   "link": {
+    "cmd": "gcc /w/build/B02_synthetic/checkshift_lib/driver_main.c -I/w/artifact/Test-Corpus/kiro/B02_synthetic/checkshift_lib/verified/c_src/include -I/w/artifact/Test-Corpus/kiro/B02_synthetic/checkshift_lib/verified/c_src/src -o /w/build/B02_synthetic/checkshift_lib/rust_driver_pin /w/build/B02_synthetic/checkshift_lib/target_pin/release/libcheckshift_lib.so -Wl,-rpath,/w/build/B02_synthetic/checkshift_lib/target_pin/release -lm",
+    "rc": 0
+   },
+   "cmd": "cargo build --release --offline --lib",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "fda85d0b8397dc78f5d6b5d06469bd7325f112866215e8c138e72eb0d0955575",
+   "c_oracle_sha256": "d595a13111cb236ef9bcf367e755d1ccd4e322f23372dcc5c192ff7c506ce749"
+  },
+  "B02_synthetic/generic-foreach": {
+   "cargo_lock_sha256": "c2be3047d3a9d1d159c3ed548adbde31156c27a1ae6c740e39669d67af60f060",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "36ec15bbb7cd5182792a040b750de86c699a4361e9f6c7359379ee90714213c6",
+   "c_oracle_sha256": "60ee2bea8b5c13350a1da495e3ba2ee9120ef371d9d73688e5b8316a46c0bfbf"
+  },
+  "B02_synthetic/hashmap-tree": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "73399721049cb32341741433280e934efb883912d63dac562cc07eada9b3cd6d",
+   "c_oracle_sha256": "4015e9a664211cc4b88cdb033cfddc52b8923f2a8e0729c369a867940aeb0b65"
+  },
+  "B02_synthetic/macrodepth_add_5": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins --no-default-features --features op_add,repeat_5",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "a7ad60e88008a581675b3c1f5d93fa81b30ae643f31c70bdc694b25b01b87cd3",
+   "c_oracle_sha256": "ef0f97dd6f1441e534f5e1ccc111e4d7393bca828b04e8845d161c56f1d4a67f"
+  },
+  "B02_synthetic/macrodepth_mul_4": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins --no-default-features --features op_mul,repeat_4",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "e265773972d0619ffaea91f59b1a9f67477c8e170c9d95fa3f001bd79d41c37a",
+   "c_oracle_sha256": "b7c32d5259d44377cadfe10cd34944e2447ca273ca3e43ca18d95aa957ba27b5"
+  },
+  "B02_synthetic/macrodepth_sub_6": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins --no-default-features --features op_sub,repeat_6",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "e09c0f6c6055fd5a0a8449f5062abdec0a467ab7bc8754e859e8c3400bfd7b87",
+   "c_oracle_sha256": "b507d81438ef3e93cd96a34eb725de67cd0d4b57eabf26c0a65b06028c5d8591"
+  },
+  "B02_synthetic/memmove": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "b21ef00c7c3438ec7daa4c37c1a0043c4338e0fc65b125311a671b0b71344c8d",
+   "c_oracle_sha256": "021fd01d6e5e8ac251e08adad6823d4458de4d5ceee59635d61aebd0582ce2fc"
+  },
+  "B02_synthetic/mutable-duplication-dag": {
+   "cargo_lock_sha256": "a66c9280bdb6b1b4b351a197612c114459aa1dac56bfb24bc348502146fdc1ca",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "b2d262e88979ee2e369f0c82bb0a4cbed4c37191f4b2252bf262053363b829d0",
+   "c_oracle_sha256": "4968327bf0571ef7158425fbe08a695e015a46579f277a2fcebb9e9705c4e341"
+  },
+  "B02_synthetic/pointer-comparison-ascii-art": {
+   "cargo_lock_sha256": "597b2c9e6a5a4451d54649be5583621910713a5e9fd3edb6afc0488fc4620236",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "cda68e00393d0ce4c0c2af144bf66457d134271a2a44d7d416ee846b0cdd4be5",
+   "c_oracle_sha256": "18accef6a6c428379d3e4538f473324d4adec6de120affd888264d6de320c1bf"
+  },
+  "B02_synthetic/static-vars-fpts": {
+   "cargo_lock_sha256": "332ffbaa63c7b07ffd69e414bc03c985a4d403a1100d26036a80517e25f3e6ff",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "af1dd11c92d3ded5289810573518f10c4cd8efc3547f7db6663ef468fb96aae7",
+   "c_oracle_sha256": "3b9d5ab3ae2d58e1d2ddabfa522fd41f58a5b790875fd9ce95c3b9338b6efa13"
+  },
+  "B02_synthetic/strcmp": {
+   "cargo_lock_sha256": "b4694b52142cff3fec92742bd8ce24adc267b30ed36fb5a9ffb402ff45eba8f8",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "6892f79b8c4c046fa1de41e0f2fae4718139c7cd578a739b707b24f408e49066",
+   "c_oracle_sha256": "be84c19ae051ce11c5091fe9ac5279c14ad76096293d191590bf49009837bd7d"
+  },
+  "B02_synthetic/tu_linkage": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "6d132d7ae244c148fb8b7ad8a1b7d4480e4c9f15ee0c39a77c296fc51b88ce1f",
+   "c_oracle_sha256": "6e29d83194d3ce88dd96d21e952d22df132d81515b192182d45b5810ff356ba2"
+  },
+  "P00_perlin_noise/001_perlin_noise": {
+   "cargo_lock_sha256": "7dd9ef5a75c7f2450446fe7150ee5417c2b3353ee3bd2f9de30ce26d01c3720a",
+   "c_sha256_matches_shipped_build": true,
+   "cmd": "cargo build --release --offline --bins",
+   "rc": 0,
+   "ok": true,
+   "rust_sha256": "0deee725cdb2a45c5111caa5da51037ce79377bf5dc7031570d675e43e168faf",
+   "c_oracle_sha256": "3381907965d7743b46cf7b4e8ba5a55b2ada1b7ad23af44614991ae46d4a9d0e"
+  }
+ },
+ "defects": [
+  {
+   "defect_id": "ACTOR-B01_synthetic/005_static_loop::PARSE_NUM",
+   "translation": "B01_synthetic/005_static_loop",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "90faf4309f46aa9a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/007_errno-pow::NAN_FMT",
+   "translation": "B01_synthetic/007_errno-pow",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "98381cc4291b31dc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/011_uninit_char_ptr::PARSE_NUM",
+   "translation": "B01_synthetic/011_uninit_char_ptr",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/015_return_stack_buffer::PARSE_NUM",
+   "translation": "B01_synthetic/015_return_stack_buffer",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/019_integer_overflow_char_max_multiply::PARSE_NUM",
+   "translation": "B01_synthetic/019_integer_overflow_char_max_multiply",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 47,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 47,
+   "still_diverging": 47,
+   "same_class": 47,
+   "rust_output_same_as_shipped": 47,
+   "c_output_same_as_shipped": 47,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "fa62b10e8899b08b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "677d3eb2dde0c2a9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc5db7157f39d71c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f23d06718425be95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "344c8b605d765dce",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bbb426ba60bc13e9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603f55a3299c6176",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bdcdcf6c0f3437c1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8de473f197fffa9d",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "253397cb4d85d2ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "849e3ad5d7aa9eb1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d49672a681e728e6",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1bef11f15005eea1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6f1eff4d9fa52e5f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19b87cf86badd8a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6d0f6d24194b5c9c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "63abf0971fade373",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1d17308136e28d95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2a7aed07f271a16f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "59403be9e8aaeed1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/021_complex_goto::PARSE_NUM",
+   "translation": "B01_synthetic/021_complex_goto",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c9cda0d057f751c3",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/021_complex_goto::UTF8_PANIC",
+   "translation": "B01_synthetic/021_complex_goto",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/022_stdlib_div::PARSE_NUM",
+   "translation": "B01_synthetic/022_stdlib_div",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/026_goto_and_static::PARSE_NUM",
+   "translation": "B01_synthetic/026_goto_and_static",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 2,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 2,
+   "still_diverging": 2,
+   "same_class": 2,
+   "rust_output_same_as_shipped": 2,
+   "c_output_same_as_shipped": 2,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/026_goto_and_static::UTF8_PANIC",
+   "translation": "B01_synthetic/026_goto_and_static",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/029_strcspn::LINE_SPLIT",
+   "translation": "B01_synthetic/029_strcspn",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/030_mutable_buffer_overlap_extrahard::PARSE_NUM",
+   "translation": "B01_synthetic/030_mutable_buffer_overlap_extrahard",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 5,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 5,
+   "still_diverging": 5,
+   "same_class": 5,
+   "rust_output_same_as_shipped": 5,
+   "c_output_same_as_shipped": 5,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/030_mutable_buffer_overlap_extrahard::UTF8_PANIC",
+   "translation": "B01_synthetic/030_mutable_buffer_overlap_extrahard",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/031_disjoint_arrays::PARSE_NUM",
+   "translation": "B01_synthetic/031_disjoint_arrays",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/032_comma_operator::PARSE_NUM",
+   "translation": "B01_synthetic/032_comma_operator",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/032_comma_operator::UTF8_PANIC",
+   "translation": "B01_synthetic/032_comma_operator",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/033_bitfield::PARSE_NUM",
+   "translation": "B01_synthetic/033_bitfield",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 27,
+   "still_diverging": 27,
+   "same_class": 27,
+   "rust_output_same_as_shipped": 27,
+   "c_output_same_as_shipped": 27,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "131d6950147fef6b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a7cc0698d841f68e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "454facade5ef0286",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9489748e2fe8b712",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "893d04bf2e10db72",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e5ad12a60180c2f2",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31222d237969d4e4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c9cda0d057f751c3",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/033_bitfield::UTF8_PANIC",
+   "translation": "B01_synthetic/033_bitfield",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/034_cast_to_char_ptr_int::PARSE_NUM",
+   "translation": "B01_synthetic/034_cast_to_char_ptr_int",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/036_cast_to_char_ptr_struct::PARSE_NUM",
+   "translation": "B01_synthetic/036_cast_to_char_ptr_struct",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 47,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 47,
+   "still_diverging": 47,
+   "same_class": 47,
+   "rust_output_same_as_shipped": 47,
+   "c_output_same_as_shipped": 47,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "fa62b10e8899b08b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "677d3eb2dde0c2a9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc5db7157f39d71c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f23d06718425be95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "344c8b605d765dce",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bbb426ba60bc13e9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603f55a3299c6176",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bdcdcf6c0f3437c1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8de473f197fffa9d",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "253397cb4d85d2ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "849e3ad5d7aa9eb1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d49672a681e728e6",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1bef11f15005eea1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6f1eff4d9fa52e5f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19b87cf86badd8a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6d0f6d24194b5c9c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "63abf0971fade373",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1d17308136e28d95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2a7aed07f271a16f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "59403be9e8aaeed1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/036_cast_to_char_ptr_struct::UTF8_PANIC",
+   "translation": "B01_synthetic/036_cast_to_char_ptr_struct",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/037_cast_to_char_ptr_int_no_strict_aliasing::PARSE_NUM",
+   "translation": "B01_synthetic/037_cast_to_char_ptr_int_no_strict_aliasing",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/039_cast_to_char_ptr_struct_no_strict_aliasing::PARSE_NUM",
+   "translation": "B01_synthetic/039_cast_to_char_ptr_struct_no_strict_aliasing",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/040_storage_class_auto::PARSE_NUM",
+   "translation": "B01_synthetic/040_storage_class_auto",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/041_storage_class_register::PARSE_NUM",
+   "translation": "B01_synthetic/041_storage_class_register",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 4,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 4,
+   "still_diverging": 4,
+   "same_class": 4,
+   "rust_output_same_as_shipped": 4,
+   "c_output_same_as_shipped": 4,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/042_float_union::PARSE_NUM",
+   "translation": "B01_synthetic/042_float_union",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 43,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 43,
+   "still_diverging": 43,
+   "same_class": 43,
+   "rust_output_same_as_shipped": 43,
+   "c_output_same_as_shipped": 43,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "fa62b10e8899b08b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "677d3eb2dde0c2a9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc5db7157f39d71c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f23d06718425be95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "344c8b605d765dce",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bbb426ba60bc13e9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603f55a3299c6176",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bdcdcf6c0f3437c1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8de473f197fffa9d",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "253397cb4d85d2ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "849e3ad5d7aa9eb1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d49672a681e728e6",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1bef11f15005eea1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6f1eff4d9fa52e5f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19b87cf86badd8a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6d0f6d24194b5c9c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "63abf0971fade373",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1d17308136e28d95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2a7aed07f271a16f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "59403be9e8aaeed1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/042_float_union::UTF8_PANIC",
+   "translation": "B01_synthetic/042_float_union",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/043_iso646_and_digraphs::TOKEN_PANIC",
+   "translation": "B01_synthetic/043_iso646_and_digraphs",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 52,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 52,
+   "still_diverging": 52,
+   "same_class": 52,
+   "rust_output_same_as_shipped": 52,
+   "c_output_same_as_shipped": 52,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "57db1d47533cb9e7",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3216ca0e6e05f318",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "479ac17e0ea49531",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4bd6b2fd499e61e3",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "24f285cb31164562",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1a94cc39c1e98e53",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5e00da8b48688555",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "83aa82fbe2e44927",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb9488910432db9e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a8960be0fd20286e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0bec7a4ba446aef5",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4452ffe322acdcf8",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "131d6950147fef6b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a7cc0698d841f68e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "454facade5ef0286",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9489748e2fe8b712",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "893d04bf2e10db72",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03bc994044e701c9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3b18f8303f747f5a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e5ad12a60180c2f2",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "93f509bce004bb2f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8cae65bb21a89aac",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "552e49a5c1934d6a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a9382f71b36c985f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f5aa30d607a0a80",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc371b4ef8805a32",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "80856693ce457385",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31be05396874fef1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "53265ef88078c5ea",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a3d61a59118ddf47",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19d18b096bc3353e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f0b8cd5ea831d355",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "71f16c51a459fba1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "43f2b94ca4935ee4",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0297c4c8a99bc367",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "accc610db064cc0a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "41d04f5ad7f4ae0d",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "22e569c9cba87c23",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb49423529a87b93",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "829e90a53543b277",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "7a06ddce7092e56b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "23f1c85b971c8b0b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f589428fd8489009",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b038606355110bce",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c9cda0d057f751c3",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/043_iso646_and_digraphs::UTF8_PANIC",
+   "translation": "B01_synthetic/043_iso646_and_digraphs",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_organic/qmath::PARSE_NUM",
+   "translation": "B02_organic/qmath",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "761d5e82bddf9fe0",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/char-to-bool::LINE_SPLIT",
+   "translation": "B02_synthetic/char-to-bool",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::LINE_SPLIT",
+   "translation": "B02_synthetic/generic-foreach",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::PARSE_NUM",
+   "translation": "B02_synthetic/generic-foreach",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 19,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 19,
+   "still_diverging": 19,
+   "same_class": 19,
+   "rust_output_same_as_shipped": 19,
+   "c_output_same_as_shipped": 19,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::UTF8_EOF",
+   "translation": "B02_synthetic/generic-foreach",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/hashmap-tree::ASSERT_DROPPED",
+   "translation": "B02_synthetic/hashmap-tree",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 105,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 105,
+   "still_diverging": 105,
+   "same_class": 105,
+   "rust_output_same_as_shipped": 105,
+   "c_output_same_as_shipped": 105,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "57db1d47533cb9e7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3216ca0e6e05f318",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "479ac17e0ea49531",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4bd6b2fd499e61e3",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "24f285cb31164562",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1a94cc39c1e98e53",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5e00da8b48688555",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "83aa82fbe2e44927",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb9488910432db9e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a8960be0fd20286e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0bec7a4ba446aef5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4452ffe322acdcf8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "131d6950147fef6b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a7cc0698d841f68e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "454facade5ef0286",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9489748e2fe8b712",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "893d04bf2e10db72",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03bc994044e701c9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3b18f8303f747f5a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e5ad12a60180c2f2",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "93f509bce004bb2f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8cae65bb21a89aac",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "552e49a5c1934d6a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a9382f71b36c985f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f5aa30d607a0a80",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc371b4ef8805a32",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "80856693ce457385",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31be05396874fef1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "53265ef88078c5ea",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a3d61a59118ddf47",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19d18b096bc3353e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f0b8cd5ea831d355",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "71f16c51a459fba1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "43f2b94ca4935ee4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0297c4c8a99bc367",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "accc610db064cc0a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "41d04f5ad7f4ae0d",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "22e569c9cba87c23",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb49423529a87b93",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "829e90a53543b277",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "7a06ddce7092e56b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "422bec84386e226c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fa62b10e8899b08b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "677d3eb2dde0c2a9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc5db7157f39d71c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f23d06718425be95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "344c8b605d765dce",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bbb426ba60bc13e9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603f55a3299c6176",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "41d445f1a74ba36e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bdcdcf6c0f3437c1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31222d237969d4e4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8de473f197fffa9d",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "253397cb4d85d2ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "849e3ad5d7aa9eb1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d49672a681e728e6",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "47ee586111de653c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1bef11f15005eea1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6f1eff4d9fa52e5f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19b87cf86badd8a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6d0f6d24194b5c9c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "63abf0971fade373",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e4b2fc2dbc182ae1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1d17308136e28d95",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2a7aed07f271a16f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "59403be9e8aaeed1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "23f1c85b971c8b0b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f589428fd8489009",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b038606355110bce",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c9cda0d057f751c3",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_add_5::PARSE_NUM",
+   "translation": "B02_synthetic/macrodepth_add_5",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "c86a218c7a4c4540",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ca3cf4ae797efd8a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d6c455ca989d48c4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_mul_4::PARSE_NUM",
+   "translation": "B02_synthetic/macrodepth_mul_4",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "c86a218c7a4c4540",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ca3cf4ae797efd8a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d6c455ca989d48c4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_sub_6::PARSE_NUM",
+   "translation": "B02_synthetic/macrodepth_sub_6",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "c86a218c7a4c4540",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ca3cf4ae797efd8a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d6c455ca989d48c4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/memmove::UTF8_PANIC",
+   "translation": "B02_synthetic/memmove",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::BREAK_LOOP",
+   "translation": "B02_synthetic/mutable-duplication-dag",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 6,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 6,
+   "still_diverging": 6,
+   "same_class": 6,
+   "rust_output_same_as_shipped": 6,
+   "c_output_same_as_shipped": 6,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "8cae65bb21a89aac",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::LINE_SPLIT",
+   "translation": "B02_synthetic/mutable-duplication-dag",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::PARSE_NUM",
+   "translation": "B02_synthetic/mutable-duplication-dag",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 18,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 18,
+   "still_diverging": 18,
+   "same_class": 18,
+   "rust_output_same_as_shipped": 18,
+   "c_output_same_as_shipped": 18,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::UTF8_EOF",
+   "translation": "B02_synthetic/mutable-duplication-dag",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::LINE_SPLIT",
+   "translation": "B02_synthetic/pointer-comparison-ascii-art",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::PARSE_NUM",
+   "translation": "B02_synthetic/pointer-comparison-ascii-art",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 19,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 19,
+   "still_diverging": 19,
+   "same_class": 19,
+   "rust_output_same_as_shipped": 19,
+   "c_output_same_as_shipped": 19,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::UTF8_EOF",
+   "translation": "B02_synthetic/pointer-comparison-ascii-art",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::LINE_SPLIT",
+   "translation": "B02_synthetic/static-vars-fpts",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::PARSE_NUM",
+   "translation": "B02_synthetic/static-vars-fpts",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 18,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 18,
+   "still_diverging": 18,
+   "same_class": 18,
+   "rust_output_same_as_shipped": 18,
+   "c_output_same_as_shipped": 18,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::UTF8_EOF",
+   "translation": "B02_synthetic/static-vars-fpts",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::LINE_SPLIT",
+   "translation": "B02_synthetic/strcmp",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::NUL_BYTE",
+   "translation": "B02_synthetic/strcmp",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "24f285cb31164562",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::WS_SET",
+   "translation": "B02_synthetic/strcmp",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "bb9488910432db9e",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/tu_linkage::PARSE_NUM",
+   "translation": "B02_synthetic/tu_linkage",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 12,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 12,
+   "still_diverging": 12,
+   "same_class": 12,
+   "rust_output_same_as_shipped": 12,
+   "c_output_same_as_shipped": 12,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "18c5158162892086",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c0a2e243fd5faf35",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1133bc29b6366ac3",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "90faf4309f46aa9a",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "431117647db5db48",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2c11d1c883f3615c",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "248ab1f2808be2a5",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3504c12164741c3b",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "15569fcf0475ef82",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d6c455ca989d48c4",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "45f365f3adb54688",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5025bd8c7d97f12d",
+     "shipped_class": "S2",
+     "pinned_class": "S2",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-P00_perlin_noise/001_perlin_noise::TOKEN_PANIC",
+   "translation": "P00_perlin_noise/001_perlin_noise",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 104,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 104,
+   "still_diverging": 104,
+   "same_class": 104,
+   "rust_output_same_as_shipped": 104,
+   "c_output_same_as_shipped": 104,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "57db1d47533cb9e7",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3216ca0e6e05f318",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "479ac17e0ea49531",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4bd6b2fd499e61e3",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "24f285cb31164562",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1a94cc39c1e98e53",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5e00da8b48688555",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "194c64cf8c52be05",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "83aa82fbe2e44927",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb9488910432db9e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a8960be0fd20286e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0bec7a4ba446aef5",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "4452ffe322acdcf8",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "131d6950147fef6b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a7cc0698d841f68e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "454facade5ef0286",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9489748e2fe8b712",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "893d04bf2e10db72",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03bc994044e701c9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "3b18f8303f747f5a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e5ad12a60180c2f2",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "93f509bce004bb2f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8cae65bb21a89aac",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "552e49a5c1934d6a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a9382f71b36c985f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f5aa30d607a0a80",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc371b4ef8805a32",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "80856693ce457385",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31be05396874fef1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "53265ef88078c5ea",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a3d61a59118ddf47",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19d18b096bc3353e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f0b8cd5ea831d355",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "71f16c51a459fba1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "43f2b94ca4935ee4",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0297c4c8a99bc367",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "accc610db064cc0a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "41d04f5ad7f4ae0d",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "22e569c9cba87c23",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bb49423529a87b93",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "829e90a53543b277",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "7a06ddce7092e56b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "422bec84386e226c",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fa62b10e8899b08b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "677d3eb2dde0c2a9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f52dbcbcc45aeb83",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cc5db7157f39d71c",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f23d06718425be95",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "344c8b605d765dce",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d334907a6fa70f2a",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bbb426ba60bc13e9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603f55a3299c6176",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "82f312fb61ccf59e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b0a943c319eb9bc9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5e6f09c1885e359e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "818b44d158fa7886",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "637fed716aa3d140",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9b82579a41e4aa90",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "41d445f1a74ba36e",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c4e37383f375cc69",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "bdcdcf6c0f3437c1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "31222d237969d4e4",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0ef64c1fb729df7c",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8de473f197fffa9d",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "603b5251f9bcef08",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "253397cb4d85d2ca",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "849e3ad5d7aa9eb1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ea13fdd9d94fe5f7",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "5077490d066b0d1f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d49672a681e728e6",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "0e6433b35ecc55d7",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c2303aad468a09cc",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e286c2b9945383d4",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "209c46404eafe8be",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "47ee586111de653c",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1bef11f15005eea1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6f1eff4d9fa52e5f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "19b87cf86badd8a5",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "6d0f6d24194b5c9c",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9ef65f8262b9ad39",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "63abf0971fade373",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "9bedad7b20f71fcb",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "d19ad0fbac43e452",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "03572ccaffd231d1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "e4b2fc2dbc182ae1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1d17308136e28d95",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "2a7aed07f271a16f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "59403be9e8aaeed1",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b397ef4dfcf865ed",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "a5510fcbaaf65a92",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "576784894af912d8",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "014b999105d454a5",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "fe1a9cea9aebe09b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "ad8ec5e68f1b6096",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b5b4ad55dc48df7b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b45b00fe90d08016",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "23f1c85b971c8b0b",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "62736b5c5ed8a275",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "f589428fd8489009",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "b038606355110bce",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "8933458d29b766ca",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "c9cda0d057f751c3",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "1f2c64e449156243",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "cf2f23a905d10ba9",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-P00_perlin_noise/001_perlin_noise::UTF8_PANIC",
+   "translation": "P00_perlin_noise/001_perlin_noise",
+   "kind": "exe",
+   "severity": "crash",
+   "ledger_exposure_count": 1,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 1,
+   "still_diverging": 1,
+   "same_class": 1,
+   "rust_output_same_as_shipped": 1,
+   "c_output_same_as_shipped": 1,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "2d51b2d367bb9a0f",
+     "shipped_class": "rust_crash",
+     "pinned_class": "rust_crash",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/checkshift_lib::SHIFT_SIGN",
+   "translation": "B02_synthetic/checkshift_lib",
+   "kind": "lib",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_summary.json case_ids",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "62567c78297bcf23",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "710d421123712269",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "87e2a46665a2c8b4",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/memmove::PARSE_NUM-own",
+   "translation": "B02_synthetic/memmove",
+   "kind": "exe",
+   "severity": "S1",
+   "ledger_exposure_count": 3,
+   "input_source": "results/actoruw_second_rater_memmove.json (second_rater_memmove.INPUTS)",
+   "build_ok": true,
+   "inputs_rerun": 3,
+   "still_diverging": 3,
+   "same_class": 3,
+   "rust_output_same_as_shipped": 3,
+   "c_output_same_as_shipped": 3,
+   "verdict_unchanged": true,
+   "inputs": [
+    {
+     "id": "sr_5x_last",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "sr_5x_second",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    },
+    {
+     "id": "sr_5x_rotate",
+     "shipped_class": "S1",
+     "pinned_class": "S1",
+     "diverges": true,
+     "same_class": true,
+     "rust_output_same_as_shipped": true,
+     "c_output_same_as_shipped": true
+    }
+   ]
+  }
+ ]
+}

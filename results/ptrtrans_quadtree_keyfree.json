@@ -1,0 +1,4385 @@
+{
+ "provenance": {
+  "script": "systems/ptrtrans/quadtree_e2e/keyfree_check.py",
+  "command": "bash systems/ptrtrans/quadtree_e2e/run_in_docker.sh crust-heldout-plus186 systems/ptrtrans/quadtree_e2e/keyfree_check.py --art /art --build /oub/kf --toolchain 1.86.0 (image sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (+uncommitted systems/ptrtrans/)",
+  "git_worktree_note": "study repo subset (harness/oracle_ub_common.py, systems/ptrtrans/) copied to the run host; uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:50:49+00:00",
+  "toolchain": "1.86.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "wall_seconds": 2
+ },
+ "summary": {
+  "cases": 60,
+  "cases_where_c_calls_key_free": 24,
+  "c_key_free_calls_total": 48,
+  "c_key_free_calls_with_NULL_key": 8,
+  "rust_key_free_calls_total": 0,
+  "insert_returns_identical_in_all_cases": true,
+  "inserts_with_c_nonnull_key_free": 40,
+  "of_which_rust_drops_exactly_those_keys_in_the_same_insert": 40,
+  "inserts_rust_drops_key_c_calls_no_key_free": 116,
+  "of_which_insert_returned_0_without_storing": 116,
+  "note_on_rejected_inserts": "when quadtree_insert rejects a point (returns 0, nothing stored) the C leaves the key with the caller and calls no key_free; the translation takes the key by value (Option<Box<dyn Any>>) and drops it. No C-visible channel shows this; it is the Rust ownership signature, not a key_free call.",
+  "by_seq": {
+   "three_testc_like": 8,
+   "duplicates": 8,
+   "null_keys": 8
+  }
+ },
+ "cases": [
+  {
+   "id": "bench_0_1000/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "bench_0_1000/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "bench_0_1000/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "bench_0_1000/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "bench_0_1000/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "testc_1_10/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "testc_1_10/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "testc_1_10/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "testc_1_10/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "testc_1_10/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "centred_50/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "centred_50/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "centred_50/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "centred_50/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "centred_50/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nonsquare_100x1/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nonsquare_100x1/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nonsquare_100x1/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nonsquare_100x1/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nonsquare_100x1/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "swapped_10_1/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "swapped_10_1/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "swapped_10_1/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "swapped_10_1/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "swapped_10_1/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "huge_1e300/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "huge_1e300/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "huge_1e300/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "huge_1e300/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "huge_1e300/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "overflow_1e308/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 2,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "overflow_1e308/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "overflow_1e308/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 6,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "overflow_1e308/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 16,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      6
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      7
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      8
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      9
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      10
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      11
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      12
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      13
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      14
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      15
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "overflow_1e308/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "tiny_1e-300/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "tiny_1e-300/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "tiny_1e-300/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "tiny_1e-300/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "tiny_1e-300/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "zero_width/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 2,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "zero_width/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "zero_width/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 6,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "zero_width/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 16,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      6
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      7
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      8
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      9
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      10
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      11
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      12
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      13
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      14
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      15
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "zero_width/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "infinite/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 2,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "infinite/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "infinite/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 6,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "infinite/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 16,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      6
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      7
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      8
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      9
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      10
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      11
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      12
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      13
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      14
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      15
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "infinite/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "unit_offset/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "unit_offset/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "unit_offset/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 4,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      0
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L1",
+     "rust_ret": "I 0 L1",
+     "c_key_free": [
+      1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      2
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      3
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "unit_offset/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L4",
+     "rust_ret": "I 1 L4",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L5",
+     "rust_ret": "I 1 L5",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L6",
+     "rust_ret": "I 1 L6",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L7",
+     "rust_ret": "I 1 L7",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L8",
+     "rust_ret": "I 1 L8",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L9",
+     "rust_ret": "I 1 L9",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L10",
+     "rust_ret": "I 1 L10",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L11",
+     "rust_ret": "I 1 L11",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L12",
+     "rust_ret": "I 1 L12",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L13",
+     "rust_ret": "I 1 L13",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L14",
+     "rust_ret": "I 1 L14",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L15",
+     "rust_ret": "I 1 L15",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L16",
+     "rust_ret": "I 1 L16",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "unit_offset/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 1,
+   "c_key_free_calls_null": 1,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 0,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": true,
+   "inserts": [
+    {
+     "c_ret": "I 1 L1",
+     "rust_ret": "I 1 L1",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L2",
+     "rust_ret": "I 1 L2",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L2",
+     "rust_ret": "I 0 L2",
+     "c_key_free": [
+      -1
+     ],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 1 L3",
+     "rust_ret": "I 1 L3",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  },
+  {
+   "id": "nan_minx/two_diff_quadrants/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 2,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 2,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "nan_minx/three_testc_like/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 4,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "nan_minx/duplicates/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 6,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 6,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "nan_minx/lattice_4x4_centres/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 16,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 16,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      0
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      2
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      3
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      4
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      5
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      6
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      7
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      8
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      9
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      10
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      11
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      12
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      13
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      14
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      15
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    }
+   ]
+  },
+  {
+   "id": "nan_minx/null_keys/keyfree",
+   "c_rc": 0,
+   "rust_rc": 0,
+   "n_inserts": 4,
+   "same_insert_returns": true,
+   "c_key_free_calls": 0,
+   "c_key_free_calls_null": 0,
+   "rust_key_free_calls": 0,
+   "rust_drops_during_inserts": 1,
+   "all_inserts_c_nonnull_key_free_equals_rust_drops": false,
+   "inserts": [
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [
+      1
+     ],
+     "c_nonnull_key_free_equals_rust_drops": false
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    },
+    {
+     "c_ret": "I 0 L0",
+     "rust_ret": "I 0 L0",
+     "c_key_free": [],
+     "rust_key_free": [],
+     "rust_dropped": [],
+     "c_nonnull_key_free_equals_rust_drops": true
+    }
+   ]
+  }
+ ]
+}

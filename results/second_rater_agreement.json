@@ -1,0 +1,370 @@
+{
+ "class_map": {
+  "c_bug_not_copied": "c_bug",
+  "edge_input_robustness": "edge",
+  "outright_error": "outright"
+ },
+ "inputs": [
+  "results/second_rater_key.json",
+  "docs/reviews/second-rater/ratings.json",
+  "docs/reviews/second-rater/cases-spec.json"
+ ],
+ "ratings": {
+  "item06": {
+   "case": 8,
+   "cause": "When value equals minval, the Rust returns it without checking maxval, so inverted bounds like (5, 5, 3) give 5 instead of 3.",
+   "cls": "edge",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:53:20.964Z"
+  },
+  "item10": {
+   "case": 11,
+   "cause": "Rust requires every whitespace-separated token to be a whole number, so input like a final byte of 5x makes it error out where the C reads the 5 and prints the result.",
+   "cls": "edge",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:58:53.806Z"
+  },
+  "item14": {
+   "case": 4,
+   "cause": "the Rust reads the option’s argument before checking whether the option has one, so any flag without an argument, like -q, crashes.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:48:01.582Z"
+  },
+  "item17": {
+   "case": 1,
+   "cause": "The Rust starts the backward pass with the forward maximum instead of the last element, so [1, 2] gives 4 instead of 3.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:46:18.302Z"
+  },
+  "item19": {
+   "case": 6,
+   "cause": "After every event, the Rust gives a mention to every user it thinks is offline, so even a single direct mention like MESSAGE 10 id0 counts twice.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:51:26.758Z"
+  },
+  "item20": {
+   "case": 2,
+   "cause": "The Rust’s homemade number parser doesn’t skip leading spaces like strtol does, so \" 12\" prints an error instead of the totals.",
+   "cls": "edge",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:46:29.234Z"
+  },
+  "item28": {
+   "case": 10,
+   "cause": "Rust adds 0.5 and then also calls .round(), so it rounds twice, and 0.0 comes out as “North by east” instead of “North”.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:56:45.217Z"
+  },
+  "item30": {
+   "case": 12,
+   "cause": "Rust’s whitespace check also matches the array’s terminating zero byte, so stripping a zero-padded string like \"ab\\0\\0\" gives size 2 instead of 4.",
+   "cls": "edge",
+   "conf": "",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T07:00:03.571Z"
+  },
+  "item31": {
+   "case": 9,
+   "cause": "The Rust’s buffer_append_n ignores its length argument, so appending the first 2 bytes of \"hello\" adds all 5.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:54:57.676Z"
+  },
+  "item34": {
+   "case": 5,
+   "cause": "Rust passes the same promoted value to the same libc functions and prints with the same formats, so there’s nothing to differetiate.",
+   "cls": "",
+   "conf": "high",
+   "counted": "no",
+   "rule": "none",
+   "updated": "2026-11-14T06:50:26.761Z"
+  },
+  "item38": {
+   "case": 3,
+   "cause": "The Rust shifts each byte while it’s still 8 bits wide, so the shifts do nothing and (0, 1, 0, 0) gives 1 instead of 256.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:46:39.291Z"
+  },
+  "item41": {
+   "case": 7,
+   "cause": "Rust uses f32 instead of double, so for n = 8 the result loses precision and comes out as 61719996 instead of 61719994.",
+   "cls": "outright",
+   "conf": "high",
+   "counted": "yes",
+   "rule": "",
+   "updated": "2026-11-14T06:52:34.799Z"
+  }
+ },
+ "rows": [
+  {
+   "case": 8,
+   "class_agrees": null,
+   "count_agrees": false,
+   "defect_id": "FLOURINE-opl_emu_clamp-1",
+   "first": {
+    "class": null,
+    "count_status": "precondition_only",
+    "counted": false
+   },
+   "item": "item06",
+   "second": {
+    "cause": "When value equals minval, the Rust returns it without checking maxval, so inverted bounds like (5, 5, 3) give 5 instead of 3.",
+    "class": "edge",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 11,
+   "class_agrees": null,
+   "count_agrees": false,
+   "defect_id": "ACTOR-B02_synthetic/memmove::PARSE_NUM-own",
+   "first": {
+    "class": null,
+    "count_status": "excluded_contested_conversion",
+    "counted": false
+   },
+   "item": "item10",
+   "second": {
+    "cause": "Rust requires every whitespace-separated token to be a whole number, so input like a final byte of 5x makes it error out where the C reads the 5 and prints the result.",
+    "class": "edge",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 4,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "C2SR-head-4",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item14",
+   "second": {
+    "cause": "the Rust reads the option’s argument before checking whether the option has one, so any flag without an argument, like -q, crashes.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 1,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "VERT-MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT-1",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item17",
+   "second": {
+    "cause": "The Rust starts the backward pass with the forward maximum instead of the last element, so [1, 2] gives 4 instead of 3.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 6,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "ADATRANS-run1-C_434_2",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item19",
+   "second": {
+    "cause": "After every event, the Rust gives a mention to every user it thinks is offline, so even a single direct mention like MESSAGE 10 id0 counts twice.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 2,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "ACTOR-B01_synthetic/005_static_loop::PARSE_NUM",
+   "first": {
+    "class": "edge",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item20",
+   "second": {
+    "cause": "The Rust’s homemade number parser doesn’t skip leading spaces like strtol does, so \" 12\" prints an error instead of the totals.",
+    "class": "edge",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 10,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "RUSTMAP-rosetta-box_the_compass-1",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item28",
+   "second": {
+    "cause": "Rust adds 0.5 and then also calls .round(), so it rounds twice, and 0.0 comes out as “North by east” instead of “North”.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 12,
+   "class_agrees": false,
+   "count_agrees": true,
+   "defect_id": "SACTOR-C2",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item30",
+   "second": {
+    "cause": "Rust’s whitespace check also matches the array’s terminating zero byte, so stripping a zero-padded string like \"ab\\0\\0\" gives size 2 instead of 4.",
+    "class": "edge",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 9,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "H2T-BUF-1",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item31",
+   "second": {
+    "cause": "The Rust’s buffer_append_n ignores its length argument, so appending the first 2 bytes of \"hello\" adds all 5.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 5,
+   "class_agrees": null,
+   "count_agrees": true,
+   "defect_id": "ACTOR-B01_synthetic/027_ctype_ascii_lib::CTYPE_VALUE",
+   "first": {
+    "class": null,
+    "count_status": "excluded_unspecified_value",
+    "counted": false
+   },
+   "item": "item34",
+   "second": {
+    "cause": "Rust passes the same promoted value to the same libc functions and prints with the same formats, so there’s nothing to differetiate.",
+    "class": null,
+    "counted": false,
+    "rule": "none"
+   }
+  },
+  {
+   "case": 3,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "FLOURINE-operator_list-1",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item38",
+   "second": {
+    "cause": "The Rust shifts each byte while it’s still 8 bits wide, so the shifts do nothing and (0, 1, 0, 0) gives 1 instead of 256.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  },
+  {
+   "case": 7,
+   "class_agrees": true,
+   "count_agrees": true,
+   "defect_id": "VERT-SUM_SERIES_555555_N_TERMS-1",
+   "first": {
+    "class": "outright",
+    "count_status": "counted",
+    "counted": true
+   },
+   "item": "item41",
+   "second": {
+    "cause": "Rust uses f32 instead of double, so for n = 8 the result loses precision and comes out as 61719996 instead of 61719994.",
+    "class": "outright",
+    "counted": true,
+    "rule": null
+   }
+  }
+ ],
+ "same_cause_reviewed": {
+  "evidence": "docs/reviews/second-rater (the verifier confirmed each stated cause by running the exposing input it names against the C and the Rust); not string-matched",
+  "items": [
+   "item14",
+   "item17",
+   "item19",
+   "item20",
+   "item28",
+   "item30",
+   "item31",
+   "item38",
+   "item41"
+  ],
+  "same_cause": 9
+ },
+ "summary": {
+  "both_counted": 9,
+  "cases": 12,
+  "class_agree": 8,
+  "class_differ_items": [
+   "item30"
+  ],
+  "count_agree": 10,
+  "count_differ_items": [
+   "item06",
+   "item10"
+  ],
+  "first_counted": 9,
+  "first_excluded": 3
+ }
+}

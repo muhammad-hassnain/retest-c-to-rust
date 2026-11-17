@@ -1,0 +1,917 @@
+{
+ "part": {
+  "harness": "scalar",
+  "shard": "all",
+  "functions": [
+   "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE"
+  ]
+ },
+ "provenance": {
+  "script": "systems/vert/arxiv_mutate_ubfilter.py",
+  "command": "docker run --rm --cpus 5 --memory 4g -v $PWD:/work -w /work -e RUSTUP_TOOLCHAIN=1.86.0 crust-vert-toolchain python3 -I systems/vert/arxiv_wide_ubfilter.py --jobs 5 --out results/arxiv_vert_wide_mutation_ubfilter.json",
+  "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_note": "study repo working tree (Mac) at this commit; systems/vert/arxiv_wide_ubfilter.py, arxiv_wide_mutate.py and results/arxiv_vert_wide_mutation_primary.json new/untracked; arxiv_mutate_ubfilter.py, mutate_primary.py, batch_diff.py, oracle_ub_common.py as committed; arxiv_ub_fullrule.py has another agent's uncommitted change to ledger_specs() only (build_variants, check_input, PLAN and positive_controls as committed); run.py has the uncommitted --wide-int/--only flags (not used here)",
+  "host": "macOS arm64 (Apple silicon), Docker Desktop linux/arm64, docker --cpus 5",
+  "arch": "aarch64",
+  "kernel": "6.10.14-linuxkit",
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "toolchains": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "python": "3.10.12"
+  },
+  "inputs": {
+   "results/arxiv_vert_wide_mutation_primary.json": "c845f40cebb49bc8adbeb834397380caf5bbbbddbd2c7c569bd60311e3d09971"
+  },
+  "file_sha256": {
+   "systems/vert/arxiv_mutate_ubfilter.py": "16f5eed31c14068a518dcc3468dbe54f8647aa4d10f460fa4cd22aa44d508295",
+   "systems/vert/arxiv_ub_fullrule.py": "7b0e8fcd93821777f0ff3cd3618e70e67e342c867593e8b90e0ff4d9310eae63",
+   "systems/vert/mutate_primary.py": "60dee3d37ec677a24ea4ab7fe036247fde39819740ba0beac836ad24e03e6191",
+   "systems/vert/run.py": "cf9f0ab0d979d2307c8517417b3a4851e5f9a136dd4c7fbda624885d12c38f0b",
+   "systems/vert/run_arrays.py": "62aecc4fad82dbb0bdca90bb3c232c4e9c1b75c28f81b4e02279ecd7f6001e9f",
+   "systems/batch_diff.py": "3cc5f6e9a0a5f85378df8ce2b446dadb9a761592ccfe59f148f53f75a576ffb3",
+   "systems/enumerate_inputs.py": "5f9f89bc6ccf4ea323fb2da4ad2e351c18fccdad2c88d41da8164cfcd1ca12b9",
+   "harness/oracle_ub_common.py": "1da0377cdd2b15e4b45de573b1bbd51e78c90f3a0da505ef8685f5287f841291"
+  },
+  "full_rule_builds": {
+   "san_gcc-O0": [
+    "gcc",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_gcc-O1": [
+    "gcc",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_gcc-O2": [
+    "gcc",
+    "-O2",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O0_wrapv": [
+    "gcc",
+    "-O0",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O1_wrapv": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O2_wrapv": [
+    "gcc",
+    "-O2",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_gcc-O1_wrapv_signed": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-fsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_gcc-O1_wrapv_unsigned": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-funsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O0_nowrapv": [
+    "gcc",
+    "-O0",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O1_nowrapv": [
+    "gcc",
+    "-O1",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O2_nowrapv": [
+    "gcc",
+    "-O2",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O0": [
+    "clang-14",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O1": [
+    "clang-14",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O2": [
+    "clang-14",
+    "-O2",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O0_wrapv": [
+    "clang-14",
+    "-O0",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O1_wrapv": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O2_wrapv": [
+    "clang-14",
+    "-O2",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_clang-O1_wrapv_signed": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-fsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_clang-O1_wrapv_unsigned": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-funsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O0_nowrapv": [
+    "clang-14",
+    "-O0",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O1_nowrapv": [
+    "clang-14",
+    "-O1",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O2_nowrapv": [
+    "clang-14",
+    "-O2",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang_msan-O1": [
+    "clang-14",
+    "-O1",
+    "-g",
+    "-fsanitize=memory",
+    "-fno-sanitize-recover=all",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang_san_fdz-O0": [
+    "clang-14",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow,float-divide-by-zero",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow,float-divide-by-zero",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ]
+  },
+  "rule_checks": [
+   "san_gcc-O0",
+   "san_gcc-O1",
+   "san_gcc-O2",
+   "val_gcc-O0_wrapv",
+   "val_gcc-O1_wrapv",
+   "val_gcc-O2_wrapv",
+   "char_gcc-O1_wrapv_signed",
+   "char_gcc-O1_wrapv_unsigned",
+   "san_clang-O0",
+   "san_clang-O1",
+   "san_clang-O2",
+   "val_clang-O0_wrapv",
+   "val_clang-O1_wrapv",
+   "val_clang-O2_wrapv",
+   "char_clang-O1_wrapv_signed",
+   "char_clang-O1_wrapv_unsigned"
+  ],
+  "recorded_not_rule": [
+   "info_gcc-O0_nowrapv",
+   "info_gcc-O1_nowrapv",
+   "info_gcc-O2_nowrapv",
+   "info_clang-O0_nowrapv",
+   "info_clang-O1_nowrapv",
+   "info_clang-O2_nowrapv",
+   "info_clang_msan-O1",
+   "info_clang_san_fdz-O0"
+  ],
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "san_timeout_s": 30,
+  "value_timeout_s": 15,
+  "jobs": 5,
+  "date_start_utc": "2026-11-17T15:52:03+00:00",
+  "date_end_utc": "2026-11-17T15:52:13+00:00",
+  "wrapper": {
+   "script": "systems/vert/arxiv_wide_ubfilter.py",
+   "runs": "systems/vert/arxiv_mutate_ubfilter.py run_mode (run --harness scalar --shard all), unchanged",
+   "substitutions": {
+    "SCALAR_SRC": "results/arxiv_vert_wide_mutation_primary.json (instead of results/vert_mutation_primary_grid2.json)",
+    "shipped_pins": "[] (one unsharded arm64 run; no shard 0 / shard 1)"
+   },
+   "sha256": "a691bec20bb29cb7b8d10ad2e4004a7ab3addc8253374b3aefacf2815f7b9553"
+  }
+ },
+ "sanitizer_positive_controls": {
+  "san_gcc-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_gcc-O1": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_gcc-O2": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O1": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O2": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "info_clang_san_fdz-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "info_clang_msan-O1": {
+   "uninit_read": "fired",
+   "clean": "clean"
+  }
+ },
+ "functions": [
+  {
+   "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "harness": "scalar",
+   "killed_counted_old": 3,
+   "mutants": [
+    {
+     "id": "const:f_gold:L10:c+1@321",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "7",
+     "kill_rust_recorded": "15",
+     "kill_c_rerun": "7",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L10:c-1@321",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "7",
+     "kill_rust_recorded": "3",
+     "kill_c_rerun": "7",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "aor:f_gold:L10:-->+@324",
+     "op": "aor",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "7",
+     "kill_rust_recorded": "9",
+     "kill_c_rerun": "7",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    }
+   ],
+   "full_rule_checks": [
+    {
+     "in": [
+      1
+     ],
+     "ref": "7",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "grid_cases": 100,
+   "harness_builds": {
+    "binc": true,
+    "binc_san": true,
+    "binc_alt": true,
+    "binc_msan": false
+   },
+   "variant_build_errors": {},
+   "secs": 2.2
+  },
+  {
+   "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+   "harness": "scalar",
+   "killed_counted_old": 4,
+   "mutants": [
+    {
+     "id": "ror:f_gold:L10:<->>=@361",
+     "op": "ror",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      9,
+      2
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "9",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      9,
+      2
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "ror:f_gold:L13:>-><=@408",
+     "op": "ror",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      9,
+      2
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "9",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      9,
+      2
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L16:c+1@448",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      227,
+      7
+     ],
+     "kill_c_recorded": "99",
+     "kill_rust_recorded": "227",
+     "kill_c_rerun": "99",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      227,
+      7
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L16:c-1@448",
+     "op": "const",
+     "old_outcome": "killed_panic",
+     "kill_input": [
+      9,
+      2
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "__PANIC__/no line",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_panic",
+     "new_killed": true,
+     "new_kill_input": [
+      9,
+      2
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    }
+   ],
+   "full_rule_checks": [
+    {
+     "in": [
+      9,
+      2
+     ],
+     "ref": "1",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    },
+    {
+     "in": [
+      227,
+      7
+     ],
+     "ref": "99",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "grid_cases": 80,
+   "harness_builds": {
+    "binc": true,
+    "binc_san": true,
+    "binc_alt": true,
+    "binc_msan": false
+   },
+   "variant_build_errors": {},
+   "secs": 2.3
+  },
+  {
+   "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "harness": "scalar",
+   "killed_counted_old": 7,
+   "mutants": [
+    {
+     "id": "const:f_gold:L9:c+1@316",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      0
+     ],
+     "kill_c_recorded": "0",
+     "kill_rust_recorded": "1",
+     "kill_c_rerun": "0",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      0
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L9:c-1@316",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      0
+     ],
+     "kill_c_recorded": "0",
+     "kill_rust_recorded": "-1",
+     "kill_c_rerun": "0",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      0
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L10:c+1@334",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "0",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L10:c-1@334",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      0
+     ],
+     "kill_c_recorded": "0",
+     "kill_rust_recorded": "-2147483648",
+     "kill_c_rerun": "0",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      0
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "aor:f_gold:L11:+=->-=@353",
+     "op": "aor",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "-1",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L11:c+1@356",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "2",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    },
+    {
+     "id": "const:f_gold:L11:c-1@356",
+     "op": "const",
+     "old_outcome": "killed_value",
+     "kill_input": [
+      1
+     ],
+     "kill_c_recorded": "1",
+     "kill_rust_recorded": "0",
+     "kill_c_rerun": "1",
+     "kill_c_reproduces": true,
+     "kill_input_ub_clean": true,
+     "kill_input_failing_checks": [],
+     "old_unrechecked_slow": 0,
+     "rescanned": false,
+     "new_outcome": "killed_value",
+     "new_killed": true,
+     "new_kill_input": [
+      1
+     ],
+     "basis": "recorded kill input is UB-clean under the full rule; kill stands"
+    }
+   ],
+   "full_rule_checks": [
+    {
+     "in": [
+      0
+     ],
+     "ref": "0",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    },
+    {
+     "in": [
+      1
+     ],
+     "ref": "1",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "grid_cases": 100,
+   "harness_builds": {
+    "binc": true,
+    "binc_san": true,
+    "binc_alt": true,
+    "binc_msan": false
+   },
+   "variant_build_errors": {},
+   "secs": 2.3
+  }
+ ],
+ "_provenance": {
+  "git_commit": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T15:52:13Z",
+  "arch": "aarch64",
+  "os": "Linux 6.10.14-linuxkit",
+  "in_container": true,
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "step": "arxiv_mutate_ubfilter scalar all",
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "argv": [
+   "systems/vert/arxiv_wide_ubfilter.py",
+   "--jobs",
+   "5",
+   "--out",
+   "results/arxiv_vert_wide_mutation_ubfilter.json"
+  ]
+ }
+}

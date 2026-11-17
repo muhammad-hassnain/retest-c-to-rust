@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:409:31
+    |
+409 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+409 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: value assigned to `prev_prev` is never read
+   --> src/main.rs:535:10
+    |
+535 | let  mut prev_prev: f32 = 1.0;
+    |          ^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` on by default
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+   --> src/main.rs:525:4
+    |
+525 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+
+warning: function `max` is never used
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/builders.rs:359:9 in function std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>
+
+Check 16429: std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>.pointer_dereference.16
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/builders.rs:359:9 in function std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>
+
+Check 16430: std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>.pointer_dereference.17
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/builders.rs:359:9 in function std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>
+
+Check 16431: std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>.pointer_dereference.18
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/builders.rs:359:9 in function std::fmt::DebugTuple::<'_, '_>::field_with::<{closure@std::fmt::DebugTuple<'_, '_>::field::{closure#0}}>
+
+Check 16432: <std::option::Option<tracing_core::dispatcher::Kind<std::sync::Arc<dyn wiggle::tracing::Subscriber + std::marker::Send + std::marker::Sync>>> as std::ops::FromResidual<std::option::Option<std::convert::Infallible>>>::from_residual.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:2502:21 in function <std::option::Option<tracing_core::dispatcher::Kind<std::sync::Arc<dyn wiggle::tracing::Subscriber + std::marker::Send + std::marker::Sync>>> as std::ops::FromResidual<std::option::Option<std::convert::Infallible>>>::from_residual
+
+Check 16433: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16434: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16435: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16436: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16437: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16438: std::str::Utf8Chunk::<'_>::invalid.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/str/lossy.rs:102:9 in function std::str::Utf8Chunk::<'_>::invalid
+
+Check 16439: std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>.division-by-zero.1
+	 - Status: UNDETERMINED
+	 - Description: "division by zero"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:1146:20 in function std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>
+
+Check 16440: std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>.division-by-zero.2
+	 - Status: UNDETERMINED
+	 - Description: "division by zero"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:1150:37 in function std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>
+
+Check 16441: std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>.division-by-zero.3
+	 - Status: UNDETERMINED
+	 - Description: "division by zero"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:1146:20 in function std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>
+
+Check 16442: std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>.division-by-zero.4
+	 - Status: UNDETERMINED
+	 - Description: "division by zero"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:1150:37 in function std::ptr::swap_nonoverlapping::<hashbrown::raw::RawTableInner>
+
+Check 16443: f_gold.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: src/main.rs:538:1 in function f_gold
+
+
+SUMMARY:
+ ** 1 of 16443 failed (16442 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "src/main.rs", line 538, in f_gold
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 7.7541995s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u4 v1.0.1 (/tmp/kani_kmus8yyc/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.25s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

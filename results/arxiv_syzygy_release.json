@@ -1,0 +1,113 @@
+{
+ "provenance": {
+  "script": "harness/arxiv_syzygy_release.py",
+  "command": "python3 -I harness/arxiv_syzygy_release.py --release $SCRATCH/fl/syzygy_empty_deflate_release.json --debug $SCRATCH/fl/syzygy_empty_deflate_debug.json --image-id sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b --host desktop (x86_64, 20 cores), docker --cpus 4 --platform linux/amd64 --run-command bash ~/work/arxiv-flprofile/run_syzygy_release.sh: for P in release debug: docker run --rm --ulimit core=0 --cpus 4 --platform linux/amd64 -v $W/repo:/work:ro -v $W/artifacts:$W/artifacts:ro -w /work -e ART=$W/artifacts/syzygy_zopfli crust-syzygy bash systems/syzygy/empty_deflate.sh --profile $P (repo = Mac working tree at 40bc85c + uncommitted --profile option; artifacts/syzygy_zopfli rsynced from the Mac without target/, source digests c_code 5abda761..., rust_code 7b587022... equal to the Mac copy) --out results/arxiv_syzygy_release.json",
+  "run_command": "bash ~/work/arxiv-flprofile/run_syzygy_release.sh: for P in release debug: docker run --rm --ulimit core=0 --cpus 4 --platform linux/amd64 -v $W/repo:/work:ro -v $W/artifacts:$W/artifacts:ro -w /work -e ART=$W/artifacts/syzygy_zopfli crust-syzygy bash systems/syzygy/empty_deflate.sh --profile $P (repo = Mac working tree at 40bc85c + uncommitted --profile option; artifacts/syzygy_zopfli rsynced from the Mac without target/, source digests c_code 5abda761..., rust_code 7b587022... equal to the Mac copy)",
+  "host": "desktop (x86_64, 20 cores), docker --cpus 4 --platform linux/amd64",
+  "docker_image": "crust-syzygy",
+  "docker_image_id": "sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "_stamp": {
+   "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+   "git_dirty_code": true,
+   "generated_utc": "2026-11-17T00:51:26Z",
+   "arch": "arm64",
+   "os": "Darwin 25.6.0",
+   "in_container": false,
+   "image": null,
+   "step": null,
+   "python": "3.9.6",
+   "gcc": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+   "rustc": "rustc 1.98.0-nightly (beae78130 2026-06-09)",
+   "argv": [
+    "harness/arxiv_syzygy_release.py",
+    "--release",
+    "$SCRATCH/fl/syzygy_empty_deflate_release.json",
+    "--debug",
+    "$SCRATCH/fl/syzygy_empty_deflate_debug.json",
+    "--image-id",
+    "sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+    "--host",
+    "desktop (x86_64, 20 cores), docker --cpus 4 --platform linux/amd64",
+    "--run-command",
+    "bash ~/work/arxiv-flprofile/run_syzygy_release.sh: for P in release debug: docker run --rm --ulimit core=0 --cpus 4 --platform linux/amd64 -v $W/repo:/work:ro -v $W/artifacts:$W/artifacts:ro -w /work -e ART=$W/artifacts/syzygy_zopfli crust-syzygy bash systems/syzygy/empty_deflate.sh --profile $P (repo = Mac working tree at 40bc85c + uncommitted --profile option; artifacts/syzygy_zopfli rsynced from the Mac without target/, source digests c_code 5abda761..., rust_code 7b587022... equal to the Mac copy)",
+    "--out",
+    "results/arxiv_syzygy_release.json"
+   ]
+  }
+ },
+ "syzygy_runner_profile": {
+  "readme": "artifacts/syzygy_zopfli/README.md:7: Rust: `cargo build --release`",
+  "runner": "artifacts/syzygy_zopfli/run_equiv.py:16: ./rust_code/target/release/testing_equiv",
+  "cargo_toml": "artifacts/syzygy_zopfli/rust_code/Cargo.toml: no [profile] section (cargo release defaults: opt-level 3, debug-assertions off, overflow-checks off)",
+  "shipped_study_build": "systems/syzygy/empty_deflate.sh: `cargo build` (debug) for results/syzygy_empty_deflate.json; systems/syzygy/run.py already builds --release (results/syzygy_diff.json)"
+ },
+ "rows": [
+  {
+   "btype": 0,
+   "c_hex": "010000ffff",
+   "rust_hex_release": "",
+   "rust_hex_debug_rerun": "",
+   "rust_hex_shipped_debug": "",
+   "rust_release_inflates": false,
+   "c_inflates": true,
+   "diverges_release": true,
+   "diverges_shipped_debug": true,
+   "c_same_as_shipped": true
+  },
+  {
+   "btype": 1,
+   "c_hex": "0300",
+   "rust_hex_release": "",
+   "rust_hex_debug_rerun": "",
+   "rust_hex_shipped_debug": "",
+   "rust_release_inflates": false,
+   "c_inflates": true,
+   "diverges_release": true,
+   "diverges_shipped_debug": true,
+   "c_same_as_shipped": true
+  },
+  {
+   "btype": 2,
+   "c_hex": "0300",
+   "rust_hex_release": "",
+   "rust_hex_debug_rerun": "",
+   "rust_hex_shipped_debug": "",
+   "rust_release_inflates": false,
+   "c_inflates": true,
+   "diverges_release": true,
+   "diverges_shipped_debug": true,
+   "c_same_as_shipped": true
+  }
+ ],
+ "debug_rerun_byte_identical_to_shipped": true,
+ "summary": {
+  "btypes": 3,
+  "diverge_in_release": 3,
+  "diverge_in_shipped_debug": 3,
+  "rust_output_release_equals_debug": true,
+  "verdict_changes": 0
+ },
+ "ub_status": {
+  "source": "results/oracle_ub_pending.json",
+  "note": "the C side does not depend on the Rust build profile; the empty input is UB-clean under the full rule",
+  "ledger_ub_rule": [
+   {
+    "status": "clean",
+    "clean_inputs": 3,
+    "of": 3,
+    "evidence": "results/oracle_ub_pending.json: 3 of 3 btypes clean (empty input)"
+   }
+  ]
+ },
+ "ledger_rows": [
+  {
+   "defect_id": "SYZYGY-zopfli-ZopfliDeflate-1",
+   "severity": "S1",
+   "count_status": "counted",
+   "exposure_count": 3
+  }
+ ],
+ "counted_defect_unchanged": true
+}

@@ -1,0 +1,828 @@
+{
+ "provenance": {
+  "script": "systems/vert/arxiv_ub_fullrule.py",
+  "mode": "offscript",
+  "command": "docker run --rm --cpus 4 -v $PWD:/work -v $(cd artifacts && pwd -P):/work/artifacts:ro -w /work -e RUSTUP_TOOLCHAIN=1.86.0 crust-vert-toolchain python3 -I -B systems/vert/arxiv_ub_fullrule.py offscript --jobs 3 --out results/arxiv_vert_offscript.json",
+  "git_rev": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_note": "systems/vert/arxiv_ub_fullrule.py new/untracked; the modules it imports (systems/vert/run.py, run_arrays.py, toolchain_ub_recheck.py, systems/batch_diff.py, systems/enumerate_inputs.py, harness/oracle_ub_common.py, scripts/provenance.py) are unmodified at this commit; other agents had uncommitted changes elsewhere (flourine, syzygy, issues.md)",
+  "host": "macOS arm64 (Apple silicon), Docker Desktop linux/arm64, docker --cpus 4",
+  "arch": "aarch64",
+  "kernel": "6.10.14-linuxkit",
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "toolchains": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "python": "3.10.12"
+  },
+  "builds": {
+   "san_gcc-O0": [
+    "gcc",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_gcc-O1": [
+    "gcc",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_gcc-O2": [
+    "gcc",
+    "-O2",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O0_wrapv": [
+    "gcc",
+    "-O0",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O1_wrapv": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_gcc-O2_wrapv": [
+    "gcc",
+    "-O2",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_gcc-O1_wrapv_signed": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-fsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_gcc-O1_wrapv_unsigned": [
+    "gcc",
+    "-O1",
+    "-fwrapv",
+    "-funsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O0_nowrapv": [
+    "gcc",
+    "-O0",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O1_nowrapv": [
+    "gcc",
+    "-O1",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_gcc-O2_nowrapv": [
+    "gcc",
+    "-O2",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O0": [
+    "clang-14",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O1": [
+    "clang-14",
+    "-O1",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "san_clang-O2": [
+    "clang-14",
+    "-O2",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O0_wrapv": [
+    "clang-14",
+    "-O0",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O1_wrapv": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "val_clang-O2_wrapv": [
+    "clang-14",
+    "-O2",
+    "-fwrapv",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_clang-O1_wrapv_signed": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-fsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "char_clang-O1_wrapv_unsigned": [
+    "clang-14",
+    "-O1",
+    "-fwrapv",
+    "-funsigned-char",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O0_nowrapv": [
+    "clang-14",
+    "-O0",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O1_nowrapv": [
+    "clang-14",
+    "-O1",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang-O2_nowrapv": [
+    "clang-14",
+    "-O2",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang_msan-O1": [
+    "clang-14",
+    "-O1",
+    "-g",
+    "-fsanitize=memory",
+    "-fno-sanitize-recover=all",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ],
+   "info_clang_san_fdz-O0": [
+    "clang-14",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow,float-divide-by-zero",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow,float-divide-by-zero",
+    "-no-pie",
+    "-w",
+    "<driver.c>",
+    "-o",
+    "<bin>",
+    "-lm"
+   ]
+  },
+  "rule_checks": [
+   "san_gcc-O0",
+   "san_gcc-O1",
+   "san_gcc-O2",
+   "val_gcc-O0_wrapv",
+   "val_gcc-O1_wrapv",
+   "val_gcc-O2_wrapv",
+   "char_gcc-O1_wrapv_signed",
+   "char_gcc-O1_wrapv_unsigned",
+   "san_clang-O0",
+   "san_clang-O1",
+   "san_clang-O2",
+   "val_clang-O0_wrapv",
+   "val_clang-O1_wrapv",
+   "val_clang-O2_wrapv",
+   "char_clang-O1_wrapv_signed",
+   "char_clang-O1_wrapv_unsigned"
+  ],
+  "recorded_not_rule": [
+   "info_gcc-O0_nowrapv",
+   "info_gcc-O1_nowrapv",
+   "info_gcc-O2_nowrapv",
+   "info_clang-O0_nowrapv",
+   "info_clang-O1_nowrapv",
+   "info_clang-O2_nowrapv",
+   "info_clang_msan-O1",
+   "info_clang_san_fdz-O0"
+  ],
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "san_timeout_s": 30,
+  "value_timeout_s": 15,
+  "full_rule": ", per input, on the primary harness's own C driver source (run.build_c / run_arrays.build_c,\nthe file the primary oracle gcc -O1 -fwrapv is compiled from). The input is UB-clean iff\n  (i)   ASan + UBSan + float-cast-overflow with oracle_ub_common's flags (-g -fno-omit-frame-pointer\n        -fno-sanitize-recover=all, no -fwrapv; clang non-PIE), under gcc-11 AND clang-14, each at\n        -O0, -O1 AND -O2 (6 builds): no sanitizer report, the run completes (no time-out, no\n        sanitizer start-up failure), exits 0 and prints the reference value;\n  (ii)  gcc-11 and clang-14 at -O0, -O1 and -O2 with -fwrapv (the harness's own flags; 6 builds)\n        print the reference value, exit 0, no time-out;\n  (iii) gcc-11 and clang-14 -O1 -fwrapv with -fsigned-char and with -funsigned-char (4 builds)\n        print the reference value, exit 0, no time-out.\nReference = the primary oracle build (gcc -O1 -fwrapv) on the same input. \"Same value\" is the\nharness's own equality (exact for integer returns; run_arrays.vals_equal, relative 1e-6, for float\nreturns). This is oracle_ub_common.not_clean_reasons applied to every run: a report is UB; a failed\nstart, time-out or different output is \"not clean\".\nRecorded but NOT part of the rule: clang-14 MemorySanitizer -O1 (the shipped VERT rule also required\nit), clang-14 -O0 sanitizers with float-divide-by-zero added (the shipped crash rule had it), and\ngcc/clang -O0/-O1/-O2 without -fwrapv.",
+  "date_start_utc": "2026-11-17T00:17:07+00:00",
+  "date_end_utc": "2026-11-17T00:17:15+00:00"
+ },
+ "sanitizer_positive_controls": {
+  "san_gcc-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_gcc-O1": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_gcc-O2": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O1": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "san_clang-O2": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "info_clang_san_fdz-O0": {
+   "heap_oob_read": "fired",
+   "stack_oob_read": "fired",
+   "signed_overflow": "fired",
+   "shift_overflow": "fired",
+   "float_cast_overflow": "fired",
+   "clean": "clean",
+   "all_as_expected": true
+  },
+  "info_clang_msan-O1": {
+   "uninit_read": "fired",
+   "clean": "clean"
+  }
+ },
+ "summary": {
+  "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1": {
+   "inputs": 2,
+   "rust_differs": 2,
+   "ub_clean_full_rule": 2,
+   "differs_and_ub_clean": 2,
+   "differs_and_ub_clean_and_msan_clean": 2,
+   "defect": "On f_gold(arr1 = ten 0s, arr2 = [1, 0, ..., 0], m = 1, n = 1) the C returns 0 and the Rust returns 1: the Rust's inner `for j in 0..m` binds a new loop-scoped j that shadows the outer `let mut j = 0`, so the `if j == m { return 0; }` after the loop tests the outer j, which is always 0, and the element-not-found exit fires only when m == 0 (the C uses one j for the loop and the test).",
+   "example_rerun": {
+    "c": "0",
+    "rust": "1",
+    "rust_differs": true,
+    "primary_classifier_verdict": "value",
+    "clean": true
+   }
+  },
+  "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN": {
+   "inputs": 1,
+   "rust_differs": 1,
+   "ub_clean_full_rule": 1,
+   "differs_and_ub_clean": 1,
+   "differs_and_ub_clean_and_msan_clean": 1,
+   "defect": "On f_gold(1, 2) the C returns 2 and the Rust returns 1.333333254: the C computes AM = (a + b) / 2 in int (integer division, AM = 1) before assigning it to a double, while the Rust computes (a as f32 + b as f32) / 2.0 in floating point (AM = 1.5), so HM = GM*GM/AM differs whenever a + b is odd.",
+   "example_rerun": {
+    "c": "2",
+    "rust": "1.333333254",
+    "rust_differs": true,
+    "primary_classifier_verdict": "value",
+    "clean": true
+   }
+  },
+  "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS": {
+   "inputs": 2,
+   "rust_differs": 2,
+   "ub_clean_full_rule": 2,
+   "differs_and_ub_clean": 2,
+   "differs_and_ub_clean_and_msan_clean": 2,
+   "defect": "On f_gold(arr = [0, 1], n = 2, x = 1) the C returns 1 and the Rust returns 0: the C's inner loop `for (int j = i + 1; i < n; i ++)` tests and increments i, not j, so it also compares arr[1] * arr[1] = 1, while the Rust iterates only the proper pairs j = i+1..n-1 (arr[0] * arr[1] = 0); here the C is the non-standard program and the Rust the textbook algorithm.",
+   "example_rerun": {
+    "c": "1",
+    "rust": "0",
+    "rust_differs": true,
+    "primary_classifier_verdict": "value",
+    "clean": true
+   }
+  }
+ },
+ "note": "Not candidates in results/defect_ledger.json: the failing inputs come from the mutation analysis's extended-domain search, not from the fixed input scripts (fixed_script_grid_value_divergences = 0 for all three). For an appendix of defects found outside the fixed scripts; not counted.",
+ "functions": [
+  {
+   "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1",
+   "status": "checked",
+   "params": [
+    "[i32;10]",
+    "[i32;10]",
+    "i32",
+    "i32"
+   ],
+   "ret": "i32",
+   "defect": {
+    "one_sentence": "On f_gold(arr1 = ten 0s, arr2 = [1, 0, ..., 0], m = 1, n = 1) the C returns 0 and the Rust returns 1: the Rust's inner `for j in 0..m` binds a new loop-scoped j that shadows the outer `let mut j = 0`, so the `if j == m { return 0; }` after the loop tests the outer j, which is always 0, and the element-not-found exit fires only when m == 0 (the C uses one j for the loop and the test).",
+    "example_call": "f_gold(arr1 = [0,0,0,0,0,0,0,0,0,0], arr2 = [1,0,0,0,0,0,0,0,0,0], m = 1, n = 1)",
+    "example_input_row": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "example_rerun": {
+     "c": "0",
+     "rust": "1",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true
+    },
+    "c_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1.c",
+      "line": 32,
+      "text": "if ( j == m ) return 0;"
+     },
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1.c",
+      "line": 27,
+      "text": "for ( j = 0;"
+     }
+    ],
+    "rust_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/out-rwasm-bolero/src/main.rs",
+      "line": 727,
+      "text": "for j in 0..m {"
+     },
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/out-rwasm-bolero/src/main.rs",
+      "line": 732,
+      "text": "if j == m {"
+     }
+    ]
+   },
+   "fixed_script_grid_cases": 60,
+   "fixed_script_grid_value_divergences": 0,
+   "variant_build_errors": {},
+   "inputs": [
+    {
+     "in": [
+      -18,
+      -38,
+      -24,
+      6,
+      -39,
+      18,
+      -32,
+      25,
+      -24,
+      -28,
+      -34,
+      10,
+      -34,
+      30,
+      -26,
+      36,
+      -1,
+      -37,
+      -2,
+      23,
+      1,
+      5
+     ],
+     "source": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain.witness",
+     "c": "0",
+     "rust": "1",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    },
+    {
+     "in": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+     ],
+     "source": "results/vert_grid_misses.json smallest_passing_witness",
+     "c": "0",
+     "rust": "1",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "summary": {
+    "inputs": 2,
+    "rust_differs": 2,
+    "ub_clean_full_rule": 2,
+    "differs_and_ub_clean": 2,
+    "differs_and_ub_clean_and_msan_clean": 2
+   }
+  },
+  {
+   "func": "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN",
+   "status": "checked",
+   "params": [
+    "i32",
+    "i32"
+   ],
+   "ret": "f32",
+   "defect": {
+    "one_sentence": "On f_gold(1, 2) the C returns 2 and the Rust returns 1.333333254: the C computes AM = (a + b) / 2 in int (integer division, AM = 1) before assigning it to a double, while the Rust computes (a as f32 + b as f32) / 2.0 in floating point (AM = 1.5), so HM = GM*GM/AM differs whenever a + b is odd.",
+    "example_call": "f_gold(1, 2)",
+    "example_input_row": [
+     1,
+     2
+    ],
+    "example_rerun": {
+     "c": "2",
+     "rust": "1.333333254",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true
+    },
+    "c_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN.c",
+      "line": 23,
+      "text": "AM = ( a + b ) / 2;"
+     }
+    ],
+    "rust_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN/out-rwasm-bolero/src/main.rs",
+      "line": 451,
+      "text": "let am = (a as f32 + b as f32) / 2.0;"
+     }
+    ]
+   },
+   "fixed_script_grid_cases": 3,
+   "fixed_script_grid_value_divergences": 0,
+   "variant_build_errors": {},
+   "inputs": [
+    {
+     "in": [
+      1,
+      2
+     ],
+     "source": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain.witness",
+     "c": "2",
+     "rust": "1.333333254",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "summary": {
+    "inputs": 1,
+    "rust_differs": 1,
+    "ub_clean_full_rule": 1,
+    "differs_and_ub_clean": 1,
+    "differs_and_ub_clean_and_msan_clean": 1
+   }
+  },
+  {
+   "func": "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS",
+   "status": "checked",
+   "params": [
+    "[i32;2]",
+    "i32",
+    "i32"
+   ],
+   "ret": "i32",
+   "defect": {
+    "one_sentence": "On f_gold(arr = [0, 1], n = 2, x = 1) the C returns 1 and the Rust returns 0: the C's inner loop `for (int j = i + 1; i < n; i ++)` tests and increments i, not j, so it also compares arr[1] * arr[1] = 1, while the Rust iterates only the proper pairs j = i+1..n-1 (arr[0] * arr[1] = 0); here the C is the non-standard program and the Rust the textbook algorithm.",
+    "example_call": "f_gold(arr = [0, 1], n = 2, x = 1)",
+    "example_input_row": [
+     0,
+     1,
+     2,
+     1
+    ],
+    "example_rerun": {
+     "c": "1",
+     "rust": "0",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true
+    },
+    "c_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS.c",
+      "line": 24,
+      "text": "i ++ ) for ( int j = i + 1;"
+     },
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS.c",
+      "line": 26,
+      "text": "i ++ ) if ( arr [ i ] * arr [ j ] == x ) return true;"
+     }
+    ],
+    "rust_location": [
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/out-rwasm-bolero/src/main.rs",
+      "line": 684,
+      "text": "let mut j = i + 1;"
+     },
+     {
+      "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/out-rwasm-bolero/src/main.rs",
+      "line": 685,
+      "text": "while j < n {"
+     }
+    ]
+   },
+   "fixed_script_grid_cases": 30,
+   "fixed_script_grid_value_divergences": 0,
+   "variant_build_errors": {},
+   "inputs": [
+    {
+     "in": [
+      -40,
+      -1,
+      2,
+      1
+     ],
+     "source": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain.witness",
+     "c": "1",
+     "rust": "0",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    },
+    {
+     "in": [
+      0,
+      1,
+      2,
+      1
+     ],
+     "source": "results/vert_grid_misses.json smallest_passing_witness",
+     "c": "1",
+     "rust": "0",
+     "rust_differs": true,
+     "primary_classifier_verdict": "value",
+     "clean": true,
+     "fails": {},
+     "info": {
+      "info_gcc-O0_nowrapv": "same",
+      "info_gcc-O1_nowrapv": "same",
+      "info_gcc-O2_nowrapv": "same",
+      "info_clang-O0_nowrapv": "same",
+      "info_clang-O1_nowrapv": "same",
+      "info_clang-O2_nowrapv": "same",
+      "info_clang_msan-O1": "clean",
+      "info_clang_san_fdz-O0": "clean"
+     }
+    }
+   ],
+   "summary": {
+    "inputs": 2,
+    "rust_differs": 2,
+    "ub_clean_full_rule": 2,
+    "differs_and_ub_clean": 2,
+    "differs_and_ub_clean_and_msan_clean": 2
+   }
+  }
+ ],
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T00:17:15Z",
+  "arch": "aarch64",
+  "os": "Linux 6.10.14-linuxkit",
+  "in_container": true,
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "step": "arxiv_ub_fullrule offscript",
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "argv": [
+   "systems/vert/arxiv_ub_fullrule.py",
+   "offscript",
+   "--jobs",
+   "3",
+   "--out",
+   "results/arxiv_vert_offscript.json"
+  ]
+ }
+}

@@ -1,0 +1,363 @@
+{
+ "provenance": {
+  "script": "systems/sactor/crust/mutate.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/crust/mutate.py --samples morton,NandC,murmurhash_c,utf8,geofence --n 12 --out /work/results/sactor_crust_mutation.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-13T23:56:19+00:00",
+  "toolchain": "nightly-2024-09-03 debug",
+  "operators": {
+   "<": "<=",
+   "<=": "<",
+   ">": ">=",
+   ">=": ">",
+   "==": "!=",
+   "!=": "==",
+   "+": "-",
+   "-": "+",
+   "*": "/"
+  }
+ },
+ "samples": {
+  "morton": {
+   "candidate_sites": 0,
+   "selected": 0,
+   "valid": 0,
+   "build_fail": 0,
+   "gridded_functions": 2,
+   "killed_own_test": 0,
+   "killed_grid": 0,
+   "killed_either": 0,
+   "mutants": []
+  },
+  "NandC": {
+   "candidate_sites": 5,
+   "selected": 5,
+   "valid": 5,
+   "build_fail": 0,
+   "gridded_functions": 3,
+   "killed_own_test": 5,
+   "killed_grid": 5,
+   "killed_either": 5,
+   "mutants": [
+    {
+     "site": 0,
+     "line": 46,
+     "fn": "sub_bit",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    },
+    {
+     "site": 1,
+     "line": 46,
+     "fn": "sub_bit",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    },
+    {
+     "site": 2,
+     "line": 46,
+     "fn": "sub_bit",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    },
+    {
+     "site": 3,
+     "line": 87,
+     "fn": "add_u4",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    },
+    {
+     "site": 4,
+     "line": 88,
+     "fn": "add_u4",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    }
+   ]
+  },
+  "murmurhash_c": {
+   "candidate_sites": 0,
+   "selected": 0,
+   "valid": 0,
+   "build_fail": 0,
+   "gridded_functions": 1,
+   "killed_own_test": 0,
+   "killed_grid": 0,
+   "killed_either": 0,
+   "mutants": []
+  },
+  "utf8": {
+   "candidate_sites": 48,
+   "selected": 12,
+   "valid": 12,
+   "build_fail": 0,
+   "gridded_functions": 1,
+   "killed_own_test": 12,
+   "killed_grid": 0,
+   "killed_either": 12,
+   "mutants": [
+    {
+     "site": 0,
+     "line": 49,
+     "fn": "get_byte",
+     "op": "== -> !=",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 1,
+     "line": 56,
+     "fn": "get_byte",
+     "op": "== -> !=",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 2,
+     "line": 70,
+     "fn": "get_byte",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 3,
+     "line": 73,
+     "fn": "get_byte",
+     "op": "== -> !=",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 4,
+     "line": 82,
+     "fn": "get_byte",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 5,
+     "line": 92,
+     "fn": "get_byte",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 6,
+     "line": 97,
+     "fn": "get_byte",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 7,
+     "line": 100,
+     "fn": "get_byte",
+     "op": "== -> !=",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 8,
+     "line": 127,
+     "fn": "validate_utf8",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 9,
+     "line": 179,
+     "fn": "make_utf8_string_lossy",
+     "op": "- -> +",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 10,
+     "line": 239,
+     "fn": "slice_utf8_string",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 11,
+     "line": 283,
+     "fn": "nth_utf8_char",
+     "op": "!= -> ==",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    }
+   ]
+  },
+  "geofence": {
+   "candidate_sites": 21,
+   "selected": 12,
+   "valid": 12,
+   "build_fail": 0,
+   "gridded_functions": 2,
+   "killed_own_test": 6,
+   "killed_grid": 3,
+   "killed_either": 8,
+   "mutants": [
+    {
+     "site": 0,
+     "line": 34,
+     "fn": "geofence_log",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": true
+    },
+    {
+     "site": 1,
+     "line": 35,
+     "fn": "geofence_log",
+     "op": "* -> /",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": true
+    },
+    {
+     "site": 2,
+     "line": 40,
+     "fn": "lon2x_m",
+     "op": "* -> /",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": true
+    },
+    {
+     "site": 3,
+     "line": 75,
+     "fn": "is_point_in_polygon",
+     "op": "< -> <=",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": false
+    },
+    {
+     "site": 4,
+     "line": 81,
+     "fn": "is_point_in_polygon",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 5,
+     "line": 82,
+     "fn": "is_point_in_polygon",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 6,
+     "line": 83,
+     "fn": "is_point_in_polygon",
+     "op": "> -> >=",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": false
+    },
+    {
+     "site": 7,
+     "line": 83,
+     "fn": "is_point_in_polygon",
+     "op": "> -> >=",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": false
+    },
+    {
+     "site": 8,
+     "line": 83,
+     "fn": "is_point_in_polygon",
+     "op": "< -> <=",
+     "status": "built",
+     "killed_by_own_test": false,
+     "killed_by_grid": false
+    },
+    {
+     "site": 9,
+     "line": 83,
+     "fn": "is_point_in_polygon",
+     "op": "< -> <=",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 10,
+     "line": 86,
+     "fn": "is_point_in_polygon",
+     "op": "+ -> -",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    },
+    {
+     "site": 11,
+     "line": 86,
+     "fn": "is_point_in_polygon",
+     "op": "- -> +",
+     "status": "built",
+     "killed_by_own_test": true,
+     "killed_by_grid": false
+    }
+   ]
+  }
+ }
+}

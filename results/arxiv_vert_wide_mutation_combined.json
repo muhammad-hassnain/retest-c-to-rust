@@ -1,0 +1,1171 @@
+{
+ "provenance": {
+  "script": "systems/vert/arxiv_wide_combined.py",
+  "command": "python3 systems/vert/arxiv_wide_combined.py",
+  "inputs_sha256": {
+   "results/vert_mutation_primary_grid2.json": "56b7150d031f82d76e6173816030359a7f253989d9b24d0d7cc14b8cb8ad649c",
+   "results/arxiv_vert_wide_mutation_primary.json": "c845f40cebb49bc8adbeb834397380caf5bbbbddbd2c7c569bd60311e3d09971",
+   "results/arxiv_mutation_ubfilter_vert.json": "70a008ae5f654eb6e3632e735c182bc9a427c9997c748540cc7c59ee5e21a55c",
+   "results/arxiv_vert_wide_mutation_ubfilter.json": "2e0e1c3cbc89dd5d0534c5d40582b9fee870b2726b6fbe67108a31d5ad35f3cf",
+   "results/harness_power.json@a6e32c1": "f6c57d93bd3087ee0ebd47ad046c3dce436d1cb9ba50830f16c011b0569d80ea",
+   "results/harness_power.json (current)": "114dee83ab1443187d08bbed8e91266bea8c63168ec4f10d52bfd7a87cc37e99",
+   "results/arxiv_vert_diff_grid2_wide.json": "ea9d088dc63649147ecb5305938fb71648886c2ebe93fff6fb6077ab5e58ed9c",
+   "results/arxiv_harness_power_ubfiltered_vert.json (reproduction check only)": "ca89420a7edd545359eee55e3849fea001d8efde7536da799e81ce70a1b5d333"
+  },
+  "formula_code_sha256": {
+   "systems/vert/mutate_primary.py": "60dee3d37ec677a24ea4ab7fe036247fde39819740ba0beac836ad24e03e6191",
+   "systems/vert/arxiv_mutate_ubfilter.py": "16f5eed31c14068a518dcc3468dbe54f8647aa4d10f460fa4cd22aa44d508295",
+   "scripts/claims_ledger.py": "e4ac2189c7edbf1cf27c090d23aa539784e08a0cf4e7c27e712f2493f150fed2",
+   "scripts/plot_results.py": "232190bf0820fb7f95dcabf8c3ed274fb8f35040f40fe7839016fbe9218752cf",
+   "scripts/arxiv_harness_power_ubfiltered.py": "2996b09ac0f3e53b30483bf6dccce1b2028ade170b0c2eb7c39aeddd77b05c53",
+   "systems/vert/arxiv_wide_combined.py": "113309a48e21b441473347ba8f9c0ec2114956810f54ff5779bd4017d852cfe1"
+  },
+  "formulas": {
+   "mutation_summary": "systems/vert/mutate_primary.py finish()",
+   "paper_numbers": "scripts/claims_ledger.py _c_vmut() (claim vert-mut-scalar)",
+   "harness_power_row": "scripts/plot_results.py harness_power() (VERT scalar row)",
+   "ub_filtered_counts": "systems/vert/arxiv_mutate_ubfilter.py harness_summary('scalar', ...)",
+   "ub_filtered_row": "scripts/arxiv_harness_power_ubfiltered.py main() --vert (VERT scalar row)"
+  },
+  "os": "Darwin arm64",
+  "generated_utc": "2026-11-17T15:52:33Z"
+ },
+ "pool": {
+  "rule": "mutate_primary.population(): status tested and value_div = rust_panic_c_ok = rust_hang = ub_div = timeout_div = 0 on the grid-v2 run (shipped: results/vert_diff_grid2.json; wide: results/arxiv_vert_diff_grid2_wide.json, run.py --wide-int)",
+  "shipped_functions": 115,
+  "added_functions": [
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X"
+  ],
+  "combined_functions": 118,
+  "wide_tested_not_in_pool": [
+   {
+    "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+    "status": "tested",
+    "value_div": 3,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 58,
+    "timeout_div": 0
+   },
+   {
+    "func": "DICE_THROW_PROBLEM_1",
+    "status": "tested",
+    "value_div": 2,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 11,
+    "timeout_div": 0
+   },
+   {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1",
+    "status": "tested",
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 5,
+    "timeout_div": 0
+   },
+   {
+    "func": "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO",
+    "status": "tested",
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 2,
+    "timeout_div": 0
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_2",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS",
+    "status": "tested",
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_1",
+    "status": "tested",
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0
+   },
+   {
+    "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+    "status": "tested",
+    "value_div": 90,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0
+   },
+   {
+    "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+    "status": "tested",
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0
+   },
+   {
+    "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+    "status": "tested",
+    "value_div": 97,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0
+   },
+   {
+    "func": "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+    "status": "tested",
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 76,
+    "timeout_div": 0
+   }
+  ]
+ },
+ "added": [
+  {
+   "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "c_return": "long long int",
+   "nargs": 1,
+   "why_in_pool": "status tested and value_div = rust_panic_c_ok = rust_hang = ub_div = timeout_div = 0 in results/arxiv_vert_diff_grid2_wide.json; control re-run: survived",
+   "headline_mutants": 7,
+   "compile_fail": 0,
+   "killed": 7,
+   "assessable": 7,
+   "by_operator": {
+    "aor": {
+     "mutants": 1,
+     "killed": 1
+    },
+    "const": {
+     "mutants": 6,
+     "killed": 6
+    }
+   },
+   "not_killed": [],
+   "bnd_mutants_not_in_headline": 1,
+   "ub_filter": {
+    "kills_checked": 7,
+    "kill_inputs_ub_clean": 7,
+    "killed_after_full_rule": 7
+   }
+  },
+  {
+   "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "c_return": "long",
+   "nargs": 1,
+   "why_in_pool": "status tested and value_div = rust_panic_c_ok = rust_hang = ub_div = timeout_div = 0 in results/arxiv_vert_diff_grid2_wide.json; control re-run: survived",
+   "headline_mutants": 4,
+   "compile_fail": 0,
+   "killed": 3,
+   "assessable": 4,
+   "by_operator": {
+    "aor": {
+     "mutants": 1,
+     "killed": 1
+    },
+    "const": {
+     "mutants": 2,
+     "killed": 2
+    },
+    "f32": {
+     "mutants": 1,
+     "killed": 0
+    }
+   },
+   "not_killed": [
+    {
+     "id": "f32:f_gold:L10:chain@315",
+     "outcome": "survived",
+     "equivalence_verdict": "killable_out_of_domain",
+     "A_exhaustive": null
+    }
+   ],
+   "bnd_mutants_not_in_headline": 0,
+   "ub_filter": {
+    "kills_checked": 3,
+    "kill_inputs_ub_clean": 3,
+    "killed_after_full_rule": 3
+   }
+  },
+  {
+   "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+   "c_return": "long long int",
+   "nargs": 2,
+   "why_in_pool": "status tested and value_div = rust_panic_c_ok = rust_hang = ub_div = timeout_div = 0 in results/arxiv_vert_diff_grid2_wide.json; control re-run: survived",
+   "headline_mutants": 7,
+   "compile_fail": 0,
+   "killed": 4,
+   "assessable": 7,
+   "by_operator": {
+    "ror": {
+     "mutants": 2,
+     "killed": 2
+    },
+    "const": {
+     "mutants": 4,
+     "killed": 2
+    },
+    "f32": {
+     "mutants": 1,
+     "killed": 0
+    }
+   },
+   "not_killed": [
+    {
+     "id": "const:f_gold:L13:c+1@410",
+     "outcome": "survived",
+     "equivalence_verdict": "killable_out_of_domain",
+     "A_exhaustive": null
+    },
+    {
+     "id": "const:f_gold:L13:c-1@410",
+     "outcome": "survived",
+     "equivalence_verdict": "no_difference_found",
+     "A_exhaustive": true
+    },
+    {
+     "id": "f32:f_gold:L16:chain@443",
+     "outcome": "survived",
+     "equivalence_verdict": "killable_out_of_domain",
+     "A_exhaustive": null
+    }
+   ],
+   "bnd_mutants_not_in_headline": 2,
+   "ub_filter": {
+    "kills_checked": 4,
+    "kill_inputs_ub_clean": 4,
+    "killed_after_full_rule": 4
+   }
+  }
+ ],
+ "added_totals": {
+  "mutants": 18,
+  "compile_fail": 0,
+  "killed": 14,
+  "assessable": 18,
+  "rate": 0.7778,
+  "outcomes": {
+   "killed_value": 13,
+   "survived": 4,
+   "killed_panic": 1
+  }
+ },
+ "paper_numbers": {
+  "claim": "vert-mut-scalar",
+  "old": {
+   "kill_rate_pct": 77.7,
+   "mutants": 1966,
+   "functions": 115,
+   "kill_rate_among_not_shown_equivalent_pct": 88.4,
+   "f32_kill_rate_pct": 8.3,
+   "undetermined_gt_0": true,
+   "harness_power_row_matches_summary": true
+  },
+  "combined": {
+   "kill_rate_pct": 77.7,
+   "mutants": 1984,
+   "functions": 118,
+   "kill_rate_among_not_shown_equivalent_pct": 88.3,
+   "f32_kill_rate_pct": 8.3,
+   "undetermined_gt_0": true,
+   "harness_power_row_matches_summary": true
+  },
+  "old_detail": {
+   "killed": 1527,
+   "shown equivalent by exhaustive in-domain testing": 238
+  },
+  "combined_detail": {
+   "killed": 1541,
+   "shown equivalent by exhaustive in-domain testing": 239
+  },
+  "combined_matches_current_paper_text": false
+ },
+ "harness_power_row": {
+  "old": {
+   "label": "VERT scalar",
+   "killed": 1527,
+   "built": 1966,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT translation (the 115 functions with no divergence on grid v2; systems/vert/mutate_primary.py --grid v2)",
+   "source": "results/vert_mutation_primary_grid2.json per_function[].mutants[] (headline ops)",
+   "note": "54 hang-only and 13 UB-only mutants not killed; 51 not-killed mutants have slow inputs that were not re-checked"
+  },
+  "combined": {
+   "label": "VERT scalar",
+   "killed": 1541,
+   "built": 1984,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT translation (the 118 functions with no divergence on grid v2; systems/vert/mutate_primary.py --grid v2)",
+   "source": "results/vert_mutation_primary_grid2.json per_function[].mutants[] (headline ops)",
+   "note": "54 hang-only and 13 UB-only mutants not killed; 51 not-killed mutants have slow inputs that were not re-checked"
+  },
+  "combined_note": "the source/mutated_program text is plot_results.py's; the combined row is computed from the 115 shipped + 3 wide per-function records"
+ },
+ "ub_filtered": {
+  "counts_old": {
+   "built": 1966,
+   "killed_old": 1527,
+   "killed_new": 1527,
+   "rate_old": 0.7767,
+   "rate_new": 0.7767,
+   "kill_inputs_checked": 1527,
+   "distinct_kill_inputs_checked": 428,
+   "kill_c_value_reproduced": 1527,
+   "kill_input_not_ub_clean": 1,
+   "distinct_kill_inputs_not_ub_clean": 1,
+   "functions_with_a_kill_input_not_ub_clean": {
+    "FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1": 1
+   },
+   "kill_inputs_not_ub_clean_by_failing_check": {
+    "san_clang-O0": 1,
+    "san_clang-O1": 1,
+    "san_clang-O2": 1,
+    "san_gcc-O0": 1,
+    "san_gcc-O1": 1,
+    "san_gcc-O2": 1
+   },
+   "distinct_not_ub_clean_inputs_by_check_and_reason": {
+    "san_clang-O0": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_clang-O1": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_clang-O2": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O0": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O1": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O2": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    }
+   },
+   "rescanned": 1,
+   "rescanned_new_outcome": {
+    "killed_value": 1
+   },
+   "rescanned_first_shipped_kill_is_recorded_input": 1,
+   "rescanned_mutant_regenerated_matches_record": 1,
+   "newly_undetermined": 0,
+   "undetermined_old": 51,
+   "undetermined_new": 51,
+   "full_rule_inputs_checked": 428,
+   "variant_build_errors": {}
+  },
+  "counts_combined": {
+   "built": 1984,
+   "killed_old": 1541,
+   "killed_new": 1541,
+   "rate_old": 0.7767,
+   "rate_new": 0.7767,
+   "kill_inputs_checked": 1541,
+   "distinct_kill_inputs_checked": 433,
+   "kill_c_value_reproduced": 1541,
+   "kill_input_not_ub_clean": 1,
+   "distinct_kill_inputs_not_ub_clean": 1,
+   "functions_with_a_kill_input_not_ub_clean": {
+    "FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1": 1
+   },
+   "kill_inputs_not_ub_clean_by_failing_check": {
+    "san_clang-O0": 1,
+    "san_clang-O1": 1,
+    "san_clang-O2": 1,
+    "san_gcc-O0": 1,
+    "san_gcc-O1": 1,
+    "san_gcc-O2": 1
+   },
+   "distinct_not_ub_clean_inputs_by_check_and_reason": {
+    "san_clang-O0": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_clang-O1": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_clang-O2": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O0": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O1": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    },
+    "san_gcc-O2": {
+     "ub: -inf is outside the range of representable values of type 'int'": 1
+    }
+   },
+   "rescanned": 1,
+   "rescanned_new_outcome": {
+    "killed_value": 1
+   },
+   "rescanned_first_shipped_kill_is_recorded_input": 1,
+   "rescanned_mutant_regenerated_matches_record": 1,
+   "newly_undetermined": 0,
+   "undetermined_old": 51,
+   "undetermined_new": 51,
+   "full_rule_inputs_checked": 433,
+   "variant_build_errors": {}
+  },
+  "row_old": {
+   "killed": 1527,
+   "built": 1966,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "killed_before_ub_filter": 1527,
+   "rate_before_ub_filter": 0.7767,
+   "note_ubfilter": "full rule (issues.md item 7) applied to the recorded kill input of all 1527 counted kills (428 distinct function/input pairs; primary C value reproduced on 1527): 1 not UB-clean (FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1 x1; failing checks: san_clang-O0, san_clang-O1, san_clang-O2, san_gcc-O0, san_gcc-O1, san_gcc-O2; reports: ub: -inf is outside the range of representable values of type 'int'). Re-scanned over the same grid: 1 (new outcomes {'killed_value': 1}; first kill the shipped scan would count = the recorded input in 1). Killed 1527 -> 1527; undetermined 51 -> 51.",
+   "all_rows_range_new": {
+    "min": 0.1998,
+    "min_row": "C2SaferRust coreutils",
+    "max": 0.9345,
+    "max_row": "Fluorine scalar",
+    "as_percent": "20-93%"
+   }
+  },
+  "row_combined": {
+   "killed": 1541,
+   "built": 1984,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "killed_before_ub_filter": 1541,
+   "rate_before_ub_filter": 0.7767,
+   "note_ubfilter": "full rule (issues.md item 7) applied to the recorded kill input of all 1541 counted kills (433 distinct function/input pairs; primary C value reproduced on 1541): 1 not UB-clean (FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1 x1; failing checks: san_clang-O0, san_clang-O1, san_clang-O2, san_gcc-O0, san_gcc-O1, san_gcc-O2; reports: ub: -inf is outside the range of representable values of type 'int'). Re-scanned over the same grid: 1 (new outcomes {'killed_value': 1}; first kill the shipped scan would count = the recorded input in 1). Killed 1541 -> 1541; undetermined 51 -> 51.",
+   "all_rows_range_new": {
+    "min": 0.1998,
+    "min_row": "C2SaferRust coreutils",
+    "max": 0.9345,
+    "max_row": "Fluorine scalar",
+    "as_percent": "20-93%"
+   }
+  }
+ },
+ "reproduces_shipped": {
+  "mutate_primary.finish on the shipped records == results/vert_mutation_primary_grid2.json summary": true,
+  "claims_ledger._c_vmut on the shipped file == the paper's values": true,
+  "plot_results.harness_power VERT scalar row == results/harness_power.json (current and a6e32c1)": true,
+  "arxiv_mutate_ubfilter.harness_summary on the shipped records == results/arxiv_mutation_ubfilter_vert.json summary": true,
+  "arxiv_harness_power_ubfiltered --vert on the shipped inputs == results/arxiv_harness_power_ubfiltered_vert.json (without provenance)": true
+ },
+ "combined_mutation_summary": {
+  "population": {
+   "definition": "results/vert_diff_grid2.json (115) and results/arxiv_vert_diff_grid2_wide.json (3): status tested and value_div=rust_panic=rust_hang=ub_div=timeout_div=0",
+   "grid": "v2",
+   "functions": 118,
+   "run": 118,
+   "control_agree": 118,
+   "control_not_agree": []
+  },
+  "headline_ops": [
+   "ror",
+   "aor",
+   "const",
+   "f32"
+  ],
+  "overall_headline": {
+   "mutants": 2007,
+   "compile_fail": 23,
+   "killed": 1541,
+   "assessable": 1984,
+   "rate": 0.7767,
+   "wilson95": [
+    0.7579,
+    0.7945
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 51,
+   "cluster_bootstrap95_by_function": [
+    0.7531,
+    0.8008
+   ],
+   "outcomes": {
+    "killed_value": 1314,
+    "survived": 376,
+    "killed_panic": 227,
+    "rust_hang": 54,
+    "compile_fail": 23,
+    "ub_only": 13
+   },
+   "hang_counted_as_detected": {
+    "killed": 1595,
+    "assessable": 1984,
+    "rate": 0.8039,
+    "wilson95": [
+     0.7859,
+     0.8208
+    ]
+   }
+  },
+  "by_operator": {
+   "ror": {
+    "mutants": 181,
+    "compile_fail": 0,
+    "killed": 175,
+    "assessable": 181,
+    "rate": 0.9669,
+    "wilson95": [
+     0.9296,
+     0.9847
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 4,
+    "cluster_bootstrap95_by_function": [
+     0.9422,
+     0.9885
+    ],
+    "outcomes": {
+     "killed_value": 157,
+     "killed_panic": 18,
+     "rust_hang": 4,
+     "survived": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 179,
+     "assessable": 181,
+     "rate": 0.989,
+     "wilson95": [
+      0.9606,
+      0.997
+     ]
+    }
+   },
+   "aor": {
+    "mutants": 420,
+    "compile_fail": 0,
+    "killed": 384,
+    "assessable": 420,
+    "rate": 0.9143,
+    "wilson95": [
+     0.8836,
+     0.9374
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 14,
+    "cluster_bootstrap95_by_function": [
+     0.8665,
+     0.9552
+    ],
+    "outcomes": {
+     "killed_value": 283,
+     "killed_panic": 101,
+     "rust_hang": 14,
+     "ub_only": 1,
+     "survived": 21
+    },
+    "hang_counted_as_detected": {
+     "killed": 398,
+     "assessable": 420,
+     "rate": 0.9476,
+     "wilson95": [
+      0.922,
+      0.9652
+     ]
+    }
+   },
+   "const": {
+    "mutants": 1150,
+    "compile_fail": 9,
+    "killed": 962,
+    "assessable": 1141,
+    "rate": 0.8431,
+    "wilson95": [
+     0.8209,
+     0.8631
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 33,
+    "cluster_bootstrap95_by_function": [
+     0.8136,
+     0.8727
+    ],
+    "outcomes": {
+     "killed_value": 854,
+     "survived": 141,
+     "rust_hang": 36,
+     "killed_panic": 108,
+     "compile_fail": 9,
+     "ub_only": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 998,
+     "assessable": 1141,
+     "rate": 0.8747,
+     "wilson95": [
+      0.8542,
+      0.8926
+     ]
+    }
+   },
+   "f32": {
+    "mutants": 256,
+    "compile_fail": 14,
+    "killed": 20,
+    "assessable": 242,
+    "rate": 0.0826,
+    "wilson95": [
+     0.0541,
+     0.1242
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.0522,
+     0.1153
+    ],
+    "outcomes": {
+     "survived": 212,
+     "killed_value": 20,
+     "compile_fail": 14,
+     "ub_only": 10
+    },
+    "hang_counted_as_detected": {
+     "killed": 20,
+     "assessable": 242,
+     "rate": 0.0826,
+     "wilson95": [
+      0.0541,
+      0.1242
+     ]
+    }
+   },
+   "bnd": {
+    "mutants": 154,
+    "compile_fail": 0,
+    "killed": 101,
+    "assessable": 154,
+    "rate": 0.6558,
+    "wilson95": [
+     0.5778,
+     0.7263
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 4,
+    "cluster_bootstrap95_by_function": [
+     0.561,
+     0.7516
+    ],
+    "outcomes": {
+     "killed_value": 91,
+     "survived": 49,
+     "rust_hang": 4,
+     "killed_panic": 10
+    },
+    "hang_counted_as_detected": {
+     "killed": 105,
+     "assessable": 154,
+     "rate": 0.6818,
+     "wilson95": [
+      0.6046,
+      0.7502
+     ]
+    }
+   }
+  },
+  "aor_binary_only_legacy_comparable": {
+   "mutants": 338,
+   "compile_fail": 0,
+   "killed": 313,
+   "assessable": 338,
+   "rate": 0.926,
+   "wilson95": [
+    0.8931,
+    0.9494
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 7,
+   "cluster_bootstrap95_by_function": [
+    0.8743,
+    0.9682
+   ],
+   "outcomes": {
+    "killed_value": 214,
+    "killed_panic": 99,
+    "rust_hang": 7,
+    "ub_only": 1,
+    "survived": 17
+   },
+   "hang_counted_as_detected": {
+    "killed": 320,
+    "assessable": 338,
+    "rate": 0.9467,
+    "wilson95": [
+     0.9174,
+     0.9661
+    ]
+   }
+  },
+  "ror_plus_binary_aor_legacy_operator_set": {
+   "mutants": 519,
+   "compile_fail": 0,
+   "killed": 488,
+   "assessable": 519,
+   "rate": 0.9403,
+   "wilson95": [
+    0.9165,
+    0.9576
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 11,
+   "cluster_bootstrap95_by_function": [
+    0.9033,
+    0.9712
+   ],
+   "outcomes": {
+    "killed_value": 371,
+    "killed_panic": 117,
+    "rust_hang": 11,
+    "ub_only": 1,
+    "survived": 19
+   },
+   "hang_counted_as_detected": {
+    "killed": 499,
+    "assessable": 519,
+    "rate": 0.9615,
+    "wilson95": [
+     0.9412,
+     0.9749
+    ]
+   }
+  },
+  "headline_by_nargs": {
+   "1": {
+    "mutants": 1516,
+    "compile_fail": 18,
+    "killed": 1158,
+    "assessable": 1498,
+    "rate": 0.773,
+    "wilson95": [
+     0.7511,
+     0.7935
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 39,
+    "cluster_bootstrap95_by_function": [
+     0.7448,
+     0.8014
+    ],
+    "outcomes": {
+     "killed_value": 968,
+     "survived": 288,
+     "killed_panic": 190,
+     "rust_hang": 40,
+     "compile_fail": 18,
+     "ub_only": 12
+    },
+    "hang_counted_as_detected": {
+     "killed": 1198,
+     "assessable": 1498,
+     "rate": 0.7997,
+     "wilson95": [
+      0.7787,
+      0.8192
+     ]
+    }
+   },
+   "2": {
+    "mutants": 392,
+    "compile_fail": 3,
+    "killed": 298,
+    "assessable": 389,
+    "rate": 0.7661,
+    "wilson95": [
+     0.7215,
+     0.8054
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 12,
+    "cluster_bootstrap95_by_function": [
+     0.7233,
+     0.8113
+    ],
+    "outcomes": {
+     "killed_value": 263,
+     "survived": 76,
+     "killed_panic": 35,
+     "rust_hang": 14,
+     "ub_only": 1,
+     "compile_fail": 3
+    },
+    "hang_counted_as_detected": {
+     "killed": 312,
+     "assessable": 389,
+     "rate": 0.8021,
+     "wilson95": [
+      0.7596,
+      0.8386
+     ]
+    }
+   },
+   "3": {
+    "mutants": 79,
+    "compile_fail": 0,
+    "killed": 67,
+    "assessable": 79,
+    "rate": 0.8481,
+    "wilson95": [
+     0.753,
+     0.9109
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.6905,
+     0.9753
+    ],
+    "outcomes": {
+     "killed_value": 65,
+     "survived": 12,
+     "killed_panic": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 67,
+     "assessable": 79,
+     "rate": 0.8481,
+     "wilson95": [
+      0.753,
+      0.9109
+     ]
+    }
+   },
+   "6": {
+    "mutants": 20,
+    "compile_fail": 2,
+    "killed": 18,
+    "assessable": 18,
+    "rate": 1.0,
+    "wilson95": [
+     0.8241,
+     1.0
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     1.0,
+     1.0
+    ],
+    "outcomes": {
+     "compile_fail": 2,
+     "killed_value": 18
+    },
+    "hang_counted_as_detected": {
+     "killed": 18,
+     "assessable": 18,
+     "rate": 1.0,
+     "wilson95": [
+      0.8241,
+      1.0
+     ]
+    }
+   }
+  },
+  "f_gold_only_headline": {
+   "mutants": 2004,
+   "compile_fail": 23,
+   "killed": 1538,
+   "assessable": 1981,
+   "rate": 0.7764,
+   "wilson95": [
+    0.7575,
+    0.7942
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 51,
+   "cluster_bootstrap95_by_function": [
+    0.7526,
+    0.8006
+   ],
+   "outcomes": {
+    "killed_value": 1313,
+    "survived": 376,
+    "killed_panic": 225,
+    "rust_hang": 54,
+    "compile_fail": 23,
+    "ub_only": 13
+   },
+   "hang_counted_as_detected": {
+    "killed": 1592,
+    "assessable": 1981,
+    "rate": 0.8036,
+    "wilson95": [
+     0.7856,
+     0.8205
+    ]
+   }
+  },
+  "overall_including_bnd": {
+   "mutants": 2161,
+   "compile_fail": 23,
+   "killed": 1642,
+   "assessable": 2138,
+   "rate": 0.768,
+   "wilson95": [
+    0.7496,
+    0.7854
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 55,
+   "cluster_bootstrap95_by_function": [
+    0.7429,
+    0.793
+   ],
+   "outcomes": {
+    "killed_value": 1405,
+    "survived": 425,
+    "killed_panic": 237,
+    "rust_hang": 58,
+    "compile_fail": 23,
+    "ub_only": 13
+   },
+   "hang_counted_as_detected": {
+    "killed": 1700,
+    "assessable": 2138,
+    "rate": 0.7951,
+    "wilson95": [
+     0.7775,
+     0.8117
+    ]
+   }
+  },
+  "seconds": {
+   "mutation": 2554,
+   "total": 3942
+  },
+  "early_exit_verification": {
+   "rule": "every --verify-every'th mutant (global order) also run through the full batch_diff.tally",
+   "verified": 86,
+   "same_kill_decision": 86,
+   "disagreements": []
+  },
+  "per_function_distribution": {
+   "functions_with_assessable_mutants": 117,
+   "functions_with_no_assessable_mutant": [
+    "ADD_1_TO_A_GIVEN_NUMBER_1"
+   ],
+   "min": 0.4667,
+   "median": 0.8,
+   "mean_of_function_rates": 0.8041,
+   "functions_at_100pct": 18,
+   "functions_below_50pct": [
+    "TRIANGULAR_NUMBERS_1",
+    "ZECKENDORFS_THEOREM_NON_NEIGHBOURING_FIBONACCI_REPRESENTATION"
+   ],
+   "lowest10": [
+    {
+     "func": "ZECKENDORFS_THEOREM_NON_NEIGHBOURING_FIBONACCI_REPRESENTATION",
+     "nargs": 1,
+     "killed": 7,
+     "assessable": 15,
+     "rate": 0.4667,
+     "wilson95": [
+      0.2481,
+      0.6988
+     ]
+    },
+    {
+     "func": "TRIANGULAR_NUMBERS_1",
+     "nargs": 1,
+     "killed": 15,
+     "assessable": 32,
+     "rate": 0.4688,
+     "wilson95": [
+      0.3087,
+      0.6355
+     ]
+    },
+    {
+     "func": "PROGRAM_AREA_SQUARE",
+     "nargs": 1,
+     "killed": 1,
+     "assessable": 2,
+     "rate": 0.5,
+     "wilson95": [
+      0.0945,
+      0.9055
+     ]
+    },
+    {
+     "func": "FIND_LAST_DIGIT_FACTORIAL_DIVIDES_FACTORIAL_B",
+     "nargs": 2,
+     "killed": 12,
+     "assessable": 23,
+     "rate": 0.5217,
+     "wilson95": [
+      0.3296,
+      0.7076
+     ]
+    },
+    {
+     "func": "SQUARE_ROOT_OF_AN_INTEGER",
+     "nargs": 1,
+     "killed": 11,
+     "assessable": 20,
+     "rate": 0.55,
+     "wilson95": [
+      0.3421,
+      0.7418
+     ]
+    },
+    {
+     "func": "MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES",
+     "nargs": 1,
+     "killed": 9,
+     "assessable": 16,
+     "rate": 0.5625,
+     "wilson95": [
+      0.3318,
+      0.769
+     ]
+    },
+    {
+     "func": "MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS_2",
+     "nargs": 3,
+     "killed": 9,
+     "assessable": 16,
+     "rate": 0.5625,
+     "wilson95": [
+      0.3318,
+      0.769
+     ]
+    },
+    {
+     "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+     "nargs": 2,
+     "killed": 4,
+     "assessable": 7,
+     "rate": 0.5714,
+     "wilson95": [
+      0.2505,
+      0.8418
+     ]
+    },
+    {
+     "func": "CHECK_INTEGER_OVERFLOW_MULTIPLICATION",
+     "nargs": 2,
+     "killed": 10,
+     "assessable": 17,
+     "rate": 0.5882,
+     "wilson95": [
+      0.3601,
+      0.7839
+     ]
+    },
+    {
+     "func": "COUNT_DIGITS_FACTORIAL_SET_1",
+     "nargs": 1,
+     "killed": 10,
+     "assessable": 17,
+     "rate": 0.5882,
+     "wilson95": [
+      0.3601,
+      0.7839
+     ]
+    }
+   ]
+  },
+  "survivor_equivalence_headline": {
+   "by_outcome_and_verdict": {
+    "rust_hang|killable_out_of_domain": 3,
+    "rust_hang|rust_hang_only": 51,
+    "survived|differs_from_original_only_where_C_has_UB_or_original_also_diverges": 48,
+    "survived|killable_in_domain": 9,
+    "survived|killable_out_of_domain": 63,
+    "survived|no_difference_found|A_exhaustive": 239,
+    "survived|no_difference_found|A_partial": 16,
+    "survived|rust_hang_only": 1,
+    "ub_only|differs_from_original_only_where_C_has_UB_or_original_also_diverges": 12,
+    "ub_only|killable_in_domain": 1
+   },
+   "by_operator": {
+    "f32": {
+     "killable_out_of_domain": 50,
+     "no_difference_found|A_exhaustive": 113,
+     "differs_from_original_only_where_C_has_UB_or_original_also_diverges": 46,
+     "rust_hang_only": 1,
+     "no_difference_found|A_partial": 10,
+     "killable_in_domain": 2
+    },
+    "const": {
+     "no_difference_found|A_exhaustive": 106,
+     "rust_hang_only": 33,
+     "killable_in_domain": 8,
+     "killable_out_of_domain": 15,
+     "differs_from_original_only_where_C_has_UB_or_original_also_diverges": 11,
+     "no_difference_found|A_partial": 6
+    },
+    "aor": {
+     "rust_hang_only": 14,
+     "differs_from_original_only_where_C_has_UB_or_original_also_diverges": 2,
+     "no_difference_found|A_exhaustive": 19,
+     "killable_out_of_domain": 1
+    },
+    "ror": {
+     "rust_hang_only": 4,
+     "no_difference_found|A_exhaustive": 1,
+     "differs_from_original_only_where_C_has_UB_or_original_also_diverges": 1
+    }
+   },
+   "budgets_seconds_ABC": "30,10,10"
+  },
+  "original_translation_extended_domain": {
+   "rule": "the unmutated translation vs the C on phases A (in-domain, exhaustive for 1-2 args), B (negatives), C (large); first UB-clean divergence per phase",
+   "functions": 118,
+   "diverge_in_domain_A": [],
+   "diverge_negative_B": [
+    "CASSINIS_IDENTITY",
+    "PROGRAM_OCTAL_DECIMAL_CONVERSION",
+    "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS"
+   ],
+   "diverge_large_C": [
+    "CASSINIS_IDENTITY",
+    "CHECK_INTEGER_OVERFLOW_MULTIPLICATION",
+    "COMPUTE_AVERAGE_TWO_NUMBERS_WITHOUT_OVERFLOW_1",
+    "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2",
+    "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+    "EVEN_FIBONACCI_NUMBERS_SUM",
+    "FIND_LAST_DIGIT_FACTORIAL_DIVIDES_FACTORIAL_B",
+    "FIND_PERIMETER_CYLINDER",
+    "MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N",
+    "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_2",
+    "PROGRAM_BINARY_DECIMAL_CONVERSION",
+    "PROGRAM_OCTAL_DECIMAL_CONVERSION",
+    "PROGRAM_PRINT_SUM_GIVEN_NTH_TERM_1",
+    "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS",
+    "WRITE_ONE_LINE_C_FUNCTION_TO_FIND_WHETHER_A_NO_IS_POWER_OF_TWO"
+   ],
+   "A_exhaustive_clean": 109
+  },
+  "seconds_note": "sum of the two runs' seconds (not a wall-clock time)"
+ },
+ "_provenance": {
+  "git_commit": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T15:52:33Z",
+  "arch": "arm64",
+  "os": "Darwin 25.6.0",
+  "in_container": false,
+  "image": null,
+  "step": "arxiv_wide_combined",
+  "python": "3.9.6",
+  "gcc": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+  "rustc": "rustc 1.98.0-nightly (beae78130 2026-06-09)",
+  "argv": [
+   "systems/vert/arxiv_wide_combined.py"
+  ]
+ }
+}

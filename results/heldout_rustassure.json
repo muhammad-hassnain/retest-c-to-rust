@@ -1,0 +1,1334 @@
+{
+ "provenance": {
+  "script": "harness/heldout_rustassure.py",
+  "command": "docker run --rm -v \"$PWD:/work\" -w /work crust-heldout python3 -I harness/heldout_rustassure.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "host": "Linux x86_64 box (20 cores), Docker",
+  "arch": "x86_64",
+  "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)"
+  },
+  "date": "2026-11-13T22:21:59.295614+00:00",
+  "artifact_file": "artifacts/rustassure/src/Link/csv_link/src/main.rs",
+  "artifact_sha256": "d2fa0c7b37d250b15868d2d7fc5a473f913d9d36a267a121d7768234cda923b6"
+ },
+ "system_check": {
+  "per_function_klee": "symbolic arguments only; function pointers not initialised (SymbolizerPass.cpp lines 396, 429); no concrete inputs or .ktest files shipped",
+  "composition_test": "csv_link/src/main.rs test_all_parse(): fixed inputs, events compared by length+bytes",
+  "tests_called": 37,
+  "tests_parsed": 37,
+  "distinct_inputs": 37,
+  "with_CSV_EMPTY_IS_NULL": 7
+ },
+ "own_check_run": {
+  "debug": {
+   "built": true,
+   "exit": -6,
+   "headers_reached": 9,
+   "last_header": "04a",
+   "reached_test_19": false,
+   "stderr_tail": "malloc(): corrupted top size\n",
+   "per_test_header": {
+    "01": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "01a": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "01b": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "02": {
+     "pass_lines": 7,
+     "fail_lines": 0
+    },
+    "02a": {
+     "pass_lines": 7,
+     "fail_lines": 0
+    },
+    "03": {
+     "pass_lines": 4,
+     "fail_lines": 0
+    },
+    "03a": {
+     "pass_lines": 4,
+     "fail_lines": 0
+    },
+    "04": {
+     "pass_lines": 2,
+     "fail_lines": 0
+    },
+    "04a": {
+     "pass_lines": 0,
+     "fail_lines": 0
+    }
+   },
+   "headers_with_failure_lines": []
+  },
+  "release": {
+   "built": true,
+   "exit": -6,
+   "headers_reached": 9,
+   "last_header": "04a",
+   "reached_test_19": false,
+   "stderr_tail": "malloc(): corrupted top size\n",
+   "per_test_header": {
+    "01": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "01a": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "01b": {
+     "pass_lines": 6,
+     "fail_lines": 0
+    },
+    "02": {
+     "pass_lines": 7,
+     "fail_lines": 0
+    },
+    "02a": {
+     "pass_lines": 7,
+     "fail_lines": 0
+    },
+    "03": {
+     "pass_lines": 4,
+     "fail_lines": 0
+    },
+    "03a": {
+     "pass_lines": 4,
+     "fail_lines": 0
+    },
+    "04": {
+     "pass_lines": 2,
+     "fail_lines": 0
+    },
+    "04a": {
+     "pass_lines": 0,
+     "fail_lines": 0
+    }
+   },
+   "headers_with_failure_lines": []
+  }
+ },
+ "our_inputs": {
+  "cases": 360,
+  "distinct": 360
+ },
+ "overlap": {
+  "exact_input_and_options": 2,
+  "items": [
+   {
+    "data_repr": "b''",
+    "options": 0
+   },
+   {
+    "data_repr": "b''",
+    "options": 16
+   }
+  ],
+  "same_bytes_any_options": 1,
+  "same_bytes_items": [
+   "b''"
+  ]
+ },
+ "our_comparison_on_rustassure_inputs": {
+  "runs": 37,
+  "diverge": 1,
+  "diverge_null_vs_empty": 1,
+  "diverging_tests": [
+   "test_19"
+  ],
+  "rows": [
+   {
+    "test": "test_01",
+    "data_hex": "20312c32202c2020332020202020202020202c342c350d0a",
+    "data_repr": "b' 1,2 ,  3         ,4,5\\r\\n'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_01_strict",
+    "data_hex": "20312c32202c2020332020202020202020202c342c350d0a",
+    "data_repr": "b' 1,2 ,  3         ,4,5\\r\\n'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_01_strict_or_empty",
+    "data_hex": "20312c32202c2020332020202020202020202c342c350d0a",
+    "data_repr": "b' 1,2 ,  3         ,4,5\\r\\n'",
+    "options": 17,
+    "options_expr": "CSV_STRICT | CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "F 1 35",
+     "R 13",
+     "P 24",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_02",
+    "data_hex": "2c2c2c2c2c0a",
+    "data_repr": "b',,,,,\\n'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "R 10",
+     "P 6",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "R 10",
+     "P 6",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_02_strict",
+    "data_hex": "2c2c2c2c2c0a",
+    "data_repr": "b',,,,,\\n'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "R 10",
+     "P 6",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "F 0",
+     "R 10",
+     "P 6",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_03",
+    "data_hex": "222c222c222c222c2222",
+    "data_repr": "b'\",\",\",\",\"\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 2c",
+     "F 1 2c",
+     "P 10",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 2c",
+     "F 1 2c",
+     "P 10",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_03_strict",
+    "data_hex": "222c222c222c222c2222",
+    "data_repr": "b'\",\",\",\",\"\"'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 2c",
+     "F 1 2c",
+     "P 10",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 2c",
+     "F 1 2c",
+     "P 10",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_04",
+    "data_hex": "22492063616c6c206f757220776f726c6420466c61746c616e642c0a6e6f7420626563617573652077652063616c6c20697420736f2c0a62757420746f206d616b6520697473206e617475726520636c65617265720a746f20796f752c206d7920686170707920726561646572732c0a77686f206172652070726976696c6567656420746f206c69766520696e2053706163652e22",
+    "data_repr": "b'\"I call our world Flatland,\\nnot because we call it so,\\nbut to make its nature clearer\\nto you, my happy readers,\\nwho are privileged to live in Space.\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 149",
+     "F 147 49 20 63 61 6c 6c 20 6f 75 72 20 77 6f 72 6c 64 20 46 6c 61 74 6c 61 6e 64 2c 0a 6e 6f 74 20 62 65 63 61 75 73 65 20 77 65 20 63 61 6c 6c 20 69 74 20 73 6f 2c 0a 62 75 74 20 74 6f 20 6d 61 6b 65 20 69 74 73 20 6e 61 74 75 72 65 20 63 6c 65 61 72 65 72 0a 74 6f 20 79 6f 75 2c 20 6d 79 20 68 61 70 70 79 20 72 65 61 64 65 72 73 2c 0a 77 68 6f 20 61 72 65 20 70 72 69 76 69 6c 65 67 65 64 20 74 6f 20 6c 69 76 65 20 69 6e 20 53 70 61 63 65 2e",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 149",
+     "F 147 49 20 63 61 6c 6c 20 6f 75 72 20 77 6f 72 6c 64 20 46 6c 61 74 6c 61 6e 64 2c 0a 6e 6f 74 20 62 65 63 61 75 73 65 20 77 65 20 63 61 6c 6c 20 69 74 20 73 6f 2c 0a 62 75 74 20 74 6f 20 6d 61 6b 65 20 69 74 73 20 6e 61 74 75 72 65 20 63 6c 65 61 72 65 72 0a 74 6f 20 79 6f 75 2c 20 6d 79 20 68 61 70 70 79 20 72 65 61 64 65 72 73 2c 0a 77 68 6f 20 61 72 65 20 70 72 69 76 69 6c 65 67 65 64 20 74 6f 20 6c 69 76 65 20 69 6e 20 53 70 61 63 65 2e",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_04_strict",
+    "data_hex": "22492063616c6c206f757220776f726c6420466c61746c616e642c0a6e6f7420626563617573652077652063616c6c20697420736f2c0a62757420746f206d616b6520697473206e617475726520636c65617265720a746f20796f752c206d7920686170707920726561646572732c0a77686f206172652070726976696c6567656420746f206c69766520696e2053706163652e22",
+    "data_repr": "b'\"I call our world Flatland,\\nnot because we call it so,\\nbut to make its nature clearer\\nto you, my happy readers,\\nwho are privileged to live in Space.\"'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 149",
+     "F 147 49 20 63 61 6c 6c 20 6f 75 72 20 77 6f 72 6c 64 20 46 6c 61 74 6c 61 6e 64 2c 0a 6e 6f 74 20 62 65 63 61 75 73 65 20 77 65 20 63 61 6c 6c 20 69 74 20 73 6f 2c 0a 62 75 74 20 74 6f 20 6d 61 6b 65 20 69 74 73 20 6e 61 74 75 72 65 20 63 6c 65 61 72 65 72 0a 74 6f 20 79 6f 75 2c 20 6d 79 20 68 61 70 70 79 20 72 65 61 64 65 72 73 2c 0a 77 68 6f 20 61 72 65 20 70 72 69 76 69 6c 65 67 65 64 20 74 6f 20 6c 69 76 65 20 69 6e 20 53 70 61 63 65 2e",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 149",
+     "F 147 49 20 63 61 6c 6c 20 6f 75 72 20 77 6f 72 6c 64 20 46 6c 61 74 6c 61 6e 64 2c 0a 6e 6f 74 20 62 65 63 61 75 73 65 20 77 65 20 63 61 6c 6c 20 69 74 20 73 6f 2c 0a 62 75 74 20 74 6f 20 6d 61 6b 65 20 69 74 73 20 6e 61 74 75 72 65 20 63 6c 65 61 72 65 72 0a 74 6f 20 79 6f 75 2c 20 6d 79 20 68 61 70 70 79 20 72 65 61 64 65 72 73 2c 0a 77 68 6f 20 61 72 65 20 70 72 69 76 69 6c 65 67 65 64 20 74 6f 20 6c 69 76 65 20 69 6e 20 53 70 61 63 65 2e",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_05",
+    "data_hex": "222222612c622222222c2c22202222222220222c222222222220222c222022222222222c222222222222",
+    "data_repr": "b'\"\"\"a,b\"\"\",,\" \"\"\"\" \",\"\"\"\"\" \",\" \"\"\"\"\",\"\"\"\"\"\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_05_strict",
+    "data_hex": "222222612c622222222c2c22202222222220222c222222222220222c222022222222222c222222222222",
+    "data_repr": "b'\"\"\"a,b\"\"\",,\" \"\"\"\" \",\"\"\"\"\" \",\" \"\"\"\"\",\"\"\"\"\"\"'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_05_strict_fini",
+    "data_hex": "222222612c622222222c2c22202222222220222c222222222220222c222022222222222c222222222222",
+    "data_repr": "b'\"\"\"a,b\"\"\",,\" \"\"\"\" \",\"\"\"\"\" \",\" \"\"\"\"\",\"\"\"\"\"\"'",
+    "options": 5,
+    "options_expr": "CSV_STRICT | CSV_STRICT_FINI",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 5 22 61 2c 62 22",
+     "F 0",
+     "F 4 20 22 22 20",
+     "F 3 22 22 20",
+     "F 3 20 22 22",
+     "P 42",
+     "F 2 22 22",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_06",
+    "data_hex": "2220612c2062202c6320222c206120622020632c",
+    "data_repr": "b'\" a, b ,c \", a b  c,'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 9 20 61 2c 20 62 20 2c 63 20",
+     "F 6 61 20 62 20 20 63",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 9 20 61 2c 20 62 20 2c 63 20",
+     "F 6 61 20 62 20 20 63",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_06_strict",
+    "data_hex": "2220612c2062202c6320222c206120622020632c",
+    "data_repr": "b'\" a, b ,c \", a b  c,'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 9 20 61 2c 20 62 20 2c 63 20",
+     "F 6 61 20 62 20 20 63",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 9 20 61 2c 20 62 20 2c 63 20",
+     "F 6 61 20 62 20 20 63",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_07",
+    "data_hex": "22202222202220222022222022",
+    "data_repr": "b'\" \"\" \" \" \"\" \"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 13",
+     "F 9 20 22 20 22 20 22 20 22 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 13",
+     "F 9 20 22 20 22 20 22 20 22 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_07_b",
+    "data_hex": "22202222202220222022222022",
+    "data_repr": "b'\" \"\" \" \" \"\" \"'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 7",
+     "F 3 20 22 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 7",
+     "F 3 20 22 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_08",
+    "data_hex": "222061626322202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020222c202231323322",
+    "data_repr": "b'\" abc\"                                             \", \"123\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 50 20 61 62 63 22 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20",
+     "P 59",
+     "F 3 31 32 33",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 50 20 61 62 63 22 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20",
+     "P 59",
+     "F 3 31 32 33",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_09",
+    "data_hex": "",
+    "data_repr": "b''",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": true,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 0",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 0",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_09_empty_isnull",
+    "data_hex": "",
+    "data_repr": "b''",
+    "options": 16,
+    "options_expr": "CSV_EMPTY_IS_NULL",
+    "in_our_set": true,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 0",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 0",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_10",
+    "data_hex": "610a",
+    "data_repr": "b'a\\n'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 61",
+     "R 10",
+     "P 2",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 61",
+     "R 10",
+     "P 2",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_11",
+    "data_hex": "312c32202c332c340a",
+    "data_repr": "b'1,2 ,3,4\\n'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "R 10",
+     "P 9",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "R 10",
+     "P 9",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_11_empty_isnull",
+    "data_hex": "312c32202c332c340a",
+    "data_repr": "b'1,2 ,3,4\\n'",
+    "options": 16,
+    "options_expr": "CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "R 10",
+     "P 9",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 1 34",
+     "R 10",
+     "P 9",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_12",
+    "data_hex": "0a0a0a0a",
+    "data_repr": "b'\\n\\n\\n\\n'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 4",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 4",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_12_empty_isnull",
+    "data_hex": "0a0a0a0a",
+    "data_repr": "b'\\n\\n\\n\\n'",
+    "options": 16,
+    "options_expr": "CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 4",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 4",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_12_b",
+    "data_hex": "0a0a0a0a",
+    "data_repr": "b'\\n\\n\\n\\n'",
+    "options": 2,
+    "options_expr": "CSV_REPALL_NL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "R 10",
+     "R 10",
+     "R 10",
+     "R 10",
+     "P 4",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "R 10",
+     "R 10",
+     "R 10",
+     "R 10",
+     "P 4",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_12_b_isnull",
+    "data_hex": "0a0a0a0a",
+    "data_repr": "b'\\n\\n\\n\\n'",
+    "options": 18,
+    "options_expr": "CSV_REPALL_NL | CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "R 10",
+     "R 10",
+     "R 10",
+     "R 10",
+     "P 4",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "R 10",
+     "R 10",
+     "R 10",
+     "R 10",
+     "P 4",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_13",
+    "data_hex": "2261626322",
+    "data_repr": "b'\"abc\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 5",
+     "F 3 61 62 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 5",
+     "F 3 61 62 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_14",
+    "data_hex": "312c20322c20332c0a0d0a20202234222c200d2c",
+    "data_repr": "b'1, 2, 3,\\n\\r\\n  \"4\", \\r,'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "F 0",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "F 0",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_14_strict",
+    "data_hex": "312c20322c20332c0a0d0a20202234222c200d2c",
+    "data_repr": "b'1, 2, 3,\\n\\r\\n  \"4\", \\r,'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "F 0",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "F 0",
+     "P 20",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_15",
+    "data_hex": "312c20322c20332c0a0d0a20202234222c200d2222",
+    "data_repr": "b'1, 2, 3,\\n\\r\\n  \"4\", \\r\"\"'",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "P 21",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "P 21",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_15_strict",
+    "data_hex": "312c20322c20332c0a0d0a20202234222c200d2222",
+    "data_repr": "b'1, 2, 3,\\n\\r\\n  \"4\", \\r\"\"'",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "P 21",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "F 1 33",
+     "F 0",
+     "R 10",
+     "F 1 34",
+     "F 0",
+     "R 13",
+     "P 21",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_16",
+    "data_hex": "2231222c2232222c22203320",
+    "data_repr": "b'\"1\",\"2\",\" 3 '",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "P 12",
+     "F 3 20 33 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "P 12",
+     "F 3 20 33 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_16_strict",
+    "data_hex": "2231222c2232222c22203320",
+    "data_repr": "b'\"1\",\"2\",\" 3 '",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "F 1 31",
+     "F 1 32",
+     "P 12",
+     "F 3 20 33 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 1 31",
+     "F 1 32",
+     "P 12",
+     "F 3 20 33 20",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_17",
+    "data_hex": "20610062006320",
+    "data_repr": "b' a\\x00b\\x00c '",
+    "options": 0,
+    "options_expr": "0",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_17_strict",
+    "data_hex": "20610062006320",
+    "data_repr": "b' a\\x00b\\x00c '",
+    "options": 1,
+    "options_expr": "CSV_STRICT",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_17_strict_is_null",
+    "data_hex": "20610062006320",
+    "data_repr": "b' a\\x00b\\x00c '",
+    "options": 17,
+    "options_expr": "CSV_STRICT | CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": false,
+    "tags": [],
+    "oracle": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "P 7",
+     "F 5 61 00 62 00 63",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   },
+   {
+    "test": "test_19",
+    "data_hex": "20202c202222202c",
+    "data_repr": "b'  , \"\" ,'",
+    "options": 16,
+    "options_expr": "CSV_EMPTY_IS_NULL",
+    "in_our_set": false,
+    "diverges_under_our_comparison": true,
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "oracle": [
+     "F NULL",
+     "F 0",
+     "P 8",
+     "F NULL",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ],
+    "sut": [
+     "F 0",
+     "F 0",
+     "P 8",
+     "F 0",
+     "R -1",
+     "Z 0",
+     "E 0"
+    ]
+   }
+  ]
+ },
+ "counted_defects": {
+  "reproduced": 12,
+  "inside_rustassure_set": 0,
+  "outside_rustassure_set": 12,
+  "rows": [
+   {
+    "input": "all_empty",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "mid_empty",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "lead_empty",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "trail_empty",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "only_delims",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "delim_as_data_only",
+    "options": "empty_is_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "all_empty",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "mid_empty",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "lead_empty",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "trail_empty",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "only_delims",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   },
+   {
+    "input": "delim_as_data_only",
+    "options": "append+empty_null",
+    "tags": [
+     "field_event",
+     "null_vs_empty_field"
+    ],
+    "in_rustassure_set": false
+   }
+  ]
+ }
+}

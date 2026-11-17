@@ -1,0 +1,158 @@
+{
+  "util": "cat",
+  "n_cases": 500,
+  "seed": 777,
+  "n_generated": 500,
+  "n_cases_unmutated_agrees": 484,
+  "sanity_mutant": {
+    "status": "compiled",
+    "killed": true,
+    "mismatches": 1,
+    "assessable": 1
+  },
+  "sanity_ok": true,
+  "ror_mutants": [
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 0,
+      "op": "==->!=",
+      "at": 7826
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 1,
+      "site": 1,
+      "op": "<->>=",
+      "at": 11836
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 2,
+      "op": "!=->==",
+      "at": 19878
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 3,
+      "op": "<->>=",
+      "at": 26207
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 4,
+      "op": "==->!=",
+      "at": 29991
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 1,
+      "site": 5,
+      "op": "!=->==",
+      "at": 37568
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 1,
+      "site": 6,
+      "op": "<->>=",
+      "at": 39786
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 3,
+      "site": 7,
+      "op": "<->>=",
+      "at": 42445
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 8,
+      "op": ">=-><",
+      "at": 47064
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 9,
+      "op": "!=->==",
+      "at": 51344
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 10,
+      "op": "!=->==",
+      "at": 57796
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 11,
+      "op": "<->>=",
+      "at": 61671
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 12,
+      "op": "==->!=",
+      "at": 63783
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 484,
+      "site": 13,
+      "op": "!=->==",
+      "at": 68829
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 157,
+      "site": 14,
+      "op": "!=->==",
+      "at": 75695
+    }
+  ],
+  "ror_summary": {
+    "total": 15,
+    "compiled": 15,
+    "noncompile": 0,
+    "killed": 5,
+    "survived": 10
+  }
+}

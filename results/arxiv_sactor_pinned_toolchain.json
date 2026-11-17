@@ -1,0 +1,905 @@
+{
+ "_provenance": {
+  "git_commit": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_code": null,
+  "generated_utc": "2026-11-17T07:30:05Z",
+  "arch": "x86_64",
+  "os": "Linux 7.0.0-38-generic",
+  "in_container": true,
+  "image": "crust-heldout",
+  "step": null,
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+  "argv": [
+   "systems/sactor/arxiv_pinned_toolchain.py",
+   "all",
+   "--out",
+   "/work/results/arxiv_sactor_pinned_toolchain.json"
+  ]
+ },
+ "provenance": {
+  "script": "systems/sactor/arxiv_pinned_toolchain.py",
+  "command": "bash systems/sactor/run_docker.sh python3 -I systems/sactor/arxiv_pinned_toolchain.py all --out /work/results/arxiv_sactor_pinned_toolchain.json",
+  "toolchain_install": "rustup 1.29.1 of the crust-heldout image, `rustup toolchain install nightly-2024-12-18 --profile minimal` with RUSTUP_HOME outside ~/.rustup (network on for that step only); the toolchain dir is mounted read-only at /opt/tc/nightly-2024-12-18 (run_docker.sh SACTOR_EXTRA_TC)",
+  "git_commit_of_study_repo": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_note": "harness/oracle_ub_common.py, systems/sactor/, scripts/provenance.py and the shipped results files named in shipped_inputs copied from the study repo working tree at that commit plus uncommitted changes (this script new; run_docker.sh SACTOR_EXTRA_TC option new)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "image": "crust-heldout",
+  "image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "rustc_pinned": "rustc 1.85.0-nightly (a4cb3c831 2024-12-17)\nbinary: rustc\ncommit-hash: a4cb3c831823d9baa56c3d90514b75b2660116fa\ncommit-date: 2024-12-17\nhost: x86_64-unknown-linux-gnu\nrelease: 1.85.0-nightly\nLLVM version: 19.1.5",
+  "cargo_pinned": "cargo 1.85.0-nightly (769f622e1 2024-12-14)",
+  "pinned_by_artifact": "sactor and sactor-datasets rust-toolchain.toml: channel = \"nightly-2024-12-18\", components = [\"rustfmt\", \"clippy\", \"rust-analyzer\"] (installed with --profile minimal: rustc, cargo, rust-std; the listed components are lint/format/IDE tools and take no part in a build)",
+  "stage_outputs": {
+   "libogg": {
+    "path": "/out/pin_libogg.json",
+    "provenance": {
+     "script": "systems/sactor/libogg/run.py",
+     "command": "bash systems/sactor/run_docker.sh python3 -I systems/sactor/arxiv_pinned_toolchain.py all --out /work/results/arxiv_sactor_pinned_toolchain.json",
+     "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+     "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+     "host": "desktop (x86_64, 20 cores)",
+     "arch": "x86_64",
+     "kernel": "7.0.0-38-generic",
+     "docker_image": "crust-heldout",
+     "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+     "toolchains": {
+      "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+      "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+      "rust": {
+       "nightly-2024-12-18": "rustc 1.85.0-nightly (a4cb3c831 2024-12-17)"
+      },
+      "rust_pinned_by_artifact": "nightly-2024-12-18 (used: the only toolchain of this run)",
+      "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+      "python": "3.10.12"
+     },
+     "artifacts": {
+      "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+      "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+      "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+     },
+     "date": "2026-11-17T07:29:24+00:00",
+     "positive_controls": {
+      "clang": {
+       "heap_oob_read": "fired",
+       "stack_oob_read": "fired",
+       "signed_overflow": "fired",
+       "shift_overflow": "fired",
+       "float_cast_overflow": "fired",
+       "clean": "clean",
+       "all_as_expected": true,
+       "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+      },
+      "gcc": {
+       "heap_oob_read": "fired",
+       "stack_oob_read": "fired",
+       "signed_overflow": "fired",
+       "shift_overflow": "fired",
+       "float_cast_overflow": "fired",
+       "clean": "clean",
+       "all_as_expected": true,
+       "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+      }
+     },
+     "arxiv_wrapper": "systems/sactor/arxiv_pinned_toolchain.py stage libogg: sactor_common.TOOLCHAINS = {'nightly-2024-12-18': '/opt/tc/nightly-2024-12-18'}; stage script unchanged"
+    }
+   },
+   "crust": {
+    "path": "/out/pin_crust.json",
+    "provenance": {
+     "script": "systems/sactor/crust/run.py",
+     "command": "bash systems/sactor/run_docker.sh python3 -I systems/sactor/arxiv_pinned_toolchain.py all --out /work/results/arxiv_sactor_pinned_toolchain.json",
+     "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+     "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+     "host": "desktop (x86_64, 20 cores)",
+     "arch": "x86_64",
+     "kernel": "7.0.0-38-generic",
+     "docker_image": "crust-heldout",
+     "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+     "toolchains": {
+      "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+      "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+      "rust": {
+       "nightly-2024-12-18": "rustc 1.85.0-nightly (a4cb3c831 2024-12-17)"
+      },
+      "rust_pinned_by_artifact": "nightly-2024-12-18 (used: the only toolchain of this run)",
+      "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+      "python": "3.10.12"
+     },
+     "artifacts": {
+      "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+      "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+      "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+     },
+     "date": "2026-11-17T07:29:47+00:00",
+     "c_variants": [
+      "ref",
+      "o0",
+      "o1",
+      "uchar",
+      "schar",
+      "san_gcc",
+      "san_clang",
+      "san_clang_nz"
+     ],
+     "ccwrap": "systems/sactor/crust/ccwrap.sh",
+     "arxiv_wrapper": "systems/sactor/arxiv_pinned_toolchain.py stage crust: sactor_common.TOOLCHAINS = {'nightly-2024-12-18': '/opt/tc/nightly-2024-12-18'}; stage script unchanged"
+    }
+   },
+   "grid": {
+    "path": "/out/pin_grid.json",
+    "provenance": {
+     "script": "systems/sactor/crust/grid.py",
+     "command": "bash systems/sactor/run_docker.sh python3 -I systems/sactor/arxiv_pinned_toolchain.py all --out /work/results/arxiv_sactor_pinned_toolchain.json",
+     "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+     "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+     "host": "desktop (x86_64, 20 cores)",
+     "arch": "x86_64",
+     "kernel": "7.0.0-38-generic",
+     "docker_image": "crust-heldout",
+     "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+     "toolchains": {
+      "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+      "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+      "rust": {
+       "nightly-2024-12-18": "rustc 1.85.0-nightly (a4cb3c831 2024-12-17)"
+      },
+      "rust_pinned_by_artifact": "nightly-2024-12-18 (used: the only toolchain of this run)",
+      "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+      "python": "3.10.12"
+     },
+     "artifacts": {
+      "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+      "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+      "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+     },
+     "date": "2026-11-17T07:29:52+00:00",
+     "strings": [
+      "",
+      "a",
+      "hello",
+      "Hello, World!",
+      "123",
+      "-42",
+      "0",
+      "  padded  ",
+      "a,b,c",
+      "%s%d",
+      "tab\there",
+      "line\nbreak",
+      "\u00c3\u00a9t\u00c3\u00a9",
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "3.14159",
+      "true",
+      "x",
+      "the quick brown fox jumps over the lazy dog",
+      "\u0001\u007f"
+     ],
+     "max_inputs_per_function": 80,
+     "arxiv_wrapper": "systems/sactor/arxiv_pinned_toolchain.py stage grid: sactor_common.TOOLCHAINS = {'nightly-2024-12-18': '/opt/tc/nightly-2024-12-18'}; stage script unchanged"
+    }
+   }
+  },
+  "shipped_inputs": {
+   "libogg": "results/sactor_libogg.json",
+   "crust": "results/sactor_crust_owntests.json",
+   "grid": "results/sactor_crust_grid.json",
+   "ledger": "results/defect_ledger.json"
+  },
+  "date": "2026-11-17T07:30:05+0000"
+ },
+ "rule": "The stage scripts run unchanged. This wrapper imports sactor_common, sets TOOLCHAINS to the pinned\ntoolchain alone (mounted at /opt/tc/nightly-2024-12-18 by run_docker.sh with SACTOR_EXTRA_TC) and runs\nthe stage script as __main__, so the builds (SACTOR's build_attempt crate, debug and release), the\ninputs, the C variants, the comparison and the UB rule are the shipped ones. `compare` then puts each\ndefect translation's UB-clean divergences under the pinned builds next to the shipped ones (same\nprofile, primary nightly-2024-09-03, and the second nightly-2025-05-10). A defect's verdict is\nunchanged when, in both profiles, the pinned build diverges from the C on exactly the shipped UB-clean\ncases with the same outcome (wrong output vs crash).",
+ "summary": {
+  "pinned_toolchain": "nightly-2024-12-18",
+  "counted_defects": 5,
+  "verdict_unchanged": [
+   "SACTOR-C1",
+   "SACTOR-C2",
+   "SACTOR-C3",
+   "SACTOR-L1",
+   "SACTOR-L2"
+  ],
+  "verdict_changed": [],
+  "recorded_outputs_identical_to_shipped_primary": [
+   "SACTOR-C1",
+   "SACTOR-C2",
+   "SACTOR-L1",
+   "SACTOR-L2"
+  ],
+  "pinned_build_failures": [
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2024-12-18:debug]",
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2024-12-18:release]"
+  ],
+  "shipped_build_failures": [
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2024-09-03:debug]",
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2024-09-03:release]",
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2025-05-10:debug]",
+   "libogg gpt-5/bitwise.c/unidiomatic [nightly-2025-05-10:release]"
+  ]
+ },
+ "defects": {
+  "SACTOR-L1": {
+   "translation": "libogg gpt-4o bitwise.c unidiomatic",
+   "severity": "S1",
+   "ledger_exposure_count": 8,
+   "builds": {
+    "nightly-2024-12-18:debug": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": true
+     },
+     "ub_clean_divergent_cases": 8,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 8,
+       "pinned_cases": 8,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 8
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 8,
+       "pinned_cases": 8,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 8
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    },
+    "nightly-2024-12-18:release": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": true
+     },
+     "ub_clean_divergent_cases": 8,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 8,
+       "pinned_cases": 8,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 8
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 8,
+       "pinned_cases": 8,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 8
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    }
+   },
+   "verdict_unchanged": true,
+   "recorded_outputs_identical_to_shipped_primary": true
+  },
+  "SACTOR-L2": {
+   "translation": "libogg gpt-4o framing.c unidiomatic",
+   "severity": "S1",
+   "ledger_exposure_count": 19,
+   "builds": {
+    "nightly-2024-12-18:debug": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": true
+     },
+     "ub_clean_divergent_cases": 19,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 19,
+       "pinned_cases": 19,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 19
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 19,
+       "pinned_cases": 19,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 19
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    },
+    "nightly-2024-12-18:release": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": true
+     },
+     "ub_clean_divergent_cases": 19,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 19,
+       "pinned_cases": 19,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 19
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 19,
+       "pinned_cases": 19,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 19
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    }
+   },
+   "verdict_unchanged": true,
+   "recorded_outputs_identical_to_shipped_primary": true
+  },
+  "SACTOR-C1": {
+   "translation": "CRUST-Bench Holdem-Odds unidiomatic",
+   "severity": "S1",
+   "ledger_exposure_count": 58,
+   "builds": {
+    "nightly-2024-12-18:debug": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 58,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 58,
+       "pinned_cases": 58,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 58
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 58,
+       "pinned_cases": 58,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 58
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    },
+    "nightly-2024-12-18:release": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 58,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 58,
+       "pinned_cases": 58,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 58
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 58,
+       "pinned_cases": 58,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 58
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    }
+   },
+   "verdict_unchanged": true,
+   "recorded_outputs_identical_to_shipped_primary": true
+  },
+  "SACTOR-C2": {
+   "translation": "CRUST-Bench c-string unidiomatic",
+   "severity": "S1",
+   "ledger_exposure_count": 1,
+   "builds": {
+    "nightly-2024-12-18:debug": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 1,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 1,
+       "pinned_cases": 1,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 1
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 1,
+       "pinned_cases": 1,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 1
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    },
+    "nightly-2024-12-18:release": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 1,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 1,
+       "pinned_cases": 1,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 1
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 1,
+       "pinned_cases": 1,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "wrong": 1
+       },
+       "cases_with_other_recorded_output": [],
+       "recorded_fields_that_differ": {}
+      }
+     }
+    }
+   },
+   "verdict_unchanged": true,
+   "recorded_outputs_identical_to_shipped_primary": true
+  },
+  "SACTOR-C3": {
+   "translation": "CRUST-Bench fs_c unidiomatic",
+   "severity": "crash",
+   "ledger_exposure_count": 74,
+   "builds": {
+    "nightly-2024-12-18:debug": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 74,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 74,
+       "pinned_cases": 74,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "crash": 74
+       },
+       "cases_with_other_recorded_output": [
+        "grid:fs_chown:1",
+        "grid:fs_chown:11",
+        "grid:fs_chown:12",
+        "grid:fs_chown:14",
+        "grid:fs_chown:15",
+        "grid:fs_chown:17",
+        "grid:fs_chown:2",
+        "grid:fs_chown:20",
+        "grid:fs_chown:21",
+        "grid:fs_chown:23",
+        "grid:fs_chown:24",
+        "grid:fs_chown:25",
+        "grid:fs_chown:26",
+        "grid:fs_chown:29",
+        "grid:fs_chown:3",
+        "grid:fs_chown:30",
+        "grid:fs_chown:32",
+        "grid:fs_chown:33",
+        "grid:fs_chown:35",
+        "grid:fs_chown:36",
+        "grid:fs_chown:37",
+        "grid:fs_chown:38",
+        "grid:fs_chown:39",
+        "grid:fs_chown:41",
+        "grid:fs_chown:42",
+        "grid:fs_chown:44",
+        "grid:fs_chown:47",
+        "grid:fs_chown:48",
+        "grid:fs_chown:5",
+        "grid:fs_chown:50",
+        "grid:fs_chown:51",
+        "grid:fs_chown:52",
+        "grid:fs_chown:53",
+        "grid:fs_chown:56",
+        "grid:fs_chown:57",
+        "grid:fs_chown:59",
+        "grid:fs_chown:6",
+        "grid:fs_chown:60",
+        "grid:fs_chown:62",
+        "grid:fs_chown:63",
+        "grid:fs_chown:64",
+        "grid:fs_chown:65",
+        "grid:fs_chown:66",
+        "grid:fs_chown:68",
+        "grid:fs_chown:69",
+        "grid:fs_chown:70",
+        "grid:fs_chown:71",
+        "grid:fs_chown:72",
+        "grid:fs_chown:74",
+        "grid:fs_chown:75",
+        "grid:fs_chown:77",
+        "grid:fs_chown:78",
+        "grid:fs_chown:79",
+        "grid:fs_chown:8"
+       ],
+       "recorded_fields_that_differ": {
+        "rust_stderr_tail": 54
+       }
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 74,
+       "pinned_cases": 74,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "crash": 74
+       },
+       "cases_with_other_recorded_output": [
+        "grid:fs_chown:1",
+        "grid:fs_chown:11",
+        "grid:fs_chown:12",
+        "grid:fs_chown:14",
+        "grid:fs_chown:15",
+        "grid:fs_chown:17",
+        "grid:fs_chown:2",
+        "grid:fs_chown:20",
+        "grid:fs_chown:21",
+        "grid:fs_chown:23",
+        "grid:fs_chown:24",
+        "grid:fs_chown:25",
+        "grid:fs_chown:26",
+        "grid:fs_chown:29",
+        "grid:fs_chown:3",
+        "grid:fs_chown:30",
+        "grid:fs_chown:32",
+        "grid:fs_chown:33",
+        "grid:fs_chown:35",
+        "grid:fs_chown:36",
+        "grid:fs_chown:37",
+        "grid:fs_chown:38",
+        "grid:fs_chown:39",
+        "grid:fs_chown:41",
+        "grid:fs_chown:42",
+        "grid:fs_chown:44",
+        "grid:fs_chown:47",
+        "grid:fs_chown:48",
+        "grid:fs_chown:5",
+        "grid:fs_chown:50",
+        "grid:fs_chown:51",
+        "grid:fs_chown:52",
+        "grid:fs_chown:53",
+        "grid:fs_chown:56",
+        "grid:fs_chown:57",
+        "grid:fs_chown:59",
+        "grid:fs_chown:6",
+        "grid:fs_chown:60",
+        "grid:fs_chown:62",
+        "grid:fs_chown:63",
+        "grid:fs_chown:64",
+        "grid:fs_chown:65",
+        "grid:fs_chown:66",
+        "grid:fs_chown:68",
+        "grid:fs_chown:69",
+        "grid:fs_chown:70",
+        "grid:fs_chown:71",
+        "grid:fs_chown:72",
+        "grid:fs_chown:74",
+        "grid:fs_chown:75",
+        "grid:fs_chown:77",
+        "grid:fs_chown:78",
+        "grid:fs_chown:79",
+        "grid:fs_chown:8"
+       ],
+       "recorded_fields_that_differ": {
+        "rust_stderr_tail": 54
+       }
+      }
+     }
+    },
+    "nightly-2024-12-18:release": {
+     "build": {
+      "ok": true,
+      "sactor_own_test_pass": [
+       true
+      ]
+     },
+     "ub_clean_divergent_cases": 74,
+     "vs_shipped": {
+      "nightly-2024-09-03": {
+       "comparable": true,
+       "shipped_cases": 74,
+       "pinned_cases": 74,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "crash": 74
+       },
+       "cases_with_other_recorded_output": [
+        "grid:fs_chown:1",
+        "grid:fs_chown:11",
+        "grid:fs_chown:12",
+        "grid:fs_chown:14",
+        "grid:fs_chown:15",
+        "grid:fs_chown:17",
+        "grid:fs_chown:2",
+        "grid:fs_chown:20",
+        "grid:fs_chown:21",
+        "grid:fs_chown:23",
+        "grid:fs_chown:24",
+        "grid:fs_chown:25",
+        "grid:fs_chown:26",
+        "grid:fs_chown:29",
+        "grid:fs_chown:3",
+        "grid:fs_chown:30",
+        "grid:fs_chown:32",
+        "grid:fs_chown:33",
+        "grid:fs_chown:35",
+        "grid:fs_chown:36",
+        "grid:fs_chown:37",
+        "grid:fs_chown:38",
+        "grid:fs_chown:39",
+        "grid:fs_chown:41",
+        "grid:fs_chown:42",
+        "grid:fs_chown:44",
+        "grid:fs_chown:47",
+        "grid:fs_chown:48",
+        "grid:fs_chown:5",
+        "grid:fs_chown:50",
+        "grid:fs_chown:51",
+        "grid:fs_chown:52",
+        "grid:fs_chown:53",
+        "grid:fs_chown:56",
+        "grid:fs_chown:57",
+        "grid:fs_chown:59",
+        "grid:fs_chown:6",
+        "grid:fs_chown:60",
+        "grid:fs_chown:62",
+        "grid:fs_chown:63",
+        "grid:fs_chown:64",
+        "grid:fs_chown:65",
+        "grid:fs_chown:66",
+        "grid:fs_chown:68",
+        "grid:fs_chown:69",
+        "grid:fs_chown:70",
+        "grid:fs_chown:71",
+        "grid:fs_chown:72",
+        "grid:fs_chown:74",
+        "grid:fs_chown:75",
+        "grid:fs_chown:77",
+        "grid:fs_chown:78",
+        "grid:fs_chown:79",
+        "grid:fs_chown:8"
+       ],
+       "recorded_fields_that_differ": {
+        "rust_stderr_tail": 54
+       }
+      },
+      "nightly-2025-05-10": {
+       "comparable": true,
+       "shipped_cases": 74,
+       "pinned_cases": 74,
+       "only_shipped": [],
+       "only_pinned": [],
+       "same_cases_same_outcome": true,
+       "outcomes_pinned": {
+        "crash": 74
+       },
+       "cases_with_other_recorded_output": [
+        "grid:fs_chown:1",
+        "grid:fs_chown:11",
+        "grid:fs_chown:12",
+        "grid:fs_chown:14",
+        "grid:fs_chown:15",
+        "grid:fs_chown:17",
+        "grid:fs_chown:2",
+        "grid:fs_chown:20",
+        "grid:fs_chown:21",
+        "grid:fs_chown:23",
+        "grid:fs_chown:24",
+        "grid:fs_chown:25",
+        "grid:fs_chown:26",
+        "grid:fs_chown:29",
+        "grid:fs_chown:3",
+        "grid:fs_chown:30",
+        "grid:fs_chown:32",
+        "grid:fs_chown:33",
+        "grid:fs_chown:35",
+        "grid:fs_chown:36",
+        "grid:fs_chown:37",
+        "grid:fs_chown:38",
+        "grid:fs_chown:39",
+        "grid:fs_chown:41",
+        "grid:fs_chown:42",
+        "grid:fs_chown:44",
+        "grid:fs_chown:47",
+        "grid:fs_chown:48",
+        "grid:fs_chown:5",
+        "grid:fs_chown:50",
+        "grid:fs_chown:51",
+        "grid:fs_chown:52",
+        "grid:fs_chown:53",
+        "grid:fs_chown:56",
+        "grid:fs_chown:57",
+        "grid:fs_chown:59",
+        "grid:fs_chown:6",
+        "grid:fs_chown:60",
+        "grid:fs_chown:62",
+        "grid:fs_chown:63",
+        "grid:fs_chown:64",
+        "grid:fs_chown:65",
+        "grid:fs_chown:66",
+        "grid:fs_chown:68",
+        "grid:fs_chown:69",
+        "grid:fs_chown:70",
+        "grid:fs_chown:71",
+        "grid:fs_chown:72",
+        "grid:fs_chown:74",
+        "grid:fs_chown:75",
+        "grid:fs_chown:77",
+        "grid:fs_chown:78",
+        "grid:fs_chown:79",
+        "grid:fs_chown:8"
+       ],
+       "recorded_fields_that_differ": {
+        "rust_stderr_tail": 54
+       }
+      }
+     }
+    }
+   },
+   "verdict_unchanged": true,
+   "recorded_outputs_identical_to_shipped_primary": false
+  }
+ },
+ "builds_pinned": {
+  "libogg gpt-4o/bitwise.c/unidiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-4o/bitwise.c/idiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-5/bitwise.c/unidiomatic": {
+   "nightly-2024-12-18:debug": false,
+   "nightly-2024-12-18:release": false
+  },
+  "libogg gpt-5/bitwise.c/idiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-4o/framing.c/unidiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-4o/framing.c/idiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-5/framing.c/unidiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "libogg gpt-5/framing.c/idiomatic": {
+   "nightly-2024-12-18:debug": true,
+   "nightly-2024-12-18:release": true
+  },
+  "CRUST-Bench fs_c": {
+   "unidiomatic:nightly-2024-12-18:debug": true,
+   "unidiomatic:nightly-2024-12-18:release": true
+  },
+  "CRUST-Bench c-string": {
+   "unidiomatic:nightly-2024-12-18:debug": true,
+   "unidiomatic:nightly-2024-12-18:release": true
+  },
+  "CRUST-Bench Holdem-Odds": {
+   "unidiomatic:nightly-2024-12-18:debug": true,
+   "unidiomatic:nightly-2024-12-18:release": true
+  }
+ }
+}

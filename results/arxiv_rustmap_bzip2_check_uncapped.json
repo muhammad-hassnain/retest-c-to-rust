@@ -1,0 +1,209 @@
+{
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": null,
+  "generated_utc": "2026-11-17T00:02:46Z",
+  "arch": "x86_64",
+  "os": "Linux 7.0.0-38-generic",
+  "in_container": true,
+  "image": "crust-syzygy",
+  "step": null,
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "argv": [
+   "systems/rustmap/check_bzip2_own_uncapped.py"
+  ]
+ },
+ "provenance": {
+  "script": "systems/rustmap/check_bzip2_own_uncapped.py",
+  "command": "docker run --rm --platform linux/amd64 --cpus=2 -v \"$PWD:/work\" -w /work crust-syzygy python3 -I systems/rustmap/check_bzip2_own_uncapped.py",
+  "host": "Linux x86_64 box (20 cores), Docker --cpus=2",
+  "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)"
+  },
+  "build": "C: make clean; make bzip2 bzip2recover (c-code/bzip2-1.0.8); Rust: cargo build (debug), README 4.1.1",
+  "rust_build_seconds": 7.6,
+  "per_file_cap_seconds": 3600,
+  "procedure": "README 4.1.2 (Rust bzip2 on each random_N_chars.txt, no flags, in order) and 4.1.3 (bzip2recover; bzip2 -d rec00001*; diff) verbatim via bash -c in a fresh copy of bzip2_testcases holding only the five inputs; bzip2/bzip2recover built from c-code/bzip2-1.0.8"
+ },
+ "authors_timings_txt_real": {
+  "random_1_chars.txt": "0m29.312s",
+  "random_10_chars.txt": "0m30.732s",
+  "random_100_chars.txt": "0m38.474s",
+  "random_1000_chars.txt": "1m49.052s",
+  "random_5000_chars.txt": "7m31.423s"
+ },
+ "rows": [
+  {
+   "file": "random_1_chars.txt",
+   "size": 2,
+   "sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+   "rust_compress": {
+    "rc": 0,
+    "timed_out": false,
+    "wall_s": 4.668,
+    "user_s": 4.654,
+    "sys_s": 0.012,
+    "stderr_tail": "",
+    "input_still_present": true,
+    "bz2_written": true,
+    "bz2_size": 5039
+   },
+   "bzip2recover": {
+    "rc": 0,
+    "stderr_tail": "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\nbzip2recover: searching for block boundaries ...\n   block 1 runs from 40080 to 40227\nbzip2recover: splitting into blocks\n   writing block 1 to `rec00001random_1_chars.txt.bz2' ...\nbzip2recover: finished\n"
+   },
+   "bzip2_d": {
+    "rc": 0,
+    "stderr_tail": ""
+   },
+   "diff": {
+    "rc": 0,
+    "diff_file_bytes": 0,
+    "stderr_tail": ""
+   },
+   "recovered_equals_input": true,
+   "passes_rustmap_check": true
+  },
+  {
+   "file": "random_10_chars.txt",
+   "size": 10,
+   "sha256": "46565925f701e8e24583fd0cbad547abe08d7893ee81a45b13860aff5dfb33c7",
+   "rust_compress": {
+    "rc": 0,
+    "timed_out": false,
+    "wall_s": 4.77,
+    "user_s": 4.761,
+    "sys_s": 0.007,
+    "stderr_tail": "",
+    "input_still_present": true,
+    "bz2_written": true,
+    "bz2_size": 5052
+   },
+   "bzip2recover": {
+    "rc": 0,
+    "stderr_tail": "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\nbzip2recover: searching for block boundaries ...\n   block 1 runs from 40080 to 40331\nbzip2recover: splitting into blocks\n   writing block 1 to `rec00001random_10_chars.txt.bz2' ...\nbzip2recover: finished\n"
+   },
+   "bzip2_d": {
+    "rc": 0,
+    "stderr_tail": ""
+   },
+   "diff": {
+    "rc": 0,
+    "diff_file_bytes": 0,
+    "stderr_tail": ""
+   },
+   "recovered_equals_input": true,
+   "passes_rustmap_check": true
+  },
+  {
+   "file": "random_100_chars.txt",
+   "size": 100,
+   "sha256": "66d925018463640f8bf693dbdf8b8aeb0e8c3fcfa91b5764d6d01a9ceff935f8",
+   "rust_compress": {
+    "rc": 0,
+    "timed_out": false,
+    "wall_s": 6.358,
+    "user_s": 6.345,
+    "sys_s": 0.011,
+    "stderr_tail": "",
+    "input_still_present": true,
+    "bz2_written": true,
+    "bz2_size": 5146
+   },
+   "bzip2recover": {
+    "rc": 0,
+    "stderr_tail": "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\nbzip2recover: searching for block boundaries ...\n   block 1 runs from 40080 to 41082\nbzip2recover: splitting into blocks\n   writing block 1 to `rec00001random_100_chars.txt.bz2' ...\nbzip2recover: finished\n"
+   },
+   "bzip2_d": {
+    "rc": 0,
+    "stderr_tail": ""
+   },
+   "diff": {
+    "rc": 0,
+    "diff_file_bytes": 0,
+    "stderr_tail": ""
+   },
+   "recovered_equals_input": true,
+   "passes_rustmap_check": true
+  },
+  {
+   "file": "random_1000_chars.txt",
+   "size": 1000,
+   "sha256": "eb506bf399df31a1d52d0b840d69911417c9891abf8d4d323c0babb800953da0",
+   "rust_compress": {
+    "rc": 0,
+    "timed_out": false,
+    "wall_s": 18.807,
+    "user_s": 18.788,
+    "sys_s": 0.015,
+    "stderr_tail": "",
+    "input_still_present": true,
+    "bz2_written": true,
+    "bz2_size": 6001
+   },
+   "bzip2recover": {
+    "rc": 0,
+    "stderr_tail": "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\nbzip2recover: searching for block boundaries ...\n   block 1 runs from 40080 to 47927\nbzip2recover: splitting into blocks\n   writing block 1 to `rec00001random_1000_chars.txt.bz2' ...\nbzip2recover: finished\n"
+   },
+   "bzip2_d": {
+    "rc": 0,
+    "stderr_tail": ""
+   },
+   "diff": {
+    "rc": 0,
+    "diff_file_bytes": 0,
+    "stderr_tail": ""
+   },
+   "recovered_equals_input": true,
+   "passes_rustmap_check": true
+  },
+  {
+   "file": "random_5000_chars.txt",
+   "size": 5000,
+   "sha256": "dba2e453e8952cb6ff0e265934d04a1bfbcd7733c8ec58e9c899e94a90e52ed0",
+   "rust_compress": {
+    "rc": 0,
+    "timed_out": false,
+    "wall_s": 74.972,
+    "user_s": 74.95,
+    "sys_s": 0.01,
+    "stderr_tail": "",
+    "input_still_present": true,
+    "bz2_written": true,
+    "bz2_size": 9369
+   },
+   "bzip2recover": {
+    "rc": 0,
+    "stderr_tail": "bzip2recover 1.0.8: extracts blocks from damaged .bz2 files.\nbzip2recover: searching for block boundaries ...\n   block 1 runs from 40080 to 74866\nbzip2recover: splitting into blocks\n   writing block 1 to `rec00001random_5000_chars.txt.bz2' ...\nbzip2recover: finished\n"
+   },
+   "bzip2_d": {
+    "rc": 0,
+    "stderr_tail": ""
+   },
+   "diff": {
+    "rc": 0,
+    "diff_file_bytes": 0,
+    "stderr_tail": ""
+   },
+   "recovered_equals_input": true,
+   "passes_rustmap_check": true
+  }
+ ],
+ "summary": {
+  "files": 5,
+  "pass": 5,
+  "timed_out": 0,
+  "wall_s": {
+   "random_1_chars.txt": 4.668,
+   "random_10_chars.txt": 4.77,
+   "random_100_chars.txt": 6.358,
+   "random_1000_chars.txt": 18.807,
+   "random_5000_chars.txt": 74.972
+  }
+ }
+}

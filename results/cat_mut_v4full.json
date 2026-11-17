@@ -1,0 +1,156 @@
+{
+  "util": "cat",
+  "n_cases": 20000,
+  "seed": 777,
+  "sanity_mutant": {
+    "status": "compiled",
+    "killed": true,
+    "mismatches": 1,
+    "assessable": 1
+  },
+  "sanity_ok": true,
+  "ror_mutants": [
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 0,
+      "op": "==->!=",
+      "at": 7886
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 1,
+      "op": "!=->==",
+      "at": 15183
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 7,
+      "site": 2,
+      "op": "!=->==",
+      "at": 24095
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 3,
+      "op": "!=->==",
+      "at": 27408
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 4,
+      "op": "!=->==",
+      "at": 35299
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 589,
+      "site": 5,
+      "op": "!=->==",
+      "at": 40665
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 9,
+      "site": 6,
+      "op": "!=->==",
+      "at": 46054
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 7,
+      "op": "!=->==",
+      "at": 52326
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 5,
+      "site": 8,
+      "op": "!=->==",
+      "at": 56963
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 9,
+      "op": "!=->==",
+      "at": 64566
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 10,
+      "op": "<->>=",
+      "at": 67996
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 11,
+      "op": "!=->==",
+      "at": 74449
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 12,
+      "op": "!=->==",
+      "at": 81505
+    },
+    {
+      "status": "compiled",
+      "killed": false,
+      "mismatches": 0,
+      "assessable": 7800,
+      "site": 13,
+      "op": "<->>=",
+      "at": 86975
+    },
+    {
+      "status": "compiled",
+      "killed": true,
+      "mismatches": 1,
+      "assessable": 157,
+      "site": 14,
+      "op": "!=->==",
+      "at": 93511
+    }
+  ],
+  "ror_summary": {
+    "total": 15,
+    "compiled": 15,
+    "noncompile": 0,
+    "killed": 5,
+    "survived": 10
+  }
+}

@@ -1,0 +1,216 @@
+
+running 1 test
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling cfg-if v1.0.0
+   Compiling anyhow v1.0.75
+   Compiling quote v1.0.33
+   Compiling syn v2.0.37
+   Compiling thiserror v1.0.49
+   Compiling syn v1.0.109
+   Compiling cc v1.0.83
+   Compiling thiserror-impl v1.0.49
+   Compiling equivalent v1.0.1
+   Compiling hashbrown v0.14.1
+   Compiling indexmap v2.0.2
+   Compiling getrandom v0.2.10
+   Compiling leb128 v0.2.5
+   Compiling toml_datetime v0.6.3
+   Compiling winnow v0.5.15
+   Compiling wast v22.0.0
+   Compiling rand_core v0.6.4
+   Compiling toml_edit v0.19.15
+   Compiling dirs-sys v0.3.7
+   Compiling log v0.4.20
+   Compiling unicode-segmentation v1.10.1
+   Compiling once_cell v1.18.0
+   Compiling witx v0.8.8
+   Compiling heck v0.3.3
+   Compiling dirs v4.0.0
+   Compiling backtrace v0.3.69
+   Compiling adler v1.0.2
+   Compiling proc-macro-crate v1.3.1
+   Compiling gimli v0.28.0
+   Compiling ppv-lite86 v0.2.17
+   Compiling memchr v2.6.4
+   Compiling object v0.32.1
+   Compiling addr2line v0.21.0
+   Compiling tracing-core v0.1.31
+   Compiling rand_chacha v0.3.1
+   Compiling bolero-generator-derive v0.10.0
+   Compiling miniz_oxide v0.7.1
+   Compiling shellexpand v2.1.2
+   Compiling tracing-attributes v0.1.26
+   Compiling either v1.9.0
+   Compiling lazy_static v1.4.0
+   Compiling rustc-demangle v0.1.23
+   Compiling pin-project-lite v0.2.13
+   Compiling tracing v0.1.37
+   Compiling bolero-generator v0.10.0
+   Compiling wiggle-generate v0.20.0
+   Compiling rand v0.8.5
+   Compiling bolero-libfuzzer v0.10.0
+   Compiling pretty-hex v0.3.0
+   Compiling getrandom v0.1.16
+   Compiling bolero-engine v0.10.0
+   Compiling wiggle-macro v0.20.0
+   Compiling filetime v0.2.22
+   Compiling bitflags v1.3.2
+   Compiling cfg-if v0.1.10
+   Compiling wasi-common v0.20.0
+   Compiling yanix v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling wig v0.20.0
+   Compiling bolero v0.10.0
+   Compiling c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero v1.0.1 (/tmp/bolero_9yyr0kd1/p)
+warning: unused import: `bolero::check`
+   --> src/main.rs:619:5
+    |
+619 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:622:31
+    |
+622 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+622 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+622 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:622:59
+    |
+622 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+622 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+622 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: unused variable: `n`
+   --> src/main.rs:615:11
+    |
+615 | fn f_gold(n: i32) -> i32 {
+    |           ^ help: if this is intentional, prefix it with an underscore: `_n`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: function `min` is never used
+   --> src/main.rs:606:4
+    |
+606 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:607:4
+    |
+607 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:608:4
+    |
+608 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:609:4
+    |
+609 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:610:4
+    |
+610 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:622:60
+    |
+622 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero` (bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" test) generated 10 warnings (run `cargo fix --bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" --tests` to apply 4 suggestions)
+    Finished release [optimized] target(s) in 2m 29s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 4044575220
+INFO: Loaded 1 modules   (362022 inline 8-bit counters): 362022 [0x64417959f0d0, 0x6441795f76f6), 
+INFO: Loaded 1 PC tables (362022 PCs): 362022 [0x6441795f76f8,0x644179b7d958), 
+INFO:        0 files found in /tmp/bolero_9yyr0kd1/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/bolero_9yyr0kd1/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+0
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `12345`,
+ right: `1`', src/main.rs:629:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==13203== ERROR: libFuzzer: deadly signal
+    #0 0x644177ed0ca1  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xa64ca1) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #1 0x644178aa555e  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x163955e) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #2 0x644178ab0ae9  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1644ae9) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #3 0x786a490394af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x786a4908d91b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x786a49039405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x786a4901f7f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x6441790f2806  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1c86806) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #8 0x644177e2af46  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x9bef46) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #9 0x644177f75fa9  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xb09fa9) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #10 0x644178a7db3e  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1611b3e) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #11 0x644178ab1045  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1645045) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #12 0x644178ab5b93  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1649b93) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #13 0x644178ab6ac8  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x164aac8) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #14 0x644178ab8dc7  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x164cdc7) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #15 0x644178a8c352  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1620352) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #16 0x644178a7de96  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1611e96) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #17 0x644177f1c331  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xab0331) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #18 0x644177f74eb7  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xb08eb7) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #19 0x644177f80d31  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xb14d31) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #20 0x644177f222b5  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0xab62b5) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #21 0x644178a644ee  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15f84ee) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #22 0x644178a634e1  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15f74e1) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #23 0x644178a26a43  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15baa43) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #24 0x644178a2d0fa  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15c10fa) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #25 0x6441790f11f4  (/tmp/bolero_9yyr0kd1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1c851f4) (BuildId: ca325dac1129e3bf9ef6412b215cd38670e1d541)
+    #26 0x786a4908b9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x786a4911ca13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 2 CrossOver-CMP- DE: "\000\000"-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0x0,0x0,0xa,
+\012\000\000\012
+artifact_prefix='/tmp/bolero_9yyr0kd1/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_9yyr0kd1/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-bc7431c56d947d4e3913fe288aa8122f7d0ceed9
+Base64: CgAACg==
+error: process exited with status 77

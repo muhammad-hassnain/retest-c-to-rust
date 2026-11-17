@@ -1,0 +1,58 @@
+warning: unused import: `bolero::check`
+    --> src/main.rs:1061:5
+     |
+1061 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1030:4
+     |
+1030 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1031:4
+     |
+1031 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1032:4
+     |
+1032 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1033:4
+     |
+1033 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1034:4
+     |
+1034 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1064:65
+     |
+1064 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_2` should have a snake case name
+    --> src/main.rs:1064:73
+     |
+1064 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`
+
+warning: `nwh` (bin "nwh" test) generated 8 warnings (run `cargo fix --bin "nwh" --tests` to apply 1 suggestion)
+    Finished release [optimized] target(s) in 0.03s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780)
+error: process exited with no status code

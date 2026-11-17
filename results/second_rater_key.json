@@ -1,0 +1,77 @@
+{
+ "rows": [
+  {
+   "class": null,
+   "count_status": "precondition_only",
+   "defect_id": "FLOURINE-opl_emu_clamp-1",
+   "item": "item06"
+  },
+  {
+   "class": null,
+   "count_status": "excluded_contested_conversion",
+   "defect_id": "ACTOR-B02_synthetic/memmove::PARSE_NUM-own",
+   "item": "item10"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "C2SR-head-4",
+   "item": "item14"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "VERT-MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT-1",
+   "item": "item17"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "ADATRANS-run1-C_434_2",
+   "item": "item19"
+  },
+  {
+   "class": "edge_input_robustness",
+   "count_status": "counted",
+   "defect_id": "ACTOR-B01_synthetic/005_static_loop::PARSE_NUM",
+   "item": "item20"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "RUSTMAP-rosetta-box_the_compass-1",
+   "item": "item28"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "SACTOR-C2",
+   "item": "item30"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "H2T-BUF-1",
+   "item": "item31"
+  },
+  {
+   "class": null,
+   "count_status": "excluded_unspecified_value",
+   "defect_id": "ACTOR-B01_synthetic/027_ctype_ascii_lib::CTYPE_VALUE",
+   "item": "item34"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "FLOURINE-operator_list-1",
+   "item": "item38"
+  },
+  {
+   "class": "outright_error",
+   "count_status": "counted",
+   "defect_id": "VERT-SUM_SERIES_555555_N_TERMS-1",
+   "item": "item41"
+  }
+ ],
+ "source": "first annotator's blinded item->defect key (labels before the memmove change); revealed after rating was complete"
+}

@@ -1,0 +1,330 @@
+{
+  "system": "RustAssure",
+  "target": "libcsv (end-to-end, composed translation vs original C)",
+  "method": "differential: original libcsv.c vs RustAssure csv_link composition, deterministic CSV corpus x options grid, byte-exact event stream",
+  "n_cases": 360,
+  "agree": 348,
+  "divergent": 12,
+  "divergence_by_channel": {
+    "field_event": 12,
+    "null_vs_empty_field": 12
+  },
+  "divergence_by_option": {
+    "empty_is_null": 6,
+    "append+empty_null": 6
+  },
+  "samples": [
+    {
+      "input": "all_empty",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 3",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 3",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "mid_empty",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F 1 61",
+        "F NULL",
+        "F 1 63",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 1 61",
+        "F 0",
+        "F 1 63",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "lead_empty",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F 1 61",
+        "F 1 62",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 1 61",
+        "F 1 62",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "trail_empty",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F 1 61",
+        "F 1 62",
+        "F NULL",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 1 61",
+        "F 1 62",
+        "F 0",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "only_delims",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 4",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 4",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "delim_as_data_only",
+      "options": "empty_is_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 2",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 2",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "all_empty",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 3",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 3",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "mid_empty",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F 1 61",
+        "F NULL",
+        "F 1 63",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 1 61",
+        "F 0",
+        "F 1 63",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "lead_empty",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F 1 61",
+        "F 1 62",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 1 61",
+        "F 1 62",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "trail_empty",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F 1 61",
+        "F 1 62",
+        "F NULL",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 1 61",
+        "F 1 62",
+        "F 0",
+        "R 10",
+        "P 5",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "only_delims",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 4",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 4",
+        "Z 0",
+        "E 0"
+      ]
+    },
+    {
+      "input": "delim_as_data_only",
+      "options": "append+empty_null",
+      "tags": [
+        "field_event",
+        "null_vs_empty_field"
+      ],
+      "oracle": [
+        "F NULL",
+        "F NULL",
+        "R 10",
+        "P 2",
+        "Z 0",
+        "E 0"
+      ],
+      "sut": [
+        "F 0",
+        "F 0",
+        "R 10",
+        "P 2",
+        "Z 0",
+        "E 0"
+      ]
+    }
+  ]
+}

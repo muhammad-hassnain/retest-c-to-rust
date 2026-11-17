@@ -1,0 +1,141 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:423:5
+    |
+423 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:426:31
+    |
+426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+426 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+426 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:426:59
+    |
+426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+426 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+426 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:410:4
+    |
+410 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:411:4
+    |
+411 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:412:4
+    |
+412 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:413:4
+    |
+413 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:414:4
+    |
+414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:426:60
+    |
+426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin "c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.04s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3588878047
+INFO: Loaded 1 modules   (362016 inline 8-bit counters): 362016 [0x5b804fc800d0, 0x5b804fcd86f0), 
+INFO: Loaded 1 PC tables (362016 PCs): 362016 [0x5b804fcd86f0,0x5b805025e8f0), 
+INFO:        0 files found in /tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+16777216
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `2147483647`,
+ right: `-4194304`', src/main.rs:433:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==13463== ERROR: libFuzzer: deadly signal
+    #0 0x5b804e5b0c11  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xa64c11) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #1 0x5b804f18588e  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x163988e) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #2 0x5b804f190e19  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1644e19) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #3 0x7306136b94af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x73061370d91b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x7306136b9405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x73061369f7f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x5b804f7d2b36  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1c86b36) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #8 0x5b804e50aeb6  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x9beeb6) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #9 0x5b804e656059  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xb0a059) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #10 0x5b804f15de6e  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1611e6e) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #11 0x5b804f191375  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1645375) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #12 0x5b804f195ec3  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1649ec3) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #13 0x5b804f196df8  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x164adf8) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #14 0x5b804f1990f7  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x164d0f7) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #15 0x5b804f16c682  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1620682) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #16 0x5b804f15e1c6  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x16121c6) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #17 0x5b804e5fc3e1  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xab03e1) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #18 0x5b804e654f67  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xb08f67) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #19 0x5b804e661021  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xb15021) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #20 0x5b804e602375  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0xab6375) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #21 0x5b804f14481e  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x15f881e) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #22 0x5b804f143811  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x15f7811) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #23 0x5b804f106d73  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x15bad73) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #24 0x5b804f10d42a  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x15c142a) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #25 0x5b804f7d1524  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1c85524) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)
+    #26 0x73061370b9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x73061379ca13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 5 InsertByte-ChangeBit-ChangeBit-InsertByte-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x1e,0xca,0x21,0xa,
+\036\312!\012
+artifact_prefix='/tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-45df56fecc94d09ae7fe415cb69dcffe83a83f49
+Base64: HsohCg==
+error: process exited with status 77

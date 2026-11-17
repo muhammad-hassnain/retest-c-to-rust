@@ -1,0 +1,204 @@
+
+running 1 test
+   Compiling libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling cfg-if v1.0.0
+   Compiling anyhow v1.0.75
+   Compiling quote v1.0.33
+   Compiling syn v2.0.37
+   Compiling thiserror v1.0.49
+   Compiling syn v1.0.109
+   Compiling cc v1.0.83
+   Compiling thiserror-impl v1.0.49
+   Compiling hashbrown v0.14.1
+   Compiling equivalent v1.0.1
+   Compiling indexmap v2.0.2
+   Compiling getrandom v0.2.10
+   Compiling leb128 v0.2.5
+   Compiling winnow v0.5.15
+   Compiling toml_datetime v0.6.3
+   Compiling wast v22.0.0
+   Compiling rand_core v0.6.4
+   Compiling toml_edit v0.19.15
+   Compiling dirs-sys v0.3.7
+   Compiling once_cell v1.18.0
+   Compiling log v0.4.20
+   Compiling unicode-segmentation v1.10.1
+   Compiling witx v0.8.8
+   Compiling heck v0.3.3
+   Compiling dirs v4.0.0
+   Compiling backtrace v0.3.69
+   Compiling proc-macro-crate v1.3.1
+   Compiling memchr v2.6.4
+   Compiling gimli v0.28.0
+   Compiling adler v1.0.2
+   Compiling ppv-lite86 v0.2.17
+   Compiling rand_chacha v0.3.1
+   Compiling addr2line v0.21.0
+   Compiling miniz_oxide v0.7.1
+   Compiling tracing-core v0.1.31
+   Compiling bolero-generator-derive v0.10.0
+   Compiling object v0.32.1
+   Compiling shellexpand v2.1.2
+   Compiling tracing-attributes v0.1.26
+   Compiling pin-project-lite v0.2.13
+   Compiling rustc-demangle v0.1.23
+   Compiling either v1.9.0
+   Compiling lazy_static v1.4.0
+   Compiling bolero-generator v0.10.0
+   Compiling tracing v0.1.37
+   Compiling wiggle-generate v0.20.0
+   Compiling rand v0.8.5
+   Compiling bolero-libfuzzer v0.10.0
+   Compiling getrandom v0.1.16
+   Compiling pretty-hex v0.3.0
+   Compiling bolero-engine v0.10.0
+   Compiling wiggle-macro v0.20.0
+   Compiling filetime v0.2.22
+   Compiling cfg-if v0.1.10
+   Compiling bitflags v1.3.2
+   Compiling wasi-common v0.20.0
+   Compiling yanix v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling wig v0.20.0
+   Compiling bolero v0.10.0
+   Compiling c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero v1.0.1 (/tmp/bolero_hgh69mmr/p)
+warning: unused import: `bolero::check`
+    --> src/main.rs:1242:5
+     |
+1242 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: unused variable: `n`
+    --> src/main.rs:1238:11
+     |
+1238 | fn f_gold(n: i32, m: i32) -> i32 {
+     |           ^ help: if this is intentional, prefix it with an underscore: `_n`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `m`
+    --> src/main.rs:1238:19
+     |
+1238 | fn f_gold(n: i32, m: i32) -> i32 {
+     |                   ^ help: if this is intentional, prefix it with an underscore: `_m`
+
+warning: function `min` is never used
+    --> src/main.rs:1231:4
+     |
+1231 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1232:4
+     |
+1232 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1233:4
+     |
+1233 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1234:4
+     |
+1234 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1235:4
+     |
+1235 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1245:65
+     |
+1245 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_2` should have a snake case name
+    --> src/main.rs:1245:73
+     |
+1245 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`
+
+warning: `c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero` (bin "c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero" test) generated 10 warnings (run `cargo fix --bin "c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 2m 22s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3091001993
+INFO: Loaded 1 modules   (362793 inline 8-bit counters): 362793 [0x5befeae1b170, 0x5befeae73a99), 
+INFO: Loaded 1 PC tables (362793 PCs): 362793 [0x5befeae73aa0,0x5befeb3fcd30), 
+INFO:        0 files found in /tmp/bolero_hgh69mmr/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/bolero_hgh69mmr/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 50Mb
+#7	NEW    cov: 42 ft: 43 corp: 2/5b lim: 4 exec/s: 0 rss: 51Mb L: 4/4 MS: 5 ShuffleBytes-InsertByte-ChangeBit-InsertByte-CrossOver-
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+(
+    0,
+    0,
+)
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `12345`,
+ right: `0`', src/main.rs:1253:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==44138== ERROR: libFuzzer: deadly signal
+    #0 0x5befe97435a1  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xa695a1) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #1 0x5befea3206ce  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x16466ce) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #2 0x5befea32bc59  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1651c59) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #3 0x79814f1e74af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x79814f23b91b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x79814f1e7405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x79814f1cd7f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x5befea96d976  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1c93976) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #8 0x5befe969d846  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x9c3846) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #9 0x5befe97ec179  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xb12179) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #10 0x5befea2f8cae  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x161ecae) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #11 0x5befea32c1b5  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x16521b5) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #12 0x5befea330d03  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1656d03) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #13 0x5befea331c38  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1657c38) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #14 0x5befea333f37  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1659f37) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #15 0x5befea3074c2  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x162d4c2) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #16 0x5befea2f9006  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x161f006) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #17 0x5befe9792281  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xab8281) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #18 0x5befe97eb0eb  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xb110eb) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #19 0x5befe97fbe41  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xb21e41) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #20 0x5befe9797d25  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0xabdd25) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #21 0x5befea2df65e  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x160565e) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #22 0x5befea2de651  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1604651) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #23 0x5befea2a1bb3  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x15c7bb3) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #24 0x5befea2a826a  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x15ce26a) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #25 0x5befea96c364  (/tmp/bolero_hgh69mmr/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1c92364) (BuildId: b554683e61624f34c92bc4ad295f81dfc0371888)
+    #26 0x79814f2399e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x79814f2caa13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 3 ChangeBit-CopyPart-CopyPart-; base unit: 6d87d32615c91439d28f82585348e93fa2eec4af
+0x7,0x7,0x2,0xa,0xa,0x7,0x7,0x2,
+\007\007\002\012\012\007\007\002
+artifact_prefix='/tmp/bolero_hgh69mmr/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_hgh69mmr/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-c2a3a95c9e6a6d079eddb4aa6aeeaf478e9be14f
+Base64: BwcCCgoHBwI=
+error: process exited with status 77

@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine (~/work/arxiv-vertwide/results/arxiv_vert_wide_kani_logs_unwind_on/NUMBER_N_DIGIT_STEPPING_NUMBERS.log, 83357 lines, sha256 10c97accd9ba55e039da882eaede3eee07605c5e3f22b61ccb9313a37ab6ead2)
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+    --> src/main.rs:1124:31
+     |
+1124 |     kani::assume((0..2).contains(&PARAM1));
+     |                                  ^^^^^^^ shared reference to mutable static
+     |
+     = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+     = note: this will be a hard error in the 2024 edition
+     = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+     = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+     |
+1124 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+     |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1240:4
+     |
+1240 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+
+warning: function `max` is never used
+    --> src/main.rs:1241:4
+     |
+1241 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1242:4
+     |
+1242 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+[...]
+	 - Description: "dereference failure: invalid integer address"
+
+Check 16791: std::vec::Vec::<std::vec::Vec<i32>>::extend_with.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2708:13 in function std::vec::Vec::<std::vec::Vec<i32>>::extend_with
+
+
+SUMMARY:
+ ** 1 of 16791 failed (16790 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "/github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs", line 2708, in std::vec::Vec::<std::vec::Vec<i32>>::extend_with
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 10.237982s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded anyhow v1.0.75
+  Downloaded dirs-sys v0.3.7
+  Downloaded cfg-if v1.0.0
+  Downloaded dirs v4.0.0
+  Downloaded filetime v0.2.22
+  Downloaded cfg-if v0.1.10
+  Downloaded bitflags v1.3.2
+  Downloaded getrandom v0.1.16
+  Downloaded shellexpand v2.1.2
+  Downloaded leb128 v0.2.5
+  Downloaded heck v0.3.3
+  Downloaded thiserror-impl v1.0.49
+  Downloaded lazy_static v1.4.0
+  Downloaded wig v0.20.0
+  Downloaded wiggle v0.20.0
+  Downloaded yanix v0.20.0
+  Downloaded wiggle-macro v0.20.0
+  Downloaded thiserror v1.0.49
+  Downloaded wiggle-generate v0.20.0
+  Downloaded tracing-attributes v0.1.26
+  Downloaded quote v1.0.33
+  Downloaded pin-project-lite v0.2.13
+  Downloaded witx v0.8.8
+  Downloaded wast v22.0.0
+  Downloaded unicode-ident v1.0.12
+  Downloaded proc-macro2 v1.0.67
+  Downloaded once_cell v1.18.0
+  Downloaded log v0.4.20
+  Downloaded tracing-core v0.1.31
+  Downloaded tracing v0.1.37
+  Downloaded unicode-segmentation v1.10.1
+  Downloaded wasi-common v0.20.0
+  Downloaded syn v2.0.37
+  Downloaded syn v1.0.109
+  Downloaded libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling libc v0.2.148
+   Compiling thiserror v1.0.49
+   Compiling anyhow v1.0.75
+   Compiling leb128 v0.2.5
+   Compiling wast v22.0.0
+   Compiling quote v1.0.33
+   Compiling syn v2.0.37
+   Compiling unicode-segmentation v1.10.1
+   Compiling dirs-sys v0.3.7
+   Compiling syn v1.0.109
+   Compiling log v0.4.20
+   Compiling cfg-if v1.0.0
+   Compiling dirs v4.0.0
+   Compiling heck v0.3.3
+   Compiling once_cell v1.18.0
+   Compiling shellexpand v2.1.2
+   Compiling tracing-core v0.1.31
+   Compiling pin-project-lite v0.2.13
+   Compiling getrandom v0.1.16
+   Compiling filetime v0.2.22
+   Compiling bitflags v1.3.2
+   Compiling wasi-common v0.20.0
+   Compiling cfg-if v0.1.10
+   Compiling lazy_static v1.4.0
+   Compiling thiserror-impl v1.0.49
+   Compiling tracing-attributes v0.1.26
+   Compiling witx v0.8.8
+   Compiling tracing v0.1.37
+   Compiling yanix v0.20.0
+   Compiling wiggle-generate v0.20.0
+   Compiling wig v0.20.0
+   Compiling wiggle-macro v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling u0 v1.0.1 (/tmp/kani_3ix_9yz4/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.20s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

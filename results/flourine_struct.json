@@ -1,0 +1,142 @@
+{
+  "summary": {
+    "system": "Flourine",
+    "scope": "struct subset (OPL register accessors)",
+    "generation": "deterministic register fills x bounded offset grid",
+    "family": "opl register accessors (struct opl_emu_registers*)",
+    "drivable_functions": 15,
+    "success_tested": 185,
+    "success_agree": 184,
+    "success_value_bug": 1,
+    "success_crash": 0,
+    "fail_tested": 43,
+    "fail_agree": 36,
+    "fail_diverge": 7,
+    "build_fail": 0,
+    "no_construct": 2,
+    "rust_build_fail": 2,
+    "success_but_divergent_functions": [
+      "opl_emu_registers_lfo_pm_depth"
+    ]
+  },
+  "function_list": [
+    {
+      "fn": "opl_emu_registers_ch_output_0",
+      "extra_arg": "u32",
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_ch_output_1",
+      "extra_arg": "u32",
+      "ret": "u32",
+      "recv": "refmut"
+    },
+    {
+      "fn": "opl_emu_registers_ch_output_2",
+      "extra_arg": "u32",
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_fourop_enable",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_is_rhythm",
+      "extra_arg": "u32",
+      "ret": "i32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_lfo_am_depth",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_lfo_am_offset",
+      "extra_arg": "u32",
+      "ret": "u32",
+      "recv": "refbox"
+    },
+    {
+      "fn": "opl_emu_registers_lfo_pm_depth",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_newflag",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_noise_state",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_note_select",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_rhythm_enable",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_status_mask",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_timer_a_value",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    },
+    {
+      "fn": "opl_emu_registers_timer_b_value",
+      "extra_arg": null,
+      "ret": "u32",
+      "recv": "ref"
+    }
+  ],
+  "success_divergences": [
+    {
+      "t": "opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+      "value": 4,
+      "samples": [
+        {
+          "line_in": "0 0",
+          "c": "1",
+          "rust": "3"
+        },
+        {
+          "line_in": "1 0",
+          "c": "0",
+          "rust": "2"
+        },
+        {
+          "line_in": "4 0",
+          "c": "1",
+          "rust": "3"
+        },
+        {
+          "line_in": "5 0",
+          "c": "0",
+          "rust": "2"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT final [21] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': '1', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1 final [33554432] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '26359334', 'rust_value_rustc_O': '26359249', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1 final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '25165825', 'rust_value_rustc_O': '33554432', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '24', 'rust_value_rustc_O': '23', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+HEXAGONAL_NUMBER final [179699712] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '-179699712', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+MAXIMUM_GAMES_PLAYED_WINNER final [0] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': None, 'rust_value_rustc_O': '0', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '-4194304', 'rust_value_rustc_O': '2147483647', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C final [16777216, 0, 0, 0] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': None, 'rust_value_rustc_O': '-1', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION final [16777216, -956301312, 0, 637534208] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': None, 'rust_value_rustc_O': '1275068416', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+NTH_NON_FIBONACCI_NUMBER final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '16777251', 'rust_value_rustc_O': '1664239616', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+NTH_PENTAGONAL_NUMBER final [256] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': '98176', 'rust_value_rustc_O': '196480', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '5592405', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+NUMBER_RECTANGLES_NM_GRID final [16777216, 0] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '0', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'agree'}
+NUMBER_TRIANGLES_N_MOVES_1 final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '-2147483648', 'rust_value_rustc_O': '-3', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'value'}
+NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES rename_diag [0, 0] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': '-2147483648', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'value'}
+NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N rename_diag [0, 0] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': '0', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'agree'}
+PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES final [656876800] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '960500353', 'rust_value_rustc_O': '960500352', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT final [256] {'in_study_domain': True, 'c_value_full_args_gcc_O1_wrapv': '1', 'rust_value_rustc_O': '0', 'ub_clean_full_rule': True, 'primary_harness_verdict': 'value'}
+RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1 final [168430080] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': None, 'rust_value_rustc_O': '2088728609', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': None, 'rust_value_rustc_O': '50331642', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+SUM_SERIES_12_32_52_2N_12_1 final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '-5592405', 'rust_value_rustc_O': '2147483647', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'ub'}
+SUM_SERIES_555555_N_TERMS final [16777216] {'in_study_domain': False, 'c_value_full_args_gcc_O1_wrapv': '-2147483648', 'rust_value_rustc_O': '2147483647', 'ub_clean_full_rule': False, 'primary_harness_verdict': 'value'}
+{
+ "functions": 28,
+ "all_projects_unmodified": true,
+ "first_attempt_outcomes": {
+  "clean_exit": 1,
+  "compile_error": 2,
+  "exit_1_no_test_failure_text": 1,
+  "startup_crash": 14,
+  "test_failure": 9,
+  "timeout": 1
+ },
+ "final_outcomes": {
+  "clean_exit": 1,
+  "compile_error": 2,
+  "exit_1_no_test_failure_text": 4,
+  "test_failure": 20,
+  "timeout": 1
+ },
+ "attempts_per_function": {
+  "1": 14,
+  "2": 9,
+  "3": 1,
+  "4": 4
+ },
+ "first_attempt_readme_verdict": {
+  "fail": 9,
+  "pass": 19
+ },
+ "first_attempt_torust_verdict": {
+  "compile_error": 2,
+  "fail": 24,
+  "pass": 2
+ },
+ "final_readme_verdict": {
+  "fail": 20,
+  "pass": 8
+ },
+ "final_failure_kinds": {
+  "assertion_mismatch": 16,
+  "panic_in_rwasm_oracle": 4
+ },
+ "test_failure_functions": [
+  "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+  "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+  "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+  "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+  "HEXAGONAL_NUMBER",
+  "MAXIMUM_GAMES_PLAYED_WINNER",
+  "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+  "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+  "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+  "NTH_NON_FIBONACCI_NUMBER",
+  "NTH_PENTAGONAL_NUMBER",
+  "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+  "NUMBER_RECTANGLES_NM_GRID",
+  "NUMBER_TRIANGLES_N_MOVES_1",
+  "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+  "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+  "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+  "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+  "SUM_SERIES_12_32_52_2N_12_1",
+  "SUM_SERIES_555555_N_TERMS"
+ ],
+ "not_failing_functions": {
+  "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M": "exit_1_no_test_failure_text",
+  "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION": "exit_1_no_test_failure_text",
+  "NEWMAN_CONWAY_SEQUENCE_1": "exit_1_no_test_failure_text",
+  "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES": "compile_error",
+  "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N": "compile_error",
+  "PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES": "clean_exit",
+  "SUM_BINOMIAL_COEFFICIENTS": "exit_1_no_test_failure_text",
+  "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS": "timeout"
+ },
+ "failing_inputs_ub_clean": 7,
+ "failing_inputs_in_study_domain": 4,
+ "failing_inputs_rust_differs_from_c_full_args": 14,
+ "failing_inputs_by_ledger_match": {
+  "c_not_ub_clean": 13,
+  "ledger_defect_in_domain": 3,
+  "ledger_function_outside_domain": 3,
+  "no_divergence_from_c": 1
+ },
+ "failing_inputs_by_ledger_match_functions": {
+  "c_not_ub_clean": [
+   "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+   "HEXAGONAL_NUMBER",
+   "MAXIMUM_GAMES_PLAYED_WINNER",
+   "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+   "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+   "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+   "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "NUMBER_TRIANGLES_N_MOVES_1",
+   "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "SUM_SERIES_12_32_52_2N_12_1",
+   "SUM_SERIES_555555_N_TERMS"
+  ],
+  "ledger_defect_in_domain": [
+   "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+   "NTH_PENTAGONAL_NUMBER",
+   "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT"
+  ],
+  "ledger_function_outside_domain": [
+   "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+   "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+   "NTH_NON_FIBONACCI_NUMBER"
+  ],
+  "no_divergence_from_c": [
+   "NUMBER_RECTANGLES_NM_GRID"
+  ]
+ },
+ "failing_inputs_where_rwasm_oracle_trapped": [
+  "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+  "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+  "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+  "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N"
+ ],
+ "first_attempt_startup_crashes": 14,
+ "startup_crash_attempts_total": 23,
+ "attempts_total": 51,
+ "crate_rename_diagnostic": {
+  "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES": [
+   "test_failure",
+   "(\n    0,\n    0,\n)"
+  ],
+  "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N": [
+   "test_failure",
+   "(\n    0,\n    0,\n)"
+  ]
+ }
+}

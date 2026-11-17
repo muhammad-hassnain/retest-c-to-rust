@@ -1,0 +1,433 @@
+{
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T00:55:37Z",
+  "arch": "arm64",
+  "os": "Darwin 25.6.0",
+  "in_container": false,
+  "image": null,
+  "step": null,
+  "python": "3.9.6",
+  "gcc": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+  "rustc": "rustc 1.98.0-nightly (beae78130 2026-06-09)",
+  "argv": [
+   "scripts/arxiv_harness_power_ubfiltered.py",
+   "--vert"
+  ]
+ },
+ "provenance": {
+  "script": "scripts/arxiv_harness_power_ubfiltered.py",
+  "command": "python3 -I scripts/arxiv_harness_power_ubfiltered.py --vert",
+  "inputs": {
+   "results/harness_power.json": "f6c57d93bd3087ee0ebd47ad046c3dce436d1cb9ba50830f16c011b0569d80ea",
+   "results/arxiv_mutation_ubfilter_c2saferrust.json": "36cd0a8fb11e3ebd6e4ac2196cc35322541825489835bf7e17f2c0d8199b8145",
+   "results/arxiv_mutation_ubfilter_flourine.json": "856a4e82281b353d24ac26a244a3065ff5f0de42860e81f7a844d0ef7bb1fa0d",
+   "results/arxiv_mutation_ubfilter_actor.json": "3f1b85a46a80539542671256f1b3149c850250287cb8c9b815f77ae44267ac36",
+   "results/arxiv_mutation_ubfilter_sactor.json": "cc618040cb13fa052f840920ef5f280e725e343ad836fecfe8f0dc25254dd0ff",
+   "results/sactor_libogg.json": "fefbb77a31fa8d3b6f32ba05001af7f0cebbbb2f9f9fe0d48b0aec88ba883886",
+   "results/sactor_libogg_mutation.json": "ba171d7907119ddce0b9c5d0e01fc0a850380077d19faf928003f7c74d23c94b",
+   "results/sactor_crust_mutation.json": "201235fa5075360113dc2d3a6b35d6cfe8c26dab591c3a3c220e4458eb9db59f",
+   "results/arxiv_mutation_ubfilter_vert.json": "70a008ae5f654eb6e3632e735c182bc9a427c9997c748540cc7c59ee5e21a55c"
+  },
+  "generated_utc": "2026-11-17T00:55:37Z",
+  "runs": "the four arxiv_mutation_ubfilter_*.json files each carry the provenance of their run (x86_64 box, Docker, harness/arxiv_mutub_run.sh); results/arxiv_mutation_ubfilter_vert.json carries the provenance of the VERT runs (arm64 Mac and x86_64 box, Docker, crust-vert-toolchain[-x86])"
+ },
+ "kill_rule": "a mutant is killed if OUR harness, on OUR inputs, reports a wrong answer (value, stdout, exit code or output file) or a crash; not counted: stderr-only differences, hangs/timeouts, kills by the system's own test; and (UB rule) a kill counts only on an input where the C is UB-clean under the rule the defect count uses",
+ "label_marks": {
+  "*": "lower bound: `undetermined` mutants are not counted as killed",
+  "\u2020": "upper bound: the per-mutant record cannot separate stderr-only and timeout kills (rule_separable false)"
+ },
+ "range_old": {
+  "min": 0.2225,
+  "max": 0.9345
+ },
+ "range_new": {
+  "min": 0.1998,
+  "min_row": "C2SaferRust coreutils",
+  "max": 0.9345,
+  "max_row": "Fluorine scalar",
+  "as_percent": "20-93%"
+ },
+ "ub_filter_audit": [
+  {
+   "row": "VERT scalar",
+   "ub_filtered_in_original_scan": "yes (VERT harness rule, weaker than the full rule)",
+   "evidence": [
+    "systems/vert/mutate_primary.py:611-666 (tally_first_kill: a candidate whose gcc ASan+UBSan -O0 run reports, or whose -O0 output differs from -O1, is counted `ub` and the scan continues; only a UB-clean value/panic stops it)",
+    "systems/vert/mutate_primary.py:558-568 (classify: ub_only is not a kill)",
+    "systems/vert/run.py:130-146 (san = gcc -O0 -fsanitize=address,undefined; alt = gcc -O0 -fwrapv; clang MSan when clang exists)"
+   ],
+   "rescanned_here": true
+  },
+  {
+   "row": "VERT array/float",
+   "ub_filtered_in_original_scan": "yes (VERT harness rule, weaker than the full rule)",
+   "evidence": [
+    "systems/vert/mutate_primary.py:1053-1093 (ra_classify_first_kill: -O0 != -O1 -> ub; gcc ASan+UBSan report or nonzero exit -> ub; scan continues)"
+   ],
+   "rescanned_here": true
+  },
+  {
+   "row": "Fluorine scalar",
+   "ub_filtered_in_original_scan": "no",
+   "evidence": [
+    "harness/mutate_full_flourine.py:133-136 (tally(binc, b, cases) with no sanitizer or -O0 build: every value difference is a kill)"
+   ],
+   "rescanned_here": true
+  },
+  {
+   "row": "C2SaferRust coreutils",
+   "ub_filtered_in_original_scan": "no",
+   "evidence": [
+    "harness/mutate_full.py:726-746 (_run_mutant: the scan stops at the first case with a stdout/exit mismatch; no UB check)"
+   ],
+   "rescanned_here": true
+  },
+  {
+   "row": "SACTOR, pooled",
+   "ub_filtered_in_original_scan": "no (in code); by data every kill is on a UB-clean input",
+   "evidence": [
+    "systems/sactor/libogg/mutate.py:144-151 (any (stdout, stderr, exit) difference on a case outside the unmutated translation's divergences kills; no UB check)",
+    "systems/sactor/crust/mutate.py:86-92 (grid: whole-run output of one function differs from the C; no UB check)"
+   ],
+   "rescanned_here": false,
+   "why_not_rescanned": "not needed: libogg killing cases checked against the per-case UB verdicts of results/sactor_libogg.json; every input of the CRUST grid functions involved checked under the full rule (results/arxiv_mutation_ubfilter_sactor.json)"
+  },
+  {
+   "row": "His2Trans",
+   "ub_filtered_in_original_scan": "yes",
+   "evidence": [
+    "systems/his2trans/power.py:101-103 (clean_agree_cases: only cases where the main run's c_ub_evidence is empty are run; the main run applies the full rule to every case, systems/his2trans/run.py:52-62, 220-234)"
+   ],
+   "rescanned_here": false
+  },
+  {
+   "row": "AdaTrans",
+   "ub_filtered_in_original_scan": "yes",
+   "evidence": [
+    "systems/adatrans/mutate.py:139-143 (eval_mutant: a divergence kills only if run_diff.ub_check finds the C clean; otherwise the scan continues)",
+    "systems/adatrans/run_diff.py:208-241 (ub_check: repeat run, -O1/-O2, uchar/schar, clang and gcc ASan+UBSan)"
+   ],
+   "rescanned_here": false
+  },
+  {
+   "row": "PtrTrans",
+   "ub_filtered_in_original_scan": "yes",
+   "evidence": [
+    "systems/ptrtrans/quadtree_e2e/mutate.py:148-149 (only cases with empty c_ub_evidence in results/ptrtrans_quadtree_diff.json are run; run.py:60 UB_VARIANTS o0/o1/o2/san_clang/san_gcc/uchar/schar)"
+   ],
+   "rescanned_here": false
+  },
+  {
+   "row": "ACTOR",
+   "ub_filtered_in_original_scan": "no",
+   "evidence": [
+    "systems/actoruw/mutate.py:266-283 (evaluate: the first confirmed wrong answer or crash kills; no UB check)"
+   ],
+   "rescanned_here": true
+  }
+ ],
+ "rows": [
+  {
+   "label": "VERT scalar",
+   "killed": 1527,
+   "built": 1966,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT translation (the 115 functions with no divergence on grid v2; systems/vert/mutate_primary.py --grid v2)",
+   "source": "results/vert_mutation_primary_grid2.json per_function[].mutants[] (headline ops)",
+   "note": "54 hang-only and 13 UB-only mutants not killed; 51 not-killed mutants have slow inputs that were not re-checked",
+   "killed_old": 1527,
+   "rate_old": 0.7767,
+   "ub_filtered_in_original_scan": "yes (VERT harness rule, weaker than the full rule)",
+   "ub_filter_evidence": [
+    "systems/vert/mutate_primary.py:611-666 (tally_first_kill: a candidate whose gcc ASan+UBSan -O0 run reports, or whose -O0 output differs from -O1, is counted `ub` and the scan continues; only a UB-clean value/panic stops it)",
+    "systems/vert/mutate_primary.py:558-568 (classify: ub_only is not a kill)",
+    "systems/vert/run.py:130-146 (san = gcc -O0 -fsanitize=address,undefined; alt = gcc -O0 -fwrapv; clang MSan when clang exists)"
+   ],
+   "note_ubfilter": "full rule (issues.md item 7) applied to the recorded kill input of all 1527 counted kills (428 distinct function/input pairs; primary C value reproduced on 1527): 1 not UB-clean (FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1 x1; failing checks: san_clang-O0, san_clang-O1, san_clang-O2, san_gcc-O0, san_gcc-O1, san_gcc-O2; reports: ub: -inf is outside the range of representable values of type 'int'). Re-scanned over the same grid: 1 (new outcomes {'killed_value': 1}; first kill the shipped scan would count = the recorded input in 1). Killed 1527 -> 1527; undetermined 51 -> 51.",
+   "killed_new": 1527
+  },
+  {
+   "label": "VERT array/float",
+   "killed": 845,
+   "built": 1416,
+   "rate": 0.5968,
+   "undetermined": 30,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT array/float translation (systems/vert/mutate_primary.py)",
+   "source": "results/vert_arrays_mutation_primary.json per_function[].mutants[] (headline ops)",
+   "note": "30 mutants hit the 25 s Rust batch timeout; the array harness then reports a crash on every row (no per-input fallback), so whether they also give a wrong answer is unknown; not counted",
+   "killed_old": 845,
+   "rate_old": 0.5968,
+   "ub_filtered_in_original_scan": "yes (VERT harness rule, weaker than the full rule)",
+   "ub_filter_evidence": [
+    "systems/vert/mutate_primary.py:1053-1093 (ra_classify_first_kill: -O0 != -O1 -> ub; gcc ASan+UBSan report or nonzero exit -> ub; scan continues)"
+   ],
+   "note_ubfilter": "full rule (issues.md item 7) applied to the recorded kill input of all 845 counted kills (242 distinct function/input pairs; primary C value reproduced on 845): 0 not UB-clean. Re-scanned over the same grid: 0 (new outcomes {}; first kill the shipped scan would count = the recorded input in 0). Killed 845 -> 845; undetermined 30 -> 30.",
+   "killed_new": 845
+  },
+  {
+   "label": "Fluorine scalar",
+   "killed": 613,
+   "built": 656,
+   "rate": 0.9345,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "Fluorine's agreeing shipped translations (harness/mutate_full_flourine.py)",
+   "source": "results/flourine_mutation.json mutants[].status",
+   "note": "statuses {'killed_value': 613, 'survived': 43, 'noncompile': 43}; value or Rust panic only",
+   "killed_old": 613,
+   "rate_old": 0.9345,
+   "ub_filtered_in_original_scan": "no",
+   "ub_filter_evidence": [
+    "harness/mutate_full_flourine.py:133-136 (tally(binc, b, cases) with no sanitizer or -O0 build: every value difference is a kill)"
+   ],
+   "note_ubfilter": "re-run: all 656 compiled mutants rebuilt and re-run (656 reproduce the recorded tally); the full UB rule checked on every grid input of the 18 benchmarks; every killed mutant has a value difference on a UB-clean input (613 of 613; strict view 613). Not part of the UB rule: also dropping inputs with min > max, as the defect count does, leaves 580.",
+   "killed_if_min_gt_max_inputs_also_dropped": 580,
+   "killed_new": 613
+  },
+  {
+   "label": "C2SaferRust coreutils",
+   "killed": 378,
+   "built": 1892,
+   "rate": 0.1998,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "C2Rust's starting translation (coreutils/src/<util>/rust), not C2SaferRust's output (harness/mutate_full.py:12-14, 96)",
+   "source": "results/cli_mutation_full.json mutants[].status",
+   "note": "11 stderr-only and 3 hang-only mutants not counted; on C2SaferRust's own output (rust_WIP, cases where it agrees): 231/1074",
+   "killed_old": 421,
+   "rate_old": 0.2225,
+   "ub_filtered_in_original_scan": "no",
+   "ub_filter_evidence": [
+    "harness/mutate_full.py:726-746 (_run_mutant: the scan stops at the first case with a stdout/exit mismatch; no UB check)"
+   ],
+   "note_ubfilter": "re-scanned: 52 killed mutants (all uniq) first differed on a case where the C is not UB-clean (clang's NULL+0 at linebuffer.c:65, which the defect count treats as UB); re-run over the 630 UB-clean uniq cases of 3000, 9 are still killed; uniq 55 -> 12, cat/head/tail unchanged (every case UB-clean). C2SaferRust's own output (rust_WIP, cases where it agrees): 231/1074 -> 206/1074 (19.18%). If NULL+0 alone were not UB, every kill would stand (421/1892).",
+   "rust_WIP": {
+    "killed_old": 231,
+    "killed_new": 206,
+    "built": 1074,
+    "rate_old": 0.2151,
+    "rate_new": 0.1918
+   },
+   "killed_if_null_plus_zero_alone_is_not_ub": 421,
+   "killed_new": 378
+  },
+  {
+   "label": "SACTOR, pooled",
+   "killed": 69,
+   "built": 109,
+   "rate": 0.633,
+   "undetermined": 0,
+   "rule_separable": false,
+   "mutated_program": "SACTOR's agreeing translations (libogg gpt-5 framing.c, gpt-4o bitwise.c; CRUST samples)",
+   "source": "results/sactor_libogg_mutation.json targets[].mutants[], results/sactor_crust_mutation.json samples[].mutants[].killed_by_grid",
+   "note": "kills by SACTOR's own test excluded; both harnesses kill on any (stdout, stderr, exit code) difference and a timeout also differs (systems/sactor/libogg/mutate.py:147-148, systems/sactor/crust/mutate.py:90); the per-mutant records keep only killing case ids / a boolean, so stderr-only and timeout kills cannot be separated: upper bound",
+   "killed_old": 69,
+   "rate_old": 0.633,
+   "ub_filtered_in_original_scan": "no (in code); by data every kill is on a UB-clean input",
+   "ub_filter_evidence": [
+    "systems/sactor/libogg/mutate.py:144-151 (any (stdout, stderr, exit) difference on a case outside the unmutated translation's divergences kills; no UB check)",
+    "systems/sactor/crust/mutate.py:86-92 (grid: whole-run output of one function differs from the C; no UB check)"
+   ],
+   "note_ubfilter": "no re-run needed: every libogg kill's first killing case is UB-clean in results/sactor_libogg.json (the one case there with C UB, fr0247, kills no mutant); every input of the CRUST grid functions with a grid kill (NandC, geofence) is UB-clean under the full rule.",
+   "sactor_check": {
+    "libogg": {
+     "gpt-5/framing.c": {
+      "valid": 40,
+      "killed": 25,
+      "killed_first_case_ub_clean": 25,
+      "killed_by_cases_not_in_base_run": []
+     },
+     "gpt-4o/bitwise.c": {
+      "valid": 40,
+      "killed": 36,
+      "killed_first_case_ub_clean": 36,
+      "killed_by_cases_not_in_base_run": []
+     }
+    },
+    "libogg_ub_cases_in_base_run": [
+     "fr0247"
+    ],
+    "crust_grid_kills_per_sample": {
+     "morton": 0,
+     "NandC": 5,
+     "murmurhash_c": 0,
+     "utf8": 0,
+     "geofence": 3
+    },
+    "crust_grid_samples_checked": {
+     "NandC": {
+      "all_inputs_ub_clean": true,
+      "inputs": 162,
+      "ub_clean_inputs": 162,
+      "grid_kills_in_mutation_file": 5
+     },
+     "geofence": {
+      "all_inputs_ub_clean": true,
+      "inputs": 46,
+      "ub_clean_inputs": 46,
+      "grid_kills_in_mutation_file": 3
+     }
+    },
+    "all_libogg_kills_on_ub_clean_case": true,
+    "all_crust_grid_kills_on_samples_with_every_input_ub_clean": true,
+    "killed_new": 69
+   },
+   "killed_new": 69
+  },
+  {
+   "label": "His2Trans",
+   "killed": 60,
+   "built": 113,
+   "rate": 0.531,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "His2Trans's OSS8 crates for avl, qsort, quadtree, urlparser, on the cases where the unmutated crate agrees (systems/his2trans/power.py:100-102)",
+   "source": "results/his2trans_power.json mutation[].mutants[].status",
+   "note": "statuses {'killed': 60, 'survived': 53}: no 'killed(hang)' (power.py:123), so every kill has a non-hang difference. power.py:115-118 also kills on a raw stderr difference and the record keeps no channel; from code, neither the drivers (systems/his2trans/drivers) nor the mutated crates write to stderr, so Rust stderr is non-empty only on a panic/abort, which also changes the exit code: no stderr-only kill is possible",
+   "killed_old": 60,
+   "rate_old": 0.531,
+   "ub_filtered_in_original_scan": "yes",
+   "ub_filter_evidence": [
+    "systems/his2trans/power.py:101-103 (clean_agree_cases: only cases where the main run's c_ub_evidence is empty are run; the main run applies the full rule to every case, systems/his2trans/run.py:52-62, 220-234)"
+   ],
+   "note_ubfilter": "the original scan already drops kills on inputs where the C is not UB-clean; unchanged",
+   "killed_new": 60
+  },
+  {
+   "label": "AdaTrans",
+   "killed": 311,
+   "built": 410,
+   "rate": 0.7585,
+   "undetermined": 17,
+   "rule_separable": true,
+   "mutated_program": "AdaTrans run1 translations that agree with the C on all our inputs (systems/adatrans/mutate.py:1-8)",
+   "source": "results/adatrans_mutation_run1.json mutants_detail[].kind",
+   "note": "mutate.py stops at the first non-agreeing input (eval_mutant); 17 mutants stopped at a hang and 0 at a stderr/whitespace-only difference, so whether a later input gives a wrong answer is unknown; not counted",
+   "killed_old": 311,
+   "rate_old": 0.7585,
+   "ub_filtered_in_original_scan": "yes",
+   "ub_filter_evidence": [
+    "systems/adatrans/mutate.py:139-143 (eval_mutant: a divergence kills only if run_diff.ub_check finds the C clean; otherwise the scan continues)",
+    "systems/adatrans/run_diff.py:208-241 (ub_check: repeat run, -O1/-O2, uchar/schar, clang and gcc ASan+UBSan)"
+   ],
+   "note_ubfilter": "the original scan already drops kills on inputs where the C is not UB-clean; unchanged",
+   "killed_new": 311
+  },
+  {
+   "label": "PtrTrans",
+   "killed": 58,
+   "built": 64,
+   "rate": 0.9062,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "PtrTrans's shipped quadtree crate plus a one-line find_ repair, not the shipped crate itself; 24 cases where that baseline disagrees are excluded",
+   "source": "results/ptrtrans_quadtree_mutation.json mutants[].kill_kinds",
+   "note": "kills are wrong_output/panic; no batch timeout among killed mutants",
+   "killed_old": 58,
+   "rate_old": 0.9062,
+   "ub_filtered_in_original_scan": "yes",
+   "ub_filter_evidence": [
+    "systems/ptrtrans/quadtree_e2e/mutate.py:148-149 (only cases with empty c_ub_evidence in results/ptrtrans_quadtree_diff.json are run; run.py:60 UB_VARIANTS o0/o1/o2/san_clang/san_gcc/uchar/schar)"
+   ],
+   "note_ubfilter": "the original scan already drops kills on inputs where the C is not UB-clean; unchanged",
+   "killed_new": 58
+  },
+  {
+   "label": "ACTOR",
+   "killed": 166,
+   "built": 393,
+   "rate": 0.4224,
+   "undetermined": 4,
+   "rule_separable": true,
+   "mutated_program": "ACTOR translations that agree with the C on all our inputs (19 executables, 65 libraries; systems/actoruw/mutate.py)",
+   "source": "results/actoruw_mutation.json mutants[].status/kill_kind",
+   "note": "every input is run (no stop at a hang); 4 mutants hang on some input and give no wrong answer or crash on any input: undetermined, not counted; stderr-only differences are not kills",
+   "killed_old": 183,
+   "rate_old": 0.4656,
+   "ub_filtered_in_original_scan": "no",
+   "ub_filter_evidence": [
+    "systems/actoruw/mutate.py:266-283 (evaluate: the first confirmed wrong answer or crash kills; no UB check)"
+   ],
+   "note_ubfilter": "the C was checked under the full UB rule on the recorded killing input of all 183 killed mutants: 38 not UB-clean; those re-scanned (kills only on UB-clean inputs): {'killed': 21, 'survived': 17}. Killed 183 -> 166; undetermined 4 -> 4. In 3 of the 38 re-scans the recorded kill did not recur (the mutant agreed with the C on every input; the recorded input is one where the C has signed overflow); they count as not killed.",
+   "killed_new": 166
+  }
+ ],
+ "vert_section": {
+  "source": "results/arxiv_mutation_ubfilter_vert.json",
+  "rule": "full UB rule of systems/vert/arxiv_ub_fullrule.py (results/arxiv_vert_ub_fullrule.json): ASan+UBSan+float-cast-overflow under gcc-11 and clang-14 at -O0/-O1/-O2; gcc/clang -O0/-O1/-O2 -fwrapv and -fsigned-char/-funsigned-char builds print the primary oracle's value",
+  "rows": {
+   "VERT scalar": {
+    "built": 1966,
+    "killed_old": 1527,
+    "killed_new": 1527,
+    "rate_old": 0.7767,
+    "rate_new": 0.7767,
+    "undetermined_old": 51,
+    "undetermined_new": 51,
+    "kill_inputs_checked": 1527,
+    "distinct_kill_inputs_checked": 428,
+    "kill_input_not_ub_clean": 1,
+    "functions_with_a_kill_input_not_ub_clean": {
+     "FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1": 1
+    },
+    "kill_inputs_not_ub_clean_by_failing_check": {
+     "san_clang-O0": 1,
+     "san_clang-O1": 1,
+     "san_clang-O2": 1,
+     "san_gcc-O0": 1,
+     "san_gcc-O1": 1,
+     "san_gcc-O2": 1
+    },
+    "distinct_not_ub_clean_inputs_by_check_and_reason": {
+     "san_clang-O0": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     },
+     "san_clang-O1": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     },
+     "san_clang-O2": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     },
+     "san_gcc-O0": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     },
+     "san_gcc-O1": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     },
+     "san_gcc-O2": {
+      "ub: -inf is outside the range of representable values of type 'int'": 1
+     }
+    },
+    "rescanned": 1,
+    "rescanned_new_outcome": {
+     "killed_value": 1
+    },
+    "rescanned_first_shipped_kill_is_recorded_input": 1
+   },
+   "VERT array/float": {
+    "built": 1416,
+    "killed_old": 845,
+    "killed_new": 845,
+    "rate_old": 0.5968,
+    "rate_new": 0.5968,
+    "undetermined_old": 30,
+    "undetermined_new": 30,
+    "kill_inputs_checked": 845,
+    "distinct_kill_inputs_checked": 242,
+    "kill_input_not_ub_clean": 0,
+    "functions_with_a_kill_input_not_ub_clean": {},
+    "kill_inputs_not_ub_clean_by_failing_check": {},
+    "distinct_not_ub_clean_inputs_by_check_and_reason": {},
+    "rescanned": 0,
+    "rescanned_new_outcome": {},
+    "rescanned_first_shipped_kill_is_recorded_input": 0
+   }
+  },
+  "range_changes": false
+ }
+}

@@ -1,0 +1,206 @@
+
+running 1 test
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling quote v1.0.33
+   Compiling cfg-if v1.0.0
+   Compiling anyhow v1.0.75
+   Compiling syn v2.0.37
+   Compiling syn v1.0.109
+   Compiling thiserror v1.0.49
+   Compiling thiserror-impl v1.0.49
+   Compiling cc v1.0.83
+   Compiling equivalent v1.0.1
+   Compiling hashbrown v0.14.1
+   Compiling indexmap v2.0.2
+   Compiling getrandom v0.2.10
+   Compiling toml_datetime v0.6.3
+   Compiling winnow v0.5.15
+   Compiling leb128 v0.2.5
+   Compiling wast v22.0.0
+   Compiling toml_edit v0.19.15
+   Compiling rand_core v0.6.4
+   Compiling dirs-sys v0.3.7
+   Compiling log v0.4.20
+   Compiling unicode-segmentation v1.10.1
+   Compiling once_cell v1.18.0
+   Compiling proc-macro-crate v1.3.1
+   Compiling heck v0.3.3
+   Compiling witx v0.8.8
+   Compiling dirs v4.0.0
+   Compiling backtrace v0.3.69
+   Compiling ppv-lite86 v0.2.17
+   Compiling memchr v2.6.4
+   Compiling adler v1.0.2
+   Compiling gimli v0.28.0
+   Compiling addr2line v0.21.0
+   Compiling miniz_oxide v0.7.1
+   Compiling object v0.32.1
+   Compiling tracing-core v0.1.31
+   Compiling rand_chacha v0.3.1
+   Compiling shellexpand v2.1.2
+   Compiling bolero-generator-derive v0.10.0
+   Compiling tracing-attributes v0.1.26
+   Compiling rustc-demangle v0.1.23
+   Compiling either v1.9.0
+   Compiling lazy_static v1.4.0
+   Compiling pin-project-lite v0.2.13
+   Compiling tracing v0.1.37
+   Compiling bolero-generator v0.10.0
+   Compiling wiggle-generate v0.20.0
+   Compiling rand v0.8.5
+   Compiling bolero-libfuzzer v0.10.0
+   Compiling pretty-hex v0.3.0
+   Compiling getrandom v0.1.16
+   Compiling bolero-engine v0.10.0
+   Compiling wiggle-macro v0.20.0
+   Compiling filetime v0.2.22
+   Compiling bitflags v1.3.2
+   Compiling cfg-if v0.1.10
+   Compiling wasi-common v0.20.0
+   Compiling yanix v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling wig v0.20.0
+   Compiling bolero v0.10.0
+   Compiling c_transcoder_count_ways_build_street_given_constraints_out-rwasm-bolero v1.0.1 (/tmp/fzr_ma41iwdk/p)
+warning: unused import: `bolero::check`
+   --> src/main.rs:938:5
+    |
+938 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:941:31
+    |
+941 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+941 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+941 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:941:59
+    |
+941 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+941 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+941 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:920:4
+    |
+920 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:921:4
+    |
+921 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:922:4
+    |
+922 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:923:4
+    |
+923 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:924:4
+    |
+924 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:941:60
+    |
+941 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_count_ways_build_street_given_constraints_out-rwasm-bolero` (bin "c_transcoder_count_ways_build_street_given_constraints_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_count_ways_build_street_given_constraints_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 2m 18s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 376453325
+INFO: Loaded 1 modules   (362615 inline 8-bit counters): 362615 [0x57e51bc08350, 0x57e51bc60bc7), 
+INFO: Loaded 1 PC tables (362615 PCs): 362615 [0x57e51bc60bc8,0x57e51c1e9338), 
+INFO:        0 files found in /tmp/fzr_ma41iwdk/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_ma41iwdk/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+168233472
+
+Error: 
+panicked at 'called `Option::unwrap()` on a `None` value', src/main.rs:915:26
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==8874== ERROR: libFuzzer: deadly signal
+    #0 0x57e51a532331  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xa69331) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #1 0x57e51b10cebe  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1643ebe) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #2 0x57e51b118449  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x164f449) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #3 0x7fc7315ee4af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x7fc73164291b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x7fc7315ee405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x7fc7315d47f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x57e51b75a166  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1c91166) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #8 0x57e51a48c5d6  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x9c35d6) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #9 0x57e51a5dbad9  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xb12ad9) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #10 0x57e51b0e549e  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x161c49e) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #11 0x57e51b1189a5  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x164f9a5) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #12 0x57e51b11d4f3  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x16544f3) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #13 0x57e51b11e428  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1655428) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #14 0x57e51b120727  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1657727) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #15 0x57e51b0f3cb2  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x162acb2) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #16 0x57e51b0e57f6  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x161c7f6) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #17 0x57e51a57dcf1  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xab4cf1) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #18 0x57e51a5da9e7  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xb119e7) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #19 0x57e51a5e8691  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xb1f691) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #20 0x57e51a583ce5  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0xabace5) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #21 0x57e51b0cbe4e  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1602e4e) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #22 0x57e51b0cae41  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1601e41) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #23 0x57e51b08e3a3  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x15c53a3) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #24 0x57e51b094a5a  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x15cba5a) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #25 0x57e51b758b54  (/tmp/fzr_ma41iwdk/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_ways_build_street_given_constraints_out_rwasm_bolero-5250619e7e4c2159+0x1c8fb54) (BuildId: 3494b8e810a6ce2cc498ac754530eba613ceba53)
+    #26 0x7fc7316409e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x7fc7316d1a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 5 ChangeBit-InsertByte-CopyPart-CrossOver-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0x7,0x7,0xa,
+\012\007\007\012
+artifact_prefix='/tmp/fzr_ma41iwdk/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_ma41iwdk/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-654a215723e5caaac042a77b9c666c36de7357f9
+Base64: CgcHCg==
+error: process exited with status 77

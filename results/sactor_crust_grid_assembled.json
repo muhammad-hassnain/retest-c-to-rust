@@ -1,0 +1,191 @@
+{
+ "system": "SACTOR",
+ "target": "CRUST-Bench samples: per-function grids (held-out generated inputs)",
+ "provenance": {
+  "script": "systems/sactor/crust/grid.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/crust/grid.py --only amp,cfsm,inversion_list --out /work/results/sactor_crust_grid_assembled.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-13T23:50:24+00:00",
+  "strings": [
+   "",
+   "a",
+   "hello",
+   "Hello, World!",
+   "123",
+   "-42",
+   "0",
+   "  padded  ",
+   "a,b,c",
+   "%s%d",
+   "tab\there",
+   "line\nbreak",
+   "\u00c3\u00a9t\u00c3\u00a9",
+   "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "3.14159",
+   "true",
+   "x",
+   "the quick brown fox jumps over the lazy dog",
+   "\u0001\u007f"
+  ],
+  "max_inputs_per_function": 80
+ },
+ "samples": {
+  "cfsm": {
+   "sample": "cfsm",
+   "skipped": "no building unidiomatic Rust"
+  },
+  "amp": {
+   "sample": "amp",
+   "functions_exported": 3,
+   "driver_mode": null,
+   "functions_gridded": [],
+   "functions_not_gridded": {
+    "amp_decode": "void (amp_t *, char *)",
+    "amp_decode_arg": "char * (amp_t *)",
+    "amp_encode": "char * (char **, int)"
+   }
+  },
+  "inversion_list": {
+   "sample": "inversion_list",
+   "functions_exported": 35,
+   "driver_mode": "typed",
+   "functions_gridded": [
+    "inversion_list_init",
+    "inversion_list_finish"
+   ],
+   "functions_not_gridded": {
+    "inversion_list_create": "InversionList * (unsigned int, size_t, const unsigned int *)",
+    "inversion_list_destroy": "void (InversionList *)",
+    "inversion_list_capacity": "unsigned int (const InversionList *)",
+    "inversion_list_support": "unsigned int (const InversionList *)",
+    "inversion_list_member": "bool (const InversionList *, unsigned int)",
+    "inversion_list_clone": "InversionList * (const InversionList *)",
+    "inversion_list_complement": "InversionList * (const InversionList *)",
+    "inversion_list_to_string": "const char * (const InversionList *)",
+    "_in_list": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_equal": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_not_equal": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_less": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_less_equal": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_greater": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_greater_equal": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_disjoint": "bool (const InversionList *, const InversionList *)",
+    "inversion_list_union": "InversionList * (const InversionList *)",
+    "inversion_list_intersection": "InversionList * (const InversionList *)",
+    "inversion_list_difference": "InversionList * (const InversionList *)",
+    "inversion_list_symmetric_difference": "InversionList * (const InversionList *, const InversionList *)",
+    "inversion_list_iterator_create": "InversionListIterator * (const InversionList *)",
+    "inversion_list_iterator_destroy": "void (InversionListIterator *)",
+    "inversion_list_iterator_next": "InversionListIterator * (InversionListIterator *)",
+    "inversion_list_iterator_rewind": "InversionListIterator * (InversionListIterator *)",
+    "inversion_list_iterator_valid": "bool (const InversionListIterator *)",
+    "inversion_list_iterator_get": "unsigned int (InversionListIterator *)",
+    "inversion_list_couple_iterator_create": "InversionListCoupleIterator * (const InversionList *)",
+    "inversion_list_iterator_couple_destroy": "void (InversionListIterator *)",
+    "inversion_list_couple_iterator_next": "InversionListCoupleIterator * (InversionListCoupleIterator *)",
+    "inversion_list_couple_iterator_rewind": "InversionListCoupleIterator * (InversionListCoupleIterator *)",
+    "inversion_list_iterator_couple_valid": "bool (const InversionListCoupleIterator *)",
+    "inversion_list_couple_iterator_get_inf": "unsigned int (const InversionListCoupleIterator *)",
+    "inversion_list_couple_iterator_get_sup": "unsigned int (const InversionListCoupleIterator *)"
+   },
+   "rust_link_fail": {
+    "rust:nightly-2024-09-03:debug": "/usr/bin/ld: /tmp/cceHuqcr.o: in function `main':\ngrid_driver.c:(.text+0xae): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+    "rust:nightly-2024-09-03:release": "/usr/bin/ld: /tmp/ccQIOJoB.o: in function `main':\ngrid_driver.c:(.text+0xae): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+    "rust:nightly-2025-05-10:debug": "/usr/bin/ld: /tmp/cciU1Pk4.o: in function `main':\ngrid_driver.c:(.text+0xae): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+    "rust:nightly-2025-05-10:release": "/usr/bin/ld: /tmp/ccEgeQ9n.o: in function `main':\ngrid_driver.c:(.text+0xae): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+   },
+   "n_inputs": 2,
+   "per_function": {
+    "inversion_list_init": {
+     "inputs": 1,
+     "c_exit": -6,
+     "c_whole_run_timed_out": false,
+     "c_deterministic": true,
+     "rust": {},
+     "rust_timeout_inputs": [],
+     "ub": {}
+    },
+    "inversion_list_finish": {
+     "inputs": 1,
+     "c_exit": 0,
+     "c_whole_run_timed_out": false,
+     "c_deterministic": true,
+     "rust": {},
+     "rust_timeout_inputs": [],
+     "ub": {}
+    }
+   },
+   "own_test_calls": {
+    "calls": {
+     "inversion_list_init": [
+      "inversion_list_init|"
+     ],
+     "inversion_list_finish": [
+      "inversion_list_finish|"
+     ]
+    },
+    "objects": {
+     "test1.o": 2,
+     "test2.o": 2,
+     "test3.o": 2,
+     "test4.o": 2,
+     "test5.o": 2,
+     "test6.o": 2,
+     "test7.o": 2,
+     "test8.o": 2,
+     "test9.o": 2,
+     "test10.o": 2,
+     "test11.o": 2,
+     "test12.o": 2,
+     "test13.o": 0,
+     "test14.o": 2,
+     "test15.o": 2
+    },
+    "per_function": {
+     "inversion_list_init": {
+      "own_distinct_calls": 1,
+      "our_inputs": 1,
+      "our_inputs_in_own": 1
+     },
+     "inversion_list_finish": {
+      "own_distinct_calls": 1,
+      "our_inputs": 1,
+      "our_inputs_in_own": 1
+     }
+    },
+    "our_input_signatures": {
+     "inversion_list_init": [
+      "inversion_list_init|"
+     ],
+     "inversion_list_finish": [
+      "inversion_list_finish|"
+     ]
+    }
+   }
+  }
+ },
+ "elapsed_s": 1.6
+}

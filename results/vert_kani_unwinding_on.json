@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "kani_version": "cargo-kani 0.55.0",
+    "command": "cargo kani --default-unwind 10  (VERT's command without --no-unwinding-checks)",
+    "functions": 14,
+    "verdict_counts": {
+      "FAILED": 14
+    },
+    "failed_on_unwinding_assertion": 14
+  },
+  "rows": [
+    {
+      "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 2"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 35.0
+    },
+    {
+      "function": "NEWMAN_CONWAY_SEQUENCE_1",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 22.3
+    },
+    {
+      "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 22.8
+    },
+    {
+      "function": "HEXAGONAL_NUMBER",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 19.2
+    },
+    {
+      "function": "NTH_NON_FIBONACCI_NUMBER",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 19.8
+    },
+    {
+      "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 23.1
+    },
+    {
+      "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 30.2
+    },
+    {
+      "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 28.4
+    },
+    {
+      "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 24.4
+    },
+    {
+      "function": "SUM_BINOMIAL_COEFFICIENTS",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 27.2
+    },
+    {
+      "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 19.2
+    },
+    {
+      "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 19.2
+    },
+    {
+      "function": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 26.9
+    },
+    {
+      "function": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 34.2
+    }
+  ]
+}

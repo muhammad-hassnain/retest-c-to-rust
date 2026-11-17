@@ -1,0 +1,3138 @@
+{
+ "provenance": {
+  "script": "systems/vert/arxiv_wide_heldout.py (harness/heldout_vert.scalar_function and harness/heldout_overlap.vert_defects, unchanged, with grid='v2'; as systems/vert/heldout_grid2.py)",
+  "command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -w /work -e JOBS=4 -e GIT_REV=... -e GIT_DIRTY=... -e HOST_DESC=... -e IMAGE_DESC=... crust-stable python3 -I systems/vert/arxiv_wide_heldout.py",
+  "grid": "v2",
+  "comparison": "C driver prints (long long) f_gold(...) (run.build_c); VERT's Rust returns i32, printed widened to i64 (run.build_rust): the run.py --wide-int comparison",
+  "excluded_by_full_ub_rule": [],
+  "vert_recorded_inputs": "bolero: the documented replay (cargo bolero reduce) runs only a shipped corpus, and none is shipped for these functions (vert_inputs.bolero_corpus_files); bounded Kani: the C copy (rWasm oracle) gets n in the kani::assume range, {0, 1}, with the C stub's other literals, and the Rust the static PARAM values (vert_inputs.kani_*)",
+  "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_note": "working tree: 40 uncommitted paths + this run's new files; harness files used changed vs HEAD: systems/vert/run.py (opt-in --wide-int/--only; build_c/build_rust/test-free path used here unchanged)",
+  "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+  "arch": "aarch64",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "clang": null,
+   "python": "3.10.12"
+  },
+  "image": "crust-stable sha256:9428070fb0fd44727fcc35447919f65b8acc8ef20c73dedfdbdbb523aa557951",
+  "date": "2026-11-17T16:00:13.697648+00:00",
+  "date_start_utc": "2026-11-17T15:58:14.366767+00:00",
+  "date_end_utc": "2026-11-17T16:00:13.697648+00:00",
+  "inputs_read": [
+   "artifacts/vert/benchmark/c_transcoder/<F>/{out-rwasm-mutated,out-rwasm-bolero}/src/main.rs",
+   "artifacts/vert/benchmark/c_transcoder/<F>/<F>_towasm_mutated.c",
+   "artifacts/vert/benchmark/c_transcoder/<F>/<F>.c",
+   "results/arxiv_vert_diff_grid2_wide.json",
+   "results/arxiv_vert_wide_ub_recheck.json"
+  ]
+ },
+ "functions": [
+  {
+   "function": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 3,
+    "rust_hang": 0,
+    "expected_value": 3,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "1"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      18
+     ],
+     [
+      66
+     ],
+     [
+      73
+     ],
+     [
+      70
+     ],
+     [
+      26
+     ],
+     [
+      41
+     ],
+     [
+      20
+     ],
+     [
+      25
+     ],
+     [
+      52
+     ],
+     [
+      13
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 39,
+    "ub": 58,
+    "value": 3
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": [
+     [
+      18
+     ],
+     [
+      25
+     ],
+     [
+      73
+     ]
+    ]
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 3
+    },
+    "inputs": [
+     [
+      31
+     ],
+     [
+      32
+     ],
+     [
+      33
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 3,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       31
+      ],
+      "v": "value",
+      "c": "2620797529",
+      "rust": "-1674169767"
+     },
+     {
+      "in": [
+       32
+      ],
+      "v": "value",
+      "c": "5029557817",
+      "rust": "734590521"
+     },
+     {
+      "in": [
+       33
+      ],
+      "v": "value",
+      "c": "9651169213",
+      "rust": "1061234621"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "10",
+      "rust": "10"
+     },
+     {
+      "in": [
+       0
+      ],
+      "v": "ub",
+      "c": null,
+      "rust": "__PANIC__",
+      "why": "asan/ubsan"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "agree",
+      "c": "10982",
+      "rust": "10982"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       18
+      ],
+      "v": "agree",
+      "c": "547810",
+      "rust": "547810"
+     },
+     {
+      "in": [
+       70
+      ],
+      "v": "agree",
+      "c": "-326855939",
+      "rust": "-326855939"
+     },
+     {
+      "in": [
+       26
+      ],
+      "v": "agree",
+      "c": "100719775",
+      "rust": "100719775"
+     },
+     {
+      "in": [
+       20
+      ],
+      "v": "agree",
+      "c": "2017126",
+      "rust": "2017126"
+     },
+     {
+      "in": [
+       25
+      ],
+      "v": "agree",
+      "c": "52479500",
+      "rust": "52479500"
+     },
+     {
+      "in": [
+       13
+      ],
+      "v": "agree",
+      "c": "21053",
+      "rust": "21053"
+     },
+     {
+      "in": [
+       66
+      ],
+      "v": "ub",
+      "c": "7248773873",
+      "rust": "-1341160719",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       73
+      ],
+      "v": "ub",
+      "c": "-11172632119",
+      "rust": "1712269769",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       41
+      ],
+      "v": "ub",
+      "c": "9614602550",
+      "rust": "1024667958",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       52
+      ],
+      "v": "ub",
+      "c": "2314634495",
+      "rust": "-1980332801",
+      "why": "asan/ubsan"
+     }
+    ],
+    "transcoder_tests_diverge": false,
+    "transcoder_first_tuple_diverges": false
+   },
+   "c_return": "long long"
+  },
+  {
+   "function": "DICE_THROW_PROBLEM_1",
+   "kind": "scalar",
+   "nargs": 3,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 2,
+    "rust_hang": 0,
+    "expected_value": 2,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [],
+    "stub_call": "1,2,29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ],
+     [
+      2,
+      "i32",
+      "12"
+     ],
+     [
+      3,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0,
+      2,
+      29
+     ],
+     [
+      1,
+      2,
+      29
+     ]
+    ],
+    "kani_rust_side": [
+     12,
+     12,
+     12
+    ],
+    "bolero_with_type": "i32, i32, i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      57,
+      5,
+      33
+     ],
+     [
+      58,
+      45,
+      4
+     ],
+     [
+      38,
+      89,
+      9
+     ],
+     [
+      5,
+      39,
+      30
+     ],
+     [
+      91,
+      90,
+      47
+     ],
+     [
+      76,
+      56,
+      46
+     ],
+     [
+      38,
+      43,
+      84
+     ],
+     [
+      97,
+      26,
+      52
+     ],
+     [
+      97,
+      90,
+      90
+     ],
+     [
+      99,
+      2,
+      26
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 80,
+   "our_grid_verdicts": {
+    "agree": 67,
+    "ub": 11,
+    "value": 2
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": []
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 2
+    },
+    "inputs": [
+     [
+      128,
+      7,
+      512
+     ],
+     [
+      257,
+      15,
+      64
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 2,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       257,
+       15,
+       64
+      ],
+      "v": "value",
+      "c": "37387265592825",
+      "rust": "-424718855"
+     },
+     {
+      "in": [
+       128,
+       7,
+       512
+      ],
+      "v": "value",
+      "c": "1884153039916",
+      "rust": "-1337603028"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0,
+       2,
+       29
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       1,
+       2,
+       29
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12,
+       12,
+       12
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       57,
+       5,
+       33
+      ],
+      "v": "agree",
+      "c": "35960",
+      "rust": "35960"
+     },
+     {
+      "in": [
+       58,
+       45,
+       4
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       38,
+       89,
+       9
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       5,
+       39,
+       30
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       91,
+       90,
+       47
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       76,
+       56,
+       46
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       97,
+       90,
+       90
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     },
+     {
+      "in": [
+       99,
+       2,
+       26
+      ],
+      "v": "agree",
+      "c": "25",
+      "rust": "25"
+     },
+     {
+      "in": [
+       38,
+       43,
+       84
+      ],
+      "v": "ub",
+      "c": "-739456355020875822",
+      "rust": "-401385518",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       97,
+       26,
+       52
+      ],
+      "v": "value",
+      "c": "247959266474052",
+      "rust": "-2080425916"
+     }
+    ],
+    "transcoder_tests_diverge": true,
+    "transcoder_first_tuple_diverges": false
+   },
+   "c_return": "long"
+  },
+  {
+   "function": "SUM_PAIRWISE_PRODUCTS",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 8,
+    "rust_hang": 0,
+    "expected_value": 8,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      21
+     ],
+     [
+      32
+     ],
+     [
+      16
+     ],
+     [
+      38
+     ],
+     [
+      9
+     ],
+     [
+      3
+     ],
+     [
+      5
+     ],
+     [
+      46
+     ],
+     [
+      45
+     ],
+     [
+      87
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 92,
+    "value": 8
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": [
+     [
+      3
+     ],
+     [
+      5
+     ],
+     [
+      9
+     ],
+     [
+      16
+     ],
+     [
+      21
+     ],
+     [
+      32
+     ],
+     [
+      87
+     ]
+    ]
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 8
+    },
+    "inputs": [
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ],
+     [
+      503
+     ],
+     [
+      510
+     ],
+     [
+      511
+     ],
+     [
+      512
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 8,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       381
+      ],
+      "v": "value",
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "v": "value",
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "v": "value",
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "agree",
+      "c": "3367",
+      "rust": "3367"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       21
+      ],
+      "v": "agree",
+      "c": "28336",
+      "rust": "28336"
+     },
+     {
+      "in": [
+       32
+      ],
+      "v": "agree",
+      "c": "145112",
+      "rust": "145112"
+     },
+     {
+      "in": [
+       16
+      ],
+      "v": "agree",
+      "c": "9996",
+      "rust": "9996"
+     },
+     {
+      "in": [
+       38
+      ],
+      "v": "agree",
+      "c": "284050",
+      "rust": "284050"
+     },
+     {
+      "in": [
+       9
+      ],
+      "v": "agree",
+      "c": "1155",
+      "rust": "1155"
+     },
+     {
+      "in": [
+       3
+      ],
+      "v": "agree",
+      "c": "25",
+      "rust": "25"
+     },
+     {
+      "in": [
+       5
+      ],
+      "v": "agree",
+      "c": "140",
+      "rust": "140"
+     },
+     {
+      "in": [
+       46
+      ],
+      "v": "agree",
+      "c": "601036",
+      "rust": "601036"
+     },
+     {
+      "in": [
+       45
+      ],
+      "v": "agree",
+      "c": "551310",
+      "rust": "551310"
+     },
+     {
+      "in": [
+       87
+      ],
+      "v": "agree",
+      "c": "7438442",
+      "rust": "7438442"
+     }
+    ],
+    "transcoder_tests_diverge": false,
+    "transcoder_first_tuple_diverges": false
+   },
+   "c_return": "long long int"
+  },
+  {
+   "function": "SUM_PAIRWISE_PRODUCTS_1",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 8,
+    "rust_hang": 0,
+    "expected_value": 8,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      41
+     ],
+     [
+      50
+     ],
+     [
+      67
+     ],
+     [
+      18
+     ],
+     [
+      60
+     ],
+     [
+      6
+     ],
+     [
+      27
+     ],
+     [
+      46
+     ],
+     [
+      50
+     ],
+     [
+      20
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 92,
+    "value": 8
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": [
+     [
+      18
+     ]
+    ]
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 8
+    },
+    "inputs": [
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ],
+     [
+      503
+     ],
+     [
+      510
+     ],
+     [
+      511
+     ],
+     [
+      512
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 8,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       381
+      ],
+      "v": "value",
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "v": "value",
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "v": "value",
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "agree",
+      "c": "3367",
+      "rust": "3367"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       41
+      ],
+      "v": "agree",
+      "c": "382571",
+      "rust": "382571"
+     },
+     {
+      "in": [
+       50
+      ],
+      "v": "agree",
+      "c": "834275",
+      "rust": "834275"
+     },
+     {
+      "in": [
+       67
+      ],
+      "v": "agree",
+      "c": "2645897",
+      "rust": "2645897"
+     },
+     {
+      "in": [
+       18
+      ],
+      "v": "agree",
+      "c": "15675",
+      "rust": "15675"
+     },
+     {
+      "in": [
+       60
+      ],
+      "v": "agree",
+      "c": "1711355",
+      "rust": "1711355"
+     },
+     {
+      "in": [
+       6
+      ],
+      "v": "agree",
+      "c": "266",
+      "rust": "266"
+     },
+     {
+      "in": [
+       27
+      ],
+      "v": "agree",
+      "c": "74907",
+      "rust": "74907"
+     },
+     {
+      "in": [
+       46
+      ],
+      "v": "agree",
+      "c": "601036",
+      "rust": "601036"
+     },
+     {
+      "in": [
+       50
+      ],
+      "v": "agree",
+      "c": "834275",
+      "rust": "834275"
+     },
+     {
+      "in": [
+       20
+      ],
+      "v": "agree",
+      "c": "23485",
+      "rust": "23485"
+     }
+    ],
+    "transcoder_tests_diverge": false,
+    "transcoder_first_tuple_diverges": false
+   },
+   "c_return": "long long int"
+  },
+  {
+   "function": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 90,
+    "rust_hang": 0,
+    "expected_value": 90,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": null,
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 10,
+    "value": 90
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": []
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 90
+    },
+    "inputs": [
+     [
+      14
+     ],
+     [
+      15
+     ],
+     [
+      16
+     ],
+     [
+      17
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      31
+     ],
+     [
+      32
+     ],
+     [
+      33
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      63
+     ],
+     [
+      64
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      128
+     ],
+     [
+      129
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      256
+     ],
+     [
+      257
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ],
+     [
+      503
+     ],
+     [
+      510
+     ],
+     [
+      511
+     ],
+     [
+      512
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 90,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       14
+      ],
+      "v": "value",
+      "c": "90420300490",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       15
+      ],
+      "v": "value",
+      "c": "1360989424211",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       16
+      ],
+      "v": "value",
+      "c": "21849965489916",
+      "rust": "2147483647"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0
+      ],
+      "v": "agree",
+      "c": "0",
+      "rust": "0"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "value",
+      "c": "493303222",
+      "rust": "493303232"
+     }
+    ],
+    "kani_domain_diverges": true,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": null,
+    "transcoder_tests_diverge": null,
+    "transcoder_first_tuple_diverges": null
+   },
+   "c_return": "long int"
+  },
+  {
+   "function": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 9,
+    "rust_hang": 0,
+    "expected_value": 9,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": false,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": null,
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 90,
+    "san_unresolved": 1,
+    "value": 9
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": []
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 9
+    },
+    "inputs": [
+     [
+      9
+     ],
+     [
+      15
+     ],
+     [
+      18
+     ],
+     [
+      25
+     ],
+     [
+      36
+     ],
+     [
+      98
+     ],
+     [
+      120
+     ],
+     [
+      200
+     ],
+     [
+      240
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 9,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       9
+      ],
+      "v": "value",
+      "c": "3",
+      "rust": "9"
+     },
+     {
+      "in": [
+       15
+      ],
+      "v": "value",
+      "c": "5",
+      "rust": "15"
+     },
+     {
+      "in": [
+       18
+      ],
+      "v": "value",
+      "c": "3",
+      "rust": "9"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "-1",
+      "rust": "-1"
+     },
+     {
+      "in": [
+       0
+      ],
+      "v": "san_unresolved",
+      "c": null,
+      "rust": "__TIMEOUT__"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "agree",
+      "c": "3",
+      "rust": "3"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": null,
+    "transcoder_tests_diverge": null,
+    "transcoder_first_tuple_diverges": null
+   },
+   "c_return": "long long"
+  },
+  {
+   "function": "COUNT_DIGITS_FACTORIAL_SET_2",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 97,
+    "rust_hang": 0,
+    "expected_value": 97,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      56
+     ],
+     [
+      92
+     ],
+     [
+      52
+     ],
+     [
+      96
+     ],
+     [
+      96
+     ],
+     [
+      63
+     ],
+     [
+      51
+     ],
+     [
+      79
+     ],
+     [
+      70
+     ],
+     [
+      9
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "agree": 3,
+    "value": 97
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": [
+     [
+      9
+     ],
+     [
+      51
+     ],
+     [
+      63
+     ]
+    ]
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 97
+    },
+    "inputs": [
+     [
+      3
+     ],
+     [
+      4
+     ],
+     [
+      5
+     ],
+     [
+      7
+     ],
+     [
+      8
+     ],
+     [
+      9
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      15
+     ],
+     [
+      16
+     ],
+     [
+      17
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      31
+     ],
+     [
+      32
+     ],
+     [
+      33
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      63
+     ],
+     [
+      64
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      128
+     ],
+     [
+      129
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      256
+     ],
+     [
+      257
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ],
+     [
+      503
+     ],
+     [
+      510
+     ],
+     [
+      511
+     ],
+     [
+      512
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 97,
+    "inside_transcoder_tests": [
+     [
+      9
+     ],
+     [
+      51
+     ],
+     [
+      63
+     ]
+    ],
+    "smallest": [
+     {
+      "in": [
+       3
+      ],
+      "v": "value",
+      "c": "1",
+      "rust": "2"
+     },
+     {
+      "in": [
+       4
+      ],
+      "v": "value",
+      "c": "2",
+      "rust": "4"
+     },
+     {
+      "in": [
+       5
+      ],
+      "v": "value",
+      "c": "3",
+      "rust": "5"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "1",
+      "rust": "1"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "value",
+      "c": "9",
+      "rust": "20"
+     }
+    ],
+    "kani_domain_diverges": true,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       56
+      ],
+      "v": "value",
+      "c": "75",
+      "rust": "173"
+     },
+     {
+      "in": [
+       92
+      ],
+      "v": "value",
+      "c": "143",
+      "rust": "328"
+     },
+     {
+      "in": [
+       52
+      ],
+      "v": "value",
+      "c": "68",
+      "rust": "157"
+     },
+     {
+      "in": [
+       96
+      ],
+      "v": "value",
+      "c": "150",
+      "rust": "346"
+     },
+     {
+      "in": [
+       96
+      ],
+      "v": "value",
+      "c": "150",
+      "rust": "346"
+     },
+     {
+      "in": [
+       63
+      ],
+      "v": "value",
+      "c": "88",
+      "rust": "202"
+     },
+     {
+      "in": [
+       51
+      ],
+      "v": "value",
+      "c": "67",
+      "rust": "153"
+     },
+     {
+      "in": [
+       79
+      ],
+      "v": "value",
+      "c": "117",
+      "rust": "270"
+     },
+     {
+      "in": [
+       70
+      ],
+      "v": "value",
+      "c": "101",
+      "rust": "231"
+     },
+     {
+      "in": [
+       9
+      ],
+      "v": "value",
+      "c": "6",
+      "rust": "13"
+     }
+    ],
+    "transcoder_tests_diverge": true,
+    "transcoder_first_tuple_diverges": true
+   },
+   "c_return": "long long"
+  },
+  {
+   "function": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+   "kind": "scalar",
+   "nargs": 1,
+   "counted_as": "wrong_answer",
+   "expected_from": "results/arxiv_vert_diff_grid2_wide.json",
+   "reproduced": {
+    "value": 9,
+    "rust_hang": 0,
+    "expected_value": 9,
+    "expected_rust_hang": 0
+   },
+   "vert_inputs": {
+    "kani_assume": [
+     [
+      "0",
+      "2",
+      "PARAM1"
+     ]
+    ],
+    "kani_unwind_attr": [
+     "10"
+    ],
+    "stub_call": "29",
+    "statics": [
+     [
+      1,
+      "i32",
+      "12"
+     ]
+    ],
+    "oracle_body_loads_stub_literals": true,
+    "kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "kani_rust_side": [
+     12
+    ],
+    "bolero_with_type": "i32",
+    "bolero_with_generator": null,
+    "bolero_corpus_files": 0,
+    "transcoder_test_tuples": [
+     [
+      68
+     ],
+     [
+      91
+     ],
+     [
+      99
+     ],
+     [
+      79
+     ],
+     [
+      61
+     ],
+     [
+      48
+     ],
+     [
+      89
+     ],
+     [
+      20
+     ],
+     [
+      83
+     ],
+     [
+      1
+     ]
+    ],
+    "transcoder_loop_breaks_after_first": true
+   },
+   "our_inputs": 100,
+   "our_grid_verdicts": {
+    "ub": 76,
+    "agree": 15,
+    "value": 9
+   },
+   "overlap": {
+    "ours_vs_kani_oracle_side": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "ours_vs_kani_rust_side": [],
+    "ours_vs_bolero_corpus": "no corpus shipped",
+    "ours_vs_transcoder_tests": [
+     [
+      1
+     ],
+     [
+      83
+     ],
+     [
+      91
+     ]
+    ]
+   },
+   "our_divergences": {
+    "count_by_class": {
+     "value": 9
+    },
+    "inputs": [
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      31
+     ],
+     [
+      32
+     ],
+     [
+      33
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ]
+    ],
+    "inside_vert_check_set": [],
+    "outside_vert_check_set": 9,
+    "inside_transcoder_tests": [],
+    "smallest": [
+     {
+      "in": [
+       25
+      ],
+      "v": "value",
+      "c": "4478554083",
+      "rust": "183586787"
+     },
+     {
+      "in": [
+       29
+      ],
+      "v": "value",
+      "c": "152139002499",
+      "rust": "1815147139"
+     },
+     {
+      "in": [
+       31
+      ],
+      "v": "value",
+      "c": "886731088897",
+      "rust": "1967825921"
+     }
+    ]
+   },
+   "our_comparison_on_vert_inputs": {
+    "kani_oracle_side": [
+     {
+      "in": [
+       0
+      ],
+      "v": "ub",
+      "c": "281474542260721",
+      "rust": "__PANIC__",
+      "why": "opt-level"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "3",
+      "rust": "3"
+     }
+    ],
+    "kani_rust_side": [
+     {
+      "in": [
+       12
+      ],
+      "v": "agree",
+      "c": "47321",
+      "rust": "47321"
+     }
+    ],
+    "kani_domain_diverges": false,
+    "kani_oracle_side_diverges": false,
+    "transcoder_tests": [
+     {
+      "in": [
+       20
+      ],
+      "v": "agree",
+      "c": "54608393",
+      "rust": "54608393"
+     },
+     {
+      "in": [
+       1
+      ],
+      "v": "agree",
+      "c": "3",
+      "rust": "3"
+     },
+     {
+      "in": [
+       68
+      ],
+      "v": "ub",
+      "c": "-8332484967699229783",
+      "rust": "-1140763735",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       91
+      ],
+      "v": "ub",
+      "c": "-8436529755138918127",
+      "rust": "-403801839",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       99
+      ],
+      "v": "ub",
+      "c": "5608832401712713489",
+      "rust": "1019842321",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       79
+      ],
+      "v": "ub",
+      "c": "-4023543203958226687",
+      "rust": "228720897",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       61
+      ],
+      "v": "ub",
+      "c": "-7758866866263180029",
+      "rust": "-2133476093",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       48
+      ],
+      "v": "value",
+      "c": "2850877693509864481",
+      "rust": "1539148833"
+     },
+     {
+      "in": [
+       89
+      ],
+      "v": "ub",
+      "c": "82513769165780707",
+      "rust": "-63670557",
+      "why": "asan/ubsan"
+     },
+     {
+      "in": [
+       83
+      ],
+      "v": "ub",
+      "c": "-1483298913380978799",
+      "rust": "1144270737",
+      "why": "asan/ubsan"
+     }
+    ],
+    "transcoder_tests_diverge": true,
+    "transcoder_first_tuple_diverges": false
+   },
+   "c_return": "long"
+  }
+ ],
+ "counted_defects": [
+  {
+   "system": "VERT",
+   "defect": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 3
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 3,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     31
+    ],
+    "v": "value",
+    "c": "2620797529",
+    "rust": "-1674169767"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "10",
+     "rust": "10"
+    },
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": null,
+     "rust": "__PANIC__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "10982",
+     "rust": "10982"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "DICE_THROW_PROBLEM_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 2
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 2,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     257,
+     15,
+     64
+    ],
+    "v": "value",
+    "c": "37387265592825",
+    "rust": "-424718855"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     2,
+     29
+    ],
+    [
+     1,
+     2,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      2,
+      29
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1,
+      2,
+      29
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12,
+      12
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SUM_PAIRWISE_PRODUCTS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 8
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 8,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     381
+    ],
+    "v": "value",
+    "c": "2657063266",
+    "rust": "-1637904030"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "3367",
+     "rust": "3367"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SUM_PAIRWISE_PRODUCTS_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 8
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 8,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     381
+    ],
+    "v": "value",
+    "c": "2657063266",
+    "rust": "-1637904030"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "3367",
+     "rust": "3367"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 90
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 90,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     14
+    ],
+    "v": "value",
+    "c": "90420300490",
+    "rust": "2147483647"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "493303222",
+     "rust": "493303232"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": null
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 9
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 9,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     9
+    ],
+    "v": "value",
+    "c": "3",
+    "rust": "9"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "-1",
+     "rust": "-1"
+    },
+    {
+     "in": [
+      0
+     ],
+     "verdict": "san_unresolved",
+     "c": null,
+     "rust": "__TIMEOUT__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "3",
+     "rust": "3"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": null
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "COUNT_DIGITS_FACTORIAL_SET_2",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 97
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 97,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "9",
+     "rust": "20"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 9
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 9,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     25
+    ],
+    "v": "value",
+    "c": "4478554083",
+    "rust": "183586787"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": "281474542260721",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "3",
+     "rust": "3"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "47321",
+     "rust": "47321"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  }
+ ],
+ "reproduction_check": {
+  "all_reproduced": true,
+  "mismatches": []
+ }
+}

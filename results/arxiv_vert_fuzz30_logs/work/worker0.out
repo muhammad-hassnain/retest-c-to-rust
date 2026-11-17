@@ -1,0 +1,12 @@
+CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT ['test_failure'] 153.3 21
+HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES ['test_failure'] 140.4 16777216
+MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C ['startup_crash', 'test_failure'] 1.4 (
+    16777216,
+    0,
+    0,
+    0,
+)
+NTH_NON_FIBONACCI_NUMBER ['startup_crash', 'test_failure'] 0.1 16777216
+NUMBER_TRIANGLES_N_MOVES_1 ['startup_crash', 'test_failure'] 0.1 16777216
+PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES ['clean_exit'] 205.2 None
+SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N ['startup_crash', 'test_failure'] 1.2 16777216

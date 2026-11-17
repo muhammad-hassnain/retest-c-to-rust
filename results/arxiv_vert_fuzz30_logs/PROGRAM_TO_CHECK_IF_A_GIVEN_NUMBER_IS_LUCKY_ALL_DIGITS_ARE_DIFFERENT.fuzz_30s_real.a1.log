@@ -1,0 +1,157 @@
+warning: unused import: `bolero::check`
+   --> src/main.rs:629:5
+    |
+629 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:632:31
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+632 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+632 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:632:59
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+632 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+632 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:606:4
+    |
+606 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:607:4
+    |
+607 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:608:4
+    |
+608 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:609:4
+    |
+609 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:610:4
+    |
+610 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:632:60
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero` (bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+     Running unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce)
+error: test failed, to rerun pass `--bin c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero`
+
+Caused by:
+  process didn't exit successfully: `/tmp/fzr_r11u4wpy/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce bolero_wasm_eq --nocapture --exact` (signal: 11, SIGSEGV: invalid memory reference)
+warning: unused import: `bolero::check`
+   --> src/main.rs:629:5
+    |
+629 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:632:31
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+632 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+632 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:632:59
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+632 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+632 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:606:4
+    |
+606 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:607:4
+    |
+607 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:608:4
+    |
+608 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:609:4
+    |
+609 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:610:4
+    |
+610 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:632:60
+    |
+632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero` (bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce)
+error: process exited with status 101

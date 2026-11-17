@@ -1,0 +1,11 @@
+# extract of the full Kani log (verdict, summary, equivalence-assertion status, errors); full logs ~578MB not committed
+Kani Rust Verifier 0.55.0 (cargo plugin)
+Checking harness kani_wasm_eq...
+Check 1254: kani_wasm_eq.assertion.2
+	 - Status: UNREACHABLE
+	 - Description: "assertion failed: result == result_prime"
+	 - Location: src/main.rs:554:3 in function kani_wasm_eq
+
+ ** 0 of 16442 failed (889 unreachable)
+VERIFICATION:- SUCCESSFUL
+Verification Time: 11.765791s

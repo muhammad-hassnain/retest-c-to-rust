@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine (~/work/arxiv-vertwide/results/arxiv_vert_wide_kani_logs_unwind_on/SUM_PAIRWISE_PRODUCTS_1.log, 81618 lines, sha256 1348984a9d441a35796f175dd8ccecec88b19bb357517e45f8fa09452194017a)
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:396:31
+    |
+396 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+396 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+   --> src/main.rs:512:4
+    |
+512 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+
+warning: function `max` is never used
+   --> src/main.rs:513:4
+    |
+513 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:514:4
+    |
+514 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+[...]
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3126:32 in function std::vec::Vec::<TaggedVal>::extend_trusted::<std::iter::Take<std::iter::RepeatWith<fn() -> TaggedVal {<TaggedVal as std::default::Default>::default}>>>::{closure#0}
+
+Check 16442: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16443: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16444: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16445: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16446: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16447: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:9 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16448: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.7
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16449: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.8
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16450: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.9
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16451: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.10
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16452: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.11
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16453: <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq.pointer_dereference.12
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:1712:26 in function <std::ptr::NonNull<(std::ffi::OsString, std::ffi::OsString)> as std::cmp::PartialEq>::eq
+
+Check 16454: std::option::Option::<{closure@std::sync::OnceLock<std::sync::Mutex<std::io::BufReader<std::io::stdio::StdinRaw>>>::initialize<{closure@std::sync::OnceLock<std::sync::Mutex<std::io::BufReader<std::io::stdio::StdinRaw>>>::get_or_init<{closure@std::io::stdin::{closure#0}}>::{closure#0}}, !>::{closure#0}}>::unwrap.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:963:15 in function std::option::Option::<{closure@std::sync::OnceLock<std::sync::Mutex<std::io::BufReader<std::io::stdio::StdinRaw>>>::initialize<{closure@std::sync::OnceLock<std::sync::Mutex<std::io::BufReader<std::io::stdio::StdinRaw>>>::get_or_init<{closure@std::io::stdin::{closure#0}}>::{closure#0}}, !>::{closure#0}}>::unwrap
+
+Check 16455: once_cell::sync::OnceCell::<std::sync::RwLock<std::vec::Vec<tracing_core::dispatcher::Registrar>>>::get.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/once_cell-1.18.0/src/lib.rs:970:17 in function once_cell::sync::OnceCell::<std::sync::RwLock<std::vec::Vec<tracing_core::dispatcher::Registrar>>>::get
+
+Check 16456: f_gold.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: src/main.rs:523:5 in function f_gold
+
+
+SUMMARY:
+ ** 1 of 16456 failed (16455 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "src/main.rs", line 523, in f_gold
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 10.556518s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u3 v1.0.1 (/tmp/kani_0k62ke5b/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.77s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

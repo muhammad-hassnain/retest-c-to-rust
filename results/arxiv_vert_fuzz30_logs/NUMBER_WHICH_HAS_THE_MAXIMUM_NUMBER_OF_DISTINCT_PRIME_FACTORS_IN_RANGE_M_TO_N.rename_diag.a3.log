@@ -1,0 +1,126 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+    --> src/main.rs:1061:5
+     |
+1061 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1030:4
+     |
+1030 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1031:4
+     |
+1031 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1032:4
+     |
+1032 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1033:4
+     |
+1033 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1034:4
+     |
+1034 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1064:65
+     |
+1064 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_2` should have a snake case name
+    --> src/main.rs:1064:73
+     |
+1064 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ 
+     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`
+
+warning: `nwh` (bin "nwh" test) generated 8 warnings (run `cargo fix --bin "nwh" --tests` to apply 1 suggestion)
+    Finished release [optimized] target(s) in 0.03s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 4179367493
+INFO: Loaded 1 modules   (362971 inline 8-bit counters): 362971 [0x5aac987c9270, 0x5aac98821c4b), 
+INFO: Loaded 1 PC tables (362971 PCs): 362971 [0x5aac98821c50,0x5aac98daba00), 
+INFO:        0 files found in /tmp/fzr_tqwrj3d1/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_tqwrj3d1/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+#36	NEW    cov: 42 ft: 43 corp: 2/5b lim: 4 exec/s: 0 rss: 51Mb L: 4/4 MS: 4 InsertByte-ChangeByte-ChangeBinInt-CopyPart-
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+(
+    0,
+    0,
+)
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `0`,
+ right: `6`', src/main.rs:1072:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==27932== ERROR: libFuzzer: deadly signal
+    #0 0x5aac970efd91  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xa6ad91) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #1 0x5aac97cce81e  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x164981e) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #2 0x5aac97cd9da9  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1654da9) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #3 0x78cd52b1c4af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x78cd52b7091b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x78cd52b1c405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x78cd52b027f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x5aac9831bac6  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1c96ac6) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #8 0x5aac9704a036  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x9c5036) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #9 0x5aac9719a839  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xb15839) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #10 0x5aac97ca6dfe  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1621dfe) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #11 0x5aac97cda305  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1655305) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #12 0x5aac97cdee53  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1659e53) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #13 0x5aac97cdfd88  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x165ad88) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #14 0x5aac97ce2087  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x165d087) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #15 0x5aac97cb5612  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1630612) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #16 0x5aac97ca7156  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1622156) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #17 0x5aac9713eda1  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xab9da1) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #18 0x5aac971997ab  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xb147ab) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #19 0x5aac971a9f81  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xb24f81) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #20 0x5aac97144b85  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0xabfb85) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #21 0x5aac97c8d7ae  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x16087ae) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #22 0x5aac97c8c7a1  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x16077a1) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #23 0x5aac97c4fd03  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x15cad03) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #24 0x5aac97c563ba  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x15d13ba) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #25 0x5aac9831a4b4  (/tmp/fzr_tqwrj3d1/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/nwh-6b8433cd01f4b780+0x1c954b4) (BuildId: d081ed1c0d0c18185919af48c3a7a7f4f4596831)
+    #26 0x78cd52b6e9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x78cd52bffa13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 4 InsertByte-ChangeBit-ChangeASCIIInt-InsertRepeatedBytes-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x1a,0x35,0xff,0xff,0xff,0xff,0xff,0xff,
+\0325\377\377\377\377\377\377
+artifact_prefix='/tmp/fzr_tqwrj3d1/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_tqwrj3d1/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-d292a0ec80ba0b42f7d7b6929087160a220e09fa
+Base64: GjX///////8=
+error: process exited with status 77

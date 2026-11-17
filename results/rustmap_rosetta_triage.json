@@ -1,0 +1,64 @@
+{
+ "source": "results/rustmap_rosetta.json (run_rosetta.py with RustMap's own build commands: plain `gcc main.c` (+ -lm) and plain `rustc` -- audit 4), all 37 real divergences, classified by hand from the full outputs",
+ "c_ub_check": "the 11 counted C programs built with gcc -fsanitize=address,undefined and run: no UB report (knapsack_problem_0_1 reports only a LeakSanitizer leak); chaocipher C has a heap-buffer-overflow and is excluded",
+ "wrong_output_S1": {
+  "box_the_compass": "headings/indices shifted (Rust row 1 is ' 2 North by east 0.00')",
+  "floyds_triangle": "Rust starts at 11 / 92 instead of 1",
+  "isbn13_check_digit": "Rust prints 'bad' for the two valid ISBNs",
+  "knapsack_problem_0_1": "Rust selects only 'map' (totals 9 150) instead of the optimal set",
+  "knapsack_problem_continuous": "Rust prints 'take all beef' instead of salami/ham/brawn/greaves/3.5kg welt",
+  "roman_numerals_decode": "MCmxC -> 1000 (C 1990), MCXLUJ -> 1106 (C 1146)",
+  "sexy_primes": "Rust prints nothing (exit 0); C prints the pair/triplet counts and lists",
+  "formatted_numeric_output": "prints 000-7.125 for -7.125 (C ' -0007.125'); C clean under ASan/UBSan (audit 5: reclassified from cosmetic)",
+  "approximate_equility": "(-2.0).sqrt()*(-2.0).sqrt() -> prints NaN where the C prints -2; C clean (audit 5: reclassified from cosmetic)"
+ },
+ "rust_panic": {
+  "hailstone_sequence": "exit 101",
+  "matrix_chain_multiplication": "exit 101 (add overflow in debug build; under -O it printed cost 45 vs C 48)"
+ },
+ "different_task_or_inputs_not_counted": {
+  "binary_search": "shipped Rust prints binary digits",
+  "lu_decomposition": "shipped Rust is a Luhn checker",
+  "array_length": "Rust prints 1..9,0; C prints the array length 2",
+  "n_queens_problem": "Rust prints '1, 2, ..., 10'",
+  "perfect_numbers": "Rust asks for an argument ('Enter an argument. Example 1234 or dcba')",
+  "runge_kutta_method": "Rust prints a list of semiprimes",
+  "number_names": "Rust names a single different number (321)",
+  "numerical_integration": "Rust integrates different functions (an: 1 vs 0.25)"
+ },
+ "nondeterministic_C_not_counted": {
+  "machine_code": "C output differs between runs (26018, 29289): it executes raw machine code"
+ },
+ "cosmetic_not_counted": [
+  "arithmetic_mean",
+  "base64_decode_data",
+  "circles_of_given_radius_through_two_points",
+  "command_line_arguments",
+  "department_number",
+  "euler_method",
+  "extreme_floating_point_values",
+  "fibonacci_n_step_number_sequences",
+  "gaussian_elimination",
+  "levenshtein_distance",
+  "magic_squares_of_doubly_even_order",
+  "map_range",
+  "mean_angle",
+  "negative_base_numbers",
+  "next_highest_int_from_digits",
+  "nimber_arithmetic"
+ ],
+ "cosmetic_note": "formatting, float precision, nan/NaN, quoting, list display, blank lines, program name, 0 vs None",
+ "counts": {
+  "divergent_real": 37,
+  "wrong_output_S1": 9,
+  "rust_panic": 2,
+  "different_task_or_inputs": 8,
+  "nondeterministic_C": 1,
+  "C_UB": 1,
+  "cosmetic": 16
+ },
+ "counts_superseded_by_ledger": "These are the submission version's hand-triage classes: 11 counted (9 wrong output + 2 panics) and 8 set aside as a different task. The defect ledger reads this file and re-applies the v2 rules (scripts/build_defect_ledger.py ROSETTA_V2, recorded with reasons in results/defect_ledger.json meta.RustMap.rosetta_triage_v2): number_names and numerical_integration move from different task to wrong output, so the paper counts 13 and sets aside 6. The classes above are kept as triaged; the ledger is authoritative.",
+ "excluded_C_UB": {
+  "chaocipher": "Rust ciphertext differs, but the C has an ASan heap-buffer-overflow, so not counted (audit 5)"
+ }
+}

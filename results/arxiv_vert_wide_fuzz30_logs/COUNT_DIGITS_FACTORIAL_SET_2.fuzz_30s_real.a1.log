@@ -1,0 +1,139 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:892:5
+    |
+892 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:895:31
+    |
+895 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+895 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+895 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:895:59
+    |
+895 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+895 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+895 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:872:4
+    |
+872 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:873:4
+    |
+873 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:874:4
+    |
+874 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:875:4
+    |
+875 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:876:4
+    |
+876 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:895:60
+    |
+895 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_count_digits_factorial_set_2_out-rwasm-bolero` (bin "c_transcoder_count_digits_factorial_set_2_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_count_digits_factorial_set_2_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.03s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 1158345737
+INFO: Loaded 1 modules   (361907 inline 8-bit counters): 361907 [0x586f7647b090, 0x586f764d3643), 
+INFO: Loaded 1 PC tables (361907 PCs): 361907 [0x586f764d3648,0x586f76a59178), 
+INFO:        0 files found in /tmp/fzr_uaxaorgj/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_uaxaorgj/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+0
+
+Error: 
+panicked at 'called `Option::unwrap()` on a `None` value', src/main.rs:867:26
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==8914== ERROR: libFuzzer: deadly signal
+    #0 0x586f74dae1a1  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xa641a1) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #1 0x586f759816fe  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x16376fe) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #2 0x586f7598cc89  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1642c89) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #3 0x7e2b51f664af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x7e2b51fba91b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x7e2b51f66405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x7e2b51f4c7f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x586f75fce9a6  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1c849a6) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #8 0x586f74d08446  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x9be446) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #9 0x586f74e52729  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xb08729) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #10 0x586f75959cde  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x160fcde) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #11 0x586f7598d1e5  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x16431e5) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #12 0x586f75991d33  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1647d33) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #13 0x586f75992c68  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1648c68) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #14 0x586f75994f67  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x164af67) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #15 0x586f759684f2  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x161e4f2) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #16 0x586f7595a036  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1610036) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #17 0x586f74df8db1  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xaaedb1) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #18 0x586f74e51637  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xb07637) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #19 0x586f74e5d001  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xb13001) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #20 0x586f74dfeb55  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0xab4b55) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #21 0x586f7594068e  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x15f668e) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #22 0x586f7593f681  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x15f5681) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #23 0x586f75902be3  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x15b8be3) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #24 0x586f7590929a  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x15bf29a) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #25 0x586f75fcd394  (/tmp/fzr_uaxaorgj/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_digits_factorial_set_2_out_rwasm_bolero-d0c28bd21e99ff72+0x1c83394) (BuildId: c85c95a86408b58b0a997d5a09d553b57ca2c5e9)
+    #26 0x7e2b51fb89e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x7e2b52049a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 5 CopyPart-InsertByte-CopyPart-ChangeBinInt-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xec,0x5b,0x5b,0x7f,
+\354[[\177
+artifact_prefix='/tmp/fzr_uaxaorgj/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_uaxaorgj/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-af1d875cc34eb7ef9172dd5a07b1bdfe967f24b7
+Base64: 7Ftbfw==
+error: process exited with status 77

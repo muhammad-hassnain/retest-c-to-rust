@@ -1,0 +1,5670 @@
+{
+ "provenance": {
+  "script": "systems/adatrans/pipeline.sh -> systems/adatrans/summarize.py (assembly) <- measurement scripts below",
+  "command": "bash systems/adatrans/pipeline.sh summarize  (in Docker: python3 -I systems/adatrans/summarize.py --work /b --inputs-manifest /inputs/inputs_manifest.json --results /work/results --runs run1)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (study repo; systems/adatrans/ uncommitted, copied to the run host)",
+  "host": {
+   "measurement": "desktop (x86-64 Linux box, kernel 7.0.0-38-generic, 20 cores; docker --cpus 14 for the last pipeline run; earlier stages (fetch..gen) at 3)",
+   "assembly": "adatrans-pipeline (x86_64)"
+  },
+  "arch": "x86_64 (all builds and runs); assembly on x86_64",
+  "docker_image": {
+   "name": "crust-heldout-plus186",
+   "id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+   "flags": "--network none, --cpus <=3, run as the invoking uid"
+  },
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31) via rustup in the image",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "crates (vendored offline, Cargo.lock)": "rand 0.8.8, regex 1.13.1, libc 0.2.191, lazy_static 1.5.1",
+   "python_in_image": "3.10.12"
+  },
+  "artifact": {
+   "repo": "https://github.com/SlainTroyard/adatrans_dev",
+   "commit": "31f4031aadb7ee9d4a2fb1a180e78ae9b45e5578",
+   "git_archive_sha256": "49e132b5991856c92deedab7e96d171ac2b6b6bf1c30d7cb6cc7cf632ba99231",
+   "zenodo": "10.5281/zenodo.22258998 adatrans-artifacts.tar.zst sha256 03110aba3b469b37c56daf931dd6bb0e2ead37ac8462900da39c5e795493d6fe (matches published); only dataset_fuzz_outputs/ extracted"
+  },
+  "measurement_scripts": [
+   "systems/adatrans/fetch.sh",
+   "systems/adatrans/extract_final.py",
+   "systems/adatrans/gen_inputs.py",
+   "systems/adatrans/run_diff.py",
+   "systems/adatrans/analyze.py",
+   "systems/adatrans/confirm.py",
+   "systems/adatrans/heldout.py",
+   "systems/adatrans/mutate.py",
+   "harness/oracle_ub_common.py (sanitizer flags, run_san)"
+  ],
+  "date": "2026-11-14T03:18:15+00:00",
+  "source": "mutate.py"
+ },
+ "by_class": {
+  "arithmetic": {
+   "killed": 128,
+   "stillborn": 0,
+   "survived": 14
+  },
+  "constant": {
+   "killed": 108,
+   "stillborn": 3,
+   "survived": 35
+  },
+  "relational": {
+   "killed": 92,
+   "stillborn": 0,
+   "survived": 33
+  }
+ },
+ "kill_rate": 0.8,
+ "mutants": 413,
+ "mutants_detail": {
+  "m_run1_c_413_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_413_1",
+   "kind": "S1",
+   "line": 6,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_413_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_413_1",
+   "kind": "S1",
+   "line": 21,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_413_1_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_413_1",
+   "line": 5,
+   "new": "+",
+   "old": "-",
+   "status": "survived"
+  },
+  "m_run1_c_413_1_3": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_413_1",
+   "line": 6,
+   "new": "+",
+   "old": "-",
+   "status": "survived"
+  },
+  "m_run1_c_413_1_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_413_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_413_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_413_1",
+   "kind": "S1",
+   "line": 21,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_413_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_413_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_413_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_413_3",
+   "line": 61,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_413_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_413_3",
+   "kind": "panic",
+   "line": 21,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_413_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_413_3",
+   "kind": "S1",
+   "line": 54,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_413_3_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_413_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_413_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_413_3",
+   "kind": "panic",
+   "line": 54,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_413_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_413_4",
+   "kind": "panic",
+   "line": 14,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_413_4_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_413_4",
+   "kind": "panic",
+   "line": 30,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_413_4_2": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_413_4",
+   "line": 7,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_413_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_413_4",
+   "kind": "panic",
+   "line": 61,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_414_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_414_1",
+   "kind": "S1",
+   "line": 9,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_414_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_414_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_414_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_414_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_414_2",
+   "kind": "hang",
+   "line": 18,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_1": {
+   "by_input": "005.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 6,
+   "inst": "C_414_2",
+   "kind": "S1",
+   "line": 25,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_414_2",
+   "kind": "S1",
+   "line": 13,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_414_2",
+   "kind": "S1",
+   "line": 25,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_2",
+   "kind": "S1",
+   "line": 12,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_414_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_2",
+   "kind": "hang",
+   "line": 19,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_414_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_414_3",
+   "line": 8,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_414_3_1": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_414_3",
+   "kind": "S1",
+   "line": 9,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_414_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_414_3",
+   "kind": "S1",
+   "line": 14,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_414_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_3",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_414_3_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_3",
+   "kind": "panic",
+   "line": 14,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_414_4_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_414_4",
+   "line": 40,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_414_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_414_4",
+   "kind": "panic",
+   "line": 110,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_414_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_414_4",
+   "kind": "panic",
+   "line": 36,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_414_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_414_4",
+   "kind": "panic",
+   "line": 134,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_414_4_4": {
+   "by_input": "005.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 6,
+   "inst": "C_414_4",
+   "kind": "panic",
+   "line": 4,
+   "new": "49",
+   "old": "50",
+   "status": "killed"
+  },
+  "m_run1_c_414_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_414_4",
+   "kind": "panic",
+   "line": 147,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_415_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_415_2",
+   "kind": "S1",
+   "line": 10,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_415_2_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_415_2",
+   "line": 12,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_415_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_415_2",
+   "kind": "panic",
+   "line": 10,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_415_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_415_2",
+   "kind": "S1",
+   "line": 11,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_415_2_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_415_2",
+   "kind": "S1",
+   "line": 2,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_415_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_415_2",
+   "kind": "panic",
+   "line": 34,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_415_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_415_3",
+   "line": 38,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_415_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_415_3",
+   "kind": "S1",
+   "line": 67,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_415_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_415_3",
+   "kind": "panic",
+   "line": 18,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_415_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_415_3",
+   "kind": "S1",
+   "line": 71,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_415_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_415_3",
+   "line": 14,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_415_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_415_3",
+   "kind": "panic",
+   "line": 90,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_416_1_0": {
+   "by_input": "007.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 8,
+   "inst": "C_416_1",
+   "kind": "S1",
+   "line": 13,
+   "new": ">",
+   "old": ">=",
+   "status": "killed"
+  },
+  "m_run1_c_416_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_416_1",
+   "kind": "S1",
+   "line": 12,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_416_1_2": {
+   "by_input": "060.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 61,
+   "inst": "C_416_1",
+   "kind": "S1",
+   "line": 8,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_416_1_3": {
+   "by_input": "007.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 8,
+   "inst": "C_416_1",
+   "kind": "S1",
+   "line": 13,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_417_1_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_417_1",
+   "line": 13,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_417_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_417_1",
+   "kind": "panic",
+   "line": 5,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_417_1_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_417_1",
+   "kind": "panic",
+   "line": 18,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_417_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_417_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_417_1_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_417_1",
+   "kind": "S1",
+   "line": 18,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_0": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 4,
+   "inst": "C_417_3",
+   "kind": "S1",
+   "line": 16,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_1": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 4,
+   "inst": "C_417_3",
+   "kind": "S1",
+   "line": 51,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_417_3",
+   "kind": "panic",
+   "line": 14,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_3": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 4,
+   "inst": "C_417_3",
+   "kind": "S1",
+   "line": 62,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_4": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 4,
+   "inst": "C_417_3",
+   "kind": "S1",
+   "line": 4,
+   "new": "1065232",
+   "old": "1065233",
+   "status": "killed"
+  },
+  "m_run1_c_417_3_5": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 4,
+   "inst": "C_417_3",
+   "kind": "panic",
+   "line": 58,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_417_4",
+   "kind": "S1",
+   "line": 7,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_1": {
+   "by_input": "007.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 8,
+   "inst": "C_417_4",
+   "kind": "panic",
+   "line": 34,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_417_4",
+   "kind": "panic",
+   "line": 13,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_417_4",
+   "kind": "S1",
+   "line": 39,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_4": {
+   "by_input": "001.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_417_4",
+   "kind": "hang",
+   "line": 4,
+   "new": "0",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_417_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_417_4",
+   "kind": "panic",
+   "line": 53,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_418_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_418_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_418_1_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_418_1",
+   "line": 31,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_418_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_418_1",
+   "kind": "S1",
+   "line": 13,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_418_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_418_1",
+   "kind": "S1",
+   "line": 39,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_418_1_4": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_418_1",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_418_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_418_1",
+   "kind": "panic",
+   "line": 39,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_418_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_418_4",
+   "kind": "S1",
+   "line": 40,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_418_4_1": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 4,
+   "inst": "C_418_4",
+   "kind": "S1",
+   "line": 134,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_418_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_418_4",
+   "kind": "panic",
+   "line": 49,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_418_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_418_4",
+   "kind": "hang",
+   "line": 135,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_418_4_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_418_4",
+   "line": 40,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_418_4_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_418_4",
+   "kind": "S1",
+   "line": 135,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_419_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_419_3",
+   "line": 53,
+   "new": "==",
+   "old": "!=",
+   "status": "survived"
+  },
+  "m_run1_c_419_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_419_3",
+   "line": 55,
+   "new": "<",
+   "old": "<=",
+   "status": "survived"
+  },
+  "m_run1_c_419_3_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_419_3",
+   "line": 34,
+   "new": "-",
+   "old": "+",
+   "status": "survived"
+  },
+  "m_run1_c_419_3_3": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_419_3",
+   "line": 71,
+   "new": "-",
+   "old": "+",
+   "status": "survived"
+  },
+  "m_run1_c_419_3_4": {
+   "class": "constant",
+   "inst": "C_419_3",
+   "line": 9,
+   "new": "2000",
+   "old": "2001",
+   "status": "stillborn"
+  },
+  "m_run1_c_419_3_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_419_3",
+   "line": 70,
+   "new": "2001",
+   "old": "2000",
+   "status": "survived"
+  },
+  "m_run1_c_420_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "panic",
+   "line": 9,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_420_2_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "S1",
+   "line": 13,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_420_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "panic",
+   "line": 10,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_420_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "panic",
+   "line": 22,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_420_2_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_420_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_420_2",
+   "kind": "panic",
+   "line": 34,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_420_3",
+   "kind": "S1",
+   "line": 8,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_420_3",
+   "kind": "S1",
+   "line": 38,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_420_3",
+   "kind": "panic",
+   "line": 12,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_420_3",
+   "kind": "S1",
+   "line": 39,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_420_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_420_3_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_420_3",
+   "kind": "S1",
+   "line": 39,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_421_1",
+   "kind": "S1",
+   "line": 6,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_421_1",
+   "kind": "panic",
+   "line": 24,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_421_1",
+   "kind": "S1",
+   "line": 18,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_421_1",
+   "kind": "S1",
+   "line": 51,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_421_1",
+   "kind": "panic",
+   "line": 6,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_421_1_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_421_1",
+   "kind": "panic",
+   "line": 46,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_421_3",
+   "kind": "panic",
+   "line": 91,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_421_3",
+   "kind": "S1",
+   "line": 124,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_421_3",
+   "kind": "S1",
+   "line": 44,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_421_3",
+   "kind": "S1",
+   "line": 158,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_421_3",
+   "kind": "S1",
+   "line": 7,
+   "new": "1000000006",
+   "old": "1000000007",
+   "status": "killed"
+  },
+  "m_run1_c_421_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_421_3",
+   "kind": "S1",
+   "line": 144,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_421_4",
+   "kind": "panic",
+   "line": 56,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_421_4",
+   "kind": "S1",
+   "line": 76,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_421_4",
+   "kind": "panic",
+   "line": 32,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_421_4",
+   "kind": "S1",
+   "line": 87,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_421_4",
+   "kind": "panic",
+   "line": 4,
+   "new": "25",
+   "old": "26",
+   "status": "killed"
+  },
+  "m_run1_c_421_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_421_4",
+   "kind": "S1",
+   "line": 76,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_422_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_422_1",
+   "kind": "S1",
+   "line": 9,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_422_1_1": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_422_1",
+   "line": 7,
+   "new": "-",
+   "old": "+",
+   "status": "survived"
+  },
+  "m_run1_c_422_1_2": {
+   "by_input": "009.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 10,
+   "inst": "C_422_1",
+   "kind": "S1",
+   "line": 7,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_422_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_422_1",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_422_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_422_1",
+   "kind": "S1",
+   "line": 9,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_422_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_422_2",
+   "kind": "S1",
+   "line": 29,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_422_2_1": {
+   "by_input": "001.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_422_2",
+   "kind": "hang",
+   "line": 78,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_422_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_422_2",
+   "kind": "S1",
+   "line": 54,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_422_2_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_422_2",
+   "kind": "panic",
+   "line": 76,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_422_2_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_422_2",
+   "line": 29,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_422_2_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_422_2",
+   "line": 86,
+   "new": "2",
+   "old": "1",
+   "status": "survived"
+  },
+  "m_run1_c_422_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_422_3",
+   "kind": "S1",
+   "line": 39,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_422_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_422_3",
+   "line": 53,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_422_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_422_3",
+   "kind": "S1",
+   "line": 39,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_422_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_422_3",
+   "kind": "S1",
+   "line": 56,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_422_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_422_3",
+   "line": 26,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_422_3_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_422_3",
+   "line": 66,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_422_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_422_4",
+   "kind": "S1",
+   "line": 17,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_422_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_422_4",
+   "kind": "S1",
+   "line": 140,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_422_4_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_422_4",
+   "line": 17,
+   "new": "+",
+   "old": "-",
+   "status": "survived"
+  },
+  "m_run1_c_422_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_422_4",
+   "kind": "panic",
+   "line": 148,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_422_4_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_422_4",
+   "kind": "S1",
+   "line": 5,
+   "new": "80",
+   "old": "81",
+   "status": "killed"
+  },
+  "m_run1_c_422_4_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_422_4",
+   "kind": "S1",
+   "line": 144,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_423_1_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_423_1",
+   "kind": "S1",
+   "line": 4,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_423_1_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_423_1",
+   "kind": "S1",
+   "line": 37,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_423_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_423_1",
+   "kind": "panic",
+   "line": 11,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_423_1_3": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_423_1",
+   "line": 37,
+   "new": "+",
+   "old": "-",
+   "status": "survived"
+  },
+  "m_run1_c_423_1_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_423_1",
+   "line": 4,
+   "new": "0",
+   "old": "1",
+   "status": "survived"
+  },
+  "m_run1_c_423_1_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_423_1",
+   "kind": "S1",
+   "line": 37,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_423_2_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_423_2",
+   "line": 4,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_423_2_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_423_2",
+   "line": 20,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_423_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_423_2",
+   "kind": "panic",
+   "line": 20,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_423_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_423_2",
+   "kind": "hang",
+   "line": 27,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_423_2_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_423_2",
+   "line": 13,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_423_2_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_423_2",
+   "kind": "S1",
+   "line": 27,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_423_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_423_3",
+   "kind": "S1",
+   "line": 10,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_423_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_423_3",
+   "kind": "S1",
+   "line": 16,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_423_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_423_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_423_3_3": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_423_3",
+   "line": 14,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_423_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_423_4",
+   "kind": "S1",
+   "line": 44,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_423_4_1": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_423_4",
+   "kind": "S1",
+   "line": 57,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_423_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_423_4",
+   "kind": "panic",
+   "line": 22,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_423_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_423_4",
+   "kind": "S1",
+   "line": 58,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_423_4_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_423_4",
+   "line": 3,
+   "new": "800",
+   "old": "801",
+   "status": "survived"
+  },
+  "m_run1_c_423_4_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_423_4",
+   "kind": "S1",
+   "line": 57,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_424_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_424_1",
+   "kind": "S1",
+   "line": 9,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_424_1_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_424_1",
+   "line": 48,
+   "new": "!=",
+   "old": "==",
+   "status": "survived"
+  },
+  "m_run1_c_424_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_424_1",
+   "kind": "S1",
+   "line": 10,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_424_1_3": {
+   "by_input": "034.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 35,
+   "inst": "C_424_1",
+   "kind": "S1",
+   "line": 16,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_424_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_424_1",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_424_1_5": {
+   "by_input": "034.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 35,
+   "inst": "C_424_1",
+   "kind": "S1",
+   "line": 16,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_424_2",
+   "kind": "panic",
+   "line": 15,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_424_2",
+   "kind": "S1",
+   "line": 71,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_424_2",
+   "kind": "S1",
+   "line": 14,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_424_2",
+   "kind": "S1",
+   "line": 22,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_4": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 4,
+   "inst": "C_424_2",
+   "kind": "S1",
+   "line": 14,
+   "new": "0",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_424_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_424_2",
+   "kind": "panic",
+   "line": 75,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_424_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_424_3",
+   "kind": "S1",
+   "line": 17,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_424_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_424_3",
+   "line": 29,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_424_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_424_3",
+   "kind": "panic",
+   "line": 12,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_424_3_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_424_3",
+   "kind": "S1",
+   "line": 36,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_424_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_424_3",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_424_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_424_3",
+   "kind": "panic",
+   "line": 62,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_425_1_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_425_1",
+   "kind": "S1",
+   "line": 41,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_425_1_1": {
+   "by_input": "006.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 7,
+   "inst": "C_425_1",
+   "kind": "S1",
+   "line": 59,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_425_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_425_1",
+   "kind": "S1",
+   "line": 56,
+   "new": "+=",
+   "old": "-=",
+   "status": "killed"
+  },
+  "m_run1_c_425_1_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_425_1",
+   "kind": "S1",
+   "line": 57,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_425_1_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_425_1",
+   "line": 47,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_425_1_5": {
+   "by_input": "006.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 7,
+   "inst": "C_425_1",
+   "kind": "S1",
+   "line": 59,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_425_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_425_2",
+   "kind": "S1",
+   "line": 26,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_425_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_425_3",
+   "line": 14,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_425_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_425_3",
+   "line": 87,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_425_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_425_3",
+   "kind": "panic",
+   "line": 7,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_425_3_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_425_3",
+   "kind": "S1",
+   "line": 47,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_425_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_425_3",
+   "line": 5,
+   "new": "1",
+   "old": "2",
+   "status": "survived"
+  },
+  "m_run1_c_425_3_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_425_3",
+   "line": 87,
+   "new": "2",
+   "old": "1",
+   "status": "survived"
+  },
+  "m_run1_c_425_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_425_4",
+   "kind": "S1",
+   "line": 117,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_425_4_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_425_4",
+   "line": 174,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_425_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_425_4",
+   "kind": "panic",
+   "line": 59,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_425_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_425_4",
+   "kind": "panic",
+   "line": 176,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_425_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_425_4",
+   "kind": "panic",
+   "line": 59,
+   "new": "0",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_425_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_425_4",
+   "kind": "S1",
+   "line": 187,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_426_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_426_2",
+   "kind": "S1",
+   "line": 19,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_426_2_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_426_2",
+   "line": 26,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_426_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_426_2",
+   "kind": "panic",
+   "line": 12,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_426_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_426_2",
+   "kind": "panic",
+   "line": 25,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_426_2_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_426_2",
+   "line": 9,
+   "new": "2000",
+   "old": "2001",
+   "status": "survived"
+  },
+  "m_run1_c_426_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_426_2",
+   "kind": "S1",
+   "line": 25,
+   "new": "999",
+   "old": "1000",
+   "status": "killed"
+  },
+  "m_run1_c_427_1_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_427_1",
+   "kind": "S1",
+   "line": 10,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_427_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_1",
+   "kind": "S1",
+   "line": 38,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_427_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_427_1",
+   "kind": "S1",
+   "line": 14,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_427_1_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_427_1",
+   "kind": "panic",
+   "line": 15,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_427_1_4": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_427_1",
+   "kind": "S1",
+   "line": 10,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_427_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_2",
+   "kind": "S1",
+   "line": 34,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_427_2_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_2",
+   "kind": "S1",
+   "line": 78,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_427_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_427_2",
+   "kind": "panic",
+   "line": 31,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_427_2_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_427_2",
+   "kind": "S1",
+   "line": 63,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_427_2_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_427_2",
+   "line": 4,
+   "new": "10006",
+   "old": "10007",
+   "status": "survived"
+  },
+  "m_run1_c_427_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_427_2",
+   "kind": "panic",
+   "line": 89,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_427_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_427_3",
+   "line": 4,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_427_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_3",
+   "kind": "panic",
+   "line": 76,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_427_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_427_3",
+   "kind": "panic",
+   "line": 13,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_427_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_427_3",
+   "kind": "panic",
+   "line": 48,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_427_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_427_3",
+   "line": 13,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_427_3_5": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 4,
+   "inst": "C_427_3",
+   "kind": "S1",
+   "line": 46,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "panic",
+   "line": 4,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "S1",
+   "line": 224,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "hang",
+   "line": 7,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "panic",
+   "line": 239,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "panic",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_427_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_427_4",
+   "kind": "panic",
+   "line": 257,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_428_1_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_428_1",
+   "kind": "S1",
+   "line": 13,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_428_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_428_1",
+   "kind": "S1",
+   "line": 47,
+   "new": ">",
+   "old": ">=",
+   "status": "killed"
+  },
+  "m_run1_c_428_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_428_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_428_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_428_1",
+   "kind": "panic",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_428_1_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_428_1",
+   "line": 57,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_428_2_0": {
+   "class": "arithmetic",
+   "inputs_run": 79,
+   "inst": "C_428_2",
+   "line": 51,
+   "new": "+",
+   "old": "*",
+   "status": "survived"
+  },
+  "m_run1_c_428_2_1": {
+   "class": "arithmetic",
+   "inputs_run": 79,
+   "inst": "C_428_2",
+   "line": 62,
+   "new": "+",
+   "old": "*",
+   "status": "survived"
+  },
+  "m_run1_c_428_2_2": {
+   "class": "constant",
+   "inputs_run": 79,
+   "inst": "C_428_2",
+   "line": 12,
+   "new": "19",
+   "old": "20",
+   "status": "survived"
+  },
+  "m_run1_c_428_2_3": {
+   "class": "constant",
+   "inputs_run": 79,
+   "inst": "C_428_2",
+   "line": 111,
+   "new": "3",
+   "old": "2",
+   "status": "survived"
+  },
+  "m_run1_c_428_3_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_428_3",
+   "kind": "panic",
+   "line": 10,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_428_3_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_428_3",
+   "kind": "S1",
+   "line": 45,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_428_3_2": {
+   "by_input": "017.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 18,
+   "inst": "C_428_3",
+   "kind": "hang",
+   "line": 11,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_428_3_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_428_3",
+   "kind": "S1",
+   "line": 48,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_428_3_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_428_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_428_3_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_428_3",
+   "kind": "S1",
+   "line": 48,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_428_4_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_428_4",
+   "line": 19,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_428_4_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_428_4",
+   "line": 40,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_428_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_428_4",
+   "kind": "panic",
+   "line": 7,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_428_4_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_428_4",
+   "kind": "S1",
+   "line": 31,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_428_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_428_4",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_428_4_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_428_4",
+   "kind": "S1",
+   "line": 41,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_429_1",
+   "kind": "S1",
+   "line": 37,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_429_1",
+   "kind": "S1",
+   "line": 45,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_429_1",
+   "kind": "panic",
+   "line": 43,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_429_1",
+   "kind": "S1",
+   "line": 47,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_429_1",
+   "kind": "panic",
+   "line": 30,
+   "new": "100",
+   "old": "101",
+   "status": "killed"
+  },
+  "m_run1_c_429_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_429_1",
+   "kind": "S1",
+   "line": 50,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_429_2_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_429_2",
+   "line": 12,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_429_2_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_429_2",
+   "kind": "S1",
+   "line": 19,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_429_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_429_2",
+   "kind": "panic",
+   "line": 12,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_429_2_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_429_2",
+   "kind": "panic",
+   "line": 20,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_429_2_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_429_2",
+   "kind": "S1",
+   "line": 8,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_429_2_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_429_2",
+   "kind": "panic",
+   "line": 36,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_429_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_429_3",
+   "line": 22,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_429_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_429_3",
+   "kind": "hang",
+   "line": 67,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_429_3_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_429_3",
+   "kind": "panic",
+   "line": 7,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_429_3_3": {
+   "by_input": "006.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 7,
+   "inst": "C_429_3",
+   "kind": "hang",
+   "line": 72,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_429_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_429_3",
+   "line": 4,
+   "new": "1001",
+   "old": "1000",
+   "status": "survived"
+  },
+  "m_run1_c_429_3_5": {
+   "by_input": "007.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 8,
+   "inst": "C_429_3",
+   "kind": "S1",
+   "line": 72,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_429_4_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_429_4",
+   "line": 19,
+   "new": "<",
+   "old": "<=",
+   "status": "survived"
+  },
+  "m_run1_c_429_4_1": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 4,
+   "inst": "C_429_4",
+   "kind": "S1",
+   "line": 95,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_429_4_2": {
+   "by_input": "006.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 7,
+   "inst": "C_429_4",
+   "kind": "S1",
+   "line": 19,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_429_4_3": {
+   "by_input": "003.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 4,
+   "inst": "C_429_4",
+   "kind": "hang",
+   "line": 101,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_429_4_4": {
+   "class": "constant",
+   "inst": "C_429_4",
+   "line": 3,
+   "new": "1",
+   "old": "2",
+   "status": "stillborn"
+  },
+  "m_run1_c_429_4_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_429_4",
+   "line": 125,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_430_1_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_430_1",
+   "kind": "S1",
+   "line": 9,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_430_1_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_430_1",
+   "kind": "S1",
+   "line": 15,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_430_1_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_430_1",
+   "kind": "panic",
+   "line": 15,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_430_1_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_430_1",
+   "kind": "S1",
+   "line": 17,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_430_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_430_1",
+   "kind": "panic",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_430_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_430_1",
+   "kind": "panic",
+   "line": 36,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_430_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_430_3",
+   "line": 7,
+   "new": "==",
+   "old": "!=",
+   "status": "survived"
+  },
+  "m_run1_c_430_3_1": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_430_3",
+   "line": 20,
+   "new": "+",
+   "old": "-",
+   "status": "survived"
+  },
+  "m_run1_c_430_3_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_430_3",
+   "line": 45,
+   "new": "+=",
+   "old": "-=",
+   "status": "survived"
+  },
+  "m_run1_c_430_3_3": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_430_3",
+   "line": 7,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_430_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_430_3",
+   "line": 45,
+   "new": "2",
+   "old": "1",
+   "status": "survived"
+  },
+  "m_run1_c_430_4_0": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_430_4",
+   "kind": "hang",
+   "line": 14,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_430_4_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_430_4",
+   "kind": "S1",
+   "line": 15,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_430_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_430_4",
+   "kind": "S1",
+   "line": 6,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_430_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_430_4",
+   "kind": "S1",
+   "line": 41,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_430_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_430_4",
+   "kind": "S1",
+   "line": 10,
+   "new": "0",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_430_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_430_4",
+   "kind": "panic",
+   "line": 55,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_431_1",
+   "kind": "S1",
+   "line": 7,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_431_1",
+   "kind": "S1",
+   "line": 37,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_431_1",
+   "kind": "S1",
+   "line": 16,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_431_1",
+   "kind": "panic",
+   "line": 38,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_431_1",
+   "kind": "panic",
+   "line": 7,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_431_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_431_1",
+   "kind": "S1",
+   "line": 38,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_431_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_431_2",
+   "kind": "panic",
+   "line": 38,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_431_2_1": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_431_2",
+   "kind": "panic",
+   "line": 42,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_431_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_431_2",
+   "kind": "panic",
+   "line": 34,
+   "new": "25",
+   "old": "26",
+   "status": "killed"
+  },
+  "m_run1_c_431_2_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_431_2",
+   "kind": "S1",
+   "line": 42,
+   "new": "26",
+   "old": "25",
+   "status": "killed"
+  },
+  "m_run1_c_431_3_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_431_3",
+   "kind": "panic",
+   "line": 39,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_431_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_431_3",
+   "line": 74,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_431_3_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_431_3",
+   "line": 28,
+   "new": "-",
+   "old": "+",
+   "status": "survived"
+  },
+  "m_run1_c_431_3_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_431_3",
+   "kind": "panic",
+   "line": 77,
+   "new": "+=",
+   "old": "-=",
+   "status": "killed"
+  },
+  "m_run1_c_431_3_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_431_3",
+   "line": 28,
+   "new": "0",
+   "old": "1",
+   "status": "survived"
+  },
+  "m_run1_c_431_3_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_431_3",
+   "kind": "S1",
+   "line": 77,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_431_4_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_431_4",
+   "kind": "panic",
+   "line": 22,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_431_4_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_431_4",
+   "kind": "S1",
+   "line": 242,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_431_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_431_4",
+   "kind": "panic",
+   "line": 21,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_431_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_431_4",
+   "kind": "S1",
+   "line": 219,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_431_4_4": {
+   "class": "constant",
+   "inst": "C_431_4",
+   "line": 5,
+   "new": "3",
+   "old": "4",
+   "status": "stillborn"
+  },
+  "m_run1_c_431_4_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_431_4",
+   "line": 246,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_432_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_432_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_432_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_432_1",
+   "kind": "panic",
+   "line": 23,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_432_1_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_432_1",
+   "line": 9,
+   "new": "+",
+   "old": "*",
+   "status": "survived"
+  },
+  "m_run1_c_432_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_432_1",
+   "kind": "panic",
+   "line": 25,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_432_1_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_432_1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_432_1_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_432_1",
+   "kind": "S1",
+   "line": 25,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_432_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_432_2",
+   "kind": "panic",
+   "line": 4,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_432_2_1": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_432_2",
+   "kind": "S1",
+   "line": 28,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_432_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_432_2",
+   "kind": "panic",
+   "line": 4,
+   "new": "0",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_432_2_3": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_432_2",
+   "line": 45,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_432_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_432_3",
+   "kind": "S1",
+   "line": 9,
+   "new": "<",
+   "old": "<=",
+   "status": "killed"
+  },
+  "m_run1_c_432_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_432_3",
+   "kind": "hang",
+   "line": 50,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_432_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_432_3",
+   "kind": "panic",
+   "line": 51,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_432_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_432_3",
+   "kind": "hang",
+   "line": 55,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_432_3_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_432_3",
+   "kind": "S1",
+   "line": 19,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_432_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_432_3",
+   "kind": "S1",
+   "line": 55,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_433_1_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_433_1",
+   "line": 10,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_433_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_433_1",
+   "kind": "panic",
+   "line": 6,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_433_1_2": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_433_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_433_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_433_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_433_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_433_1",
+   "kind": "panic",
+   "line": 11,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_433_4_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_433_4",
+   "line": 37,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_433_4_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_433_4",
+   "line": 112,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_433_4_2": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 4,
+   "inst": "C_433_4",
+   "kind": "S1",
+   "line": 38,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_433_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_433_4",
+   "kind": "S1",
+   "line": 89,
+   "new": "+=",
+   "old": "-=",
+   "status": "killed"
+  },
+  "m_run1_c_433_4_4": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 4,
+   "inst": "C_433_4",
+   "kind": "S1",
+   "line": 38,
+   "new": "1",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_433_4_5": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_433_4",
+   "line": 80,
+   "new": "3",
+   "old": "2",
+   "status": "survived"
+  },
+  "m_run1_c_434_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_434_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_434_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_434_1",
+   "kind": "panic",
+   "line": 7,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_434_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_434_1",
+   "kind": "S1",
+   "line": 12,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_434_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_434_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_434_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_434_1",
+   "kind": "S1",
+   "line": 12,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_434_3_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_434_3",
+   "line": 4,
+   "new": ">=",
+   "old": ">",
+   "status": "survived"
+  },
+  "m_run1_c_434_3_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_434_3",
+   "kind": "S1",
+   "line": 41,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_434_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_434_3",
+   "kind": "panic",
+   "line": 15,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_434_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_434_3",
+   "kind": "panic",
+   "line": 25,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_434_3_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_434_3",
+   "kind": "S1",
+   "line": 8,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_434_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_434_3",
+   "kind": "panic",
+   "line": 46,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_435_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_435_1",
+   "kind": "S1",
+   "line": 18,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_435_1_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_435_1",
+   "line": 23,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_435_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_1",
+   "kind": "panic",
+   "line": 10,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_435_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_1",
+   "kind": "S1",
+   "line": 30,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_435_1_4": {
+   "by_input": "007.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 8,
+   "inst": "C_435_1",
+   "kind": "panic",
+   "line": 5,
+   "new": "25",
+   "old": "26",
+   "status": "killed"
+  },
+  "m_run1_c_435_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_435_1",
+   "kind": "S1",
+   "line": 22,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_435_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_435_2",
+   "kind": "S1",
+   "line": 30,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_435_2_1": {
+   "by_input": "003.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 4,
+   "inst": "C_435_2",
+   "kind": "S1",
+   "line": 9,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_435_2_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_2",
+   "kind": "panic",
+   "line": 17,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_435_2_3": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_435_2",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_435_2_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_435_2",
+   "kind": "panic",
+   "line": 36,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_435_3_0": {
+   "by_input": "005.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 6,
+   "inst": "C_435_3",
+   "kind": "S1",
+   "line": 5,
+   "new": "==",
+   "old": "!=",
+   "status": "killed"
+  },
+  "m_run1_c_435_3_1": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_435_3",
+   "line": 58,
+   "new": "<=",
+   "old": "<",
+   "status": "survived"
+  },
+  "m_run1_c_435_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_3",
+   "kind": "S1",
+   "line": 28,
+   "new": "+",
+   "old": "*",
+   "status": "killed"
+  },
+  "m_run1_c_435_3_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_3",
+   "kind": "panic",
+   "line": 66,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_435_3_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_435_3",
+   "kind": "panic",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_435_3_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_435_3",
+   "kind": "panic",
+   "line": 79,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "S1",
+   "line": 13,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "S1",
+   "line": 27,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "panic",
+   "line": 9,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "S1",
+   "line": 36,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "panic",
+   "line": 4,
+   "new": "1",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_435_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_435_4",
+   "kind": "panic",
+   "line": 36,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_436_3_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_436_3",
+   "kind": "panic",
+   "line": 9,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_436_3_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_436_3",
+   "kind": "S1",
+   "line": 27,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_436_3_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_436_3",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_436_3_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_436_3",
+   "kind": "S1",
+   "line": 27,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_436_4_0": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_436_4",
+   "kind": "S1",
+   "line": 26,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_436_4_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 2,
+   "inst": "C_436_4",
+   "kind": "S1",
+   "line": 72,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_436_4_2": {
+   "class": "arithmetic",
+   "inputs_run": 80,
+   "inst": "C_436_4",
+   "line": 34,
+   "new": "-",
+   "old": "+",
+   "status": "survived"
+  },
+  "m_run1_c_436_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_436_4",
+   "kind": "S1",
+   "line": 75,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_436_4_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_436_4",
+   "line": 26,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_436_4_5": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_436_4",
+   "kind": "S1",
+   "line": 75,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_437_1",
+   "kind": "panic",
+   "line": 10,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_437_1",
+   "kind": "S1",
+   "line": 11,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_437_1",
+   "kind": "panic",
+   "line": 8,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 3,
+   "inst": "C_437_1",
+   "kind": "panic",
+   "line": 10,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_437_1",
+   "kind": "S1",
+   "line": 5,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_437_1_5": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_437_1",
+   "kind": "S1",
+   "line": 31,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_437_2_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_437_2",
+   "kind": "S1",
+   "line": 12,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_437_2_1": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_437_2",
+   "kind": "panic",
+   "line": 29,
+   "new": "-=",
+   "old": "+=",
+   "status": "killed"
+  },
+  "m_run1_c_437_2_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_437_2",
+   "kind": "S1",
+   "line": 10,
+   "new": "3",
+   "old": "4",
+   "status": "killed"
+  },
+  "m_run1_c_437_2_3": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 3,
+   "inst": "C_437_2",
+   "kind": "S1",
+   "line": 29,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_0": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_437_4",
+   "kind": "S1",
+   "line": 35,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_1": {
+   "by_input": "002.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 3,
+   "inst": "C_437_4",
+   "kind": "S1",
+   "line": 87,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_2": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_437_4",
+   "kind": "panic",
+   "line": 52,
+   "new": "+=",
+   "old": "-=",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_3": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 2,
+   "inst": "C_437_4",
+   "kind": "panic",
+   "line": 107,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_4": {
+   "by_input": "001.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 2,
+   "inst": "C_437_4",
+   "kind": "panic",
+   "line": 32,
+   "new": "499",
+   "old": "500",
+   "status": "killed"
+  },
+  "m_run1_c_437_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_437_4",
+   "kind": "panic",
+   "line": 107,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_438_1_0": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_438_1",
+   "kind": "panic",
+   "line": 6,
+   "new": ">=",
+   "old": ">",
+   "status": "killed"
+  },
+  "m_run1_c_438_1_1": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_438_1",
+   "kind": "S1",
+   "line": 15,
+   "new": "!=",
+   "old": "==",
+   "status": "killed"
+  },
+  "m_run1_c_438_1_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_438_1",
+   "kind": "panic",
+   "line": 8,
+   "new": "+",
+   "old": "-",
+   "status": "killed"
+  },
+  "m_run1_c_438_1_3": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_438_1",
+   "kind": "panic",
+   "line": 9,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_438_1_4": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_438_1",
+   "line": 4,
+   "new": "11",
+   "old": "10",
+   "status": "survived"
+  },
+  "m_run1_c_438_1_5": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout",
+    "exit",
+    "stderr"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_438_1",
+   "kind": "panic",
+   "line": 15,
+   "new": "2",
+   "old": "1",
+   "status": "killed"
+  },
+  "m_run1_c_438_2_0": {
+   "class": "constant",
+   "inputs_run": 80,
+   "inst": "C_438_2",
+   "line": 47,
+   "new": "1",
+   "old": "0",
+   "status": "survived"
+  },
+  "m_run1_c_438_4_0": {
+   "class": "relational",
+   "inputs_run": 80,
+   "inst": "C_438_4",
+   "line": 4,
+   "new": ">",
+   "old": ">=",
+   "status": "survived"
+  },
+  "m_run1_c_438_4_1": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "relational",
+   "inputs_run": 1,
+   "inst": "C_438_4",
+   "kind": "hang",
+   "line": 66,
+   "new": "<=",
+   "old": "<",
+   "status": "killed"
+  },
+  "m_run1_c_438_4_2": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_438_4",
+   "kind": "S1",
+   "line": 5,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_438_4_3": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "arithmetic",
+   "inputs_run": 1,
+   "inst": "C_438_4",
+   "kind": "hang",
+   "line": 67,
+   "new": "-",
+   "old": "+",
+   "status": "killed"
+  },
+  "m_run1_c_438_4_4": {
+   "by_input": "000.in",
+   "channels": [
+    "stdout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_438_4",
+   "kind": "S1",
+   "line": 4,
+   "new": "1",
+   "old": "0",
+   "status": "killed"
+  },
+  "m_run1_c_438_4_5": {
+   "by_input": "000.in",
+   "channels": [
+    "timeout"
+   ],
+   "class": "constant",
+   "inputs_run": 1,
+   "inst": "C_438_4",
+   "kind": "hang",
+   "line": 67,
+   "new": "3",
+   "old": "2",
+   "status": "killed"
+  }
+ },
+ "per_class_sites": 2,
+ "run": "run1",
+ "seconds": 62,
+ "total": {
+  "killed": 328,
+  "stillborn": 3,
+  "survived": 82
+ },
+ "translations": 76
+}

@@ -1,0 +1,849 @@
+{
+ "source": "results/vert_arrays.json (raw)",
+ "adjustments": [
+  {
+   "func": "MAXIMUM_PRODUCT_SUBARRAY_ADDED_NEGATIVE_PRODUCT_CASE",
+   "raw_kind": "agree",
+   "kind": "no_assessable_input",
+   "inputs": 0,
+   "adjustment": "0 assessable inputs (takes [i32; 10000]); not an agreement"
+  },
+  {
+   "func": "BIRTHDAY_PARADOX",
+   "raw_kind": "value",
+   "kind": "ub_only",
+   "inputs": 3,
+   "adjustment": "diverges only where the C converts NaN to an integer (UB); moved by hand"
+  }
+ ],
+ "counts": {
+  "agree": 81,
+  "ub_only": 23,
+  "no_assessable_input": 1,
+  "value": 10,
+  "rust_crash": 2
+ },
+ "agree_on_1_to_3_inputs": 16,
+ "array_length_note": "all but two array functions use [i32; 2]",
+ "rows": [
+  {
+   "func": "AREA_OF_A_HEXAGON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "PROBABILITY_THREE_RANDOMLY_CHOSEN_NUMBERS_AP",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "MODULUS_TWO_FLOAT_DOUBLE_NUMBERS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_LENGTH_SUBSEQUENCE_DIFFERENCE_ADJACENT_ELEMENTS_EITHER_0_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_MINIMUM_DISTANCE_BETWEEN_TWO_NUMBERS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_NUMBER_PLATFORMS_REQUIRED_RAILWAYBUS_STATION",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_FIND_SLOPE_LINE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_PAIRS_DIFFERENCE_EQUAL_K",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 60,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_LARGEST_D_IN_ARRAY_SUCH_THAT_A_B_C_D",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_PAIRS_WHOSE_PRODUCTS_EXIST_IN_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_PAIRS_TWO_SORTED_ARRAYS_WHOSE_SUM_EQUAL_GIVEN_VALUE_X",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "GIVEN_A_SORTED_AND_ROTATED_ARRAY_FIND_IF_THERE_IS_A_PAIR_WITH_A_GIVEN_SUM_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_PAIR_WITH_GREATEST_PRODUCT_IN_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "LONGEST_INCREASING_ODD_EVEN_SUBSEQUENCE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_SUM_TWO_NUMBERS_FORMED_DIGITS_ARRAY",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "NUMBER_OF_PAIRS_IN_AN_ARRAY_HAVING_SUM_EQUAL_TO_PRODUCT",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_PRODUCT_SUBARRAY_ADDED_NEGATIVE_PRODUCT_CASE",
+   "raw_kind": "agree",
+   "kind": "no_assessable_input",
+   "inputs": 0,
+   "adjustment": "0 assessable inputs (takes [i32; 10000]); not an agreement"
+  },
+  {
+   "func": "SUM_SERIES_ALTERNATE_SIGNED_SQUARES_AP",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PRODUCT_MAXIMUM_FIRST_ARRAY_MINIMUM_SECOND_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_CIRCUMFERENCE_PARALLELOGRAM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FLOOR_IN_A_SORTED_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_HEIGHT_OF_TRIANGULAR_ARRANGEMENT_OF_ARRAY_VALUES",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "INTEGER_POSITIVE_VALUE_POSITIVE_NEGATIVE_VALUE_ARRAY_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "AREA_OF_THE_CIRCLE_THAT_HAS_A_SQUARE_AND_A_CIRCLE_INSCRIBED_IN_IT",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUM_IARRI_AMONG_ROTATIONS_GIVEN_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CHECK_ARRAY_REPRESENTS_INORDER_BINARY_SEARCH_TREE_NOT",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_MINIMUM_DISTANCE_BETWEEN_TWO_NUMBERS_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "NUMBER_INDEXES_EQUAL_ELEMENTS_GIVEN_RANGE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "DIFFERENCE_MAXIMUM_SUM_MINIMUM_SUM_N_M_ELEMENTSIN_REVIEW",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MINIMUM_NUMBER_OF_COINS_THAT_MAKE_A_CHANGE_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUM_BITONIC_SUBARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_ROTATION_COUNT_ROTATED_SORTED_ARRAY",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_OPERATIONS_MAKE_GCD_ARRAY_MULTIPLE_K",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_REPETITIVE_ELEMENT_1_N_1_2",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEMENTS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "BIRTHDAY_PARADOX",
+   "raw_kind": "value",
+   "kind": "ub_only",
+   "inputs": 3,
+   "adjustment": "diverges only where the C converts NaN to an integer (UB); moved by hand"
+  },
+  {
+   "func": "QUERIES_COUNTS_ARRAY_ELEMENTS_VALUES_GIVEN_RANGE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_PAIRS_DIFFERENCE_EQUAL_K_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_MAXIMUM_SUBARRAY_XOR_IN_A_GIVEN_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_POSSIBLE_GROUPS_SIZE_2_3_SUM_MULTIPLE_3",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "DYNAMIC_PROGRAMMING_HIGH_EFFORT_VS_LOW_EFFORT_TASKS_PROBLEM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "NON_REPEATING_ELEMENT",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "LENGTH_OF_THE_LONGEST_ARITHMATIC_PROGRESSION_IN_A_SORTED_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "SUM_MANHATTAN_DISTANCES_PAIRS_POINTS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MAXIMUM_PRODUCT_OF_A_TRIPLET_IN_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_MISSING_NUMBER_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "HORNERS_METHOD_POLYNOMIAL_EVALUATION",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_PRODUCT_SUBSET_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_TRIPLET_SUM_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_ELEMENT_THAT_APPEARS_ONCE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "REMOVE_MINIMUM_ELEMENTS_EITHER_SIDE_2MIN_MAX",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "SUBSEQUENCES_SIZE_THREE_ARRAY_WHOSE_SUM_DIVISIBLE_M",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "NUMBER_ORDERED_PAIRS_AI_AJ_0",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "SEARCH_INSERT_AND_DELETE_IN_AN_UNSORTED_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "UNBOUNDED_KNAPSACK_REPETITION_ITEMS_ALLOWED",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUM_IARRI_AMONG_ROTATIONS_GIVEN_ARRAY_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_NUMBER_OCCURRING_ODD_NUMBER_OF_TIMES_2",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_FIRST_MISSING_NUMBER",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "HIGHWAY_BILLBOARD_PROBLEM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "DYNAMIC_PROGRAMMING_SET_13_CUTTING_A_ROD",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_REMOVAL_FROM_ARRAY_WHEN_REMOVAL_TIME_WAITING_TIME",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_LARGEST_SUBARRAY_WITH_0_SUM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "HOW_TO_BEGIN_WITH_COMPETITIVE_PROGRAMMING",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "DYNAMIC_PROGRAMMING_SET_14_MAXIMUM_SUM_INCREASING_SUBSEQUENCE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_CALCULATE_AREA_OCTAGON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_TO_FIND_THE_VOLUME_OF_A_TRIANGULAR_PRISM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "EQUILIBRIUM_INDEX_OF_AN_ARRAY_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_SUM_PRODUCT_TWO_ARRAYS",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_FOR_SURFACE_AREA_OF_OCTAHEDRON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "GIVEN_A_SORTED_AND_ROTATED_ARRAY_FIND_IF_THERE_IS_A_PAIR_WITH_A_GIVEN_SUM",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CEILING_IN_A_SORTED_ARRAY_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CHECK_IF_X_CAN_GIVE_CHANGE_TO_EVERY_PERSON_IN_THE_QUEUE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_TRIPLET_SUM_ARRAY_1",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CALCULATE_VOLUME_DODECAHEDRON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "POSITION_ELEMENT_STABLE_SORT",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CEILING_IN_A_SORTED_ARRAY",
+   "raw_kind": "rust_crash",
+   "kind": "rust_crash",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MINIMUM_DIFFERENCE_PAIR",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "CHECK_WHETHER_ARITHMETIC_PROGRESSION_CAN_FORMED_GIVEN_ARRAY",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_CALCULATE_VOLUME_ELLIPSOID",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUM_SUBSEQUENCE_LEAST_K_DISTANT_ELEMENTS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1",
+   "raw_kind": "rust_crash",
+   "kind": "rust_crash",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_TIME_TO_FINISH_TASKS_WITHOUT_SKIPPING_TWO_CONSECUTIVE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "BIN_PACKING_PROBLEM_MINIMIZE_NUMBER_OF_USED_BINS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_INDEX_PAIRS_EQUAL_ELEMENTS_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_XOR_VALUE_PAIR",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_HEIGHT_OF_TRIANGULAR_ARRANGEMENT_OF_ARRAY_VALUES_1",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "SUM_SERIES_0_6_0_06_0_006_0_0006_N_TERMS",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "LARGEST_SUM_CONTIGUOUS_SUBARRAY_2",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_NUMBER_OCCURRING_ODD_NUMBER_OF_TIMES",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_TO_FIND_THE_AREA_OF_PENTAGON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_THE_MISSING_NUMBER_2",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "COUNT_NUMBER_INCREASING_SUBSEQUENCES_SIZE_K",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MAXIMUM_SUBARRAY_SUM_ARRAY_CREATED_REPEATED_CONCATENATION",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MAXIMUM_HEIGHT_PYRAMID_FROM_THE_GIVEN_ARRAY_OF_OBJECTS",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "PYTHAGOREAN_QUADRUPLE",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "PROGRAM_CALCULATE_VOLUME_OCTAHEDRON",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 3,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_COST_FOR_ACQUIRING_ALL_COINS_WITH_K_EXTRA_COINS_ALLOWED_WITH_EVERY_COIN",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY",
+   "raw_kind": "value",
+   "kind": "value",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "MINIMUM_COST_CONNECT_WEIGHTED_NODES_REPRESENTED_ARRAY",
+   "raw_kind": "agree",
+   "kind": "agree",
+   "inputs": 30,
+   "adjustment": ""
+  },
+  {
+   "func": "FIND_MINIMUM_RADIUS_ATLEAST_K_POINT_LIE_INSIDE_CIRCLE",
+   "raw_kind": "ub_only",
+   "kind": "ub_only",
+   "inputs": 30,
+   "adjustment": ""
+  }
+ ]
+}

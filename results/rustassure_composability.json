@@ -1,0 +1,183 @@
+{
+  "system": "RustAssure",
+  "shipped_libraries_total": 5,
+  "shipped_as_composed_runnable_crate": [
+    "csv_link",
+    "u8c_link"
+  ],
+  "composed_count": 2,
+  "per_function_only": [
+    "libbmp",
+    "optipng",
+    "url_parser"
+  ],
+  "signature_consistency": {
+    "libcsv": {
+      "translation_files": 252,
+      "distinct_functions": 36,
+      "functions_with_inconsistent_signature": 23,
+      "max_distinct_signatures_for_one_function": 8,
+      "worst_offenders": {
+        "csv_fwrite": [
+          "(&mutFile,&[u8])->io::Result<()>",
+          "(&mutFile,&[u8])->io::Result<usize>",
+          "(&mutFile,*constc_void,size_t)->io::Result<usize>",
+          "(&mutFile,*constc_void,usize)->Result<()>",
+          "(&mutFile,*constc_void,usize)->c_int",
+          "(&mutFile,*constc_void,usize)->i32",
+          "(*mutFILE,*constc_void,size_t)->c_int",
+          "(*mutFile,*constc_void,c_ulong)->c_int"
+        ],
+        "csv_error": [
+          "(&CsvParser)->i32",
+          "(&csv_parser)->c_int",
+          "(*constCsvParser)->i32",
+          "(*constcsv_parser)->c_int",
+          "(NonNull<csv_parser>)->i32",
+          "(Option<&CsvParser>)->i32"
+        ],
+        "csv_set_space_func": [
+          "(&mutCsvParser,&'staticdynFn(u8)->i32)",
+          "(&mutCsvParser,Option<Box<dynFn(u8)->i32>>)",
+          "(&mutCsvParser,fn(u8)->i32)",
+          "(&mutcsv_parser,Option<fn(c_uchar)->c_int>)",
+          "(&mutself,Option<extern\"C\"fn(u8)->i32>)",
+          "(Option<&mutcsv_parser>,Option<fn(u8)->i32>)"
+        ],
+        "csv_write": [
+          "(&mut[u8],&[u8])->usize",
+          "(&mut[u8],usize,&[u8],usize)->usize",
+          "(*mutc_void,Size,*constc_void,Size)->Size",
+          "(*mutc_void,c_ulong,*constc_void,c_ulong)->c_ulong",
+          "(*mutc_void,size_t,*constc_void,size_t)->size_t",
+          "(*mutc_void,usize,*constc_void,usize)->usize"
+        ],
+        "csv_set_realloc_func": [
+          "(&mutCsvParser,Option<fn(*mutstd::ffi::c_void)->*mutstd::ffi::c_void>)",
+          "(&mutCsvParser,Option<fn(*mutu8)->*mutu8>)",
+          "(&mutOption<CsvParser>,Option<Box<dynFn(*mutstd::ffi::c_void)->*mutstd::ffi::c_void>>)",
+          "(&mutcsv_parser,Option<fn(*mutc_void)->*mutc_void>)",
+          "(&mutself,&'adynFn(*mutc_void)->*mutc_void)",
+          "(*mutCsvParser,Option<fn(*mutlibc::c_void)->*mutlibc::c_void>)"
+        ],
+        "csv_set_term_func": [
+          "(&mutCsvParser,Option<fn(u8)->i32>)",
+          "(&mutCsvParser,fn(u8)->i32)",
+          "(&mutself,fn(u8)->i32)",
+          "(*mutcsv_parser,Option<extern\"C\"fn(c_uchar)->c_int>)",
+          "(Option<&mutcsv_parser>,Option<fn(u8)->i32>)"
+        ]
+      }
+    },
+    "url_parser.h": {
+      "translation_files": 300,
+      "distinct_functions": 32,
+      "functions_with_inconsistent_signature": 27,
+      "max_distinct_signatures_for_one_function": 9,
+      "worst_offenders": {
+        "fill": [
+          "(Category,&str,&str)->()",
+          "(Category,&str,&str,&mut[u16;256])->()",
+          "(Category,&str,&str,&mut[u8;256])->()",
+          "(u16,&str,&str)->()",
+          "(u32,&str,&str)->()",
+          "(u32,&str,&str,&mut[u32;256])->()",
+          "(u32,*consti8,*consti8)->()",
+          "(u8,&str,&str)->()",
+          "(u8,&str,&str)->HashMap<u8,u8>"
+        ],
+        "scan_decimal_number": [
+          "(&mut[u8])->Option<&[u8]>",
+          "(&mutstr)->Option<&mutstr>",
+          "(&str)->Option<&str>",
+          "(*mutc_char)->*mutc_char",
+          "(*muti8)->*muti8",
+          "(*muti8)->Option<*muti8>",
+          "(*mutu8)->Option<*mutu8>"
+        ],
+        "decode_percent": [
+          "(&mutString)->()",
+          "(&mutString)->Option<()>",
+          "(&mutVec<u8>)->Option<&[u8]>",
+          "(&mutstr)->Option<&mutstr>",
+          "(&str)->String",
+          "(*mutc_char)->*mutc_char",
+          "(*mutu8)->*mutu8"
+        ],
+        "url_get_hash": [
+          "(&str)->*muti8",
+          "(&str)->Option<&str>",
+          "(&str)->Option<String>",
+          "(&str)->String",
+          "(*constc_char)->*mutc_char",
+          "(*consti8)->*muti8"
+        ],
+        "strdup": [
+          "(&str)->Option<CString>",
+          "(&str)->Option<String>",
+          "(&str)->String",
+          "(*constc_char)->*mutc_char",
+          "(*constlibc::c_char)->*mutlibc::c_char"
+        ],
+        "url_get_userinfo": [
+          "(&str)->Option<String>",
+          "(*consti8)->*muti8",
+          "(*consti8)->Option<CString>",
+          "(*constlibc::c_char)->*mutlibc::c_char",
+          "(*constlibc::c_char)->Option<String>"
+        ]
+      }
+    },
+    "optipng": {
+      "translation_files": 430,
+      "distinct_functions": 86,
+      "functions_with_inconsistent_signature": 77,
+      "max_distinct_signatures_for_one_function": 5,
+      "worst_offenders": {
+        "opng_ullratio_to_percent_string": [
+          "(&mut[u8],&OpngUllratio)->Result<usize,&'staticstr>",
+          "(&mut[u8],usize,&OpngUllratio)->i32",
+          "(*mutc_char,usize,*constOpngUllRatio)->i32",
+          "(*mutc_char,usize,*constopng_ullratio)->c_int",
+          "(*mutc_char,usize,*constopng_ullratio)->i32"
+        ],
+        "opng_rangeset_string_to_bitset": [
+          "(&str,&mutOption<usize>)->OpngBitsetT",
+          "(&str,Option<&mutusize>)->OpngBitsetT",
+          "(*constc_char,*mutc_ulong)->OpngBitset",
+          "(*constc_char,*mutc_ulong)->u32",
+          "(*constc_char,*mutsize_t)->OpngBitsetT"
+        ],
+        "osys_fgetsize": [
+          "(&mutFile)->io::Result<osys_fsize_t>",
+          "(&mutFile)->io::Result<u64>",
+          "(&mutFile,&mutOsysFsizeT)->Result<(),std::io::Error>",
+          "(&mutFile,&mutOsysFsizeT)->Result<()>",
+          "(&mutFile,&mutu64)->io::Result<()>"
+        ],
+        "process_files": [
+          "(Vec<String>)->i32",
+          "(c_int,*mut*mutc_char)->c_int",
+          "(i32,*const*constc_char)->i32",
+          "(i32,*const*consti8)->i32",
+          "(i32,Vec<String>)->i32"
+        ],
+        "osys_ftello": [
+          "(&FILE)->osys_foffset_t",
+          "(&mutFile)->io::Result<OsysFoffsetT>",
+          "(&mutFile)->osys_foffset_t",
+          "(*mutFILE)->OsysFoffsetT",
+          "(*mutc_void)->osys_foffset_t"
+        ],
+        "opng_rangeset2bitset": [
+          "(&mutOpngBitset,&str)->i32",
+          "(&mutOpngBitsetT,&CStr)->Result<(),io::Error>",
+          "(&mutOpngBitsetT,*consti8)->i32",
+          "(&mutopng_bitset_t,*constc_char)->i32",
+          "(*mutopng_bitset_t,*constc_char)->c_int"
+        ]
+      }
+    }
+  },
+  "conclusion": "Only libcsv + u8c ship as composed runnable crates (both re-graded end-to-end, both drop a C-API contract). The other 3 libraries are per-function only and NOT composable from the artifact: most functions appear with several incompatible signatures across translations, so assembling a working library requires hand-authoring the ABI (our integration, not theirs)."
+}

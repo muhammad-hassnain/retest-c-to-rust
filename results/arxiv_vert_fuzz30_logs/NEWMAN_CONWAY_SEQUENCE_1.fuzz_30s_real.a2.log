@@ -1,0 +1,130 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:662:5
+    |
+662 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:665:31
+    |
+665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+665 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+665 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:665:59
+    |
+665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+665 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+665 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:642:4
+    |
+642 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:643:4
+    |
+643 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:644:4
+    |
+644 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:645:4
+    |
+645 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:646:4
+    |
+646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:665:60
+    |
+665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin "c_transcoder_newman_conway_sequence_1_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_newman_conway_sequence_1_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 1908270908
+INFO: Loaded 1 modules   (362325 inline 8-bit counters): 362325 [0x572cbeb462d0, 0x572cbeb9ea25), 
+INFO: Loaded 1 PC tables (362325 PCs): 362325 [0x572cbeb9ea28,0x572cbf125f78), 
+INFO:        0 files found in /tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+==17043== ERROR: libFuzzer: out-of-memory (malloc(5125635260))
+   To change the out-of-memory limit use -rss_limit_mb=<N>
+
+    #0 0x572cbd4741a1  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xa671a1) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #1 0x572cbe04baee  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x163eaee) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #2 0x572cbe056ea8  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1649ea8) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #3 0x572cbe056f15  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1649f15) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #4 0x572cbd47b292  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xa6e292) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #5 0x572cbd3d38d7  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x9c68d7) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #6 0x572cbd3d3abe  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x9c6abe) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #7 0x572cbd46987b  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xa5c87b) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #8 0x572cbd524618  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xb17618) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #9 0x572cbd4aeb97  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xaa1b97) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #10 0x572cbd4c1786  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xab4786) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #11 0x572cbd527917  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xb1a917) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #12 0x572cbd4bb4fe  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xaae4fe) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #13 0x572cbd51a86c  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xb0d86c) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #14 0x572cbe0240ce  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x16170ce) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #15 0x572cbe0575d5  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x164a5d5) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #16 0x572cbe05c123  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x164f123) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #17 0x572cbe05d058  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1650058) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #18 0x572cbe05f357  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1652357) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #19 0x572cbe0328e2  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x16258e2) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #20 0x572cbe024426  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1617426) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #21 0x572cbd4bfb61  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xab2b61) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #22 0x572cbd51a287  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xb0d287) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #23 0x572cbd5272c1  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xb1a2c1) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #24 0x572cbd4c58b5  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0xab88b5) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #25 0x572cbe00aa7e  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x15fda7e) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #26 0x572cbe009a71  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x15fca71) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #27 0x572cbdfccfd3  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x15bffd3) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #28 0x572cbdfd368a  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x15c668a) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #29 0x572cbe697784  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1c8a784) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)
+    #30 0x75e68bcda9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #31 0x75e68bd6ba13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+MS: 5 ShuffleBytes-InsertByte-ChangeByte-InsertByte-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x2e,0xbf,0x60,0x4c,
+.\277`L
+artifact_prefix='/tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-f046a3b4bddac8ea8e537c7026ec61dd1f08237d
+Base64: Lr9gTA==
+SUMMARY: libFuzzer: out-of-memory
+error: process exited with status 71

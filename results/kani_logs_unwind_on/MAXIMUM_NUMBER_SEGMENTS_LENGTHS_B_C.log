@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+    --> src/main.rs:1012:31
+     |
+1012 |     kani::assume((0..2).contains(&PARAM1));
+     |                                  ^^^^^^^ shared reference to mutable static
+     |
+     = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+     = note: this will be a hard error in the 2024 edition
+     = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+     = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+     |
+1012 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+     |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:92:7
+   |
+92 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1394:4
+     |
+1394 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+
+warning: function `max` is never used
+    --> src/main.rs:1395:4
+     |
+1395 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1396:4
+     |
+1396 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1661:34 in function std::cmp::impls::<impl std::cmp::PartialEq for &wasi_common::fs::Fd>::eq
+
+Check 16783: std::cmp::impls::<impl std::cmp::PartialEq for &wasi_common::fs::Fd>::eq.pointer_dereference.11
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1661:34 in function std::cmp::impls::<impl std::cmp::PartialEq for &wasi_common::fs::Fd>::eq
+
+Check 16784: std::cmp::impls::<impl std::cmp::PartialEq for &wasi_common::fs::Fd>::eq.pointer_dereference.12
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1661:34 in function std::cmp::impls::<impl std::cmp::PartialEq for &wasi_common::fs::Fd>::eq
+
+Check 16785: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16786: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16787: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16788: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16789: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16790: <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/traits/exact_size.rs:156:9 in function <&mut std::vec::IntoIter<std::ffi::OsString> as std::iter::ExactSizeIterator>::len
+
+Check 16791: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16792: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16793: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16794: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16795: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16796: wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/callsite.rs:566:30 in function wiggle::tracing::callsite::dispatchers::Rebuilder::<'_>::for_each::<{closure@wiggle::tracing::callsite::rebuild_callsite_interest::{closure#0}}>
+
+Check 16797: std::vec::Vec::<i32>::extend_with.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2708:13 in function std::vec::Vec::<i32>::extend_with
+
+
+SUMMARY:
+ ** 1 of 16797 failed (16796 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "/github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs", line 2708, in std::vec::Vec::<i32>::extend_with
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 8.873651s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u13 v1.0.1 (/tmp/kani_3ou84kag/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.62s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

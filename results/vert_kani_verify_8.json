@@ -1,0 +1,169 @@
+{
+ "provenance": {
+  "script": "systems/vert/kani_verify.py",
+  "command": "systems/vert/kani_verify.py --funcs CEILING_IN_A_SORTED_ARRAY,FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY,COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1,COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1,HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES,MAXIMUM_GAMES_PLAYED_WINNER,NTH_PENTAGONAL_NUMBER,PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT --mode vert --jobs 3 --timeout 180 --out results/vert_kani_verify_8.json",
+  "kani": "cargo-kani 0.55.0",
+  "host": "d197e95373ef",
+  "arch": "x86_64",
+  "date": "2026-11-14T01:12:23",
+  "git_rev": "801e8c7"
+ },
+ "summary": {
+  "vert": {
+   "functions": 8,
+   "verdict": {
+    "FAILED": 2,
+    "TIMEOUT": 6
+   },
+   "equivalence": {
+    "None": 0,
+    "UNREACHABLE": 2
+   },
+   "compared_and_failed": []
+  }
+ },
+ "rows": [
+  {
+   "function": "CEILING_IN_A_SORTED_ARRAY",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "FAILED",
+   "equivalence": "UNREACHABLE",
+   "failed_checks": [
+    "index out of bounds: the length is less than or equal to the given index"
+   ],
+   "compared_on_failure": false,
+   "seconds": 47.9,
+   "log": "results/kani_logs_verify/CEILING_IN_A_SORTED_ARRAY.vert.log",
+   "counterexample": null,
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "FAILED",
+   "equivalence": "UNREACHABLE",
+   "failed_checks": [
+    "index out of bounds: the length is less than or equal to the given index"
+   ],
+   "compared_on_failure": false,
+   "seconds": 28.0,
+   "log": "results/kani_logs_verify/FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY.vert.log",
+   "counterexample": null,
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "MAXIMUM_GAMES_PLAYED_WINNER",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/MAXIMUM_GAMES_PLAYED_WINNER.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "NTH_PENTAGONAL_NUMBER",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/NTH_PENTAGONAL_NUMBER.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  }
+ ]
+}

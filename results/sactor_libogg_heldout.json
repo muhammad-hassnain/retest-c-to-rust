@@ -1,0 +1,291 @@
+{
+ "provenance": {
+  "script": "systems/sactor/libogg/heldout.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/libogg/heldout.py --out /work/results/sactor_libogg_heldout.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-13T23:51:14+00:00"
+ },
+ "files": {
+  "bitwise": {
+   "own_test": {
+    "exit_on_C": 0,
+    "api_calls_logged": 9093036,
+    "distinct_call_signatures": 1296,
+    "calls_meeting_defect_trigger": 0,
+    "trigger": "COND_B0"
+   },
+   "ours": {
+    "cases": 442,
+    "distinct_call_signatures": 11948,
+    "distinct_signatures_also_in_own": 130,
+    "cases_identical_to_own_sequence": 0,
+    "cases_with_every_call_in_own": 44,
+    "cases_with_trigger_call": 11
+   },
+   "exposing_cases": {
+    "bw0220": {
+     "calls": 15,
+     "calls_not_in_own": 6,
+     "cond_calls": 1
+    },
+    "bw0232": {
+     "calls": 23,
+     "calls_not_in_own": 13,
+     "cond_calls": 1
+    },
+    "bw0237": {
+     "calls": 17,
+     "calls_not_in_own": 8,
+     "cond_calls": 1
+    },
+    "bw0240": {
+     "calls": 23,
+     "calls_not_in_own": 11,
+     "cond_calls": 1
+    },
+    "bw0266": {
+     "calls": 13,
+     "calls_not_in_own": 8,
+     "cond_calls": 1
+    },
+    "bw0276": {
+     "calls": 19,
+     "calls_not_in_own": 7,
+     "cond_calls": 1
+    },
+    "bw0300": {
+     "calls": 11,
+     "calls_not_in_own": 9,
+     "cond_calls": 1
+    },
+    "bw0320": {
+     "calls": 8,
+     "calls_not_in_own": 7,
+     "cond_calls": 1
+    }
+   },
+   "exposing_cases_with_trigger_call": 8,
+   "own_inputs_through_our_comparison": {
+    "C_exit": 0,
+    "C_stdout_bytes": 0,
+    "rust": {
+     "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2024-09-03_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2024-09-03_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2025-05-10_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2025-05-10_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     }
+    }
+   }
+  },
+  "framing": {
+   "own_test": {
+    "exit_on_C": 0,
+    "api_calls_logged": 654,
+    "distinct_call_signatures": 33,
+    "calls_meeting_defect_trigger": 0,
+    "trigger": "COND_F1"
+   },
+   "ours": {
+    "cases": 343,
+    "distinct_call_signatures": 89,
+    "distinct_signatures_also_in_own": 4,
+    "cases_identical_to_own_sequence": 0,
+    "cases_with_every_call_in_own": 0,
+    "cases_with_trigger_call": 19
+   },
+   "exposing_cases": {
+    "fr0002": {
+     "calls": 9,
+     "calls_not_in_own": 9,
+     "cond_calls": 1
+    },
+    "fr0006": {
+     "calls": 16,
+     "calls_not_in_own": 16,
+     "cond_calls": 1
+    },
+    "fr0014": {
+     "calls": 14,
+     "calls_not_in_own": 14,
+     "cond_calls": 1
+    },
+    "fr0018": {
+     "calls": 9,
+     "calls_not_in_own": 9,
+     "cond_calls": 1
+    },
+    "fr0022": {
+     "calls": 14,
+     "calls_not_in_own": 14,
+     "cond_calls": 1
+    },
+    "fr0030": {
+     "calls": 16,
+     "calls_not_in_own": 16,
+     "cond_calls": 1
+    },
+    "fr0034": {
+     "calls": 8,
+     "calls_not_in_own": 8,
+     "cond_calls": 1
+    },
+    "fr0038": {
+     "calls": 14,
+     "calls_not_in_own": 14,
+     "cond_calls": 1
+    },
+    "fr0046": {
+     "calls": 16,
+     "calls_not_in_own": 16,
+     "cond_calls": 1
+    },
+    "fr0054": {
+     "calls": 18,
+     "calls_not_in_own": 18,
+     "cond_calls": 1
+    },
+    "fr0062": {
+     "calls": 18,
+     "calls_not_in_own": 18,
+     "cond_calls": 1
+    },
+    "fr0066": {
+     "calls": 11,
+     "calls_not_in_own": 11,
+     "cond_calls": 1
+    },
+    "fr0070": {
+     "calls": 15,
+     "calls_not_in_own": 15,
+     "cond_calls": 1
+    },
+    "fr0078": {
+     "calls": 17,
+     "calls_not_in_own": 17,
+     "cond_calls": 1
+    },
+    "fr0082": {
+     "calls": 12,
+     "calls_not_in_own": 12,
+     "cond_calls": 1
+    },
+    "fr0086": {
+     "calls": 18,
+     "calls_not_in_own": 18,
+     "cond_calls": 1
+    },
+    "fr0094": {
+     "calls": 18,
+     "calls_not_in_own": 18,
+     "cond_calls": 1
+    },
+    "fr0098": {
+     "calls": 12,
+     "calls_not_in_own": 12,
+     "cond_calls": 1
+    },
+    "fr0102": {
+     "calls": 18,
+     "calls_not_in_own": 18,
+     "cond_calls": 1
+    }
+   },
+   "exposing_cases_with_trigger_call": 19,
+   "own_inputs_through_our_comparison": {
+    "C_exit": 0,
+    "C_stdout_bytes": 0,
+    "rust": {
+     "sactortest_gpt-4o_framing_unidiomatic_nightly-2024-09-03_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_framing_unidiomatic_nightly-2024-09-03_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_framing_unidiomatic_nightly-2025-05-10_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-4o_framing_unidiomatic_nightly-2025-05-10_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-5_framing_unidiomatic_nightly-2024-09-03_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-5_framing_unidiomatic_nightly-2024-09-03_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-5_framing_unidiomatic_nightly-2025-05-10_debug": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     },
+     "sactortest_gpt-5_framing_unidiomatic_nightly-2025-05-10_release": {
+      "exit": 0,
+      "agree_with_C": true,
+      "stdout_same": true,
+      "stderr_same": true
+     }
+    }
+   }
+  }
+ }
+}

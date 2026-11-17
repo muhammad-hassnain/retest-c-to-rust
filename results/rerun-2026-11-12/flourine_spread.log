@@ -1,0 +1,19 @@
+{
+  "system": "Flourine",
+  "generation": "deterministic enumeration",
+  "benchmarks_scalar": 18,
+  "success_tested": 101,
+  "success_agree": 96,
+  "success_value_bug": 5,
+  "success_crash": 0,
+  "fail_tested": 188,
+  "fail_diverge": 88,
+  "fail_agree": 100,
+  "build_fail": 0,
+  "success_but_divergent_benchmarks": [
+    "clip",
+    "opl_emu_clamp",
+    "opl_emu_registers_operator_list"
+  ]
+}
+docker run --rm -v "$PWD:/work" -w /work crust-stable python3  --out   0.01s user 0.02s system 0% cpu 1:17.67 total

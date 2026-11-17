@@ -1,0 +1,314 @@
+{
+ "provenance": {
+  "script": "scripts/build_defect_ledger.py",
+  "command": "/w/build_defect_ledger.py probe --root /w --out /w/probe.json",
+  "host": "de35d1e2f8c4",
+  "arch": "x86_64",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "gdb": "GNU gdb (Ubuntu 12.1-0ubuntu1~22.04.2) 12.1"
+  },
+  "binaries_sha256": {
+   "cat/c": "8694e49a57aaea492c1858fe63e55f77fb03aaf0e5815b8d51df2d0b88bc8f5f",
+   "cat/rust_WIP": "a9623750c83b38a0205ec8c211ddc957cca7c84614996d9491e6a711b76981af",
+   "head/c": "4a54af6a8f2c46d07e78b94ff1cc3e44744c20b32a4d5ea393146e9b4afb3716",
+   "head/rust_WIP": "80eef7097cf4da96b67d98c0749e7d130f53d6208abc03a54abed56825ae1e3d",
+   "tail/c": "281b04abcaa1de13f55cee9da7d9180743f4ded2a0c2e589a6215910e76eca51",
+   "tail/rust_WIP": "a8fc2adea9c3704667afcf25c308d748f7f572d266f6d8d6a9bdc4a7c1bed50a",
+   "uniq/c": "1cb52a99e808b87679015debf9163244b155d12ae381cc7031de451e31a91840",
+   "uniq/rust_WIP": "633ece44739e369a2bffb0b7998b0e6fb5da6eafa5fa63c68f76f8972d39c137"
+  },
+  "date": "2026-11-13T22:32:20",
+  "build": "make (C, in <util>/c) and cargo build --bin <util> (rust_WIP, nightly-2022-08-08 per its rust-toolchain.toml), copies of artifacts/c2saferrust/coreutils/src/{cat,head,tail,uniq}"
+ },
+ "rows": [
+  {
+   "id": "cat-meta",
+   "command": "cat -v",
+   "stdin": "\u0085\u00a1\u00ff\n",
+   "c": {
+    "exit": 0,
+    "stdout": "M-^EM-!M-^?\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "M^\u00c5M!M^?\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "head-two-files",
+   "command": "head in1.txt in2.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "==> in1.txt <==\nalpha\nbeta\n\n==> in2.txt <==\none\ntwo\nthree\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "==> in1.txt <==\n\n==> in2.txt <==\nalpha\nbeta\none\ntwo\nthree\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "head-two-files-bytes",
+   "command": "head -c 100 in1.txt in2.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "==> in1.txt <==\nalpha\nbeta\n\n==> in2.txt <==\none\ntwo\nthree\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "==> in1.txt <==\nalpha\nbeta\n\n==> in2.txt <==\none\ntwo\nthree\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "head-directory",
+   "command": "head adir",
+   "stdin": "",
+   "c": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "/w/head/c/head: error reading 'adir': Is a directory\n"
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "head-n-minus-1",
+   "command": "head -n -1",
+   "stdin": "a\nb\nc\n",
+   "c": {
+    "exit": 0,
+    "stdout": "a\nb\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 101,
+    "stdout": "",
+    "stderr": "thread 'main' panicked at 'attempt to add with overflow', src/head.rs:1253:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+   }
+  },
+  {
+   "id": "head-q",
+   "command": "head -q in1.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "alpha\nbeta\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  __strlen_avx2 () at ../sysdeps/x86_64/multiarch/strlen-avx2.S:74",
+    "#1  0x\u2026 in core::ffi::c_str::CStr::from_ptr (ptr=0x0) at /rustc/d394408fb38c4de61f765a3ed5189d2731a1da91/library/core/src/ffi/c_str.rs:264",
+    "#2  0x\u2026 in head::main_0 (argc=3, argv=0x\u2026) at src/head.rs:1920",
+    "#3  0x\u2026 in head::main () at src/head.rs:2122"
+   ]
+  },
+  {
+   "id": "head-z",
+   "command": "head -z in1.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "alpha\nbeta\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  __strlen_avx2 () at ../sysdeps/x86_64/multiarch/strlen-avx2.S:74",
+    "#1  0x\u2026 in core::ffi::c_str::CStr::from_ptr (ptr=0x0) at /rustc/d394408fb38c4de61f765a3ed5189d2731a1da91/library/core/src/ffi/c_str.rs:264",
+    "#2  0x\u2026 in head::main_0 (argc=3, argv=0x\u2026) at src/head.rs:1920",
+    "#3  0x\u2026 in head::main () at src/head.rs:2122"
+   ]
+  },
+  {
+   "id": "tail-n-plus-2",
+   "command": "tail -n +2",
+   "stdin": "l1\nl2\nl3\nl4\nl5\n",
+   "c": {
+    "exit": 0,
+    "stdout": "l2\nl3\nl4\nl5\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "l4\nl5\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "tail-c-3",
+   "command": "tail -c 3",
+   "stdin": "alpha\nbeta\ngamma\n",
+   "c": {
+    "exit": 0,
+    "stdout": "ma\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "alpha\nbeta\ngamma\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "tail-n-minus-1",
+   "command": "tail -n -1 in1.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "beta\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  0x\u2026 in rust::src::quotearg::quotearg_buffer_restyled (buffer=0x\u2026 <rust::src::quotearg::slot0>, buffersize=256, arg=0x\u2026, argsize=18446744073709551615, quoting_style=8, flags=1, quote_these_too=0x\u2026 <quote_quoting_options+8>, left_quote=0x0, right_quote=0x0) at src/quotearg.rs:381",
+    "#1  0x\u2026 in rust::src::quotearg::quotearg_n_options (n=0, arg=0x\u2026, argsize=18446744073709551615, options=0x\u2026 <quote_quoting_options>) at src/quotearg.rs:1323",
+    "#2  0x\u2026 in rust::src::quotearg::quote_n_mem (n=0, arg=0x\u2026, argsize=18446744073709551615) at src/quotearg.rs:1584",
+    "#3  0x\u2026 in rust::src::quotearg::quote_n (n=0, arg=0x\u2026) at src/quotearg.rs:1598",
+    "#4  0x\u2026 in rust::src::quotearg::quote (arg=...) at src/quotearg.rs:1602",
+    "#5  0x\u2026 in rust::src::xdectoumax::xnumtoumax (n_str=..., base=10, min=0, max=18446744073709551615, suffixes=..., err=..., err_exit=0) at src/xdectoumax.rs:84",
+    "#6  0x\u2026 in rust::src::xdectoumax::xdectoumax (n_str=0x\u2026, min=0, max=18446744073709551615, suffixes=0x\u2026, err=0x\u2026, err_exit=0) at src/xdectoumax.rs:37",
+    "#7  0x\u2026 in tail::parse_options (argc=4, argv=0x\u2026, n_units=0x\u2026, header_mode=0x\u2026, sleep_interval=0x\u2026) at src/tail.rs:4662",
+    "#8  0x\u2026 in tail::main_0 (argc=4, argv=0x\u2026) at src/tail.rs:5150",
+    "#9  0x\u2026 in tail::main () at src/tail.rs:5520"
+   ]
+  },
+  {
+   "id": "tail-n-abc",
+   "command": "tail -n abc in1.txt",
+   "stdin": "",
+   "c": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "/w/tail/c/tail: invalid number of lines: 'abc'\n"
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  0x\u2026 in rust::src::quotearg::quotearg_buffer_restyled (buffer=0x\u2026 <rust::src::quotearg::slot0>, buffersize=256, arg=0x\u2026, argsize=18446744073709551615, quoting_style=8, flags=1, quote_these_too=0x\u2026 <quote_quoting_options+8>, left_quote=0x0, right_quote=0x0) at src/quotearg.rs:381",
+    "#1  0x\u2026 in rust::src::quotearg::quotearg_n_options (n=0, arg=0x\u2026, argsize=18446744073709551615, options=0x\u2026 <quote_quoting_options>) at src/quotearg.rs:1323",
+    "#2  0x\u2026 in rust::src::quotearg::quote_n_mem (n=0, arg=0x\u2026, argsize=18446744073709551615) at src/quotearg.rs:1584",
+    "#3  0x\u2026 in rust::src::quotearg::quote_n (n=0, arg=0x\u2026) at src/quotearg.rs:1598",
+    "#4  0x\u2026 in rust::src::quotearg::quote (arg=...) at src/quotearg.rs:1602",
+    "#5  0x\u2026 in rust::src::xdectoumax::xnumtoumax (n_str=..., base=10, min=0, max=18446744073709551615, suffixes=..., err=..., err_exit=0) at src/xdectoumax.rs:84",
+    "#6  0x\u2026 in rust::src::xdectoumax::xdectoumax (n_str=0x\u2026, min=0, max=18446744073709551615, suffixes=0x\u2026, err=0x\u2026, err_exit=0) at src/xdectoumax.rs:37",
+    "#7  0x\u2026 in tail::parse_options (argc=4, argv=0x\u2026, n_units=0x\u2026, header_mode=0x\u2026, sleep_interval=0x\u2026) at src/tail.rs:4662",
+    "#8  0x\u2026 in tail::main_0 (argc=4, argv=0x\u2026) at src/tail.rs:5150",
+    "#9  0x\u2026 in tail::main () at src/tail.rs:5520"
+   ]
+  },
+  {
+   "id": "uniq-i-equal-length",
+   "command": "uniq -i",
+   "stdin": "x\nx\n",
+   "c": {
+    "exit": 0,
+    "stdout": "x\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "uniq-i-equal-length-file",
+   "command": "uniq -i xx.txt",
+   "stdin": "",
+   "c": {
+    "exit": 0,
+    "stdout": "x\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  rust::src::memcasecmp::memcasecmp (vs1=..., vs2=...) at src/memcasecmp.rs:13",
+    "#1  0x\u2026 in uniq::different (old=0x\u2026, new=0x\u2026, oldlen=1, newlen=1) at src/uniq.rs:840",
+    "#2  0x\u2026 in uniq::check_file (infile=0x\u2026, outfile=0x\u2026, delimiter=10) at src/uniq.rs:1030",
+    "#3  0x\u2026 in uniq::main_0 (argc=3, argv=0x\u2026) at src/uniq.rs:1937",
+    "#4  0x\u2026 in uniq::main () at src/uniq.rs:1956"
+   ]
+  },
+  {
+   "id": "uniq-i-unequal-length",
+   "command": "uniq -i",
+   "stdin": "ab\nabc\n",
+   "c": {
+    "exit": 0,
+    "stdout": "ab\nabc\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 0,
+    "stdout": "ab\nabc\n",
+    "stderr": ""
+   }
+  },
+  {
+   "id": "uniq-directory",
+   "command": "uniq adir",
+   "stdin": "",
+   "c": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "/w/uniq/c/uniq: error reading 'adir': Is a directory\n"
+   },
+   "rust": {
+    "exit": -11,
+    "stdout": "",
+    "stderr": ""
+   },
+   "rust_gdb_backtrace": [
+    "Program received signal SIGSEGV, Segmentation fault.",
+    "#0  __memmove_avx_unaligned_erms () at ../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:394",
+    "#1  0x\u2026 in core::intrinsics::copy_nonoverlapping<u8> () at library/alloc/src/vec/mod.rs:1836",
+    "#2  alloc::vec::Vec::append_elements<u8, alloc::alloc::Global> () at library/alloc/src/vec/mod.rs:1836",
+    "#3  alloc::vec::spec_extend::{impl#4}::spec_extend<u8, alloc::alloc::Global> () at library/alloc/src/vec/spec_extend.rs:85",
+    "#4  alloc::vec::{impl#24}::extend<u8, alloc::alloc::Global, &[u8]> () at library/alloc/src/vec/mod.rs:2878",
+    "#5  alloc::ffi::c_str::{impl#1}::new::spec_new_impl_bytes () at library/alloc/src/ffi/c_str.rs:306",
+    "#6  alloc::ffi::c_str::{impl#1}::new::{impl#2}::spec_new_impl () at library/alloc/src/ffi/c_str.rs:306",
+    "#7  0x\u2026 in alloc::ffi::c_str::CString::new<&str> (t=...) at /rustc/d394408fb38c4de61f765a3ed5189d2731a1da91/library/alloc/src/ffi/c_str.rs:316",
+    "#8  0x\u2026 in rust::src::quotearg::quotearg_style (s=4173077472, arg=...) at src/quotearg.rs:1450",
+    "#9  0x\u2026 in uniq::check_file (infile=0x\u2026, outfile=0x\u2026, delimiter=10) at src/uniq.rs:1190",
+    "#10 0x\u2026 in uniq::main_0 (argc=2, argv=0x\u2026) at src/uniq.rs:1937"
+   ]
+  }
+ ]
+}

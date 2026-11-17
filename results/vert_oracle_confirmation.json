@@ -1,0 +1,1107 @@
+{
+ "summary": {
+  "functions": 23,
+  "built": 23,
+  "confirmed": 20,
+  "single_param_functions": 20,
+  "single_param_confirmed": 20,
+  "oracle_ignores_params": [
+   "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "NUMBER_RECTANGLES_NM_GRID",
+   "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N"
+  ],
+  "rule": "confirmed = on at least one input, VERT's oracle equals the original C's answer and VERT's LLM output differs",
+  "method": "VERT's own out-rwasm-bolero project, unchanged except the bolero test replaced by a main printing f_gold (VERT's LLM translation) and f_gold_wasm_thread_unsafe (VERT's rWasm oracle of the same C) on our counterexample inputs; built with cargo --release (overflow wraps, as in our harness)"
+ },
+ "rows": [
+  {
+   "function": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      1
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "MAXIMUM_GAMES_PLAYED_WINNER",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "4",
+     "rust_our_harness": "3",
+     "vert_llm_f_gold": "3",
+     "vert_rwasm_oracle": "4",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      14
+     ],
+     "c_gcc": "5",
+     "rust_our_harness": "4",
+     "vert_llm_f_gold": "4",
+     "vert_rwasm_oracle": "5",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "19",
+     "rust_our_harness": "16",
+     "vert_llm_f_gold": "16",
+     "vert_rwasm_oracle": "19",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "183",
+     "rust_our_harness": "162",
+     "vert_llm_f_gold": "162",
+     "vert_rwasm_oracle": "183",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "516",
+     "rust_our_harness": "471",
+     "vert_llm_f_gold": "471",
+     "vert_rwasm_oracle": "516",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "SUM_SERIES_12_32_52_2N_12_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      167
+     ],
+     "c_gcc": "6209895",
+     "rust_our_harness": "6209894",
+     "vert_llm_f_gold": "6209894",
+     "vert_rwasm_oracle": "6209895",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      171
+     ],
+     "c_gcc": "6666891",
+     "rust_our_harness": "6666890",
+     "vert_llm_f_gold": "6666890",
+     "vert_rwasm_oracle": "6666891",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      175
+     ],
+     "c_gcc": "7145775",
+     "rust_our_harness": "7145774",
+     "vert_llm_f_gold": "7145774",
+     "vert_rwasm_oracle": "7145775",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "22",
+     "rust_our_harness": "15",
+     "vert_llm_f_gold": "15",
+     "vert_rwasm_oracle": "22",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "32",
+     "rust_our_harness": "24",
+     "vert_llm_f_gold": "24",
+     "vert_rwasm_oracle": "32",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      14
+     ],
+     "c_gcc": "66",
+     "rust_our_harness": "36",
+     "vert_llm_f_gold": "36",
+     "vert_rwasm_oracle": "66",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NEWMAN_CONWAY_SEQUENCE_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "2",
+     "rust_our_harness": "1",
+     "vert_llm_f_gold": "1",
+     "vert_rwasm_oracle": "2",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "4",
+     "rust_our_harness": "1",
+     "vert_llm_f_gold": "1",
+     "vert_rwasm_oracle": "4",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "6",
+     "rust_our_harness": "1",
+     "vert_llm_f_gold": "1",
+     "vert_rwasm_oracle": "6",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "5",
+     "vert_llm_f_gold": "5",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "7",
+     "rust_our_harness": "15",
+     "vert_llm_f_gold": "15",
+     "vert_rwasm_oracle": "7",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "10",
+     "rust_our_harness": "24",
+     "vert_llm_f_gold": "24",
+     "vert_rwasm_oracle": "10",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NTH_PENTAGONAL_NUMBER",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      1
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "3",
+     "vert_llm_f_gold": "3",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "12",
+     "rust_our_harness": "26",
+     "vert_llm_f_gold": "26",
+     "vert_rwasm_oracle": "12",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "70",
+     "rust_our_harness": "144",
+     "vert_llm_f_gold": "144",
+     "vert_rwasm_oracle": "70",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "HEXAGONAL_NUMBER",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "15",
+     "rust_our_harness": "9",
+     "vert_llm_f_gold": "9",
+     "vert_rwasm_oracle": "15",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "91",
+     "rust_our_harness": "49",
+     "vert_llm_f_gold": "49",
+     "vert_rwasm_oracle": "91",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "190",
+     "rust_our_harness": "100",
+     "vert_llm_f_gold": "100",
+     "vert_rwasm_oracle": "190",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NTH_NON_FIBONACCI_NUMBER",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      1
+     ],
+     "c_gcc": "4",
+     "rust_our_harness": "1647462400",
+     "vert_llm_f_gold": "1647462400",
+     "vert_rwasm_oracle": "4",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "7",
+     "rust_our_harness": "1647462400",
+     "vert_llm_f_gold": "1647462400",
+     "vert_rwasm_oracle": "7",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "12",
+     "rust_our_harness": "1647462400",
+     "vert_llm_f_gold": "1647462400",
+     "vert_rwasm_oracle": "12",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      1
+     ],
+     "c_gcc": "0",
+     "rust_our_harness": "1",
+     "vert_llm_f_gold": "1",
+     "vert_rwasm_oracle": "0",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "2",
+     "rust_our_harness": "3",
+     "vert_llm_f_gold": "3",
+     "vert_rwasm_oracle": "2",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "14",
+     "rust_our_harness": "15",
+     "vert_llm_f_gold": "15",
+     "vert_rwasm_oracle": "14",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      1,
+      0
+     ],
+     "c_gcc": "2",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "0",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      32,
+      0
+     ],
+     "c_gcc": "16698",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      32,
+      1
+     ],
+     "c_gcc": "8349",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 2,
+   "oracle_ignores_params": true,
+   "confirmed": false
+  },
+  {
+   "function": "NUMBER_TRIANGLES_N_MOVES_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      18
+     ],
+     "c_gcc": "774840977",
+     "rust_our_harness": "774840959",
+     "vert_llm_f_gold": "774840959",
+     "vert_rwasm_oracle": "774840977",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      21
+     ],
+     "c_gcc": "2147483647",
+     "rust_our_harness": "-3",
+     "vert_llm_f_gold": "-3",
+     "vert_rwasm_oracle": "-2147483648",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      25
+     ],
+     "c_gcc": "2147483647",
+     "rust_our_harness": "-3",
+     "vert_llm_f_gold": "-3",
+     "vert_rwasm_oracle": "-2147483648",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      14
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      18
+     ],
+     "c_gcc": "4",
+     "rust_our_harness": "3",
+     "vert_llm_f_gold": "3",
+     "vert_rwasm_oracle": "4",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "4",
+     "vert_llm_f_gold": "4",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      21
+     ],
+     "c_gcc": "45",
+     "rust_our_harness": "49",
+     "vert_llm_f_gold": "49",
+     "vert_rwasm_oracle": "45",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      25
+     ],
+     "c_gcc": "66",
+     "rust_our_harness": "71",
+     "vert_llm_f_gold": "71",
+     "vert_rwasm_oracle": "66",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NUMBER_RECTANGLES_NM_GRID",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      97,
+      97
+     ],
+     "c_gcc": "22591009",
+     "rust_our_harness": "22591008",
+     "vert_llm_f_gold": "22591008",
+     "vert_rwasm_oracle": "2067555",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      97,
+      129
+     ],
+     "c_gcc": "39853905",
+     "rust_our_harness": "39853904",
+     "vert_llm_f_gold": "39853904",
+     "vert_rwasm_oracle": "2067555",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      129,
+      97
+     ],
+     "c_gcc": "39853905",
+     "rust_our_harness": "39853904",
+     "vert_llm_f_gold": "39853904",
+     "vert_rwasm_oracle": "3647475",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 2,
+   "oracle_ignores_params": true,
+   "confirmed": false
+  },
+  {
+   "function": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "4",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "4",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "8",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "8",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "11",
+     "rust_our_harness": "10",
+     "vert_llm_f_gold": "10",
+     "vert_rwasm_oracle": "11",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      0,
+      32
+     ],
+     "c_gcc": "30",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "6",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      1,
+      32
+     ],
+     "c_gcc": "30",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "6",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      0,
+      64
+     ],
+     "c_gcc": "30",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "6",
+     "oracle_matches_c": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 2,
+   "oracle_ignores_params": true,
+   "confirmed": false
+  },
+  {
+   "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "3",
+     "rust_our_harness": "9",
+     "vert_llm_f_gold": "9",
+     "vert_rwasm_oracle": "3",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "SUM_BINOMIAL_COEFFICIENTS",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      29
+     ],
+     "c_gcc": "536870912",
+     "rust_our_harness": "536870920",
+     "vert_llm_f_gold": "536870920",
+     "vert_rwasm_oracle": "536870912",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      0
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      1
+     ],
+     "c_gcc": "2",
+     "rust_our_harness": "1",
+     "vert_llm_f_gold": "1",
+     "vert_rwasm_oracle": "2",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "7",
+     "rust_our_harness": "6",
+     "vert_llm_f_gold": "6",
+     "vert_rwasm_oracle": "7",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "2",
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      7
+     ],
+     "c_gcc": "35",
+     "rust_our_harness": "5040",
+     "vert_llm_f_gold": "5040",
+     "vert_rwasm_oracle": "35",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      10
+     ],
+     "c_gcc": "120",
+     "rust_our_harness": "5443200",
+     "vert_llm_f_gold": "5443200",
+     "vert_rwasm_oracle": "120",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  },
+  {
+   "function": "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      21
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      32
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      43
+     ],
+     "c_gcc": "1",
+     "rust_our_harness": "0",
+     "vert_llm_f_gold": "0",
+     "vert_rwasm_oracle": "1",
+     "oracle_matches_c": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": true
+  }
+ ]
+}

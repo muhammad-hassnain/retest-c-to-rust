@@ -1,0 +1,56 @@
+{
+ "input": "empty (insize=0)",
+ "c_build": "gcc -O0 -fsanitize=address,undefined (clean)",
+ "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+ "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+ "rows": [
+  {
+   "btype": 0,
+   "c_hex": "010000ffff",
+   "rust_hex": "",
+   "c_inflate": {
+    "ok": true,
+    "output": "",
+    "eof": true
+   },
+   "rust_inflate": {
+    "ok": false,
+    "output": "",
+    "eof": false
+   },
+   "equal": false
+  },
+  {
+   "btype": 1,
+   "c_hex": "0300",
+   "rust_hex": "",
+   "c_inflate": {
+    "ok": true,
+    "output": "",
+    "eof": true
+   },
+   "rust_inflate": {
+    "ok": false,
+    "output": "",
+    "eof": false
+   },
+   "equal": false
+  },
+  {
+   "btype": 2,
+   "c_hex": "0300",
+   "rust_hex": "",
+   "c_inflate": {
+    "ok": true,
+    "output": "",
+    "eof": true
+   },
+   "rust_inflate": {
+    "ok": false,
+    "output": "",
+    "eof": false
+   },
+   "equal": false
+  }
+ ]
+}

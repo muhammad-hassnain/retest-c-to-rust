@@ -1,0 +1,454 @@
+{
+ "provenance": {
+  "script": "systems/ptrtrans/summarize.py",
+  "command": "python3 -I systems/ptrtrans/summarize.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (+uncommitted systems/ptrtrans/, results/ptrtrans_*)",
+  "host": "mac-host",
+  "arch": "arm64",
+  "date": "2026-11-13T23:54:10+00:00",
+  "inputs": {
+   "ptrtrans_quadtree_diff.json": "2026-11-13T23:47:03+00:00",
+   "ptrtrans_quadtree_diff_rust1.99.1.json": "2026-11-13T23:49:15+00:00",
+   "ptrtrans_quadtree_mutation.json": "2026-11-13T23:49:45+00:00",
+   "ptrtrans_quadtree_keyfree.json": "2026-11-13T23:50:49+00:00"
+  },
+  "corpus": {
+   "generator": "systems/ptrtrans/quadtree_e2e/gen_cases.py",
+   "n_cases": 2975,
+   "sha256_of_json_dump": "00598810cf58322daa58be5c74fcdb698d2650d65dac757a3f8ad15675716a48",
+   "note": "same digest from the generator on macOS arm64 and in the x86-64 container"
+  },
+  "toolchains_images": {
+   "run_host": "desktop (x86_64, 20 cores)",
+   "docker_image": "crust-heldout-plus186",
+   "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+   "c": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+    "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+    "python": "3.10.12"
+   },
+   "rust_primary": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "rust_cross": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+   "rust_cross_image": "sha256:7085845219c18e7c5b1f34ed9ce89b84f822f2e3d54a02774cedc996ac0f304f",
+   "rust_recorded_by_artifact": "rustc 1.90.0-nightly (e43d139a8 2025-07-09) (dataset/Trans_C-Rust-KG/quadtree/target/.rustc_info.json)"
+  },
+  "artifact": {
+   "repo": "github.com/FudanSELab/PtrTrans-C2Rust",
+   "commit": "b20d5bb68a598a739f79d52114651e37cc6999cb",
+   "c_digest": {
+    "files": 8,
+    "sha256": "b0e575e6ec68c3af36309703d024bbdee4281449ba239526629b4a01561503e3"
+   },
+   "rust_digest": {
+    "files": 7,
+    "sha256": "534c32958556ba2dc51b37e9771fe13a2e1d9bbed1644afebd412df80c6f397f"
+   },
+   "rust_cargo_toml_sha256": {
+    "files": 1,
+    "sha256": "e73887f6b9447e8d8033f6ae7d1e12ef5436c84f50604b5a858674bc866e927e"
+   }
+  }
+ },
+ "system": "PtrTrans",
+ "rule_check": {
+  "regrade_rule": "met for one project: quadtree ships the original C and PtrTrans's own Rust (Trans_PA)",
+  "c_builds": true,
+  "c_project_test_passes": true,
+  "rust_lib_builds": {
+   "1.86.0": {
+    "cmd": "cargo +1.86.0 build --offline  (in the crate copy)",
+    "rc": 0,
+    "warnings": 0,
+    "errors": 0,
+    "log_tail": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s\n"
+   },
+   "1.99.1": {
+    "cmd": "cargo +1.99.1 build --offline  (in the crate copy)",
+    "rc": 0,
+    "warnings": 5,
+    "errors": 0,
+    "log_tail": "   Compiling quadtree v0.1.0 (/oub/x199/quadtree_shipped)\nwarning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`\n  --> src/bounds.rs:10:41\n   |\n10 |     bounds.nw = quadtree_point_new(f64::INFINITY, -f64::INFINITY);\n   |                                         ^^^^^^^^\n   |\n   = note: `#[warn(deprecated)]` on by default\n\nwarning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`\n  --> src/bounds.rs:10:57\n   |\n10 |     bounds.nw = quadtree_point_new(f64::INFINITY, -f64::INFINITY);\n   |                                                         ^^^^^^^^\n\nwarning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`\n  --> src/bounds.rs:11:42\n   |\n11 |     bounds.se = quadtree_point_new(-f64::INFINITY, f64::INFINITY);\n   |                                          ^^^^^^^^\n\nwarning: use of deprecated constant `std::f64::INFINITY`: replaced by the `INFINITY` associated constant on `f64`\n  --> src/bounds.rs:11:57\n   |\n11 |     bounds.se = quadtree_point_new(-f64::INFINITY, f64::INFINITY);\n   |                                                         ^^^^^^^^\n\nwarning: `quadtree` (lib) generated 4 warnings\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s\n"
+   }
+  },
+  "rust_1.99.1_warnings": "4 deprecation warnings (std::f64::INFINITY, src/bounds.rs:10-11); 0 under 1.86.0",
+  "toolchain_note": "The artifact records rustc 1.90.0-nightly (e43d139a8 2025-07-09) in quadtree/target/.rustc_info.json (the paper: cargo check 1.90.0-nightly); no rust-toolchain file. That nightly is not in our images, so the crate is built with 1.86.0 and 1.99.1, which bracket it.",
+  "not_regraded": "LLM_only baseline outputs (dataset/parsed_projects) and ablations (Trans_not_*) are not PtrTrans's output."
+ },
+ "translation_unit": "library (one C project: CROWN quadtree; 17 translated functions + 4 structs; 7 deallocation units not translated, mapped to Drop)",
+ "translations_tested": 1,
+ "translations_with_defect": 1,
+ "defects": [
+  {
+   "defect_id": "PTRTRANS-quadtree-find_-1",
+   "counted": true,
+   "severity": "S1",
+   "mechanism": "find_ never descends below a non-leaf node: the C recurses into get_quadrant_(node, &test); the translation calls get_quadrant_(None, Some(&test)) (get_quadrant_ takes Option<&mut QuadtreeNode> and find_ holds only a shared reference), which always returns None. So quadtree_search returns None for every point once the root has split (two or more points stored), where the C returns the stored point.",
+   "location": {
+    "rust": "artifacts/ptrtrans/dataset/Trans_C-Rust-KG/quadtree/src/quadtree.rs:86-90 (line 88: get_quadrant_(None, Some(&test)))",
+    "c": "artifacts/ptrtrans/dataset/crown_dataset/quadtree/src/quadtree.c:85-90 (line 89: return find_(get_quadrant_(node, &test), x, y);)"
+   },
+   "example_input": [
+    "N 1.0 1.0 10.0 10.0",
+    "I 0.0 0.0 0",
+    "I 10.0 10.0 0",
+    "I 110.0 110.0 0",
+    "I 8.0 2.0 0",
+    "I 2.0 3.0 0",
+    "I 2.0 3.0 0",
+    "I 3.0 1.1 0",
+    "L",
+    "S 3.0 1.1",
+    "W"
+   ],
+   "example_case_id": "upstream/test_c_test_tree",
+   "c_output": "S hit 3.0 1.1",
+   "rust_output": "S null",
+   "exposure": 462,
+   "exposure_breakdown": {
+    "counted_search_cases": 462,
+    "by_family": {
+     "tree.search": 461,
+     "upstream": 1
+    },
+    "c_vs_rust": {
+     "hit->null": 462
+    },
+    "search_cases_total": 2391,
+    "search_cases_ub_clean": 934,
+    "search_cases_ub_clean_agree": 408,
+    "search_cases_ub_clean_on_precondition_violating_input_same_mechanism": 64,
+    "trees_exposing": 88
+   },
+   "confirmed_by_repair": {
+    "repair": "replace get_quadrant_(None, ..) in find_ by the same nw/ne/sw/se lookup on node_ref (run.py repair_patch)",
+    "ub_clean_divergences_after_repair": 24,
+    "after_repair_by_channel": {
+     "key_free": 24
+    }
+   },
+   "translation_history": {
+    "runlog_find_passes": [
+     4695,
+     17331,
+     17731,
+     23653,
+     29298
+    ],
+    "runlog_lines_passing_None": [
+     17350,
+     17507,
+     17549,
+     23672,
+     23824,
+     23866,
+     29316,
+     29480,
+     29520,
+     30461,
+     30892,
+     31350,
+     31867,
+     32367,
+     33228,
+     33716,
+     34386,
+     35623,
+     36132,
+     36670,
+     37423,
+     38115
+    ],
+    "runlog_model_explanation": "quadtree_runLog.txt:[23693]: the model states it passes None because find_ holds an immutable reference"
+   },
+   "upstream_test": "The C project's own test.c asserts quadtree_search(tree, 3.0, 1.1)->x == 3.0 (test.c:83); replayed on the translation (case upstream/test_c_test_tree) the search returns None.",
+   "acceptance_status": "no-record",
+   "evidence": [
+    "PtrTrans's own check for correctness (%Equiv.) is function-level equivalence unit tests (paper Sec. 4.1.1, 4.1.3); the tests, harnesses and their input-output pairs are not in the artifact (github.com/FudanSELab/PtrTrans-C2Rust @ b20d5bb68a59; docs/survey-evidence.json yuan2025ptrtrans).",
+    "The shipped metadata records only compile labels: Verfi_Tag counts {'None': 7, 'No_Fix_Compile_Success': 16, 'Fixed_1_Compile_Success': 2, 'Fixed_2_Compile_Success': 2} (No_Fix_Compile_Success / Fixed_N_Compile_Success = the cargo check repair loop, not a test verdict; None = deallocation units judged 'free' and not translated).",
+    "The run log is a translation log only: section kinds {'Code Translation Prompt': 113, 'Code Translation Response': 113, 'Code Diff Prompt': 109, 'Code Diff Response': 109, 'Free Judge Prompt': 112, 'Free Judge Response': 112, 'Error Fix Prompt': 7, 'Error Fix Response': 7, 'Code Stub Trans Prompt': 2, 'Code Stub Trans Response': 2}; no test run.",
+    "The paper reports quadtree %Equiv. = 87.5 as a project aggregate (Table 4); no per-function verdict is shipped, so which functions failed is not recorded.",
+    "A re-run of the check as documented is not possible: the unit tests are not shipped."
+   ],
+   "check_exercises_defect": {
+    "status": "unknown",
+    "evidence": "PtrTrans's unit tests are not shipped."
+   }
+  }
+ ],
+ "not_in_totals": [
+  {
+   "id": "PTRTRANS-quadtree-insert_-key_free",
+   "counted": false,
+   "why_not_counted": "Not a wrong value, state or output: every return value, length and tree state agrees. The divergence is a user callback that the C invokes and the translation never does. It is the key-deallocation hook: PtrTrans's 'Free Judge' step removes memory-deallocation calls from the C before translating (quadtree_runLog.txt:24638 '// Removed: reset_node_(tree, root); // NOTE: Memory Deallocation Operation, NEED TO REMOVE'), and its metric excludes deallocation functions (paper Sec. 4.1.3). On every insert where the C calls key_free on a non-NULL key, the translation drops exactly that key (Rust Drop) during the same insert (per_insert_check). Listed for the author to decide; not in the totals.",
+   "mechanism": "The translation keeps the public field Quadtree.key_free as Option<&dyn FnMut(&dyn Any)> but never calls it (a FnMut cannot be called through a shared reference); on a duplicate insert the C calls tree->key_free(old_key) via reset_node_ (quadtree.c:103-107, node.c:28-32), the Rust overwrites root.key (quadtree.rs:107-113).",
+   "location": {
+    "rust": "artifacts/ptrtrans/dataset/Trans_C-Rust-KG/quadtree/src/quadtree.rs:107-113",
+    "c": "artifacts/ptrtrans/dataset/crown_dataset/quadtree/src/quadtree.c:103-107; src/node.c:28-32"
+   },
+   "example_case_id": "bench_0_1000/duplicates/keyfree",
+   "c_output": "KF 0",
+   "rust_output": "I 0 L1",
+   "rust_drop_log_example": [
+    "# rust_key_drops_in_this_command [0]",
+    "# rust_key_drops_in_this_command [1]"
+   ],
+   "exposure": 21,
+   "per_insert_check": {
+    "cases": 60,
+    "cases_where_c_calls_key_free": 24,
+    "c_key_free_calls_total": 48,
+    "c_key_free_calls_with_NULL_key": 8,
+    "rust_key_free_calls_total": 0,
+    "insert_returns_identical_in_all_cases": true,
+    "inserts_with_c_nonnull_key_free": 40,
+    "of_which_rust_drops_exactly_those_keys_in_the_same_insert": 40,
+    "inserts_rust_drops_key_c_calls_no_key_free": 116,
+    "of_which_insert_returned_0_without_storing": 116,
+    "note_on_rejected_inserts": "when quadtree_insert rejects a point (returns 0, nothing stored) the C leaves the key with the caller and calls no key_free; the translation takes the key by value (Option<Box<dyn Any>>) and drops it. No C-visible channel shows this; it is the Rust ownership signature, not a key_free call.",
+    "by_seq": {
+     "three_testc_like": 8,
+     "duplicates": 8,
+     "null_keys": 8
+    }
+   },
+   "per_insert_check_file": "results/ptrtrans_quadtree_keyfree.json"
+  }
+ ],
+ "crashes": 0,
+ "S2": 0,
+ "S2_note": "a library has no stderr/diagnostic channel; none observed",
+ "S3": {
+  "count": 0,
+  "note": "the crate and the driver build with 0 errors under 1.86.0 and 1.99.1; no hang"
+ },
+ "cases": {
+  "n": 2975,
+  "by_final": {
+   "agree": 966,
+   "original_C_UB": 1459,
+   "divergent": 483,
+   "precondition_violating_input": 67
+  },
+  "by_family": {
+   "tree.dump": {
+    "agree": 190,
+    "original_C_UB": 2
+   },
+   "tree.search": {
+    "original_C_UB": 1374,
+    "agree": 323,
+    "divergent": 461,
+    "precondition_violating_input": 64
+   },
+   "keyfree": {
+    "agree": 36,
+    "divergent": 21,
+    "precondition_violating_input": 3
+   },
+   "tree.prefix": {
+    "agree": 85,
+    "original_C_UB": 83
+   },
+   "upstream": {
+    "divergent": 1
+   },
+   "unit.bounds": {
+    "agree": 196
+   },
+   "unit.node": {
+    "agree": 122
+   },
+   "unit.point": {
+    "agree": 14
+   }
+  },
+  "divergent_ub_clean_valid_input_by_channel": {
+   "search": 462,
+   "key_free": 21
+  },
+  "counted_S1_cases": 462,
+  "note": "'divergent' = UB-clean, precondition-respecting cases that differ: search (the find_ defect, counted) and key_free (listed in not_in_totals, not counted)"
+ },
+ "ub_excluded": {
+  "cases": 1459,
+  "cases_with_any_ub_evidence": 1459,
+  "kinds": {
+   "san_clang:  runtime error: member access within null pointer of type 'quadtree_node_t' (aka 'struct quadtree_node')": 1432,
+   "san_gcc:  runtime error: member access within null pointer of type 'struct quadtree_node_t'": 1432,
+   "o0: output differs from ref (-O3)": 1,
+   "o1: output differs from ref (-O3)": 1,
+   "o2: output differs from ref (-O3)": 1,
+   "san_clang: ERROR: AddressSanitizer: stack-overflow on address  (pc  bp  sp  T0)": 27,
+   "san_gcc: ERROR: AddressSanitizer: stack-overflow on address  (pc  bp  sp  T0)": 27,
+   "uchar: output differs from ref (-O3)": 1,
+   "schar: output differs from ref (-O3)": 1
+  },
+  "c_crash_cases": 1459,
+  "c_crash_cases_all_have_ub_evidence": true,
+  "cases_null_member_access": 1432,
+  "cases_stack_overflow": 27,
+  "note": "Null-member-access cases: quadtree_search in the C dereferences NULL when the query path ends at an empty quadrant or outside every quadrant (find_ -> get_quadrant_ -> node_contains_ on a NULL child: empty tree, absent, outside, split-line and NaN queries); UBSan 'member access within null pointer' under clang and gcc. Stack-overflow cases: bounds +/-1e308 (width overflows to inf) make split_node_ produce a child equal to its parent, so insert_ recurses without end (ASan stack-overflow; at -O3 the tail call becomes a loop that allocates until malloc fails; the Rust overflows its stack). Every one of these cases is a C crash with sanitizer evidence; none is counted."
+ },
+ "precondition_only": {
+  "defects": 0,
+  "rule": "quadtree_new / quadtree_node_with_bounds name their parameters (minx, miny, maxx, maxy): an input with min > max violates the names. No other precondition is stated (header, README, comments).",
+  "divergent_cases_on_violating_input": 67,
+  "by_channel": {
+   "search": 64,
+   "key_free": 3
+  },
+  "note": "every divergence on such inputs (bounds 10,10,1,1) is one of the two mechanisms that also diverge on valid inputs; these cases are left out of the exposure counts, and no mechanism diverges only on them."
+ },
+ "c_implementation_dependent": {
+  "cases": 42,
+  "counted_divergences_among_them": 0,
+  "kinds": {
+   "san_clang: output differs from gcc -O3 ref without a sanitizer report [equal within float tolerance]": 42
+  },
+  "note": "the clang build's output differs from the gcc -O3 reference with no sanitizer report, and only within the float tolerance (signed zero from fmin/fmax on +/-0 inputs, which C leaves unspecified); all of these cases agree with the Rust, so nothing is affected. An ad-hoc re-run (not saved) found the differing tokens are only +0/-0 and the Rust equals the clang build bit for bit on all of them."
+ },
+ "float_comparison": {
+  "tolerance": "|a-b| <= 1e-6*max(1,|a|); NaN==NaN; inf exact",
+  "ub_clean_cases_bit_exact_differences_within_tolerance": 42
+ },
+ "release_vs_debug_verdict_differs": 0,
+ "cross_toolchain": {
+  "toolchain": "1.99.1",
+  "same_final_verdicts": true,
+  "by_final": {
+   "agree": 966,
+   "original_C_UB": 1459,
+   "divergent": 483,
+   "precondition_violating_input": 67
+  }
+ },
+ "acceptance_status": {
+  "status": "no-record",
+  "evidence": [
+   "PtrTrans's own check for correctness (%Equiv.) is function-level equivalence unit tests (paper Sec. 4.1.1, 4.1.3); the tests, harnesses and their input-output pairs are not in the artifact (github.com/FudanSELab/PtrTrans-C2Rust @ b20d5bb68a59; docs/survey-evidence.json yuan2025ptrtrans).",
+   "The shipped metadata records only compile labels: Verfi_Tag counts {'None': 7, 'No_Fix_Compile_Success': 16, 'Fixed_1_Compile_Success': 2, 'Fixed_2_Compile_Success': 2} (No_Fix_Compile_Success / Fixed_N_Compile_Success = the cargo check repair loop, not a test verdict; None = deallocation units judged 'free' and not translated).",
+   "The run log is a translation log only: section kinds {'Code Translation Prompt': 113, 'Code Translation Response': 113, 'Code Diff Prompt': 109, 'Code Diff Response': 109, 'Free Judge Prompt': 112, 'Free Judge Response': 112, 'Error Fix Prompt': 7, 'Error Fix Response': 7, 'Code Stub Trans Prompt': 2, 'Code Stub Trans Response': 2}; no test run.",
+   "The paper reports quadtree %Equiv. = 87.5 as a project aggregate (Table 4); no per-function verdict is shipped, so which functions failed is not recorded.",
+   "A re-run of the check as documented is not possible: the unit tests are not shipped."
+  ],
+  "metadata_verfi_tags": {
+   "elision_#quadtree.c#727": null,
+   "quadtree_point_free#point.c#723": null,
+   "quadtree_bounds_free#bounds.c#724": null,
+   "quadtree_node_reset#node.c#727": null,
+   "quadtree_node_free#node.c#754": null,
+   "reset_node_#quadtree.c#729": null,
+   "quadtree_free#quadtree.c#827": null,
+   "quadtree_point#quadtree.h#653": "No_Fix_Compile_Success",
+   "quadtree_bounds#quadtree.h#658": "No_Fix_Compile_Success",
+   "quadtree_point_new#point.c#715": "No_Fix_Compile_Success",
+   "quadtree_node#quadtree.h#665": "No_Fix_Compile_Success",
+   "quadtree_bounds_new#bounds.c#730": "No_Fix_Compile_Success",
+   "quadtree#quadtree.h#675": "No_Fix_Compile_Success",
+   "quadtree_bounds_extend#bounds.c#715": "No_Fix_Compile_Success",
+   "quadtree_node_new#node.c#732": "No_Fix_Compile_Success",
+   "quadtree_node_isleaf#node.c#723": "No_Fix_Compile_Success",
+   "quadtree_walk#quadtree.c#836": "No_Fix_Compile_Success",
+   "node_contains_#quadtree.c#723": "No_Fix_Compile_Success",
+   "quadtree_node_with_bounds#node.c#745": "No_Fix_Compile_Success",
+   "quadtree_node_ispointer#node.c#715": "No_Fix_Compile_Success",
+   "quadtree_node_isempty#node.c#719": "No_Fix_Compile_Success",
+   "get_quadrant_#quadtree.c#737": "Fixed_1_Compile_Success",
+   "quadtree_new#quadtree.c#804": "No_Fix_Compile_Success",
+   "find_#quadtree.c#769": "No_Fix_Compile_Success",
+   "insert_#quadtree.c#781/split_node_#quadtree.c#745": "Fixed_2_Compile_Success",
+   "quadtree_search#quadtree.c#823": "Fixed_1_Compile_Success",
+   "quadtree_insert#quadtree.c#814": "Fixed_2_Compile_Success"
+  }
+ },
+ "heldout": {
+  "status": "not measurable",
+  "why": "PtrTrans's own unit tests (and the AFL++ input-output pairs behind them) are not shipped, so the overlap of our inputs with its check's inputs cannot be measured. Its translation loop runs no tests (cargo check only), so no input reached the loop."
+ },
+ "harness_power": {
+  "natural_fault": "the shipped translation turns the harness red on 462 UB-clean cases (find_ defect)",
+  "repair_turns_green": {
+   "divergent_ub_clean": 24,
+   "divergent_ub_clean_by_channel": {
+    "key_free": 24
+   }
+  },
+  "mutation": {
+   "baseline": "shipped crate + one-line find_ repair (run.py repair_patch)",
+   "cases_ub_clean": 1516,
+   "cases_baseline_agrees": 1492,
+   "cases_baseline_disagrees": 24,
+   "baseline_disagree_families": {
+    "keyfree": 24
+   },
+   "mutants_generated": 65,
+   "mutants_build_fail": 1,
+   "mutants_valid": 64,
+   "killed": 58,
+   "survived": 6,
+   "by_kind": {
+    "relational": {
+     "valid": 12,
+     "killed": 12
+    },
+    "arithmetic": {
+     "valid": 21,
+     "killed": 21
+    },
+    "constant": {
+     "valid": 31,
+     "killed": 25
+    }
+   },
+   "survivors": [
+    {
+     "file": "src/quadtree.rs",
+     "line": 139,
+     "from": "0.0",
+     "to": "(-1.0)",
+     "orig": "let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);"
+    },
+    {
+     "file": "src/quadtree.rs",
+     "line": 139,
+     "from": "0.0",
+     "to": "1.0",
+     "orig": "let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);"
+    },
+    {
+     "file": "src/quadtree.rs",
+     "line": 140,
+     "from": "0.0",
+     "to": "(-1.0)",
+     "orig": "let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);"
+    },
+    {
+     "file": "src/quadtree.rs",
+     "line": 140,
+     "from": "0.0",
+     "to": "1.0",
+     "orig": "let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);"
+    },
+    {
+     "file": "src/quadtree.rs",
+     "line": 182,
+     "from": "0",
+     "to": "(-1)",
+     "orig": "0"
+    },
+    {
+     "file": "src/quadtree.rs",
+     "line": 182,
+     "from": "0",
+     "to": "1",
+     "orig": "0"
+    }
+   ],
+   "mutation_score": 0.9062
+  },
+  "mutation_survivors_note": "all 6 survivors sit in branches the C API cannot reach: the map_or(0.0, ..) defaults for bounds.nw in split_node_ (quadtree_bounds_new always sets nw; 4 mutants) and the trailing 0 returned by quadtree_insert when tree is None (in the C a NULL tree is dereferenced; 2 mutants). 58 of the 58 reachable mutants are killed. 1 mutant (u32 length 0 -> -1) does not compile.",
+  "mutation_file": "results/ptrtrans_quadtree_mutation.json"
+ }
+}

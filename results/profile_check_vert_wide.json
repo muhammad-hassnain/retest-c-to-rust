@@ -1,0 +1,632 @@
+[
+ {
+  "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    14
+   ],
+   "c": "90420300490",
+   "rust_release": "2147483647",
+   "rust_debug": "2147483647",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "wrong answer"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 90,
+   "raw_diverge_debug": 90,
+   "rust_release_vs_debug_differ": 0,
+   "profile_sensitive_samples": [],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 90,
+   "rust_panic_c_ok": 0,
+   "ub_div": 0,
+   "samples": [
+    {
+     "in": [
+      14
+     ],
+     "c": "90420300490",
+     "rust": "2147483647"
+    },
+    {
+     "in": [
+      15
+     ],
+     "c": "1360989424211",
+     "rust": "2147483647"
+    },
+    {
+     "in": [
+      16
+     ],
+     "c": "21849965489916",
+     "rust": "2147483647"
+    }
+   ],
+   "crash_samples": []
+  },
+  "defect_id": "VERT-CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION-1",
+  "severity": "S1",
+  "ledger_c": "90420300490",
+  "input_grid": "v2",
+  "ledger_rust": "2147483647",
+  "ledger_exposure_count": 5
+ },
+ {
+  "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    3
+   ],
+   "c": "1",
+   "rust_release": "2",
+   "rust_debug": "2",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "wrong answer"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 97,
+   "raw_diverge_debug": 97,
+   "rust_release_vs_debug_differ": 0,
+   "profile_sensitive_samples": [],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 97,
+   "rust_panic_c_ok": 0,
+   "ub_div": 0,
+   "samples": [
+    {
+     "in": [
+      3
+     ],
+     "c": "1",
+     "rust": "2"
+    },
+    {
+     "in": [
+      4
+     ],
+     "c": "2",
+     "rust": "4"
+    },
+    {
+     "in": [
+      5
+     ],
+     "c": "3",
+     "rust": "5"
+    }
+   ],
+   "crash_samples": []
+  },
+  "defect_id": "VERT-COUNT_DIGITS_FACTORIAL_SET_2-1",
+  "severity": "S1",
+  "ledger_c": "1",
+  "input_grid": "v2",
+  "ledger_rust": "2",
+  "ledger_exposure_count": 97
+ },
+ {
+  "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    25
+   ],
+   "c": "4478554083",
+   "rust_release": "183586787",
+   "rust_debug": "__PANIC__",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "crash"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 85,
+   "raw_diverge_debug": 85,
+   "rust_release_vs_debug_differ": 84,
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      25
+     ],
+     "c": "4478554083",
+     "release": "183586787",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      29
+     ],
+     "c": "152139002499",
+     "release": "1815147139",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      31
+     ],
+     "c": "886731088897",
+     "release": "1967825921",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": "2140758220993",
+     "release": "1864507585",
+     "debug": "__PANIC__"
+    }
+   ],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 0,
+   "rust_panic_c_ok": 9,
+   "ub_div": 76,
+   "samples": [],
+   "crash_samples": [
+    {
+     "in": [
+      25
+     ],
+     "c": "4478554083"
+    },
+    {
+     "in": [
+      29
+     ],
+     "c": "152139002499"
+    },
+    {
+     "in": [
+      31
+     ],
+     "c": "886731088897"
+    }
+   ]
+  },
+  "defect_id": "VERT-COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS-1",
+  "severity": "S1",
+  "ledger_c": "4478554083",
+  "input_grid": "v2",
+  "ledger_rust": "183586787",
+  "ledger_exposure_count": 9
+ },
+ {
+  "func": "DICE_THROW_PROBLEM_1",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    257,
+    15,
+    64
+   ],
+   "c": "37387265592825",
+   "rust_release": "-424718855",
+   "rust_debug": "__PANIC__",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "crash"
+  },
+  "grid": {
+   "cases": 80,
+   "raw_diverge_release": 13,
+   "raw_diverge_debug": 27,
+   "rust_release_vs_debug_differ": 27,
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      63,
+      63,
+      63
+     ],
+     "c": "1",
+     "release": "1",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      4,
+      256,
+      65
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      31,
+      63,
+      219
+     ],
+     "c": "5570122362472751977",
+     "release": "-492444823",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      128,
+      7,
+      512
+     ],
+     "c": "1884153039916",
+     "release": "-1337603028",
+     "debug": "__PANIC__"
+    }
+   ],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 0,
+   "rust_panic_c_ok": 9,
+   "ub_div": 18,
+   "samples": [],
+   "crash_samples": [
+    {
+     "in": [
+      63,
+      63,
+      63
+     ],
+     "c": "1"
+    },
+    {
+     "in": [
+      9,
+      129,
+      64
+     ],
+     "c": "0"
+    },
+    {
+     "in": [
+      5,
+      17,
+      219
+     ],
+     "c": "0"
+    }
+   ]
+  },
+  "defect_id": "VERT-DICE_THROW_PROBLEM_1-1",
+  "severity": "S1",
+  "ledger_c": "37387265592825",
+  "input_grid": "v2",
+  "ledger_rust": "-424718855",
+  "ledger_exposure_count": 2
+ },
+ {
+  "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    9
+   ],
+   "c": "3",
+   "rust_release": "9",
+   "rust_debug": "9",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "wrong answer"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 100,
+   "raw_diverge_debug": 100,
+   "rust_release_vs_debug_differ": 0,
+   "profile_sensitive_samples": [],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 9,
+   "rust_panic_c_ok": 0,
+   "ub_div": 0,
+   "samples": [
+    {
+     "in": [
+      9
+     ],
+     "c": "3",
+     "rust": "9"
+    },
+    {
+     "in": [
+      15
+     ],
+     "c": "5",
+     "rust": "15"
+    },
+    {
+     "in": [
+      18
+     ],
+     "c": "3",
+     "rust": "9"
+    }
+   ],
+   "crash_samples": []
+  },
+  "defect_id": "VERT-FIND_LARGEST_PRIME_FACTOR_NUMBER-1",
+  "severity": "S1",
+  "ledger_c": "3",
+  "input_grid": "v2",
+  "ledger_rust": "9",
+  "ledger_exposure_count": 9
+ },
+ {
+  "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    31
+   ],
+   "c": "2620797529",
+   "rust_release": "-1674169767",
+   "rust_debug": "__PANIC__",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "crash"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 100,
+   "raw_diverge_debug": 100,
+   "rust_release_vs_debug_differ": 82,
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      31
+     ],
+     "c": null,
+     "release": "-1674169767",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": null,
+     "release": "734590521",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      33
+     ],
+     "c": null,
+     "release": "1061234621",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      36
+     ],
+     "c": null,
+     "release": "-515121366",
+     "debug": "__PANIC__"
+    }
+   ],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 0,
+   "rust_panic_c_ok": 3,
+   "ub_div": 80,
+   "samples": [],
+   "crash_samples": [
+    {
+     "in": [
+      31
+     ],
+     "c": "2620797529"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": "5029557817"
+    },
+    {
+     "in": [
+      33
+     ],
+     "c": "9651169213"
+    }
+   ]
+  },
+  "defect_id": "VERT-NUMBER_N_DIGIT_STEPPING_NUMBERS-1",
+  "severity": "S1",
+  "ledger_c": "2620797529",
+  "input_grid": "v2",
+  "ledger_rust": "-1674169767",
+  "ledger_exposure_count": 3
+ },
+ {
+  "func": "SUM_PAIRWISE_PRODUCTS",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    381
+   ],
+   "c": "2657063266",
+   "rust_release": "-1637904030",
+   "rust_debug": "__PANIC__",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "crash"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 8,
+   "raw_diverge_debug": 8,
+   "rust_release_vs_debug_differ": 8,
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266",
+     "release": "-1637904030",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720",
+     "release": "-593263576",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736",
+     "release": "688019440",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      471
+     ],
+     "c": "6195298186",
+     "release": "1900330890",
+     "debug": "__PANIC__"
+    }
+   ],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 0,
+   "rust_panic_c_ok": 8,
+   "ub_div": 0,
+   "samples": [],
+   "crash_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736"
+    }
+   ]
+  },
+  "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS-1",
+  "severity": "S1",
+  "ledger_c": "2657063266",
+  "input_grid": "v2",
+  "ledger_rust": "-1637904030",
+  "ledger_exposure_count": 8
+ },
+ {
+  "func": "SUM_PAIRWISE_PRODUCTS_1",
+  "harness": "run.py",
+  "example": {
+   "input": [
+    381
+   ],
+   "c": "2657063266",
+   "rust_release": "-1637904030",
+   "rust_debug": "__PANIC__",
+   "release_outcome": "wrong answer",
+   "debug_outcome": "crash"
+  },
+  "grid": {
+   "cases": 100,
+   "raw_diverge_release": 8,
+   "raw_diverge_debug": 8,
+   "rust_release_vs_debug_differ": 8,
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266",
+     "release": "-1637904030",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720",
+     "release": "-593263576",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736",
+     "release": "688019440",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      471
+     ],
+     "c": "6195298186",
+     "release": "1900330889",
+     "debug": "__PANIC__"
+    }
+   ],
+   "note": "raw = before the harness UB filter"
+  },
+  "harness_debug_filtered": {
+   "status": "tested",
+   "value_div": 0,
+   "rust_panic_c_ok": 8,
+   "ub_div": 0,
+   "samples": [],
+   "crash_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736"
+    }
+   ]
+  },
+  "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS_1-1",
+  "severity": "S1",
+  "ledger_c": "2657063266",
+  "input_grid": "v2",
+  "ledger_rust": "-1637904030",
+  "ledger_exposure_count": 8
+ }
+]

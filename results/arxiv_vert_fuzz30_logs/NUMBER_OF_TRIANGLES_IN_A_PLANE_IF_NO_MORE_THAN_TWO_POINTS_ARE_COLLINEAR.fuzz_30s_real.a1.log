@@ -1,0 +1,141 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:412:5
+    |
+412 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:415:31
+    |
+415 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+415 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+415 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:415:59
+    |
+415 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+415 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+415 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:397:4
+    |
+397 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:398:4
+    |
+398 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:399:4
+    |
+399 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:400:4
+    |
+400 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:401:4
+    |
+401 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:415:60
+    |
+415 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero` (bin "c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2816647068
+INFO: Loaded 1 modules   (362059 inline 8-bit counters): 362059 [0x642b297e10d0, 0x642b2983971b), 
+INFO: Loaded 1 PC tables (362059 PCs): 362059 [0x642b29839720,0x642b29dbfbd0), 
+INFO:        0 files found in /tmp/fzr_v4ez2ic3/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_v4ez2ic3/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+16777216
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `0`,
+ right: `5592405`', src/main.rs:422:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==21180== ERROR: libFuzzer: deadly signal
+    #0 0x642b28112011  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xa65011) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #1 0x642b28ce74ee  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x163a4ee) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #2 0x642b28cf2a79  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1645a79) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #3 0x7bc2b1cb34af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x7bc2b1d0791b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x7bc2b1cb3405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x7bc2b1c997f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x642b29334796  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1c87796) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #8 0x642b2806c2b6  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x9bf2b6) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #9 0x642b281b79e9  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xb0a9e9) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #10 0x642b28cbface  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1612ace) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #11 0x642b28cf2fd5  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1645fd5) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #12 0x642b28cf7b23  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x164ab23) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #13 0x642b28cf8a58  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x164ba58) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #14 0x642b28cfad57  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x164dd57) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #15 0x642b28cce2e2  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x16212e2) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #16 0x642b28cbfe26  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1612e26) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #17 0x642b2815dd61  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xab0d61) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #18 0x642b281b68f7  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xb098f7) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #19 0x642b281c2b21  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xb15b21) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #20 0x642b28163e15  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0xab6e15) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #21 0x642b28ca647e  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x15f947e) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #22 0x642b28ca5471  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x15f8471) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #23 0x642b28c689d3  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x15bb9d3) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #24 0x642b28c6f08a  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x15c208a) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #25 0x642b29333184  (/tmp/fzr_v4ez2ic3/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1c86184) (BuildId: bbf15f2e3906544b83352e48478f0664c862ec40)
+    #26 0x7bc2b1d059e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x7bc2b1d96a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 3 InsertByte-CrossOver-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x60,0xa,0xa,0xa,
+`\012\012\012
+artifact_prefix='/tmp/fzr_v4ez2ic3/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_v4ez2ic3/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-fed90d1a1d7731ba4573c1907f5f4b59b4cc26f6
+Base64: YAoKCg==
+error: process exited with status 77

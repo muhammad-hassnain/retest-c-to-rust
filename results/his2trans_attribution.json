@@ -1,0 +1,477 @@
+{
+ "provenance": {
+  "script": "systems/his2trans/attribute.py",
+  "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/attribute.py --diff /work/results/his2trans_diff.json --build /b/attr3 --out /work/results/his2trans_attribution.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "?",
+  "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-14T06:35:19+00:00",
+  "wall_seconds": 77,
+  "diff_input": "/work/results/his2trans_diff.json",
+  "patches": {
+   "buffer": {
+    "H2T-BUF-1": [
+     [
+      "src/src_buffer.rs",
+      "    _len: size_t,\n) -> c_int {\n    let len = data.len();",
+      "    _len: size_t,\n) -> c_int {\n    let len = _len as usize;\n    let data = &data[..core::cmp::min(len, data.len())];"
+     ],
+     [
+      "src/src_buffer.rs",
+      "    b.storage[start..start + len].copy_from_slice(data);",
+      "    let len = data.len();\n    b.storage[start..start + len].copy_from_slice(data);"
+     ]
+    ],
+    "H2T-BUF-2": [
+     [
+      "src/src_buffer.rs",
+      "    if b.storage.is_empty() || needle.is_empty() {\n        return -1;\n    }",
+      "    if needle.is_empty() {\n        return 0;\n    }\n    if b.storage.is_empty() {\n        return -1;\n    }"
+     ]
+    ],
+    "H2T-BUF-3": [
+     [
+      "src/src_buffer.rs",
+      "    // _len kept for backward compatibility; actual length is data.len().\n    buffer_new_with_slice(data)",
+      "    let p = buffer_new_with_slice(data);\n    unsafe { (*p).len = _len; }\n    p"
+     ]
+    ],
+    "H2T-BUF-4": [
+     [
+      "src/src_buffer.rs",
+      "    b.storage\n        .copy_within(b.data_offset..b.data_offset + prev + 1, b.data_offset + len);",
+      "    let end = core::cmp::min(b.data_offset + len + 1, b.storage.len() - len);\n    b.storage\n        .copy_within(b.data_offset..end, b.data_offset + len);"
+     ]
+    ],
+    "H2T-BUF-5": [
+     [
+      "src/src_buffer.rs",
+      "    b.storage.resize(n + 1, 0u8);",
+      "    b.storage.resize(n + 1, 0u8);\n    b.storage[n] = 0u8;"
+     ]
+    ],
+    "H2T-BUF-6": [
+     [
+      "src/src_buffer.rs",
+      "    let start = b.data_offset + prev;",
+      "    let prev = content_len(b);\n    let start = b.data_offset + prev;"
+     ]
+    ]
+   },
+   "genann": {
+    "H2T-GEN-1": [
+     [
+      "src/src_genann.rs",
+      "    static STATE: AtomicU64 = AtomicU64::new(1);\n    let old = STATE.load(Ordering::Relaxed);\n    let new = old.wrapping_mul(1664525).wrapping_add(1013904223);\n    STATE.store(new, Ordering::Relaxed);\n    (new & 0x7FFFFFFF) as f64 / 0x7FFFFFFF as f64",
+      "    unsafe { libc::rand() as f64 / libc::RAND_MAX as f64 }"
+     ]
+    ]
+   },
+   "rgba": {
+    "H2T-RGBA-1": [
+     [
+      "src/src_rgba.rs",
+      "            (rgba.r * 255.0) as u8,\n            (rgba.g * 255.0) as u8,\n            (rgba.b * 255.0) as u8\n",
+      "            (rgba.r * 255.0) as i32,\n            (rgba.g * 255.0) as i32,\n            (rgba.b * 255.0) as i32\n"
+     ],
+     [
+      "src/src_rgba.rs",
+      "            (rgba.r * 255.0) as u8,\n            (rgba.g * 255.0) as u8,\n            (rgba.b * 255.0) as u8,\n",
+      "            (rgba.r * 255.0) as i32,\n            (rgba.g * 255.0) as i32,\n            (rgba.b * 255.0) as i32,\n"
+     ]
+    ]
+   }
+  }
+ },
+ "attribution": {
+  "buffer": {
+   "counted_divergent": 164,
+   "per_defect": {
+    "H2T-BUF-1": {
+     "build": "ok",
+     "cases_fixed": 76,
+     "fixed_ids": [
+      "buffer/buffer_append_n/grid/00195",
+      "buffer/buffer_append_n/grid/00196",
+      "buffer/buffer_append_n/grid/00197",
+      "buffer/buffer_append_n/grid/00198",
+      "buffer/buffer_append_n/grid/00201",
+      "buffer/buffer_append_n/grid/00203",
+      "buffer/buffer_append_n/grid/00205",
+      "buffer/buffer_append_n/grid/00208",
+      "buffer/buffer_append_n/grid/00210",
+      "buffer/buffer_append_n/grid/00211",
+      "buffer/buffer_append_n/grid/00212",
+      "buffer/buffer_append_n/grid/00215",
+      "buffer/buffer_append_n/grid/00217",
+      "buffer/buffer_append_n/grid/00219",
+      "buffer/buffer_append_n/grid/00223",
+      "buffer/buffer_append_n/grid/00224",
+      "buffer/buffer_append_n/grid/00225",
+      "buffer/buffer_append_n/grid/00226",
+      "buffer/buffer_append_n/grid/00227",
+      "buffer/buffer_append_n/grid/00230",
+      "buffer/buffer_append_n/grid/00231",
+      "buffer/buffer_append_n/grid/00233",
+      "buffer/buffer_append_n/grid/00234",
+      "buffer/buffer_append_n/grid/00238",
+      "buffer/buffer_append_n/grid/00240",
+      "buffer/buffer_append_n/grid/00241",
+      "buffer/buffer_append_n/grid/00242",
+      "buffer/buffer_append_n/grid/00243",
+      "buffer/buffer_append_n/grid/00245",
+      "buffer/buffer_append_n/grid/00248",
+      "buffer/buffer_append_n/grid/00249",
+      "buffer/buffer_append_n/grid/00252",
+      "buffer/buffer_append_n/grid/00255",
+      "buffer/buffer_append_n/grid/00256",
+      "buffer/buffer_append_n/grid/00259",
+      "buffer/buffer_append_n/grid/00262",
+      "buffer/buffer_append_n/grid/00263",
+      "buffer/buffer_append_n/grid/00266",
+      "buffer/buffer_append_n/grid/00269",
+      "buffer/buffer_append_n/grid/00270",
+      "buffer/buffer_append_n/grid/00273",
+      "buffer/buffer_append_n/grid/00274",
+      "buffer/pair:buffer_append+buffer_append_n/pair/00928",
+      "buffer/pair:buffer_append_n+buffer_append/pair/00958",
+      "buffer/pair:buffer_append_n+buffer_append/pair/00960",
+      "buffer/pair:buffer_append_n+buffer_append_n/pair/00961",
+      "buffer/pair:buffer_append_n+buffer_append_n/pair/00962",
+      "buffer/pair:buffer_append_n+buffer_append_n/pair/00963",
+      "buffer/pair:buffer_append_n+buffer_appendf/pair/00967",
+      "buffer/pair:buffer_append_n+buffer_appendf/pair/00969",
+      "buffer/pair:buffer_append_n+buffer_clear/pair/00988",
+      "buffer/pair:buffer_append_n+buffer_clear/pair/00990",
+      "buffer/pair:buffer_append_n+buffer_compact/pair/00973",
+      "buffer/pair:buffer_append_n+buffer_compact/pair/00975",
+      "buffer/pair:buffer_append_n+buffer_fill/pair/00985",
+      "buffer/pair:buffer_append_n+buffer_fill/pair/00986",
+      "buffer/pair:buffer_append_n+buffer_fill/pair/00987",
+      "buffer/pair:buffer_append_n+buffer_prepend/pair/00966",
+      "buffer/pair:buffer_append_n+buffer_resize/pair/00970",
+      "buffer/pair:buffer_append_n+buffer_resize/pair/00972",
+      "buffer/pair:buffer_append_n+buffer_trim/pair/00982",
+      "buffer/pair:buffer_append_n+buffer_trim_left/pair/00976",
+      "buffer/pair:buffer_append_n+buffer_trim_left/pair/00978",
+      "buffer/pair:buffer_append_n+buffer_trim_right/pair/00979",
+      "buffer/pair:buffer_append_n+buffer_trim_right/pair/00981",
+      "buffer/pair:buffer_appendf+buffer_append_n/pair/01027",
+      "buffer/pair:buffer_clear+buffer_append_n/pair/01258",
+      "buffer/pair:buffer_clear+buffer_append_n/pair/01259",
+      "buffer/pair:buffer_compact+buffer_append_n/pair/01093",
+      "buffer/pair:buffer_compact+buffer_append_n/pair/01094",
+      "buffer/pair:buffer_fill+buffer_append_n/pair/01225",
+      "buffer/pair:buffer_resize+buffer_append_n/pair/01060",
+      "buffer/pair:buffer_trim+buffer_append_n/pair/01192",
+      "buffer/pair:buffer_trim_left+buffer_append_n/pair/01126",
+      "buffer/pair:buffer_trim_left+buffer_append_n/pair/01127",
+      "buffer/pair:buffer_trim_right+buffer_append_n/pair/01159"
+     ]
+    },
+    "H2T-BUF-2": {
+     "build": "ok",
+     "cases_fixed": 5,
+     "fixed_ids": [
+      "buffer/buffer_indexof/grid/00830",
+      "buffer/buffer_indexof/grid/00854",
+      "buffer/buffer_indexof/grid/00861",
+      "buffer/buffer_indexof/grid/00868",
+      "buffer/buffer_indexof/grid/00875"
+     ]
+    },
+    "H2T-BUF-3": {
+     "build": "ok",
+     "cases_fixed": 20,
+     "fixed_ids": [
+      "buffer/buffer_new_with_string_length/grid/00091",
+      "buffer/buffer_new_with_string_length/grid/00092",
+      "buffer/buffer_new_with_string_length/grid/00093",
+      "buffer/buffer_new_with_string_length/grid/00095",
+      "buffer/buffer_new_with_string_length/grid/00096",
+      "buffer/buffer_new_with_string_length/grid/00098",
+      "buffer/buffer_new_with_string_length/grid/00099",
+      "buffer/buffer_new_with_string_length/grid/00100",
+      "buffer/buffer_new_with_string_length/grid/00101",
+      "buffer/buffer_new_with_string_length/grid/00102",
+      "buffer/buffer_new_with_string_length/grid/00103",
+      "buffer/buffer_new_with_string_length/grid/00104",
+      "buffer/buffer_new_with_string_length/grid/00106",
+      "buffer/buffer_new_with_string_length/grid/00107",
+      "buffer/buffer_new_with_string_length/grid/00108",
+      "buffer/buffer_new_with_string_length/grid/00109",
+      "buffer/buffer_new_with_string_length/grid/00110",
+      "buffer/buffer_new_with_string_length/grid/00111",
+      "buffer/buffer_new_with_string_length/grid/00113",
+      "buffer/buffer_new_with_string_length/grid/00114"
+     ]
+    },
+    "H2T-BUF-4": {
+     "build": "ok",
+     "cases_fixed": 45,
+     "fixed_ids": [
+      "buffer/buffer_prepend/grid/00277",
+      "buffer/buffer_prepend/grid/00280",
+      "buffer/buffer_prepend/grid/00281",
+      "buffer/buffer_prepend/grid/00285",
+      "buffer/buffer_prepend/grid/00286",
+      "buffer/buffer_prepend/grid/00290",
+      "buffer/buffer_prepend/grid/00292",
+      "buffer/buffer_prepend/grid/00294",
+      "buffer/buffer_prepend/grid/00297",
+      "buffer/buffer_prepend/grid/00301",
+      "buffer/buffer_prepend/grid/00302",
+      "buffer/buffer_prepend/grid/00305",
+      "buffer/buffer_prepend/grid/00309",
+      "buffer/buffer_prepend/grid/00322",
+      "buffer/buffer_prepend/grid/00329",
+      "buffer/buffer_prepend/grid/00330",
+      "buffer/buffer_prepend/grid/00334",
+      "buffer/buffer_prepend/grid/00339",
+      "buffer/buffer_prepend/grid/00341",
+      "buffer/buffer_prepend/grid/00343",
+      "buffer/buffer_prepend/grid/00346",
+      "buffer/buffer_prepend/grid/00350",
+      "buffer/buffer_prepend/grid/00351",
+      "buffer/buffer_prepend/grid/00354",
+      "buffer/pair:buffer_append+buffer_prepend/pair/00932",
+      "buffer/pair:buffer_appendf+buffer_prepend/pair/01030",
+      "buffer/pair:buffer_appendf+buffer_prepend/pair/01031",
+      "buffer/pair:buffer_compact+buffer_prepend/pair/01097",
+      "buffer/pair:buffer_fill+buffer_prepend/pair/01230",
+      "buffer/pair:buffer_prepend+buffer_appendf/pair/01000",
+      "buffer/pair:buffer_prepend+buffer_appendf/pair/01002",
+      "buffer/pair:buffer_prepend+buffer_clear/pair/01023",
+      "buffer/pair:buffer_prepend+buffer_compact/pair/01006",
+      "buffer/pair:buffer_prepend+buffer_fill/pair/01020",
+      "buffer/pair:buffer_prepend+buffer_prepend/pair/00997",
+      "buffer/pair:buffer_prepend+buffer_prepend/pair/00998",
+      "buffer/pair:buffer_prepend+buffer_resize/pair/01003",
+      "buffer/pair:buffer_prepend+buffer_trim/pair/01017",
+      "buffer/pair:buffer_prepend+buffer_trim_left/pair/01009",
+      "buffer/pair:buffer_prepend+buffer_trim_left/pair/01011",
+      "buffer/pair:buffer_prepend+buffer_trim_right/pair/01014",
+      "buffer/pair:buffer_resize+buffer_prepend/pair/01065",
+      "buffer/pair:buffer_trim+buffer_prepend/pair/01195",
+      "buffer/pair:buffer_trim_left+buffer_prepend/pair/01129",
+      "buffer/pair:buffer_trim_right+buffer_prepend/pair/01162"
+     ]
+    },
+    "H2T-BUF-5": {
+     "build": "ok",
+     "cases_fixed": 13,
+     "fixed_ids": [
+      "buffer/buffer_resize/grid/00445",
+      "buffer/buffer_resize/grid/00452",
+      "buffer/buffer_resize/grid/00466",
+      "buffer/buffer_resize/grid/00473",
+      "buffer/buffer_resize/grid/00480",
+      "buffer/pair:buffer_append+buffer_resize/pair/00938",
+      "buffer/pair:buffer_append+buffer_resize/pair/00939",
+      "buffer/pair:buffer_appendf+buffer_resize/pair/01038",
+      "buffer/pair:buffer_compact+buffer_resize/pair/01104",
+      "buffer/pair:buffer_fill+buffer_resize/pair/01236",
+      "buffer/pair:buffer_resize+buffer_resize/pair/01071",
+      "buffer/pair:buffer_trim+buffer_resize/pair/01203",
+      "buffer/pair:buffer_trim_right+buffer_resize/pair/01170"
+     ]
+    },
+    "H2T-BUF-6": {
+     "build": "ok",
+     "cases_fixed": 2,
+     "fixed_ids": [
+      "buffer/pair:buffer_trim_left+buffer_append/pair/01124",
+      "buffer/pair:buffer_trim_left+buffer_append/pair/01125"
+     ]
+    }
+   },
+   "attributed_to_exactly_one": 161,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [
+    "buffer/pair:buffer_append_n+buffer_prepend/pair/00964",
+    "buffer/pair:buffer_prepend+buffer_append_n/pair/00994",
+    "buffer/pair:buffer_prepend+buffer_resize/pair/01005"
+   ],
+   "fixed_by_pair_of_patches": {
+    "buffer/pair:buffer_append_n+buffer_prepend/pair/00964": [
+     [
+      "H2T-BUF-1",
+      "H2T-BUF-4"
+     ]
+    ],
+    "buffer/pair:buffer_prepend+buffer_append_n/pair/00994": [
+     [
+      "H2T-BUF-1",
+      "H2T-BUF-4"
+     ]
+    ],
+    "buffer/pair:buffer_prepend+buffer_resize/pair/01005": [
+     [
+      "H2T-BUF-4",
+      "H2T-BUF-5"
+     ]
+    ]
+   },
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  },
+  "genann": {
+   "counted_divergent": 73,
+   "per_defect": {
+    "H2T-GEN-1": {
+     "build": "ok",
+     "cases_fixed": 73,
+     "fixed_ids": [
+      "genann/genann_init/grid/00309",
+      "genann/genann_init/grid/00310",
+      "genann/genann_init/grid/00312",
+      "genann/genann_init/grid/00315",
+      "genann/genann_init/grid/00316",
+      "genann/genann_init/grid/00317",
+      "genann/genann_init/grid/00318",
+      "genann/genann_init/grid/00321",
+      "genann/genann_init/grid/00325",
+      "genann/genann_init/grid/00328",
+      "genann/genann_init/grid/00329",
+      "genann/genann_init/grid/00331",
+      "genann/genann_init/grid/00332",
+      "genann/genann_init/grid/00333",
+      "genann/genann_init/grid/00335",
+      "genann/genann_init/grid/00336",
+      "genann/genann_init/grid/00340",
+      "genann/genann_init/grid/00342",
+      "genann/genann_init/grid/00343",
+      "genann/genann_init/grid/00344",
+      "genann/genann_init/grid/00345",
+      "genann/genann_init/grid/00347",
+      "genann/genann_init/grid/00349",
+      "genann/genann_init/grid/00351",
+      "genann/genann_init/grid/00354",
+      "genann/genann_init/grid/00356",
+      "genann/genann_init/grid/00358",
+      "genann/genann_init/grid/00359",
+      "genann/genann_init/grid/00360",
+      "genann/genann_init/grid/00361",
+      "genann/genann_init/grid/00364",
+      "genann/genann_init/grid/00366",
+      "genann/genann_init/grid/00367",
+      "genann/genann_init/grid/00370",
+      "genann/genann_init/grid/00371",
+      "genann/genann_init/grid/00374",
+      "genann/genann_init/grid/00375",
+      "genann/genann_init/grid/00377",
+      "genann/genann_init/grid/00379",
+      "genann/genann_init/grid/00380",
+      "genann/genann_init/grid/00382",
+      "genann/genann_init/grid/00385",
+      "genann/genann_init/grid/00386",
+      "genann/genann_init/own/00616",
+      "genann/genann_init/own/00617",
+      "genann/genann_init/own/00618",
+      "genann/genann_init/own/00619",
+      "genann/genann_init/probe/00623",
+      "genann/genann_init/probe/00624",
+      "genann/genann_init/probe/00625",
+      "genann/genann_init/probe/00626",
+      "genann/genann_randomize/grid/00388",
+      "genann/genann_randomize/grid/00389",
+      "genann/genann_randomize/grid/00390",
+      "genann/genann_randomize/grid/00391",
+      "genann/genann_randomize/grid/00392",
+      "genann/genann_randomize/grid/00393",
+      "genann/genann_randomize/grid/00394",
+      "genann/genann_randomize/grid/00395",
+      "genann/genann_randomize/grid/00396",
+      "genann/genann_randomize/grid/00397",
+      "genann/genann_randomize/grid/00398",
+      "genann/genann_randomize/grid/00399",
+      "genann/genann_randomize/grid/00400",
+      "genann/genann_randomize/grid/00401",
+      "genann/genann_randomize/grid/00402",
+      "genann/genann_randomize/grid/00403",
+      "genann/genann_randomize/grid/00404",
+      "genann/genann_randomize/grid/00405",
+      "genann/genann_randomize/grid/00406",
+      "genann/genann_randomize/grid/00407",
+      "genann/genann_randomize/own/00621",
+      "genann/genann_run/own/00622"
+     ]
+    }
+   },
+   "attributed_to_exactly_one": 73,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [],
+   "fixed_by_pair_of_patches": {},
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  },
+  "rgba": {
+   "counted_divergent": 10,
+   "per_defect": {
+    "H2T-RGBA-1": {
+     "build": "ok",
+     "cases_fixed": 10,
+     "fixed_ids": [
+      "rgba/rgba_to_string/grid/00290",
+      "rgba/rgba_to_string/grid/00291",
+      "rgba/rgba_to_string/grid/00292",
+      "rgba/rgba_to_string/grid/00293",
+      "rgba/rgba_to_string/grid/00294",
+      "rgba/rgba_to_string/grid/00295",
+      "rgba/rgba_to_string/grid/00302",
+      "rgba/rgba_to_string/grid/00303",
+      "rgba/rgba_to_string/grid/00304",
+      "rgba/rgba_to_string/grid/00305"
+     ]
+    }
+   },
+   "attributed_to_exactly_one": 10,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [],
+   "fixed_by_pair_of_patches": {},
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  }
+ }
+}

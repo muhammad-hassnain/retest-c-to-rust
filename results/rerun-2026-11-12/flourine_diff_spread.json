@@ -1,0 +1,193 @@
+{
+  "summary": {
+    "system": "Flourine",
+    "generation": "deterministic enumeration",
+    "benchmarks_scalar": 18,
+    "success_tested": 101,
+    "success_agree": 96,
+    "success_value_bug": 5,
+    "success_crash": 0,
+    "fail_tested": 188,
+    "fail_diverge": 88,
+    "fail_agree": 100,
+    "build_fail": 0,
+    "success_but_divergent_benchmarks": [
+      "clip",
+      "opl_emu_clamp",
+      "opl_emu_registers_operator_list"
+    ]
+  },
+  "success_divergences": [
+    {
+      "t": "libopenaptx/clip/claude2/BaseRepair/clip.rs",
+      "value": 63,
+      "samples": [
+        {
+          "in": [
+            1,
+            1,
+            -1
+          ],
+          "c": "-1",
+          "rust": "1"
+        },
+        {
+          "in": [
+            65,
+            65,
+            0
+          ],
+          "c": "0",
+          "rust": "65"
+        },
+        {
+          "in": [
+            98,
+            98,
+            -1
+          ],
+          "c": "-1",
+          "rust": "98"
+        }
+      ]
+    },
+    {
+      "t": "libopenaptx/clip/claude2/CAPR/clip.rs",
+      "value": 63,
+      "samples": [
+        {
+          "in": [
+            1,
+            1,
+            -1
+          ],
+          "c": "-1",
+          "rust": "1"
+        },
+        {
+          "in": [
+            65,
+            65,
+            0
+          ],
+          "c": "0",
+          "rust": "65"
+        },
+        {
+          "in": [
+            98,
+            98,
+            -1
+          ],
+          "c": "-1",
+          "rust": "98"
+        }
+      ]
+    },
+    {
+      "t": "opl/opl_emu_clamp/claude2/BaseRepair/opl_emu_clamp.rs",
+      "value": 63,
+      "samples": [
+        {
+          "in": [
+            1,
+            1,
+            -1
+          ],
+          "c": "-1",
+          "rust": "1"
+        },
+        {
+          "in": [
+            65,
+            65,
+            0
+          ],
+          "c": "0",
+          "rust": "65"
+        },
+        {
+          "in": [
+            98,
+            98,
+            -1
+          ],
+          "c": "-1",
+          "rust": "98"
+        }
+      ]
+    },
+    {
+      "t": "opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs",
+      "value": 1998,
+      "samples": [
+        {
+          "in": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "c": "256",
+          "rust": "1"
+        },
+        {
+          "in": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "c": "16777217",
+          "rust": "2"
+        },
+        {
+          "in": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "c": "16843009",
+          "rust": "4"
+        }
+      ]
+    },
+    {
+      "t": "opl/opl_emu_registers_operator_list/claude2/CAPR/opl_emu_registers_operator_list.rs",
+      "value": 1998,
+      "samples": [
+        {
+          "in": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "c": "256",
+          "rust": "1"
+        },
+        {
+          "in": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "c": "16777217",
+          "rust": "2"
+        },
+        {
+          "in": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "c": "16843009",
+          "rust": "4"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:535:5
+    |
+535 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:538:31
+    |
+538 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+538 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+538 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:538:59
+    |
+538 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+538 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+538 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:517:4
+    |
+517 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:518:4
+    |
+518 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:519:4
+    |
+519 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:520:4
+    |
+520 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:521:4
+    |
+521 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:538:60
+    |
+538 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_sum_pairwise_products_out-rwasm-bolero` (bin "c_transcoder_sum_pairwise_products_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_sum_pairwise_products_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_pairwise_products_out_rwasm_bolero-e1ad39be4d208df5)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 714348957
+INFO: Loaded 1 modules   (362079 inline 8-bit counters): 362079 [0x59d1716ef0d0, 0x59d17174772f), 
+INFO: Loaded 1 PC tables (362079 PCs): 362079 [0x59d171747730,0x59d171ccdd20), 
+INFO:        0 files found in /tmp/fzr_orf7newb/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_orf7newb/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb

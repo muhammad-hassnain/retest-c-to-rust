@@ -1,0 +1,315 @@
+{
+  "summary": {
+    "system": "RustMap",
+    "scope": "Rosetta Code translations (differential, original C vs translated Rust, byte-exact stdout+exit)",
+    "pairs": 124,
+    "agree": 45,
+    "agree_after_formatting": 4,
+    "agree_float_tolerance": 2,
+    "divergent_real": 37,
+    "divergent_nondeterministic": 4,
+    "timeout": 1,
+    "c_build_fail": 1,
+    "rust_build_fail": 30,
+    "real_divergent_tasks": [
+      "approximate_equility",
+      "arithmetic_mean",
+      "array_length",
+      "base64_decode_data",
+      "binary_search",
+      "box_the_compass",
+      "chaocipher",
+      "circles_of_given_radius_through_two_points",
+      "command_line_arguments",
+      "department_number",
+      "euler_method",
+      "extreme_floating_point_values",
+      "fibonacci_n_step_number_sequences",
+      "floyds_triangle",
+      "formatted_numeric_output",
+      "gaussian_elimination",
+      "hailstone_sequence",
+      "isbn13_check_digit",
+      "knapsack_problem_0_1",
+      "knapsack_problem_continuous",
+      "levenshtein_distance",
+      "lu_decomposition",
+      "machine_code",
+      "magic_squares_of_doubly_even_order",
+      "map_range",
+      "matrix_chain_multiplication",
+      "mean_angle",
+      "n_queens_problem",
+      "negative_base_numbers",
+      "next_highest_int_from_digits",
+      "nimber_arithmetic",
+      "number_names",
+      "numerical_integration",
+      "perfect_numbers",
+      "roman_numerals_decode",
+      "runge_kutta_method",
+      "sexy_primes"
+    ]
+  },
+  "divergence_samples": [
+    {
+      "task": "approximate_equility",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "100000000000000.015625, 100000000000000.015625 => 1\n100.010000, 100.011000 => 0\n1000000000.000000, 1000000000.000000 => 0\n0.001000, 0.001000 => 0\n0.000000, 0.000000 => 1\n2.000000, 2.000000 => 0\n-2.000000, -2.000000 => 0\n3.141593, 3.141593 => 1\n",
+      "rust": "100000000000000.02, 100000000000000.02 => true\n100.01, 100.011 => false\n1000000000.0000002, 1000000000.0000001 => false\n0.001, 0.0010000001 => false\n0.000000000000000000000101, 0 => true\n2.0000000000000004, 2 => false\nNaN, -2 => false\n3.141592653589793, 3.141592653589793 => true\n"
+    },
+    {
+      "task": "arithmetic_mean",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "mean[1, 2, 2.718, 3, 3.142] = 2.372\nmean[1, 2, 2.718, 3] = 2.1795\nmean[1, 2, 2.718] = 1.906\nmean[1, 2] = 1.5\nmean[1] = 1\nmean[] = -nan\n",
+      "rust": "mean[1, 2, 2.718, 3, 3.142] = 2.372\nmean[1, 2, 2.718, 3] = 2.1795\nmean[1, 2, 2.718] = 1.906\nmean[1, 2] = 1.5\nmean[1] = 1\nmean[] = NaN\n"
+    },
+    {
+      "task": "array_length",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "2\n",
+      "rust": "1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n"
+    },
+    {
+      "task": "base64_decode_data",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "VG8gZXJyIGlzIGh1bWFuLCBidXQgdG8gcmVhbGx5IGZvdWwgdGhpbmdzIHVwIHlvdSBuZWVkIGEgY29tcHV0ZXIuCiAgICAtLVBhdWwgUi5FaHJsaWNo\n\nTo err is human, but to really foul things up you need a computer.\n    --Paul R.Ehrlich\n\n",
+      "rust": "\"VG8gZXJyIGlzIGh1bWFuLCBidXQgdG8gcmVhbGx5IGZvdWwgdGhpbmdzIHVwIHlvdSBuZWVkIGEgY29tcHV0ZXIuCiAgICAtLVBhdWwgUi5FaHJsaWNo\"\n\"To err is human, but to really foul things up you need a computer.\\n    --Paul R.Ehrlich\"\n"
+    },
+    {
+      "task": "binary_search",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "2 is at index 4\n5 is at index -1\n",
+      "rust": "0\n1\n10\n11\n100\n101\n110\n111\n1000\n1001\n1010\n1011\n1100\n1101\n1110\n1111\n10000\n10001\n10010\n10011\n"
+    },
+    {
+      "task": "box_the_compass",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": " 1  North                     0.00\n 2  North by east            16.87\n 3  North-northeast          16.88\n 4  Northeast by north       33.75\n 5  Northeast                50.62\n 6  Northeast by east        50.63\n 7  East-northeast           67.50\n 8  East by north            84.37\n 9  East                     84.38\n10  East by south           101.25\n11  East-southeast          118.12\n12  Southeast by east       118.13\n13  Southeast               135.00\n14  Southeast by south      151.87\n15  South-southeast         151.88\n16  South by east           168.75\n17  South                   185.62\n18  South by west           185.63\n19  South-southwest         202.50\n20  Southwest by south      219.37\n21  Southwest               219.38\n22  Southwest by west       236.25\n23  West-southwest          253.12\n24  West by south           253.13\n25  West                    270.00\n26  West by north           286.87\n27  West-northwest          286.88\n28  Northwest by west       303.75\n29  Northwest               320.62\n30  Northwest by north      320.63\n31  North-northwest         337.50\n32  North by west           354.37\n 1  North                   354.38\n",
+      "rust": " 2  North by east           0.00\n 3  North-northeast         16.87\n 3  North-northeast         16.88\n 5  Northeast               33.75\n 6  Northeast by east       50.62\n 6  Northeast by east       50.63\n 8  East by north           67.50\n 9  East                    84.37\n 9  East                    84.38\n11  East-southeast          101.25\n12  Southeast by east       118.12\n12  Southeast by east       118.13\n14  Southeast by south      135.00\n15  South-southeast         151.87\n15  South-southeast         151.88\n17  South                   168.75\n18  South by west           185.62\n18  South by west           185.63\n20  Southwest by south      202.50\n21  Southwest               219.37\n21  Southwest               219.38\n23  West-southwest          236.25\n24  West by south           253.12\n24  West by south           253.13\n26  West by north           270.00\n27  West-northwest          286.87\n27  West-northwest          286.88\n29  Northwest               303.75\n30  Northwest by north      320.62\n30  Northwest by north      320.63\n32  North by west           337.50\n 1  North                   354.37\n 1  North                   354.38\n"
+    },
+    {
+      "task": "chaocipher",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "The original plaintext is : WELLDONEISBETTERTHANWELLSAID\n\nThe left and right alphabets after each permutation during encryption are :\n\nHXUCZVAMDSLKPEFJRIGTWOBNYQ  PTLNBQDEOYSFAVZKGJRIHWXUMC\nONYQHXUCZVAMDBSLKPEFJRIGTW  XUCPTLNBQDEOYMSFAVZKGJRIHW\nADBSLKPEFJRIGMTWONYQHXUCZV  OYSFAVZKGJRIHMWXUCPTLNBQDE\nHUCZVADBSLKPEXFJRIGMTWONYQ  NBDEOYSFAVZKGQJRIHMWXUCPTL\nQUCZVADBSLKPEHXFJRIGMTWONY  NBEOYSFAVZKGQDJRIHMWXUCPTL\nHFJRIGMTWONYQXUCZVADBSLKPE  JRHMWXUCPTLNBIEOYSFAVZKGQD\nCVADBSLKPEHFJZRIGMTWONYQXU  YSAVZKGQDJRHMFWXUCPTLNBIEO\nNQXUCVADBSLKPYEHFJZRIGMTWO  BIOYSAVZKGQDJERHMFWXUCPTLN\nYHFJZRIGMTWONEQXUCVADBSLKP  RHFWXUCPTLNBIMOYSAVZKGQDJE\nNQXUCVADBSLKPEYHFJZRIGMTWO  MOSAVZKGQDJERYHFWXUCPTLNBI\nXCVADBSLKPEYHUFJZRIGMTWONQ  AVKGQDJERYHFWZXUCPTLNBIMOS\nTONQXCVADBSLKWPEYHUFJZRIGM  IMSAVKGQDJERYOHFWZXUCPTLNB\nSKWPEYHUFJZRILGMTONQXCVADB  RYHFWZXUCPTLNOBIMSAVKGQDJE\nZILGMTONQXCVARDBSKWPEYHUFJ  LNBIMSAVKGQDJOERYHFWZXUCPT\nJILGMTONQXCVAZRDBSKWPEYHUF  LNIMSAVKGQDJOBERYHFWZXUCPT\nRBSKWPEYHUFJIDLGMTONQXCVAZ  RYFWZXUCPTLNIHMSAVKGQDJOBE\nRSKWPEYHUFJIDBLGMTONQXCVAZ  YFZXUCPTLNIHMWSAVKGQDJOBER\nHFJIDBLGMTONQUXCVAZRSKWPEY  LNHMWSAVKGQDJIOBERYFZXUCPT\nJDBLGMTONQUXCIVAZRSKWPEYHF  MWAVKGQDJIOBESRYFZXUCPTLNH\nBGMTONQUXCIVALZRSKWPEYHFJD  VKQDJIOBESRYFGZXUCPTLNHMWA\nYFJDBGMTONQUXHCIVALZRSKWPE  HMAVKQDJIOBESWRYFGZXUCPTLN\nHIVALZRSKWPEYCFJDBGMTONQUX  RYGZXUCPTLNHMFAVKQDJIOBESW\nQXHIVALZRSKWPUEYCFJDBGMTON  SWYGZXUCPTLNHRMFAVKQDJIOBE\nKPUEYCFJDBGMTWONQXHIVALZRS  NHMFAVKQDJIOBRESWYGZXUCPTL\nSPUEYCFJDBGMTKWONQXHIVALZR  NHFAVKQDJIOBRMESWYGZXUCPTL\nOQXHIVALZRSPUNEYCFJDBGMTKW  WYZXUCPTLNHFAGVKQDJIOBRMES\nUEYCFJDBGMTKWNOQXHIVALZRSP  GVQDJIOBRMESWKYZXUCPTLNHFA\nJBGMTKWNOQXHIDVALZRSPUEYCF  OBMESWKYZXUCPRTLNHFAGVQDJI\n\nThe ciphertext is : OAHQHCNYNXTSZJRRHJBYHQKSOUJY\n\nThe recovered plaintext is : WELLDONEISBETTERTHANWELLSAID\n",
+      "rust": "The original plaintext is: WELLDONEISBETTERTHANWELLSAID\nThe left and right alphabets after each permutation during encryption are:\n['H', 'X', 'U', 'C', 'Z', 'V', 'A', 'M', 'D', 'S', 'L', 'K', 'P', 'E', 'F', 'J', 'R', 'I', 'G', 'T', 'W', 'O', 'B', 'N', 'Y', 'Q']  ['P', 'T', 'L', 'N', 'B', 'Q', 'D', 'E', 'O', 'Y', 'S', 'F', 'A', 'V', 'Z', 'K', 'G', 'J', 'R', 'I', 'H', 'W', 'X', 'U', 'M', 'C']\n['B', 'D', 'Y', 'Q', 'H', 'X', 'U', 'C', 'Z', 'V', 'A', 'M', 'N', 'S', 'L', 'K', 'P', 'E', 'F', 'J', 'R', 'I', 'G', 'T', 'W', 'O']  ['I', 'X', 'E', 'M', 'C', 'P', 'T', 'L', 'N', 'B', 'Q', 'D', 'U', 'O', 'Y', 'S', 'F', 'A', 'V', 'Z', 'K', 'G', 'J', 'R', 'W', 'H']\n['Q', 'K', 'X', 'U', 'C', 'Z', 'V', 'A', 'M', 'N', 'S', 'L', 'H', 'P', 'E', 'F', 'J', 'R', 'I', 'G', 'T', 'W', 'O', 'B', 'D', 'Y']  ['I', 'M', 'Y', 'P', 'T', 'L', 'N', 'B', 'Q', 'D', 'U', 'O', 'C', 'S', 'F', 'A', 'V', 'Z', 'K', 'G', 'J', 'R', 'W', 'H', 'E', 'X']\n['V', 'I', 'M', 'N', 'S', 'L', 'H', 'P', 'E', 'F', 'J', 'R', 'A', 'G', 'T', 'W', 'O', 'B', 'D', 'Y', 'Q', 'K', 'X', 'U', 'C', 'Z']  ['P', 'N', 'Z', 'Q', 'D', 'U', 'O', 'C', 'S', 'F', 'A', 'V', 'B', 'K', 'G', 'J', 'R', 'W', 'H', 'E', 'X', 'I', 'M', 'Y', 'L', 'T']\n['Z', 'R', 'I', 'M', 'N', 'S', 'L', 'H', 'P', 'E', 'F', 'J', 'V', 'A', 'G', 'T', 'W', 'O', 'B', 'D', 'Y', 'Q', 'K', 'X', 'U', 'C']  ['M', 'T', 'A', 'N', 'Z', 'Q', 'D', 'U', 'O', 'C', 'S', 'F', 'P', 'V', 'B', 'K', 'G', 'J', 'R', 'W', 'H', 'E', 'X', 'I', 'L', 'Y']\n['H', 'D', 'E', 'F', 'J', 'V', 'A', 'G', 'T', 'W', 'O', 'B', 'P', 'Y', 'Q', 'K', 'X', 'U', 'C', 'Z', 'R', 'I', 'M', 'N', 'S', 'L']  ['Z', 'U', 'R', 'C', 'S', 'F', 'P', 'V', 'B', 'K', 'G', 'J', 'O', 'W', 'H', 'E', 'X', 'I', 'L', 'Y', 'M', 'T', 'A', 'N', 'D', 'Q']\n['Y', 'L', 'K', 'X', 'U', 'C', 'Z', 'R', 'I', 'M', 'N', 'S', 'Q', 'H', 'D', 'E', 'F', 'J', 'V', 'A', 'G', 'T', 'W', 'O', 'B', 'P']  ['G', 'W', 'D', 'E', 'X', 'I', 'L', 'Y', 'M', 'T', 'A', 'N', 'H', 'Q', 'Z', 'U', 'R', 'C', 'S', 'F', 'P', 'V', 'B', 'K', 'O', 'J']\n['Q', 'B', 'D', 'E', 'F', 'J"
+    },
+    {
+      "task": "circles_of_given_radius_through_two_points",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "\nCase 1)\nTwo circles are possible.\nCircle C1 with center (1.8631,1.9742), radius 2.0000 and Circle C2 with center (-0.8632,-0.7521), radius 2.0000\nCase 2)\nGiven points are opposite ends of a diameter of the circle with center (0.0000,1.0000) and radius 1.0000\nCase 3)\nInfinitely many circles can be drawn through (0.1234,0.9876)\nCase 4)\nGiven points are farther away from each other than a diameter of a circle with radius 0.5000\nCase 5)\nNo circles can be drawn through (0.1234,0.9876)",
+      "rust": "\nCase 1)\n\nTwo circles are possible.\nCircle C1 with center (1.8631, 1.9742), radius 2.0000 and Circle C2 with center (-0.8632, -0.7521), radius 2.0000\n\nCase 2)\n\nGiven points are opposite ends of a diameter of the circle with center (0.0000, 1.0000) and radius 1.0000\n\nCase 3)\n\nInfinitely many circles can be drawn through (0.1234, 0.9876)\n\nCase 4)\n\nGiven points are farther away from each other than a diameter of a circle with radius 0.5000\n\nCase 5)\n\nNo circles can be drawn through (0.1234, 0.9876)\n"
+    },
+    {
+      "task": "command_line_arguments",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "This program is named /tmp/tmp9xd5nuq8/c_bin.\n",
+      "rust": "This program is named /tmp/tmp9xd5nuq8/r_bin.\n"
+    },
+    {
+      "task": "department_number",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "Police     Sanitation         Fire\n----------------------------------\n2\t\t3\t\t7\n2\t\t4\t\t6\n2\t\t6\t\t4\n2\t\t7\t\t3\n4\t\t1\t\t7\n4\t\t2\t\t6\n4\t\t3\t\t5\n4\t\t5\t\t3\n4\t\t6\t\t2\n4\t\t7\t\t1\n6\t\t1\t\t5\n6\t\t2\t\t4\n6\t\t4\t\t2\n6\t\t5\t\t1",
+      "rust": "Police\tSanitation\tFire\n----------------------------\n2\t\t3\t\t7\n2\t\t4\t\t6\n2\t\t6\t\t4\n2\t\t7\t\t3\n4\t\t1\t\t7\n4\t\t2\t\t6\n4\t\t3\t\t5\n4\t\t5\t\t3\n4\t\t6\t\t2\n4\t\t7\t\t1\n6\t\t1\t\t5\n6\t\t2\t\t4\n6\t\t4\t\t2\n6\t\t5\t\t1\n"
+    },
+    {
+      "task": "euler_method",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "    Time:        0      10      20      30      40      50      60      70      80      90     100\nAnalytic:  100.000  59.727  39.728  29.797  24.865  22.416  21.200  20.596  20.296  20.147  20.073\n Step  2:  100.000  57.634  37.704  28.328  23.918  21.843  20.867  20.408  20.192  20.090  20.042\n Step  5:  100.000  53.800  34.280  26.034  22.549  21.077  20.455  20.192  20.081  20.034  20.014\n Step 10:  100.000  44.000  27.200  22.160  20.648  20.194  20.058  20.017  20.005  20.002  20.000\n",
+      "rust": "    Time:        0      10      20      30      40      50      60      70      80      90     100\nAnalytic: \n 100.000  59.727  39.728  29.797  24.865  22.416  21.200  20.596  20.296  20.147  20.073\n Step  2:  100.000  57.634  37.704  28.328  23.918  21.843  20.867  20.408  20.192  20.090  20.042\n Step  5:  100.000  53.800  34.280  26.034  22.549  21.077  20.455  20.192  20.081  20.034  20.014\n Step 10:  100.000  44.000  27.200  22.160  20.648  20.194  20.058  20.017  20.005  20.002  20.000\n"
+    },
+    {
+      "task": "extreme_floating_point_values",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "positive infinity: inf\nnegative infinity: -inf\nnegative zero: -0.000000\nnot a number: -nan\n+inf + 2.0 = inf\n+inf - 10.1 = inf\n+inf + -inf = -nan\n0.0 * +inf = -nan\n1.0/-0.0 = -inf\nNaN + 1.0 = -nan\nNaN + NaN = -nan\nNaN == NaN = false\n0.0 == -0.0 = true\n",
+      "rust": "positive infinity: inf\nnegative infinity: -inf\nnegative zero: -0\nnot a number: NaN\n+inf + 2.0 = inf\n+inf - 10.1 = inf\n+inf + -inf = NaN\n0.0 * +inf = NaN\n1.0/-0.0 = -inf\nNaN + 1.0 = NaN\nNaN + NaN = NaN\nNaN == NaN = false\n0.0 == -0.0 = true\n"
+    },
+    {
+      "task": "fibonacci_n_step_number_sequences",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "\nFibonacci\tTribonacci\tTetranacci\tLucas\n\n1\t\t1\t\t1\t\t2\n1\t\t1\t\t1\t\t1\n2\t\t2\t\t2\t\t3\n3\t\t4\t\t4\t\t4\n5\t\t7\t\t8\t\t7\n8\t\t13\t\t15\t\t11\n13\t\t24\t\t29\t\t18\n21\t\t44\t\t56\t\t29\n34\t\t81\t\t108\t\t47\n55\t\t149\t\t208\t\t76",
+      "rust": "\nFibonacci\tTribonacci\tTetranacci\tLucas\n\n1\t\t1\t\t1\t\t2\n\n1\t\t1\t\t1\t\t1\n\n2\t\t2\t\t2\t\t3\n\n3\t\t4\t\t4\t\t4\n\n5\t\t7\t\t8\t\t7\n\n8\t\t13\t\t15\t\t11\n\n13\t\t24\t\t29\t\t18\n\n21\t\t44\t\t56\t\t29\n\n34\t\t81\t\t108\t\t47\n\n55\t\t149\t\t208\t\t76\n"
+    },
+    {
+      "task": "floyds_triangle",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": " 1\n 2  3\n 4  5  6\n 7  8  9 10\n11 12 13 14 15\n 1\n 2  3\n 4  5  6\n 7  8  9 10\n11 12 13 14 15\n16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31 32 33 34 35 36\n37 38 39 40 41 42 43 44  45\n46 47 48 49 50 51 52 53  54  55\n56 57 58 59 60 61 62 63  64  65  66\n67 68 69 70 71 72 73 74  75  76  77  78\n79 80 81 82 83 84 85 86  87  88  89  90  91\n92 93 94 95 96 97 98 99 100 101 102 103 104 105\n",
+      "rust": "11\n12 13\n14 15 16\n17 18 19 20\n21 22 23 24 25\n92\n93 94\n95 96 97\n98 99 100 101\n102 103 104 105 106\n107 108 109 110 111 112\n113 114 115 116 117 118 119\n120 121 122 123 124 125 126 127\n128 129 130 131 132 133 134 135 136\n137 138 139 140 141 142 143 144 145 146\n147 148 149 150 151 152 153 154 155 156 157\n158 159 160 161 162 163 164 165 166 167 168 169\n170 171 172 173 174 175 176 177 178 179 180 181 182\n183 184 185 186 187 188 189 190 191 192 193 194 195 196\n"
+    },
+    {
+      "task": "formatted_numeric_output",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "    -7.125\n     7.125\n 7.125    \n -0007.125\n 00007.125\n 7.125    \n",
+      "rust": "   -7.125\n    7.125\n7.125    \n000-7.125\n00007.125\n7.1250000\n"
+    },
+    {
+      "task": "gaussian_elimination",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "-0.01\n1.60279\n-1.6132\n1.24549\n-0.49099\n0.0657607\n",
+      "rust": "-0.01\n1.6027903945020885\n-1.6132030599054827\n1.2454941213713593\n-0.4909897195846276\n0.06576069617522803\n"
+    },
+    {
+      "task": "hailstone_sequence",
+      "exit_c": 0,
+      "exit_rust": 101,
+      "c": "[ 27, 82, 41, 124, ...., 8, 4, 2, 1] len=112\nMax 351 at j= 77031\n",
+      "rust": ""
+    },
+    {
+      "task": "isbn13_check_digit",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "978-1734314502: good\n978-1734314509: bad\n978-1788399081: good\n978-1788399083: bad\n",
+      "rust": "978-1734314502: bad\n978-1734314509: bad\n978-1788399081: bad\n978-1788399083: bad\n"
+    },
+    {
+      "task": "knapsack_problem_0_1",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "map                        9   150\ncompass                   13    35\nwater                    153   200\nsandwich                  50   160\nglucose                   15    60\nbanana                    27    60\nsuntan cream              11    70\nwaterproof trousers       42    70\nwaterproof overclothes    43    75\nnote-case                 22    80\nsunglasses                 7    20\nsocks                      4    50\ntotals:                  396  1030\n",
+      "rust": "map                        9   150\ntotals:                    9   150\n"
+    },
+    {
+      "task": "knapsack_problem_continuous",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "take all salami\ntake all ham\ntake all brawn\ntake all greaves\ntake 3.5kg of 3.7 kg of welt\n",
+      "rust": "take all beef\n"
+    },
+    {
+      "task": "levenshtein_distance",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "distance between `rosettacode' and `raisethysword': 8\n",
+      "rust": "distance between `rosettacode` and `raisethysword`: 8\n"
+    },
+    {
+      "task": "lu_decomposition",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "A = [        1         3         5\n             2         4         7\n             1         1         0 ]\nL = [        1         0         0\n           0.5         1         0\n           0.5        -1         1 ]\nU = [        2         4         7\n             0         1       1.5\n             0         0        -2 ]\nP = [        0         1         0\n             1         0         0\n             0         0         1 ]\n\nA = [       11         9        24         2\n             1         5         2         6\n             3        17        18         1\n             2         5         7         1 ]\nL = [        1         0         0         0\n        0.2727         1         0         0\n       0.09091    0.2875         1         0\n        0.1818    0.2312  0.003597         1 ]\nU = [       11         9        24         2\n             0     14.55     11.45    0.4545\n             0         0    -3.475     5.688\n             0         0         0    0.5108 ]\nP = [        1         0         0         0\n             0         0         1         0\n             0         1         0         0\n             0         0         0         1 ]\n",
+      "rust": "49927398716     \tok\n49927398717     \tnot ok\n1234567812345678\tnot ok\n1234567812345670\tok\n"
+    },
+    {
+      "task": "machine_code",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "29289\n",
+      "rust": "19\n"
+    },
+    {
+      "task": "magic_squares_of_doubly_even_order",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "Usage : /tmp/tmpczwjl08v/c_bin <integer specifying rows in magic square>",
+      "rust": "Usage : /tmp/tmpczwjl08v/r_bin <integer specifying rows in magic square>\n"
+    },
+    {
+      "task": "map_range",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "Mapping [0,10] to [-1,0] at intervals of 1:\nf(0) = -1\nf(1) = -0.9\nf(2) = -0.8\nf(3) = -0.7\nf(4) = -0.6\nf(5) = -0.5\nf(6) = -0.4\nf(7) = -0.3\nf(8) = -0.2\nf(9) = -0.1\nf(10) = 0\n",
+      "rust": "Mapping [0,10] to [-1,0] at intervals of 1:\nf(0) = -1\nf(1) = -0.9\nf(2) = -0.8\nf(3) = -0.7\nf(4) = -0.6\nf(5) = -0.5\nf(6) = -0.4\nf(7) = -0.30000000000000004\nf(8) = -0.19999999999999996\nf(9) = -0.09999999999999998\nf(10) = 0\n"
+    },
+    {
+      "task": "matrix_chain_multiplication",
+      "exit_c": 0,
+      "exit_rust": 101,
+      "c": "Dims  : [5, 6, 3, 1]\nOrder : (A(BC))\nCost  : 48\n\nDims  : [1, 5, 25, 30, 100, 70, 2, 1, 100, 250, 1, 1000, 2]\nOrder : ((((((((AB)C)D)E)F)G)(H(IJ)))(KL))\nCost  : 38120\n\nDims  : [1000, 1, 500, 12, 1, 700, 2500, 3, 2, 5, 14, 10]\nOrder : (A((((((BC)D)(((EF)G)H))I)J)K))\nCost  : 1773740\n\n",
+      "rust": "Dims  : [[5, 6, 3, 1]]\n"
+    },
+    {
+      "task": "mean_angle",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "\nMean Angle for 1st set : -0.000000 degrees\nMean Angle for 2nd set : -90.000000 degrees\nMean Angle for 3rd set : 20.000000 degrees\n",
+      "rust": "\nMean Angle for 1st set: -0.00000000000002745176884498468 degrees\nMean Angle for 2nd set: -90 degrees\nMean Angle for 3rd set: 19.999999999999996 degrees\n\n"
+    },
+    {
+      "task": "n_queens_problem",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "\nNo. 1\n-----\nQ . . . \n . .Q. .\n. . . .Q\n . . Q .\n. Q . . \n . . .Q.\n.Q. . . \n . Q . .\n\nNo. 2\n-----\nQ . . . \n . . Q .\n. . . .Q\n .Q. . .\n. . . Q \n . Q . .\n.Q. . . \n . .Q. .\n\nNo. 3\n-----\nQ . . . \n . . .Q.\n. .Q. . \n . . Q .\n. . . .Q\n Q . . .\n. . Q . \n .Q. . .\n\nNo. 4\n-----\nQ . . . \n . . .Q.\n. . Q . \n . . . Q\n.Q. . . \n . Q . .\n. . .Q. \n .Q. . .\n\nNo. 5\n-----\n.Q. . . \n . Q . .\n. . .Q. \n . . . Q\n. Q . . \nQ. . . .\n. . . Q \n . .Q. .\n\nNo. 6\n-----\n.Q. . . \n . .Q. .\n. . . Q \nQ. . . .\n. Q . . \n . . . Q\n. . .Q. \n . Q . .\n\nNo. 7\n-----\n.Q. . . \n . .Q. .\n. . . Q \n . Q . .\nQ . . . \n . . . Q\n. . .Q. \n .Q. . .\n\nNo. 8\n-----\n.Q. . . \n . . Q .\nQ . . . \n . . .Q.\n. .Q. . \n . . . Q\n. Q . . \n . .Q. .\n\nNo. 9\n-----\n.Q. . . \n . . Q .\n. . . .Q\n .Q. . .\nQ . . . \n . Q . .\n. . . Q \n . .Q. .\n\nNo. 10\n-----\n.Q. . . \n . . .Q.\n. Q . . \n . . Q .\n. . . .Q\n . .Q. .\nQ . . . \n . Q . .\n\nNo. 11\n-----\n.Q. . . \n . . .Q.\n. . Q . \n . . . Q\nQ . . . \n . Q . .\n. . .Q. \n .Q. . .\n\nNo. 12\n-----\n.Q. . . \n . . . Q\n. . .Q. \nQ. . . .\n. Q . . \n . .Q. .\n. . . Q \n . Q . .\n\nNo. 13\n-----\n. Q . . \nQ. . . .\n. . . Q \n . .Q. .\n. . . .Q\n Q . . .\n. .Q. . \n . . Q .\n\nNo. 14\n-----\n. Q . . \n . .Q. .\n.Q. . . \n . . . Q\nQ . . . \n . . .Q.\n. .Q. . \n . . Q .\n\nNo. 15\n-----\n. Q . . \n . .Q. .\n.Q. . . \n . . . Q\n. . .Q. \n . Q . .\n. . . Q \nQ. . . .\n\nNo. 16\n-----\n. Q . . \n . .Q. .\n. . . Q \nQ. . . .\n. .Q. . \n Q . . .\n. . . .Q\n . . Q .\n\nNo. 17\n-----\n. Q . . \n . .Q. .\n. . . .Q\n . Q . .\nQ . . . \n . . .Q.\n.Q. . . \n . . Q .\n\nNo. 18\n-----\n. Q . . \n . . Q .\n.Q. . . \n . .Q. .\n. . . .Q\nQ. . . .\n. . . Q \n . Q . .\n\nNo. 19\n-----\n. Q . . \n . . Q .\n.Q. . . \n . . .Q.\nQ . . . \n . Q . .\n. . . .Q\n . .Q. .\n\nNo. 20\n-----\n. Q . . \n . . Q .\n.Q. . . \n . . .Q.\n. . Q . \nQ. . . .\n. . . .Q\n . Q . .\n\nNo. 21\n-----\n. Q . . \n . . Q .\n. .Q. . \nQ. . . .\n. . . .Q\n . .Q. .\n. . . Q \n Q . . .\n\nNo. 22\n-----\n. Q . . \n . . Q .\n. .Q. . \n Q . . .\n. . . .Q\n . .Q. .\n. . . Q \nQ. . . .\n\nNo. 23\n-----\n. Q . . \n . . Q .\n. . . .Q\nQ. . . .\n. .Q. . \n . . .Q.\n. . Q . \n Q . . .\n\nNo. 24\n-----\n. Q . . \n . . Q .",
+      "rust": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n"
+    },
+    {
+      "task": "negative_base_numbers",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "          10 encoded in base  -2 =        11110\n       11110 decoded in base  -2 =           10\n\n         146 encoded in base  -3 =        21102\n       21102 decoded in base  -3 =          146\n\n          15 encoded in base -10 =          195\n         195 decoded in base -10 =           15\n\n          12 encoded in base -62 =            C\n           C decoded in base -62 =           12\n\n",
+      "rust": "          10 encoded in base  -2 = 11110       \n11110        decoded in base  -2 =           10\n         146 encoded in base  -3 = 21102       \n21102        decoded in base  -3 =          146\n          15 encoded in base -10 = 195         \n195          decoded in base -10 =           15\n          12 encoded in base -62 = C           \nC            decoded in base -62 =           12\n"
+    },
+    {
+      "task": "next_highest_int_from_digits",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "0 -> 0\n9 -> 0\n12 -> 21\n21 -> 0\n12453 -> 12534\n738440 -> 740348\n45072010 -> 45072100\n95322020 -> 95322200\n9589776899767587796600 -> 9589776899767587900667\n",
+      "rust": "0 -> None\n9 -> None\n12 -> 21\n21 -> None\n12453 -> 12534\n738440 -> 740348\n45072010 -> 45072100\n95322020 -> 95322200\n9589776899767587796600 -> 9589776899767587900667\n"
+    },
+    {
+      "task": "nimber_arithmetic",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": " + |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n--- -------------------------------------------------\n 0 |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n 1 |  1  0  3  2  5  4  7  6  9  8 11 10 13 12 15 14\n 2 |  2  3  0  1  6  7  4  5 10 11  8  9 14 15 12 13\n 3 |  3  2  1  0  7  6  5  4 11 10  9  8 15 14 13 12\n 4 |  4  5  6  7  0  1  2  3 12 13 14 15  8  9 10 11\n 5 |  5  4  7  6  1  0  3  2 13 12 15 14  9  8 11 10\n 6 |  6  7  4  5  2  3  0  1 14 15 12 13 10 11  8  9\n 7 |  7  6  5  4  3  2  1  0 15 14 13 12 11 10  9  8\n 8 |  8  9 10 11 12 13 14 15  0  1  2  3  4  5  6  7\n 9 |  9  8 11 10 13 12 15 14  1  0  3  2  5  4  7  6\n10 | 10 11  8  9 14 15 12 13  2  3  0  1  6  7  4  5\n11 | 11 10  9  8 15 14 13 12  3  2  1  0  7  6  5  4\n12 | 12 13 14 15  8  9 10 11  4  5  6  7  0  1  2  3\n13 | 13 12 15 14  9  8 11 10  5  4  7  6  1  0  3  2\n14 | 14 15 12 13 10 11  8  9  6  7  4  5  2  3  0  1\n15 | 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0\n\n * |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n--- -------------------------------------------------\n 0 |  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0\n 1 |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n 2 |  0  2  3  1  8 10 11  9 12 14 15 13  4  6  7  5\n 3 |  0  3  1  2 12 15 13 14  4  7  5  6  8 11  9 10\n 4 |  0  4  8 12  6  2 14 10 11 15  3  7 13  9  5  1\n 5 |  0  5 10 15  2  7  8 13  3  6  9 12  1  4 11 14\n 6 |  0  6 11 13 14  8  5  3  7  1 12 10  9 15  2  4\n 7 |  0  7  9 14 10 13  3  4 15  8  6  1  5  2 12 11\n 8 |  0  8 12  4 11  3  7 15 13  5  1  9  6 14 10  2\n 9 |  0  9 14  7 15  6  1  8  5 12 11  2 10  3  4 13\n10 |  0 10 15  5  3  9 12  6  1 11 14  4  2  8 13  7\n11 |  0 11 13  6  7 12 10  1  9  2  4 15 14  5  3  8\n12 |  0 12  4  8 13  1  9  5  6 10  2 14 11  7 15  3\n13 |  0 13  6 11  9  4 15  2 14  3  8  5  7 10  1 12\n14 |  0 14  7  9  5 11  2 12 10  4 13  3 15  1  8  6\n15 |  0 15  5 10  1 14  4 11  2 13  7  8  3 12  6  9\n\n21508 + 42689 = 62149\n21508 * 42689 = 35202\n",
+      "rust": " + |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n----------------------------------------------------\n 0 |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n 1 |  1  0  3  2  5  4  7  6  9  8 11 10 13 12 15 14\n 2 |  2  3  0  1  6  7  4  5 10 11  8  9 14 15 12 13\n 3 |  3  2  1  0  7  6  5  4 11 10  9  8 15 14 13 12\n 4 |  4  5  6  7  0  1  2  3 12 13 14 15  8  9 10 11\n 5 |  5  4  7  6  1  0  3  2 13 12 15 14  9  8 11 10\n 6 |  6  7  4  5  2  3  0  1 14 15 12 13 10 11  8  9\n 7 |  7  6  5  4  3  2  1  0 15 14 13 12 11 10  9  8\n 8 |  8  9 10 11 12 13 14 15  0  1  2  3  4  5  6  7\n 9 |  9  8 11 10 13 12 15 14  1  0  3  2  5  4  7  6\n10 | 10 11  8  9 14 15 12 13  2  3  0  1  6  7  4  5\n11 | 11 10  9  8 15 14 13 12  3  2  1  0  7  6  5  4\n12 | 12 13 14 15  8  9 10 11  4  5  6  7  0  1  2  3\n13 | 13 12 15 14  9  8 11 10  5  4  7  6  1  0  3  2\n14 | 14 15 12 13 10 11  8  9  6  7  4  5  2  3  0  1\n15 | 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0\n\n * |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n----------------------------------------------------\n 0 |  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0\n 1 |  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n 2 |  0  2  3  1  8 10 11  9 12 14 15 13  4  6  7  5\n 3 |  0  3  1  2 12 15 13 14  4  7  5  6  8 11  9 10\n 4 |  0  4  8 12  6  2 14 10 11 15  3  7 13  9  5  1\n 5 |  0  5 10 15  2  7  8 13  3  6  9 12  1  4 11 14\n 6 |  0  6 11 13 14  8  5  3  7  1 12 10  9 15  2  4\n 7 |  0  7  9 14 10 13  3  4 15  8  6  1  5  2 12 11\n 8 |  0  8 12  4 11  3  7 15 13  5  1  9  6 14 10  2\n 9 |  0  9 14  7 15  6  1  8  5 12 11  2 10  3  4 13\n10 |  0 10 15  5  3  9 12  6  1 11 14  4  2  8 13  7\n11 |  0 11 13  6  7 12 10  1  9  2  4 15 14  5  3  8\n12 |  0 12  4  8 13  1  9  5  6 10  2 14 11  7 15  3\n13 |  0 13  6 11  9  4 15  2 14  3  8  5  7 10  1 12\n14 |  0 14  7  9  5 11  2 12 10  4 13  3 15  1  8  6\n15 |  0 15  5 10  1 14  4 11  2 13  7  8  3 12  6  9\n\n21508 + 42689 = 62149\n21508 * 42689 = 35202\n"
+    },
+    {
+      "task": "number_names",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "minus forty-two\none thousand, nine hundred eighty-four\nten thousand, \none thousand, and twenty-four\none trillion, one billion, one million, one thousand, and one\none hundred twenty-three million four hundred fifty-six thousand seven hundred eighty-nine trillion trillion trillion trillion, twelve billion three hundred forty-five million six hundred seventy-eight thousand nine hundredand one trillion trillion trillion, two hundred thirty-four billion five hundred sixty-seven million eight hundred ninety thousand one hundred twenty-three trillion trillion, four hundred fifty-six billion seven hundred eighty-nine million twelve thousand three hundred forty-five trillion, six hundred seventy-eight billion, nine hundred million, and one\n",
+      "rust": "three hundred and twenty-one\n"
+    },
+    {
+      "task": "numerical_integration",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "  leftrect [ 0,1] num: +0.235322, an: 0.250000\n rightrect [ 0,1] num: +0.245025, an: 0.250000\n   midrect [ 0,1] num: +0.240137, an: 0.250000\n trapezium [ 0,1] num: +0.250025, an: 0.250000\n   simpson [ 0,1] num: +0.250000, an: 0.250000\n\n  leftrect [ 0,1] num: +4.654000, an: 4.605170\n rightrect [ 0,1] num: +4.555991, an: 4.605170\n   midrect [ 0,1] num: +4.603772, an: 4.605170\n trapezium [ 0,1] num: +4.605986, an: 4.605170\n   simpson [ 0,1] num: +4.605170, an: 4.605170\n\n  leftrect [ 0,1] num: +12499992.500730, an: 12500000.000000\n rightrect [ 0,1] num: +12499997.500729, an: 12500000.000000\n   midrect [ 0,1] num: +12499995.000729, an: 12500000.000000\n trapezium [ 0,1] num: +12500000.000000, an: 12500000.000000\n   simpson [ 0,1] num: +12500000.000000, an: 12500000.000000\n\n  leftrect [ 0,1] num: +17999991.001392, an: 18000000.000000\n rightrect [ 0,1] num: +17999997.001390, an: 18000000.000000\n   midrect [ 0,1] num: +17999994.001391, an: 18000000.000000\n trapezium [ 0,1] num: +18000000.000000, an: 18000000.000000\n   simpson [ 0,1] num: +18000000.000000, an: 18000000.000000\n\n",
+      "rust": "leftrect [0, 1] num: 0.4985010000000003, an: 1\nrightrect [0, 1] num: 0.49950000000000033, an: 1\nmidrect [0, 1] num: 0.4990005000000004, an: 1\ntrapezium [0, 1] num: 0.5000000000000001, an: 1\nsimpson [0, 1] num: 0.5, an: 1\n\nleftrect [0, 1] num: inf, an: -inf\nrightrect [0, 1] num: 7.48447086055035, an: -inf\nmidrect [0, 1] num: 8.870264846420083, an: -inf\ntrapezium [0, 1] num: inf, an: -inf\nsimpson [0, 1] num: inf, an: -inf\n\nleftrect [0, 1] num: 0.24850324700100054, an: 1\nrightrect [0, 1] num: 0.24950025000000053, an: 1\nmidrect [0, 1] num: 0.2490013742501257, an: 1\ntrapezium [0, 1] num: 0.25000025000000003, an: 1\nsimpson [0, 1] num: 0.25000000000000017, an: 1\n\n"
+    },
+    {
+      "task": "perfect_numbers",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "6\n28\n",
+      "rust": "Enter an argument. Example 1234 or dcba:\n"
+    },
+    {
+      "task": "roman_numerals_decode",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "MCmxC\t1990\nMMVIII\t2008\nMDClXVI\t1666\nMCXLUJ\t1146\n",
+      "rust": "MCmxC\t1000\nMMVIII\t2008\nMDClXVI\t1666\nMCXLUJ\t1106\n"
+    },
+    {
+      "task": "runge_kutta_method",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "x\ty\trel. err.\n------------\n0\t1\t0\n1\t1.5625\t-9.3262e-08\n2\t4\t-2.2987e-07\n3\t10.5625\t-2.75462e-07\n4\t25\t-2.49396e-07\n5\t52.5625\t-2.05844e-07\n6\t100\t-1.65946e-07\n7\t175.562\t-1.33956e-07\n8\t289\t-1.09222e-07\n9\t451.562\t-9.01828e-08\n10\t676\t-7.54191e-08\n",
+      "rust": " 4  6  9  10  14  15  21  22  25  26  33  34  35  38  39  46  49  51  55  57  58  62  65  69  74  77  82  85  86  87  91  93  94  95 \n"
+    },
+    {
+      "task": "sexy_primes",
+      "exit_c": 0,
+      "exit_rust": 0,
+      "c": "Number of sexy prime pairs less than 1000035 = 16386\nThe last 5 are:\n  [[999371 999377 \b]\b] [999431 999437 \b]\b] [999721 999727 \b]\b] [999763 999769 \b]\b] [999953 999959 \b]\b] \b]\n\nNumber of sexy prime triplets less than 1000035 = 2900\nThe last 5 are:\n  [[997427 997433 997439 \b]\b] [997541 997547 997553 \b]\b] [998071 998077 998083 \b]\b] [998617 998623 998629 \b]\b] [998737 998743 998749 \b]\b] \b]\n\nNumber of sexy prime quadruplets less than 1000035 = 325\nThe last 5 are:\n  [[977351 977357 977363 977369 \b]\b] [983771 983777 983783 983789 \b]\b] [986131 986137 986143 986149 \b]\b] [990371 990377 990383 990389 \b]\b] [997091 997097 997103 997109 \b]\b] \b]\n\nNumber of sexy prime quintuplets less than 1000035 = 1\nThe last 1 is:\n  [[5 11 17 23 29 \b]\b] \b]\n\nNumber of unsexy primes less than 1000035 = 48627\nThe last 10 are:\n  [[999853 999863 999883 999907 999917 999931 999961 999979 999983 1000003 \b]\b]\n",
+      "rust": ""
+    }
+  ]
+}

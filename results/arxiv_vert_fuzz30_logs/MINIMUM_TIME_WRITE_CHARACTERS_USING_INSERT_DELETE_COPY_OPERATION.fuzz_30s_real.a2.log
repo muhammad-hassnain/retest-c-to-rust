@@ -1,0 +1,158 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+warning: unused import: `bolero::check`
+    --> src/main.rs:1261:5
+     |
+1261 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1243:4
+     |
+1243 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1244:4
+     |
+1244 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1245:4
+     |
+1245 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1246:4
+     |
+1246 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1247:4
+     |
+1247 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `N` should have a snake case name
+    --> src/main.rs:1250:11
+     |
+1250 | fn f_gold(N: i32, insert: i32, remove: i32, copy: i32) -> i32 {
+     |           ^ help: convert the identifier to snake case: `n`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1264:75
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                              ^^^^^^^ help: convert the identifier to snake case: `param_1`
+
+warning: variable `PARAM_2` should have a snake case name
+    --> src/main.rs:1264:83
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                      ^^^^^^^ help: convert the identifier to snake case: `param_2`
+
+warning: variable `PARAM_3` should have a snake case name
+    --> src/main.rs:1264:91
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                              ^^^^^^^ help: convert the identifier to snake case: `param_3`
+
+warning: variable `PARAM_4` should have a snake case name
+    --> src/main.rs:1264:99
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                                      ^^^^^^^ help: convert the identifier to snake case: `param_4`
+
+warning: `c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero` (bin "c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero" test) generated 11 warnings (run `cargo fix --bin "c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero" --tests` to apply 1 suggestion)
+    Finished release [optimized] target(s) in 0.03s
+     Running unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out_rwasm_bolero-7814664c25d84798)
+error: test failed, to rerun pass `--bin c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero`
+
+Caused by:
+  process didn't exit successfully: `/tmp/fzr_95z1awqm/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out_rwasm_bolero-7814664c25d84798 bolero_wasm_eq --nocapture --exact` (signal: 11, SIGSEGV: invalid memory reference)
+warning: unused import: `bolero::check`
+    --> src/main.rs:1261:5
+     |
+1261 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1243:4
+     |
+1243 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1244:4
+     |
+1244 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1245:4
+     |
+1245 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1246:4
+     |
+1246 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1247:4
+     |
+1247 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `N` should have a snake case name
+    --> src/main.rs:1250:11
+     |
+1250 | fn f_gold(N: i32, insert: i32, remove: i32, copy: i32) -> i32 {
+     |           ^ help: convert the identifier to snake case: `n`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1264:75
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                              ^^^^^^^ help: convert the identifier to snake case: `param_1`
+
+warning: variable `PARAM_2` should have a snake case name
+    --> src/main.rs:1264:83
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                      ^^^^^^^ help: convert the identifier to snake case: `param_2`
+
+warning: variable `PARAM_3` should have a snake case name
+    --> src/main.rs:1264:91
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                              ^^^^^^^ help: convert the identifier to snake case: `param_3`
+
+warning: variable `PARAM_4` should have a snake case name
+    --> src/main.rs:1264:99
+     |
+1264 |     bolero::check!().with_type::<(i32, i32, i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2,PARAM_3,PARAM_4)|{ 
+     |                                                                                                      ^^^^^^^ help: convert the identifier to snake case: `param_4`
+
+warning: `c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero` (bin "c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero" test) generated 11 warnings (run `cargo fix --bin "c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out-rwasm-bolero" --tests` to apply 1 suggestion)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_time_write_characters_using_insert_delete_copy_operation_out_rwasm_bolero-7814664c25d84798)
+error: process exited with status 101

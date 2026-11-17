@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:917:31
+    |
+917 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+917 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:90:7
+   |
+90 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1034:4
+     |
+1034 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+
+warning: function `max` is never used
+    --> src/main.rs:1035:4
+     |
+1035 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1036:4
+     |
+1036 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:7:18 in function core::unicode::printable::check
+
+Check 16684: core::unicode::printable::check.pointer_dereference.13
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:7:18 in function core::unicode::printable::check
+
+Check 16685: core::unicode::printable::check.pointer_dereference.14
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:27 in function core::unicode::printable::check
+
+Check 16686: core::unicode::printable::check.pointer_dereference.15
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16687: core::unicode::printable::check.pointer_dereference.16
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16688: core::unicode::printable::check.pointer_dereference.17
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16689: core::unicode::printable::check.pointer_dereference.18
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16690: core::unicode::printable::check.pointer_dereference.19
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16691: core::unicode::printable::check.pointer_dereference.20
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/unicode/printable.rs:10:18 in function core::unicode::printable::check
+
+Check 16692: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16693: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16694: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16695: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16696: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16697: std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2269:9 in function std::vec::Vec::<(*mut u8, unsafe extern "C" fn(*mut u8))>::len
+
+Check 16698: std::vec::Vec::<i32>::extend_with.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2708:13 in function std::vec::Vec::<i32>::extend_with
+
+
+SUMMARY:
+ ** 1 of 16698 failed (16697 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "/github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs", line 2708, in std::vec::Vec::<i32>::extend_with
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 8.535749s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u7 v1.0.1 (/tmp/kani_tovlwgvc/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.48s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

@@ -1,0 +1,568 @@
+{
+ "provenance": {
+  "script": "systems/vert/grid_misses.py",
+  "command": "docker run --rm --cpus 3 -v $PWD:/work -w /work -e RUSTUP_TOOLCHAIN=1.86.0 crust-vert-toolchain python3 systems/vert/grid_misses.py --jobs 3",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_dirty_note": "working tree has uncommitted changes from parallel agents; grid_misses.py is new/untracked",
+  "host": "mac-host macOS 26.6.2 arm64, Docker Desktop linux/arm64, --cpus 3",
+  "arch": "aarch64",
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "toolchains": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "python": "3.10.12"
+  },
+  "sanitizer_flags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow"
+   ],
+   "env": {
+    "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+   },
+   "from": "harness/oracle_ub_common.py"
+  },
+  "date_start_utc": "2026-11-14T00:13:52+00:00",
+  "date_end_utc": "2026-11-14T00:13:59+00:00"
+ },
+ "rule": "Grid misses: VERT translations the harness calls \"agree\" that are wrong on an in-domain input.\n\nsystems/vert/mutate_primary.py (equivalence phase, results/vert_mutation_primary.json and\nresults/vert_arrays_mutation_primary.json) found five such functions: the unmutated translation\ndiffers from the original C on an input inside the harness's own domain that the harness's input\ngrid never generates. Before these are cited as evidence that the defect counts are lower bounds,\neach needs a witness that passes the FULL undefined-behaviour rule used for every other wrong\nanswer (harness/oracle_ub_common.py, systems/vert/toolchain_ub_recheck.py):\n\n  * clang-14 ASan + UBSan + float-cast-overflow, -O0 and -O1 (oracle_ub_common flags, -fno-sanitize-recover=all)\n  * gcc-11   ASan + UBSan + float-cast-overflow, -O0 (same flags)\n  * clang-14 MemorySanitizer -O1 (recorded; required clean when it runs)\n  * the value agrees across gcc and clang at -O0, -O1, -O2, each with and without -fwrapv\n  * the value agrees under -fsigned-char and -funsigned-char (gcc and clang, -O1 -fwrapv)\n  * and the input really diverges under the primary harness's own classifier (batch_diff.tally for\n    scalars, run_arrays.classify for array/float functions).\n\nSearch (deterministic): the function's in-domain set -- scalars: [0,512]^k (run.py's domain);\narray/float functions: arrays with elements in [-40,40] and int scalars in [1,N] (run_arrays.py's\nown scalar range) -- enumerated in increasing L1 norm (sum |x_i|), ties in generation order\n(coordinates left to right, values by |v| then sign). Inputs where the primary oracle (gcc -O1\n-fwrapv) and the Rust differ are checked in that order; the first that passes every check is the\nSMALLEST passing witness. Up to MAX_CHECKS diverging inputs are checked per function.\n\n  docker run --rm --cpus 3 -v $PWD:/work -w /work -e RUSTUP_TOOLCHAIN=1.86.0 crust-vert-toolchain       python3 systems/vert/grid_misses.py --jobs 3\n",
+ "sanitizer_positive_controls": {
+  "heap_oob_read/clang": "fired",
+  "heap_oob_read/gcc": "fired",
+  "stack_oob_read/clang": "fired",
+  "stack_oob_read/gcc": "fired",
+  "signed_overflow/clang": "fired",
+  "signed_overflow/gcc": "fired",
+  "shift_overflow/clang": "fired",
+  "shift_overflow/gcc": "fired",
+  "float_cast_overflow/clang": "fired",
+  "float_cast_overflow/gcc": "fired",
+  "clean/clang": "clean",
+  "clean/gcc": "clean",
+  "all_as_expected": true
+ },
+ "summary": {
+  "functions": 5,
+  "with_passing_witness": [
+   "SUM_SERIES_555555_N_TERMS",
+   "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+   "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1",
+   "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN",
+   "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS"
+  ],
+  "without_passing_witness": [],
+  "witnesses": {
+   "SUM_SERIES_555555_N_TERMS": {
+    "in": [
+     8
+    ],
+    "c_oracle_gcc_O1_wrapv": "61719994",
+    "rust": "61719996",
+    "primary_harness_verdict": "value"
+   },
+   "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES": {
+    "in": [
+     6,
+     12
+    ],
+    "c_oracle_gcc_O1_wrapv": "40690105",
+    "rust": "40690104",
+    "primary_harness_verdict": "value"
+   },
+   "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1": {
+    "in": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "c_oracle_gcc_O1_wrapv": "0",
+    "rust": "1",
+    "primary_harness_verdict": "value"
+   },
+   "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN": {
+    "in": [
+     1,
+     2
+    ],
+    "c_oracle_gcc_O1_wrapv": "2",
+    "rust": "1.333333254",
+    "primary_harness_verdict": "value"
+   },
+   "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS": {
+    "in": [
+     0,
+     1,
+     2,
+     1
+    ],
+    "c_oracle_gcc_O1_wrapv": "1",
+    "rust": "0",
+    "primary_harness_verdict": "value"
+   }
+  }
+ },
+ "functions": [
+  {
+   "func": "SUM_SERIES_555555_N_TERMS",
+   "status": "checked",
+   "harness": "run.py (scalar)",
+   "nargs": 1,
+   "mechanism": "C computes 0.6172*(pow(10,n)-1) - 0.55*n in double and converts the in-range result to int on return; the Rust evaluates the same formula in f32 (10_f32.powf), whose 24-bit significand cannot represent the intermediate values once they exceed 2^24, so the truncated result differs.",
+   "mechanism_location": {
+    "c": {
+     "file": "artifacts/vert/benchmark/c_transcoder/SUM_SERIES_555555_N_TERMS/SUM_SERIES_555555_N_TERMS.c",
+     "line": 22,
+     "text": "return 0.6172 * ( pow ( 10, n ) - 1 ) - 0.55 * n;"
+    },
+    "rust": {
+     "file": "artifacts/vert/benchmark/c_transcoder/SUM_SERIES_555555_N_TERMS/out-rwasm-bolero/src/main.rs",
+     "line": 1428,
+     "text": "(0.6172 * (10_f32.powf(n as f32) - 1.0) - 0.55 * n as f32) as i32"
+    }
+   },
+   "c_is_nonstandard": false,
+   "found_by": "results/vert_mutation_primary.json per_function[].original_extended_domain",
+   "domain_bounds": [
+    [
+     0,
+     512
+    ]
+   ],
+   "inputs_scanned": 9,
+   "diverging_inputs_checked": 1,
+   "smallest_passing_witness": {
+    "in": [
+     8
+    ],
+    "l1": 8,
+    "c_oracle_gcc_O1_wrapv": "61719994",
+    "rust": "61719996",
+    "clang_asan_ubsan_fco_O0": "clean",
+    "clang_asan_ubsan_fco_O0_value": "61719994",
+    "clang_asan_ubsan_fco_O1": "clean",
+    "clang_asan_ubsan_fco_O1_value": "61719994",
+    "gcc_asan_ubsan_fco_O0": "clean",
+    "gcc_asan_ubsan_fco_O0_value": "61719994",
+    "clang_msan_O1": "clean",
+    "clang_msan_O1_value": "61719994",
+    "values": {
+     "clang-O0": "61719994",
+     "clang-O0_wrapv": "61719994",
+     "clang-O1": "61719994",
+     "clang-O1_wrapv": "61719994",
+     "clang-O1_wrapv_signed_char": "61719994",
+     "clang-O1_wrapv_unsigned_char": "61719994",
+     "clang-O2": "61719994",
+     "clang-O2_wrapv": "61719994",
+     "gcc-O0": "61719994",
+     "gcc-O0_wrapv": "61719994",
+     "gcc-O1": "61719994",
+     "gcc-O1_wrapv": "61719994",
+     "gcc-O1_wrapv_signed_char": "61719994",
+     "gcc-O1_wrapv_unsigned_char": "61719994",
+     "gcc-O2": "61719994",
+     "gcc-O2_wrapv": "61719994"
+    },
+    "all_values_agree_with_oracle": true,
+    "passes": true,
+    "primary_harness_verdict": "value"
+   },
+   "failed_checks_before_witness": [],
+   "variant_build_errors": {}
+  },
+  {
+   "func": "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+   "status": "checked",
+   "harness": "run.py (scalar)",
+   "nargs": 2,
+   "mechanism": "C computes (pow(n-1,k) + p*(n-1)) / n in double; the Rust computes it in f32 ((n - 1.0).powf(k) ... / n), which rounds (n-1)^k once it exceeds 2^24, so the truncated quotient differs.",
+   "mechanism_location": {
+    "c": {
+     "file": "artifacts/vert/benchmark/c_transcoder/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.c",
+     "line": 24,
+     "text": "return ( pow ( n - 1, k ) + p * ( n - 1 ) ) / n;"
+    },
+    "rust": {
+     "file": "artifacts/vert/benchmark/c_transcoder/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES/out-rwasm-bolero/src/main.rs",
+     "line": 1499,
+     "text": "let calc = (n - 1.0).powf(k) + p as f32 * (n - 1.0) as f32;"
+    }
+   },
+   "c_is_nonstandard": false,
+   "found_by": "results/vert_mutation_primary.json per_function[].original_extended_domain",
+   "domain_bounds": [
+    [
+     0,
+     512
+    ],
+    [
+     0,
+     512
+    ]
+   ],
+   "inputs_scanned": 190,
+   "diverging_inputs_checked": 1,
+   "smallest_passing_witness": {
+    "in": [
+     6,
+     12
+    ],
+    "l1": 18,
+    "c_oracle_gcc_O1_wrapv": "40690105",
+    "rust": "40690104",
+    "clang_asan_ubsan_fco_O0": "clean",
+    "clang_asan_ubsan_fco_O0_value": "40690105",
+    "clang_asan_ubsan_fco_O1": "clean",
+    "clang_asan_ubsan_fco_O1_value": "40690105",
+    "gcc_asan_ubsan_fco_O0": "clean",
+    "gcc_asan_ubsan_fco_O0_value": "40690105",
+    "clang_msan_O1": "clean",
+    "clang_msan_O1_value": "40690105",
+    "values": {
+     "clang-O0": "40690105",
+     "clang-O0_wrapv": "40690105",
+     "clang-O1": "40690105",
+     "clang-O1_wrapv": "40690105",
+     "clang-O1_wrapv_signed_char": "40690105",
+     "clang-O1_wrapv_unsigned_char": "40690105",
+     "clang-O2": "40690105",
+     "clang-O2_wrapv": "40690105",
+     "gcc-O0": "40690105",
+     "gcc-O0_wrapv": "40690105",
+     "gcc-O1": "40690105",
+     "gcc-O1_wrapv": "40690105",
+     "gcc-O1_wrapv_signed_char": "40690105",
+     "gcc-O1_wrapv_unsigned_char": "40690105",
+     "gcc-O2": "40690105",
+     "gcc-O2_wrapv": "40690105"
+    },
+    "all_values_agree_with_oracle": true,
+    "passes": true,
+    "primary_harness_verdict": "value"
+   },
+   "failed_checks_before_witness": [],
+   "variant_build_errors": {}
+  },
+  {
+   "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1",
+   "status": "checked",
+   "harness": "run_arrays.py",
+   "params": [
+    "[i32;10]",
+    "[i32;10]",
+    "i32",
+    "i32"
+   ],
+   "ret": "i32",
+   "float_return": false,
+   "mechanism": "The Rust declares `let mut j = 0;` and then loops with `for j in 0..m`, which binds a NEW loop-scoped j that shadows the outer one; after the inner loop `if j == m` tests the outer j, which is always 0, so the 'element not found' exit (return 0) fires only when m == 0. The C uses one j for the loop and the test. The harness's array patterns are generated in lockstep, so arr2 equals arr1 on every row and the exit is never needed.",
+   "mechanism_location": {
+    "c": {
+     "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1.c",
+     "line": 32,
+     "text": "if ( j == m ) return 0;"
+    },
+    "rust": {
+     "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/out-rwasm-bolero/src/main.rs",
+     "line": 727,
+     "text": "for j in 0..m {"
+    },
+    "rust_2": {
+     "file": "artifacts/vert/benchmark/c_transcoder/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1/out-rwasm-bolero/src/main.rs",
+     "line": 732,
+     "text": "if j == m {"
+    }
+   },
+   "c_is_nonstandard": false,
+   "found_by": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain",
+   "domain_bounds": [
+    [
+     -40,
+     40
+    ],
+    [
+     -40,
+     40
+    ],
+    [
+     -40,
+     40
+    ],
+    [
+     -40,
+     40
+    ],
+    "..."
+   ],
+   "inputs_scanned": 43,
+   "diverging_inputs_checked": 1,
+   "smallest_passing_witness": {
+    "in": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "l1": 3,
+    "c_oracle_gcc_O1_wrapv": "0",
+    "rust": "1",
+    "clang_asan_ubsan_fco_O0": "clean",
+    "clang_asan_ubsan_fco_O0_value": "0",
+    "clang_asan_ubsan_fco_O1": "clean",
+    "clang_asan_ubsan_fco_O1_value": "0",
+    "gcc_asan_ubsan_fco_O0": "clean",
+    "gcc_asan_ubsan_fco_O0_value": "0",
+    "clang_msan_O1": "clean",
+    "clang_msan_O1_value": "0",
+    "values": {
+     "clang-O0": "0",
+     "clang-O0_wrapv": "0",
+     "clang-O1": "0",
+     "clang-O1_wrapv": "0",
+     "clang-O1_wrapv_signed_char": "0",
+     "clang-O1_wrapv_unsigned_char": "0",
+     "clang-O2": "0",
+     "clang-O2_wrapv": "0",
+     "gcc-O0": "0",
+     "gcc-O0_wrapv": "0",
+     "gcc-O1": "0",
+     "gcc-O1_wrapv": "0",
+     "gcc-O1_wrapv_signed_char": "0",
+     "gcc-O1_wrapv_unsigned_char": "0",
+     "gcc-O2": "0",
+     "gcc-O2_wrapv": "0"
+    },
+    "all_values_agree_with_oracle": true,
+    "passes": true,
+    "primary_harness_verdict": "value"
+   },
+   "failed_checks_before_witness": [],
+   "variant_build_errors": {}
+  },
+  {
+   "func": "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN",
+   "status": "checked",
+   "harness": "run_arrays.py",
+   "params": [
+    "i32",
+    "i32"
+   ],
+   "ret": "f32",
+   "float_return": true,
+   "mechanism": "C computes AM = (a + b) / 2 with int a, b: integer division, then assigns it to a double; the Rust computes (a as f32 + b as f32) / 2.0, a float division. They differ whenever a + b is odd. The harness's 3 rows set a == b, so a + b is always even.",
+   "mechanism_location": {
+    "c": {
+     "file": "artifacts/vert/benchmark/c_transcoder/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN.c",
+     "line": 23,
+     "text": "AM = ( a + b ) / 2;"
+    },
+    "rust": {
+     "file": "artifacts/vert/benchmark/c_transcoder/FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN/out-rwasm-bolero/src/main.rs",
+     "line": 451,
+     "text": "let am = (a as f32 + b as f32) / 2.0;"
+    }
+   },
+   "c_is_nonstandard": false,
+   "found_by": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain",
+   "domain_bounds": [
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     4
+    ]
+   ],
+   "inputs_scanned": 3,
+   "diverging_inputs_checked": 1,
+   "smallest_passing_witness": {
+    "in": [
+     1,
+     2
+    ],
+    "l1": 3,
+    "c_oracle_gcc_O1_wrapv": "2",
+    "rust": "1.333333254",
+    "clang_asan_ubsan_fco_O0": "clean",
+    "clang_asan_ubsan_fco_O0_value": "2",
+    "clang_asan_ubsan_fco_O1": "clean",
+    "clang_asan_ubsan_fco_O1_value": "2",
+    "gcc_asan_ubsan_fco_O0": "clean",
+    "gcc_asan_ubsan_fco_O0_value": "2",
+    "clang_msan_O1": "clean",
+    "clang_msan_O1_value": "2",
+    "values": {
+     "clang-O0": "2",
+     "clang-O0_wrapv": "2",
+     "clang-O1": "2",
+     "clang-O1_wrapv": "2",
+     "clang-O1_wrapv_signed_char": "2",
+     "clang-O1_wrapv_unsigned_char": "2",
+     "clang-O2": "2",
+     "clang-O2_wrapv": "2",
+     "gcc-O0": "2",
+     "gcc-O0_wrapv": "2",
+     "gcc-O1": "2",
+     "gcc-O1_wrapv": "2",
+     "gcc-O1_wrapv_signed_char": "2",
+     "gcc-O1_wrapv_unsigned_char": "2",
+     "gcc-O2": "2",
+     "gcc-O2_wrapv": "2"
+    },
+    "all_values_agree_with_oracle": true,
+    "passes": true,
+    "primary_harness_verdict": "value"
+   },
+   "failed_checks_before_witness": [],
+   "variant_build_errors": {}
+  },
+  {
+   "func": "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS",
+   "status": "checked",
+   "harness": "run_arrays.py",
+   "params": [
+    "[i32;2]",
+    "i32",
+    "i32"
+   ],
+   "ret": "i32",
+   "float_return": false,
+   "mechanism": "The C's inner loop is `for (int j = i + 1; i < n; i ++)`: it tests and increments i, not j, so it compares arr[i]*arr[j0] for i = i0..n-1 with j0 = i0+1 fixed, which includes arr[1]*arr[1]. The Rust iterates the proper pairs j = i+1..n-1. Here the C (the oracle) is the non-standard program and the Rust is the textbook algorithm; it is counted only because the original C is the oracle.",
+   "mechanism_location": {
+    "c": {
+     "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS.c",
+     "line": 26,
+     "text": "i ++ ) if ( arr [ i ] * arr [ j ] == x ) return true;"
+    },
+    "rust": {
+     "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/out-rwasm-bolero/src/main.rs",
+     "line": 684,
+     "text": "let mut j = i + 1;"
+    },
+    "c_2": {
+     "file": "artifacts/vert/benchmark/c_transcoder/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS/PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS.c",
+     "line": 24,
+     "text": "i ++ ) for ( int j = i + 1;"
+    }
+   },
+   "c_is_nonstandard": true,
+   "found_by": "results/vert_arrays_mutation_primary.json per_function[].original_extended_domain",
+   "domain_bounds": [
+    [
+     -40,
+     40
+    ],
+    [
+     -40,
+     40
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     2
+    ]
+   ],
+   "inputs_scanned": 24,
+   "diverging_inputs_checked": 1,
+   "smallest_passing_witness": {
+    "in": [
+     0,
+     1,
+     2,
+     1
+    ],
+    "l1": 4,
+    "c_oracle_gcc_O1_wrapv": "1",
+    "rust": "0",
+    "clang_asan_ubsan_fco_O0": "clean",
+    "clang_asan_ubsan_fco_O0_value": "1",
+    "clang_asan_ubsan_fco_O1": "clean",
+    "clang_asan_ubsan_fco_O1_value": "1",
+    "gcc_asan_ubsan_fco_O0": "clean",
+    "gcc_asan_ubsan_fco_O0_value": "1",
+    "clang_msan_O1": "clean",
+    "clang_msan_O1_value": "1",
+    "values": {
+     "clang-O0": "1",
+     "clang-O0_wrapv": "1",
+     "clang-O1": "1",
+     "clang-O1_wrapv": "1",
+     "clang-O1_wrapv_signed_char": "1",
+     "clang-O1_wrapv_unsigned_char": "1",
+     "clang-O2": "1",
+     "clang-O2_wrapv": "1",
+     "gcc-O0": "1",
+     "gcc-O0_wrapv": "1",
+     "gcc-O1": "1",
+     "gcc-O1_wrapv": "1",
+     "gcc-O1_wrapv_signed_char": "1",
+     "gcc-O1_wrapv_unsigned_char": "1",
+     "gcc-O2": "1",
+     "gcc-O2_wrapv": "1"
+    },
+    "all_values_agree_with_oracle": true,
+    "passes": true,
+    "primary_harness_verdict": "value"
+   },
+   "failed_checks_before_witness": [],
+   "variant_build_errors": {}
+  }
+ ]
+}

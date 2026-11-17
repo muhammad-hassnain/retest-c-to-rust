@@ -1,0 +1,145 @@
+debconf: delaying package configuration, since apt-utils is not installed
+##### SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER vert_reduce
+src/__fuzz__:
+bolero_wasm_eq
+
+src/__fuzz__/bolero_wasm_eq:
+corpus
+crashes
+
+src/__fuzz__/bolero_wasm_eq/corpus:
+00d5faf1e45c3f91eac9d9f3adb233ccaa511094
+01463f95233e2ebd4bd0ed4a42013f99b57d91aa
+568 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+569 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+570 | fn len(arr: &[i32]) -> usize {arr.len()}
+571 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+    Finished release [optimized] target(s) in 43.79s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170)
+running 1 test
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3151570840
+INFO: Loaded 1 modules   (361854 inline 8-bit counters): 361854 [0x588c834d80d0, 0x588c8353064e), 
+INFO: Loaded 1 PC tables (361854 PCs): 361854 [0x588c83530650,0x588c83ab5e30), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/.tmptoWbVn'
+MERGE-INNER: 177 total files; 0 processed earlier; will process 177 files now
+#1	pulse  cov: 44 ft: 45 exec/s: 0 rss: 51Mb
+#2	pulse  cov: 582 ft: 584 exec/s: 0 rss: 53Mb
+#4	pulse  cov: 610 ft: 619 exec/s: 0 rss: 53Mb
+#8	pulse  cov: 621 ft: 662 exec/s: 0 rss: 54Mb
+#16	pulse  cov: 623 ft: 672 exec/s: 0 rss: 55Mb
+#32	pulse  cov: 624 ft: 673 exec/s: 0 rss: 58Mb
+#64	pulse  cov: 630 ft: 680 exec/s: 0 rss: 61Mb
+#128	pulse  cov: 630 ft: 696 exec/s: 0 rss: 65Mb
+#177	LOADED cov: 630 ft: 697 exec/s: 0 rss: 68Mb
+#177	DONE   cov: 630 ft: 697 exec/s: 0 rss: 68Mb
+rc=0
+##### SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER fuzz 20s on VERT's own translation
+help: remove these parentheses
+592 -     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 +     bolero::check!().with_type::<i32>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+592 -     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 +     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|PARAM_1|{ 
+567 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+568 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+569 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+570 | fn len(arr: &[i32]) -> usize {arr.len()}
+571 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170)
+589 | use bolero::check;
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+592 -     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 +     bolero::check!().with_type::<(i32)>().with_generator(0..100).cloned().for_each(|(PARAM_1)|{ 
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+592 -     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 +     bolero::check!().with_type::<i32>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+592 -     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+592 +     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|PARAM_1|{ 
+567 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+568 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+569 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+570 | fn len(arr: &[i32]) -> usize {arr.len()}
+571 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+592 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ 
+    Finished release [optimized] target(s) in 0.02s
+     Running unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170)
+error: test failed, to rerun pass `--bin c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero`
+Caused by:
+  process didn't exit successfully: `/tmp/d/SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170 bolero_wasm_eq --nocapture --exact` (signal: 11, SIGSEGV: invalid memory reference)
+error: process exited with status 101
+rc=1
+##### MAXIMUM_GAMES_PLAYED_WINNER vert_reduce
+src/__fuzz__:
+ Downloading crates ...
+601 | use bolero::check;
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+604 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+604 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+help: remove these parentheses
+604 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+604 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+581 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+582 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+583 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+584 | fn len(arr: &[i32]) -> usize {arr.len()}
+585 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+589 | fn f_gold(N: i32) -> i32 {
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    Finished release [optimized] target(s) in 42.63s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)
+error: No such file or directory (os error 2) at path "/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/src/__fuzz__/bolero_wasm_eq/.tmprJCPPC"
+rc=1
+##### MAXIMUM_GAMES_PLAYED_WINNER fuzz 20s on VERT's own translation
+  left: `0`,
+ right: `1`', src/main.rs:611:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+    #0 0x57fa98a2a7d1  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xa727d1) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #1 0x57fa9961517e  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x165d17e) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #2 0x57fa99620709  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1668709) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #3 0x792bac83c51f  (/lib/x86_64-linux-gnu/libc.so.6+0x4251f) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+    #4 0x792bac8909bb  (/lib/x86_64-linux-gnu/libc.so.6+0x969bb) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+    #5 0x792bac83c475  (/lib/x86_64-linux-gnu/libc.so.6+0x42475) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+    #6 0x792bac8227f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+    #7 0x57fa99c62426  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1caa426) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #8 0x57fa98984a76  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x9cca76) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #9 0x57fa98adba29  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xb23a29) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #10 0x57fa995ed75e  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x163575e) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #11 0x57fa99620c65  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1668c65) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #12 0x57fa996257b3  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x166d7b3) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #13 0x57fa996266e8  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x166e6e8) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #14 0x57fa996289e7  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x16709e7) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #15 0x57fa995fbf72  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1643f72) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #16 0x57fa995edab6  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1635ab6) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #17 0x57fa98a760a1  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xabe0a1) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #18 0x57fa98ada937  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xb22937) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #19 0x57fa98af0951  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xb38951) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #20 0x57fa98a7fcc5  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0xac7cc5) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #21 0x57fa995d410e  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x161c10e) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #22 0x57fa995d3101  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x161b101) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #23 0x57fa99596663  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x15de663) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #24 0x57fa9959cd1a  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x15e4d1a) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #25 0x57fa99c60e14  (/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5+0x1ca8e14) (BuildId: e4667bf8037a9b86607fddaf4b3b539a8f479c3a)
+    #26 0x792bac88ea82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+    #27 0x792bac91fa93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 3 ChangeByte-CrossOver-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x2e,0x2e,0xa,0xa,
+..\012\012
+artifact_prefix='/tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/d/MAXIMUM_GAMES_PLAYED_WINNER/src/__fuzz__/bolero_wasm_eq/crashes/crash-67e02dff135a9b93b6101efd34688fd4060c27b9
+Base64: Li4KCg==
+error: process exited with status 77
+rc=1

@@ -1,0 +1,106 @@
+{
+ "cat": {
+  "sh_tests": 4,
+  "check_stderr": 0,
+  "which": {},
+  "non_sh_tests_skipped_by_loop": []
+ },
+ "head": {
+  "sh_tests": 3,
+  "check_stderr": 1,
+  "which": {
+   "head-write-error.sh": [
+    "err"
+   ]
+  },
+  "non_sh_tests_skipped_by_loop": [
+   "head-elide-tail.pl",
+   "head.pl"
+  ]
+ },
+ "tail": {
+  "sh_tests": 33,
+  "check_stderr": 16,
+  "which": {
+   "F-headers.sh": [
+    "out"
+   ],
+   "F-vs-missing.sh": [
+    "out"
+   ],
+   "F-vs-rename.sh": [
+    "err"
+   ],
+   "assert-2.sh": [
+    "out"
+   ],
+   "assert.sh": [
+    "out"
+   ],
+   "descriptor-vs-rename.sh": [
+    "out"
+   ],
+   "follow-name.sh": [
+    "err"
+   ],
+   "follow-stdin.sh": [
+    "err",
+    "out"
+   ],
+   "inotify-dir-recreate.sh": [
+    "out"
+   ],
+   "inotify-hash-abuse.sh": [
+    "out"
+   ],
+   "inotify-rotate-resources.sh": [
+    "out"
+   ],
+   "inotify-rotate.sh": [
+    "out"
+   ],
+   "retry.sh": [
+    "out"
+   ],
+   "symlink.sh": [
+    "out"
+   ],
+   "truncate.sh": [
+    "out"
+   ],
+   "wait.sh": [
+    "tail.err",
+    "x"
+   ]
+  },
+  "non_sh_tests_skipped_by_loop": [
+   "gt-flush-initial.sh.EcXl",
+   "gt-tail-n0f.sh.NTnI",
+   "tail.pl"
+  ]
+ },
+ "uniq": {
+  "sh_tests": 2,
+  "check_stderr": 0,
+  "which": {},
+  "non_sh_tests_skipped_by_loop": [
+   "uniq.pl"
+  ]
+ },
+ "split": {
+  "sh_tests": 14,
+  "check_stderr": 3,
+  "which": {
+   "additional-suffix.sh": [
+    "err"
+   ],
+   "l-chunk.sh": [
+    "err"
+   ],
+   "suffix-length.sh": [
+    "err"
+   ]
+  },
+  "non_sh_tests_skipped_by_loop": []
+ }
+}

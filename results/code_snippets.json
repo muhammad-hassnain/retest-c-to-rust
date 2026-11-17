@@ -1,0 +1,521 @@
+{
+ "provenance": {
+  "script": "scripts/extract_snippets.py",
+  "git_rev": "ac9f07254face701e6d9ce5337940972701ca388",
+  "host": "Darwin",
+  "date": "2026-11-17T16:37:34"
+ },
+ "snippets": [
+  {
+   "system": "VERT",
+   "defect": "VERT-HEXAGONAL_NUMBER-1",
+   "title": "VERT · HEXAGONAL_NUMBER",
+   "note": "n = 3: C returns 15, the Rust 9 (it computes n²)",
+   "c": {
+    "file": "artifacts/vert/benchmark/c_transcoder/HEXAGONAL_NUMBER/HEXAGONAL_NUMBER.c",
+    "sha256": "44563ae96c0ab1e0cdc0aa78b221b5df67497f64059861126f017cd99ad090ca",
+    "lines": [
+     {
+      "line": 21,
+      "text": "int f_gold ( int n ) {",
+      "hl": false
+     },
+     {
+      "line": 22,
+      "text": "  return n * ( 2 * n - 1 );",
+      "hl": true
+     },
+     {
+      "line": 23,
+      "text": "}",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/YoshikiTakashima/vert/blob/3270ceccb63a28acd611c8fa6105ed37dc76de07/benchmark/c_transcoder/HEXAGONAL_NUMBER/HEXAGONAL_NUMBER.c#L21-L23",
+    "source_url": "https://github.com/YoshikiTakashima/vert/tree/3270ceccb63a28acd611c8fa6105ed37dc76de07",
+    "source_kind": "git",
+    "commit": "3270ceccb63a28acd611c8fa6105ed37dc76de07",
+    "path_in_source": "benchmark/c_transcoder/HEXAGONAL_NUMBER/HEXAGONAL_NUMBER.c"
+   },
+   "rust": {
+    "file": "artifacts/vert/benchmark/c_transcoder/HEXAGONAL_NUMBER/out-rwasm-bolero/src/main.rs",
+    "sha256": "c542ea15bb89105e7c4ac4099ebb4ca05f1289edeb4ec648df4bab78b8959237",
+    "lines": [
+     {
+      "line": 388,
+      "text": "fn f_gold(n: i32) -> i32 {",
+      "hl": false
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 392,
+      "text": "    result = 0;",
+      "hl": false
+     },
+     {
+      "line": 393,
+      "text": "    for i in 1..=n {",
+      "hl": false
+     },
+     {
+      "line": 394,
+      "text": "        result += i * 2 - 1;",
+      "hl": true
+     },
+     {
+      "line": 395,
+      "text": "    }",
+      "hl": false
+     },
+     {
+      "line": 396,
+      "text": "    result",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/YoshikiTakashima/vert/blob/3270ceccb63a28acd611c8fa6105ed37dc76de07/benchmark/c_transcoder/HEXAGONAL_NUMBER/out-rwasm-bolero/src/main.rs#L392-L396",
+    "source_url": "https://github.com/YoshikiTakashima/vert/tree/3270ceccb63a28acd611c8fa6105ed37dc76de07",
+    "source_kind": "git",
+    "commit": "3270ceccb63a28acd611c8fa6105ed37dc76de07",
+    "path_in_source": "benchmark/c_transcoder/HEXAGONAL_NUMBER/out-rwasm-bolero/src/main.rs"
+   }
+  },
+  {
+   "system": "FLOURINE",
+   "defect": "FLOURINE-operator_list-1",
+   "title": "FLOURINE · opl_emu_registers_operator_list",
+   "note": "shifting a u8 by 8, 16, 24 wraps to a no-op: (24,211,56,46) gives 337, not 775,475,992",
+   "c": {
+    "file": "artifacts/flourine_dl/flourine-artifact/bms/c/opl/opl_emu_registers_operator_list/opl_emu_registers_operator_list.c",
+    "sha256": "80330f12a63b888820bd4461717ce1e4b1c79339ff0fb244b13b860ed4ed73aa",
+    "lines": [
+     {
+      "line": 16,
+      "text": "uint32_t opl_emu_registers_operator_list(uint8_t o1, uint8_t o2, uint8_t o3, uint8_t o4)",
+      "hl": false
+     },
+     {
+      "line": 17,
+      "text": "{",
+      "hl": false
+     },
+     {
+      "line": 18,
+      "text": "    return o1 | (o2 << 8) | (o3 << 16) | (o4 << 24);",
+      "hl": true
+     },
+     {
+      "line": 19,
+      "text": "}",
+      "hl": false
+     }
+    ],
+    "url": null,
+    "source_url": "https://d34gtk3knhjgeg.cloudfront.net/artifact.tar.gz",
+    "source_kind": "archive",
+    "path_in_source": "flourine-artifact/bms/c/opl/opl_emu_registers_operator_list/opl_emu_registers_operator_list.c"
+   },
+   "rust": {
+    "file": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs",
+    "sha256": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+    "lines": [
+     {
+      "line": 4,
+      "text": "fn opl_emu_registers_operator_list(o1: u8, o2: u8, o3: u8, o4: u8) -> u32 {",
+      "hl": false
+     },
+     {
+      "line": 5,
+      "text": "    let o1 = o1 as u32;",
+      "hl": false
+     },
+     {
+      "line": 6,
+      "text": "    let o2 = o2.wrapping_shl(8) as u32;",
+      "hl": true
+     },
+     {
+      "line": 7,
+      "text": "    let o3 = o3.wrapping_shl(16) as u32;",
+      "hl": true
+     },
+     {
+      "line": 8,
+      "text": "    let o4 = o4.wrapping_shl(24) as u32;",
+      "hl": true
+     },
+     {
+      "line": 9,
+      "text": "    o1.wrapping_add(o2).wrapping_add(o3).wrapping_add(o4)",
+      "hl": false
+     },
+     {
+      "line": 10,
+      "text": "}",
+      "hl": false
+     }
+    ],
+    "url": null,
+    "source_url": "https://d34gtk3knhjgeg.cloudfront.net/artifact.tar.gz",
+    "source_kind": "archive",
+    "path_in_source": "flourine-artifact/translations_only/success/c/opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs"
+   }
+  },
+  {
+   "system": "C2SaferRust",
+   "defect": "C2SR-tail-1",
+   "title": "C2SaferRust · tail -c / -n +N",
+   "note": "the C sets the global count_lines; the Rust parses into a new local that only picks an error message, so count_lines keeps the true that main sets and tail -c 3 prints 3 lines, not 3 bytes",
+   "c": {
+    "file": "artifacts/c2saferrust/coreutils/src/tail/c/tail.c",
+    "sha256": "abe7fd6b60021bb1f3d2c4254141a12fd438b8d75b291a1efb6f0f16b8ef4b30",
+    "lines": [
+     {
+      "line": 169,
+      "text": "static bool count_lines;",
+      "hl": false
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 2211,
+      "text": "case 'c':",
+      "hl": false
+     },
+     {
+      "line": 2212,
+      "text": "case 'n':",
+      "hl": false
+     },
+     {
+      "line": 2213,
+      "text": "  count_lines = (c == 'n');",
+      "hl": true
+     }
+    ],
+    "url": "https://github.com/vikramnitin9/c2saferrust/blob/e8d5c3a18b91523f0ca6e52117cbd2f288d21c31/coreutils/src/tail/c/tail.c#L2211-L2213",
+    "source_url": "https://github.com/vikramnitin9/c2saferrust/tree/e8d5c3a18b91523f0ca6e52117cbd2f288d21c31",
+    "source_kind": "git",
+    "commit": "e8d5c3a18b91523f0ca6e52117cbd2f288d21c31",
+    "path_in_source": "coreutils/src/tail/c/tail.c"
+   },
+   "rust": {
+    "file": "artifacts/c2saferrust/coreutils/src/tail/rust_WIP/src/tail.rs",
+    "sha256": "a50817b7301669157f393afb11195d1fed76e737e3f54f57557e33b95b757226",
+    "lines": [
+     {
+      "line": 835,
+      "text": "static mut count_lines: bool = false;",
+      "hl": false
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 4649,
+      "text": "    99 | 110 => {",
+      "hl": false
+     },
+     {
+      "line": 4650,
+      "text": "         let is_count_lines = c == 'n' as i32;",
+      "hl": true
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 4667,
+      "text": "    if is_count_lines {",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/vikramnitin9/c2saferrust/blob/e8d5c3a18b91523f0ca6e52117cbd2f288d21c31/coreutils/src/tail/rust_WIP/src/tail.rs#L4649-L4650",
+    "source_url": "https://github.com/vikramnitin9/c2saferrust/tree/e8d5c3a18b91523f0ca6e52117cbd2f288d21c31",
+    "source_kind": "git",
+    "commit": "e8d5c3a18b91523f0ca6e52117cbd2f288d21c31",
+    "path_in_source": "coreutils/src/tail/rust_WIP/src/tail.rs"
+   }
+  },
+  {
+   "system": "RustAssure",
+   "defect": "RUSTASSURE-libcsv-csv_parse-1",
+   "title": "RustAssure · libcsv csv_parse",
+   "note": "with CSV_EMPTY_IS_NULL, an empty field reaches the callback as NULL in C, as an empty slice in Rust",
+   "c": {
+    "file": "artifacts/rustassure/src/python/inputs-complex/libcsv/libcsv.c",
+    "sha256": "75f39188a5c24ebe3faabbf0249a8732e82544b2158e4af99419cee2b97f8e81",
+    "lines": [
+     {
+      "line": 55,
+      "text": "   if (cb1 && (p->options & CSV_EMPTY_IS_NULL) && !quoted && entry_pos == 0) \\",
+      "hl": false
+     },
+     {
+      "line": 56,
+      "text": "     cb1(NULL, entry_pos, data); \\",
+      "hl": true
+     },
+     {
+      "line": 57,
+      "text": "   else if (cb1) \\",
+      "hl": false
+     },
+     {
+      "line": 58,
+      "text": "     cb1(p->entry_buf, entry_pos, data); \\",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/davsec-lab/rustassure/blob/39618406bd0c6acb1c5ca2cd697c3781a8e4c296/src/python/inputs-complex/libcsv/libcsv.c#L55-L58",
+    "source_url": "https://github.com/davsec-lab/rustassure/tree/39618406bd0c6acb1c5ca2cd697c3781a8e4c296",
+    "source_kind": "git",
+    "commit": "39618406bd0c6acb1c5ca2cd697c3781a8e4c296",
+    "path_in_source": "src/python/inputs-complex/libcsv/libcsv.c"
+   },
+   "rust": {
+    "file": "artifacts/rustassure/src/python/inputs-complex/libcsv/link/individual-funcs_gpt-4o_2025-07-02_14-41-02__complete/csv_parse.rs",
+    "sha256": "0409bcae19d8fd2c51bcc0e5c0272d06a06047209e50a2c2f7de94bf708e5329",
+    "lines": [
+     {
+      "line": 23,
+      "text": "    cb1: Option<fn(&[u8], usize, &mut ())>,",
+      "hl": true
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 81,
+      "text": "if let Some(cb1) = cb1 {",
+      "hl": false
+     },
+     {
+      "line": 82,
+      "text": "    if (p.options & 16) != 0 && !quoted && entry_pos == 0 {",
+      "hl": false
+     },
+     {
+      "line": 83,
+      "text": "        cb1(&[], entry_pos, data);",
+      "hl": true
+     },
+     {
+      "line": 84,
+      "text": "    } else {",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/davsec-lab/rustassure/blob/39618406bd0c6acb1c5ca2cd697c3781a8e4c296/src/python/inputs-complex/libcsv/link/individual-funcs_gpt-4o_2025-07-02_14-41-02__complete/csv_parse.rs#L81-L84",
+    "source_url": "https://github.com/davsec-lab/rustassure/tree/39618406bd0c6acb1c5ca2cd697c3781a8e4c296",
+    "source_kind": "git",
+    "commit": "39618406bd0c6acb1c5ca2cd697c3781a8e4c296",
+    "path_in_source": "src/python/inputs-complex/libcsv/link/individual-funcs_gpt-4o_2025-07-02_14-41-02__complete/csv_parse.rs"
+   }
+  },
+  {
+   "system": "SACTOR",
+   "defect": "SACTOR-C1",
+   "title": "SACTOR · Holdem-Odds NewCard",
+   "note": "a nested stub accepts every card: NewCard(4, 5) is invalid in C, valid in Rust",
+   "c": {
+    "file": "artifacts/sactor/CRUST-bench/datasets/CRUST_bench/CBench/Holdem-Odds/src/cards.c",
+    "sha256": "26db008304bb3a26ee9989386194f1d7c70f9af03b2b29e3d09bf49cac5da6c8",
+    "lines": [
+     {
+      "line": 46,
+      "text": "Card NewCard(Rank rank, Suit suit) {",
+      "hl": false
+     },
+     {
+      "line": 47,
+      "text": "    Card card = { .rank = rank, .suit = suit };",
+      "hl": false
+     },
+     {
+      "line": 48,
+      "text": "",
+      "hl": false
+     },
+     {
+      "line": 49,
+      "text": "    if (CardIsValid(&card))",
+      "hl": true
+     },
+     {
+      "line": 50,
+      "text": "        return card;",
+      "hl": false
+     },
+     {
+      "line": 51,
+      "text": "    else",
+      "hl": false
+     },
+     {
+      "line": 52,
+      "text": "        return INVALID_CARD;",
+      "hl": false
+     },
+     {
+      "line": 53,
+      "text": "}",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/qsdrqs/CRUST-bench/blob/69970f9c9a583290f943145eada5e8948b1b91ff/datasets/CRUST_bench/CBench/Holdem-Odds/src/cards.c#L46-L53",
+    "source_url": "https://github.com/qsdrqs/CRUST-bench/tree/69970f9c9a583290f943145eada5e8948b1b91ff",
+    "source_kind": "git",
+    "commit": "69970f9c9a583290f943145eada5e8948b1b91ff",
+    "path_in_source": "datasets/CRUST_bench/CBench/Holdem-Odds/src/cards.c"
+   },
+   "rust": {
+    "file": "artifacts/sactor/CRUST-bench/datasets/CRUST_bench/CBench/Holdem-Odds/result/translated_code_unidiomatic/combined.rs",
+    "sha256": "e9d1b69281d41807f102a4c20978a79f7082fd8f13669065a3914afe8674dcd0",
+    "lines": [
+     {
+      "line": 81,
+      "text": "pub unsafe fn NewCard(rank: Rank, suit: Suit) -> Card {",
+      "hl": false
+     },
+     {
+      "line": 82,
+      "text": "    fn CardIsValid(c: *const Card) -> bool {",
+      "hl": true
+     },
+     {
+      "line": 83,
+      "text": "        true",
+      "hl": true
+     },
+     {
+      "line": 84,
+      "text": "    }",
+      "hl": true
+     },
+     {
+      "line": 85,
+      "text": "    let card = Card { rank, suit };",
+      "hl": false
+     },
+     {
+      "line": 86,
+      "text": "    if CardIsValid(&card) {",
+      "hl": false
+     },
+     {
+      "line": 87,
+      "text": "        card",
+      "hl": false
+     }
+    ],
+    "url": "https://github.com/qsdrqs/CRUST-bench/blob/69970f9c9a583290f943145eada5e8948b1b91ff/datasets/CRUST_bench/CBench/Holdem-Odds/result/translated_code_unidiomatic/combined.rs#L81-L87",
+    "source_url": "https://github.com/qsdrqs/CRUST-bench/tree/69970f9c9a583290f943145eada5e8948b1b91ff",
+    "source_kind": "git",
+    "commit": "69970f9c9a583290f943145eada5e8948b1b91ff",
+    "path_in_source": "datasets/CRUST_bench/CBench/Holdem-Odds/result/translated_code_unidiomatic/combined.rs"
+   }
+  },
+  {
+   "system": "His2Trans",
+   "defect": "H2T-BUF-1",
+   "title": "His2Trans · buffer_append_n",
+   "note": "the length argument is ignored: append_n(\"hello\", 1) appends \"h\" in C, \"hello\" in Rust",
+   "c": {
+    "file": "artifacts/his2trans/data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c",
+    "sha256": "d4db957c9334e75d221daeece1a592aa382941addfa593f06b0af6d13c8ebb5d",
+    "lines": [
+     {
+      "line": 195,
+      "text": "buffer_append_n(buffer_t *self, const char *str, size_t len) {",
+      "hl": false
+     },
+     {
+      "line": 196,
+      "text": "  size_t prev = strlen(self->data);",
+      "hl": false
+     },
+     {
+      "line": 197,
+      "text": "  size_t needed = len + prev;",
+      "hl": false
+     },
+     {
+      "line": null,
+      "text": "…",
+      "hl": false
+     },
+     {
+      "line": 200,
+      "text": "  if (self->len > needed) {",
+      "hl": false
+     },
+     {
+      "line": 201,
+      "text": "    strncat(self->data, str, len);",
+      "hl": true
+     }
+    ],
+    "url": "https://github.com/SYSUSELab/His2Trans/blob/3a0ec5544c8e6788280b3520105a77432ed8a730/data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c#L200-L201",
+    "source_url": "https://github.com/SYSUSELab/His2Trans/tree/3a0ec5544c8e6788280b3520105a77432ed8a730",
+    "source_kind": "git",
+    "commit": "3a0ec5544c8e6788280b3520105a77432ed8a730",
+    "path_in_source": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c"
+   },
+   "rust": {
+    "file": "artifacts/his2trans/data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs",
+    "sha256": "934f99c715fe739c12b79ef1061e69f45afeb1ad33c375837657610110f8b0a7",
+    "lines": [
+     {
+      "line": 154,
+      "text": "pub fn buffer_append_n(",
+      "hl": false
+     },
+     {
+      "line": 155,
+      "text": "    b: &mut buffer_t,",
+      "hl": false
+     },
+     {
+      "line": 156,
+      "text": "    data: &[u8],",
+      "hl": false
+     },
+     {
+      "line": 157,
+      "text": "    _len: size_t,",
+      "hl": true
+     },
+     {
+      "line": 158,
+      "text": ") -> c_int {",
+      "hl": false
+     },
+     {
+      "line": 159,
+      "text": "    let len = data.len();",
+      "hl": true
+     }
+    ],
+    "url": "https://github.com/SYSUSELab/His2Trans/blob/3a0ec5544c8e6788280b3520105a77432ed8a730/data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs#L154-L159",
+    "source_url": "https://github.com/SYSUSELab/His2Trans/tree/3a0ec5544c8e6788280b3520105a77432ed8a730",
+    "source_kind": "git",
+    "commit": "3a0ec5544c8e6788280b3520105a77432ed8a730",
+    "path_in_source": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs"
+   }
+  }
+ ]
+}

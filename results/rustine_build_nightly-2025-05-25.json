@@ -1,0 +1,285 @@
+{
+ "toolchain": "rustc 1.89.0-nightly (5e16c6620 2025-05-24)",
+ "arch": "x86_64",
+ "lockfiles": "only upstream-tracked (none for these stages); dependencies resolved at build time",
+ "summary": {
+  "translate": {
+   "programs": 24,
+   "build": 9
+  },
+  "manual_debug": {
+   "programs": 14,
+   "build": 4
+  },
+  "automatic_debug": {
+   "programs": 6,
+   "build": 2
+  }
+ },
+ "rows": [
+  {
+   "program": "avl-tree",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "avl-tree",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0804]: cannot add auto trait `Send` to dyn bound via pointer cast"
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "automatic_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0804]: cannot add auto trait `Send` to dyn bound via pointer cast"
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "bst",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "buffer-0.4.0",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "buffer-0.4.0",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "bzip2",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "bzip2",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "genann",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "grabc",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error: failed to run custom build command for `translate_new v0.1.0 (/tmp/rustine-h_6bi4gh/p)`"
+  },
+  {
+   "program": "ht",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "libcsv",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libcsv",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "automatic_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libzahl-1.0",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "libzahl-1.0",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "lodepng",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "lodepng",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "mimalloc",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "mimalloc",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "opl",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "opl",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "qsort",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "quadtree-0.1.0",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "rgba",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "automatic_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "snudown",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "automatic_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "url_parser",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "url_parser",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "xzoom",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error: failed to run custom build command for `translate v0.1.0 (/tmp/rustine-vrjoqgo3/p)`"
+  },
+  {
+   "program": "zopfli",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  },
+  {
+   "program": "zopfli",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0658]: use of unstable library feature `stdarch_x86_avx512`"
+  }
+ ]
+}

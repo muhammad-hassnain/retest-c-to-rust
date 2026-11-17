@@ -1,0 +1,87 @@
+{
+ "provenance": {
+  "script": "systems/vert/kani_verify.py",
+  "command": "systems/vert/kani_verify.py --funcs PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES,NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES,SUM_SERIES_555555_N_TERMS --mode vert --jobs 3 --timeout 180 --out results/vert_kani_verify_grid2.json",
+  "kani": "cargo-kani 0.55.0",
+  "host": "e71be7ba98af",
+  "arch": "x86_64",
+  "date": "2026-11-14T05:41:16",
+  "git_rev": null
+ },
+ "summary": {
+  "vert": {
+   "functions": 3,
+   "verdict": {
+    "SUCCESSFUL": 1,
+    "TIMEOUT": 2
+   },
+   "equivalence": {
+    "None": 0,
+    "UNREACHABLE": 1
+   },
+   "compared_and_failed": []
+  }
+ },
+ "rows": [
+  {
+   "function": "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "cargo_precise": [
+    "unicode-segmentation@1.10.1"
+   ],
+   "log": "results/kani_logs_verify/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "SUCCESSFUL",
+   "equivalence": "UNREACHABLE",
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 83.8,
+   "cargo_precise": [
+    "unicode-segmentation@1.10.1"
+   ],
+   "log": "results/kani_logs_verify/PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "SUM_SERIES_555555_N_TERMS",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "cargo_precise": [
+    "unicode-segmentation@1.10.1"
+   ],
+   "log": "results/kani_logs_verify/SUM_SERIES_555555_N_TERMS.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  }
+ ]
+}

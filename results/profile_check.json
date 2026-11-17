@@ -1,0 +1,2389 @@
+{
+ "provenance": {
+  "generated": "2026-11-13 19:29 MST",
+  "question": "does each counted crash / overflow-related wrong answer still diverge from the C under the OTHER cargo profile?",
+  "scripts": {
+   "actor_profile.py": "0e7b622e4f1032cf",
+   "assemble.py": "d46bb41c53b9fc35",
+   "c2sr_profile.py": "bdafa24953b96ab4",
+   "flourine_profile.py": "9de040943bb39d94",
+   "rustmap_profile.py": "d5785c994c9aa548",
+   "sactor_profile.py": "33bcb90c47c10862",
+   "vert_profile.py": "fb4c1b07dfdd2297"
+  },
+  "ledger": "results/defect_ledger.json sha256 e3870b71e76f8f0c",
+  "machines": {
+   "VERT, Flourine": "this Mac, Docker arm64, image crust-stable (rustc 1.86.0, gcc 11.4), --cpus 2",
+   "C2SaferRust": "Linux x86-64 box, image crust-heldout (rustc nightly-2022-08-08, as the harness), --network none, --cpus 2, libc 0.2.158 vendored from cli-mutation/vendor",
+   "RustMap": "Linux x86-64 box, image crust-heldout-plus186 (rustc 1.86.0), --network none, --cpus 2; bzip2 crate rebuilt from the host cargo source cache with unused deps rustix/filetime/tempfile/rand removed from the scratch Cargo.toml",
+   "ACTOR": "Linux x86-64 box, image crust-heldout, toolchain nightly-2026-01-10 (rustc 1.94.0-nightly) as the harness, offline",
+   "SACTOR": "Linux x86-64 box, image crust-heldout, nightly-2024-09-03 and nightly-2025-05-10, offline, libc 0.2.191 vendored"
+  },
+  "scratch": "~/work/profile-check/ on the box; copies of translations only, artifacts untouched",
+  "method": "the translation is rebuilt in the other profile in a scratch copy and the unchanged C oracle is run on the ledger example input and on the harness's own exposing input set; verdict = example input",
+  "limits": [
+   "the C oracle is not re-sanitized for the grid inputs; verdicts rest on the ledger example (UB-clean per the ledger) plus the harness's own UB filter where it was re-run (VERT, SACTOR)",
+   "ACTOR/RustMap/C2SaferRust exposing sets are the harness's own generated inputs, not new inputs",
+   "ACTOR S1 rows other than 019/033/042/qmath/macrodepth were not re-run (mechanisms PARSE_NUM, LINE_SPLIT, UTF8_EOF, NUL_BYTE, WS_SET, ASSERT_DROPPED, BREAK_LOOP, NAN_FMT do not involve overflow)",
+   "ACTOR checkshift_lib (SHIFT_SIGN, library harness) not re-run: right shift of a negative int, profile-independent in Rust",
+   "RustMap bzip2 BZ-1 (sign-extending cast), BZ-4, C2SR-head-5 mechanisms are not overflow; head-5 was run, BZ-1/BZ-4 not"
+  ],
+  "grid_v2_additions": {
+   "rows": [
+    "VERT-NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES-1",
+    "VERT-PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES-1",
+    "VERT-SUM_SERIES_555555_N_TERMS-1"
+   ],
+   "command": "docker run --rm --cpus 2 -v $PWD:/work:ro -v <scratch>:/out -w /work -e VERT_GRID=v2 -e ONLY=<the 3 grid-v2 defects> crust-stable python3 systems/profile_check/vert_profile.py /out/profile_check_vert_grid2.json",
+   "how_merged": "entries built with systems/profile_check/assemble.py's VERT block (same fields), marked input_grid v2; summary recomputed with assemble.py's formulas; earlier entries unchanged",
+   "machine": "this Mac, Docker arm64, image crust-stable (rustc 1.86.0, gcc 11.4), --cpus 2",
+   "date": "2026-11-13 22:52 MST",
+   "vert_profile_py_sha256_16": "39423f9b86bb85a9",
+   "ledger": "results/defect_ledger.json sha256 5f7934e78e5ca431"
+  },
+  "adatrans_additions": {
+   "rows": [
+    "ADATRANS-run1-C_421_2",
+    "ADATRANS-run1-C_430_2",
+    "ADATRANS-run1-C_432_4"
+   ],
+   "command": "bash systems/profile_check/adatrans_profile.sh ~/work/adatrans-profile/repo ~/work/regrade-adatrans/pipe ~/work/regrade-adatrans/zenodo/adatrans-artifacts/dataset_fuzz_outputs ~/work/adatrans-profile; then python3 systems/profile_check/assemble.py --add-adatrans results/profile_check.json adatrans.json results/profile_check.json",
+   "how_merged": "entries built with assemble.py's AdaTrans block (add_adatrans); summary recomputed with assemble.py's formulas (summarize); every other row, not_checked and earlier provenance unchanged",
+   "summary_before": {
+    "defects_checked": 75,
+    "counted_crash_rows_in_ledger": 27,
+    "counted_crash_rows_checked": 24,
+    "crash_rows_not_checked": [
+     "ADATRANS-run1-C_421_2",
+     "ADATRANS-run1-C_430_2",
+     "ADATRANS-run1-C_432_4"
+    ],
+    "diverge_under_other_profile": 75,
+    "do_not_diverge_under_other_profile": [],
+    "yes_but_some_exposing_inputs_agree": [
+     "C2SR-head-3"
+    ],
+    "not_checked_actor_rows": 37
+   },
+   "machine": "Linux x86-64 box, image crust-heldout-plus186 (sha256:db473e67..., rustc/cargo 1.86.0 as the AdaTrans re-test), --network none, one container per defect in parallel (--cpus 4 each); a sequential re-run gave byte-identical per-defect results",
+   "runtime": "12 s wall (parallel; 25 s sequential)",
+   "date": "2026-11-14 01:25 MST",
+   "scripts": {
+    "adatrans_profile.py": "63ec5be699a20d15",
+    "adatrans_profile.sh": "90c3d05ef61cf364",
+    "assemble.py": "b58ad72c7ad6f995"
+   },
+   "ledger": "results/defect_ledger.json sha256 4f58f39ec5fb1e0d"
+  },
+  "flourine_fuzz_profile_update": {
+   "why": "arXiv version: FLOURINE counted in its own check's build profile (fuzz), so the other profile is release",
+   "rows": [
+    "FLOURINE-compute_phase_step-1",
+    "FLOURINE-lfo_am_depth-1",
+    "FLOURINE-lfo_pm_depth-1",
+    "FLOURINE-operator_list-1"
+   ],
+   "replaced_rows": [
+    {
+     "defect_id": "FLOURINE-lfo_pm_depth-1",
+     "counted_profile": "release (rustc -O; systems/flourine/run.py:97, run_struct.py:247)",
+     "other_profile": "debug (rustc)",
+     "diverges_under_other_profile": "yes"
+    },
+    {
+     "defect_id": "FLOURINE-operator_list-1",
+     "counted_profile": "release (rustc -O; systems/flourine/run.py:97, run_struct.py:247)",
+     "other_profile": "debug (rustc)",
+     "diverges_under_other_profile": "yes"
+    }
+   ],
+   "command": "python3 -I systems/profile_check/assemble.py --add-flourine-fuzz results/profile_check.json results/arxiv_flourine_devprofile.json results/profile_check.json",
+   "inputs": {
+    "results/arxiv_flourine_devprofile.json": "51ab308d5ea124d9"
+   },
+   "how_merged": "FLOURINE entries rebuilt with assemble.py's add_flourine_fuzz from the release and fuzz runs of results/arxiv_flourine_devprofile.json (no new run); summary recomputed with assemble.py's formulas (summarize); every other row, not_checked and earlier provenance unchanged",
+   "machine": "the two runs: Linux x86_64 box, crust-syzygy (rustc 1.86.0) for the Rust phase and crust-heldout for the C phase (results/arxiv_flourine_devprofile.json provenance); this step reads JSON only",
+   "summary_before": {
+    "defects_checked": 78,
+    "counted_crash_rows_in_ledger": 27,
+    "counted_crash_rows_checked": 27,
+    "crash_rows_not_checked": [],
+    "diverge_under_other_profile": 78,
+    "do_not_diverge_under_other_profile": [],
+    "yes_but_some_exposing_inputs_agree": [
+     "C2SR-head-3"
+    ],
+    "not_checked_actor_rows": 37
+   },
+   "date": "2026-11-16 22:27 PST",
+   "scripts": {
+    "assemble.py": "bf3e15f591e1fa13"
+   },
+   "ledger": "results/defect_ledger.json sha256 bd9e68485310fd00"
+  },
+  "vert_wide_update": {
+   "why": "arXiv version (issues.md 47): VERT's scalar scope extended to the functions whose C returns long / long long; their counted rows are re-run the other way",
+   "rows": [
+    "VERT-CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION-1",
+    "VERT-COUNT_DIGITS_FACTORIAL_SET_2-1",
+    "VERT-COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS-1",
+    "VERT-DICE_THROW_PROBLEM_1-1",
+    "VERT-FIND_LARGEST_PRIME_FACTOR_NUMBER-1",
+    "VERT-NUMBER_N_DIGIT_STEPPING_NUMBERS-1",
+    "VERT-SUM_PAIRWISE_PRODUCTS-1",
+    "VERT-SUM_PAIRWISE_PRODUCTS_1-1"
+   ],
+   "command": "python3 -I systems/profile_check/assemble.py --add-vert results/profile_check.json results/profile_check_vert_wide.json results/profile_check.json",
+   "run": "docker run --rm --cpus 3 -v $PWD:/work:ro -v $PWD/results:/out -w /work -e VERT_GRID=v2 -e VERT_WIDE_INT=1 -e ONLY=<the 8 functions> crust-stable python3 systems/profile_check/vert_profile.py /out/profile_check_vert_wide.json (macOS arm64, Docker)",
+   "inputs": {
+    "results/profile_check_vert_wide.json": "e21121fd81839390"
+   },
+   "how_merged": "rows built with assemble.py's add_vert (the same block as the full run); summary recomputed with summarize",
+   "summary_before": {
+    "defects_checked": 80,
+    "counted_crash_rows_in_ledger": 30,
+    "counted_crash_rows_checked": 30,
+    "crash_rows_not_checked": [],
+    "diverge_under_other_profile": 78,
+    "do_not_diverge_under_other_profile": [
+     "FLOURINE-compute_phase_step-1",
+     "FLOURINE-lfo_am_depth-1"
+    ],
+    "yes_but_some_exposing_inputs_agree": [
+     "C2SR-head-3",
+     "FLOURINE-lfo_pm_depth-1"
+    ],
+    "not_checked_actor_rows": 37
+   },
+   "date": "2026-11-17 09:03 PST",
+   "scripts": {
+    "assemble.py": "0927b2a63e5723e9",
+    "vert_profile.py": "331e9b35746f77a1"
+   },
+   "ledger": "results/defect_ledger.json sha256 329fb28ba4194f89"
+  }
+ },
+ "profiles_by_system": {
+  "VERT": {
+   "own_pipeline": "bolero (cargo-bolero fuzz profile = release, README tells users RUSTFLAGS=-C overflow-checks=false) and Kani (always checks overflow)",
+   "own_cite": "artifacts/vert/evaluation.py:57 (cargo bolero reduce), :79 and :100 (cargo kani); artifacts/vert/ARTIFACT_README:152 (overflow-checks=false); results/vert_bolero_debug.log (`Finished release [optimized]`)",
+   "our_harness": "release: rustc -O, overflow checks off",
+   "harness_cite": "systems/vert/run.py:14-15 (docstring), :176; systems/vert/run_arrays.py:241",
+   "agreement": "same (release-like) for bolero; Kani is profile-independent and does check overflow"
+  },
+  "C2SaferRust": {
+   "own_pipeline": "debug (cargo build; binary target/debug)",
+   "own_cite": "artifacts/c2saferrust/translate.py:184, :236, :711",
+   "our_harness": "debug",
+   "harness_cite": "harness/build.py:50-51",
+   "agreement": "same"
+  },
+  "RustMap": {
+   "own_pipeline": "debug (plain `rustc file` for Rosetta; `cargo build` for bzip2)",
+   "own_cite": "artifacts/rustmap/rust-code/rosetta_code_gpt/125-rosetta-code-gpt/125-rosetta-rs.sh:15; artifacts/rustmap/README.md:213-215 (section 4.1.1)",
+   "our_harness": "debug",
+   "harness_cite": "systems/rustmap/run_rosetta.py:96-98; systems/rustmap/check_bzip2.sh:16-17",
+   "agreement": "same"
+  },
+  "SACTOR": {
+   "own_pipeline": "debug (cargo build of the build_attempt crate)",
+   "own_cite": "systems/sactor/sactor_common.py:222-233 (mirrors SACTOR's build_attempt); systems/sactor/crust/grid.py:19",
+   "our_harness": "debug primary, release and a second nightly as cross-checks in the same run",
+   "harness_cite": "systems/sactor/crust/grid.py:426; systems/sactor/libogg/run.py:13, :164",
+   "agreement": "same (release also recorded)"
+  },
+  "ACTOR": {
+   "own_pipeline": "release (cargo build --release for the translated crate and for test vectors; cargo check in verify is profile-free)",
+   "own_cite": "artifacts/actoruw/ACTOR/prompts/claude/ablations/translate-and-verify-executable.md:14,19; artifacts/actoruw/ACTOR/prompts/claude/translate-library.md:30; artifacts/actoruw/ACTOR/tools/src/translate.rs:1630-1631; tools/src/oracle/gtest.rs:38,59; tools/src/verify.rs:753",
+   "our_harness": "release",
+   "harness_cite": "systems/actoruw/build.py:6, :77; tc_crosscheck.py:59; mutate.py:112",
+   "agreement": "same"
+  },
+  "His2Trans": {
+   "own_pipeline": "debug (`cargo test` per test, `cargo build`)",
+   "own_cite": "systems/his2trans/own_check.py:6; systems/his2trans/xcheck.py:10-11; artifacts/his2trans/README.md:215",
+   "our_harness": "release (the crate's own release profile: opt-level 3, lto)",
+   "harness_cite": "systems/his2trans/run.py:13, :132, :323",
+   "agreement": "DIFFERENT: counted rows are release, the system's own check is debug. A debug cross-check already exists (results/his2trans_xcheck_186_debug.json). No counted crash row; no counted S1 row involves overflow (H2T-RGBA-1 is a saturating `as u8` cast, profile-independent), so nothing was re-run here"
+  },
+  "PtrTrans": {
+   "own_pipeline": "debug (its cargo check loop)",
+   "own_cite": "systems/ptrtrans/quadtree_e2e/run.py:16-17",
+   "our_harness": "debug primary, --release cross-check",
+   "harness_cite": "systems/ptrtrans/quadtree_e2e/run.py:16-17, :108",
+   "agreement": "same; no counted crash or overflow row, nothing re-run"
+  },
+  "Flourine": {
+   "own_pipeline": "fuzz profile: its check runs `cargo bolero test` (oracle.py:169-201), which builds with cargo-bolero's default --profile fuzz, defined in FLOURINE's Cargo.toml template as inherits = \"dev\", opt-level = 3 (overflow checks on)",
+   "own_cite": "artifacts/flourine_dl/flourine-artifact/oracle.py:169-201; Differential_Tester/instrumentor/src/template.rs:37-41 (results/arxiv_flourine_devprofile.json flourine_check_profile)",
+   "our_harness": "fuzz profile (rustc -C opt-level=3 -C debug-assertions=on -C overflow-checks=on; systems/flourine/run.py, run_struct.py --profile fuzz); the submitted version used release (rustc -O)",
+   "harness_cite": "systems/flourine/run.py RUSTC_PROFILE_FLAGS; harness/oracle_ub_flourine_current.py --profile",
+   "agreement": "same (arXiv version)"
+  },
+  "AdaTrans": {
+   "own_pipeline": "debug (its check runs `cargo build --quiet`, then target/debug/solution)",
+   "own_cite": "systems/adatrans/run_diff.py:12-15 (artifact src/runner.py check)",
+   "our_harness": "debug (cargo build, rustc 1.86.0)",
+   "harness_cite": "systems/adatrans/run_diff.py:124-132",
+   "agreement": "same"
+  }
+ },
+ "summary": {
+  "defects_checked": 88,
+  "counted_crash_rows_in_ledger": 30,
+  "counted_crash_rows_checked": 30,
+  "crash_rows_not_checked": [],
+  "diverge_under_other_profile": 86,
+  "do_not_diverge_under_other_profile": [
+   "FLOURINE-compute_phase_step-1",
+   "FLOURINE-lfo_am_depth-1"
+  ],
+  "yes_but_some_exposing_inputs_agree": [
+   "C2SR-head-3",
+   "FLOURINE-lfo_pm_depth-1"
+  ],
+  "not_checked_actor_rows": 37
+ },
+ "defects": [
+  {
+   "system": "VERT",
+   "defect_id": "VERT-CEILING_IN_A_SORTED_ARRAY-1",
+   "severity": "crash",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    0,
+    1,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "crash (rerun: __PANIC__)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 5,
+   "exposing_inputs_diverging_under_other_profile": 5,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 0, 'crash': 5, 'ub': 15}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "-1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 9,
+   "exposing_inputs_diverging_under_other_profile": 9,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 9, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "2",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    2,
+    1,
+    2
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 3,
+   "exposing_inputs_diverging_under_other_profile": 3,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 3, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    0,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -1)",
+   "outcome_under_other_profile": "wrong answer (-1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 18,
+   "exposing_inputs_diverging_under_other_profile": 18,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 18, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "0",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    1,
+    2
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 3,
+   "exposing_inputs_diverging_under_other_profile": 18,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 3, 'crash': 15, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 3 of 30 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 3 grid inputs (overflow)",
+   "c_output": "0",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      0,
+      1,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      0,
+      2,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      0,
+      1,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1-2",
+   "severity": "crash",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    0,
+    1
+   ],
+   "outcome_under_counted_profile": "crash (rerun: __PANIC__)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 12,
+   "exposing_inputs_diverging_under_other_profile": 18,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 3, 'crash': 15, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 3 of 30 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 3 grid inputs (overflow)",
+   "c_output": "1",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      0,
+      1,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      0,
+      2,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      0,
+      1,
+      1
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-LARGEST_SUM_CONTIGUOUS_SUBARRAY_2-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 18,
+   "exposing_inputs_diverging_under_other_profile": 18,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 18, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    0,
+    1,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -1)",
+   "outcome_under_other_profile": "wrong answer (-1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 7,
+   "exposing_inputs_diverging_under_other_profile": 7,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 7, 'crash': 0, 'ub': 2}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0,
+    2
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 9,
+   "exposing_inputs_diverging_under_other_profile": 9,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 9, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2147483647)",
+   "outcome_under_other_profile": "wrong answer (2147483647)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 18,
+   "exposing_inputs_diverging_under_other_profile": 18,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 18, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "2",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MINIMUM_OPERATIONS_MAKE_GCD_ARRAY_MULTIPLE_K-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    2,
+    1,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 10,
+   "exposing_inputs_diverging_under_other_profile": 10,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 10, 'crash': 0, 'ub': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "0",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MINIMUM_SUM_PRODUCT_TWO_ARRAYS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 22,
+   "exposing_inputs_diverging_under_other_profile": 22,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 22, 'crash': 0, 'ub': 8}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "-1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1-1",
+   "severity": "crash",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "crash (rerun: __PANIC__)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 21,
+   "exposing_inputs_diverging_under_other_profile": 21,
+   "evidence": "run_arrays.py grid rerun; harness UB-filtered counts under debug: {'value': 0, 'crash': 21, 'ub': 4}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 30 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    21
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 0)",
+   "outcome_under_other_profile": "wrong answer (0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 11,
+   "exposing_inputs_diverging_under_other_profile": 11,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 11, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 76,
+   "exposing_inputs_diverging_under_other_profile": 76,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 76, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "4",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 16)",
+   "outcome_under_other_profile": "wrong answer (16)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 78, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "19",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 0)",
+   "outcome_under_other_profile": "wrong answer (0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 26,
+   "exposing_inputs_diverging_under_other_profile": 27,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 26, 'rust_panic_c_ok': 1, 'ub_div': 44}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "2",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    10
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 74,
+   "exposing_inputs_diverging_under_other_profile": 74,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 74, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "3",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-HEXAGONAL_NUMBER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 9)",
+   "outcome_under_other_profile": "wrong answer (9)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 78, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "15",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMUM_GAMES_PLAYED_WINNER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    7
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 77,
+   "exposing_inputs_diverging_under_other_profile": 77,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 77, 'rust_panic_c_ok': 0, 'ub_div': 3}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "3",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    7
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 4)",
+   "outcome_under_other_profile": "wrong answer (4)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 39,
+   "exposing_inputs_diverging_under_other_profile": 39,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 39, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "3",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 4,
+   "exposing_inputs_diverging_under_other_profile": 68,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 4, 'rust_panic_c_ok': 64, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C-2",
+   "severity": "crash",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1,
+    0,
+    0,
+    97
+   ],
+   "outcome_under_counted_profile": "crash (rerun: __PANIC__)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 64,
+   "exposing_inputs_diverging_under_other_profile": 68,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 4, 'rust_panic_c_ok': 64, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "-1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 78, 'rust_panic_c_ok': 0, 'ub_div': 1}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    194,
+    1,
+    0,
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 194)",
+   "outcome_under_other_profile": "wrong answer (194)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 39,
+   "exposing_inputs_diverging_under_other_profile": 39,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 39, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "9",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NEWMAN_CONWAY_SEQUENCE_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 78, 'rust_panic_c_ok': 0, 'ub_div': 2}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "2",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NTH_NON_FIBONACCI_NUMBER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1647462400)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 79,
+   "exposing_inputs_diverging_under_other_profile": 79,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 79, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 79 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 79 grid inputs (overflow)",
+   "c_output": "4",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      1
+     ],
+     "c": "4",
+     "release": "1647462400",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      3
+     ],
+     "c": "7",
+     "release": "1647462400",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      7
+     ],
+     "c": "12",
+     "release": "1647462400",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      10
+     ],
+     "c": "16",
+     "release": "1647462400",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NTH_PENTAGONAL_NUMBER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 3)",
+   "outcome_under_other_profile": "wrong answer (3)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 79,
+   "exposing_inputs_diverging_under_other_profile": 79,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 79, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 3, 'rust_panic_c_ok': 75, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 75 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 75 grid inputs (overflow)",
+   "c_output": "1",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      14
+     ],
+     "c": "364",
+     "release": "-92263424",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      18
+     ],
+     "c": "816",
+     "release": "317751296",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      21
+     ],
+     "c": "1330",
+     "release": "311252309",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      25
+     ],
+     "c": "2300",
+     "release": "-285212672",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_RECTANGLES_NM_GRID-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    97,
+    97
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 22591008)",
+   "outcome_under_other_profile": "wrong answer (22591008)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 17,
+   "exposing_inputs_diverging_under_other_profile": 17,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 17, 'rust_panic_c_ok': 0, 'ub_div': 16}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "22591009",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_TRIANGLES_N_MOVES_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    18
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 774840959)",
+   "outcome_under_other_profile": "wrong answer (774840959)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 74,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 1, 'rust_panic_c_ok': 73, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 73 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 73 grid inputs (overflow)",
+   "c_output": "774840977",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      21
+     ],
+     "c": "2147483647",
+     "release": "-3",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      25
+     ],
+     "c": "2147483647",
+     "release": "-3",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      29
+     ],
+     "c": "2147483647",
+     "release": "-3",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": "2147483647",
+     "release": "-3",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0,
+    32
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 6)",
+   "outcome_under_other_profile": "wrong answer (6)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 36,
+   "exposing_inputs_diverging_under_other_profile": 36,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 36, 'rust_panic_c_ok': 0, 'ub_div': 34}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "30",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    0
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 0)",
+   "outcome_under_other_profile": "wrong answer (0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 80,
+   "exposing_inputs_diverging_under_other_profile": 80,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 80, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 0)",
+   "outcome_under_other_profile": "wrong answer (0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 64,
+   "exposing_inputs_diverging_under_other_profile": 64,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 64, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 5)",
+   "outcome_under_other_profile": "wrong answer (5)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 78,
+   "exposing_inputs_diverging_under_other_profile": 78,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 78, 'rust_panic_c_ok': 0, 'ub_div': 1}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "3",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_BINOMIAL_COEFFICIENTS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    29
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 536870920)",
+   "outcome_under_other_profile": "wrong answer (536870920)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 1, 'rust_panic_c_ok': 0, 'ub_div': 70}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 70 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 70 grid inputs (overflow)",
+   "c_output": "536870912",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      32
+     ],
+     "c": "0",
+     "release": "210",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      36
+     ],
+     "c": "0",
+     "release": "-1958825651",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      40
+     ],
+     "c": "0",
+     "release": "295008507",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      43
+     ],
+     "c": "0",
+     "release": "1036402970",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    7
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 15)",
+   "outcome_under_other_profile": "wrong answer (15)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 77,
+   "exposing_inputs_diverging_under_other_profile": 77,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 77, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "22",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_SERIES_12_32_52_2N_12_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    167
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 6209894)",
+   "outcome_under_other_profile": "wrong answer (6209894)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 17,
+   "exposing_inputs_diverging_under_other_profile": 17,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 17, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "6209895",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    1
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 1)",
+   "outcome_under_other_profile": "wrong answer (1)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 34,
+   "exposing_inputs_diverging_under_other_profile": 34,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 34, 'rust_panic_c_ok': 0, 'ub_div': 45}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 45 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 45 grid inputs (overflow)",
+   "c_output": "0",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      124
+     ],
+     "c": "-1453026797",
+     "release": "-1453026796",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      127
+     ],
+     "c": "-381103002",
+     "release": "-381103001",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      131
+     ],
+     "c": "1669572207",
+     "release": "1669572208",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      135
+     ],
+     "c": "445901483",
+     "release": "445901484",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "C2SaferRust",
+   "defect_id": "C2SR-head-3",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "head -n -1  (stdin 'a\\nb\\nc\\n')",
+   "outcome_under_counted_profile": "crash (panic, exit 101)",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 80,
+   "exposing_inputs_diverging_under_other_profile": 74,
+   "evidence": "rust_WIP rebuilt in scratch (nightly-2022-08-08); outcome counts debug {'crash (panic, exit 101)': 80} release {'wrong answer': 74, 'agrees': 6}",
+   "note": "6 of 80 exposing cases agree with the C under release; e.g. argv [['-n', '-1'], ['-n', '-1', 'in1.txt']]"
+  },
+  {
+   "system": "C2SaferRust",
+   "defect_id": "C2SR-head-4",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "head -q in1.txt",
+   "outcome_under_counted_profile": "crash (signal 11)",
+   "outcome_under_other_profile": "crash (signal 11)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 234,
+   "exposing_inputs_diverging_under_other_profile": 234,
+   "evidence": "rust_WIP rebuilt in scratch (nightly-2022-08-08); outcome counts debug {'crash (signal 11)': 234} release {'crash (signal 11)': 234}"
+  },
+  {
+   "system": "C2SaferRust",
+   "defect_id": "C2SR-tail-2",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "tail -n -1 in1.txt",
+   "outcome_under_counted_profile": "crash (signal 11)",
+   "outcome_under_other_profile": "crash (signal 11)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 156,
+   "exposing_inputs_diverging_under_other_profile": 156,
+   "evidence": "rust_WIP rebuilt in scratch (nightly-2022-08-08); outcome counts debug {'crash (signal 11)': 156} release {'crash (signal 11)': 156}"
+  },
+  {
+   "system": "C2SaferRust",
+   "defect_id": "C2SR-tail-3",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "tail -n -1 in1.txt",
+   "outcome_under_counted_profile": "crash (signal 11)",
+   "outcome_under_other_profile": "crash (signal 11)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 156,
+   "exposing_inputs_diverging_under_other_profile": 156,
+   "evidence": "rust_WIP rebuilt in scratch (nightly-2022-08-08); outcome counts debug {'crash (signal 11)': 156} release {'crash (signal 11)': 156}"
+  },
+  {
+   "system": "C2SaferRust",
+   "defect_id": "C2SR-head-5",
+   "severity": "S1",
+   "counted_profile": "debug (cargo build; target/debug)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "head --lines=-1 bigseek  (10 MiB file of 'y\\n', from head-write-error.sh)",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "rust_WIP rebuilt in scratch (nightly-2022-08-08); outcome counts debug {'wrong answer': 1} release {'wrong answer': 1}"
+  },
+  {
+   "system": "RustMap",
+   "defect_id": "RUSTMAP-rosetta-matrix_chain_multiplication-1",
+   "severity": "crash",
+   "counted_profile": "debug (plain rustc, as 125-rosetta-rs.sh:16)",
+   "other_profile": "release (rustc -O)",
+   "example_input": "(no input: the program prints its own fixed cases)",
+   "outcome_under_counted_profile": "crash (panic/signal) (exit 101)",
+   "outcome_under_other_profile": "wrong answer (exit 0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "stdout under release: 'Dims  : [[5, 6, 3, 1]]\\nOrder : (A(BC))\\nCost  : 45\\nDims  : [[1, 5, 25, 30, 100, 70, 2, 1, 100, 250, 1, 1000, 2]]\\nOrder : ((((((((AB)C)D)E)F)G)(H(IJ)))(KL))\\nCost '; C: 'Dims  : [5, 6, 3, 1]\\nOrder : (A(BC))\\nCost  : 48\\n\\nDims  : [1, 5, 25, 30, 100, 70,'",
+   "note": "release wraps instead of panicking (cost values 45/38108/... vs C 48/38120/...)"
+  },
+  {
+   "system": "RustMap",
+   "defect_id": "RUSTMAP-rosetta-hailstone_sequence-1",
+   "severity": "crash",
+   "counted_profile": "debug (plain rustc, as 125-rosetta-rs.sh:16)",
+   "other_profile": "release (rustc -O)",
+   "example_input": "(no input: the program prints its own fixed cases)",
+   "outcome_under_counted_profile": "crash (panic/signal) (exit 101)",
+   "outcome_under_other_profile": "crash (panic/signal) (exit 101)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "stdout under release: ''; C: '[ 27, 82, 41, 124, ...., 8, 4, 2, 1] len=112\\nMax 351 at j= 77031\\n'"
+  },
+  {
+   "system": "RustMap",
+   "defect_id": "RUSTMAP-rosetta-box_the_compass-1",
+   "severity": "S1",
+   "counted_profile": "debug (plain rustc, as 125-rosetta-rs.sh:16)",
+   "other_profile": "release (rustc -O)",
+   "example_input": "(no input: the program prints its own fixed cases)",
+   "outcome_under_counted_profile": "wrong answer (exit 0)",
+   "outcome_under_other_profile": "wrong answer (exit 0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "stdout under release: ' 2  North by east           0.00\\n 3  North-northeast         16.87\\n 3  North-northeast         16.88\\n 5  Northeast               33.75\\n 6  Northeast by east    '; C: ' 1  North                     0.00\\n 2  North by east            16.87\\n 3  North-'"
+  },
+  {
+   "system": "RustMap",
+   "defect_id": "RUSTMAP-rosetta-roman_numerals_decode-1",
+   "severity": "S1",
+   "counted_profile": "debug (plain rustc, as 125-rosetta-rs.sh:16)",
+   "other_profile": "release (rustc -O)",
+   "example_input": "(no input: the program prints its own fixed cases)",
+   "outcome_under_counted_profile": "wrong answer (exit 0)",
+   "outcome_under_other_profile": "wrong answer (exit 0)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "stdout under release: 'MCmxC\\t1000\\nMMVIII\\t2008\\nMDClXVI\\t1666\\nMCXLUJ\\t1106\\n'; C: 'MCmxC\\t1990\\nMMVIII\\t2008\\nMDClXVI\\t1666\\nMCXLUJ\\t1146\\n'"
+  },
+  {
+   "system": "RustMap",
+   "defect_id": "RUSTMAP-bzip2-BZ-3",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; README 4.1.1)",
+   "other_profile": "release (cargo build --release, panic=abort in Cargo.toml)",
+   "example_input": "binary 1 B (check_bzip2.sh seed 1)",
+   "outcome_under_counted_profile": "crash (index out of bounds, exit 101)",
+   "outcome_under_other_profile": "binary_1B_seed1: hang (timeout 20 s); text_1B_seed11: hang (timeout 20 s)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 2,
+   "exposing_inputs_diverging_under_other_profile": 2,
+   "evidence": "two 1-byte inputs named by the ledger; Cargo.toml in the scratch copy lacks unused deps rustix/filetime/tempfile/rand (offline)",
+   "note": "not an overflow defect (index out of bounds); under release the compressor hangs (20 s timeout) instead of panicking"
+  },
+  {
+   "system": "SACTOR",
+   "defect_id": "SACTOR-C3",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; both nightlies)",
+   "other_profile": "release (cargo build --release; both nightlies)",
+   "example_input": "grid: 74 of 80 fs_chown(path, uid, gid) inputs abort (SIGABRT, 'non-unwinding panic') or segfault (SIGSEGV) where the C returns -1; all 4 builds",
+   "outcome_under_counted_profile": "crash (abort) on 74 of 80",
+   "outcome_under_other_profile": "crash (abort) on 74 of 80",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 74,
+   "exposing_inputs_diverging_under_other_profile": 74,
+   "evidence": "per-build diverging inputs {'rust:nightly-2024-09-03:debug': 74, 'rust:nightly-2024-09-03:release': 74, 'rust:nightly-2025-05-10:debug': 74, 'rust:nightly-2025-05-10:release': 74}; crash/abort {'rust:nightly-2024-09-03:debug': 74, 'rust:nightly-2024-09-03:release': 74, 'rust:nightly-2025-05-10:debug': 74, 'rust:nightly-2025-05-10:release': 74}; UB-clean in C: 74",
+   "note": "panic in extern C / bad pointer; not arithmetic overflow"
+  },
+  {
+   "system": "SACTOR",
+   "defect_id": "SACTOR-L1",
+   "severity": "S1",
+   "counted_profile": "debug (cargo build; both nightlies)",
+   "other_profile": "release (cargo build --release; both nightlies)",
+   "example_input": "8 of 442 bitwise call sequences (MSb family, a zero-bit write of a value with high bits set): bw0220 bw0232 bw0237 bw0240 bw0266 bw0276 bw0300 bw0320; same 8 cases under both nightlies, debug and release",
+   "outcome_under_counted_profile": "wrong answer on 8 of 442",
+   "outcome_under_other_profile": "wrong answer on 8 of 442",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 8,
+   "exposing_inputs_diverging_under_other_profile": 8,
+   "evidence": "the 8 sequences bw0220 bw0232 bw0237 bw0240 bw0266 bw0276 bw0300 bw0320 rebuilt/rerun on every build: {\"nightly-2024-09-03:debug\": 8, \"nightly-2024-09-03:release\": 8, \"nightly-2025-05-10:debug\": 8, \"nightly-2025-05-10:release\": 8}",
+   "note": "`<< 32` is guarded by `if bits > 0`, so the shift never overflows in either profile; the divergence is the missing mask"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/019_integer_overflow_char_max_multiply::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"1\\n1\\n\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 47,
+   "exposing_inputs_diverging_under_other_profile": 47,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 57, 'crash': 1, 'wrong answer': 47}; under debug {'agrees': 57, 'crash': 1, 'wrong answer': 47}; exposing inputs' outcome under debug {'wrong answer': 47}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/021_complex_goto::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 100, 'crash': 1, 'wrong answer': 4}; under debug {'agrees': 99, 'crash': 1, 'both crash': 1, 'wrong answer': 4}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/026_goto_and_static::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 102, 'crash': 1, 'wrong answer': 2}; under debug {'agrees': 102, 'crash': 1, 'wrong answer': 2}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/030_mutable_buffer_overlap_extrahard::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 99, 'crash': 1, 'wrong answer': 5}; under debug {'agrees': 70, 'crash': 30, 'wrong answer': 5}; exposing inputs' outcome under debug {'crash': 1}",
+   "note": "debug panics on 29 additional grid inputs (arithmetic overflow)"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/032_comma_operator::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 101, 'crash': 1, 'wrong answer': 3}; under debug {'agrees': 101, 'crash': 1, 'wrong answer': 3}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/033_bitfield::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"3.14159\\n\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 27,
+   "exposing_inputs_diverging_under_other_profile": 27,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 77, 'crash': 1, 'wrong answer': 27}; under debug {'agrees': 77, 'crash': 1, 'wrong answer': 27}; exposing inputs' outcome under debug {'wrong answer': 27}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/033_bitfield::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 77, 'crash': 1, 'wrong answer': 27}; under debug {'agrees': 77, 'crash': 1, 'wrong answer': 27}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/036_cast_to_char_ptr_struct::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 57, 'crash': 1, 'wrong answer': 47}; under debug {'agrees': 57, 'crash': 1, 'wrong answer': 47}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/042_float_union::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"1\\n1\\n\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 43,
+   "exposing_inputs_diverging_under_other_profile": 43,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 61, 'crash': 1, 'wrong answer': 43}; under debug {'agrees': 61, 'crash': 1, 'wrong answer': 43}; exposing inputs' outcome under debug {'wrong answer': 43}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/042_float_union::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 61, 'crash': 1, 'wrong answer': 43}; under debug {'agrees': 61, 'crash': 1, 'wrong answer': 43}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/043_iso646_and_digraphs::TOKEN_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 53,
+   "exposing_inputs_diverging_under_other_profile": 53,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'crash': 53, 'agrees': 52}; under debug {'crash': 53, 'agrees': 52}; exposing inputs' outcome under debug {'crash': 53}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B01_synthetic/043_iso646_and_digraphs::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 53,
+   "exposing_inputs_diverging_under_other_profile": 53,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'crash': 53, 'agrees': 52}; under debug {'crash': 53, 'agrees': 52}; exposing inputs' outcome under debug {'crash': 53}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B02_organic/qmath::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [\"0x1F\", \"32767\", \"-8\"], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (201 inputs): outcomes under release {'agrees': 200, 'wrong answer': 1}; under debug {'agrees': 200, 'wrong answer': 1}; exposing inputs' outcome under debug {'wrong answer': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_add_5::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [\"1\", \"12abc\", \"nan\", \"1073741823\"], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 4,
+   "exposing_inputs_diverging_under_other_profile": 4,
+   "evidence": "gen_inputs grid (201 inputs): outcomes under release {'agrees': 197, 'wrong answer': 4}; under debug {'agrees': 187, 'crash': 11, 'wrong answer': 3}; exposing inputs' outcome under debug {'crash': 1, 'wrong answer': 3}",
+   "note": "debug panics on 11 additional grid inputs (arithmetic overflow)"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_mul_4::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [\"1\", \"12abc\", \"nan\", \"1073741823\"], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 4,
+   "exposing_inputs_diverging_under_other_profile": 4,
+   "evidence": "gen_inputs grid (201 inputs): outcomes under release {'agrees': 197, 'wrong answer': 4}; under debug {'agrees': 182, 'crash': 15, 'wrong answer': 4}; exposing inputs' outcome under debug {'wrong answer': 4}",
+   "note": "debug panics on 15 additional grid inputs (arithmetic overflow)"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B02_synthetic/macrodepth_sub_6::PARSE_NUM",
+   "severity": "S1",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [\"1\", \"12abc\", \"nan\", \"1073741823\"], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "wrong answer",
+   "outcome_under_other_profile": "wrong answer",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 4,
+   "exposing_inputs_diverging_under_other_profile": 4,
+   "evidence": "gen_inputs grid (201 inputs): outcomes under release {'agrees': 197, 'wrong answer': 4}; under debug {'agrees': 187, 'crash': 11, 'wrong answer': 3}; exposing inputs' outcome under debug {'crash': 1, 'wrong answer': 3}",
+   "note": "debug panics on 11 additional grid inputs (arithmetic overflow)"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-B02_synthetic/memmove::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "gen_inputs grid (105 inputs): outcomes under release {'agrees': 73, 'crash': 1, 'wrong answer (stderr only)': 31}; under debug {'agrees': 73, 'crash': 1, 'wrong answer (stderr only)': 31}; exposing inputs' outcome under debug {'crash': 1}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-P00_perlin_noise/001_perlin_noise::TOKEN_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 105,
+   "exposing_inputs_diverging_under_other_profile": 105,
+   "evidence": "gen_inputs grid (121 inputs): outcomes under release {'crash': 105, 'agrees': 16}; under debug {'crash': 105, 'agrees': 16}; exposing inputs' outcome under debug {'crash': 105}"
+  },
+  {
+   "system": "ACTOR",
+   "defect_id": "ACTOR-P00_perlin_noise/001_perlin_noise::UTF8_PANIC",
+   "severity": "crash",
+   "counted_profile": "release (cargo build --release --offline)",
+   "other_profile": "debug (cargo build)",
+   "example_input": "{\"argv\": [], \"stdin\": \"\\u0000\\u0007\\u000e\\u0015\\u001c#*18?FMT[bipw~\\u0085\\u008c\\u0093\\u009a\\u00a1\\u00a8\\u00af\\u00b6\\u00bd\\u00c4\\u00cb\\u00d2\\u00d9\\u00e0\\u00e7\\u00ee\\u00f5\\u00fc\\u0000\\u0000\\u00ff\\u00fe\\n\\u0001\"}",
+   "outcome_under_counted_profile": "crash",
+   "outcome_under_other_profile": "crash",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 105,
+   "exposing_inputs_diverging_under_other_profile": 105,
+   "evidence": "gen_inputs grid (121 inputs): outcomes under release {'crash': 105, 'agrees': 16}; under debug {'crash': 105, 'agrees': 16}; exposing inputs' outcome under debug {'crash': 105}"
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    127,
+    5
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 250062752)",
+   "outcome_under_other_profile": "wrong answer (250062752)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "run.py grid rerun (input grid v2); harness UB-filtered counts under debug: {'value_div': 1, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 80 inputs",
+   "c_output": "250062750",
+   "profile_sensitive_samples": [],
+   "input_grid": "v2"
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    17
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 0)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 2,
+   "exposing_inputs_diverging_under_other_profile": 7,
+   "evidence": "run.py grid rerun (input grid v2); harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 7, 'ub_div': 82}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 88 of 100 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 88 grid inputs (overflow)",
+   "c_output": "1",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      16
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      17
+     ],
+     "c": "1",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      18
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      21
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    }
+   ],
+   "input_grid": "v2"
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_SERIES_555555_N_TERMS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    8
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 61719996)",
+   "outcome_under_other_profile": "wrong answer (61719996)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 2,
+   "exposing_inputs_diverging_under_other_profile": 2,
+   "evidence": "run.py grid rerun (input grid v2); harness UB-filtered counts under debug: {'value_div': 2, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 100 inputs",
+   "c_output": "61719994",
+   "profile_sensitive_samples": [],
+   "input_grid": "v2"
+  },
+  {
+   "system": "AdaTrans",
+   "defect_id": "ADATRANS-run1-C_421_2",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug, as AdaTrans's check)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "fv\n45358\n",
+   "outcome_under_counted_profile": "panic (exit 101: attempt to add with overflow)",
+   "outcome_under_other_profile": "S1 (exit 0, stdout '-471868303')",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 81,
+   "exposing_inputs_diverging_under_other_profile": 81,
+   "evidence": "rustc 1.86.0 (05f9846f8 2025-03-31); pipeline extract (main.rs sha256 aa9b50e7b9eca872) rebuilt in a scratch workspace, crust-heldout-plus186, offline vendored crates; unchanged C oracle (pipeline c/C_421_2/ref, sha256 8e0713fa582205b0, C stdout '413033501'); every UB-clean exposing case of the pipeline (cases_run1_ub.jsonl, kind panic, c_ub_clean): {'examples': 0, 'fuzz': 20, 'ours': 61}; outcomes under debug {'panic': 81}, under release {'S1': 81}",
+   "note": "integer overflow: release wraps the i32 sum instead of panicking and prints a wrong value on all 81 (36 negative)"
+  },
+  {
+   "system": "AdaTrans",
+   "defect_id": "ADATRANS-run1-C_430_2",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug, as AdaTrans's check)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "lazj\n2\n",
+   "outcome_under_counted_profile": "panic (exit 101: byte index 5 is out of bounds of `lazj`)",
+   "outcome_under_other_profile": "panic (exit 101: byte index 5 is out of bounds of `lazj`)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 75,
+   "exposing_inputs_diverging_under_other_profile": 75,
+   "evidence": "rustc 1.86.0 (05f9846f8 2025-03-31); pipeline extract (main.rs sha256 1bcbb432faee8320) rebuilt in a scratch workspace, crust-heldout-plus186, offline vendored crates; unchanged C oracle (pipeline c/C_430_2/ref, sha256 843713a18a3f3f97, C stdout 'zj'); every UB-clean exposing case of the pipeline (cases_run1_ub.jsonl, kind panic, c_ub_clean): {'examples': 0, 'fuzz': 47, 'ours': 28}; outcomes under debug {'panic': 75}, under release {'panic': 75}",
+   "note": "bounds / unwrap panic, not overflow: identical in both profiles"
+  },
+  {
+   "system": "AdaTrans",
+   "defect_id": "ADATRANS-run1-C_432_4",
+   "severity": "crash",
+   "counted_profile": "debug (cargo build; target/debug, as AdaTrans's check)",
+   "other_profile": "release (cargo build --release)",
+   "example_input": "1 1\n1\n",
+   "outcome_under_counted_profile": "panic (exit 101: called `Option::unwrap()` on a `None` value)",
+   "outcome_under_other_profile": "panic (exit 101: called `Option::unwrap()` on a `None` value)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1,
+   "exposing_inputs_diverging_under_other_profile": 1,
+   "evidence": "rustc 1.86.0 (05f9846f8 2025-03-31); pipeline extract (main.rs sha256 d8f69e49833a1b21) rebuilt in a scratch workspace, crust-heldout-plus186, offline vendored crates; unchanged C oracle (pipeline c/C_432_4/ref, sha256 86fcc94a1a07aa08, C stdout '1'); every UB-clean exposing case of the pipeline (cases_run1_ub.jsonl, kind panic, c_ub_clean): {'examples': 0, 'fuzz': 0, 'ours': 1}; outcomes under debug {'panic': 1}, under release {'panic': 1}",
+   "note": "bounds / unwrap panic, not overflow: identical in both profiles"
+  },
+  {
+   "system": "Flourine",
+   "defect_id": "FLOURINE-compute_phase_step-1",
+   "severity": "crash",
+   "counted_profile": "fuzz (FLOURINE's check profile: opt-level 3, overflow checks on)",
+   "other_profile": "release (rustc -O; the submitted version's build)",
+   "example_input": "[16383, 1, -1]",
+   "outcome_under_counted_profile": "crash (panic ('attempt to multiply with overflow'): our driver prints __PANIC__)",
+   "outcome_under_other_profile": "agrees on every input",
+   "diverges_under_other_profile": "no",
+   "exposing_inputs_checked": 274,
+   "exposing_inputs_diverging_under_other_profile": 0,
+   "evidence": "results/arxiv_flourine_devprofile.json (fuzz run results/arxiv_flourine_devprofile_scalar.json / _struct.json; release run results/flourine_diff_current.json / flourine_struct_current.json): per-file tallies {'opl/opl_emu_opl_compute_phase_step/gpt4/BaseRepair/opl_emu_opl_compute_phase_step.rs': {'fuzz': {'cases': 2000, 'value': 0, 'rust_panic': 137, 'ub': 0, 'timeout': 0, 'agree': 1863}, 'release': {'cases': 2000, 'value': 0, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2000}}, 'opl/opl_emu_opl_compute_phase_step/gpt4/CAPR/opl_emu_opl_compute_phase_step.rs': {'fuzz': {'cases': 2000, 'value': 0, 'rust_panic': 137, 'ub': 0, 'timeout': 0, 'agree': 1863}, 'release': {'cases': 2000, 'value': 0, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2000}}}",
+   "note": "overflow checks turn a wrap that C defines into a panic; under release the wrap gives the C's value"
+  },
+  {
+   "system": "Flourine",
+   "defect_id": "FLOURINE-lfo_am_depth-1",
+   "severity": "crash",
+   "counted_profile": "fuzz (FLOURINE's check profile: opt-level 3, overflow checks on)",
+   "other_profile": "release (rustc -O; the submitted version's build)",
+   "example_input": "0 0",
+   "outcome_under_counted_profile": "crash (panic ('attempt to subtract with overflow'): our driver prints __PANIC__)",
+   "outcome_under_other_profile": "agrees on every input",
+   "diverges_under_other_profile": "no",
+   "exposing_inputs_checked": 8,
+   "exposing_inputs_diverging_under_other_profile": 0,
+   "evidence": "results/arxiv_flourine_devprofile.json (fuzz run results/arxiv_flourine_devprofile_scalar.json / _struct.json; release run results/flourine_diff_current.json / flourine_struct_current.json): per-file tallies {'opl/opl_emu_registers_lfo_am_depth/claude3/CAPR/opl_emu_registers_lfo_am_depth.rs': {'fuzz': {'agree': 0, 'value': 0, 'crash': 8}, 'release': {'agree': 8, 'value': 0, 'crash': 0}}}",
+   "note": "overflow checks turn a wrap that C defines into a panic; under release the wrap gives the C's value"
+  },
+  {
+   "system": "Flourine",
+   "defect_id": "FLOURINE-lfo_pm_depth-1",
+   "severity": "crash",
+   "counted_profile": "fuzz (FLOURINE's check profile: opt-level 3, overflow checks on)",
+   "other_profile": "release (rustc -O; the submitted version's build)",
+   "example_input": "0 0",
+   "outcome_under_counted_profile": "crash (panic ('attempt to subtract with overflow'): our driver prints __PANIC__)",
+   "outcome_under_other_profile": "wrong answer (4 UB-clean diverging inputs)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 8,
+   "exposing_inputs_diverging_under_other_profile": 4,
+   "evidence": "results/arxiv_flourine_devprofile.json (fuzz run results/arxiv_flourine_devprofile_scalar.json / _struct.json; release run results/flourine_diff_current.json / flourine_struct_current.json): per-file tallies {'opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs': {'fuzz': {'agree': 0, 'value': 0, 'crash': 8}, 'release': {'agree': 4, 'value': 4, 'crash': 0}}}",
+   "note": "wrong answer under release (the wrap), panic under the fuzz profile (overflow checks)"
+  },
+  {
+   "system": "Flourine",
+   "defect_id": "FLOURINE-operator_list-1",
+   "severity": "S1",
+   "counted_profile": "fuzz (FLOURINE's check profile: opt-level 3, overflow checks on)",
+   "other_profile": "release (rustc -O; the submitted version's build)",
+   "example_input": "[0, 1, 0, 0]",
+   "outcome_under_counted_profile": "wrong answer (1)",
+   "outcome_under_other_profile": "wrong answer (1976 UB-clean diverging inputs)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 1976,
+   "exposing_inputs_diverging_under_other_profile": 1976,
+   "evidence": "results/arxiv_flourine_devprofile.json (fuzz run results/arxiv_flourine_devprofile_scalar.json / _struct.json; release run results/flourine_diff_current.json / flourine_struct_current.json): per-file tallies {'opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs': {'fuzz': {'cases': 2000, 'value': 1998, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2}, 'release': {'cases': 2000, 'value': 1998, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2}}, 'opl/opl_emu_registers_operator_list/claude2/CAPR/opl_emu_registers_operator_list.rs': {'fuzz': {'cases': 2000, 'value': 1998, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2}, 'release': {'cases': 2000, 'value': 1998, 'rust_panic': 0, 'ub': 0, 'timeout': 0, 'agree': 2}}}",
+   "note": "explicit wrapping_shl / wrapping_add: identical in both profiles"
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    14
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2147483647)",
+   "outcome_under_other_profile": "wrong answer (2147483647)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 5,
+   "exposing_inputs_diverging_under_other_profile": 90,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 90, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 100 inputs",
+   "c_output": "90420300490",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-COUNT_DIGITS_FACTORIAL_SET_2-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    3
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 2)",
+   "outcome_under_other_profile": "wrong answer (2)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 97,
+   "exposing_inputs_diverging_under_other_profile": 97,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 97, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 100 inputs",
+   "c_output": "1",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    25
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 183586787)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 9,
+   "exposing_inputs_diverging_under_other_profile": 9,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 9, 'ub_div': 76}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 84 of 100 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 84 grid inputs (overflow)",
+   "c_output": "4478554083",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      25
+     ],
+     "c": "4478554083",
+     "release": "183586787",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      29
+     ],
+     "c": "152139002499",
+     "release": "1815147139",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      31
+     ],
+     "c": "886731088897",
+     "release": "1967825921",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": "2140758220993",
+     "release": "1864507585",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-DICE_THROW_PROBLEM_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    257,
+    15,
+    64
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -424718855)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 2,
+   "exposing_inputs_diverging_under_other_profile": 9,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 9, 'ub_div': 18}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 27 of 80 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 27 grid inputs (overflow)",
+   "c_output": "37387265592825",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      63,
+      63,
+      63
+     ],
+     "c": "1",
+     "release": "1",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      4,
+      256,
+      65
+     ],
+     "c": "0",
+     "release": "0",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      31,
+      63,
+      219
+     ],
+     "c": "5570122362472751977",
+     "release": "-492444823",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      128,
+      7,
+      512
+     ],
+     "c": "1884153039916",
+     "release": "-1337603028",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-FIND_LARGEST_PRIME_FACTOR_NUMBER-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    9
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: 9)",
+   "outcome_under_other_profile": "wrong answer (9)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 9,
+   "exposing_inputs_diverging_under_other_profile": 9,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 9, 'rust_panic_c_ok': 0, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 0 of 100 inputs",
+   "c_output": "3",
+   "profile_sensitive_samples": []
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-NUMBER_N_DIGIT_STEPPING_NUMBERS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    31
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -1674169767)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 3,
+   "exposing_inputs_diverging_under_other_profile": 3,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 3, 'ub_div': 80}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 82 of 100 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 82 grid inputs (overflow)",
+   "c_output": "2620797529",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      31
+     ],
+     "c": null,
+     "release": "-1674169767",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      32
+     ],
+     "c": null,
+     "release": "734590521",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      33
+     ],
+     "c": null,
+     "release": "1061234621",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      36
+     ],
+     "c": null,
+     "release": "-515121366",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    381
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -1637904030)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 8,
+   "exposing_inputs_diverging_under_other_profile": 8,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 8, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 8 of 100 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 8 grid inputs (overflow)",
+   "c_output": "2657063266",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266",
+     "release": "-1637904030",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720",
+     "release": "-593263576",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736",
+     "release": "688019440",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      471
+     ],
+     "c": "6195298186",
+     "release": "1900330890",
+     "debug": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "system": "VERT",
+   "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS_1-1",
+   "severity": "S1",
+   "counted_profile": "release (rustc -O)",
+   "other_profile": "debug (rustc, overflow-checks on)",
+   "example_input": [
+    381
+   ],
+   "outcome_under_counted_profile": "wrong answer (rerun: -1637904030)",
+   "outcome_under_other_profile": "crash (__PANIC__)",
+   "diverges_under_other_profile": "yes",
+   "exposing_inputs_checked": 8,
+   "exposing_inputs_diverging_under_other_profile": 8,
+   "evidence": "run.py grid rerun; harness UB-filtered counts under debug: {'value_div': 0, 'rust_panic_c_ok': 8, 'ub_div': 0}; raw grid (pre-UB-filter) release vs debug Rust outputs differ on 8 of 100 inputs",
+   "note": "profile-sensitive: release and debug Rust outputs differ on 8 grid inputs (overflow)",
+   "c_output": "2657063266",
+   "profile_sensitive_samples": [
+    {
+     "in": [
+      381
+     ],
+     "c": "2657063266",
+     "release": "-1637904030",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      414
+     ],
+     "c": "3701703720",
+     "release": "-593263576",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      446
+     ],
+     "c": "4982986736",
+     "release": "688019440",
+     "debug": "__PANIC__"
+    },
+    {
+     "in": [
+      471
+     ],
+     "c": "6195298186",
+     "release": "1900330889",
+     "debug": "__PANIC__"
+    }
+   ]
+  }
+ ],
+ "not_checked": [
+  {
+   "defect_id": "ACTOR-B01_synthetic/005_static_loop::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/007_errno-pow::NAN_FMT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (NAN_FMT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/011_uninit_char_ptr::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/015_return_stack_buffer::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/021_complex_goto::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/022_stdlib_div::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/026_goto_and_static::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/029_strcspn::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/030_mutable_buffer_overlap_extrahard::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/031_disjoint_arrays::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/032_comma_operator::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/034_cast_to_char_ptr_int::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/036_cast_to_char_ptr_struct::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/037_cast_to_char_ptr_int_no_strict_aliasing::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/039_cast_to_char_ptr_struct_no_strict_aliasing::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/040_storage_class_auto::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B01_synthetic/041_storage_class_register::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/char-to-bool::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/generic-foreach::UTF8_EOF",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (UTF8_EOF) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/hashmap-tree::ASSERT_DROPPED",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (ASSERT_DROPPED) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::BREAK_LOOP",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (BREAK_LOOP) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/mutable-duplication-dag::UTF8_EOF",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (UTF8_EOF) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/pointer-comparison-ascii-art::UTF8_EOF",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (UTF8_EOF) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/static-vars-fpts::UTF8_EOF",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (UTF8_EOF) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::LINE_SPLIT",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (LINE_SPLIT) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::NUL_BYTE",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (NUL_BYTE) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/strcmp::WS_SET",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (WS_SET) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/tu_linkage::PARSE_NUM",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (PARSE_NUM) does not involve integer overflow or wrapping; not required by the task"
+  },
+  {
+   "defect_id": "ACTOR-B02_synthetic/checkshift_lib::SHIFT_SIGN",
+   "severity": "S1",
+   "reason": "S1 whose mechanism (SHIFT_SIGN) does not involve integer overflow or wrapping; not required by the task"
+  }
+ ]
+}

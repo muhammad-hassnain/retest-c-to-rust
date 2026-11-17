@@ -1,0 +1,2026 @@
+{
+ "provenance": {
+  "script": "systems/ptrtrans/quadtree_e2e/mutate.py",
+  "command": "bash systems/ptrtrans/quadtree_e2e/run_in_docker.sh crust-heldout-plus186 systems/ptrtrans/quadtree_e2e/mutate.py --art /art --build /oub/mut --toolchain 1.86.0 (image sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (+uncommitted systems/ptrtrans/)",
+  "git_worktree_note": "study repo subset (harness/oracle_ub_common.py, systems/ptrtrans/) copied to the run host; uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:49:45+00:00",
+  "toolchain": "1.86.0",
+  "wall_seconds": 29,
+  "diff_input": "results/ptrtrans_quadtree_diff.json"
+ },
+ "summary": {
+  "baseline": "shipped crate + one-line find_ repair (run.py repair_patch)",
+  "cases_ub_clean": 1516,
+  "cases_baseline_agrees": 1492,
+  "cases_baseline_disagrees": 24,
+  "baseline_disagree_families": {
+   "keyfree": 24
+  },
+  "mutants_generated": 65,
+  "mutants_build_fail": 1,
+  "mutants_valid": 64,
+  "killed": 58,
+  "survived": 6,
+  "by_kind": {
+   "relational": {
+    "valid": 12,
+    "killed": 12
+   },
+   "arithmetic": {
+    "valid": 21,
+    "killed": 21
+   },
+   "constant": {
+    "valid": 31,
+    "killed": 25
+   }
+  },
+  "survivors": [
+   {
+    "file": "src/quadtree.rs",
+    "line": 139,
+    "from": "0.0",
+    "to": "(-1.0)",
+    "orig": "let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);"
+   },
+   {
+    "file": "src/quadtree.rs",
+    "line": 139,
+    "from": "0.0",
+    "to": "1.0",
+    "orig": "let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);"
+   },
+   {
+    "file": "src/quadtree.rs",
+    "line": 140,
+    "from": "0.0",
+    "to": "(-1.0)",
+    "orig": "let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);"
+   },
+   {
+    "file": "src/quadtree.rs",
+    "line": 140,
+    "from": "0.0",
+    "to": "1.0",
+    "orig": "let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);"
+   },
+   {
+    "file": "src/quadtree.rs",
+    "line": 182,
+    "from": "0",
+    "to": "(-1)",
+    "orig": "0"
+   },
+   {
+    "file": "src/quadtree.rs",
+    "line": 182,
+    "from": "0",
+    "to": "1",
+    "orig": "0"
+   }
+  ],
+  "mutation_score": 0.9062
+ },
+ "mutants": [
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": "<",
+   "to": "<=",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x <= it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "id": 0,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 62,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/boundary/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/boundary/search04_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 62
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": "<",
+   "to": ">",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x > it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "id": 1,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 783,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 783
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": "<",
+   "to": "<=",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y <= it_point.y;",
+   "id": 2,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 54,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/lattice_5x5_with_lines/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/lattice_5x5_with_lines/search04_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 54
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": "<",
+   "to": ">",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y > it_point.y;",
+   "id": 3,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 769,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 769
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": ">",
+   "to": ">=",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y >= it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "id": 4,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 63,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/boundary/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/boundary/search04_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 63
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": ">",
+   "to": "<",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y < it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "id": 5,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 777,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 777
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": ">",
+   "to": ">=",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y > it_point.y && se.x >= it_point.x && se.y < it_point.y;",
+   "id": 6,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 55,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/split_lines/search04_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/lattice_5x5_with_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 55
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 33,
+   "kind": "relational",
+   "from": ">",
+   "to": "<",
+   "orig": "                return nw.x < it_point.x && nw.y > it_point.y && se.x > it_point.x && se.y < it_point.y;",
+   "new": "                return nw.x < it_point.x && nw.y > it_point.y && se.x < it_point.x && se.y < it_point.y;",
+   "id": 7,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 780,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 780
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 64,
+   "kind": "constant",
+   "from": "0",
+   "to": "(-1)",
+   "orig": "        length: 0, // Initialize length to 0",
+   "new": "        length: (-1), // Initialize length to 0",
+   "id": 8,
+   "status": "build_fail",
+   "log": "error[E0600]: cannot apply unary operator `-` to type `u32`\nerror: could not compile `quadtree` (lib) due to 1 previous error"
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 64,
+   "kind": "constant",
+   "from": "0",
+   "to": "1",
+   "orig": "        length: 0, // Initialize length to 0",
+   "new": "        length: 1, // Initialize length to 0",
+   "id": 9,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 227,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/empty/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 227
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 82,
+   "kind": "relational",
+   "from": "==",
+   "to": "!=",
+   "orig": "                if point.x == x && point.y == y {",
+   "new": "                if point.x != x && point.y == y {",
+   "id": 10,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 632,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 632
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 82,
+   "kind": "relational",
+   "from": "==",
+   "to": "!=",
+   "orig": "                if point.x == x && point.y == y {",
+   "new": "                if point.x == x && point.y != y {",
+   "id": 11,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 632,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search00_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 632
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 110,
+   "kind": "relational",
+   "from": "==",
+   "to": "!=",
+   "orig": "                    if existing_point.x == new_point.x && existing_point.y == new_point.y {",
+   "new": "                    if existing_point.x != new_point.x && existing_point.y == new_point.y {",
+   "id": 12,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 65,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/three_testc_like/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/three_testc_like/search01_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/duplicates/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 65
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 110,
+   "kind": "relational",
+   "from": "==",
+   "to": "!=",
+   "orig": "                    if existing_point.x == new_point.x && existing_point.y == new_point.y {",
+   "new": "                    if existing_point.x == new_point.x && existing_point.y != new_point.y {",
+   "id": 13,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 138,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/three_testc_like/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/three_testc_like/search01_inserted",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/duplicates/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 138
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 139,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "(-1.0)",
+   "orig": "            let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);",
+   "new": "            let x = bounds.nw.as_ref().map_or((-1.0), |nw| nw.x);",
+   "id": 14,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 139,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "1.0",
+   "orig": "            let x = bounds.nw.as_ref().map_or(0.0, |nw| nw.x);",
+   "new": "            let x = bounds.nw.as_ref().map_or(1.0, |nw| nw.x);",
+   "id": 15,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 140,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "(-1.0)",
+   "orig": "            let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);",
+   "new": "            let y = bounds.nw.as_ref().map_or((-1.0), |nw| nw.y);",
+   "id": 16,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 140,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "1.0",
+   "orig": "            let y = bounds.nw.as_ref().map_or(0.0, |nw| nw.y);",
+   "new": "            let y = bounds.nw.as_ref().map_or(1.0, |nw| nw.y);",
+   "id": 17,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 141,
+   "kind": "arithmetic",
+   "from": "/",
+   "to": "*",
+   "orig": "            let hw = bounds.width / 2.0;",
+   "new": "            let hw = bounds.width * 2.0;",
+   "id": 18,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 275,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 275
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 141,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let hw = bounds.width / 2.0;",
+   "new": "            let hw = bounds.width / 1.0;",
+   "id": 19,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 275,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 275
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 141,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let hw = bounds.width / 2.0;",
+   "new": "            let hw = bounds.width / 3.0;",
+   "id": 20,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 413,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 413
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 142,
+   "kind": "arithmetic",
+   "from": "/",
+   "to": "*",
+   "orig": "            let hh = bounds.height / 2.0;",
+   "new": "            let hh = bounds.height * 2.0;",
+   "id": 21,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 267,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 267
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 142,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let hh = bounds.height / 2.0;",
+   "new": "            let hh = bounds.height / 1.0;",
+   "id": 22,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 267,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 267
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 142,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let hh = bounds.height / 2.0;",
+   "new": "            let hh = bounds.height / 3.0;",
+   "id": 23,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 488,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 488
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 143,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let nw = quadtree_node_with_bounds(x, y - hh, x + hw, y);",
+   "new": "            let nw = quadtree_node_with_bounds(x, y - hh, x - hw, y);",
+   "id": 24,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 438,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search00_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 438
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 143,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let nw = quadtree_node_with_bounds(x, y - hh, x + hw, y);",
+   "new": "            let nw = quadtree_node_with_bounds(x, y + hh, x + hw, y);",
+   "id": 25,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 438,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search00_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 438
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x - hw, y - hh, x + hw * 2.0, y);",
+   "id": 26,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 150,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 150
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x - hw * 2.0, y);",
+   "id": 27,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 336,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 336
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x + hw, y + hh, x + hw * 2.0, y);",
+   "id": 28,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 334,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 334
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "arithmetic",
+   "from": "*",
+   "to": "/",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw / 2.0, y);",
+   "id": 29,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 334,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 334
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 1.0, y);",
+   "id": 30,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 334,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 334
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 144,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 2.0, y);",
+   "new": "            let ne = quadtree_node_with_bounds(x + hw, y - hh, x + hw * 3.0, y);",
+   "id": 31,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 137,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 137
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x - hw, y - hh);",
+   "id": 32,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 417,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 417
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y + hh * 2.0, x + hw, y - hh);",
+   "id": 33,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 419,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 419
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y + hh);",
+   "id": 34,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 154,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 154
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "arithmetic",
+   "from": "*",
+   "to": "/",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y - hh / 2.0, x + hw, y - hh);",
+   "id": 35,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 417,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 417
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y - hh * 1.0, x + hw, y - hh);",
+   "id": 36,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 417,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 417
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 145,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let sw = quadtree_node_with_bounds(x, y - hh * 2.0, x + hw, y - hh);",
+   "new": "            let sw = quadtree_node_with_bounds(x, y - hh * 3.0, x + hw, y - hh);",
+   "id": 37,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 143,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 143
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x - hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "id": 38,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 142,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 142
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "+",
+   "to": "-",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x - hw * 2.0, y - hh);",
+   "id": 39,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 405,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 405
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y + hh * 2.0, x + hw * 2.0, y - hh);",
+   "id": 40,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 405,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 405
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y + hh);",
+   "id": 41,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 140,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 140
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "*",
+   "to": "/",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh / 2.0, x + hw * 2.0, y - hh);",
+   "id": 42,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 403,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 403
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "arithmetic",
+   "from": "*",
+   "to": "/",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw / 2.0, y - hh);",
+   "id": 43,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 403,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 403
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 1.0, x + hw * 2.0, y - hh);",
+   "id": 44,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 403,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 403
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 3.0, x + hw * 2.0, y - hh);",
+   "id": 45,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 133,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 133
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "1.0",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 1.0, y - hh);",
+   "id": 46,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 403,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/search01_inserted",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 403
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 146,
+   "kind": "constant",
+   "from": "2.0",
+   "to": "3.0",
+   "orig": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);",
+   "new": "            let se = quadtree_node_with_bounds(x + hw, y - hh * 2.0, x + hw * 3.0, y - hh);",
+   "id": 47,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 137,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 137
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 173,
+   "kind": "constant",
+   "from": "0",
+   "to": "(-1)",
+   "orig": "            return 0;",
+   "new": "            return (-1);",
+   "id": 48,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 108,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/boundary/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/out_of_bounds/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/lattice_5x5_with_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 108
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 173,
+   "kind": "constant",
+   "from": "0",
+   "to": "1",
+   "orig": "            return 0;",
+   "new": "            return 1;",
+   "id": 49,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 108,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/boundary/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/out_of_bounds/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/lattice_5x5_with_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 108
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 176,
+   "kind": "constant",
+   "from": "0",
+   "to": "(-1)",
+   "orig": "            return 0;",
+   "new": "            return (-1);",
+   "id": 50,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 62,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/three_testc_like/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/duplicates/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 62
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 176,
+   "kind": "constant",
+   "from": "0",
+   "to": "1",
+   "orig": "            return 0;",
+   "new": "            return 1;",
+   "id": 51,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 62,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/three_testc_like/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/duplicates/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/split_lines/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 62
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 178,
+   "kind": "arithmetic",
+   "from": "+=",
+   "to": "-=",
+   "orig": "        tree.length += 1;",
+   "new": "        tree.length -= 1;",
+   "id": 52,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 1071,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "panic"
+    ],
+    [
+     "bench_0_1000/single/search00_inserted",
+     "panic"
+    ],
+    [
+     "bench_0_1000/single/search01_absent_inside",
+     "panic"
+    ]
+   ],
+   "kill_kinds": {
+    "panic": 1071
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 178,
+   "kind": "constant",
+   "from": "1",
+   "to": "0",
+   "orig": "        tree.length += 1;",
+   "new": "        tree.length += 0;",
+   "id": 53,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 138,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 138
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 178,
+   "kind": "constant",
+   "from": "1",
+   "to": "2",
+   "orig": "        tree.length += 1;",
+   "new": "        tree.length += 2;",
+   "id": 54,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 138,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 138
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 180,
+   "kind": "constant",
+   "from": "1",
+   "to": "0",
+   "orig": "        return 1;",
+   "new": "        return 0;",
+   "id": 55,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 138,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 138
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 180,
+   "kind": "constant",
+   "from": "1",
+   "to": "2",
+   "orig": "        return 1;",
+   "new": "        return 2;",
+   "id": 56,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 138,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/single/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 138
+   }
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 182,
+   "kind": "constant",
+   "from": "0",
+   "to": "(-1)",
+   "orig": "    0",
+   "new": "    (-1)",
+   "id": 57,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/quadtree.rs",
+   "line": 182,
+   "kind": "constant",
+   "from": "0",
+   "to": "1",
+   "orig": "    0",
+   "new": "    1",
+   "id": 58,
+   "status": "survived",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 0,
+   "first_killing_cases": [],
+   "kill_kinds": {}
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 7,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "(-1.0)",
+   "orig": "        width: 0.0,",
+   "new": "        width: (-1.0),",
+   "id": 59,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 196,
+   "first_killing_cases": [
+    [
+     "unit.bounds/00_00",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_01",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_02",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 196
+   }
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 7,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "1.0",
+   "orig": "        width: 0.0,",
+   "new": "        width: 1.0,",
+   "id": 60,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 196,
+   "first_killing_cases": [
+    [
+     "unit.bounds/00_00",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_01",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_02",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 196
+   }
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 8,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "(-1.0)",
+   "orig": "        height: 0.0,",
+   "new": "        height: (-1.0),",
+   "id": 61,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 196,
+   "first_killing_cases": [
+    [
+     "unit.bounds/00_00",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_01",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_02",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 196
+   }
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 8,
+   "kind": "constant",
+   "from": "0.0",
+   "to": "1.0",
+   "orig": "        height: 0.0,",
+   "new": "        height: 1.0,",
+   "id": 62,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 196,
+   "first_killing_cases": [
+    [
+     "unit.bounds/00_00",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_01",
+     "wrong_output"
+    ],
+    [
+     "unit.bounds/00_02",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 196
+   }
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 25,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            bounds.width = (nw.x - se.x).abs();",
+   "new": "            bounds.width = (nw.x + se.x).abs();",
+   "id": 63,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 670,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 670
+   }
+  },
+  {
+   "file": "src/bounds.rs",
+   "line": 26,
+   "kind": "arithmetic",
+   "from": "-",
+   "to": "+",
+   "orig": "            bounds.height = (nw.y - se.y).abs();",
+   "new": "            bounds.height = (nw.y + se.y).abs();",
+   "id": 64,
+   "status": "killed",
+   "batch_rc": 0,
+   "batch_timeout": false,
+   "n_killing_cases": 604,
+   "first_killing_cases": [
+    [
+     "bench_0_1000/two_diff_quadrants/dump",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_diff_quadrants/keyfree",
+     "wrong_output"
+    ],
+    [
+     "bench_0_1000/two_same_quadrant/dump",
+     "wrong_output"
+    ]
+   ],
+   "kill_kinds": {
+    "wrong_output": 604
+   }
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "provenance": {
+  "script": "systems/vert/kani_verify.py",
+  "command": "systems/vert/kani_verify.py --funcs COUNT_DIGITS_FACTORIAL_SET_2,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER --mode vert --jobs 3 --timeout 180 --out results/arxiv_vert_wide_kani_verify.json",
+  "kani": "cargo-kani 0.55.0",
+  "host": "crust-kani",
+  "arch": "x86_64",
+  "date": "2026-11-17T16:25:52",
+  "git_rev": null,
+  "image": "crust-kani sha256:bd1bda23c66ba371d08a8b345583f291a82071e40ff312106b8c96c99e38f201",
+  "run_on": "Ubuntu 26.04 LTS x86_64, Docker (docker run --rm --hostname crust-kani --cpus 6 -v $PWD:/w -w /w crust-kani python3 systems/vert/kani_verify.py ...)",
+  "why": "arXiv (issues.md 47): the long-return defective functions VERT records as bounded_kani=0; same command and 180 s budget as results/vert_kani_verify_grid2.json"
+ },
+ "summary": {
+  "vert": {
+   "functions": 3,
+   "verdict": {
+    "TIMEOUT": 3
+   },
+   "equivalence": {
+    "None": 0
+   },
+   "compared_and_failed": []
+  }
+ },
+ "rows": [
+  {
+   "function": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "COUNT_DIGITS_FACTORIAL_SET_2",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/COUNT_DIGITS_FACTORIAL_SET_2.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  },
+  {
+   "function": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+   "mode": "vert",
+   "command": "cargo kani --no-unwinding-checks --default-unwind 10",
+   "verdict": "TIMEOUT",
+   "equivalence": null,
+   "failed_checks": [],
+   "compared_on_failure": false,
+   "seconds": 180.0,
+   "log": "results/kani_logs_verify/FIND_LARGEST_PRIME_FACTOR_NUMBER.vert.log",
+   "vert_record": {
+    "compile": "1",
+    "bolero": "1",
+    "bounded_kani": "0",
+    "full_kani": "0"
+   }
+  }
+ ]
+}

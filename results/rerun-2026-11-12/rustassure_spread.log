@@ -1,0 +1,14 @@
+{
+  "system": "RustAssure",
+  "model": "gpt-4o",
+  "generation": "deterministic enumeration",
+  "functions_found": 151,
+  "tested": 2,
+  "agree": 2,
+  "value_bug": 0,
+  "rust_crash_bug": 0,
+  "unsupported": 142,
+  "c-build-fail": 7,
+  "rust-build-fail": 0,
+  "value_bug_functions": []
+}

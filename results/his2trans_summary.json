@@ -1,0 +1,2677 @@
+{
+ "system": "His2Trans",
+ "scope": "OSS8 archive (paper Table RQ2, DeepSeek-V4-Pro): 8 crates. OHOS10 is out of scope (its C is not shipped for 5 of 10 modules and its gtest bridge needs the full OpenHarmony tree).",
+ "translations_tested": 8,
+ "translations_with_defect": 2,
+ "translations_with_defect_incl_not_counted": 3,
+ "defects_not_counted": {
+  "H2T-BUF-3": "rule (ii): every exposing input passes len != strlen(str), which the function's name and signature rule out (buffer_new_with_string_length(char *str, size_t len))",
+  "H2T-GEN-1": "rule (iii): every exposing output is a weight drawn from the C library's rand(), whose sequence ISO C 7.22.2.1 leaves unspecified"
+ },
+ "defects": [
+  {
+   "example_lines": [
+    "newsz 0",
+    "appn 68656c6c6f 1"
+   ],
+   "translation": "buffer",
+   "function": "buffer_append_n",
+   "mechanism": "The translation ignores the length argument (`_len`) and appends the whole slice; the C appends at most `len` bytes (strncat) and sizes the buffer from `len`.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:154-173 (line 159: `let len = data.len();`, `_len` unused)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:195-210 (strncat(self->data, str, len) at 201/208)",
+   "id": "H2T-BUF-1",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 78,
+    "cases_fixed_by_this_patch_alone": 76,
+    "cases_needing_this_and_one_other_patch": [
+     "buffer/pair:buffer_append_n+buffer_prepend/pair/00964",
+     "buffer/pair:buffer_prepend+buffer_append_n/pair/00994"
+    ],
+    "by_input_class": {
+     "grid": 42,
+     "pair": 36
+    },
+    "by_severity": {
+     "S1": 78
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/buffer_append_n/grid/00196",
+    "input_script": [
+     "newsz 0",
+     "appn 68656c6c6f 1"
+    ],
+    "C": "appn 0 | 1024 1 \"h\"",
+    "Rust": "appn 0 | 1024 5 \"hello\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "translation": "buffer",
+   "function": "buffer_indexof",
+   "mechanism": "Empty needle: the translation returns -1; the C returns 0 (strstr(data, \"\") returns data).",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:238-241 (`if b.storage.is_empty() || needle.is_empty() { return -1; }`)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:276-279",
+   "id": "H2T-BUF-2",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 5,
+    "cases_fixed_by_this_patch_alone": 5,
+    "cases_needing_this_and_one_other_patch": [],
+    "by_input_class": {
+     "grid": 5
+    },
+    "by_severity": {
+     "S1": 5
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/buffer_indexof/grid/00830",
+    "input_script": [
+     "new",
+     "idx ~"
+    ],
+    "C": "idx 0 | 64 0 s:~",
+    "Rust": "idx -1 | 64 0 s:~",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "example_lines": [
+    "newstrlen 68656c6c6f 0"
+   ],
+   "translation": "buffer",
+   "function": "buffer_new_with_string_length",
+   "mechanism": "The translation ignores the length argument (`_len`, comment: 'kept for backward compatibility') and sets the buffer size to the string length; the C sets self->len = len, so buffer_size() differs whenever len != strlen(str).",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:65-68",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:61-67 (self->len = len at 64)",
+   "id": "H2T-BUF-3",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 20,
+    "cases_fixed_by_this_patch_alone": 20,
+    "cases_needing_this_and_one_other_patch": [],
+    "by_input_class": {
+     "grid": 20
+    },
+    "by_severity": {
+     "S1": 20
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/buffer_new_with_string_length/grid/00091",
+    "input_script": [
+     "newstrlen 68656c6c6f 0"
+    ],
+    "C": "newstrlen | 0 5 \"hello\"",
+    "Rust": "newstrlen | 5 5 \"hello\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "example_lines": [
+    "newstr 68656c6c6f",
+    "pre 30"
+   ],
+   "translation": "buffer",
+   "function": "buffer_prepend",
+   "mechanism": "The translation shifts the existing string by prev+1 bytes; the C memmove shifts len+1 bytes (len = length of the prepended string). When the existing string is longer than the prepended one the C keeps only its first len+1 bytes' worth (the rest is overwritten). The C behaviour is an upstream bug that the translation silently corrects; it is still a divergence from the C on a UB-clean input.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:187-189 (copy_within(.. prev + 1 ..))",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:232 (memmove(self->data + len, self->data, len + 1))",
+   "c_behaviour_is_upstream_bug": true,
+   "note_on_crash": "After buffer_trim_left (data_offset > 0) a prepend that needs no resize makes the translation's copy_within (prev+1 bytes from data_offset) run past the end of the storage Vec: panic 'dest is out of bounds' at src_buffer.rs:189. The C stays in bounds only because its memmove moves len+1 bytes. Counted as a crash, attributed to this mechanism (the patch fixes it).",
+   "id": "H2T-BUF-4",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 48,
+    "cases_fixed_by_this_patch_alone": 45,
+    "cases_needing_this_and_one_other_patch": [
+     "buffer/pair:buffer_append_n+buffer_prepend/pair/00964",
+     "buffer/pair:buffer_prepend+buffer_append_n/pair/00994",
+     "buffer/pair:buffer_prepend+buffer_resize/pair/01005"
+    ],
+    "by_input_class": {
+     "grid": 24,
+     "pair": 24
+    },
+    "by_severity": {
+     "S1": 47,
+     "crash": 1
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/buffer_prepend/grid/00286",
+    "input_script": [
+     "newstr 68656c6c6f",
+     "pre 30"
+    ],
+    "C": "pre 0 | 1024 5 \"0helo\"",
+    "Rust": "pre 0 | 1024 6 \"0hello\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "example_lines": [
+    "newcopy 616263646566",
+    "resize 0"
+   ],
+   "translation": "buffer",
+   "function": "buffer_resize",
+   "mechanism": "Shrinking: the translation truncates the storage Vec to n+1 bytes but does not write the terminating NUL at index n; the C writes alloc[n] = '\\0'. After resize(b, 0) (n rounds to 0) or any resize below the current length, buffer_length/buffer_string see one byte too many.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:100-107 (line 102: `b.storage.resize(n + 1, 0u8);`)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:134-141 (self->alloc[n] = '\\0' at 139)",
+   "id": "H2T-BUF-5",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 14,
+    "cases_fixed_by_this_patch_alone": 13,
+    "cases_needing_this_and_one_other_patch": [
+     "buffer/pair:buffer_prepend+buffer_resize/pair/01005"
+    ],
+    "by_input_class": {
+     "grid": 5,
+     "pair": 9
+    },
+    "by_severity": {
+     "S1": 14
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/buffer_resize/grid/00473",
+    "input_script": [
+     "newcopy 616263646566",
+     "resize 0"
+    ],
+    "C": "resize 0 | 0 0 s:~",
+    "Rust": "resize 0 | 0 1 \"a\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "example_lines": [
+    "newcopy 092078200a",
+    "tl",
+    "app 68656c6c6f"
+   ],
+   "translation": "buffer",
+   "function": "buffer_append_n (via buffer_append)",
+   "mechanism": "After buffer_trim_left (data_offset > 0), an append that triggers buffer_resize: resize resets data_offset to 0 (mirroring the C's data = alloc), but the translation writes at the stale position data_offset + prev computed before the resize, overwriting the restored leading characters; the C strncat appends at the end of the string seen from the reset base.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs:160,166-171 (prev computed before buffer_resize; data_offset reset at 106)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c:206-208",
+   "id": "H2T-BUF-6",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 2,
+    "cases_fixed_by_this_patch_alone": 2,
+    "cases_needing_this_and_one_other_patch": [],
+    "by_input_class": {
+     "pair": 2
+    },
+    "by_severity": {
+     "S1": 2
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "buffer/pair:buffer_trim_left+buffer_append/pair/01124",
+    "input_script": [
+     "newcopy 092078200a",
+     "tl",
+     "app 68656c6c6f"
+    ],
+    "C": "app 0 | 1024 10 \"\\t x \\nhello\"",
+    "Rust": "app 0 | 1024 8 \"\\t xhello\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/buffer/c2r/test.rs) passes the buffer crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (buffer: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  },
+  {
+   "translation": "genann",
+   "function": "genann_randomize (and genann_init, which calls it)",
+   "mechanism": "The translation replaces the C library rand() (GENANN_RANDOM() = rand()/RAND_MAX) with a private LCG (state 1, a=1664525, c=1013904223). Every initial weight differs from the C's, and srand() no longer controls them; genann_run on a freshly initialised network therefore returns different outputs.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/genann/src/src_genann.rs:161-167 (genann_rand_double)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/genann/src/genann.c:169-176 and genann.h:39",
+   "id": "H2T-GEN-1",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 73,
+    "cases_fixed_by_this_patch_alone": 73,
+    "cases_needing_this_and_one_other_patch": [],
+    "by_input_class": {
+     "grid": 63,
+     "own": 6,
+     "probe": 4
+    },
+    "by_severity": {
+     "S1": 73
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "genann/genann_init/grid/00309",
+    "input_script": [
+     "init 1 1 1 1"
+    ],
+    "C": "init 1 1 1 1 4 3 w 0.3401877171547095 -0.10561707318090696 0.28309922375860586 0.2984400334760733",
+    "Rust": "init 1 1 1 1 4 3 w -0.027088949236594606 0.2385413477842423 -0.4915159353946875 -0.09023347245074503",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/genann/c2r/test.rs) passes the genann crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (genann: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": true,
+    "own_cases_exposing": [
+     "genann/genann_init/own/00616",
+     "genann/genann_init/own/00617",
+     "genann/genann_init/own/00618",
+     "genann/genann_init/own/00619",
+     "genann/genann_randomize/own/00621",
+     "genann/genann_run/own/00622"
+    ],
+    "diverges_on_input_outside_own_set": true
+   },
+   "srand_probe": {
+    "cases": [
+     [
+      "seed 1",
+      "init 2 1 2 1"
+     ],
+     [
+      "seed 2",
+      "init 2 1 2 1"
+     ],
+     [
+      "seed 42",
+      "init 2 1 2 1"
+     ],
+     [
+      "seed 12345",
+      "init 2 1 2 1"
+     ]
+    ],
+    "distinct_C_weight_vectors": 4,
+    "distinct_Rust_weight_vectors": 1,
+    "reading": "srand(s) before genann_init: the C weights change with s, the Rust weights do not"
+   }
+  },
+  {
+   "translation": "rgba",
+   "function": "rgba_to_string",
+   "mechanism": "Channel values are converted with a saturating `as u8` cast; the C uses (int) and prints with %.2x / %d. For a channel outside [0, 1] (e.g. r = 1.5 -> C '#17e7f3f', Rust '#ff7f3f'; r = -0.5 -> C 'ffffff81', Rust '00') the strings differ. Only inputs outside the nominal [0,1] range expose it.",
+   "rust_location": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/rgba/src/src_rgba.rs:195-213 (`as u8` at 199-201 and 206-208)",
+   "c_location": "data/rq2/deepseek/c_source/c_source/rgba/src/rgba.c:252-264",
+   "exposed_only_outside_nominal_domain": true,
+   "id": "H2T-RGBA-1",
+   "confirmed_by": "fix-and-rerun: the patch in results/his2trans_attribution.json (provenance.patches) makes exactly these cases agree with the C",
+   "exposure": {
+    "cases": 10,
+    "cases_fixed_by_this_patch_alone": 10,
+    "cases_needing_this_and_one_other_patch": [],
+    "by_input_class": {
+     "grid": 10
+    },
+    "by_severity": {
+     "S1": 10
+    }
+   },
+   "severity": "S1",
+   "example": {
+    "case": "rgba/rgba_to_string/grid/00290",
+    "input_script": [
+     "ts 3ff8000000000000 3fe0000000000000 3fd0000000000000 3ff0000000000000"
+    ],
+    "C": "ts \"#17e7f3f\"",
+    "Rust": "ts \"#ff7f3f\"",
+    "note": "driver protocol: op name, then results; for buffer ' | size length data'"
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "The system's own check (RQ2 Rust tests, data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/rgba/c2r/test.rs) passes the rgba crate: shipped verdict data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/results/oss8_rq2.json (rgba: all tests passed), and our re-run of the check in Docker as the artifact documents it (results/his2trans_own_check.json) passes it too.",
+   "heldout": {
+    "own_inputs_expose_it": false,
+    "own_cases_exposing": [],
+    "diverges_on_input_outside_own_set": true
+   }
+  }
+ ],
+ "crashes": {
+  "counted": 1,
+  "ids": [
+   "buffer/pair:buffer_trim_left+buffer_prepend/pair/01129"
+  ],
+  "detail": [
+   {
+    "id": "buffer/pair:buffer_trim_left+buffer_prepend/pair/01129",
+    "input_script": [
+     "newstr 202068656c6c6f2020",
+     "tl",
+     "pre 41"
+    ],
+    "C": "pre 0 | 9 7 \"Ahelo  \"",
+    "rust_stderr": "\nthread 'main' panicked at src/src_buffer.rs:189:10:\ndest is out of bounds\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n",
+    "attributed_to": [
+     "H2T-BUF-4"
+    ]
+   }
+  ],
+  "rust_panics_on_C_UB_inputs_not_counted": 1,
+  "examples_not_counted": [
+   {
+    "id": "buffer/pair:buffer_trim+buffer_append_n/pair/01194",
+    "rust_stderr": "\nthread 'main' panicked at src/src_buffer.rs:172:14:\nindex out of bounds: the len is 10 but the index is 10\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n",
+    "c_ub": [
+     "san_clang: ==19883==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60200000001a at pc 0x000000489414 bp 0x7ffefdfa97c0 sp 0x7ffefdfa8f58"
+    ]
+   }
+  ]
+ },
+ "S2": {
+  "counted": 0,
+  "ids": []
+ },
+ "S3": {
+  "counted_in_main_run": 0,
+  "count": 0,
+  "toolchain_profile_crosscheck": {
+   "base": {
+    "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+    "profile": "release",
+    "file": "his2trans_xcheck_186_release.json"
+   },
+   "comparisons": [
+    {
+     "other": {
+      "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+      "profile": "release",
+      "file": "his2trans_xcheck_199_release.json",
+      "build_rc": {
+       "qsort": 0,
+       "ht": 0,
+       "rgba": 0,
+       "genann": 0,
+       "buffer": 0,
+       "quadtree": 0,
+       "urlparser": 0,
+       "avl": 0
+      },
+      "rustc_warning_lines": {
+       "qsort": 0,
+       "ht": 0,
+       "rgba": 2,
+       "genann": 4,
+       "buffer": 7,
+       "quadtree": 2,
+       "urlparser": 0,
+       "avl": 10
+      }
+     },
+     "cases_compared": 5126,
+     "cases_differing": 2,
+     "differing_by_project": {
+      "buffer": 2
+     },
+     "panics_in_other": 2,
+     "differing_ids": [
+      "buffer/pair:buffer_trim_left+buffer_prepend/pair/01129",
+      "buffer/pair:buffer_trim+buffer_append_n/pair/01194"
+     ]
+    },
+    {
+     "other": {
+      "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+      "profile": "debug",
+      "file": "his2trans_xcheck_186_debug.json",
+      "build_rc": {
+       "qsort": 0,
+       "ht": 0,
+       "rgba": 0,
+       "genann": 0,
+       "buffer": 0,
+       "quadtree": 0,
+       "urlparser": 0,
+       "avl": 0
+      },
+      "rustc_warning_lines": {
+       "qsort": 0,
+       "ht": 0,
+       "rgba": 0,
+       "genann": 2,
+       "buffer": 0,
+       "quadtree": 0,
+       "urlparser": 0,
+       "avl": 10
+      }
+     },
+     "cases_compared": 5126,
+     "cases_differing": 2,
+     "differing_by_project": {
+      "genann": 2
+     },
+     "panics_in_other": 2,
+     "differing_ids": [
+      "genann/genann_train/grid/00525",
+      "genann/genann_train/grid/00555"
+     ]
+    }
+   ],
+   "explained": [
+    {
+     "id": "genann/genann_train/grid/00525",
+     "pairs": {
+      "c-rel": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      },
+      "c-dbg": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      },
+      "rel-dbg": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      }
+     },
+     "nan_tokens": {
+      "c": {
+       "d:fff8000000000000": 161,
+       "d:7ff8000000000000": 1
+      },
+      "rel": {
+       "d:fff8000000000000": 93,
+       "d:7ff8000000000000": 69
+      },
+      "dbg": {
+       "d:fff8000000000000": 162
+      }
+     }
+    },
+    {
+     "id": "genann/genann_train/grid/00555",
+     "pairs": {
+      "c-rel": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      },
+      "c-dbg": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      },
+      "rel-dbg": {
+       "raw_stdout_equal": false,
+       "tolerant_first_diff_line": null,
+       "stderr_equal": true
+      }
+     },
+     "nan_tokens": {
+      "c": {
+       "d:fff8000000000000": 161,
+       "d:7ff8000000000000": 1
+      },
+      "rel": {
+       "d:fff8000000000000": 93,
+       "d:7ff8000000000000": 69
+      },
+      "dbg": {
+       "d:fff8000000000000": 162
+      }
+     }
+    }
+   ],
+   "reading": "No S3. rustc 1.99.1 (release) differs from 1.86.0 only on the two buffer cases where both toolchains panic at the same line (1.99.1 adds the thread id to the panic message): the counted crash and one UB-excluded case. The debug profile differs from release only on two genann_train cases whose outputs are all NaN: the raw NaN sign bits differ, the tolerant comparison (NaN == NaN) finds them equal to each other and to the C (results/his2trans_xcheck_explain.json)."
+  }
+ },
+ "ub_excluded": {
+  "divergent_cases_excluded_as_original_C_UB": 647,
+  "by_translation": {
+   "genann": 6,
+   "buffer": 31,
+   "quadtree": 54,
+   "urlparser": 556
+  },
+  "cases_where_each_check_fired": {
+   "san_clang": 647,
+   "san_gcc": 647,
+   "ref": 326,
+   "o0": 164,
+   "o1": 164,
+   "schar": 155,
+   "uchar": 155
+  },
+  "note": "ref = the gcc -O2 C build itself was killed by a signal or timed out on that input; o0/o1 = output differs from -O2; uchar/schar = output depends on char signedness"
+ },
+ "per_translation": {
+  "qsort": {
+   "cases": 166,
+   "agree": 166,
+   "divergent_counted": 0,
+   "cases_and_ub_clean_cases_by_function": {
+    "partition": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "quickSort": {
+     "cases": 80,
+     "ub_clean": 80
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 0,
+   "cases_with_any_C_UB_evidence": 0,
+   "defects": [],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 6,
+     "total": 6,
+     "tests": {
+      "test_c2r::test_already_sorted": "ok",
+      "test_c2r::test_duplicates": "ok",
+      "test_c2r::test_negatives": "ok",
+      "test_c2r::test_reverse": "ok",
+      "test_c2r::test_single_element": "ok",
+      "test_c2r::test_small": "ok"
+     },
+     "adapter_actions": [
+      "qsort_safe_slice_bridge"
+     ]
+    },
+    "shipped": {
+     "passed": 6,
+     "total": 6,
+     "tests": {
+      "test_c2r::test_already_sorted": "ok",
+      "test_c2r::test_duplicates": "ok",
+      "test_c2r::test_negatives": "ok",
+      "test_c2r::test_reverse": "ok",
+      "test_c2r::test_single_element": "ok",
+      "test_c2r::test_small": "ok"
+     },
+     "adapter_actions": [
+      "qsort_safe_slice_bridge"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "ht": {
+   "cases": 75,
+   "agree": 75,
+   "divergent_counted": 0,
+   "cases_and_ub_clean_cases_by_function": {
+    "hash_key": {
+     "cases": 75,
+     "ub_clean": 75
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 0,
+   "cases_with_any_C_UB_evidence": 0,
+   "defects": [],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 1,
+     "total": 1,
+     "tests": {
+      "test_c2r::test_main_smoke": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_ht_harness_with_rust_native_api"
+     ]
+    },
+    "shipped": {
+     "passed": 1,
+     "total": 1,
+     "tests": {
+      "test_c2r::test_main_smoke": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_ht_harness_with_rust_native_api"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "rgba": {
+   "cases": 328,
+   "agree": 318,
+   "divergent_counted": 10,
+   "cases_and_ub_clean_cases_by_function": {
+    "rgba_from_string": {
+     "cases": 77,
+     "ub_clean": 66
+    },
+    "rgba_inspect": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "rgba_new": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "rgba_to_string": {
+     "cases": 79,
+     "ub_clean": 79
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 0,
+   "cases_with_any_C_UB_evidence": 16,
+   "defects": [
+    "H2T-RGBA-1"
+   ],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 10,
+     "total": 10,
+     "tests": {
+      "test_c2r::test_rgba_consistency": "ok",
+      "test_c2r::test_rgba_different_colors": "ok",
+      "test_c2r::test_rgba_from_string_hex3": "ok",
+      "test_c2r::test_rgba_from_string_hex6": "ok",
+      "test_c2r::test_rgba_from_string_named_color_red": "ok",
+      "test_c2r::test_rgba_from_string_rgb": "ok",
+      "test_c2r::test_rgba_from_string_rgba_alpha_zero": "ok",
+      "test_c2r::test_rgba_invalid_string_returns_none": "ok",
+      "test_c2r::test_rgba_to_string_hex_for_opaque": "ok",
+      "test_c2r::test_rgba_to_string_rgba_format_for_transparent": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_rgba_harness_with_rust_native_api"
+     ]
+    },
+    "shipped": {
+     "passed": 10,
+     "total": 10,
+     "tests": {
+      "test_c2r::test_rgba_consistency": "ok",
+      "test_c2r::test_rgba_different_colors": "ok",
+      "test_c2r::test_rgba_from_string_hex3": "ok",
+      "test_c2r::test_rgba_from_string_hex6": "ok",
+      "test_c2r::test_rgba_from_string_named_color_red": "ok",
+      "test_c2r::test_rgba_from_string_rgb": "ok",
+      "test_c2r::test_rgba_from_string_rgba_alpha_zero": "ok",
+      "test_c2r::test_rgba_invalid_string_returns_none": "ok",
+      "test_c2r::test_rgba_to_string_hex_for_opaque": "ok",
+      "test_c2r::test_rgba_to_string_rgba_format_for_transparent": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_rgba_harness_with_rust_native_api"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "genann": {
+   "cases": 627,
+   "agree": 548,
+   "divergent_counted": 73,
+   "cases_and_ub_clean_cases_by_function": {
+    "genann_act_linear": {
+     "cases": 77,
+     "ub_clean": 77
+    },
+    "genann_act_sigmoid": {
+     "cases": 77,
+     "ub_clean": 77
+    },
+    "genann_act_sigmoid_cached": {
+     "cases": 77,
+     "ub_clean": 68
+    },
+    "genann_act_threshold": {
+     "cases": 77,
+     "ub_clean": 77
+    },
+    "genann_copy": {
+     "cases": 10,
+     "ub_clean": 10
+    },
+    "genann_init": {
+     "cases": 84,
+     "ub_clean": 84
+    },
+    "genann_randomize": {
+     "cases": 20,
+     "ub_clean": 20
+    },
+    "genann_read": {
+     "cases": 17,
+     "ub_clean": 17
+    },
+    "genann_run": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "genann_train": {
+     "cases": 80,
+     "ub_clean": 79
+    },
+    "genann_write": {
+     "cases": 10,
+     "ub_clean": 10
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 6,
+   "cases_with_any_C_UB_evidence": 10,
+   "defects": [
+    "H2T-GEN-1"
+   ],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 12,
+     "total": 12,
+     "tests": {
+      "test_c2r::test_genann_act_linear": "ok",
+      "test_c2r::test_genann_act_sigmoid": "ok",
+      "test_c2r::test_genann_act_sigmoid_negative": "ok",
+      "test_c2r::test_genann_act_sigmoid_positive": "ok",
+      "test_c2r::test_genann_act_threshold": "ok",
+      "test_c2r::test_genann_copy": "ok",
+      "test_c2r::test_genann_init": "ok",
+      "test_c2r::test_genann_init_no_hidden": "ok",
+      "test_c2r::test_genann_multilayer": "ok",
+      "test_c2r::test_genann_randomize": "ok",
+      "test_c2r::test_genann_run": "ok",
+      "test_c2r::test_genann_sigmoid_cached": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_genann_harness_with_rust_native_api"
+     ]
+    },
+    "shipped": {
+     "passed": 12,
+     "total": 12,
+     "tests": {
+      "test_c2r::test_genann_act_linear": "ok",
+      "test_c2r::test_genann_act_sigmoid": "ok",
+      "test_c2r::test_genann_act_sigmoid_negative": "ok",
+      "test_c2r::test_genann_act_sigmoid_positive": "ok",
+      "test_c2r::test_genann_act_threshold": "ok",
+      "test_c2r::test_genann_copy": "ok",
+      "test_c2r::test_genann_init": "ok",
+      "test_c2r::test_genann_init_no_hidden": "ok",
+      "test_c2r::test_genann_multilayer": "ok",
+      "test_c2r::test_genann_randomize": "ok",
+      "test_c2r::test_genann_run": "ok",
+      "test_c2r::test_genann_sigmoid_cached": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_genann_harness_with_rust_native_api"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "buffer": {
+   "cases": 1302,
+   "agree": 1107,
+   "divergent_counted": 164,
+   "cases_and_ub_clean_cases_by_function": {
+    "buffer_append": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_append_n": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_appendf": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_clear": {
+     "cases": 15,
+     "ub_clean": 15
+    },
+    "buffer_compact": {
+     "cases": 15,
+     "ub_clean": 15
+    },
+    "buffer_equals": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_fill": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_indexof": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_new": {
+     "cases": 1,
+     "ub_clean": 1
+    },
+    "buffer_new_with_copy": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "buffer_new_with_size": {
+     "cases": 10,
+     "ub_clean": 10
+    },
+    "buffer_new_with_string": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "buffer_new_with_string_length": {
+     "cases": 24,
+     "ub_clean": 24
+    },
+    "buffer_prepend": {
+     "cases": 80,
+     "ub_clean": 67
+    },
+    "buffer_print": {
+     "cases": 15,
+     "ub_clean": 15
+    },
+    "buffer_resize": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "buffer_slice": {
+     "cases": 80,
+     "ub_clean": 61
+    },
+    "buffer_trim": {
+     "cases": 15,
+     "ub_clean": 9
+    },
+    "buffer_trim_left": {
+     "cases": 15,
+     "ub_clean": 15
+    },
+    "buffer_trim_right": {
+     "cases": 15,
+     "ub_clean": 9
+    },
+    "pair:buffer_append+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_append_n+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_append_n+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_append_n+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_appendf+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_appendf+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_appendf+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_clear+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 0
+    },
+    "pair:buffer_clear+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_clear+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 0
+    },
+    "pair:buffer_compact+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_compact+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_compact+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_fill+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_fill+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_fill+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_prepend+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_prepend+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_resize+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_resize+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_resize+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_resize+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 0
+    },
+    "pair:buffer_trim+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_left+buffer_append": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_left+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_left+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_left+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_left+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_left+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_right+buffer_append": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_right+buffer_append_n": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_right+buffer_appendf": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_right+buffer_clear": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_right+buffer_compact": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_right+buffer_fill": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_right+buffer_prepend": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_right+buffer_resize": {
+     "cases": 3,
+     "ub_clean": 2
+    },
+    "pair:buffer_trim_right+buffer_trim": {
+     "cases": 3,
+     "ub_clean": 3
+    },
+    "pair:buffer_trim_right+buffer_trim_left": {
+     "cases": 3,
+     "ub_clean": 1
+    },
+    "pair:buffer_trim_right+buffer_trim_right": {
+     "cases": 3,
+     "ub_clean": 2
+    }
+   },
+   "functions_with_no_ub_clean_case": [
+    "pair:buffer_clear+buffer_trim",
+    "pair:buffer_clear+buffer_trim_right",
+    "pair:buffer_trim+buffer_fill"
+   ],
+   "original_C_UB_excluded": 31,
+   "cases_with_any_C_UB_evidence": 99,
+   "defects": [
+    "H2T-BUF-1",
+    "H2T-BUF-2",
+    "H2T-BUF-3",
+    "H2T-BUF-4",
+    "H2T-BUF-5",
+    "H2T-BUF-6"
+   ],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 14,
+     "total": 14,
+     "tests": {
+      "test_c2r::test_buffer_append": "ok",
+      "test_c2r::test_buffer_append_multiple": "ok",
+      "test_c2r::test_buffer_equals": "ok",
+      "test_c2r::test_buffer_indexof": "ok",
+      "test_c2r::test_buffer_indexof_not_found": "ok",
+      "test_c2r::test_buffer_new": "ok",
+      "test_c2r::test_buffer_new_with_size": "ok",
+      "test_c2r::test_buffer_new_with_string": "ok",
+      "test_c2r::test_buffer_prepend": "ok",
+      "test_c2r::test_buffer_resize": "ok",
+      "test_c2r::test_buffer_slice": "ok",
+      "test_c2r::test_buffer_trim": "ok",
+      "test_c2r::test_buffer_trim_left": "ok",
+      "test_c2r::test_buffer_trim_right": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_buffer_harness_with_rust_native_api"
+     ]
+    },
+    "shipped": {
+     "passed": 14,
+     "total": 14,
+     "tests": {
+      "test_c2r::test_buffer_append": "ok",
+      "test_c2r::test_buffer_append_multiple": "ok",
+      "test_c2r::test_buffer_equals": "ok",
+      "test_c2r::test_buffer_indexof": "ok",
+      "test_c2r::test_buffer_indexof_not_found": "ok",
+      "test_c2r::test_buffer_new": "ok",
+      "test_c2r::test_buffer_new_with_size": "ok",
+      "test_c2r::test_buffer_new_with_string": "ok",
+      "test_c2r::test_buffer_prepend": "ok",
+      "test_c2r::test_buffer_resize": "ok",
+      "test_c2r::test_buffer_slice": "ok",
+      "test_c2r::test_buffer_trim": "ok",
+      "test_c2r::test_buffer_trim_left": "ok",
+      "test_c2r::test_buffer_trim_right": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_buffer_harness_with_rust_native_api"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "quadtree": {
+   "cases": 404,
+   "agree": 350,
+   "divergent_counted": 0,
+   "cases_and_ub_clean_cases_by_function": {
+    "quadtree_bounds_extend": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "quadtree_insert": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "quadtree_new": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "quadtree_node_with_bounds": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "quadtree_point_new": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "quadtree_search": {
+     "cases": 80,
+     "ub_clean": 26
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 54,
+   "cases_with_any_C_UB_evidence": 54,
+   "defects": [],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 4,
+     "total": 4,
+     "tests": {
+      "test_c2r::test_quadtree_duplicate_insert": "ok",
+      "test_c2r::test_quadtree_insert_and_search": "ok",
+      "test_c2r::test_quadtree_multiple_points": "ok",
+      "test_c2r::test_quadtree_new_and_free": "ok"
+     },
+     "adapter_actions": [
+      "inject_quadtree_test_support_module",
+      "compile_native_accessor_shims_for_tests"
+     ]
+    },
+    "shipped": {
+     "passed": 4,
+     "total": 4,
+     "tests": {
+      "test_c2r::test_quadtree_duplicate_insert": "ok",
+      "test_c2r::test_quadtree_insert_and_search": "ok",
+      "test_c2r::test_quadtree_multiple_points": "ok",
+      "test_c2r::test_quadtree_new_and_free": "ok"
+     },
+     "adapter_actions": [
+      "inject_quadtree_test_support_module",
+      "compile_native_accessor_shims_for_tests"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "urlparser": {
+   "cases": 1022,
+   "agree": 466,
+   "divergent_counted": 0,
+   "cases_and_ub_clean_cases_by_function": {
+    "url_get_auth": {
+     "cases": 80,
+     "ub_clean": 11
+    },
+    "url_get_hash": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_host": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_hostname": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_path": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_pathname": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_port": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_protocol": {
+     "cases": 80,
+     "ub_clean": 72
+    },
+    "url_get_query": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_get_search": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_inspect": {
+     "cases": 80,
+     "ub_clean": 0
+    },
+    "url_is_protocol": {
+     "cases": 36,
+     "ub_clean": 36
+    },
+    "url_is_ssh": {
+     "cases": 10,
+     "ub_clean": 10
+    },
+    "url_parse": {
+     "cases": 80,
+     "ub_clean": 11
+    }
+   },
+   "functions_with_no_ub_clean_case": [
+    "url_get_hash",
+    "url_get_host",
+    "url_get_hostname",
+    "url_get_path",
+    "url_get_pathname",
+    "url_get_port",
+    "url_get_query",
+    "url_get_search",
+    "url_inspect"
+   ],
+   "original_C_UB_excluded": 556,
+   "cases_with_any_C_UB_evidence": 877,
+   "defects": [],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 3,
+     "total": 3,
+     "tests": {
+      "test_c2r::test_url_getters_match_reference": "ok",
+      "test_c2r::test_url_is_protocol": "ok",
+      "test_c2r::test_url_parse_fields_non_null": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_urlparser_harness_with_rust_native_api",
+      "correct_urlparser_file_scheme_oracle",
+      "compile_native_accessor_shims_for_tests"
+     ]
+    },
+    "shipped": {
+     "passed": 3,
+     "total": 3,
+     "tests": {
+      "test_c2r::test_url_getters_match_reference": "ok",
+      "test_c2r::test_url_is_protocol": "ok",
+      "test_c2r::test_url_parse_fields_non_null": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_urlparser_harness_with_rust_native_api",
+      "correct_urlparser_file_scheme_oracle",
+      "compile_native_accessor_shims_for_tests"
+     ]
+    },
+    "same_verdict": true
+   }
+  },
+  "avl": {
+   "cases": 1202,
+   "agree": 1202,
+   "divergent_counted": 0,
+   "cases_and_ub_clean_cases_by_function": {
+    "AVL3_Find_Or_Find_Next": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_*(detached)": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "VOS_AVL3_Delete": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_Find": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_First": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_Insert_Or_Find": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_Last": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_Next": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL3_Prev": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_*(not in tree)": {
+     "cases": 40,
+     "ub_clean": 40
+    },
+    "VOS_AVL_Delete": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_Find": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_Find_Or_Find_Next": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_Insert_Or_Find": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_Next": {
+     "cases": 80,
+     "ub_clean": 80
+    },
+    "VOS_AVL_Prev": {
+     "cases": 80,
+     "ub_clean": 80
+    }
+   },
+   "functions_with_no_ub_clean_case": [],
+   "original_C_UB_excluded": 0,
+   "cases_with_any_C_UB_evidence": 0,
+   "defects": [],
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "rerun": {
+     "passed": 2,
+     "total": 2,
+     "tests": {
+      "test_c2r::test_avl_delete_updates_links": "ok",
+      "test_c2r::test_avl_insert_find_next_prev": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_avl_harness_with_rust_native_api"
+     ]
+    },
+    "shipped": {
+     "passed": 2,
+     "total": 2,
+     "tests": {
+      "test_c2r::test_avl_delete_updates_links": "ok",
+      "test_c2r::test_avl_insert_find_next_prev": "ok"
+     },
+     "adapter_actions": [
+      "replace_c_pointer_avl_harness_with_rust_native_api"
+     ]
+    },
+    "same_verdict": true
+   }
+  }
+ },
+ "heldout": {
+  "status": "measured (the own inputs are the RQ2 test call sequences shipped in data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests/<project>/c2r/test.rs)",
+  "per_translation": {
+   "qsort": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 6,
+    "our_cases": 160,
+    "our_cases_identical_to_an_own_case": 0,
+    "distinct_calls_ours": 156,
+    "distinct_calls_own": 6,
+    "distinct_calls_shared": 0,
+    "own_cases_verdicts": {
+     "agree": 6
+    }
+   },
+   "ht": {
+    "own_inputs_recorded": "yes (the only test calls the translated empty main(); no library function is called)",
+    "own_cases": 0,
+    "our_cases": 75,
+    "our_cases_identical_to_an_own_case": 0,
+    "distinct_calls_ours": 75,
+    "distinct_calls_own": 0,
+    "distinct_calls_shared": 0,
+    "own_cases_verdicts": {}
+   },
+   "rgba": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 12,
+    "our_cases": 316,
+    "our_cases_identical_to_an_own_case": 7,
+    "distinct_calls_ours": 316,
+    "distinct_calls_own": 14,
+    "distinct_calls_shared": 7,
+    "own_cases_verdicts": {
+     "agree": 12
+    }
+   },
+   "genann": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 18,
+    "our_cases": 609,
+    "our_cases_identical_to_an_own_case": 9,
+    "distinct_calls_ours": 610,
+    "distinct_calls_own": 18,
+    "distinct_calls_shared": 9,
+    "own_cases_verdicts": {
+     "agree": 12,
+     "divergent": 6
+    }
+   },
+   "buffer": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 14,
+    "our_cases": 1288,
+    "our_cases_identical_to_an_own_case": 5,
+    "distinct_calls_ours": 337,
+    "distinct_calls_own": 20,
+    "distinct_calls_shared": 17,
+    "own_cases_verdicts": {
+     "agree": 14
+    }
+   },
+   "quadtree": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 4,
+    "our_cases": 400,
+    "our_cases_identical_to_an_own_case": 0,
+    "distinct_calls_ours": 720,
+    "distinct_calls_own": 12,
+    "distinct_calls_shared": 6,
+    "own_cases_verdicts": {
+     "agree": 4
+    }
+   },
+   "urlparser": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 16,
+    "our_cases": 1006,
+    "our_cases_identical_to_an_own_case": 16,
+    "distinct_calls_ours": 1006,
+    "distinct_calls_own": 16,
+    "distinct_calls_shared": 16,
+    "own_cases_verdicts": {
+     "agree": 15,
+     "original_C_UB": 1
+    }
+   },
+   "avl": {
+    "own_inputs_recorded": "yes",
+    "own_cases": 2,
+    "our_cases": 1200,
+    "our_cases_identical_to_an_own_case": 0,
+    "distinct_calls_ours": 2389,
+    "distinct_calls_own": 10,
+    "distinct_calls_shared": 10,
+    "own_cases_verdicts": {
+     "agree": 2
+    }
+   }
+  }
+ },
+ "harness_power": {
+  "inject": {
+   "avl": {
+    "status": "killed",
+    "killing_cases": 81,
+    "first_killing_case": "avl/VOS_AVL3_Find/grid/00160",
+    "fault": "VOS_AVL3_Find: > -> >=",
+    "file": "src/src_avl.rs",
+    "cases_used": 1122
+   },
+   "buffer": {
+    "status": "killed",
+    "killing_cases": 30,
+    "first_killing_case": "buffer/buffer_trim_left/grid/00533",
+    "fault": "trim: space no longer trimmed",
+    "file": "src/src_buffer.rs",
+    "cases_used": 1041
+   },
+   "genann": {
+    "status": "killed",
+    "killing_cases": 44,
+    "first_killing_case": "genann/genann_train/grid/00488",
+    "fault": "genann_train: output-delta derivative sign",
+    "file": "src/src_genann.rs",
+    "cases_used": 544
+   },
+   "ht": {
+    "status": "killed",
+    "killing_cases": 74,
+    "first_killing_case": "ht/hash_key/grid/00001",
+    "fault": "hash_key: xor input byte + 1",
+    "file": "src/src_ht.rs",
+    "cases_used": 75
+   },
+   "qsort": {
+    "status": "killed",
+    "killing_cases": 21,
+    "first_killing_case": "qsort/partition/grid/00082",
+    "fault": "partition: <= -> <",
+    "file": "src/src_qsort.rs",
+    "cases_used": 166
+   },
+   "quadtree": {
+    "status": "killed",
+    "killing_cases": 2,
+    "first_killing_case": "quadtree/quadtree_insert/grid/00250",
+    "fault": "node_contains_: strict -> non-strict on x",
+    "file": "src/src_quadtree.rs",
+    "cases_used": 350
+   },
+   "rgba": {
+    "status": "killed",
+    "killing_cases": 7,
+    "first_killing_case": "rgba/rgba_from_string/grid/00022",
+    "fault": "h(): hex digit a-f off by one",
+    "file": "src/src_rgba.rs",
+    "cases_used": 302
+   },
+   "urlparser": {
+    "status": "killed",
+    "killing_cases": 1,
+    "first_killing_case": "urlparser/url_is_ssh/grid/00037",
+    "fault": "url_is_ssh: git no longer ssh",
+    "file": "src/src_url.rs",
+    "cases_used": 145
+   }
+  },
+  "mutation": {
+   "avl": {
+    "candidates": 114,
+    "selected": 40,
+    "stillborn": 3,
+    "valid": 37,
+    "killed": 25,
+    "kill_rate": 0.676,
+    "cases_used": 1122
+   },
+   "qsort": {
+    "candidates": 13,
+    "selected": 13,
+    "stillborn": 0,
+    "valid": 13,
+    "killed": 10,
+    "kill_rate": 0.769,
+    "cases_used": 166
+   },
+   "quadtree": {
+    "candidates": 34,
+    "selected": 34,
+    "stillborn": 1,
+    "valid": 33,
+    "killed": 23,
+    "kill_rate": 0.697,
+    "cases_used": 350
+   },
+   "urlparser": {
+    "candidates": 44,
+    "selected": 40,
+    "stillborn": 10,
+    "valid": 30,
+    "killed": 2,
+    "kill_rate": 0.067,
+    "cases_used": 145
+   }
+  }
+ },
+ "attribution_check": {
+  "buffer": {
+   "counted_divergent": 164,
+   "attributed_to_exactly_one": 161,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [
+    "buffer/pair:buffer_append_n+buffer_prepend/pair/00964",
+    "buffer/pair:buffer_prepend+buffer_append_n/pair/00994",
+    "buffer/pair:buffer_prepend+buffer_resize/pair/01005"
+   ],
+   "fixed_by_pair_of_patches": {
+    "buffer/pair:buffer_append_n+buffer_prepend/pair/00964": [
+     [
+      "H2T-BUF-1",
+      "H2T-BUF-4"
+     ]
+    ],
+    "buffer/pair:buffer_prepend+buffer_append_n/pair/00994": [
+     [
+      "H2T-BUF-1",
+      "H2T-BUF-4"
+     ]
+    ],
+    "buffer/pair:buffer_prepend+buffer_resize/pair/01005": [
+     [
+      "H2T-BUF-4",
+      "H2T-BUF-5"
+     ]
+    ]
+   },
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  },
+  "genann": {
+   "counted_divergent": 73,
+   "attributed_to_exactly_one": 73,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [],
+   "fixed_by_pair_of_patches": {},
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  },
+  "rgba": {
+   "counted_divergent": 10,
+   "attributed_to_exactly_one": 10,
+   "attributed_to_several": {},
+   "fixed_by_no_single_patch": [],
+   "fixed_by_pair_of_patches": {},
+   "all_patches": {
+    "build": "ok",
+    "counted_divergences_remaining": [],
+    "ub_clean_agreeing_cases_newly_diverging": []
+   }
+  }
+ },
+ "provenance": {
+  "script": "systems/his2trans/summarize.py",
+  "command": "python3 systems/his2trans/summarize.py",
+  "git_rev": "artifact repository (one amended commit, so no stable hash)",
+  "host": "Darwin",
+  "arch": "arm64",
+  "date": "2026-11-18T00:34:40+00:00",
+  "inputs": {
+   "diff": {
+    "script": "systems/his2trans/run.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/run.py --projects qsort,ht,rgba,genann,buffer,quadtree,urlparser,avl --build /b/main --out /work/results/his2trans_diff.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "?",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-14T06:34:02+00:00",
+    "artifact": {
+     "repo": "https://github.com/SYSUSELab/His2Trans",
+     "commit": "3a0ec5544c8e6788280b3520105a77432ed8a730",
+     "crates": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/<p>",
+     "c_source": "data/rq2/deepseek/c_source/c_source/<p>/src",
+     "source_digests": {
+      "qsort": {
+       "crate": {
+        "files": 10,
+        "sha256": "b412c3bea9cb065e1f2df4831c8b31ba6ec8fc3091f775db5811e100bbd57c64"
+       },
+       "c": {
+        "files": 1,
+        "sha256": "21b6a335b4350385eab1846cf29c7de3ad69104198f3751089df9594e67fb3aa"
+       }
+      },
+      "ht": {
+       "crate": {
+        "files": 10,
+        "sha256": "0ea36f072cf151d49784f4cfb7dfe68fe0d98230943bc02773a219c0ef52505a"
+       },
+       "c": {
+        "files": 1,
+        "sha256": "28b2bedbf1ea1b7fcde6db9f06fc5f719b4a9fd5e3423178936c23799b0cb3f5"
+       }
+      },
+      "rgba": {
+       "crate": {
+        "files": 14,
+        "sha256": "27f12841174f95c3f76dacfea73ad6cc40805cb6d79e8f76d659aa4873173d71"
+       },
+       "c": {
+        "files": 2,
+        "sha256": "a055f2251aa5dafb810c014d64281ba2736cd88f45d12b129e8c3128e653636e"
+       }
+      },
+      "genann": {
+       "crate": {
+        "files": 16,
+        "sha256": "c7a161d05b87cf3837e38f544e428e9d81c3c6c937fcfb2d0c7f44b9dee0810b"
+       },
+       "c": {
+        "files": 3,
+        "sha256": "75c7e268c3d5ffedaca986814d1d9e3859ce91f95585fc345739c0922e0c9941"
+       }
+      },
+      "buffer": {
+       "crate": {
+        "files": 17,
+        "sha256": "db79caa86f1e80c07a5d3123646749a72a6669ab9fbc9918aba7982f4cc5cbc8"
+       },
+       "c": {
+        "files": 2,
+        "sha256": "2c6a4695a2bd19f7defa670be51ebd30bbfee41335ad06668581b2eda33028a2"
+       }
+      },
+      "quadtree": {
+       "crate": {
+        "files": 30,
+        "sha256": "246ec5876563271a6f3d3b30d130beb68d112836c2bc11cfb351e22cdf02244a"
+       },
+       "c": {
+        "files": 5,
+        "sha256": "639cee1c2e7f98586d81be7a3e5b602c7fc7ad6972d78ab445b0bc72acaa571b"
+       }
+      },
+      "urlparser": {
+       "crate": {
+        "files": 17,
+        "sha256": "4071939cfd6acd7d8f831fefbe323370d10d76eb6bb9dc03db9436f8efa689ad"
+       },
+       "c": {
+        "files": 2,
+        "sha256": "2d4f8776bd2be9c6f5fb6c80b6d0f117a7d5af71e486386b77be8ef52378e159"
+       }
+      },
+      "avl": {
+       "crate": {
+        "files": 13,
+        "sha256": "d25330851fcc6a518dd59274a82dc2c0d399d8614efc9fdd3694036014c91ee2"
+       },
+       "c": {
+        "files": 1,
+        "sha256": "8505df5739f6bca666914dd14249d3f374a9979ec6c8183a71f7d4d59e74e29d"
+       }
+      }
+     }
+    },
+    "driver_digests": {
+     "avl_driver.c": {
+      "files": 1,
+      "sha256": "489530518b985655bead3b9ba58d2c64eb8b707e9a0be6012ec8210de34d85e3"
+     },
+     "avl_driver.rs": {
+      "files": 1,
+      "sha256": "170f5efd70f0e73351a53eb9905130e4c346cff45ed744c26937decdab521f3d"
+     },
+     "buffer_driver.c": {
+      "files": 1,
+      "sha256": "ff6956bc9424571523d3f85e93e39ff77a14e121eef32f468100c90ef8bffa2e"
+     },
+     "buffer_driver.rs": {
+      "files": 1,
+      "sha256": "4bd51bffb344567a64634981cb768b6071f62d7c2a860571fbf96cf22f5bca90"
+     },
+     "common.h": {
+      "files": 1,
+      "sha256": "199db9bd1f6e79eb687447871c5c87e3843ab450f8af3cc8d206c5a4db4fc940"
+     },
+     "common.rs": {
+      "files": 1,
+      "sha256": "4281a44a86296b4ab616ebb7ca6b22e5762e996e5fceb6e7c210058d52365945"
+     },
+     "genann_driver.c": {
+      "files": 1,
+      "sha256": "2561d50b91cd400d247ca31a3c0d16221c127d1e8d3ca928f29d71ede7f9141a"
+     },
+     "genann_driver.rs": {
+      "files": 1,
+      "sha256": "7739829474e058c43c8793fc570523177f4903e55842271c2b00042bd556ba77"
+     },
+     "ht_driver.c": {
+      "files": 1,
+      "sha256": "5d569230683a9d0d0bb099d6792143edc360343ad2b984aacda24991ce0846c7"
+     },
+     "ht_driver.rs": {
+      "files": 1,
+      "sha256": "e47cb37fd6965327233c6a1ea7a52e1702deb5525533bed7ea2255bd125a70ba"
+     },
+     "qsort_driver.c": {
+      "files": 1,
+      "sha256": "390ca679929dbb502423394f3938450a6124be2a6c35244e255555602111b958"
+     },
+     "qsort_driver.rs": {
+      "files": 1,
+      "sha256": "b15935fad03655222e8ce75132254bdb2804a84ef7a61d895b763e464f68e8b8"
+     },
+     "quadtree_driver.c": {
+      "files": 1,
+      "sha256": "fd852d364223127b527f52f0f00e9d6a2779b8d7d1f67a4ad92e278509c64924"
+     },
+     "quadtree_driver.rs": {
+      "files": 1,
+      "sha256": "942b76099a624607891683ab4cd8ff938718644570bfd061634ea33784def26a"
+     },
+     "rgba_driver.c": {
+      "files": 1,
+      "sha256": "801658e221cf9c55fdea2aafe4f839e046ab0b9b65e9ae895925d9aa48028ae7"
+     },
+     "rgba_driver.rs": {
+      "files": 1,
+      "sha256": "f088809b23f7077534104cada0a68148804314c0dc38a264608502dc7f439763"
+     },
+     "urlparser_driver.c": {
+      "files": 1,
+      "sha256": "f729152dcc132bf32712f6acdf090001d09e6e3c6d1a6a74bc7f0f4c334d9e78"
+     },
+     "urlparser_driver.rs": {
+      "files": 1,
+      "sha256": "5213d8db1620134b17114f444648ec89a3574d829ad1925be27b2c214760017d"
+     }
+    },
+    "generator_digest": {
+     "files": 1,
+     "sha256": "bb7eabf451e0cd16d1c1f2d47c4cb823ca4b5f200ab8bbc146e4b33e0ac7658b"
+    },
+    "c_builds": {
+     "ref": {
+      "cc": "gcc",
+      "flags": [
+       "-O2",
+       "-lm"
+      ]
+     },
+     "o0": {
+      "cc": "gcc",
+      "flags": [
+       "-O0",
+       "-lm"
+      ]
+     },
+     "o1": {
+      "cc": "gcc",
+      "flags": [
+       "-O1",
+       "-lm"
+      ]
+     },
+     "san_clang": {
+      "cc": "clang",
+      "flags": [
+       "-O0",
+       "-g",
+       "-fno-omit-frame-pointer",
+       "-fsanitize=address,undefined,float-cast-overflow",
+       "-fno-sanitize-recover=all",
+       "-fno-pie",
+       "-fsanitize=address,undefined,float-cast-overflow",
+       "-no-pie",
+       "-lm"
+      ]
+     },
+     "san_gcc": {
+      "cc": "gcc",
+      "flags": [
+       "-O0",
+       "-g",
+       "-fno-omit-frame-pointer",
+       "-fsanitize=address,undefined,float-cast-overflow",
+       "-fno-sanitize-recover=all",
+       "-fsanitize=address,undefined,float-cast-overflow",
+       "-lm"
+      ]
+     },
+     "uchar": {
+      "cc": "gcc",
+      "flags": [
+       "-O2",
+       "-funsigned-char",
+       "-lm"
+      ]
+     },
+     "schar": {
+      "cc": "gcc",
+      "flags": [
+       "-O2",
+       "-fsigned-char",
+       "-lm"
+      ]
+     }
+    },
+    "rust_build": "cargo build --release --frozen (crate's own release profile: opt-level 3, lto); rustc/cargo as in toolchains; deps vendored from the local cargo cache, sha256 = Cargo.lock checksums",
+    "float_rule": "NaN==NaN, else |a-b| <= 1e-6*max(1,|a|) (systems/vert/run_arrays.py vals_equal)",
+    "wall_seconds": 107,
+    "sanitizer_positive_controls": {
+     "clang": {
+      "heap_oob_read": "fired",
+      "stack_oob_read": "fired",
+      "signed_overflow": "fired",
+      "shift_overflow": "fired",
+      "float_cast_overflow": "fired",
+      "clean": "clean",
+      "all_as_expected": true,
+      "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+     },
+     "gcc": {
+      "heap_oob_read": "fired",
+      "stack_oob_read": "fired",
+      "signed_overflow": "fired",
+      "shift_overflow": "fired",
+      "float_cast_overflow": "fired",
+      "clean": "clean",
+      "all_as_expected": true,
+      "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+     }
+    }
+   },
+   "attribution": {
+    "script": "systems/his2trans/attribute.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/attribute.py --diff /work/results/his2trans_diff.json --build /b/attr3 --out /work/results/his2trans_attribution.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "?",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-14T06:35:19+00:00",
+    "wall_seconds": 77,
+    "diff_input": "/work/results/his2trans_diff.json",
+    "patches": {
+     "buffer": {
+      "H2T-BUF-1": [
+       [
+        "src/src_buffer.rs",
+        "    _len: size_t,\n) -> c_int {\n    let len = data.len();",
+        "    _len: size_t,\n) -> c_int {\n    let len = _len as usize;\n    let data = &data[..core::cmp::min(len, data.len())];"
+       ],
+       [
+        "src/src_buffer.rs",
+        "    b.storage[start..start + len].copy_from_slice(data);",
+        "    let len = data.len();\n    b.storage[start..start + len].copy_from_slice(data);"
+       ]
+      ],
+      "H2T-BUF-2": [
+       [
+        "src/src_buffer.rs",
+        "    if b.storage.is_empty() || needle.is_empty() {\n        return -1;\n    }",
+        "    if needle.is_empty() {\n        return 0;\n    }\n    if b.storage.is_empty() {\n        return -1;\n    }"
+       ]
+      ],
+      "H2T-BUF-3": [
+       [
+        "src/src_buffer.rs",
+        "    // _len kept for backward compatibility; actual length is data.len().\n    buffer_new_with_slice(data)",
+        "    let p = buffer_new_with_slice(data);\n    unsafe { (*p).len = _len; }\n    p"
+       ]
+      ],
+      "H2T-BUF-4": [
+       [
+        "src/src_buffer.rs",
+        "    b.storage\n        .copy_within(b.data_offset..b.data_offset + prev + 1, b.data_offset + len);",
+        "    let end = core::cmp::min(b.data_offset + len + 1, b.storage.len() - len);\n    b.storage\n        .copy_within(b.data_offset..end, b.data_offset + len);"
+       ]
+      ],
+      "H2T-BUF-5": [
+       [
+        "src/src_buffer.rs",
+        "    b.storage.resize(n + 1, 0u8);",
+        "    b.storage.resize(n + 1, 0u8);\n    b.storage[n] = 0u8;"
+       ]
+      ],
+      "H2T-BUF-6": [
+       [
+        "src/src_buffer.rs",
+        "    let start = b.data_offset + prev;",
+        "    let prev = content_len(b);\n    let start = b.data_offset + prev;"
+       ]
+      ]
+     },
+     "genann": {
+      "H2T-GEN-1": [
+       [
+        "src/src_genann.rs",
+        "    static STATE: AtomicU64 = AtomicU64::new(1);\n    let old = STATE.load(Ordering::Relaxed);\n    let new = old.wrapping_mul(1664525).wrapping_add(1013904223);\n    STATE.store(new, Ordering::Relaxed);\n    (new & 0x7FFFFFFF) as f64 / 0x7FFFFFFF as f64",
+        "    unsafe { libc::rand() as f64 / libc::RAND_MAX as f64 }"
+       ]
+      ]
+     },
+     "rgba": {
+      "H2T-RGBA-1": [
+       [
+        "src/src_rgba.rs",
+        "            (rgba.r * 255.0) as u8,\n            (rgba.g * 255.0) as u8,\n            (rgba.b * 255.0) as u8\n",
+        "            (rgba.r * 255.0) as i32,\n            (rgba.g * 255.0) as i32,\n            (rgba.b * 255.0) as i32\n"
+       ],
+       [
+        "src/src_rgba.rs",
+        "            (rgba.r * 255.0) as u8,\n            (rgba.g * 255.0) as u8,\n            (rgba.b * 255.0) as u8,\n",
+        "            (rgba.r * 255.0) as i32,\n            (rgba.g * 255.0) as i32,\n            (rgba.b * 255.0) as i32,\n"
+       ]
+      ]
+     }
+    }
+   },
+   "power": {
+    "script": "systems/his2trans/power.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/power.py --diff /work/results/his2trans_diff.json --auto qsort,quadtree,avl,urlparser --cap 40 --out /work/results/his2trans_power.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "801e8c7",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-13T23:36:55+00:00",
+    "wall_seconds": 709,
+    "diff_inputs": [
+     "/work/results/his2trans_diff.json"
+    ],
+    "selection": "all candidates, thinned evenly to --cap (deterministic)"
+   },
+   "own_check": {
+    "script": "systems/his2trans/own_check.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/own_check.py /b/own_check2 (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "801e8c7",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-13T23:25:05+00:00",
+    "artifact_script": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/scripts/run_oss_rq2_rust_tests.py (steps 1-2 of reproduce.sh)"
+   },
+   "xcheck": {
+    "script": "systems/his2trans/xcheck.py",
+    "command": "systems/his2trans/xcheck.py combine results/his2trans_xcheck_186_release.json results/his2trans_xcheck_199_release.json results/his2trans_xcheck_186_debug.json --out results/his2trans_xcheck.json",
+    "inputs_provenance": {
+     "his2trans_xcheck_186_release.json": {
+      "script": "systems/his2trans/xcheck.py",
+      "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile release --build /b/xc3 --out /work/results/his2trans_xcheck_186_release.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+      "git_rev": "801e8c7",
+      "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+      "host": "desktop (x86_64, 20 cores)",
+      "arch": "x86_64",
+      "kernel": "7.0.0-38-generic",
+      "docker_image": "crust-heldout-plus186",
+      "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+      "toolchains": {
+       "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+       "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+       "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+       "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+       "python": "3.10.12"
+      },
+      "sanitizer_cflags": {
+       "clang": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all",
+        "-fno-pie"
+       ],
+       "gcc": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all"
+       ]
+      },
+      "sanitizer_env": {
+       "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+       "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+      },
+      "date": "2026-11-14T00:03:57+00:00"
+     },
+     "his2trans_xcheck_199_release.json": {
+      "script": "systems/his2trans/xcheck.py",
+      "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile release --build /b/xc3_199 --out /work/results/his2trans_xcheck_199_release.json (docker image rust:1.99.1-bookworm sha256:7085845219c18e7c5b1f34ed9ce89b84f822f2e3d54a02774cedc996ac0f304f)",
+      "git_rev": "801e8c7",
+      "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+      "host": "desktop (x86_64, 20 cores)",
+      "arch": "x86_64",
+      "kernel": "7.0.0-38-generic",
+      "docker_image": "rust:1.99.1-bookworm",
+      "docker_image_id": "sha256:7085845219c18e7c5b1f34ed9ce89b84f822f2e3d54a02774cedc996ac0f304f",
+      "toolchains": {
+       "gcc": "gcc (Debian 12.2.0-14+deb12u1) 12.2.0",
+       "clang": "ABSENT",
+       "rustc_in_this_container": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+       "cargo_in_this_container": "cargo 1.99.1 (5f94df478 2026-08-27)",
+       "python": "3.11.2"
+      },
+      "sanitizer_cflags": {
+       "clang": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all",
+        "-fno-pie"
+       ],
+       "gcc": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all"
+       ]
+      },
+      "sanitizer_env": {
+       "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+       "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+      },
+      "date": "2026-11-14T00:04:58+00:00"
+     },
+     "his2trans_xcheck_186_debug.json": {
+      "script": "systems/his2trans/xcheck.py",
+      "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile debug --build /b/xc3 --out /work/results/his2trans_xcheck_186_debug.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+      "git_rev": "801e8c7",
+      "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+      "host": "desktop (x86_64, 20 cores)",
+      "arch": "x86_64",
+      "kernel": "7.0.0-38-generic",
+      "docker_image": "crust-heldout-plus186",
+      "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+      "toolchains": {
+       "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+       "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+       "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+       "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+       "python": "3.10.12"
+      },
+      "sanitizer_cflags": {
+       "clang": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all",
+        "-fno-pie"
+       ],
+       "gcc": [
+        "-O0",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all"
+       ]
+      },
+      "sanitizer_env": {
+       "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+       "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+      },
+      "date": "2026-11-14T00:04:12+00:00"
+     }
+    },
+    "date": "2026-11-14T00:05:12+00:00"
+   }
+  }
+ }
+}

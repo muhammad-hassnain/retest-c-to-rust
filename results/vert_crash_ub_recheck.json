@@ -1,0 +1,3822 @@
+{
+  "provenance": {
+    "script": "systems/vert/toolchain_crash_recheck.py",
+    "mode": "crash",
+    "command": "RUSTUP_TOOLCHAIN=1.86.0 python3 systems/vert/toolchain_crash_recheck.py crash --jobs 3 --out /out/vert_crash_ub_recheck.json",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "mac-host Darwin arm64, docker --cpus 3",
+    "arch": "aarch64",
+    "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+    "toolchains": {
+      "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+      "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+      "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1"
+    },
+    "full_rule": "-- an input is C-clean iff, on that input, the ORIGINAL C (the primary harness's own driver\nsource, run.build_c / run_arrays.build_c):\n  1. gcc  -O0 -fsanitize=address,undefined                                    reports nothing\n  2. clang-14 -O0 and -O2 -fsanitize=address,undefined,float-cast-overflow,float-divide-by-zero\n     reports nothing                                  (-fno-sanitize-recover=all everywhere)\n  3. clang-14 -O1 -fsanitize=memory reports nothing (recorded 'unavailable' if MSan cannot start)\n  4. prints the same value under gcc -O0/-O1/-O2 and clang-14 -O0/-O1/-O2 (all -fwrapv, as the primary)\n  5. prints the same value under gcc -O1 -fwrapv -fsigned-char and -funsigned-char\nand the translation still diverges there (Rust panics / wrong value) -- the Rust binary is the\nprimary's (rustc 1.86.0 -O).",
+    "date_utc": "2026-11-13T23:29:49.934623+00:00",
+    "date_start_utc": "2026-11-13T23:21:52.777227+00:00"
+  },
+  "summary": {
+    "defects": 4,
+    "with_passing_exposing_input": [
+      "VERT-CEILING_IN_A_SORTED_ARRAY-1",
+      "VERT-SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1-1",
+      "VERT-HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1-2",
+      "VERT-MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C-2"
+    ],
+    "without_passing_exposing_input": [],
+    "char_signedness_changes_harness_counts": [],
+    "per_defect": {
+      "VERT-CEILING_IN_A_SORTED_ARRAY-1": {
+        "func": "CEILING_IN_A_SORTED_ARRAY",
+        "harness": "arrays",
+        "crash_exposing_inputs": 20,
+        "passing_full_rule": 5,
+        "failing_by_check": {
+          "gcc_san": 15,
+          "clang_fullsan": 15,
+          "msan": 0,
+          "msan_infra": 0,
+          "opt_levels_disagree": 0,
+          "char_signedness_disagree": 0
+        },
+        "smallest_passing": {
+          "in": [
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "rust": "panic"
+        },
+        "harness_rust_panic_by_char": {
+          "default": 5,
+          "fsigned_char": 5,
+          "funsigned_char": 5
+        }
+      },
+      "VERT-SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1-1": {
+        "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1",
+        "harness": "arrays",
+        "crash_exposing_inputs": 25,
+        "passing_full_rule": 21,
+        "failing_by_check": {
+          "gcc_san": 4,
+          "clang_fullsan": 4,
+          "msan": 0,
+          "msan_infra": 0,
+          "opt_levels_disagree": 4,
+          "char_signedness_disagree": 0
+        },
+        "smallest_passing": {
+          "in": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "c": "1",
+          "rust": "panic"
+        },
+        "harness_rust_panic_by_char": {
+          "default": 21,
+          "fsigned_char": 21,
+          "funsigned_char": 21
+        }
+      },
+      "VERT-HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1-2": {
+        "func": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1",
+        "harness": "arrays",
+        "crash_exposing_inputs": 12,
+        "passing_full_rule": 12,
+        "failing_by_check": {
+          "gcc_san": 0,
+          "clang_fullsan": 0,
+          "msan": 0,
+          "msan_infra": 0,
+          "opt_levels_disagree": 0,
+          "char_signedness_disagree": 0
+        },
+        "smallest_passing": {
+          "in": [
+            0,
+            0,
+            1
+          ],
+          "c": "1",
+          "rust": "panic"
+        },
+        "harness_rust_panic_by_char": {
+          "default": 12,
+          "fsigned_char": 12,
+          "funsigned_char": 12
+        }
+      },
+      "VERT-MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C-2": {
+        "func": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+        "harness": "scalar",
+        "crash_exposing_inputs": 64,
+        "passing_full_rule": 64,
+        "failing_by_check": {
+          "gcc_san": 0,
+          "clang_fullsan": 0,
+          "msan": 0,
+          "msan_infra": 0,
+          "opt_levels_disagree": 0,
+          "char_signedness_disagree": 0
+        },
+        "smallest_passing": {
+          "in": [
+            1,
+            0,
+            0,
+            97
+          ],
+          "c": "-1",
+          "rust": "panic"
+        },
+        "harness_rust_panic_by_char": {
+          "default": 64,
+          "fsigned_char": 64,
+          "funsigned_char": 64
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "func": "CEILING_IN_A_SORTED_ARRAY",
+      "defect_id": "VERT-CEILING_IN_A_SORTED_ARRAY-1",
+      "harness": "arrays",
+      "status": "checked",
+      "grid_cases": 30,
+      "crash_exposing_inputs": 20,
+      "passing_full_rule": 5,
+      "failing_by_check": {
+        "gcc_san": 15,
+        "clang_fullsan": 15,
+        "msan": 0,
+        "msan_infra": 0,
+        "opt_levels_disagree": 0,
+        "char_signedness_disagree": 0
+      },
+      "variant_build_errors": {},
+      "smallest_passing": {
+        "in": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "c": "-1",
+        "gcc_san_O0": "clean",
+        "clang_fullsan_O0": "clean",
+        "clang_fullsan_O2": "clean",
+        "clang_msan_O1": "clean",
+        "values": {
+          "gcc_O0": "-1",
+          "gcc_O2": "-1",
+          "clang_O0": "-1",
+          "clang_O1": "-1",
+          "clang_O2": "-1",
+          "gcc_O1_fsigned_char": "-1",
+          "gcc_O1_funsigned_char": "-1"
+        },
+        "opt_levels_agree": true,
+        "char_signedness_agree": true,
+        "passes_full_rule": true,
+        "rust": "panic"
+      },
+      "non_passing_examples": [
+        {
+          "in": [
+            0,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcde075b8 at pc 0xaaaab9e51ab0 bp 0xffffcde074e0 sp 0xffffcde074d0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffdb8fd5a8 at pc 0xaaaab2401bc4 bp 0xffffdb8f92d0 sp 0xffffdb8f92c8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe57bfec8 at pc 0xaaaad50c1878 bp 0xffffe57bbd80 sp 0xffffe57bbd78",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd3a64ba8 at pc 0xaaaab2f61ab0 bp 0xffffd3a64ad0 sp 0xffffd3a64ac0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd9124a48 at pc 0xaaaacbb21bc4 bp 0xffffd9120770 sp 0xffffd9120768",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd3aa1f48 at pc 0xaaaadb4a1878 bp 0xffffd3a9de00 sp 0xffffd3a9ddf8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc1391f68 at pc 0xaaaacb461ab0 bp 0xffffc1391e90 sp 0xffffc1391e80",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcdd57968 at pc 0xaaaaad2a1bc4 bp 0xffffcdd53690 sp 0xffffcdd53688",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc1bac648 at pc 0xaaaab0921878 bp 0xffffc1ba8500 sp 0xffffc1ba84f8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        }
+      ],
+      "harness_counts_by_char_signedness": {
+        "default": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 5,
+          "ub": 15,
+          "timeout": 0
+        },
+        "fsigned_char": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 5,
+          "ub": 15,
+          "timeout": 0
+        },
+        "funsigned_char": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 5,
+          "ub": 15,
+          "timeout": 0
+        }
+      },
+      "char_signedness_changes_harness_counts": false,
+      "all_checked": [
+        {
+          "in": [
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcde075b8 at pc 0xaaaab9e51ab0 bp 0xffffcde074e0 sp 0xffffcde074d0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffdb8fd5a8 at pc 0xaaaab2401bc4 bp 0xffffdb8f92d0 sp 0xffffdb8f92c8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe57bfec8 at pc 0xaaaad50c1878 bp 0xffffe57bbd80 sp 0xffffe57bbd78",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            1,
+            1,
+            1
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd3a64ba8 at pc 0xaaaab2f61ab0 bp 0xffffd3a64ad0 sp 0xffffd3a64ac0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd9124a48 at pc 0xaaaacbb21bc4 bp 0xffffd9120770 sp 0xffffd9120768",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd3aa1f48 at pc 0xaaaadb4a1878 bp 0xffffd3a9de00 sp 0xffffd3a9ddf8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc1391f68 at pc 0xaaaacb461ab0 bp 0xffffc1391e90 sp 0xffffc1391e80",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcdd57968 at pc 0xaaaaad2a1bc4 bp 0xffffcdd53690 sp 0xffffcdd53688",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc1bac648 at pc 0xaaaab0921878 bp 0xffffc1ba8500 sp 0xffffc1ba84f8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffdb013be8 at pc 0xaaaae5231ab0 bp 0xffffdb013b10 sp 0xffffdb013b00",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff609dbc8 at pc 0xaaaadd301bc4 bp 0xfffff60998f0 sp 0xfffff60998e8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd48a1668 at pc 0xaaaae6f01878 bp 0xffffd489d520 sp 0xffffd489d518",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd46e6578 at pc 0xaaaad64d1ab0 bp 0xffffd46e64a0 sp 0xffffd46e6490",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffffabdfa48 at pc 0xaaaad0121bc4 bp 0xfffffabdb770 sp 0xfffffabdb768",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe8396288 at pc 0xaaaacfb01878 bp 0xffffe8392140 sp 0xffffe8392138",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffceb17408 at pc 0xaaaacafb1ab0 bp 0xffffceb17330 sp 0xffffceb17320",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffde96d488 at pc 0xaaaae7ff1bc4 bp 0xffffde9691b0 sp 0xffffde9691a8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffffe5d8368 at pc 0xaaaab8f01878 bp 0xfffffe5d4220 sp 0xfffffe5d4218",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd53c7e98 at pc 0xaaaae8941ab0 bp 0xffffd53c7dc0 sp 0xffffd53c7db0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffdc245548 at pc 0xaaaacb7f1bc4 bp 0xffffdc241270 sp 0xffffdc241268",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff7ccf9e8 at pc 0xaaaac3ed1878 bp 0xfffff7ccb8a0 sp 0xfffff7ccb898",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            2,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe26dbbd8 at pc 0xaaaaafe11ab0 bp 0xffffe26dbb00 sp 0xffffe26dbaf0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe5ef0548 at pc 0xaaaac5dc1bc4 bp 0xffffe5eec270 sp 0xffffe5eec268",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc0bcbfa8 at pc 0xaaaacaac1878 bp 0xffffc0bc7e60 sp 0xffffc0bc7e58",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd9d47538 at pc 0xaaaaea4e1ab0 bp 0xffffd9d47460 sp 0xffffd9d47450",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff9abcc08 at pc 0xaaaabe771bc4 bp 0xfffff9ab8930 sp 0xfffff9ab8928",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd8651aa8 at pc 0xaaaacdf11878 bp 0xffffd864d960 sp 0xffffd864d958",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffffecfb088 at pc 0xaaaac2321ab0 bp 0xfffffecfafb0 sp 0xfffffecfafa0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe500d428 at pc 0xaaaae1841bc4 bp 0xffffe5009150 sp 0xffffe5009148",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcacfa9c8 at pc 0xaaaad2751878 bp 0xffffcacf6880 sp 0xffffcacf6878",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffefdb4e08 at pc 0xaaaabbe31ab0 bp 0xffffefdb4d30 sp 0xffffefdb4d20",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd7f53228 at pc 0xaaaabd3a1bc4 bp 0xffffd7f4ef50 sp 0xffffd7f4ef48",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffcc8adf08 at pc 0xaaaaae3a1878 bp 0xffffcc8a9dc0 sp 0xffffcc8a9db8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            3,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff53d1fb8 at pc 0xaaaad74e1ab0 bp 0xfffff53d1ee0 sp 0xfffff53d1ed0",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffffe74cd68 at pc 0xaaaaca9b1bc4 bp 0xfffffe748a90 sp 0xfffffe748a88",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe3366008 at pc 0xaaaac2851878 bp 0xffffe3361ec0 sp 0xffffe3361eb8",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            5,
+            4,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe97f9738 at pc 0xaaaab4661ab0 bp 0xffffe97f9660 sp 0xffffe97f9650",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff213f388 at pc 0xaaaab3c01bc4 bp 0xfffff213b0b0 sp 0xfffff213b0a8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffc09417c8 at pc 0xaaaad15b1878 bp 0xffffc093d680 sp 0xffffc093d678",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            7,
+            7,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff9bb4e68 at pc 0xaaaab3241ab0 bp 0xfffff9bb4d90 sp 0xfffff9bb4d80",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffd1d82f88 at pc 0xaaaad2811bc4 bp 0xffffd1d7ecb0 sp 0xffffd1d7eca8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe2aafbc8 at pc 0xaaaab5041878 bp 0xffffe2aaba80 sp 0xffffe2aaba78",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            100,
+            1,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffffd55d268 at pc 0xaaaae0e71ab0 bp 0xfffffd55d190 sp 0xfffffd55d180",
+          "clang_fullsan_O0": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xfffff701bd88 at pc 0xaaaad0c51bc4 bp 0xfffff7017ab0 sp 0xfffff7017aa8",
+          "clang_fullsan_O2": "ub: ERROR: AddressSanitizer: stack-buffer-overflow on address 0xffffe0f27fe8 at pc 0xaaaaca9a1878 bp 0xffffe0f23ea0 sp 0xffffe0f23e98",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        }
+      ]
+    },
+    {
+      "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1",
+      "defect_id": "VERT-SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1-1",
+      "harness": "arrays",
+      "status": "checked",
+      "grid_cases": 30,
+      "crash_exposing_inputs": 25,
+      "passing_full_rule": 21,
+      "failing_by_check": {
+        "gcc_san": 4,
+        "clang_fullsan": 4,
+        "msan": 0,
+        "msan_infra": 0,
+        "opt_levels_disagree": 4,
+        "char_signedness_disagree": 0
+      },
+      "variant_build_errors": {},
+      "smallest_passing": {
+        "in": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          1
+        ],
+        "c": "1",
+        "gcc_san_O0": "clean",
+        "clang_fullsan_O0": "clean",
+        "clang_fullsan_O2": "clean",
+        "clang_msan_O1": "clean",
+        "values": {
+          "gcc_O0": "1",
+          "gcc_O2": "1",
+          "clang_O0": "1",
+          "clang_O1": "1",
+          "clang_O2": "1",
+          "gcc_O1_fsigned_char": "1",
+          "gcc_O1_funsigned_char": "1"
+        },
+        "opt_levels_agree": true,
+        "char_signedness_agree": true,
+        "passes_full_rule": true,
+        "rust": "panic"
+      },
+      "non_passing_examples": [
+        {
+          "in": [
+            -1,
+            -1,
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 2 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "3071",
+            "clang_O0": "16711679",
+            "clang_O1": "3071",
+            "clang_O2": "3071",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            -1,
+            -1,
+            2,
+            2
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 3 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "786431",
+            "clang_O0": "65279",
+            "clang_O1": "786431",
+            "clang_O2": "786431",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            -1,
+            -2,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 2 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "3071",
+            "clang_O0": "16711679",
+            "clang_O1": "3071",
+            "clang_O2": "3071",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        }
+      ],
+      "harness_counts_by_char_signedness": {
+        "default": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 21,
+          "ub": 4,
+          "timeout": 0
+        },
+        "fsigned_char": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 21,
+          "ub": 4,
+          "timeout": 0
+        },
+        "funsigned_char": {
+          "status": "tested",
+          "kind": "rust_crash",
+          "value": 0,
+          "rust_panic": 21,
+          "ub": 4,
+          "timeout": 0
+        }
+      },
+      "char_signedness_changes_harness_counts": false,
+      "all_checked": [
+        {
+          "in": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 2 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "3071",
+            "clang_O0": "16711679",
+            "clang_O1": "3071",
+            "clang_O2": "3071",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            1,
+            0,
+            1,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1,
+            0,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1,
+            0,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            1,
+            0,
+            1,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            -1,
+            -1,
+            2,
+            2
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 3 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "786431",
+            "clang_O0": "65279",
+            "clang_O1": "786431",
+            "clang_O2": "786431",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            0,
+            2,
+            0,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            -1,
+            -2,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "ub: runtime error: index 2 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 2 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "3071",
+            "clang_O0": "16711679",
+            "clang_O1": "3071",
+            "clang_O2": "3071",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            1,
+            2,
+            1,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            3,
+            1,
+            3,
+            1,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            -1,
+            -2,
+            2,
+            2
+          ],
+          "c": "3070",
+          "gcc_san_O0": "ub: runtime error: index 3 out of bounds for type 'int [*]'",
+          "clang_fullsan_O0": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_fullsan_O2": "ub: runtime error: index 3 out of bounds for type 'int[W + 1]'",
+          "clang_msan_O1": "clean",
+          "clang_msan_O1_value": "0",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "786431",
+            "clang_O0": "65279",
+            "clang_O1": "786431",
+            "clang_O2": "786431",
+            "gcc_O1_fsigned_char": "3070",
+            "gcc_O1_funsigned_char": "3070"
+          },
+          "opt_levels_agree": false,
+          "char_signedness_agree": true,
+          "passes_full_rule": false,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            3,
+            1,
+            3,
+            1,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            5,
+            4,
+            5,
+            4,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            5,
+            4,
+            5,
+            4,
+            2,
+            2
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            7,
+            7,
+            7,
+            7,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            7,
+            7,
+            7,
+            7,
+            2,
+            2
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            100,
+            1,
+            100,
+            1,
+            1,
+            1
+          ],
+          "c": "0",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "0",
+            "gcc_O2": "0",
+            "clang_O0": "0",
+            "clang_O1": "0",
+            "clang_O2": "0",
+            "gcc_O1_fsigned_char": "0",
+            "gcc_O1_funsigned_char": "0"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            100,
+            1,
+            100,
+            1,
+            2,
+            2
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        }
+      ]
+    },
+    {
+      "func": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1",
+      "defect_id": "VERT-HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1-2",
+      "harness": "arrays",
+      "status": "checked",
+      "grid_cases": 30,
+      "crash_exposing_inputs": 12,
+      "passing_full_rule": 12,
+      "failing_by_check": {
+        "gcc_san": 0,
+        "clang_fullsan": 0,
+        "msan": 0,
+        "msan_infra": 0,
+        "opt_levels_disagree": 0,
+        "char_signedness_disagree": 0
+      },
+      "variant_build_errors": {},
+      "smallest_passing": {
+        "in": [
+          0,
+          0,
+          1
+        ],
+        "c": "1",
+        "gcc_san_O0": "clean",
+        "clang_fullsan_O0": "clean",
+        "clang_fullsan_O2": "clean",
+        "clang_msan_O1": "clean",
+        "values": {
+          "gcc_O0": "1",
+          "gcc_O2": "1",
+          "clang_O0": "1",
+          "clang_O1": "1",
+          "clang_O2": "1",
+          "gcc_O1_fsigned_char": "1",
+          "gcc_O1_funsigned_char": "1"
+        },
+        "opt_levels_agree": true,
+        "char_signedness_agree": true,
+        "passes_full_rule": true,
+        "rust": "panic"
+      },
+      "non_passing_examples": [],
+      "harness_counts_by_char_signedness": {
+        "default": {
+          "status": "tested",
+          "kind": "value",
+          "value": 3,
+          "rust_panic": 12,
+          "ub": 0,
+          "timeout": 0
+        },
+        "fsigned_char": {
+          "status": "tested",
+          "kind": "value",
+          "value": 3,
+          "rust_panic": 12,
+          "ub": 0,
+          "timeout": 0
+        },
+        "funsigned_char": {
+          "status": "tested",
+          "kind": "value",
+          "value": 3,
+          "rust_panic": 12,
+          "ub": 0,
+          "timeout": 0
+        }
+      },
+      "char_signedness_changes_harness_counts": false,
+      "all_checked": [
+        {
+          "in": [
+            0,
+            0,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            -1,
+            -2,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            2,
+            2,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            3,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            5,
+            4,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            7,
+            7,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            100,
+            1,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        }
+      ]
+    },
+    {
+      "func": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+      "defect_id": "VERT-MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C-2",
+      "harness": "scalar",
+      "status": "checked",
+      "grid_cases": 80,
+      "crash_exposing_inputs": 64,
+      "passing_full_rule": 64,
+      "failing_by_check": {
+        "gcc_san": 0,
+        "clang_fullsan": 0,
+        "msan": 0,
+        "msan_infra": 0,
+        "opt_levels_disagree": 0,
+        "char_signedness_disagree": 0
+      },
+      "variant_build_errors": {},
+      "smallest_passing": {
+        "in": [
+          1,
+          0,
+          0,
+          97
+        ],
+        "c": "-1",
+        "gcc_san_O0": "clean",
+        "clang_fullsan_O0": "clean",
+        "clang_fullsan_O2": "clean",
+        "clang_msan_O1": "clean",
+        "values": {
+          "gcc_O0": "-1",
+          "gcc_O2": "-1",
+          "clang_O0": "-1",
+          "clang_O1": "-1",
+          "clang_O2": "-1",
+          "gcc_O1_fsigned_char": "-1",
+          "gcc_O1_funsigned_char": "-1"
+        },
+        "opt_levels_agree": true,
+        "char_signedness_agree": true,
+        "passes_full_rule": true,
+        "rust": "panic"
+      },
+      "non_passing_examples": [],
+      "harness_counts_by_char_signedness": {
+        "default": {
+          "status": "tested",
+          "value": 4,
+          "rust_panic": 64,
+          "ub": 0,
+          "timeout": 0,
+          "rust_hang": 0
+        },
+        "fsigned_char": {
+          "status": "tested",
+          "value": 4,
+          "rust_panic": 64,
+          "ub": 0,
+          "timeout": 0,
+          "rust_hang": 0
+        },
+        "funsigned_char": {
+          "status": "tested",
+          "value": 4,
+          "rust_panic": 64,
+          "ub": 0,
+          "timeout": 0,
+          "rust_hang": 0
+        }
+      },
+      "char_signedness_changes_harness_counts": false,
+      "all_checked": [
+        {
+          "in": [
+            1,
+            0,
+            0,
+            97
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            97,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            194,
+            0
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            0,
+            0,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            1,
+            97,
+            0
+          ],
+          "c": "194",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "194",
+            "gcc_O2": "194",
+            "clang_O0": "194",
+            "clang_O1": "194",
+            "clang_O2": "194",
+            "gcc_O1_fsigned_char": "194",
+            "gcc_O1_funsigned_char": "194"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            1,
+            97,
+            194
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            1,
+            1,
+            97
+          ],
+          "c": "194",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "194",
+            "gcc_O2": "194",
+            "clang_O0": "194",
+            "clang_O1": "194",
+            "clang_O2": "194",
+            "gcc_O1_fsigned_char": "194",
+            "gcc_O1_funsigned_char": "194"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            194,
+            1,
+            97
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            1,
+            194,
+            97
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            0,
+            194,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            194,
+            97,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            511,
+            0,
+            1
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            194,
+            1,
+            194
+          ],
+          "c": "194",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "194",
+            "gcc_O2": "194",
+            "clang_O0": "194",
+            "clang_O1": "194",
+            "clang_O2": "194",
+            "gcc_O1_fsigned_char": "194",
+            "gcc_O1_funsigned_char": "194"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            511,
+            1,
+            0
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            97,
+            1,
+            0
+          ],
+          "c": "511",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "511",
+            "gcc_O2": "511",
+            "clang_O0": "511",
+            "clang_O1": "511",
+            "clang_O2": "511",
+            "gcc_O1_fsigned_char": "511",
+            "gcc_O1_funsigned_char": "511"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            1,
+            512,
+            0
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            97,
+            511,
+            1
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            1,
+            97,
+            1
+          ],
+          "c": "512",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "512",
+            "gcc_O2": "512",
+            "clang_O0": "512",
+            "clang_O1": "512",
+            "clang_O2": "512",
+            "gcc_O1_fsigned_char": "512",
+            "gcc_O1_funsigned_char": "512"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            511,
+            0,
+            97
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            0,
+            0,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            512,
+            0,
+            0
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            194,
+            0,
+            511
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            1,
+            194,
+            1
+          ],
+          "c": "511",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "511",
+            "gcc_O2": "511",
+            "clang_O0": "511",
+            "clang_O1": "511",
+            "clang_O2": "511",
+            "gcc_O1_fsigned_char": "511",
+            "gcc_O1_funsigned_char": "511"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            97,
+            1,
+            512
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            1,
+            512,
+            97
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            0,
+            97,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            97,
+            0,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            194,
+            511,
+            97
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            0,
+            97,
+            512
+          ],
+          "c": "4",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "4",
+            "gcc_O2": "4",
+            "clang_O0": "4",
+            "clang_O1": "4",
+            "clang_O2": "4",
+            "gcc_O1_fsigned_char": "4",
+            "gcc_O1_funsigned_char": "4"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            194,
+            512,
+            1
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            512,
+            194,
+            1
+          ],
+          "c": "97",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "97",
+            "gcc_O2": "97",
+            "clang_O0": "97",
+            "clang_O1": "97",
+            "clang_O2": "97",
+            "gcc_O1_fsigned_char": "97",
+            "gcc_O1_funsigned_char": "97"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            97,
+            194,
+            511
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            0,
+            511,
+            194
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            194,
+            97,
+            97
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            0,
+            512,
+            194
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            194,
+            511,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            194,
+            512,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            1,
+            0,
+            512
+          ],
+          "c": "511",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "511",
+            "gcc_O2": "511",
+            "clang_O0": "511",
+            "clang_O1": "511",
+            "clang_O2": "511",
+            "gcc_O1_fsigned_char": "511",
+            "gcc_O1_funsigned_char": "511"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            511,
+            1,
+            1
+          ],
+          "c": "511",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "511",
+            "gcc_O2": "511",
+            "clang_O0": "511",
+            "clang_O1": "511",
+            "clang_O2": "511",
+            "gcc_O1_fsigned_char": "511",
+            "gcc_O1_funsigned_char": "511"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            0,
+            512,
+            511
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            511,
+            511,
+            0
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            97,
+            511,
+            0
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            511,
+            0,
+            97
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            512,
+            0,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            1,
+            512,
+            97
+          ],
+          "c": "511",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "511",
+            "gcc_O2": "511",
+            "clang_O0": "511",
+            "clang_O1": "511",
+            "clang_O2": "511",
+            "gcc_O1_fsigned_char": "511",
+            "gcc_O1_funsigned_char": "511"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            97,
+            511,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            0,
+            512,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            97,
+            512,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            97,
+            97,
+            511
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            512,
+            194,
+            0
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            512,
+            511,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            512,
+            1,
+            511
+          ],
+          "c": "194",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "194",
+            "gcc_O2": "194",
+            "clang_O0": "194",
+            "clang_O1": "194",
+            "clang_O2": "194",
+            "gcc_O1_fsigned_char": "194",
+            "gcc_O1_funsigned_char": "194"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            194,
+            1,
+            511
+          ],
+          "c": "512",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "512",
+            "gcc_O2": "512",
+            "clang_O0": "512",
+            "clang_O1": "512",
+            "clang_O2": "512",
+            "gcc_O1_fsigned_char": "512",
+            "gcc_O1_funsigned_char": "512"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            1,
+            512,
+            194,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            511,
+            511,
+            97
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            194,
+            97,
+            512,
+            511
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            194,
+            512,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            511,
+            194,
+            194
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            194,
+            194,
+            512
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            511,
+            512,
+            0,
+            511
+          ],
+          "c": "2",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "2",
+            "gcc_O2": "2",
+            "clang_O0": "2",
+            "clang_O1": "2",
+            "clang_O2": "2",
+            "gcc_O1_fsigned_char": "2",
+            "gcc_O1_funsigned_char": "2"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            511,
+            511,
+            1
+          ],
+          "c": "512",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "512",
+            "gcc_O2": "512",
+            "clang_O0": "512",
+            "clang_O1": "512",
+            "clang_O2": "512",
+            "gcc_O1_fsigned_char": "512",
+            "gcc_O1_funsigned_char": "512"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            512,
+            1,
+            512
+          ],
+          "c": "512",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "512",
+            "gcc_O2": "512",
+            "clang_O0": "512",
+            "clang_O1": "512",
+            "clang_O2": "512",
+            "gcc_O1_fsigned_char": "512",
+            "gcc_O1_funsigned_char": "512"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            97,
+            512,
+            511,
+            511
+          ],
+          "c": "-1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "-1",
+            "gcc_O2": "-1",
+            "clang_O0": "-1",
+            "clang_O1": "-1",
+            "clang_O2": "-1",
+            "gcc_O1_fsigned_char": "-1",
+            "gcc_O1_funsigned_char": "-1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        },
+        {
+          "in": [
+            512,
+            512,
+            194,
+            511
+          ],
+          "c": "1",
+          "gcc_san_O0": "clean",
+          "clang_fullsan_O0": "clean",
+          "clang_fullsan_O2": "clean",
+          "clang_msan_O1": "clean",
+          "values": {
+            "gcc_O0": "1",
+            "gcc_O2": "1",
+            "clang_O0": "1",
+            "clang_O1": "1",
+            "clang_O2": "1",
+            "gcc_O1_fsigned_char": "1",
+            "gcc_O1_funsigned_char": "1"
+          },
+          "opt_levels_agree": true,
+          "char_signedness_agree": true,
+          "passes_full_rule": true,
+          "rust": "panic"
+        }
+      ]
+    }
+  ]
+}

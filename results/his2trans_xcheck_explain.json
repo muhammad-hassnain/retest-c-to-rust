@@ -1,0 +1,125 @@
+{
+ "cases": [
+  {
+   "id": "genann/genann_train/grid/00525",
+   "rc": {
+    "c": 0,
+    "rel": 0,
+    "dbg": 0
+   },
+   "nan_tokens": {
+    "c": {
+     "d:fff8000000000000": 161,
+     "d:7ff8000000000000": 1
+    },
+    "rel": {
+     "d:fff8000000000000": 93,
+     "d:7ff8000000000000": 69
+    },
+    "dbg": {
+     "d:fff8000000000000": 162
+    }
+   },
+   "pairs": {
+    "c-rel": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    },
+    "c-dbg": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    },
+    "rel-dbg": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    }
+   }
+  },
+  {
+   "id": "genann/genann_train/grid/00555",
+   "rc": {
+    "c": 0,
+    "rel": 0,
+    "dbg": 0
+   },
+   "nan_tokens": {
+    "c": {
+     "d:fff8000000000000": 161,
+     "d:7ff8000000000000": 1
+    },
+    "rel": {
+     "d:fff8000000000000": 93,
+     "d:7ff8000000000000": 69
+    },
+    "dbg": {
+     "d:fff8000000000000": 162
+    }
+   },
+   "pairs": {
+    "c-rel": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    },
+    "c-dbg": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    },
+    "rel-dbg": {
+     "raw_stdout_equal": false,
+     "tolerant_first_diff_line": null,
+     "stderr_equal": true
+    }
+   }
+  }
+ ],
+ "provenance": {
+  "script": "systems/his2trans/xcheck_explain.py",
+  "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck_explain.py genann/genann_train/grid/00525 genann/genann_train/grid/00555 --bin c=/b/main/c/genann/genann_ref --bin rel=/b/main/rust/genann_sut/target/release/genann --bin dbg=/b/xcheck/genann_debug/target/debug/genann --out /work/results/his2trans_xcheck_explain.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "801e8c7",
+  "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:55:21+00:00",
+  "bins": {
+   "c": "/b/main/c/genann/genann_ref",
+   "rel": "/b/main/rust/genann_sut/target/release/genann",
+   "dbg": "/b/xcheck/genann_debug/target/debug/genann"
+  }
+ }
+}

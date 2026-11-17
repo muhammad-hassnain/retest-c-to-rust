@@ -1,0 +1,785 @@
+{
+  "provenance": {
+    "script": "systems/vert/run.py (--wide-int and --only added for the arXiv version, issues.md 47; default behaviour unchanged)",
+    "command": "docker run --rm --cpus 6 -v $PWD:/work -w /work crust-stable python3 systems/vert/run.py -n 80 --grid v2 --jobs 6 --wide-int --only CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,COUNT_DIGITS_FACTORIAL_SET_2,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS,DICE_THROW_PROBLEM_1,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,FIND_LARGEST_PRIME_FACTOR_NUMBER,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,NUMBER_N_DIGIT_STEPPING_NUMBERS,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,SUM_PAIRWISE_PRODUCTS_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1 --out results/arxiv_vert_diff_grid2_wide.json",
+    "functions": "the 16 scalar functions results/vert_diff_grid2.json marks non_int_return whose C returns an integer type (long, long long, unsigned long long); the 6 float/double ones stay with the array/float harness",
+    "image": "crust-stable sha256:9428070fb0fd44727fcc35447919f65b8acc8ef20c73dedfdbdbb523aa557951 (the image of results/vert_diff_grid2.json)",
+    "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 6",
+    "arch": "aarch64",
+    "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048 + uncommitted arXiv working tree",
+    "runtime": "90 s wall clock",
+    "date_end_local_mtime": "2026-11-17T07:39:11"
+  },
+  "summary": {
+    "system": "VERT",
+    "benchmark": "c_transcoder",
+    "domain": "in-domain (non-negative, |x|<=512)",
+    "headline": "value_bug = genuine wrong-answer on inputs the ORIGINAL C handles without UB (ASan/UBSan-filtered); rust_panic and ub_only are reported separately and are NOT counted as wrong answers",
+    "grid": "v2: per-arg v1 grid + powers of two +-1 + range ends; 1-arg untruncated; multi-arg spread (R_d) over the v2 grids",
+    "functions_considered": 16,
+    "tested": 13,
+    "agree": 3,
+    "value_bug": 8,
+    "rust_panic": 0,
+    "ub_only": 2,
+    "timeout_only": 0,
+    "san_unavailable": 0,
+    "unsupported": 0,
+    "side_effecting": 0,
+    "c-build-fail": 0,
+    "rust-build-fail": 3,
+    "no-artifact": 0,
+    "value_bug_functions": [
+      "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+      "DICE_THROW_PROBLEM_1",
+      "SUM_PAIRWISE_PRODUCTS",
+      "SUM_PAIRWISE_PRODUCTS_1",
+      "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+      "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+      "COUNT_DIGITS_FACTORIAL_SET_2",
+      "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS"
+    ],
+    "rust_panic_functions": []
+  },
+  "value_bugs": [
+    {
+      "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 3,
+      "rust_panic_c_ok": 0,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            31
+          ],
+          "c": "2620797529",
+          "rust": "-1674169767"
+        },
+        {
+          "in": [
+            32
+          ],
+          "c": "5029557817",
+          "rust": "734590521"
+        },
+        {
+          "in": [
+            33
+          ],
+          "c": "9651169213",
+          "rust": "1061234621"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DICE_THROW_PROBLEM_1",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "c_return": "long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 2,
+      "rust_panic_c_ok": 0,
+      "ub_div": 11,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            257,
+            15,
+            64
+          ],
+          "c": "37387265592825",
+          "rust": "-424718855"
+        },
+        {
+          "in": [
+            128,
+            7,
+            512
+          ],
+          "c": "1884153039916",
+          "rust": "-1337603028"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            381
+          ],
+          "c": "2657063266",
+          "rust": "-1637904030"
+        },
+        {
+          "in": [
+            414
+          ],
+          "c": "3701703720",
+          "rust": "-593263576"
+        },
+        {
+          "in": [
+            446
+          ],
+          "c": "4982986736",
+          "rust": "688019440"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            381
+          ],
+          "c": "2657063266",
+          "rust": "-1637904030"
+        },
+        {
+          "in": [
+            414
+          ],
+          "c": "3701703720",
+          "rust": "-593263576"
+        },
+        {
+          "in": [
+            446
+          ],
+          "c": "4982986736",
+          "rust": "688019440"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long int",
+      "san": true,
+      "msan": false,
+      "alt": false,
+      "value_div": 90,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            14
+          ],
+          "c": "90420300490",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            15
+          ],
+          "c": "1360989424211",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            16
+          ],
+          "c": "21849965489916",
+          "rust": "2147483647"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            9
+          ],
+          "c": "3",
+          "rust": "9"
+        },
+        {
+          "in": [
+            15
+          ],
+          "c": "5",
+          "rust": "15"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "3",
+          "rust": "9"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": false,
+      "value_div": 97,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            4
+          ],
+          "c": "2",
+          "rust": "4"
+        },
+        {
+          "in": [
+            5
+          ],
+          "c": "3",
+          "rust": "5"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 76,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            25
+          ],
+          "c": "4478554083",
+          "rust": "183586787"
+        },
+        {
+          "in": [
+            29
+          ],
+          "c": "152139002499",
+          "rust": "1815147139"
+        },
+        {
+          "in": [
+            31
+          ],
+          "c": "886731088897",
+          "rust": "1967825921"
+        }
+      ],
+      "rust_panic_samples": []
+    }
+  ],
+  "rust_panic_fns": [],
+  "all": [
+    {
+      "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 3,
+      "rust_panic_c_ok": 0,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            31
+          ],
+          "c": "2620797529",
+          "rust": "-1674169767"
+        },
+        {
+          "in": [
+            32
+          ],
+          "c": "5029557817",
+          "rust": "734590521"
+        },
+        {
+          "in": [
+            33
+          ],
+          "c": "9651169213",
+          "rust": "1061234621"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DICE_THROW_PROBLEM_1",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "c_return": "long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 2,
+      "rust_panic_c_ok": 0,
+      "ub_div": 11,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            257,
+            15,
+            64
+          ],
+          "c": "37387265592825",
+          "rust": "-424718855"
+        },
+        {
+          "in": [
+            128,
+            7,
+            512
+          ],
+          "c": "1884153039916",
+          "rust": "-1337603028"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 5,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS_2",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            381
+          ],
+          "c": "2657063266",
+          "rust": "-1637904030"
+        },
+        {
+          "in": [
+            414
+          ],
+          "c": "3701703720",
+          "rust": "-593263576"
+        },
+        {
+          "in": [
+            446
+          ],
+          "c": "4982986736",
+          "rust": "688019440"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            381
+          ],
+          "c": "2657063266",
+          "rust": "-1637904030"
+        },
+        {
+          "in": [
+            414
+          ],
+          "c": "3701703720",
+          "rust": "-593263576"
+        },
+        {
+          "in": [
+            446
+          ],
+          "c": "4982986736",
+          "rust": "688019440"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "c_return": "long long int",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long int",
+      "san": true,
+      "msan": false,
+      "alt": false,
+      "value_div": 90,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            14
+          ],
+          "c": "90420300490",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            15
+          ],
+          "c": "1360989424211",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            16
+          ],
+          "c": "21849965489916",
+          "rust": "2147483647"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            9
+          ],
+          "c": "3",
+          "rust": "9"
+        },
+        {
+          "in": [
+            15
+          ],
+          "c": "5",
+          "rust": "15"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "3",
+          "rust": "9"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long long",
+      "san": true,
+      "msan": false,
+      "alt": false,
+      "value_div": 97,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            4
+          ],
+          "c": "2",
+          "rust": "4"
+        },
+        {
+          "in": [
+            5
+          ],
+          "c": "3",
+          "rust": "5"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 100,
+      "c_return": "long",
+      "san": true,
+      "msan": false,
+      "alt": true,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 76,
+      "timeout_div": 0,
+      "san_infra": 0,
+      "rust_hang": 0,
+      "value_samples": [
+        {
+          "in": [
+            25
+          ],
+          "c": "4478554083",
+          "rust": "183586787"
+        },
+        {
+          "in": [
+            29
+          ],
+          "c": "152139002499",
+          "rust": "1815147139"
+        },
+        {
+          "in": [
+            31
+          ],
+          "c": "886731088897",
+          "rust": "1967825921"
+        }
+      ],
+      "rust_panic_samples": []
+    }
+  ]
+}

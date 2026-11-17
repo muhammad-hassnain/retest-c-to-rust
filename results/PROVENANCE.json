@@ -1,0 +1,3150 @@
+{
+ "about": "Every file under results/ -> the commit of the DEVELOPMENT repository (where the study was run; not shipped) that last changed it, whether this copy differs from that commit, and, where pipeline.json records it, the architecture/image it was produced on. documented_host=null means it is not recorded; nothing is inferred. Written with python3 -I scripts/provenance.py --index --dev-repo DIR; without DIR, --check compares the file list and the documented hosts only.",
+ "commits_from": "development repository",
+ "dev_repo_head_when_written": "975241ca9c7c759f9dbaa45ccf7a63e7333b2a62",
+ "files": {
+  "results/PIPELINE_HASHES.json": {
+   "commit": "d6de2fda191434e0a0c89f10c750a3e952552edd",
+   "commit_date": "2026-11-17T19:17:55-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/actoruw_build.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_difftest.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_heldout.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_heldout_replay_difftest.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_heldout_summary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_lib_build.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_lib_difftest.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_lib_scan.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_mutation.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_second_rater_memmove.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_suar_exe.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_suar_lib.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_summary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_tc_crosscheck_exe.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_tc_crosscheck_lib.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_ub_filter.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_ub_filter_lib.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/actoruw_ub_filter_replay.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/adatrans_confirm_run1.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/adatrans_diff_run1.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/adatrans_heldout.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/adatrans_mutation_run1.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/adatrans_summary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_actoruw_pinned_toolchain.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_c2saferrust_head_aarch64.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_flourine_devprofile.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_flourine_devprofile_scalar.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_flourine_devprofile_struct.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_harness_power_ubfiltered.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_harness_power_ubfiltered_vert.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_heldout_flourine_fuzzprofile.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_heldout_vert_wide.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_actor.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_c2saferrust.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_flourine.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_flourine_fuzzprofile.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_sactor.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_mutation_ubfilter_vert.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_rustmap_bzip2_check_uncapped.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_sactor_pinned_toolchain.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_syzygy_release.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_vert_diff_grid2_wide.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_real.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_offscript.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_outside_domain.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_pinned_grid2.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/arxiv_vert_ub_fullrule.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_replay.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_unwinding_on.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_verify.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_mutation_combined.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_mutation_primary.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_mutation_ubfilter.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_oracle_confirmation.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_pinned.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_ub_fullrule.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_ub_recheck.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/c2saferrust_ablation.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stage c2saferrust.ablation: where.arch = x86_64"
+   }
+  },
+  "results/c2saferrust_ablation_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64",
+    "source": "pipeline.json, results_without_stage: harness/ablation.py re-run natively on x86_64"
+   }
+  },
+  "results/c2saferrust_acceptance_suite.json": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/c2saferrust_stderr_coverage.json": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/c2saferrust_triage_evidence.json": {
+   "commit": "100d611f22b50b41ab9adcf01340c1d177ab9ce8",
+   "commit_date": "2026-11-03T10:15:33-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/cat_cases_v4.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/cat_diff_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/cat_diff_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "arm64",
+    "source": "pipeline.json, stage c2saferrust.diff_c2rust_baseline: where.arch = arm64"
+   }
+  },
+  "results/cat_mut_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/cat_mut_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/cat_mut_v4full.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/cli_mutation_full.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/code_snippets.json": {
+   "commit": "36b0a8d293f00d7a8f6371bea723c89df3b42f50",
+   "commit_date": "2026-11-17T16:46:42-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/defect_ledger.json": {
+   "commit": "36b0a8d293f00d7a8f6371bea723c89df3b42f50",
+   "commit_date": "2026-11-17T16:46:42-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/flourine_diff.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/flourine_diff_current.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/flourine_mutation.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/flourine_shipped_vs_log.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/flourine_struct.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/flourine_struct_current.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/harness_power.json": {
+   "commit": "36b0a8d293f00d7a8f6371bea723c89df3b42f50",
+   "commit_date": "2026-11-17T16:46:42-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/head_cases_v4.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/head_diff_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/head_diff_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "arm64",
+    "source": "pipeline.json, stage c2saferrust.diff_c2rust_baseline: where.arch = arm64"
+   }
+  },
+  "results/head_mut_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/head_mut_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/head_mut_v4full.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_c2saferrust.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_flourine.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_overlap.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/heldout_rustassure.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_rustmap.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_vert.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/heldout_vert_grid2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/his2trans_attribution.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_diff.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_own_check.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_power.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_summary.json": {
+   "commit": "36b0a8d293f00d7a8f6371bea723c89df3b42f50",
+   "commit_date": "2026-11-17T16:46:42-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/his2trans_upstream_append_n.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_xcheck.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_xcheck_186_debug.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_xcheck_186_release.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_xcheck_199_release.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/his2trans_xcheck_explain.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ledger_probe_c2saferrust.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ledger_probe_rustmap_bzip2.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/oracle_ub_c2saferrust.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/oracle_ub_flourine.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/oracle_ub_pending.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/oracle_ub_rustassure.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/oracle_ub_rustmap_bzip2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/oracle_ub_rustmap_rosetta.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/profile_check.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/profile_check_vert_wide.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ptrtrans_quadtree_diff.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ptrtrans_quadtree_diff_rust1.99.1.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ptrtrans_quadtree_keyfree.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ptrtrans_quadtree_mutation.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/ptrtrans_summary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/rustassure_composability.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rustassure_diff.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rustine_build_1.86.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64",
+    "source": "the file's own \"arch\" field; pipeline.json, stages rustine.build_186 and rustine.build_nightly: where.arch = x86_64"
+   }
+  },
+  "results/rustine_build_nightly-2025-05-25.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64",
+    "source": "the file's own \"arch\" field; pipeline.json, stages rustine.build_186 and rustine.build_nightly: where.arch = x86_64"
+   }
+  },
+  "results/rustmap_bzip2_check.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (amd64 image)",
+    "source": "pipeline.json, stage rustmap.bzip2_check: where.arch = x86_64"
+   }
+  },
+  "results/rustmap_rosetta.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rustmap_rosetta_triage.json": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_grid.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_grid_assembled.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_mutation.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_owntests.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_owntests_assembled.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_crust_partial.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_libogg.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_libogg_heldout.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_libogg_mutation.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/sactor_summary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/second_rater_agreement.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/second_rater_key.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/syzygy_diff.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (amd64 image)",
+    "source": "pipeline.json, stages syzygy.diff and syzygy.empty_deflate: where.arch = x86_64"
+   }
+  },
+  "results/syzygy_empty_deflate.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (amd64 image)",
+    "source": "pipeline.json, stages syzygy.diff and syzygy.empty_deflate: where.arch = x86_64"
+   }
+  },
+  "results/tail_cases_v4.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/tail_diff_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/tail_diff_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "arm64",
+    "source": "pipeline.json, stage c2saferrust.diff_c2rust_baseline: where.arch = arm64"
+   }
+  },
+  "results/tail_mut_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/tail_mut_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/tail_mut_v4full.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/toolchain_audit.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/uniq_cases_v4.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_cases_v5.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_diff_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/uniq_diff_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "arm64",
+    "source": "pipeline.json, stage c2saferrust.diff_c2rust_baseline: where.arch = arm64"
+   }
+  },
+  "results/uniq_diff_v5.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_mut_v4.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image)",
+    "source": "pipeline.json, stages c2saferrust.diff and c2saferrust.mutation: where.arch = x86_64"
+   }
+  },
+  "results/uniq_mut_v4_c2rust_baseline.json": {
+   "commit": "e51a3574c45de70c852282af13c828a55a87a2d0",
+   "commit_date": "2026-11-05T15:14:34-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_mut_v4full.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_v5_new_defects.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/uniq_v5_outfile_ub.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_arrays.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_arrays_adjusted.json": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_arrays_fixed.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_arrays_mutation_primary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_arrays_pinned_nightly.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_bolero_debug.log": {
+   "commit": "f8a74b653bdd9b8db70ea4a0bf43040e1fa60743",
+   "commit_date": "2026-11-06T07:38:33-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_vacuity.json": {
+   "commit": "f8a74b653bdd9b8db70ea4a0bf43040e1fa60743",
+   "commit_date": "2026-11-06T07:38:33-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_vacuity_current.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_crash_ub_recheck.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_diff.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "arm64 (crust-stable image)",
+    "source": "pipeline.json, stage vert.diff_grid_v1: where.arch = arm64"
+   }
+  },
+  "results/vert_diff_fullgrid.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_diff_grid2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_diff_msan_x86.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64",
+    "source": "pipeline.json, results_without_stage: x86 MSan / stable VERT variants"
+   }
+  },
+  "results/vert_diff_pinned_nightly.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_diff_stable_x86.json": {
+   "commit": "5c3171969f325a2793bf6c2903413ed70d4f8328",
+   "commit_date": "2026-11-05T09:26:48-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64",
+    "source": "pipeline.json, results_without_stage: x86 MSan / stable VERT variants"
+   }
+  },
+  "results/vert_diff_x86_fixed.json": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (MSan)",
+    "source": "pipeline.json, stage vert.diff_x86_legacy: where.arch = x86_64 (clang MSan)"
+   }
+  },
+  "results/vert_diff_x86_grid2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_diff_x86_spread.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": {
+    "arch": "x86_64 (crust-heldout image, MSan)",
+    "source": "pipeline.json, stage vert.diff_x86_spread: where.arch = x86_64 (clang MSan)"
+   }
+  },
+  "results/vert_empty_corpus.log": {
+   "commit": "ff1f1a850a7f106e2f20435cede3bbc2a8815b21",
+   "commit_date": "2026-11-06T12:16:20-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_grid2_ub_recheck.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_grid_misses.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_kani_current_check.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_kani_unwinding_on.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_kani_vacuity.json": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_kani_verify_8.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_kani_verify_grid2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_mutation_primary.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_mutation_primary_grid2.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_oracle_confirmation.json": {
+   "commit": "744a537f852c43d83255e05bb9028e5068f898c9",
+   "commit_date": "2026-11-05T22:48:37-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_oracle_params.json": {
+   "commit": "a7f3a6ef737a2e65e0b9b47d255d8d7ae775ba94",
+   "commit_date": "2026-11-06T09:58:30-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_wrong_answer_ub_recheck.json": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": true,
+   "note": "this copy differs from the development repository's (machine identity scrubbed, or rebuilt in this artifact)",
+   "documented_host": null
+  },
+  "results/vert_zenodo_comparison.json": {
+   "commit": "ff1f1a850a7f106e2f20435cede3bbc2a8815b21",
+   "commit_date": "2026-11-06T12:16:20-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/HEXAGONAL_NUMBER.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_GAMES_PLAYED_WINNER.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_GAMES_PLAYED_WINNER.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_GAMES_PLAYED_WINNER.fuzz_30s_real.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_GAMES_PLAYED_WINNER.fuzz_30s_real.a3.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a3.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.fuzz_30s_real.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.fuzz_30s_real.a3.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NTH_NON_FIBONACCI_NUMBER.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NTH_NON_FIBONACCI_NUMBER.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NTH_PENTAGONAL_NUMBER.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_RECTANGLES_NM_GRID.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_TRIANGLES_N_MOVES_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_TRIANGLES_N_MOVES_1.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.rename_diag.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.rename_diag.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.rename_diag.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.rename_diag.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.rename_diag.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.rename_diag.a3.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.fuzz_30s_real.a2.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.fuzz_30s_real.a3.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_BINOMIAL_COEFFICIENTS.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_BINOMIAL_COEFFICIENTS.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_SERIES_12_32_52_2N_12_1.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_SERIES_12_32_52_2N_12_1.fuzz_30s_real.a1.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/SUM_SERIES_555555_N_TERMS.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.fuzz_30s_real.a0.log": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/arxiv_fuzz30_provenance.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/classify.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/container_toolchains.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/date_end_utc.txt": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/main_run.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/part0.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/part1.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/part2.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/part3.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/startup_crash_diag.json": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/startup_diag.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/worker0.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/worker1.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/worker2.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_fuzz30_logs/work/worker3.out": {
+   "commit": "267bfa01a6066a3c15897853c4581b48bd8f5420",
+   "commit_date": "2026-11-16T18:31:45-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_DIGITS_FACTORIAL_SET_2.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_DIGITS_FACTORIAL_SET_2.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_DIGITS_FACTORIAL_SET_2.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/DICE_THROW_PROBLEM_1.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/DICE_THROW_PROBLEM_1.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/DICE_THROW_PROBLEM_1.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/FIND_LARGEST_PRIME_FACTOR_NUMBER.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/FIND_LARGEST_PRIME_FACTOR_NUMBER.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/FIND_LARGEST_PRIME_FACTOR_NUMBER.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/NUMBER_N_DIGIT_STEPPING_NUMBERS.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/NUMBER_N_DIGIT_STEPPING_NUMBERS.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/NUMBER_N_DIGIT_STEPPING_NUMBERS.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS_1.fuzz_30s.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS_1.planted_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_bolero_logs/SUM_PAIRWISE_PRODUCTS_1.vert_reduce.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.fuzz_30s_real.a1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.fuzz_30s_real.a2.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION.fuzz_30s_real.a3.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/COUNT_DIGITS_FACTORIAL_SET_2.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/COUNT_DIGITS_FACTORIAL_SET_2.fuzz_30s_real.a1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/DICE_THROW_PROBLEM_1.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/FIND_LARGEST_PRIME_FACTOR_NUMBER.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/NUMBER_N_DIGIT_STEPPING_NUMBERS.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/SUM_PAIRWISE_PRODUCTS.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/SUM_PAIRWISE_PRODUCTS.fuzz_30s_real.a1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/SUM_PAIRWISE_PRODUCTS_1.fuzz_30s_real.a0.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_fuzz30_logs/SUM_PAIRWISE_PRODUCTS_1.fuzz_30s_real.a1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_logs_unwind_on/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_logs_unwind_on/DICE_THROW_PROBLEM_1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_logs_unwind_on/NUMBER_N_DIGIT_STEPPING_NUMBERS.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_logs_unwind_on/SUM_PAIRWISE_PRODUCTS.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/arxiv_vert_wide_kani_logs_unwind_on/SUM_PAIRWISE_PRODUCTS_1.log": {
+   "commit": "d11d714d66f81535de1dd41f090dad6b3bef37ea",
+   "commit_date": "2026-11-17T08:53:07-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/AREA_OF_A_HEXAGON.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/BIRTHDAY_PARADOX.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COMPUTE_NCR_P_SET_1_INTRODUCTION_AND_DYNAMIC_PROGRAMMING_SOLUTION.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNTING_PAIRS_PERSON_CAN_FORM_PAIR_ONE_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNTS_PATHS_POINT_REACH_ORIGIN_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_DERANGEMENTS_PERMUTATION_SUCH_THAT_NO_ELEMENT_APPEARS_IN_ITS_ORIGINAL_POSITION_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_EVEN_LENGTH_BINARY_SEQUENCES_WITH_SAME_SUM_OF_FIRST_AND_SECOND_HALF_BITS_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_BINARY_STRINGS_WITHOUT_CONSECUTIVE_1S.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_INCREASING_SUBSEQUENCES_SIZE_K.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_OF_WAYS_TO_FILL_A_N_X_4_GRID_USING_1_X_4_TILES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_WAYS_REACH_GIVEN_SCORE_GAME.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_NUMBER_WAYS_TILE_FLOOR_SIZE_N_X_M_USING_1_X_M_SIZE_TILES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_3.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_STRINGS_ADJACENT_CHARACTERS_DIFFERENCE_ONE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_STRINGS_WITH_CONSECUTIVE_1S.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/C_PROGRAM_FACTORIAL_NUMBER_2.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DELANNOY_NUMBER_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DICE_THROW_PROBLEM.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DICE_THROW_PROBLEM_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DYCK_PATH.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DYNAMIC_PROGRAMMING_SET_11_EGG_DROPPING_PUZZLE_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/EULERIAN_NUMBER_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIBONACCI_MODULO_P.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_MINIMUM_NUMBER_OF_COINS_THAT_MAKE_A_CHANGE_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_N_TH_ELEMENT_FROM_STERNS_DIATOMIC_SERIES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_SUM_EVEN_INDEX_BINOMIAL_COEFFICIENTS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_UNIT_DIGIT_X_RAISED_POWER_Y.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FRIENDS_PAIRING_PROBLEM.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/FRIENDS_PAIRING_PROBLEM_2.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/HEXAGONAL_NUMBER.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/HIGHWAY_BILLBOARD_PROBLEM.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/LEONARDO_NUMBER_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MAXIMUM_VALUE_CHOICE_EITHER_DIVIDING_CONSIDERING.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NEWMAN_CONWAY_SEQUENCE_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NTH_NON_FIBONACCI_NUMBER.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NUMBER_N_DIGITS_NON_DECREASING_INTEGERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NUMBER_N_DIGIT_STEPPING_NUMBERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PADOVAN_SEQUENCE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_CALCULATE_AREA_OCTAGON.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_CALCULATE_VOLUME_OCTAHEDRON.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_2.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_FOR_SURFACE_AREA_OF_OCTAHEDRON.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/PROGRAM_PRINT_SUM_GIVEN_NTH_TERM.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SEQUENCES_GIVEN_LENGTH_EVERY_ELEMENT_EQUAL_TWICE_PREVIOUS_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SQUARE_ROOT_OF_AN_INTEGER_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_BINOMIAL_COEFFICIENTS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_DIVISORS_1_N_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_FIBONACCI_NUMBERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_K_TH_GROUP_ODD_POSITIVE_NUMBERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_PAIRWISE_PRODUCTS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_PAIRWISE_PRODUCTS_1.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/SUM_SQUARES_BINOMIAL_COEFFICIENTS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/TILING_WITH_DOMINOES.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/TRIANGULAR_MATCHSTICK_NUMBER.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs/WRITE_YOU_OWN_POWER_WITHOUT_USING_MULTIPLICATION_AND_DIVISION.log": {
+   "commit": "80633f3a1f791dab88204d8712420f531efb2be3",
+   "commit_date": "2026-11-05T17:31:14-08:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/HEXAGONAL_NUMBER.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/NEWMAN_CONWAY_SEQUENCE_1.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/NTH_NON_FIBONACCI_NUMBER.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/SUM_BINOMIAL_COEFFICIENTS.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/kani_logs_unwind_on/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/flourine_diff_spread.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/flourine_spread.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/rustassure_diff_spread.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/rustassure_spread.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/vert_diff_spread.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/vert_diff_spread.log": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/rerun-2026-11-12/vert_grid_comparison.json": {
+   "commit": "994b07e5fd716fc07b0aa99ff6c3b209db422836",
+   "commit_date": "2026-11-12T17:38:12-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEXAGONAL_NUMBER.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEXAGONAL_NUMBER.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/HEXAGONAL_NUMBER.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_GAMES_PLAYED_WINNER.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_GAMES_PLAYED_WINNER.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_GAMES_PLAYED_WINNER.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NEWMAN_CONWAY_SEQUENCE_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NEWMAN_CONWAY_SEQUENCE_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_NON_FIBONACCI_NUMBER.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_NON_FIBONACCI_NUMBER.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_NON_FIBONACCI_NUMBER.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_PENTAGONAL_NUMBER.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_PENTAGONAL_NUMBER.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NTH_PENTAGONAL_NUMBER.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_RECTANGLES_NM_GRID.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_RECTANGLES_NM_GRID.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_RECTANGLES_NM_GRID.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_TRIANGLES_N_MOVES_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_TRIANGLES_N_MOVES_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_TRIANGLES_N_MOVES_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_BINOMIAL_COEFFICIENTS.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_BINOMIAL_COEFFICIENTS.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_BINOMIAL_COEFFICIENTS.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_12_32_52_2N_12_1.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_12_32_52_2N_12_1.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_12_32_52_2N_12_1.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_555555_N_TERMS.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_555555_N_TERMS.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/SUM_SERIES_555555_N_TERMS.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.fuzz_30s.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.planted_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  },
+  "results/vert_bolero_logs_current/rename_diag/NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N.vert_reduce.log": {
+   "commit": "a6e32c136e2e6971d76c2a12624b6fb2629b2e51",
+   "commit_date": "2026-11-14T03:39:35-07:00",
+   "differs_from_that_commit": false,
+   "documented_host": null
+  }
+ },
+ "counts": {
+  "files": 505,
+  "with_dev_commit": 505,
+  "differs_from_dev_commit": 35,
+  "with_documented_host": 24
+ }
+}

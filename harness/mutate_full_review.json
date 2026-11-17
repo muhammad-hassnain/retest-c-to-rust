@@ -1,0 +1,123 @@
+{
+ "_about": "Hand judgments of the seeded review sample (harness/mutate_full_review.py list). verdict: equivalent = no input/environment the harness could supply changes any output channel; non-equivalent = some input changes stdout/exit/stderr vs the C, but the v4 grid lacks it; repairs-defect = the mutation changes the Rust's output only TOWARD the C (it removes C2Rust's duplicated diagnostic), so it is not a fault with respect to the C oracle; undecided = not settled in the time available. Judged from the C2Rust source of <util>.rs. category: equivalent | repairs-defect | grid-lacks-input (an input of the same kind the grid could contain, e.g. a directory before a file, a long option, -f) | harness-fixed-setup (needs a setup the harness never varies: stdin/stdout as a regular file, the input offset left after exit).",
+ "head-arith-208": {
+  "verdict": "non-equivalent",
+  "category": "harness-fixed-setup",
+  "reason": "desired_pos only feeds the final elseek(fd, desired_pos) on seekable input (head.rs:1244); it changes the input file offset left after exit, never the output. The harness gives stdin as a pipe and opens named files privately, so the offset is not observable (the same channel as the head -n -N shared-fd bug in the paper)."
+ },
+ "head-arith-238": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "elide_tail_lines_pipe merges a new read into the last buffer when tmp.nbytes - last.nbytes < 8192 instead of tmp.nbytes + last.nbytes < 8192; with two short pipe reads n1 <= n2, n1 + n2 >= 8192 the memcpy overruns the 8 KiB buffer. Needs >= 8 KiB of stdin delivered in two short reads; the grid's largest stdin is 9006 bytes and is read as 8192 + 814."
+ },
+ "head-arith-260": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "main_0's check for the obsolete `head -N` syntax (argv[1][1] - '0' <= 9) becomes argv[1][1] + '0' <= 9, never true; `head -5 file` then fails with 'invalid trailing option'. The grid never passes -<digits> as argv[1]."
+ },
+ "head-const-351": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "head_bytes' read-error diagnostic becomes error(1, ...), which exits at once instead of continuing to the next file. Reached by `head -c N adir` (52 cases) where the C also ends with exit 1 and prints no more; `head -c 5 adir in1.txt` would differ, but the grid never puts a directory before another file. (Its stderr also loses the duplicated line, i.e. moves toward the C.)"
+ },
+ "head-rel-136": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "have_read_stdin = (1 == 0): the flag only guards the final close(STDIN) error check (head.rs:2460), which cannot fail for the pipe/file stdin any caller supplies."
+ },
+ "head-rel-138": {
+  "verdict": "repairs-defect",
+  "category": "repairs-defect",
+  "reason": "`if 0 != 0` selects between C2Rust's two expansions of error(0, errno, \"cannot open %s\"); the else branch prints the message twice (the inherited S2 duplication). The mutant takes the single-print branch, so its stderr changes on 468 cases but now matches the C; nothing diverges from the C."
+ },
+ "tail-arith-204": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "pipe_lines' *read_pos bookkeeping is only consumed when following (tail.rs:4970 `if forever`, record_open_fd); without -f/-F it is dead. The grid has no follow mode."
+ },
+ "tail-arith-223": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "pipe_bytes drops its first buffer when total + first.nbytes > n_bytes instead of total - first.nbytes > n_bytes, so `tail -c 1000` on a >8 KiB pipe prints only the last short read. The grid's largest -c count is 5, smaller than any final read."
+ },
+ "tail-const-303": {
+  "verdict": "repairs-defect",
+  "category": "repairs-defect",
+  "reason": "`if 0 != 0` -> `if 1 != 0` takes the single-print expansion of the 'error reading' diagnostic instead of C2Rust's duplicated one; stderr changes on 13 cases, toward the C."
+ },
+ "tail-const-307": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "the second (duplicated) 'error reading' call in start_lines becomes error(1, ...), exiting at once; for `tail -n +N adir` the C also ends with exit 1 and no more output, so only a directory followed by another file would differ. Not in the grid."
+ },
+ "tail-const-310": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "start_lines returns -1 instead of 0 after writing the rest of the buffer that holds the start line, so tail_lines returns without dump_remainder. Visible only when the input continues past that 8 KiB buffer (tail -n +N on a >8 KiB input whose line N is in the first buffer); the grid's inputs are at most 9006 bytes with the long line first."
+ },
+ "tail-rel-087": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "f->tailable = !(reopen_inaccessible_files == 0 && fd == -1): `tailable` is read only by the follow loop; without -f/--retry it is dead. The grid has no follow mode."
+ },
+ "cat-const-369": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "the long option --show-all gets has_arg -1 instead of 0; glibc getopt then accepts `--show-all=x` (any nonzero has_arg takes an `=` argument) where the C rejects it. The grid uses short options only."
+ },
+ "cat-rel-006": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "io_blksize only chooses the I/O buffer size (rounding to a power of two for regular files); the bytes written are the same for every buffer size."
+ },
+ "cat-rel-013": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "the mutated comparison picks SIZE_MAX instead of IDX_MAX as the cap in MIN(cap, blocksize); blocksize is far below both, so the returned size is unchanged."
+ },
+ "cat-rel-027": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "use_fionread = false only stops cat from asking ioctl(FIONREAD) whether more input is pending before it flushes; it changes when output is written, not which bytes."
+ },
+ "cat-rel-081": {
+  "verdict": "non-equivalent",
+  "category": "harness-fixed-setup",
+  "reason": "out_isreg is negated; it guards the 'input file is output file' check, which fires only when stdout is a regular file that is also an input (`cat f >> f`). The harness's stdout is always a pipe, so it can never be reached with a matching inode."
+ },
+ "cat-rel-111": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "insize = max(insize, outsize) written with >= instead of >: identical value when they are equal."
+ },
+ "uniq-const-298": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "find_field's skip-chars loop runs while 1 < i_0 instead of 0 < i_0, so -s N skips N-1 characters. Needs -s N (N >= 1) with adjacent lines that differ only inside their first N characters; the capped grid has no -s at all and the uncapped grid's -s 2 cases have no such line pair."
+ },
+ "uniq-const-492": {
+  "verdict": "repairs-defect",
+  "category": "repairs-defect",
+  "reason": "`if 0 != 0` -> `if -1 != 0` takes the single-print expansion of 'printing all duplicated lines and repeat counts is meaningless' (uniq -c -D) instead of C2Rust's duplicated one; stderr changes on 156 cases, toward the C."
+ },
+ "uniq-rel-024": {
+  "verdict": "equivalent",
+  "category": "equivalent",
+  "reason": "`if __errstatus != 0 { unreachable!() }` follows error(1, ...), which exits; the comparison never runs. Region coverage counts the enclosing block (474), so 'reached' over-counts here."
+ },
+ "uniq-rel-177": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "-c no longer sets output_option_used, which only feeds the '--group is mutually exclusive with -c/-d/-D/-u' check; `uniq --group -c` would be accepted. The grid has no --group."
+ },
+ "uniq-rel-179": {
+  "verdict": "non-equivalent",
+  "category": "grid-lacks-input",
+  "reason": "same as uniq-rel-177 for -d: `uniq --group -d` would be accepted. The grid has no --group."
+ },
+ "uniq-rel-197": {
+  "verdict": "repairs-defect",
+  "category": "repairs-defect",
+  "reason": "`if 0 != 0` -> `if 0 == 0` at the same site as uniq-const-492: single-print expansion of the -c -D diagnostic; stderr changes on 156 cases, toward the C."
+ }
+}

@@ -1,0 +1,6160 @@
+{
+  "summary": {
+    "system": "VERT",
+    "benchmark": "c_transcoder",
+    "domain": "in-domain (non-negative, |x|<=512)",
+    "headline": "value_bug = genuine wrong-answer on inputs the ORIGINAL C handles without UB (ASan/UBSan-filtered); rust_panic and ub_only are reported separately and are NOT counted as wrong answers",
+    "functions_considered": 477,
+    "tested": 151,
+    "agree": 103,
+    "value_bug": 20,
+    "rust_panic": 4,
+    "ub_only": 24,
+    "timeout_only": 0,
+    "san_unavailable": 0,
+    "unsupported": 261,
+    "side_effecting": 0,
+    "c-build-fail": 37,
+    "rust-build-fail": 5,
+    "no-artifact": 1,
+    "non_int_return": 22,
+    "value_bug_functions": [
+      "MAXIMUM_GAMES_PLAYED_WINNER",
+      "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+      "SUM_SERIES_12_32_52_2N_12_1",
+      "NEWMAN_CONWAY_SEQUENCE_1",
+      "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+      "NTH_PENTAGONAL_NUMBER",
+      "HEXAGONAL_NUMBER",
+      "NTH_NON_FIBONACCI_NUMBER",
+      "NUMBER_TRIANGLES_N_MOVES_1",
+      "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+      "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+      "NUMBER_RECTANGLES_NM_GRID",
+      "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+      "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+      "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+      "SUM_BINOMIAL_COEFFICIENTS",
+      "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+      "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+      "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+      "SUM_SERIES_555555_N_TERMS"
+    ],
+    "rust_panic_functions": [
+      "SQUARE_ROOT_OF_AN_INTEGER_1",
+      "FINDING_POWER_PRIME_NUMBER_P_N_1",
+      "FINDING_POWER_PRIME_NUMBER_P_N",
+      "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X"
+    ]
+  },
+  "value_bugs": [
+    {
+      "func": "MAXIMUM_GAMES_PLAYED_WINNER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 48,
+      "rust_panic_c_ok": 0,
+      "ub_div": 3,
+      "timeout_div": 29,
+      "value_samples": [
+        {
+          "in": [
+            113
+          ],
+          "c": "9",
+          "rust": "8"
+        },
+        {
+          "in": [
+            116
+          ],
+          "c": "9",
+          "rust": "8"
+        },
+        {
+          "in": [
+            120
+          ],
+          "c": "9",
+          "rust": "8"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "19",
+          "rust": "16"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "183",
+          "rust": "162"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "516",
+          "rust": "471"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_SERIES_12_32_52_2N_12_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 17,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            167
+          ],
+          "c": "6209895",
+          "rust": "6209894"
+        },
+        {
+          "in": [
+            171
+          ],
+          "c": "6666891",
+          "rust": "6666890"
+        },
+        {
+          "in": [
+            175
+          ],
+          "c": "7145775",
+          "rust": "7145774"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NEWMAN_CONWAY_SEQUENCE_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "2",
+          "rust": "1"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "4",
+          "rust": "1"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "6",
+          "rust": "1"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "3",
+          "rust": "5"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "7",
+          "rust": "15"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "10",
+          "rust": "24"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NTH_PENTAGONAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 79,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            1
+          ],
+          "c": "1",
+          "rust": "3"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "12",
+          "rust": "26"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "70",
+          "rust": "144"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HEXAGONAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "15",
+          "rust": "9"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "91",
+          "rust": "49"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "190",
+          "rust": "100"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NTH_NON_FIBONACCI_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 79,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            1
+          ],
+          "c": "4",
+          "rust": "1647462400"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "7",
+          "rust": "1647462400"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "12",
+          "rust": "1647462400"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_TRIANGLES_N_MOVES_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 74,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            18
+          ],
+          "c": "774840977",
+          "rust": "774840959"
+        },
+        {
+          "in": [
+            21
+          ],
+          "c": "-2147483648",
+          "rust": "-3"
+        },
+        {
+          "in": [
+            25
+          ],
+          "c": "-2147483648",
+          "rust": "-3"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 74,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            10
+          ],
+          "c": "3",
+          "rust": "2"
+        },
+        {
+          "in": [
+            14
+          ],
+          "c": "3",
+          "rust": "2"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "4",
+          "rust": "3"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 39,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            7
+          ],
+          "c": "3",
+          "rust": "4"
+        },
+        {
+          "in": [
+            21
+          ],
+          "c": "45",
+          "rust": "49"
+        },
+        {
+          "in": [
+            25
+          ],
+          "c": "66",
+          "rust": "71"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_RECTANGLES_NM_GRID",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 16,
+      "rust_panic_c_ok": 0,
+      "ub_div": 4,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            97,
+            97
+          ],
+          "c": "22591009",
+          "rust": "22591008"
+        },
+        {
+          "in": [
+            97,
+            129
+          ],
+          "c": "39853905",
+          "rust": "39853904"
+        },
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "39853905",
+          "rust": "39853904"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 76,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "4",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "8",
+          "rust": "6"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "11",
+          "rust": "10"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 51,
+      "rust_panic_c_ok": 0,
+      "ub_div": 21,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0,
+            32
+          ],
+          "c": "30",
+          "rust": "6"
+        },
+        {
+          "in": [
+            1,
+            32
+          ],
+          "c": "30",
+          "rust": "6"
+        },
+        {
+          "in": [
+            0,
+            64
+          ],
+          "c": "30",
+          "rust": "6"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "3",
+          "rust": "6"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "3",
+          "rust": "9"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_BINOMIAL_COEFFICIENTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 1,
+      "rust_panic_c_ok": 0,
+      "ub_div": 70,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            29
+          ],
+          "c": "536870912",
+          "rust": "536870920"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 58,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0,
+            0
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        },
+        {
+          "in": [
+            0,
+            1
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        },
+        {
+          "in": [
+            0,
+            32
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 80,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "1",
+          "rust": "0"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "2",
+          "rust": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "7",
+          "rust": "6"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "35",
+          "rust": "5040"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "120",
+          "rust": "5443200"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_SERIES_555555_N_TERMS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 76,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            10
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            14
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        }
+      ],
+      "rust_panic_samples": []
+    }
+  ],
+  "rust_panic_fns": [
+    {
+      "func": "SQUARE_ROOT_OF_AN_INTEGER_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 80,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "0"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "1"
+        }
+      ]
+    },
+    {
+      "func": "FINDING_POWER_PRIME_NUMBER_P_N_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 12,
+      "ub_div": 13,
+      "timeout_div": 55,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            129,
+            129
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            32,
+            227
+          ],
+          "c": "0"
+        }
+      ]
+    },
+    {
+      "func": "FINDING_POWER_PRIME_NUMBER_P_N",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 12,
+      "ub_div": 13,
+      "timeout_div": 55,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            129,
+            129
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            32,
+            227
+          ],
+          "c": "0"
+        }
+      ]
+    },
+    {
+      "func": "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 22,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "3"
+        }
+      ]
+    }
+  ],
+  "all": [
+    {
+      "func": "NUMBER_OF_BINARY_TREES_FOR_GIVEN_PREORDER_SEQUENCE_LENGTH",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "AREA_OF_A_HEXAGON",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROBABILITY_THREE_RANDOMLY_CHOSEN_NUMBERS_AP",
+      "status": "non_int_return",
+      "c_return": "double"
+    },
+    {
+      "func": "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 31,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+      "status": "non_int_return",
+      "c_return": "long long"
+    },
+    {
+      "func": "MODULUS_TWO_FLOAT_DOUBLE_NUMBERS",
+      "status": "unsupported",
+      "argtypes": [
+        "f32",
+        "f32"
+      ]
+    },
+    {
+      "func": "PRIMALITY_TEST_SET_5USING_LUCAS_LEHMER_SERIES",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "WRITE_ONE_LINE_C_FUNCTION_TO_FIND_WHETHER_A_NO_IS_POWER_OF_TWO",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MAXIMUM_LENGTH_SUBSEQUENCE_DIFFERENCE_ADJACENT_ELEMENTS_EITHER_0_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_EQULIBRIUM_SUM_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_THE_MINIMUM_DISTANCE_BETWEEN_TWO_NUMBERS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "RECURSIVE_C_PROGRAM_LINEARLY_SEARCH_ELEMENT_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_ONE_EXTRA_CHARACTER_STRING_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_SUM_ODD_FACTORS_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 31,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HYPERCUBE_GRAPH",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 23,
+      "timeout_div": 9,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_LAST_DIGIT_FACTORIAL_DIVIDES_FACTORIAL_B",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_ONE_EXTRA_CHARACTER_STRING_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "LOWER_INSERTION_POINT",
+      "status": "no-artifact"
+    },
+    {
+      "func": "LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_CONSECUTIVE_REPEATING_CHARACTER_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SWAP_BITS_IN_A_GIVEN_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "u32",
+        "u32",
+        "u32",
+        "u32"
+      ]
+    },
+    {
+      "func": "COMPUTE_NCR_P_SET_1_INTRODUCTION_AND_DYNAMIC_PROGRAMMING_SOLUTION",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DICE_THROW_PROBLEM_1",
+      "status": "non_int_return",
+      "c_return": "long"
+    },
+    {
+      "func": "MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_GIVEN_STRING_ROTATION_PALINDROME",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "SMALLEST_SUM_CONTIGUOUS_SUBARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "UGLY_NUMBERS",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_POSITION_GIVEN_NUMBER_AMONG_NUMBERS_MADE_4_7",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MINIMUM_NUMBER_PLATFORMS_REQUIRED_RAILWAYBUS_STATION",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUBSET_SUM_DIVISIBLE_M",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_FIND_SLOPE_LINE",
+      "status": "unsupported",
+      "argtypes": [
+        "f32",
+        "f32",
+        "f32",
+        "f32"
+      ]
+    },
+    {
+      "func": "CHECK_IF_STRING_REMAINS_PALINDROME_AFTER_REMOVING_GIVEN_NUMBER_OF_CHARACTERS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_SUBSTRINGS_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "WRITE_YOU_OWN_POWER_WITHOUT_USING_MULTIPLICATION_AND_DIVISION",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "TAIL_RECURSION",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "FIND_NUMBER_PAIRS_ARRAY_XOR_0",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_SERIES_12_32_52_2N_12",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "COUNT_PAIRS_DIFFERENCE_EQUAL_K",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_ROTATIONS_DIVISIBLE_8",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "CONVERT_STRICTLY_INCREASING_ARRAY_MINIMUM_CHANGES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_GAMES_PLAYED_WINNER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 48,
+      "rust_panic_c_ok": 0,
+      "ub_div": 3,
+      "timeout_div": 29,
+      "value_samples": [
+        {
+          "in": [
+            113
+          ],
+          "c": "9",
+          "rust": "8"
+        },
+        {
+          "in": [
+            116
+          ],
+          "c": "9",
+          "rust": "8"
+        },
+        {
+          "in": [
+            120
+          ],
+          "c": "9",
+          "rust": "8"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_3",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SQUARE_ROOT_OF_AN_INTEGER_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 80,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "0"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "1"
+        }
+      ]
+    },
+    {
+      "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "HOW_TO_COMPUTE_MOD_OF_A_BIG_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+      "status": "non_int_return",
+      "c_return": "long"
+    },
+    {
+      "func": "MINIMUM_PERIMETER_N_BLOCKS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_LARGEST_D_IN_ARRAY_SUCH_THAT_A_B_C_D",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_SET_BITS_IN_AN_INTEGER",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "BINARY_SEARCH",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_PAIRS_WHOSE_PRODUCTS_EXIST_IN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "POSITION_OF_RIGHTMOST_SET_BIT_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 31,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "TRIANGULAR_MATCHSTICK_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MINIMIZE_SUM_PRODUCT_TWO_ARRAYS_PERMUTATIONS_ALLOWED",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "19",
+          "rust": "16"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "183",
+          "rust": "162"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "516",
+          "rust": "471"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_NUMBER_IS_PERFECT_SQUARE_USING_ADDITIONSUBTRACTION",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "COUNT_PAIRS_TWO_SORTED_ARRAYS_WHOSE_SUM_EQUAL_GIVEN_VALUE_X",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_FOR_FACTORIAL_OF_A_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "GIVEN_A_SORTED_AND_ROTATED_ARRAY_FIND_IF_THERE_IS_A_PAIR_WITH_A_GIVEN_SUM_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_1",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "SUM_SERIES_12_32_52_2N_12_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 17,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            167
+          ],
+          "c": "6209895",
+          "rust": "6209894"
+        },
+        {
+          "in": [
+            171
+          ],
+          "c": "6666891",
+          "rust": "6666890"
+        },
+        {
+          "in": [
+            175
+          ],
+          "c": "7145775",
+          "rust": "7145774"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_PAIR_WITH_GREATEST_PRODUCT_IN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "LONGEST_INCREASING_ODD_EVEN_SUBSEQUENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "DIFFERENCE_BETWEEN_HIGHEST_AND_LEAST_FREQUENCIES_IN_AN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO",
+      "status": "non_int_return",
+      "c_return": "long long"
+    },
+    {
+      "func": "FIND_BITONIC_POINT_GIVEN_BITONIC_SEQUENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PRODUCT_MAXIMUM_FIRST_ARRAY_MINIMUM_SECOND",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_PALINDROME_SUB_STRINGS_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_SUM_TWO_NUMBERS_FORMED_DIGITS_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_OF_PAIRS_IN_AN_ARRAY_HAVING_SUM_EQUAL_TO_PRODUCT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_PRODUCT_SUBARRAY_ADDED_NEGATIVE_PRODUCT_CASE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_SUM_EVEN_INDEX_BINOMIAL_COEFFICIENTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_CHECK_INPUT_INTEGER_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "ADD_1_TO_A_GIVEN_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DOUBLE_FACTORIAL_1",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "SUM_SERIES_ALTERNATE_SIGNED_SQUARES_AP",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "[i32;2]"
+      ]
+    },
+    {
+      "func": "PRIMALITY_TEST_SET_1_INTRODUCTION_AND_SCHOOL_METHOD_1",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FAST_MULTIPLICATION_METHOD_WITHOUT_USING_MULTIPLICATION_OPERATOR_RUSSIAN_PEASANTS_ALGORITHM",
+      "status": "unsupported",
+      "argtypes": [
+        "u32",
+        "u32"
+      ]
+    },
+    {
+      "func": "SUM_FACTORS_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_CHARACTERS_STRING_DISTANCE_ENGLISH_ALPHABETS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "PRODUCT_MAXIMUM_FIRST_ARRAY_MINIMUM_SECOND_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CIRCLE_LATTICE_POINTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_CIRCUMFERENCE_PARALLELOGRAM",
+      "status": "unsupported",
+      "argtypes": [
+        "f32",
+        "f32"
+      ]
+    },
+    {
+      "func": "COUNT_SUBSTRINGS_WITH_SAME_FIRST_AND_LAST_CHARACTERS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FINDING_POWER_PRIME_NUMBER_P_N_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 12,
+      "ub_div": 13,
+      "timeout_div": 55,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            129,
+            129
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            32,
+            227
+          ],
+          "c": "0"
+        }
+      ]
+    },
+    {
+      "func": "NUMBER_JUMP_REQUIRED_GIVEN_LENGTH_REACH_POINT_FORM_D_0_ORIGIN_2D_PLANE",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 7,
+      "timeout_div": 25,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "ADD_1_TO_A_GIVEN_NUMBER_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MINIMUM_XOR_VALUE_PAIR_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N_1",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "CHECK_LARGE_NUMBER_DIVISIBLE_4_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "COUNT_NUMBERS_THAT_DONT_CONTAIN_3",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 6,
+      "timeout_div": 50,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "LONGEST_REPEATING_SUBSEQUENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "C_PROGRAM_FACTORIAL_NUMBER_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "LONGEST_PREFIX_ALSO_SUFFIX_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SEARCH_INSERT_AND_DELETE_IN_A_SORTED_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_STRINGS_ADJACENT_CHARACTERS_DIFFERENCE_ONE",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "POSSIBLE_TO_MAKE_A_DIVISIBLE_BY_3_NUMBER_USING_ALL_DIGITS_IN_AN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FLOOR_IN_A_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NEWMAN_CONWAY_SEQUENCE_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "2",
+          "rust": "1"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "4",
+          "rust": "1"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "6",
+          "rust": "1"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS_1",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "WRITE_AN_EFFICIENT_METHOD_TO_CHECK_IF_A_NUMBER_IS_MULTIPLE_OF_3",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 24,
+      "timeout_div": 12,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_A_FIXED_POINT_IN_A_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NEXT_POWER_OF_2_1",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "SQUARE_ROOT_OF_AN_INTEGER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_HEIGHT_OF_TRIANGULAR_ARRANGEMENT_OF_ARRAY_VALUES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "INTEGER_POSITIVE_VALUE_POSITIVE_NEGATIVE_VALUE_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "3",
+          "rust": "5"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "7",
+          "rust": "15"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "10",
+          "rust": "24"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "AREA_OF_THE_CIRCLE_THAT_HAS_A_SQUARE_AND_A_CIRCLE_INSCRIBED_IN_IT",
+      "status": "non_int_return",
+      "c_return": "float"
+    },
+    {
+      "func": "BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "GIVEN_LARGE_NUMBER_CHECK_SUBSEQUENCE_DIGITS_DIVISIBLE_8_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUM_IARRI_AMONG_ROTATIONS_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_ARRAY_REPRESENTS_INORDER_BINARY_SEARCH_TREE_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_THE_MINIMUM_DISTANCE_BETWEEN_TWO_NUMBERS_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_INDEXES_EQUAL_ELEMENTS_GIVEN_RANGE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_LARGE_NUMBER_DIVISIBLE_11_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "COUNT_CHARACTERS_POSITION_ENGLISH_ALPHABETS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SUBSET_SUM_PROBLEM_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_OFDIFFERENT_WAYS_EXPRESS_N_SUM_1_3_4",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_REPEATING_ELEMENT_SORTED_ARRAY_SIZE_N",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DETECT_IF_TWO_INTEGERS_HAVE_OPPOSITE_SIGNS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MAXIMUM_TRIPLET_SUM_ARRAY_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NTH_PENTAGONAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 79,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            1
+          ],
+          "c": "1",
+          "rust": "3"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "12",
+          "rust": "26"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "70",
+          "rust": "144"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HOW_TO_PRINT_MAXIMUM_NUMBER_OF_A_USING_GIVEN_FOUR_KEYS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_OBTUSE_ANGLES_CIRCLE_K_EQUIDISTANT_POINTS_2_GIVEN_POINTS",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SQUARE_PYRAMIDAL_NUMBER_SUM_SQUARES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "K_TH_DISTINCT_OR_NON_REPEATING_ELEMENT_IN_AN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_SET_BITS_IN_AN_INTEGER_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "EQUILIBRIUM_INDEX_OF_AN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PERFECT_REVERSIBLE_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "ROUND_THE_GIVEN_NUMBER_TO_NEAREST_MULTIPLE_OF_10",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DIFFERENCE_MAXIMUM_SUM_MINIMUM_SUM_N_M_ELEMENTSIN_REVIEW",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_INDEX_OF_AN_EXTRA_ELEMENT_PRESENT_IN_ONE_SORTED_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SEARCHING_ARRAY_ADJACENT_DIFFER_K",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_BINARY_DECIMAL_CONVERSION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_DIGITS_PRODUCT_TWO_NUMBERS",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MINIMUM_NUMBER_OF_COINS_THAT_MAKE_A_CHANGE_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUM_BITONIC_SUBARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NEXT_POWER_OF_2_2",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "SEARCH_INSERT_AND_DELETE_IN_A_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PADOVAN_SEQUENCE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MIDDLE_OF_THREE_USING_MINIMUM_COMPARISONS_2",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_ROTATION_COUNT_ROTATED_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNTS_PATHS_POINT_REACH_ORIGIN_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 46,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HEXAGONAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "15",
+          "rust": "9"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "91",
+          "rust": "49"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "190",
+          "rust": "100"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_INDEX_OF_AN_EXTRA_ELEMENT_PRESENT_IN_ONE_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_OPERATIONS_MAKE_GCD_ARRAY_MULTIPLE_K",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NTH_NON_FIBONACCI_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 79,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            1
+          ],
+          "c": "4",
+          "rust": "1647462400"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "7",
+          "rust": "1647462400"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "12",
+          "rust": "1647462400"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_REPETITIVE_ELEMENT_1_N_1_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "EFFICIENT_WAY_CHECK_WHETHER_N_TH_FIBONACCI_NUMBER_MULTIPLE_10",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "FIND_ROTATION_COUNT_ROTATED_SORTED_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_LARGE_NUMBER_DIVISIBLE_9_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SIZE_SUBARRAY_MAXIMUM_SUM",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "DIVISIBILITY_9_USING_BITWISE_OPERATORS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "COUNT_NUMBER_WAYS_TILE_FLOOR_SIZE_N_X_M_USING_1_X_M_SIZE_TILES",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 5,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "K_TH_ELEMENT_TWO_SORTED_ARRAYS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CASSINIS_IDENTITY",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "GCD_ELEMENTS_GIVEN_RANGE",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 7,
+      "timeout_div": 61,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_IS_DIVISIBLE_BY_29_OR_NOT",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "FIND_WHETHER_GIVEN_INTEGER_POWER_3_NOT",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "PROGRAM_CHECK_ARRAY_SORTED_NOT_ITERATIVE_RECURSIVE_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_NODES_K_TH_LEVEL_TREE_REPRESENTED_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_DIGITS_FACTORIAL_SET_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_2",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 7,
+      "timeout_div": 73,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MINIMUM_INSERTIONS_TO_FORM_A_PALINDROME_WITH_PERMUTATIONS_ALLOWED",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEMENTS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_CONSECUTIVE_REPEATING_CHARACTER_STRING_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "BIRTHDAY_PARADOX",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "PROGRAM_CHECK_ARRAY_SORTED_NOT_ITERATIVE_RECURSIVE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_NUMBER_PERFECT_SQUARES_TWO_GIVEN_NUMBERS",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_DERANGEMENTS_PERMUTATION_SUCH_THAT_NO_ELEMENT_APPEARS_IN_ITS_ORIGINAL_POSITION_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "QUERIES_COUNTS_ARRAY_ELEMENTS_VALUES_GIVEN_RANGE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIRST_UPPERCASE_LETTER_IN_A_STRING_ITERATIVE_AND_RECURSIVE",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "COUNT_PAIRS_DIFFERENCE_EQUAL_K_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "C_PROGRAM_FACTORIAL_NUMBER_1",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "EULERIAN_NUMBER_1",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "NUMBER_UNIQUE_RECTANGLES_FORMED_USING_N_UNIT_SQUARES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_PALINDROMIC_SUBSEQUENCE_GIVEN_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FLOOR_IN_A_SORTED_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "ANALYSIS_OF_ALGORITHMS_SET_2_ASYMPTOTIC_ANALYSIS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FINDING_POWER_PRIME_NUMBER_P_N",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 12,
+      "ub_div": 13,
+      "timeout_div": 55,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            129,
+            129
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            32,
+            227
+          ],
+          "c": "0"
+        }
+      ]
+    },
+    {
+      "func": "AREA_SQUARE_CIRCUMSCRIBED_CIRCLE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_WHETHER_A_GIVEN_NUMBER_IS_A_POWER_OF_4_OR_NOT_2",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "COMPOSITE_NUMBER",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "FIND_THE_MAXIMUM_SUBARRAY_XOR_IN_A_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_ROTATIONS_UNLOCK_CIRCULAR_LOCK",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMAL_OPERATIONS_MAKE_NUMBER_MAGICAL",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_UNIT_DIGIT_X_RAISED_POWER_Y",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_POSSIBLE_GROUPS_SIZE_2_3_SUM_MULTIPLE_3",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "STEINS_ALGORITHM_FOR_FINDING_GCD_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_PRINT_SUM_GIVEN_NTH_TERM",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_NUMBER_OF_OCCURRENCES_OR_FREQUENCY_IN_A_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "N_TH_TERM_SERIES_2_12_36_80_150",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_NUMBER_WAYS_REACH_GIVEN_SCORE_GAME",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_HIGH_EFFORT_VS_LOW_EFFORT_TASKS_PROBLEM",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "NON_REPEATING_ELEMENT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "LENGTH_OF_THE_LONGEST_ARITHMATIC_PROGRESSION_IN_A_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "LONGEST_COMMON_SUBSTRING_SPACE_OPTIMIZED_DP_SOLUTION",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []"
+      ]
+    },
+    {
+      "func": "COUNT_EVEN_LENGTH_BINARY_SEQUENCES_WITH_SAME_SUM_OF_FIRST_AND_SECOND_HALF_BITS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 71,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DICE_THROW_PROBLEM",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "COUNT_NUMBER_OF_WAYS_TO_FILL_A_N_X_4_GRID_USING_1_X_4_TILES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PYTHON_PROGRAM_FIND_PERIMETER_CIRCUMFERENCE_SQUARE_RECTANGLE_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_GIVEN_CIRCLE_LIES_COMPLETELY_INSIDE_RING_FORMED_TWO_CONCENTRIC_CIRCLES",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "SUM_MANHATTAN_DISTANCES_PAIRS_POINTS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MAXIMUM_PRODUCT_OF_A_TRIPLET_IN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_PRINT_SUM_GIVEN_NTH_TERM_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_THE_MISSING_NUMBER_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS_2",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_THREE_ELEMENT_FROM_DIFFERENT_THREE_ARRAYS_SUCH_THAT_THAT_A_B_C_K",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PRIME_NUMBERS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "NUMBER_SUBSEQUENCES_FORM_AI_BJ_CK",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_PERIMETER_CYLINDER",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_UNIT_DIGIT_X_RAISED_POWER_Y_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DISTRIBUTING_M_ITEMS_CIRCLE_SIZE_N_STARTING_K_TH_POSITION",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 46,
+      "timeout_div": 16,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_FACTORIAL_NUMBERS_IN_A_GIVEN_RANGE",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "CALCULATE_AREA_TETRAHEDRON",
+      "status": "non_int_return",
+      "c_return": "double"
+    },
+    {
+      "func": "COUNT_FREQUENCY_K_MATRIX_SIZE_N_MATRIXI_J_IJ",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NEXT_POWER_OF_2",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_FIBONACCI_NUMBERS_GIVEN_RANGE_LOG_TIME",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMIZE_SUM_ARRII",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_NUMBER_POWER_K_USING_BASE_CHANGING_METHOD",
+      "status": "unsupported",
+      "argtypes": [
+        "u32",
+        "u32"
+      ]
+    },
+    {
+      "func": "HORNERS_METHOD_POLYNOMIAL_EVALUATION",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_TRIANGLES_N_MOVES_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 74,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            18
+          ],
+          "c": "774840977",
+          "rust": "774840959"
+        },
+        {
+          "in": [
+            21
+          ],
+          "c": "-2147483648",
+          "rust": "-3"
+        },
+        {
+          "in": [
+            25
+          ],
+          "c": "-2147483648",
+          "rust": "-3"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "SQUARED_TRIANGULAR_NUMBER_SUM_CUBES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_N_DIGITS_NON_DECREASING_INTEGERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_INDEX_GIVEN_FIBONACCI_NUMBER_CONSTANT_TIME",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_PAIRWISE_PRODUCTS_1",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "DISTRIBUTING_ITEMS_PERSON_CANNOT_TAKE_TWO_ITEMS_TYPE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_PRODUCT_SUBSET_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "status": "non_int_return",
+      "c_return": "long long int"
+    },
+    {
+      "func": "MAXIMUM_TRIPLET_SUM_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COMPUTE_MODULUS_DIVISION_BY_A_POWER_OF_2_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "u32",
+        "u32"
+      ]
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SWAP_TWO_NIBBLES_BYTE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_OCTAL_DECIMAL_CONVERSION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 74,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            10
+          ],
+          "c": "3",
+          "rust": "2"
+        },
+        {
+          "in": [
+            14
+          ],
+          "c": "3",
+          "rust": "2"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "4",
+          "rust": "3"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SEARCH_AN_ELEMENT_IN_A_SORTED_AND_PIVOTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 39,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            7
+          ],
+          "c": "3",
+          "rust": "4"
+        },
+        {
+          "in": [
+            21
+          ],
+          "c": "45",
+          "rust": "49"
+        },
+        {
+          "in": [
+            25
+          ],
+          "c": "66",
+          "rust": "71"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_K_TH_GROUP_ODD_POSITIVE_NUMBERS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHANGE_BITS_CAN_MADE_ONE_FLIP_1",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N_2",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "FIND_THE_ELEMENT_THAT_APPEARS_ONCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_LARGE_NUMBER_DIVISIBLE_6_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_PATTERNS_101_GIVEN_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS_1",
+      "status": "tested",
+      "nargs": 3,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 54,
+      "timeout_div": 20,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_NUMBER_OF_SQUARES_THAT_CAN_BE_FIT_IN_A_RIGHT_ANGLE_ISOSCELES_TRIANGLE",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "REMOVE_MINIMUM_ELEMENTS_EITHER_SIDE_2MIN_MAX",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_IF_A_NUMBER_IS_POWER_OF_ANOTHER_NUMBER_1",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "FIND_MAXIMUM_SUM_POSSIBLE_EQUAL_SUM_THREE_STACKS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "SMALLEST_POWER_OF_2_GREATER_THAN_OR_EQUAL_TO_N",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "NUMBER_RECTANGLES_NM_GRID",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 16,
+      "rust_panic_c_ok": 0,
+      "ub_div": 4,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            97,
+            97
+          ],
+          "c": "22591009",
+          "rust": "22591008"
+        },
+        {
+          "in": [
+            97,
+            129
+          ],
+          "c": "39853905",
+          "rust": "39853904"
+        },
+        {
+          "in": [
+            129,
+            97
+          ],
+          "c": "39853905",
+          "rust": "39853904"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUBSEQUENCES_SIZE_THREE_ARRAY_WHOSE_SUM_DIVISIBLE_M",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "TRIANGULAR_NUMBERS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "NUMBER_DIGITS_PRODUCT_TWO_NUMBERS_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_ORDERED_PAIRS_AI_AJ_0",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "ELEMENTS_TO_BE_ADDED_SO_THAT_ALL_ELEMENTS_OF_A_RANGE_ARE_PRESENT_IN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_TOTAL_SET_BITS_IN_ALL_NUMBERS_FROM_1_TO_N",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+      "status": "non_int_return",
+      "c_return": "long int"
+    },
+    {
+      "func": "SEARCH_INSERT_AND_DELETE_IN_AN_UNSORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "UNBOUNDED_KNAPSACK_REPETITION_ITEMS_ALLOWED",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "i32",
+        "[i32;2]",
+        "[i32;2]"
+      ]
+    },
+    {
+      "func": "CHECK_TWO_GIVEN_CIRCLES_TOUCH_INTERSECT",
+      "status": "tested",
+      "nargs": 6,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_SUM_IARRI_AMONG_ROTATIONS_GIVEN_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_MINIMUM_NUMBER_SUBSETS_SUBSEQUENCES_CONSECUTIVE_NUMBERS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "POSSIBLE_FORM_TRIANGLE_ARRAY_VALUES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_CHARACTERS_ADDED_FRONT_MAKE_STRING_PALINDROME",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "BASIC_AND_EXTENDED_EUCLIDEAN_ALGORITHMS",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_THE_NUMBER_OCCURRING_ODD_NUMBER_OF_TIMES_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_DISTINCT_OCCURRENCES_AS_A_SUBSEQUENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []"
+      ]
+    },
+    {
+      "func": "CHECK_REVERSING_SUB_ARRAY_MAKE_ARRAY_SORTED",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+      "status": "non_int_return",
+      "c_return": "long long"
+    },
+    {
+      "func": "PRIMALITY_TEST_SET_1_INTRODUCTION_AND_SCHOOL_METHOD",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+      "status": "non_int_return",
+      "c_return": "long long"
+    },
+    {
+      "func": "FIND_THE_FIRST_MISSING_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 76,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "4",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "8",
+          "rust": "6"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "11",
+          "rust": "10"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "HIGHWAY_BILLBOARD_PROBLEM",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "WAYS_REMOVE_ONE_ELEMENT_BINARY_STRING_XOR_BECOMES_ZERO",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_13_CUTTING_A_ROD",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_REMOVAL_FROM_ARRAY_WHEN_REMOVAL_TIME_WAITING_TIME",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MODULAR_EXPONENTIATION_POWER_IN_MODULAR_ARITHMETIC",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "u32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_THE_LARGEST_SUBARRAY_WITH_0_SUM",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SEARCH_AN_ELEMENT_IN_AN_ARRAY_WHERE_DIFFERENCE_BETWEEN_ADJACENT_ELEMENTS_IS_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUBSET_SUM_PROBLEM_OSUM_SPACE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "HOW_TO_BEGIN_WITH_COMPETITIVE_PROGRAMMING",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FREQUENT_ELEMENT_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PRODUCT_NODES_K_TH_LEVEL_TREE_REPRESENTED_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "PYTHON_PROGRAM_FIND_PERIMETER_CIRCUMFERENCE_SQUARE_RECTANGLE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNTING_PAIRS_PERSON_CAN_FORM_PAIR_ONE_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_FIND_REMAINDER_LARGE_NUMBER_DIVIDED_11",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "FIND_THE_MAXIMUM_ELEMENT_IN_AN_ARRAY_WHICH_IS_FIRST_INCREASING_AND_THEN_DECREASING",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "DELANNOY_NUMBER_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 21,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "TURN_OFF_THE_RIGHTMOST_SET_BIT",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "K_NUMBERS_DIFFERENCE_MAXIMUM_MINIMUM_K_NUMBER_MINIMIZED",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "WAYS_TRANSFORMING_ONE_STRING_REMOVING_0_CHARACTERS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []"
+      ]
+    },
+    {
+      "func": "CHECK_LARGE_NUMBER_DIVISIBLE_3_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_14_MAXIMUM_SUM_INCREASING_SUBSEQUENCE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_CALCULATE_AREA_OCTAGON",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 22,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "3"
+        }
+      ]
+    },
+    {
+      "func": "PROGRAM_TO_FIND_THE_VOLUME_OF_A_TRIANGULAR_PRISM",
+      "status": "unsupported",
+      "argtypes": [
+        "f32",
+        "f32",
+        "f32"
+      ]
+    },
+    {
+      "func": "LEONARDO_NUMBER_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "EQUILIBRIUM_INDEX_OF_AN_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_SUM_PRODUCT_TWO_ARRAYS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_FOR_SURFACE_AREA_OF_OCTAHEDRON",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "COUNT_TRAILING_ZEROES_FACTORIAL_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "GIVEN_A_SORTED_AND_ROTATED_ARRAY_FIND_IF_THERE_IS_A_PAIR_WITH_A_GIVEN_SUM",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CEILING_IN_A_SORTED_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "PAIR_WITH_GIVEN_PRODUCT_SET_1_FIND_IF_ANY_PAIR_EXISTS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_IF_X_CAN_GIVE_CHANGE_TO_EVERY_PERSON_IN_THE_QUEUE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DOUBLE_FACTORIAL",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_POSSIBLE_DIFFERENCE_TWO_SUBSETS_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SEQUENCES_GIVEN_LENGTH_EVERY_ELEMENT_EQUAL_TWICE_PREVIOUS",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "DYCK_PATH",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 51,
+      "rust_panic_c_ok": 0,
+      "ub_div": 21,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0,
+            32
+          ],
+          "c": "30",
+          "rust": "6"
+        },
+        {
+          "in": [
+            1,
+            32
+          ],
+          "c": "30",
+          "rust": "6"
+        },
+        {
+          "in": [
+            0,
+            64
+          ],
+          "c": "30",
+          "rust": "6"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 2,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COMPUTE_AVERAGE_TWO_NUMBERS_WITHOUT_OVERFLOW",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "LONGEST_COMMON_INCREASING_SUBSEQUENCE_LCS_LIS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "TRIANGULAR_NUMBERS_1",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MAXIMUM_TRIPLET_SUM_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_N_TH_ELEMENT_FROM_STERNS_DIATOMIC_SERIES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CALCULATE_VOLUME_DODECAHEDRON",
+      "status": "non_int_return",
+      "c_return": "double"
+    },
+    {
+      "func": "EULERS_CRITERION_CHECK_IF_SQUARE_ROOT_UNDER_MODULO_P_EXISTS",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "EFFICIENTLY_FIND_FIRST_REPEATED_CHARACTER_STRING_WITHOUT_USING_ADDITIONAL_DATA_STRUCTURE_ONE_TRAVERSAL",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "POSITION_ELEMENT_STABLE_SORT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MAXIMUM_AVERAGE_SUBARRAY_OF_K_LENGTH_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_STRING_FOLLOWS_ANBN_PATTERN_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "EFFICIENT_SEARCH_IN_AN_ARRAY_WHERE_DIFFERENCE_BETWEEN_ADJACENT_IS_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CEILING_IN_A_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIBONACCI_MODULO_P",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 31,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "C_PROGRAM_FACTORIAL_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "3",
+          "rust": "6"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "3",
+          "rust": "9"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_MINIMUM_DIFFERENCE_PAIR",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_WHETHER_GIVEN_DEGREES_VERTICES_REPRESENT_GRAPH_TREE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_AREA_SQUARE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_WHETHER_ARITHMETIC_PROGRESSION_CAN_FORMED_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "EVEN_FIBONACCI_NUMBERS_SUM",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_CALCULATE_VOLUME_ELLIPSOID",
+      "status": "unsupported",
+      "argtypes": [
+        "f32",
+        "f32",
+        "f32"
+      ]
+    },
+    {
+      "func": "SUM_BINOMIAL_COEFFICIENTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 1,
+      "rust_panic_c_ok": 0,
+      "ub_div": 70,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            29
+          ],
+          "c": "536870912",
+          "rust": "536870920"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_SUM_SUBSEQUENCE_LEAST_K_DISTANT_ELEMENTS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "CONVERTING_ONE_STRING_USING_APPEND_DELETE_LAST_OPERATIONS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "REMAINDER_7_LARGE_NUMBERS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "COUNT_SET_BITS_IN_AN_INTEGER_3",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "K_TH_PRIME_FACTOR_GIVEN_NUMBER",
+      "status": "rust-build-fail"
+    },
+    {
+      "func": "TILING_WITH_DOMINOES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_MINIMUM_DIFFERENCE_PAIR_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_WHETHER_GIVEN_NUMBER_EVEN_ODD",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MINIMUM_INSERTIONS_SORT_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 58,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0,
+            0
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        },
+        {
+          "in": [
+            0,
+            1
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        },
+        {
+          "in": [
+            0,
+            32
+          ],
+          "c": "-2147483648",
+          "rust": "0"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_SQUARES_BINOMIAL_COEFFICIENTS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DECIMAL_REPRESENTATION_GIVEN_BINARY_STRING_DIVISIBLE_10_NOT",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SEQUENCES_GIVEN_LENGTH_EVERY_ELEMENT_EQUAL_TWICE_PREVIOUS_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_IF_A_NUMBER_IS_POWER_OF_ANOTHER_NUMBER",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 80,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            0
+          ],
+          "c": "1",
+          "rust": "0"
+        },
+        {
+          "in": [
+            1
+          ],
+          "c": "2",
+          "rust": "1"
+        },
+        {
+          "in": [
+            3
+          ],
+          "c": "7",
+          "rust": "6"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_10_0_1_KNAPSACK_PROBLEM",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_EQUAL_POINT_STRING_BRACKETS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "HOW_TO_TURN_OFF_A_PARTICULAR_BIT_IN_A_NUMBER",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MINIMUM_TIME_TO_FINISH_TASKS_WITHOUT_SKIPPING_TWO_CONSECUTIVE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_POINTS_INTERSECTION_N_CIRCLES",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "ARRAY_ELEMENT_MOVED_K_USING_SINGLE_MOVES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "BIN_PACKING_PROBLEM_MINIMIZE_NUMBER_OF_USED_BINS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 78,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            3
+          ],
+          "c": "1",
+          "rust": "2"
+        },
+        {
+          "in": [
+            7
+          ],
+          "c": "35",
+          "rust": "5040"
+        },
+        {
+          "in": [
+            10
+          ],
+          "c": "120",
+          "rust": "5443200"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COMPUTE_AVERAGE_TWO_NUMBERS_WITHOUT_OVERFLOW_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "ZECKENDORFS_THEOREM_NON_NEIGHBOURING_FIBONACCI_REPRESENTATION",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_REVERSING_SUB_ARRAY_MAKE_ARRAY_SORTED_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUBSEQUENCE_SUM_SUCH_THAT_NO_THREE_ARE_CONSECUTIVE",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_INDEX_PAIRS_EQUAL_ELEMENTS_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_XOR_VALUE_PAIR",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MAXIMUM_POSSIBLE_DIFFERENCE_TWO_SUBSETS_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_DIVISORS_1_N_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_WHETHER_TRIANGLE_VALID_NOT_SIDES_GIVEN",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "MAXIMUM_HEIGHT_OF_TRIANGULAR_ARRANGEMENT_OF_ARRAY_VALUES_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_SERIES_0_6_0_06_0_006_0_0006_N_TERMS",
+      "status": "non_int_return",
+      "c_return": "float"
+    },
+    {
+      "func": "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+      "status": "non_int_return",
+      "c_return": "unsigned long long"
+    },
+    {
+      "func": "ADD_TWO_NUMBERS_WITHOUT_USING_ARITHMETIC_OPERATORS",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "QUICK_WAY_CHECK_CHARACTERS_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "SWAP_ALL_ODD_AND_EVEN_BITS",
+      "status": "unsupported",
+      "argtypes": [
+        "u32"
+      ]
+    },
+    {
+      "func": "SUM_BINOMIAL_COEFFICIENTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FRIENDS_PAIRING_PROBLEM",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "CHECK_INTEGER_OVERFLOW_MULTIPLICATION",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "CALCULATE_MAXIMUM_VALUE_USING_SIGN_TWO_NUMBERS_STRING",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_FIBONACCI_NUMBERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAXIMIZE_SUM_CONSECUTIVE_DIFFERENCES_CIRCULAR_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_FOR_DEADLOCK_FREE_CONDITION_IN_OPERATING_SYSTEM",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_STRINGS_WITH_CONSECUTIVE_1S",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MAKING_ELEMENTS_OF_TWO_ARRAYS_SAME_WITH_MINIMUM_INCREMENTDECREMENT",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FRIENDS_PAIRING_PROBLEM_2",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_SUM_EVEN_INDEX_BINOMIAL_COEFFICIENTS_1",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "LARGEST_SUM_CONTIGUOUS_SUBARRAY_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_THE_NUMBER_OCCURRING_ODD_NUMBER_OF_TIMES",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_A_FIXED_POINT_IN_A_GIVEN_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "COUNT_NUMBER_PAIRS_N_B_N_GCD_B_B",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_STEPS_TO_DELETE_A_STRING_AFTER_REPEATED_DELETION_OF_PALINDROME_SUBSTRINGS",
+      "status": "unsupported",
+      "argtypes": [
+        "char []"
+      ]
+    },
+    {
+      "func": "MAXIMUM_VALUE_CHOICE_EITHER_DIVIDING_CONSIDERING",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_TO_FIND_THE_AREA_OF_PENTAGON",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "FIND_THE_MISSING_NUMBER_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "PROGRAM_CHECK_PLUS_PERFECT_NUMBER",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "FIND_MAXIMUM_PRODUCT_OF_A_TRIPLET_IN_ARRAY_1",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "COMPUTE_N_UNDER_MODULO_P",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+      "status": "non_int_return",
+      "c_return": "long"
+    },
+    {
+      "func": "SUM_K_TH_GROUP_ODD_POSITIVE_NUMBERS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "COUNT_NUMBER_INCREASING_SUBSEQUENCES_SIZE_K",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_SUBARRAY_SUM_ARRAY_CREATED_REPEATED_CONCATENATION",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_SUM_TWO_NUMBERS_FORMED_DIGITS_ARRAY_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MAXIMUM_HEIGHT_PYRAMID_FROM_THE_GIVEN_ARRAY_OF_OBJECTS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "SUM_SERIES_555555_N_TERMS",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 76,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [
+        {
+          "in": [
+            10
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            14
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        },
+        {
+          "in": [
+            18
+          ],
+          "c": "-2147483648",
+          "rust": "2147483647"
+        }
+      ],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PYTHAGOREAN_QUADRUPLE",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "COUNT_NUMBER_BINARY_STRINGS_WITHOUT_CONSECUTIVE_1S",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 1,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "PROGRAM_CALCULATE_VOLUME_OCTAHEDRON",
+      "status": "unsupported",
+      "argtypes": [
+        "f32"
+      ]
+    },
+    {
+      "func": "COUNT_PAIRS_TWO_SORTED_ARRAYS_WHOSE_SUM_EQUAL_GIVEN_VALUE_X_2",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_HARMONIC_MEAN_USING_ARITHMETIC_MEAN_GEOMETRIC_MEAN",
+      "status": "non_int_return",
+      "c_return": "double"
+    },
+    {
+      "func": "CHECK_WHETHER_GIVEN_NUMBER_EVEN_ODD_1",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "CHECK_LINE_PASSES_ORIGIN",
+      "status": "c-build-fail"
+    },
+    {
+      "func": "SEARCH_ALMOST_SORTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MINIMUM_ELEMENT_IN_A_SORTED_AND_ROTATED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_DIFFERENCE_MAX_MIN_K_SIZE_SUBSETS",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_COST_FOR_ACQUIRING_ALL_COINS_WITH_K_EXTRA_COINS_ALLOWED_WITH_EVERY_COIN",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "MINIMUM_COST_CONNECT_WEIGHTED_NODES_REPRESENTED_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "DYNAMIC_PROGRAMMING_SET_11_EGG_DROPPING_PUZZLE_1",
+      "status": "tested",
+      "nargs": 2,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 18,
+      "timeout_div": 18,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "MULTIPLY_AN_INTEGER_WITH_3_5",
+      "status": "tested",
+      "nargs": 1,
+      "cases": 80,
+      "san": true,
+      "msan": true,
+      "alt": false,
+      "value_div": 0,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "value_samples": [],
+      "rust_panic_samples": []
+    },
+    {
+      "func": "NUMBER_SUBSEQUENCES_AB_STRING_REPEATED_K_TIMES",
+      "status": "unsupported",
+      "argtypes": [
+        "char []",
+        "i32"
+      ]
+    },
+    {
+      "func": "MAXIMUM_PRODUCT_SUBSET_ARRAY",
+      "status": "unsupported",
+      "argtypes": [
+        "[i32;2]",
+        "i32"
+      ]
+    },
+    {
+      "func": "FIND_MINIMUM_RADIUS_ATLEAST_K_POINT_LIE_INSIDE_CIRCLE",
+      "status": "unsupported",
+      "argtypes": [
+        "i32",
+        "[i32;2]",
+        "[i32;2]",
+        "i32"
+      ]
+    }
+  ]
+}

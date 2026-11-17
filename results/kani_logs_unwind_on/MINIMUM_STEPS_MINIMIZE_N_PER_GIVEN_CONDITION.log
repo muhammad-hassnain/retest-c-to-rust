@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:795:31
+    |
+795 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+795 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:921:4
+    |
+921 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:922:4
+    |
+922 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:923:4
+    |
+923 | fn len(arr: &[i32]) -> usize {arr.len()}
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasi-common-0.20.0/src/sys/unix/mod.rs:90:36 in function wasi_common::sys::unix::get_rights
+
+Check 16667: wasi_common::sys::unix::get_rights.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasi-common-0.20.0/src/sys/unix/mod.rs:90:36 in function wasi_common::sys::unix::get_rights
+
+Check 16668: wasi_common::sys::unix::get_rights.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wasi-common-0.20.0/src/sys/unix/mod.rs:90:36 in function wasi_common::sys::unix::get_rights
+
+Check 16669: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16670: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16671: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16672: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16673: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16674: std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/non_null.rs:403:24 in function std::ptr::NonNull::<std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))>>::as_mut::<'_>
+
+Check 16675: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16676: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16677: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16678: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16679: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16680: <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:3320:81 in function <std::vec::Vec<(*mut u8, unsafe extern "C" fn(*mut u8))> as std::ops::Drop>::drop
+
+Check 16681: f_gold.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: src/main.rs:929:5 in function f_gold
+
+
+SUMMARY:
+ ** 1 of 16681 failed (16680 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "src/main.rs", line 929, in f_gold
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 8.328221s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u8 v1.0.1 (/tmp/kani_hd1mb682/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.38s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

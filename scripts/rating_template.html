@@ -1,0 +1,318 @@
+<title>Second Rating Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+/* Layout: a two-pane review bench. Case list on the left, the case (I/O, C beside Rust, answer form) on the right; stacks on phones. */
+:root{
+  --bg:#f5f6f8; --panel:#ffffff; --ink:#1b2330; --ink2:#5b6676; --line:#dfe3ea;
+  --c:#1f4e99; --c-soft:#e4ecf8; --rs:#b23a2b; --rs-soft:#f7e3df; --accent:#2d5f73;
+  --ok:#2f7d4f; --warn:#a86a12; --code-bg:#fbfbfc; --hl:#fff2b3;
+  --tk-kw:#7a3e9d; --tk-ty:#0e7490; --tk-num:#b35c00; --tk-str:#2e7d32; --tk-com:#8a93a0; --tk-fn:#1f4e99;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"IBM Plex Serif",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --panel:#1a2029; --ink:#e3e8ef; --ink2:#9aa6b6; --line:#2c3440;
+  --c:#8fb4f0; --c-soft:#1d2a40; --rs:#f09a8c; --rs-soft:#3a2420; --accent:#7fb6c9;
+  --ok:#6cc18f; --warn:#e2ad55; --code-bg:#151a22; --hl:#4a4120;
+  --tk-kw:#c89be0; --tk-ty:#6fd0e3; --tk-num:#f0a560; --tk-str:#8fd694; --tk-com:#7d8794; --tk-fn:#9ec0f5;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --panel:#1a2029; --ink:#e3e8ef; --ink2:#9aa6b6; --line:#2c3440;
+  --c:#8fb4f0; --c-soft:#1d2a40; --rs:#f09a8c; --rs-soft:#3a2420; --accent:#7fb6c9;
+  --ok:#6cc18f; --warn:#e2ad55; --code-bg:#151a22; --hl:#4a4120;
+  --tk-kw:#c89be0; --tk-ty:#6fd0e3; --tk-num:#f0a560; --tk-str:#8fd694; --tk-com:#7d8794; --tk-fn:#9ec0f5;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;margin:0}
+h1{font-size:22px;font-weight:600}
+h2{font-size:18px;font-weight:600}
+.top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between;max-width:1500px;margin:0 auto 12px}
+.top p{margin:4px 0 0;color:var(--ink2);max-width:70ch}
+.status{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--ink2);background:var(--panel)}
+.pill.ok{color:var(--ok);border-color:var(--ok)} .pill.warn{color:var(--warn);border-color:var(--warn)}
+details.rules{max-width:1500px;margin:0 auto 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+details.rules summary{cursor:pointer;font-weight:600}
+details.rules ul{margin:8px 0 2px;padding-left:20px;max-width:110ch}
+details.rules li{margin:3px 0}
+.bench{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;max-width:1500px;margin:0 auto}
+nav.cases{display:flex;flex-direction:column;gap:4px;position:sticky;top:12px;align-self:start}
+nav.cases button{all:unset;cursor:pointer;display:grid;grid-template-columns:22px 1fr 10px;gap:8px;align-items:center;
+  padding:7px 10px;border-radius:6px;color:var(--ink);font-size:13px}
+nav.cases button:hover{background:var(--panel)}
+nav.cases button[aria-current="true"]{background:var(--panel);box-shadow:inset 0 0 0 1px var(--line);font-weight:600}
+nav.cases button:focus-visible{outline:2px solid var(--accent)}
+.num{font-family:var(--mono);color:var(--ink2);font-size:12px;font-variant-numeric:tabular-nums}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink2)}
+.dot.done{background:var(--ok);border-color:var(--ok)} .dot.part{background:var(--warn);border-color:var(--warn)}
+main{min-width:0;display:flex;flex-direction:column;gap:14px}
+.casehead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.casehead .sys{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.note{color:var(--ink2);font-size:13px}
+.io{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.io div{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.io h3{font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);font-weight:600;margin-bottom:4px}
+.io .c h3{color:var(--c)} .io .r h3{color:var(--rs)}
+.io pre{margin:0;font-family:var(--mono);font-size:12px;white-space:pre-wrap;word-break:break-word;max-height:220px;overflow:auto}
+.code{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pane{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column}
+.pane.c{border-top:3px solid var(--c)} .pane.r{border-top:3px solid var(--rs)}
+.panebar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 8px;border-bottom:1px solid var(--line)}
+.panebar .lang{font-weight:600;font-size:12px;margin-right:4px}
+.pane.c .lang{color:var(--c)} .pane.r .lang{color:var(--rs)}
+.ftab{all:unset;cursor:pointer;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:4px;color:var(--ink2)}
+.ftab[aria-selected="true"]{color:var(--ink);background:var(--bg)}
+.ftab:focus-visible{outline:2px solid var(--accent)}
+.search{margin-left:auto;display:flex;gap:4px;align-items:center}
+.search input{width:130px;font:12px var(--mono);padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.search span{font-size:11px;color:var(--ink2);font-variant-numeric:tabular-nums;min-width:44px}
+.search button,.copy{all:unset;cursor:pointer;font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:4px}
+.copy:focus-visible,.search button:focus-visible{outline:2px solid var(--accent)}
+.copybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.copymsg{font-size:12px;color:var(--ok)}
+.path{font-family:var(--mono);font-size:11px;color:var(--ink2);padding:3px 8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.scroll{position:relative;overflow:auto;height:520px;background:var(--code-bg)}
+.lines{display:grid;grid-template-columns:auto 1fr;font-family:var(--mono);font-size:12px;line-height:18px}
+.gutter{padding:6px 8px 6px 6px;text-align:right;color:var(--ink2);user-select:none;border-right:1px solid var(--line);white-space:pre;font-variant-numeric:tabular-nums}
+.src{margin:0;padding:6px 10px;white-space:pre;tab-size:4;color:var(--ink)}
+.mark{position:absolute;left:0;right:0;height:18px;background:var(--hl);opacity:.75;pointer-events:none}
+.hljs-keyword,.hljs-built_in,.hljs-meta{color:var(--tk-kw)} .hljs-type{color:var(--tk-ty)} .hljs-number,.hljs-literal{color:var(--tk-num)}
+.hljs-string{color:var(--tk-str)} .hljs-comment{color:var(--tk-com);font-style:italic} .hljs-title,.hljs-title.function_{color:var(--tk-fn)}
+form.answer{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-weight:600;margin-bottom:6px}
+.choices{display:flex;flex-wrap:wrap;gap:6px}
+.choices label{display:flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer;background:var(--bg)}
+.choices label:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.choices input:focus-visible{outline:2px solid var(--accent)}
+fieldset[disabled]{opacity:.45}
+select,textarea{width:100%;font:13px var(--sans);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+textarea{font-family:var(--mono);font-size:12px;min-height:58px;resize:vertical}
+.wide{grid-column:1/-1}
+.formfoot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{all:unset;cursor:pointer;padding:6px 14px;border-radius:6px;border:1px solid var(--line);background:var(--bg);font-weight:500}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.saved{font-size:12px;color:var(--ink2)}
+.exportbox{max-width:1500px;margin:14px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--ink2);font-size:12px}
+#exportText{display:block;width:100%;margin-top:6px}
+@media (max-width:1100px){.code{grid-template-columns:minmax(0,1fr)}.scroll{height:420px}}
+@media (max-width:760px){.bench{grid-template-columns:minmax(0,1fr)} nav.cases{position:static;flex-direction:row;flex-wrap:wrap}
+  nav.cases button{grid-template-columns:auto 10px;padding:5px 8px} nav.cases .what{display:none}
+  .io{grid-template-columns:minmax(0,1fr)} form.answer{grid-template-columns:minmax(0,1fr)} .search input{width:90px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<header class="top">
+  <div>
+    <h1>Second Rating Bench</h1>
+    <p>Twelve blinded cases from the C-to-Rust re-test (<a href="index.html">back to the explorer</a>). For each, read the C and the Rust, check the input and both outputs, and record your call. The page does not show the first rater's labels.</p>
+  </div>
+  <div class="status"><span class="pill" id="progress">0 of 12 rated</span><span class="pill" id="store">Connecting…</span></div>
+</header>
+
+<details class="rules" id="rules" open>
+  <summary>Rules for this rating (from the paper's method)</summary>
+  <ul>
+    <li><b>Defect:</b> one mechanism in the Rust that makes it return a wrong result or crash on an input where the C is well-defined. The C is the oracle.</li>
+    <li><b>Not counted</b> if the divergence occurs only: (i) where the C has undefined behavior; (ii) on inputs that break a precondition the original states in its name, comments or documentation; (iii) in a value the C standard leaves unspecified; (iv) in a callback that frees memory; (v) when a negative value is passed to <code>scanf %u</code> or <code>printf %x/%u</code>. Hangs and build failures are not defects.</li>
+    <li><b>Class</b> (counted only): <i>outright</i>, wrong on ordinary, well-formed input; <i>edge</i>, differs only on malformed or extreme inputs where the C is defined; <i>C bug not copied</i>, the Rust fixes a C bug or follows a recorded expected output instead of the C; <i>other</i>.</li>
+  </ul>
+</details>
+
+<div class="bench">
+  <nav class="cases" id="caseNav" aria-label="Cases"></nav>
+  <main id="caseView"></main>
+</div>
+
+<div class="exportbox">
+  <button class="btn" id="copyAll" type="button">Copy all answers</button>
+  <span id="copyMsg">Answers save automatically. Use this only if saving shows an error.</span>
+  <textarea id="exportText" rows="3" readonly hidden></textarea>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script id="cases" type="application/json">__CASES__</script>
+<script>
+(function(){
+const CASES = JSON.parse(document.getElementById('cases').textContent);
+const RULES = [["","Choose a rule"],["i","(i) the C has undefined behavior"],["ii","(ii) a stated precondition is broken"],["iii","(iii) a value the C standard leaves unspecified"],["iv","(iv) a callback that frees memory"],["v","(v) negative value to %u / %x"],["hang","Hang or build failure"],["none","No real divergence / cannot reproduce"]];
+const CLASSES = [["outright","Outright"],["edge","Edge input"],["c_bug","C bug not copied"],["other","Other"]];
+const LS_KEY = "second-rating-v1";
+let answers = {}; let db = null; /* db = true when the local server answers */ let current = 0; const saveTimers = {};
+try { answers = JSON.parse(localStorage.getItem(LS_KEY) || "{}") || {}; } catch(e) { answers = {}; }
+
+async function copyText(text, msgEl){
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch(e) {
+    const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch(e2) { ok = false; } ta.remove(); }
+  if (msgEl) { msgEl.textContent = ok ? "Copied" : "Copy failed: select the code and copy it"; setTimeout(() => { msgEl.textContent = ""; }, 2500); }
+}
+function bundle(files, label){ return files.map(f => "// ===== " + label + ": " + f.path + " =====\n" + f.text).join("\n\n"); }
+function esc(s){ return String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+function show(v){ if (v === null || v === undefined) return "(not recorded)"; return typeof v === "string" ? v : JSON.stringify(v, null, 1); }
+function state(a){ if (!a || !a.counted) return ""; if (a.counted === "yes") return (a.cls && a.cause) ? "done" : "part"; return (a.rule && a.cause) ? "done" : "part"; }
+function setStore(text, cls){ const el = document.getElementById("store"); el.textContent = text; el.className = "pill " + (cls || ""); }
+function progress(){ const n = CASES.filter(c => state(answers[c.id]) === "done").length; document.getElementById("progress").textContent = n + " of " + CASES.length + " rated"; }
+
+function renderNav(){
+  const nav = document.getElementById("caseNav"); nav.innerHTML = "";
+  CASES.forEach((c, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.id = "nav-" + c.id;
+    b.setAttribute("aria-current", i === current ? "true" : "false");
+    b.innerHTML = '<span class="num">' + String(c.n).padStart(2, "0") + '</span><span class="what"></span><span class="dot"></span>';
+    b.querySelector(".what").textContent = c.system;
+    const st = state(answers[c.id]); if (st) b.querySelector(".dot").classList.add(st);
+    b.addEventListener("click", () => { current = i; renderNav(); renderCase(); window.scrollTo({top: 0}); });
+    nav.appendChild(b);
+  });
+  progress();
+}
+
+function codePane(side, files){
+  const pane = document.createElement("section"); pane.className = "pane " + (side === "c" ? "c" : "r");
+  const lang = side === "c" ? "c" : "rust";
+  pane.innerHTML = '<div class="panebar"><span class="lang">' + (side === "c" ? "C (original)" : "Rust (translation)") + '</span><span class="tabs"></span>' +
+    '<span class="search"><input type="search" placeholder="Find" aria-label="Find in file"><span class="hits"></span><button type="button" aria-label="Next match">Next</button></span>' +
+    '<button type="button" class="copy" data-act="file">Copy file</button>' + (files.length > 1 ? '<button type="button" class="copy" data-act="all">Copy all ' + (side === "c" ? "C" : "Rust") + '</button>' : '') + '<span class="copymsg"></span></div>' +
+    '<div class="path"></div><div class="scroll"><div class="mark" hidden></div><div class="lines"><div class="gutter"></div><pre class="src"></pre></div></div>';
+  const tabs = pane.querySelector(".tabs"), scroll = pane.querySelector(".scroll"), mark = pane.querySelector(".mark");
+  const gutter = pane.querySelector(".gutter"), src = pane.querySelector(".src"), pathEl = pane.querySelector(".path");
+  const input = pane.querySelector("input"), hits = pane.querySelector(".hits");
+  let active = 0, matches = [], mi = -1;
+  function load(k){
+    active = k; const f = files[k];
+    tabs.querySelectorAll(".ftab").forEach((t, j) => t.setAttribute("aria-selected", j === k ? "true" : "false"));
+    pathEl.textContent = f.path;
+    const lines = f.text.split("\n");
+    gutter.textContent = lines.map((_, j) => j + 1).join("\n");
+    let html;
+    try { html = (window.hljs && f.text.length < 400000) ? window.hljs.highlight(f.text, {language: lang, ignoreIllegals: true}).value : esc(f.text); }
+    catch(e) { html = esc(f.text); }
+    src.innerHTML = html; mark.hidden = true; scroll.scrollTop = 0; matches = []; mi = -1; hits.textContent = ""; if (input.value) find(false);
+  }
+  function find(advance){
+    const q = input.value; const lines = files[active].text.split("\n");
+    if (!advance) { matches = []; mi = -1; if (q) lines.forEach((l, j) => { if (l.toLowerCase().includes(q.toLowerCase())) matches.push(j); }); }
+    if (!matches.length) { hits.textContent = q ? "0 found" : ""; mark.hidden = true; return; }
+    mi = (mi + 1) % matches.length; const line = matches[mi];
+    hits.textContent = (mi + 1) + "/" + matches.length;
+    mark.style.top = (6 + line * 18) + "px"; mark.hidden = false;
+    scroll.scrollTop = Math.max(0, line * 18 - 120);
+  }
+  files.forEach((f, k) => { const t = document.createElement("button"); t.type = "button"; t.className = "ftab"; t.setAttribute("role", "tab"); t.textContent = f.name; t.addEventListener("click", () => load(k)); tabs.appendChild(t); });
+  const cmsg = pane.querySelector(".copymsg");
+  pane.querySelector('.copy[data-act="file"]').addEventListener("click", () => copyText(files[active].text, cmsg));
+  const allBtn = pane.querySelector('.copy[data-act="all"]'); if (allBtn) allBtn.addEventListener("click", () => copyText(bundle(files, side === "c" ? "C" : "Rust"), cmsg));
+  input.addEventListener("input", () => find(false));
+  input.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); find(true); } });
+  pane.querySelector(".search button").addEventListener("click", () => find(true));
+  load(0);
+  return pane;
+}
+
+function renderCase(){
+  const c = CASES[current]; const a = answers[c.id] || {};
+  const view = document.getElementById("caseView"); view.innerHTML = "";
+  const head = document.createElement("div"); head.className = "casehead";
+  head.innerHTML = '<span class="sys"></span><h2></h2><span class="note"></span>';
+  head.querySelector(".sys").textContent = "Case " + c.n + " · " + c.system;
+  head.querySelector("h2").textContent = c.what; head.querySelector(".note").textContent = c.note;
+  view.appendChild(head);
+  const bar = document.createElement("div"); bar.className = "copybar";
+  bar.innerHTML = '<button type="button" class="copy" id="copyCase">Copy C and Rust code</button><span class="copymsg"></span>';
+  bar.querySelector("#copyCase").addEventListener("click", () => copyText("Case " + c.n + " (" + c.system + "): " + c.what + "\nInput: " + show(c.input) + "\nC output: " + show(c.c_out) + "\nRust output: " + show(c.rust_out) + "\n\n" + bundle(c.c, "C") + "\n\n" + bundle(c.rust, "Rust"), bar.querySelector(".copymsg")));
+  view.appendChild(bar);
+  const io = document.createElement("div"); io.className = "io";
+  io.innerHTML = '<div><h3>Input</h3><pre></pre></div><div class="c"><h3>C output</h3><pre></pre></div><div class="r"><h3>Rust output</h3><pre></pre></div>';
+  const pres = io.querySelectorAll("pre"); pres[0].textContent = show(c.input); pres[1].textContent = show(c.c_out); pres[2].textContent = show(c.rust_out);
+  view.appendChild(io);
+  const code = document.createElement("div"); code.className = "code";
+  code.appendChild(codePane("c", c.c)); code.appendChild(codePane("rust", c.rust)); view.appendChild(code);
+
+  const form = document.createElement("form"); form.className = "answer"; form.id = "form-" + c.id;
+  form.innerHTML =
+    '<fieldset><legend>Is this a counted defect?</legend><div class="choices">' +
+      '<label><input type="radio" name="counted" value="yes" id="cnt-yes-' + c.id + '"> Yes, a defect</label>' +
+      '<label><input type="radio" name="counted" value="no" id="cnt-no-' + c.id + '"> No</label></div></fieldset>' +
+    '<fieldset><legend>Confidence</legend><div class="choices">' +
+      ["low","medium","high"].map(v => '<label><input type="radio" name="conf" value="' + v + '" id="conf-' + v + '-' + c.id + '"> ' + v[0].toUpperCase() + v.slice(1) + '</label>').join("") + '</div></fieldset>' +
+    '<fieldset id="clsSet"><legend>Class (if counted)</legend><div class="choices">' +
+      CLASSES.map(([v, l]) => '<label><input type="radio" name="cls" value="' + v + '" id="cls-' + v + '-' + c.id + '"> ' + l + '</label>').join("") + '</div></fieldset>' +
+    '<fieldset id="ruleSet"><legend>Rule (if not counted)</legend><select name="rule" id="rule-' + c.id + '">' +
+      RULES.map(([v, l]) => '<option value="' + v + '">' + esc(l) + '</option>').join("") + '</select></fieldset>' +
+    '<fieldset class="wide"><legend>Cause: one line, with file and line</legend><textarea name="cause" id="cause-' + c.id + '" placeholder="e.g. main.rs:42 sums the series instead of computing n(2n-1)"></textarea></fieldset>' +
+    '<div class="formfoot"><span class="saved" id="saved-' + c.id + '"></span><span style="display:flex;gap:8px">' +
+      '<button class="btn" type="button" id="prev">Previous</button><button class="btn primary" type="submit" id="next">Next case</button></span></div>';
+  view.appendChild(form);
+  if (a.counted) { const r = form.querySelector('input[name="counted"][value="' + a.counted + '"]'); if (r) r.checked = true; }
+  if (a.conf) { const r = form.querySelector('input[name="conf"][value="' + a.conf + '"]'); if (r) r.checked = true; }
+  if (a.cls) { const r = form.querySelector('input[name="cls"][value="' + a.cls + '"]'); if (r) r.checked = true; }
+  form.querySelector("select").value = a.rule || ""; form.querySelector("textarea").value = a.cause || "";
+  function syncEnable(){ const v = (form.querySelector('input[name="counted"]:checked') || {}).value;
+    form.querySelector("#clsSet").disabled = v !== "yes"; form.querySelector("#ruleSet").disabled = v !== "no"; }
+  syncEnable();
+  function collect(){ const g = n => (form.querySelector('input[name="' + n + '"]:checked') || {}).value || "";
+    return {counted: g("counted"), conf: g("conf"), cls: g("counted") === "yes" ? g("cls") : "", rule: g("counted") === "no" ? form.querySelector("select").value : "", cause: form.querySelector("textarea").value.trim()}; }
+  function changed(delay){ syncEnable(); const v = collect(); answers[c.id] = v; try { localStorage.setItem(LS_KEY, JSON.stringify(answers)); } catch(e) {}
+    renderNavState(); queueSave(c.id, delay); }
+  form.addEventListener("change", e => changed(e.target.name === "cause" ? 0 : 0));
+  form.querySelector("textarea").addEventListener("input", () => changed(900));
+  form.addEventListener("submit", e => { e.preventDefault(); flush(c.id); if (current < CASES.length - 1) { current++; renderNav(); renderCase(); window.scrollTo({top: 0}); } else { document.getElementById("saved-" + c.id).textContent = "That was the last case."; } });
+  form.querySelector("#prev").addEventListener("click", () => { flush(c.id); if (current > 0) { current--; renderNav(); renderCase(); window.scrollTo({top: 0}); } });
+  if (current === CASES.length - 1) form.querySelector("#next").textContent = "Finish";
+  showSaved(c.id);
+}
+function renderNavState(){ CASES.forEach(c => { const d = document.querySelector("#nav-" + c.id + " .dot"); if (!d) return; d.className = "dot"; const st = state(answers[c.id]); if (st) d.classList.add(st); }); progress(); }
+const saveState = {};
+function showSaved(id){ const el = document.getElementById("saved-" + id); if (!el) return;
+  const s = saveState[id]; el.textContent = !db ? "Saved in this browser only." : s === "saving" ? "Saving…" : s === "error" ? "Not saved. Check your connection; your answer is kept in this browser." : s === "ok" ? "Saved." : ""; }
+function queueSave(id, delay){ clearTimeout(saveTimers[id]); saveTimers[id] = setTimeout(() => save(id), delay); }
+function flush(id){ if (saveTimers[id]) { clearTimeout(saveTimers[id]); save(id); } }
+const inflight = {};
+async function save(id){ delete saveTimers[id]; if (!db) { showSaved(id); return; }
+  if (inflight[id]) { inflight[id].then(() => save(id)); return; }
+  saveState[id] = "saving"; showSaved(id);
+  const body = Object.assign({case: CASES.find(c => c.id === id).n, updated: new Date().toISOString()}, answers[id] || {});
+  inflight[id] = fetch("api/ratings", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({id: id, answer: body})})
+    .then(r => { if (!r.ok) throw new Error(r.status); saveState[id] = "ok"; }).catch(e => { saveState[id] = "error"; }).finally(() => { delete inflight[id]; showSaved(id); });
+}
+
+document.getElementById("copyAll").addEventListener("click", () => {
+  const text = JSON.stringify(answers, null, 1); const box = document.getElementById("exportText");
+  box.value = text; box.hidden = false;
+  try { navigator.clipboard.writeText(text).then(() => { document.getElementById("copyMsg").textContent = "Copied."; }, () => { box.select(); document.getElementById("copyMsg").textContent = "Select the text below and copy it."; }); }
+  catch(e) { box.select(); }
+});
+
+// Source files are not embedded (third-party code is not redistributed): they are read from artifacts/
+// through explorer/serve.py (GET /src?path=...) when the page opens.
+const SRC_MISSING = p => "// Source not shown. This page reads it from artifacts/ through explorer/serve.py:\n" +
+  "// fetch the artifacts (bash scripts/provision.sh artifacts), run python3 explorer/serve.py\n" +
+  "// and open http://127.0.0.1:8790/rate.html.\n// File: " + p + "\n";
+CASES.forEach(c => c.c.concat(c.rust).forEach(f => { if (typeof f.text !== "string") f.text = "// Loading " + f.path + " ...\n"; }));
+const sourcesReady = Promise.all(CASES.flatMap(c => c.c.concat(c.rust)).map(async f => {
+  try { const r = await fetch("src?path=" + encodeURIComponent(f.path), {cache: "no-store"}); if (!r.ok) throw new Error(r.status); f.text = await r.text(); }
+  catch(e) { f.text = SRC_MISSING(f.path); }
+}));
+
+renderNav(); renderCase(); sourcesReady.then(renderCase);
+
+(async () => {
+  try {
+    const r = await fetch("api/ratings", {cache: "no-store"});
+    if (!r.ok) throw new Error(r.status);
+    const stored = await r.json(); db = true;
+    Object.entries(stored.ratings || {}).forEach(([id, v]) => { if (v && !answers[id]) answers[id] = {counted: v.counted || "", conf: v.conf || "", cls: v.cls || "", rule: v.rule || "", cause: v.cause || ""}; });
+    // push any browser-only drafts the file lacks
+    for (const id of Object.keys(answers)) { if (!(stored.ratings || {})[id] && answers[id] && answers[id].counted) save(id); }
+    setStore("Saving to " + (stored.file || "ratings.json"), "ok"); renderNav(); sourcesReady.then(renderCase);
+  } catch(e) { db = null; setStore("Server not reachable: saving in this browser only", "warn"); showSaved(CASES[current].id); }
+})();
+})();
+</script>

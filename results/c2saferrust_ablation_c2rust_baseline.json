@@ -1,0 +1,145 @@
+{
+  "system": "C2SaferRust",
+  "ablation": "in-distribution (own repair tests) vs held-out",
+  "per_util": {
+    "cat": {
+      "n_tests": 4,
+      "c_pass": 3,
+      "rust_pass": 3,
+      "both_pass": 3,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    },
+    "head": {
+      "n_tests": 3,
+      "c_pass": 2,
+      "rust_pass": 1,
+      "both_pass": 1,
+      "rust_fails_where_c_passes": 1,
+      "skipped": 0
+    },
+    "tail": {
+      "n_tests": 33,
+      "c_pass": 12,
+      "rust_pass": 4,
+      "both_pass": 4,
+      "rust_fails_where_c_passes": 8,
+      "skipped": 9
+    },
+    "uniq": {
+      "n_tests": 2,
+      "c_pass": 2,
+      "rust_pass": 2,
+      "both_pass": 2,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    },
+    "split": {
+      "n_tests": 14,
+      "c_pass": 11,
+      "rust_pass": 8,
+      "both_pass": 8,
+      "rust_fails_where_c_passes": 3,
+      "skipped": 1
+    },
+    "truncate": {
+      "n_tests": 9,
+      "c_pass": 7,
+      "rust_pass": 7,
+      "both_pass": 7,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 1
+    },
+    "pwd": {
+      "n_tests": 2,
+      "c_pass": 1,
+      "rust_pass": 1,
+      "both_pass": 1,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    }
+  },
+  "totals": {
+    "tests": 56,
+    "c_pass": 38,
+    "rust_pass": 26,
+    "both_pass": 26,
+    "rust_fails_where_c_passes": 12,
+    "skipped": 11
+  },
+  "rust_fail_cases_in_distribution": [
+    {
+      "util": "head",
+      "test": "head-pos.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "follow-name.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "follow-stdin.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "pipe-f.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "pipe-f2.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "tail-c.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "tail-n0f.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "tail-sysfs.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "wait.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "b-chunk.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "r-chunk.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "suffix-length.sh",
+      "c": "pass",
+      "rust": "fail"
+    }
+  ],
+  "interpretation": "In-distribution (raw): the translated Rust passes 26 of 38 assessable repair tests the original C passes; 12 tests fail on Rust where C passes. This 12 is a RAW test-script count, NOT a defect count: GNU coreutils tail `-f`/follow/pipe/wait/sysfs tests depend on inotify/timing/special filesystems and are routinely flaky, and `split` tests accumulate files across steps, so each failing case must be triaged by direct A/B of the shipped binaries before it counts as a translation defect. For THIS run that triage (docs/reviews/c2saferrust-ablation-triage.md, evidence in results/c2saferrust_triage_evidence.json) finds exactly ONE genuine in-distribution S1 -- `head -n -N` shared-fd positioning (C=50000, R=0) -- while the `split` failures do NOT reproduce in isolation (identical C/Rust file sets) and the rest are the known S2 stderr duplication or tail follow-mode environment sensitivity. So in-distribution the artifact is equivalent except for that one S1 plus the S2 stderr channel; the held-out stderr divergence (14% of error-path cases) is the measured oracle-fitting gap. Do not read the raw 12 as a non-equivalence rate."
+}

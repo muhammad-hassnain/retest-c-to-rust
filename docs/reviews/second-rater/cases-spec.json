@@ -1,0 +1,229 @@
+[
+ {
+  "n": 1,
+  "id": "item17",
+  "system": "VERT",
+  "what": "function MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT (`f_gold`)",
+  "note": "Search for fn f_gold in the Rust file.",
+  "input": "f_gold(1, 0, 2)",
+  "c_out": "1",
+  "rust_out": "2",
+  "c": [
+   "artifacts/vert/benchmark/c_transcoder/MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT/MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT.c"
+  ],
+  "rust": [
+   "artifacts/vert/benchmark/c_transcoder/MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT/out-rwasm-bolero/src/main.rs"
+  ]
+ },
+ {
+  "n": 2,
+  "id": "item20",
+  "system": "ACTOR",
+  "what": "program 005_static_loop",
+  "note": "",
+  "input": "{\"argv\": [\" 12\"], \"stdin\": \"\"}",
+  "c_out": {
+   "exit": 0,
+   "first_differing_stdout_line": 1,
+   "line": "0",
+   "stderr": ""
+  },
+  "rust_out": {
+   "exit": 1,
+   "first_differing_stdout_line": 1,
+   "line": "Error: first argument must be an integer!",
+   "stderr": ""
+  },
+  "c": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B01_synthetic/005_static_loop/verified/c_src/src/main.c"
+  ],
+  "rust": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B01_synthetic/005_static_loop/verified/src/main.rs"
+  ]
+ },
+ {
+  "n": 3,
+  "id": "item38",
+  "system": "Fluorine",
+  "what": "function opl_emu_registers_operator_list",
+  "note": "",
+  "input": "[0, 1, 0, 0]",
+  "c_out": "256",
+  "rust_out": "1",
+  "c": [
+   "artifacts/flourine_dl/flourine-artifact/bms/c/opl/opl_emu_registers_operator_list/opl_emu_registers_operator_list.c"
+  ],
+  "rust": [
+   "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs"
+  ]
+ },
+ {
+  "n": 4,
+  "id": "item14",
+  "system": "C2SaferRust",
+  "what": "coreutils head",
+  "note": "",
+  "input": "head -q in1.txt",
+  "c_out": {
+   "exit": 0,
+   "stdout": "alpha\nbeta\n",
+   "stderr": ""
+  },
+  "rust_out": {
+   "exit": -11,
+   "stdout": "",
+   "stderr": ""
+  },
+  "c": [
+   "artifacts/c2saferrust/coreutils/src/head/c/head.c"
+  ],
+  "rust": [
+   "artifacts/c2saferrust/coreutils/src/head/rust_WIP/src/head.rs"
+  ]
+ },
+ {
+  "n": 5,
+  "id": "item34",
+  "system": "ACTOR",
+  "what": "library 027_ctype_ascii_lib (driver)",
+  "note": "",
+  "input": "{\"argv\": [\"0\", \"49\"], \"stdin\": \"\", \"function\": \"driver\"}",
+  "c_out": {
+   "exit": 0,
+   "stdout": "alphanumeric: 8\nalphabetic: 0\nlowercase: 0\nuppercase: 0\ndigit: 2048\nhexadecimal: 4096\ncontrol: 0\ngraphical: 32768\nspace: 0\nblank: 0\nprinting: 16384\npunctuation: 0\nto lower: 1\nto upper: 1\n\n#ret=void\n",
+   "stderr": ""
+  },
+  "rust_out": {
+   "exit": 0,
+   "stdout": "alphanumeric: 8\nalphabetic: 0\nlowercase: 0\nuppercase: 0\ndigit: 1\nhexadecimal: 4096\ncontrol: 0\ngraphical: 32768\nspace: 0\nblank: 0\nprinting: 16384\npunctuation: 0\nto lower: 1\nto upper: 1\n\n#ret=void\n",
+   "stderr": ""
+  },
+  "c": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B01_synthetic/027_ctype_ascii_lib/verified/c_src/src/driver.c"
+  ],
+  "rust": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B01_synthetic/027_ctype_ascii_lib/verified/src/lib.rs"
+  ]
+ },
+ {
+  "n": 6,
+  "id": "item19",
+  "system": "AdaTrans",
+  "what": "LeetCode program weekly_contest_434_p2",
+  "note": "Rust extracted from the last entry of AdaTrans run 1, conversation C_434_2.json.",
+  "input": "4 1\nMESSAGE 912 id1 id1 id2 id2\n",
+  "c_out": {
+   "stdout_head": "Mentions: 0 1 0 0 \n",
+   "exit": 0
+  },
+  "rust_out": {
+   "stdout_head": "Mentions: 1 2 1 1 \n",
+   "exit": 0,
+   "stderr_head": ""
+  },
+  "c": [
+   "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_434_p2.c"
+  ],
+  "rust": [
+   "artifacts/adatrans/results/adatrans_full/run1/conversations/C_434_2.json#extracted_code"
+  ]
+ },
+ {
+  "n": 7,
+  "id": "item41",
+  "system": "VERT",
+  "what": "function SUM_SERIES_555555_N_TERMS (`f_gold`)",
+  "note": "Search for fn f_gold in the Rust file.",
+  "input": "f_gold(8)",
+  "c_out": "61719994",
+  "rust_out": "61719996",
+  "c": [
+   "artifacts/vert/benchmark/c_transcoder/SUM_SERIES_555555_N_TERMS/SUM_SERIES_555555_N_TERMS.c"
+  ],
+  "rust": [
+   "artifacts/vert/benchmark/c_transcoder/SUM_SERIES_555555_N_TERMS/out-rwasm-bolero/src/main.rs"
+  ]
+ },
+ {
+  "n": 8,
+  "id": "item06",
+  "system": "Fluorine",
+  "what": "function opl_emu_clamp",
+  "note": "",
+  "input": "[1, 1, -1]",
+  "c_out": "-1",
+  "rust_out": "1",
+  "c": [
+   "artifacts/flourine_dl/flourine-artifact/bms/c/opl/opl_emu_clamp/opl_emu_clamp.c"
+  ],
+  "rust": [
+   "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_clamp/claude2/BaseRepair/opl_emu_clamp.rs"
+  ]
+ },
+ {
+  "n": 9,
+  "id": "item31",
+  "system": "His2Trans",
+  "what": "library buffer (`buffer_append_n` etc.)",
+  "note": "",
+  "input": "newsz 0 ; appn 68656c6c6f 1",
+  "c_out": "appn 0 | 1024 1 \"h\"",
+  "rust_out": "appn 0 | 1024 5 \"hello\"",
+  "c": [
+   "artifacts/his2trans/data/rq2/deepseek/c_source/c_source/buffer/src/buffer.c"
+  ],
+  "rust": [
+   "artifacts/his2trans/data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer/src/src_buffer.rs"
+  ]
+ },
+ {
+  "n": 10,
+  "id": "item28",
+  "system": "RustMap",
+  "what": "Rosetta program box_the_compass",
+  "note": "",
+  "input": "(no input: the program prints its own fixed cases)",
+  "c_out": " 1  North                     0.00\n 2  North by east            16.87\n 3  North-northeast          16.88\n 4  Northeast by north       33.75\n 5  Northeast                50.62\n 6  Northeast by east        50.63\n 7  East-northeast           67.50\n 8  East by north            84.37\n 9  East                     84.38\n10  East by south           101.25\n11  East-southeast          118.12\n12  Southeast by east       118.13\n13  Southeast               135.00\n14  Southeast by south      151.87\n15  South-southeast         151.88\n16  South by east           168.75\n17  South                   185.62\n18  South by west           185.63\n19  South-southwest         202.50\n20  Southwest by south      219.37\n21  Southwest               219.38\n22  Southwest by west       236.25\n23  West-southwest          253.12\n24  West by south           253.13\n25  West                    270.00\n26  West by north           286.87\n27  West-northwest          286.88\n28  Northwest by west       303.75\n29  Northwest               320.62\n30  Northwest by north      320.63\n31  North-northwest         337.50\n32  North by west           354.37\n 1  North                   354.38\n",
+  "rust_out": " 2  North by east           0.00\n 3  North-northeast         16.87\n 3  North-northeast         16.88\n 5  Northeast               33.75\n 6  Northeast by east       50.62\n 6  Northeast by east       50.63\n 8  East by north           67.50\n 9  East                    84.37\n 9  East                    84.38\n11  East-southeast          101.25\n12  Southeast by east       118.12\n12  Southeast by east       118.13\n14  Southeast by south      135.00\n15  South-southeast         151.87\n15  South-southeast         151.88\n17  South                   168.75\n18  South by west           185.62\n18  South by west           185.63\n20  Southwest by south      202.50\n21  Southwest               219.37\n21  Southwest               219.38\n23  West-southwest          236.25\n24  West by south           253.12\n24  West by south           253.13\n26  West by north           270.00\n27  West-northwest          286.87\n27  West-northwest          286.88\n29  Northwest               303.75\n30  Northwest by north      320.62\n30  Northwest by north      320.63\n32  North by west           337.50\n 1  North                   354.37\n 1  North                   354.38\n",
+  "c": [
+   "artifacts/rustmap/c-code/rosseta-125/box_the_compass/main.c"
+  ],
+  "rust": [
+   "artifacts/rustmap/rust-code/rosetta_code_gpt/125-rosetta-code-gpt/box_the_compass-c.rs"
+  ]
+ },
+ {
+  "n": 11,
+  "id": "item10",
+  "system": "ACTOR",
+  "what": "program memmove",
+  "note": "",
+  "input": "[] stdin b'0\\n0\\n0\\n2\\n-1 -128\\n'",
+  "c_out": "2 255 128\n",
+  "rust_out": "",
+  "c": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B02_synthetic/memmove/verified/c_src/src/main.c",
+   "artifacts/actoruw/results/Test-Corpus/kiro/B02_synthetic/memmove/verified/c_src/src/lib.c"
+  ],
+  "rust": [
+   "artifacts/actoruw/results/Test-Corpus/kiro/B02_synthetic/memmove/verified/src/main.rs",
+   "artifacts/actoruw/results/Test-Corpus/kiro/B02_synthetic/memmove/verified/src/lib.rs"
+  ]
+ },
+ {
+  "n": 12,
+  "id": "item30",
+  "system": "SACTOR",
+  "what": "CRUST-Bench library c-string",
+  "note": "",
+  "input": "grid: string_t_is_space_char(0) -> C 0, Rust 1; all 4 builds",
+  "c_out": null,
+  "rust_out": null,
+  "c": [
+   "artifacts/sactor/CRUST-bench/datasets/CRUST_bench/CBench/c-string/lib.c"
+  ],
+  "rust": [
+   "artifacts/sactor/CRUST-bench/datasets/CRUST_bench/CBench/c-string/result/translated_code_unidiomatic/combined.rs"
+  ]
+ }
+]

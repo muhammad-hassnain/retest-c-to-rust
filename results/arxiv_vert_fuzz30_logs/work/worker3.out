@@ -1,0 +1,10 @@
+DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M ['exit_1_no_test_failure_text'] 152.4 None
+MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE ['startup_crash', 'startup_crash', 'startup_crash', 'test_failure'] 0.2 16777216
+NEWMAN_CONWAY_SEQUENCE_1 ['startup_crash', 'startup_crash', 'exit_1_no_test_failure_text'] 0.3 None
+NUMBER_RECTANGLES_NM_GRID ['test_failure'] 125.3 (
+    16777216,
+    0,
+)
+PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES ['test_failure'] 144.3 656876800
+SUM_BINOMIAL_COEFFICIENTS ['startup_crash', 'exit_1_no_test_failure_text'] 1.2 None
+WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS ['timeout'] 1200.1 None

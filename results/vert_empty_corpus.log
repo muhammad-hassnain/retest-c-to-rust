@@ -1,0 +1,48 @@
+debconf: delaying package configuration, since apt-utils is not installed
+##### MAXIMUM_GAMES_PLAYED_WINNER vert: corpus/empty + cargo bolero reduce
+    Updating crates.io index
+ Downloading crates ...
+    Finished release [optimized] target(s) in 39.76s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)
+    Finished release [optimized] target(s) in 0.02s
+     Running unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)
+error: test failed, to rerun pass `--bin c_transcoder_maximum_games_played_winner_out-rwasm-bolero`
+Caused by:
+  process didn't exit successfully: `/tmp/e/MAXIMUM_GAMES_PLAYED_WINNER-vert/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5 bolero_wasm_eq --nocapture --exact` (signal: 11, SIGSEGV: invalid memory reference)
+error: process exited with status 101
+rc=1
+##### MAXIMUM_GAMES_PLAYED_WINNER planted: corpus/empty + cargo bolero reduce
+    Finished release [optimized] target(s) in 38.10s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)
+running 1 test
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 415786860
+INFO: Loaded 1 modules   (362037 inline 8-bit counters): 362037 [0x65108f0db0d0, 0x65108f133705), 
+INFO: Loaded 1 PC tables (362037 PCs): 362037 [0x65108f133708,0x65108f6b9a58), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/.tmpLzK1M0'
+MERGE-INNER: 1 total files; 0 processed earlier; will process 1 files now
+#1	pulse  cov: 36 ft: 37 exec/s: 0 rss: 51Mb
+#1	LOADED cov: 36 ft: 37 exec/s: 0 rss: 51Mb
+#1	DONE   cov: 36 ft: 37 exec/s: 0 rss: 51Mb
+rc=0
+##### HEXAGONAL_NUMBER vert: corpus/empty + cargo bolero reduce
+    Finished release [optimized] target(s) in 37.33s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d)
+running 1 test
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 3498007900
+INFO: Loaded 1 modules   (362059 inline 8-bit counters): 362059 [0x6549fe8eb0d0, 0x6549fe94371b), 
+INFO: Loaded 1 PC tables (362059 PCs): 362059 [0x6549fe943720,0x6549feec9bd0), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes
+MERGE-INNER: using the control file '/tmp/.tmpTX9xTH'
+MERGE-INNER: 1 total files; 0 processed earlier; will process 1 files now
+#1	pulse  cov: 36 ft: 37 exec/s: 0 rss: 50Mb
+#1	LOADED cov: 36 ft: 37 exec/s: 0 rss: 50Mb
+#1	DONE   cov: 36 ft: 37 exec/s: 0 rss: 50Mb
+rc=0
+##### HEXAGONAL_NUMBER planted: corpus/empty + cargo bolero reduce
+    Finished release [optimized] target(s) in 38.01s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d)
+error: process exited with no status code
+rc=1

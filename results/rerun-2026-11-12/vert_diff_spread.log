@@ -1,0 +1,60 @@
+  ...50/477 (tested=13 value_bug=1 rust_panic=0)
+  ...100/477 (tested=29 value_bug=4 rust_panic=0)
+  ...150/477 (tested=53 value_bug=8 rust_panic=0)
+  ...200/477 (tested=73 value_bug=12 rust_panic=0)
+  ...250/477 (tested=96 value_bug=13 rust_panic=0)
+  ...300/477 (tested=116 value_bug=18 rust_panic=0)
+  ...350/477 (tested=128 value_bug=19 rust_panic=0)
+  ...400/477 (tested=148 value_bug=23 rust_panic=0)
+  ...450/477 (tested=170 value_bug=25 rust_panic=0)
+{
+  "system": "VERT",
+  "benchmark": "c_transcoder",
+  "domain": "in-domain (non-negative, |x|<=512)",
+  "headline": "value_bug = genuine wrong-answer on inputs the ORIGINAL C handles without UB (ASan/UBSan-filtered); rust_panic and ub_only are reported separately and are NOT counted as wrong answers",
+  "grid": "spread (R_d low-discrepancy over the product; 1-arg unchanged)",
+  "functions_considered": 477,
+  "tested": 176,
+  "agree": 117,
+  "value_bug": 25,
+  "rust_panic": 0,
+  "ub_only": 29,
+  "timeout_only": 3,
+  "san_unavailable": 0,
+  "unsupported": 261,
+  "side_effecting": 0,
+  "c-build-fail": 0,
+  "rust-build-fail": 17,
+  "no-artifact": 1,
+  "non_int_return": 22,
+  "rust_hang": 2,
+  "value_bug_functions": [
+    "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+    "MAXIMUM_GAMES_PLAYED_WINNER",
+    "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+    "SUM_SERIES_12_32_52_2N_12_1",
+    "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+    "NEWMAN_CONWAY_SEQUENCE_1",
+    "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+    "NTH_PENTAGONAL_NUMBER",
+    "HEXAGONAL_NUMBER",
+    "NTH_NON_FIBONACCI_NUMBER",
+    "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+    "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+    "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+    "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+    "NUMBER_TRIANGLES_N_MOVES_1",
+    "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+    "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+    "NUMBER_RECTANGLES_NM_GRID",
+    "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+    "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+    "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+    "SUM_BINOMIAL_COEFFICIENTS",
+    "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+    "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+    "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT"
+  ],
+  "rust_panic_functions": []
+}
+docker run --rm -v "$PWD:/work" -w /work crust-stable python3  -n 80 --out   0.05s user 0.06s system 0% cpu 32:01.35 total

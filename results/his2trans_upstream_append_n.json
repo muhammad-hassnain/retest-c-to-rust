@@ -1,0 +1,70 @@
+{
+ "question": "Does the project's own test of buffer_append_n catch the His2Trans defect H2T-BUF-1, and does His2Trans's runner run it?",
+ "upstream_test": {
+  "repo": "https://github.com/clibs/buffer",
+  "commit": "736ba3cc161d6ab2ac64303ed3c14ccce42e12a5",
+  "file": "test.c",
+  "sha256": "f50a39e6fdd1281cab90ab31cbcbd65d322123da37b32434703fce72a3716b0a",
+  "lines": "52-59",
+  "source": "void\ntest_buffer_append_n() {\n  buffer_t *buf = buffer_new();\n  assert(0 == buffer_append_n(buf, \"subway\", 3));\n  assert(0 == buffer_append_n(buf, \"marines\", 6));\n  assert(strlen(\"submarine\") == buffer_length(buf));\n  equal(\"submarine\", buffer_string(buf));\n  buffer_free(buf);\n}",
+  "expects": {
+   "length": 9,
+   "string": "submarine"
+  }
+ },
+ "calls": [
+  "new",
+  "appn 737562776179 3",
+  "appn 6d6172696e6573 6"
+ ],
+ "command": "docker run --rm --network none -v $WORK/build/main:/b:ro -v in.txt:/in.txt:ro crust-heldout-plus186 sh -c '/b/<bin> < /in.txt'",
+ "image": "crust-heldout-plus186",
+ "image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+ "host": "x86-64 Linux box (~/work/regrade-his2trans/build/main)",
+ "c": {
+  "binary": "c/buffer/buffer_ref",
+  "stdout": "new | 64 0 s:~\nappn 0 | 64 3 s:737562\nappn 0 | 64 9 s:7375626d6172696e65\n",
+  "rc": 0,
+  "final_length": 9,
+  "final_string": "submarine"
+ },
+ "rust": {
+  "binary": "rust/buffer_sut/target/release/buffer (shipped crate data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/projects/buffer + our driver)",
+  "stdout": "new | 64 0 s:~\nappn 0 | 64 6 s:737562776179\nappn 0 | 64 13 s:7375627761796d6172696e6573\n",
+  "rc": 0,
+  "final_length": 13,
+  "final_string": "subwaymarines"
+ },
+ "upstream_test_passes_on": {
+  "c": true,
+  "rust": false
+ },
+ "his2trans_runner": {
+  "file": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/scripts/run_oss_rq2_rust_tests.py",
+  "template": "_native_buffer_test_template (line 606), used at line 1138",
+  "adapter_action": [
+   "replace_c_pointer_buffer_harness_with_rust_native_api"
+  ],
+  "tests_run": [
+   "test_c2r::test_buffer_append",
+   "test_c2r::test_buffer_append_multiple",
+   "test_c2r::test_buffer_equals",
+   "test_c2r::test_buffer_indexof",
+   "test_c2r::test_buffer_indexof_not_found",
+   "test_c2r::test_buffer_new",
+   "test_c2r::test_buffer_new_with_size",
+   "test_c2r::test_buffer_new_with_string",
+   "test_c2r::test_buffer_prepend",
+   "test_c2r::test_buffer_resize",
+   "test_c2r::test_buffer_slice",
+   "test_c2r::test_buffer_trim",
+   "test_c2r::test_buffer_trim_left",
+   "test_c2r::test_buffer_trim_right"
+  ],
+  "n_tests": 14,
+  "any_calls_buffer_append_n": false,
+  "source": "results/his2trans_own_check.json (adapted_tests_run.buffer, per_project.buffer.rerun)"
+ },
+ "artifact_commit": "3a0ec5544c8e6788280b3520105a77432ed8a730",
+ "note": "The artifact's buffer.c differs from upstream master only at line 232 (buffer_prepend memmove) and a trailing line; buffer_append_n is identical. The calls go through our drivers (systems/his2trans/drivers/buffer_driver.{c,rs}), the same binaries as results/his2trans_diff.json."
+}

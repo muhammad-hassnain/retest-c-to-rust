@@ -1,0 +1,285 @@
+{
+ "toolchain": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+ "arch": "x86_64",
+ "lockfiles": "only upstream-tracked (none for these stages); dependencies resolved at build time",
+ "summary": {
+  "translate": {
+   "programs": 24,
+   "build": 19
+  },
+  "manual_debug": {
+   "programs": 14,
+   "build": 10
+  },
+  "automatic_debug": {
+   "programs": 6,
+   "build": 5
+  }
+ },
+ "rows": [
+  {
+   "program": "avl-tree",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "avl-tree",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "binn-3.0",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "bst",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "buffer-0.4.0",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "buffer-0.4.0",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "bzip2",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "bzip2",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "genann",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0432]: unresolved import `translate`"
+  },
+  {
+   "program": "grabc",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error: rustc 1.86.0 is not supported by the following package:"
+  },
+  {
+   "program": "ht",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "libcsv",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libcsv",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libopenaptx",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libtree-3.1.1",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libzahl-1.0",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "libzahl-1.0",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "lodepng",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "lodepng",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error[E0308]: mismatched types"
+  },
+  {
+   "program": "mimalloc",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "mimalloc",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "opl",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "opl",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "qsort",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "quadtree-0.1.0",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "rgba",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error: failed to run custom build command for `ncurses v5.101.0`"
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "automatic_debug",
+   "verdict": "FAIL",
+   "first_error": "error: failed to run custom build command for `ncurses v5.101.0`"
+  },
+  {
+   "program": "robotfindskitten",
+   "stage": "manual_debug",
+   "verdict": "FAIL",
+   "first_error": "error: failed to run custom build command for `ncurses v5.101.0`"
+  },
+  {
+   "program": "snudown",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "automatic_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "tulipindicators",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "url_parser",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "url_parser",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "xzoom",
+   "stage": "translate",
+   "verdict": "FAIL",
+   "first_error": "error: rustc 1.86.0 is not supported by the following package:"
+  },
+  {
+   "program": "zopfli",
+   "stage": "translate",
+   "verdict": "BUILD",
+   "first_error": ""
+  },
+  {
+   "program": "zopfli",
+   "stage": "manual_debug",
+   "verdict": "BUILD",
+   "first_error": ""
+  }
+ ]
+}

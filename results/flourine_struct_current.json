@@ -1,0 +1,5543 @@
+{
+ "provenance": {
+  "script": "harness/oracle_ub_flourine_current.py",
+  "command": "bash harness/oracle_ub_run.sh flourine_current python3 harness/oracle_ub_flourine_current.py --phase c --jobs 6 --build /oub/flourine_current (docker image crust-heldout sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo working tree copied (rsync, artifacts excluded) to the run host; new oracle_ub_* files uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:08:58+00:00",
+  "phases": {
+   "rust": "crust-syzygy sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b (rustc 1.86.0 (05f9846f8 2025-03-31); gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0)",
+   "c": "crust-heldout sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba"
+  },
+  "rust_phase_wall_seconds": 2240,
+  "shipped_script_runs": {
+   "run.py": {
+    "rc": 0,
+    "tail": "{\n  \"system\": \"Flourine\",\n  \"generation\": \"deterministic enumeration\",\n  \"benchmarks_scalar\": 18,\n  \"success_tested\": 101,\n  \"success_agree\": 96,\n  \"success_value_bug\": 5,\n  \"success_crash\": 0,\n  \"fail_tested\": 188,\n  \"fail_diverge\": 88,\n  \"fail_agree\": 100,\n  \"build_fail\": 0,\n  \"success_but_divergent_benchmarks\": [\n    \"clip\",\n    \"opl_emu_clamp\",\n    \"opl_emu_registers_operator_list\"\n  ]\n}\n"
+   },
+   "run_struct.py": {
+    "rc": 0,
+    "tail": "{\n  \"system\": \"Flourine\",\n  \"scope\": \"struct subset (OPL register accessors)\",\n  \"generation\": \"deterministic register fills x bounded offset grid\",\n  \"family\": \"opl register accessors (struct opl_emu_registers*)\",\n  \"drivable_functions\": 15,\n  \"success_tested\": 185,\n  \"success_agree\": 184,\n  \"success_value_bug\": 1,\n  \"success_crash\": 0,\n  \"fail_tested\": 43,\n  \"fail_agree\": 36,\n  \"fail_diverge\": 7,\n  \"build_fail\": 0,\n  \"no_construct\": 2,\n  \"rust_build_fail\": 2,\n  \"success_but_divergent_functions\": [\n    \"opl_emu_registers_lfo_pm_depth\"\n  ]\n}\n"
+   }
+  },
+  "artifact_source_digests": {
+   "bms/c": {
+    "files": 112,
+    "sha256": "26e0f0620fa2420eb92b615862f5155b6fde18875ea2da8c090f305694e476e6"
+   },
+   "translations_only": {
+    "files": 7734,
+    "sha256": "98c7c24d2eb4059cf4fea290030b2fb838c8c00cca848b1ad63d68639bb996de"
+   }
+  },
+  "harness_script_digests": {
+   "systems/flourine/run.py": "9ebf4c6c30ea95f6e424fa0748a4c68eba9a62a3b50b19a24a89fec0a7b453e1",
+   "systems/flourine/run_struct.py": "7c2b74dc718348429bf9ac679582796b05290610bc1eb262c74a37e34d63cde0",
+   "systems/enumerate_inputs.py": "cb67c9e8ea2a60c7e70b019046a02bd17564d199163b9f20f893c9d6fe2273a7",
+   "systems/batch_diff.py": "e1de94bf89837e5373240ccb4321c08f104d5f99039f8688c3a8ce270dc1235a"
+  },
+  "ub_rule": "UB-clean input = no clang-14/gcc-11 ASan+UBSan+float-cast-overflow report on the C built without -fwrapv (-O0, no recovery) AND gcc -O0 -fwrapv output == harness oracle (-O1 -fwrapv)",
+  "sanitizer_positive_controls": {
+   "clang": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+   },
+   "gcc": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+   }
+  },
+  "phase_c_wall_seconds": 462,
+  "shipped_command": "python3 systems/flourine/run_struct.py --out <tmp>  (in the rust-phase image)"
+ },
+ "summary": {
+  "system": "Flourine",
+  "scope": "struct subset (OPL register accessors)",
+  "generation": "deterministic register fills x bounded offset grid",
+  "family": "opl register accessors (struct opl_emu_registers*)",
+  "drivable_functions": 15,
+  "success_tested": 185,
+  "success_agree": 184,
+  "success_value_bug": 1,
+  "success_crash": 0,
+  "fail_tested": 43,
+  "fail_agree": 36,
+  "fail_diverge": 7,
+  "build_fail": 0,
+  "no_construct": 2,
+  "rust_build_fail": 2,
+  "success_but_divergent_functions": [
+   "opl_emu_registers_lfo_pm_depth"
+  ]
+ },
+ "function_list": [
+  {
+   "fn": "opl_emu_registers_ch_output_0",
+   "extra_arg": "u32",
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_ch_output_1",
+   "extra_arg": "u32",
+   "ret": "u32",
+   "recv": "refmut"
+  },
+  {
+   "fn": "opl_emu_registers_ch_output_2",
+   "extra_arg": "u32",
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_fourop_enable",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_is_rhythm",
+   "extra_arg": "u32",
+   "ret": "i32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "extra_arg": "u32",
+   "ret": "u32",
+   "recv": "refbox"
+  },
+  {
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_newflag",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_noise_state",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_note_select",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_rhythm_enable",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_status_mask",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_timer_a_value",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  },
+  {
+   "fn": "opl_emu_registers_timer_b_value",
+   "extra_arg": null,
+   "ret": "u32",
+   "recv": "ref"
+  }
+ ],
+ "success_divergences": [
+  {
+   "t": "opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "value": 4,
+   "samples": [
+    {
+     "line_in": "0 0",
+     "c": "1",
+     "rust": "3"
+    },
+    {
+     "line_in": "1 0",
+     "c": "0",
+     "rust": "2"
+    },
+    {
+     "line_in": "4 0",
+     "c": "1",
+     "rust": "3"
+    },
+    {
+     "line_in": "5 0",
+     "c": "0",
+     "rust": "2"
+    }
+   ]
+  }
+ ],
+ "consistency": {
+  "per_translation_totals_equal_shipped_summary": true,
+  "per_translation_totals": {
+   "drivable_functions": 15,
+   "success_tested": 185,
+   "success_agree": 184,
+   "success_value_bug": 1,
+   "success_crash": 0,
+   "fail_tested": 43,
+   "fail_agree": 36,
+   "fail_diverge": 7,
+   "build_fail": 0,
+   "no_construct": 2,
+   "rust_build_fail": 2
+  }
+ },
+ "comparison_with_old": {
+  "old_file": "results/flourine_struct.json",
+  "summary_old": {
+   "system": "Flourine",
+   "scope": "struct subset (OPL register accessors)",
+   "generation": "deterministic register fills x bounded offset grid",
+   "family": "opl register accessors (struct opl_emu_registers*)",
+   "drivable_functions": 15,
+   "success_tested": 185,
+   "success_agree": 184,
+   "success_value_bug": 1,
+   "success_crash": 0,
+   "fail_tested": 43,
+   "fail_agree": 36,
+   "fail_diverge": 7,
+   "build_fail": 0,
+   "no_construct": 2,
+   "rust_build_fail": 2,
+   "success_but_divergent_functions": [
+    "opl_emu_registers_lfo_pm_depth"
+   ]
+  },
+  "summary_new": {
+   "system": "Flourine",
+   "scope": "struct subset (OPL register accessors)",
+   "generation": "deterministic register fills x bounded offset grid",
+   "family": "opl register accessors (struct opl_emu_registers*)",
+   "drivable_functions": 15,
+   "success_tested": 185,
+   "success_agree": 184,
+   "success_value_bug": 1,
+   "success_crash": 0,
+   "fail_tested": 43,
+   "fail_agree": 36,
+   "fail_diverge": 7,
+   "build_fail": 0,
+   "no_construct": 2,
+   "rust_build_fail": 2,
+   "success_but_divergent_functions": [
+    "opl_emu_registers_lfo_pm_depth"
+   ]
+  },
+  "summary_fields_changed": {},
+  "success_divergences_old_vs_new": {
+   "opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs": [
+    4,
+    4
+   ]
+  },
+  "paper_figures": {
+   "struct_success_tested": {
+    "paper": 185,
+    "now": 185
+   },
+   "struct_success_agree": {
+    "paper": 184,
+    "now": 184
+   }
+  },
+  "stale": false
+ },
+ "iso_c_ub_rule": {
+  "success_wrong_on_ub_clean_input": 1,
+  "success_value_bug": 1,
+  "success_crash_on_ub_clean_input": 0,
+  "fail_diverge": 7,
+  "fail_diverge_on_ub_clean_input": 7,
+  "fail_diverge_only_on_ub_inputs": []
+ },
+ "per_translation": [
+  {
+   "tag": "opl_emu_registers_ch_output_0/gpt4/Restart/opl_emu_registers_ch_output_0.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude2/BaseRepair/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude2/CAPR/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude2/Hinted/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude2/Restart/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude3/BaseRepair/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude3/CAPR/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude3/Hinted/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/claude3/Restart/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gemini/BaseRepair/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gemini/CAPR/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gemini/Hinted/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gemini/Restart/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "no_construct",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gpt4/BaseRepair/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gpt4/CAPR/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/gpt4/Hinted/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/mistral/BaseRepair/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 71,
+    "value": 209,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "0 0",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "0 1",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "0 2",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "0 3",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 209,
+    "value_inputs_ub_clean": 209,
+    "value_inputs_normal": 209,
+    "value_inputs_normal_ub_clean": 209,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "0 0",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "0 1",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "0 2",
+      "c": "1",
+      "rust": "0"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "0 0",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 1",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 2",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 3",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 4",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 5",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 6",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 7",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 8",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 9",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 10",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 11",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 12",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 13",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 14",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 15",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 16",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 17",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 18",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 19",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/mistral/CAPR/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/mistral/Hinted/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_0/mistral/Restart/opl_emu_registers_ch_output_0.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_0",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/mistral/Hinted/opl_emu_registers_ch_output_1.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude2/BaseRepair/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude2/CAPR/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude2/Hinted/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude2/Restart/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude3/BaseRepair/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude3/CAPR/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude3/Hinted/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/claude3/Restart/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gemini/CAPR/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gemini/Hinted/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gemini/Restart/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gpt4/BaseRepair/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gpt4/CAPR/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gpt4/Hinted/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/gpt4/Restart/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/mistral/BaseRepair/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 202,
+    "value": 78,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "1 4",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 5",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 6",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 7",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 78,
+    "value_inputs_ub_clean": 78,
+    "value_inputs_normal": 78,
+    "value_inputs_normal_ub_clean": 78,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "1 4",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 5",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 6",
+      "c": "1",
+      "rust": "0"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "1 4",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 5",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 6",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 7",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 8",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 9",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 10",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 11",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 12",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 13",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 25",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 26",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 27",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 28",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 29",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 30",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 31",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 32",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 48",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "3 0",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/mistral/CAPR/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "build_fail",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_1/mistral/Restart/opl_emu_registers_ch_output_1.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_1",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gpt4/Hinted/opl_emu_registers_ch_output_2.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude2/BaseRepair/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude2/CAPR/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude2/Hinted/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude2/Restart/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude3/BaseRepair/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 112,
+    "value": 168,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "0 0",
+     "c": "0",
+     "rust": "1"
+    },
+    {
+     "line_in": "0 1",
+     "c": "0",
+     "rust": "3"
+    },
+    {
+     "line_in": "0 2",
+     "c": "0",
+     "rust": "1"
+    },
+    {
+     "line_in": "0 3",
+     "c": "0",
+     "rust": "3"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 168,
+    "value_inputs_ub_clean": 168,
+    "value_inputs_normal": 168,
+    "value_inputs_normal_ub_clean": 168,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "0 0",
+      "c": "0",
+      "rust": "1"
+     },
+     {
+      "in": "0 1",
+      "c": "0",
+      "rust": "3"
+     },
+     {
+      "in": "0 2",
+      "c": "0",
+      "rust": "1"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "0 0",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 1",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 2",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 3",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 4",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 5",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 6",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 7",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 8",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 9",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 10",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 11",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 12",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 13",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 14",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 15",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 16",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 18",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 20",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 22",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude3/CAPR/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 112,
+    "value": 168,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "0 0",
+     "c": "0",
+     "rust": "1"
+    },
+    {
+     "line_in": "0 1",
+     "c": "0",
+     "rust": "3"
+    },
+    {
+     "line_in": "0 2",
+     "c": "0",
+     "rust": "1"
+    },
+    {
+     "line_in": "0 3",
+     "c": "0",
+     "rust": "3"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 168,
+    "value_inputs_ub_clean": 168,
+    "value_inputs_normal": 168,
+    "value_inputs_normal_ub_clean": 168,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "0 0",
+      "c": "0",
+      "rust": "1"
+     },
+     {
+      "in": "0 1",
+      "c": "0",
+      "rust": "3"
+     },
+     {
+      "in": "0 2",
+      "c": "0",
+      "rust": "1"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "0 0",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 1",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 2",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 3",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 4",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 5",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 6",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 7",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 8",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 9",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 10",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 11",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 12",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 13",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 14",
+     "c": "0",
+     "rust": "1",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 15",
+     "c": "0",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 16",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 18",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 20",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "0 22",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude3/Hinted/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/claude3/Restart/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 196,
+    "value": 84,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "1 14",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 15",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 16",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 17",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 84,
+    "value_inputs_ub_clean": 84,
+    "value_inputs_normal": 84,
+    "value_inputs_normal_ub_clean": 84,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "1 14",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 15",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 16",
+      "c": "1",
+      "rust": "0"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "1 14",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 15",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 16",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 17",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 18",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 19",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 20",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 21",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 22",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 23",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 24",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 25",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 26",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 27",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 28",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 29",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 30",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 31",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 32",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "3 11",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gemini/BaseRepair/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gemini/CAPR/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gemini/Hinted/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "no_construct",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gemini/Restart/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gpt4/BaseRepair/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gpt4/CAPR/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/gpt4/Restart/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/mistral/BaseRepair/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 196,
+    "value": 84,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "1 14",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 15",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 16",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "line_in": "1 17",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 84,
+    "value_inputs_ub_clean": 84,
+    "value_inputs_normal": 84,
+    "value_inputs_normal_ub_clean": 84,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "1 14",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 15",
+      "c": "1",
+      "rust": "0"
+     },
+     {
+      "in": "1 16",
+      "c": "1",
+      "rust": "0"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "1 14",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 15",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 16",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 17",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 18",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 19",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 20",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 21",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 22",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 23",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 24",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 25",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 26",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 27",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 28",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 29",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 30",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 31",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 32",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "3 11",
+     "c": "1",
+     "rust": "0",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/mistral/CAPR/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/mistral/Hinted/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_ch_output_2/mistral/Restart/opl_emu_registers_ch_output_2.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_ch_output_2",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude2/BaseRepair/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude2/CAPR/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude2/Hinted/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude2/Restart/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude3/BaseRepair/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude3/CAPR/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude3/Hinted/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/claude3/Restart/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gemini/BaseRepair/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gemini/CAPR/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gemini/Hinted/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gemini/Restart/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gpt4/BaseRepair/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gpt4/CAPR/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gpt4/Hinted/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/gpt4/Restart/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/mistral/BaseRepair/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/mistral/CAPR/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/mistral/Hinted/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_fourop_enable/mistral/Restart/opl_emu_registers_fourop_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_fourop_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude2/BaseRepair/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude2/CAPR/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude2/Hinted/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude2/Restart/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude3/BaseRepair/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude3/CAPR/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude3/Hinted/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/claude3/Restart/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gemini/CAPR/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gemini/Hinted/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gemini/Restart/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gpt4/BaseRepair/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gpt4/CAPR/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gpt4/Hinted/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gpt4/Restart/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/mistral/BaseRepair/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/mistral/CAPR/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/mistral/Hinted/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/mistral/Restart/opl_emu_registers_is_rhythm.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_is_rhythm/gemini/BaseRepair/opl_emu_registers_is_rhythm.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_is_rhythm",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude2/BaseRepair/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude2/CAPR/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude2/Hinted/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude2/Restart/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude3/BaseRepair/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude3/CAPR/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude3/Hinted/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/claude3/Restart/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gemini/BaseRepair/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gemini/CAPR/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gemini/Hinted/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gemini/Restart/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gpt4/CAPR/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gpt4/Hinted/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/mistral/BaseRepair/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/mistral/CAPR/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/mistral/Hinted/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/mistral/Restart/opl_emu_registers_lfo_am_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gpt4/BaseRepair/opl_emu_registers_lfo_am_depth.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_depth/gpt4/Restart/opl_emu_registers_lfo_am_depth.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude2/BaseRepair/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude2/CAPR/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude2/Hinted/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude2/Restart/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude3/BaseRepair/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude3/CAPR/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude3/Hinted/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gemini/BaseRepair/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gemini/CAPR/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gemini/Hinted/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gemini/Restart/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 280,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gpt4/Hinted/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/mistral/BaseRepair/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/mistral/CAPR/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/mistral/Hinted/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/mistral/Restart/opl_emu_registers_lfo_am_offset.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/claude3/Restart/opl_emu_registers_lfo_am_offset.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gpt4/BaseRepair/opl_emu_registers_lfo_am_offset.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gpt4/CAPR/opl_emu_registers_lfo_am_offset.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_am_offset/gpt4/Restart/opl_emu_registers_lfo_am_offset.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_lfo_am_offset",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude2/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude2/CAPR/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude2/Hinted/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude2/Restart/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "value_bug",
+   "tally": {
+    "agree": 4,
+    "value": 4,
+    "crash": 0
+   },
+   "samples": [
+    {
+     "line_in": "0 0",
+     "c": "1",
+     "rust": "3"
+    },
+    {
+     "line_in": "1 0",
+     "c": "0",
+     "rust": "2"
+    },
+    {
+     "line_in": "4 0",
+     "c": "1",
+     "rust": "3"
+    },
+    {
+     "line_in": "5 0",
+     "c": "0",
+     "rust": "2"
+    }
+   ],
+   "ub_rule": {
+    "value_inputs": 4,
+    "value_inputs_ub_clean": 4,
+    "value_inputs_normal": 4,
+    "value_inputs_normal_ub_clean": 4,
+    "crash_inputs": 0,
+    "crash_inputs_ub_clean": 0,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [
+     {
+      "in": "0 0",
+      "c": "1",
+      "rust": "3"
+     },
+     {
+      "in": "1 0",
+      "c": "0",
+      "rust": "2"
+     },
+     {
+      "in": "4 0",
+      "c": "1",
+      "rust": "3"
+     }
+    ],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": true,
+   "divergent_inputs_first": [
+    {
+     "in": "0 0",
+     "c": "1",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 0",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "4 0",
+     "c": "1",
+     "rust": "3",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "5 0",
+     "c": "0",
+     "rust": "2",
+     "kind": "value",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude3/CAPR/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude3/Hinted/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/claude3/Restart/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gemini/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gemini/CAPR/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gemini/Hinted/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gemini/Restart/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gpt4/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gpt4/CAPR/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gpt4/Hinted/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/gpt4/Restart/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/mistral/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/mistral/CAPR/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/mistral/Hinted/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_lfo_pm_depth/mistral/Restart/opl_emu_registers_lfo_pm_depth.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_lfo_pm_depth",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude2/BaseRepair/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude2/CAPR/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude2/Hinted/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude2/Restart/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude3/BaseRepair/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude3/CAPR/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude3/Hinted/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/claude3/Restart/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gemini/BaseRepair/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gemini/CAPR/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gemini/Hinted/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gemini/Restart/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gpt4/BaseRepair/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gpt4/CAPR/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gpt4/Hinted/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/gpt4/Restart/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/mistral/BaseRepair/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/mistral/CAPR/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/mistral/Hinted/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_newflag/mistral/Restart/opl_emu_registers_newflag.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_newflag",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude2/BaseRepair/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude2/CAPR/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude2/Hinted/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude2/Restart/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude3/BaseRepair/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude3/CAPR/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude3/Hinted/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/claude3/Restart/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gemini/BaseRepair/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gemini/CAPR/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gemini/Hinted/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gemini/Restart/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gpt4/CAPR/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gpt4/Restart/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/mistral/BaseRepair/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/mistral/CAPR/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/mistral/Hinted/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/mistral/Restart/opl_emu_registers_noise_state.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gpt4/BaseRepair/opl_emu_registers_noise_state.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_noise_state/gpt4/Hinted/opl_emu_registers_noise_state.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_noise_state",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude2/BaseRepair/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude2/CAPR/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude2/Hinted/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude2/Restart/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude3/BaseRepair/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude3/CAPR/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude3/Hinted/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/claude3/Restart/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gemini/CAPR/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "build_fail",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gemini/Hinted/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gemini/Restart/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gpt4/BaseRepair/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gpt4/Hinted/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gpt4/Restart/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/mistral/BaseRepair/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/mistral/CAPR/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/mistral/Hinted/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/mistral/Restart/opl_emu_registers_note_select.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gemini/BaseRepair/opl_emu_registers_note_select.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "diverge",
+   "tally": {
+    "agree": 0,
+    "value": 0,
+    "crash": 8
+   },
+   "samples": [],
+   "ub_rule": {
+    "value_inputs": 0,
+    "value_inputs_ub_clean": 0,
+    "value_inputs_normal": 0,
+    "value_inputs_normal_ub_clean": 0,
+    "crash_inputs": 8,
+    "crash_inputs_ub_clean": 8,
+    "hang_inputs": 0,
+    "value_inputs_san_report": 0,
+    "value_inputs_opt_level_dependent": 0,
+    "value_inputs_O2_dependent": 0,
+    "value_inputs_fwrapv_dependent": 0,
+    "value_inputs_char_signedness_dependent": 0,
+    "value_inputs_bitfield_signedness_dependent": 0,
+    "report_kinds": {},
+    "smallest_ub_clean_value_inputs": [],
+    "consistent_with_rust_phase_tally": true
+   },
+   "wrong_on_ub_clean_input": false,
+   "divergent_inputs_first": [
+    {
+     "in": "0 0",
+     "c": "0",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "1 0",
+     "c": "1",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "2 0",
+     "c": "0",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "3 0",
+     "c": "1",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "4 0",
+     "c": "0",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "5 0",
+     "c": "0",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "6 0",
+     "c": "1",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    },
+    {
+     "in": "7 0",
+     "c": "0",
+     "rust": "__PANIC__",
+     "kind": "crash",
+     "flags": {},
+     "rule_clean": true,
+     "degenerate_min_gt_max": false
+    }
+   ]
+  },
+  {
+   "tag": "opl_emu_registers_note_select/gpt4/CAPR/opl_emu_registers_note_select.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_note_select",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude2/BaseRepair/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude2/CAPR/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude2/Hinted/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude2/Restart/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude3/BaseRepair/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude3/CAPR/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude3/Hinted/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/claude3/Restart/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gemini/BaseRepair/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gemini/CAPR/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gemini/Hinted/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gemini/Restart/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gpt4/BaseRepair/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gpt4/CAPR/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gpt4/Hinted/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/gpt4/Restart/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/mistral/BaseRepair/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/mistral/CAPR/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/mistral/Hinted/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_rhythm_enable/mistral/Restart/opl_emu_registers_rhythm_enable.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_rhythm_enable",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude2/BaseRepair/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude2/CAPR/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude2/Hinted/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude2/Restart/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude3/BaseRepair/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude3/CAPR/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude3/Hinted/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/claude3/Restart/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gemini/BaseRepair/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gemini/CAPR/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gemini/Hinted/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gemini/Restart/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gpt4/BaseRepair/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gpt4/CAPR/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gpt4/Hinted/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/gpt4/Restart/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/mistral/BaseRepair/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/mistral/CAPR/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/mistral/Hinted/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_status_mask/mistral/Restart/opl_emu_registers_status_mask.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_status_mask",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude2/BaseRepair/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude2/CAPR/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude2/Hinted/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude2/Restart/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude3/BaseRepair/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude3/CAPR/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude3/Hinted/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/claude3/Restart/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gemini/BaseRepair/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gemini/CAPR/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gemini/Hinted/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gemini/Restart/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gpt4/BaseRepair/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gpt4/CAPR/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gpt4/Hinted/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/gpt4/Restart/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/mistral/BaseRepair/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/mistral/CAPR/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/mistral/Hinted/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_a_value/mistral/Restart/opl_emu_registers_timer_a_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_a_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude2/BaseRepair/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude2/CAPR/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude2/Hinted/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude2/Restart/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude3/BaseRepair/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude3/CAPR/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude3/Hinted/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/claude3/Restart/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gemini/BaseRepair/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gemini/CAPR/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gemini/Restart/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gpt4/BaseRepair/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gpt4/CAPR/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gpt4/Hinted/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gpt4/Restart/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/mistral/BaseRepair/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/mistral/CAPR/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/mistral/Hinted/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/mistral/Restart/opl_emu_registers_timer_b_value.rs",
+   "label": "success",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "tested",
+   "verdict": "agree",
+   "tally": {
+    "agree": 8,
+    "value": 0,
+    "crash": 0
+   },
+   "samples": []
+  },
+  {
+   "tag": "opl_emu_registers_timer_b_value/gemini/Hinted/opl_emu_registers_timer_b_value.rs",
+   "label": "fail",
+   "fn": "opl_emu_registers_timer_b_value",
+   "status": "skipped_shape",
+   "verdict": null,
+   "tally": null,
+   "samples": null
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+# Third-party artifacts are fetched at pinned commits by systems/*/fetch.sh and scripts/fetch_artifact.sh, never vendored.
+/artifacts
+
+# Scratch output of the reproduction scripts (pipeline re-runs, spot checks)
+out/
+_repro*.json
+
+# Python, Rust and C build leftovers
+__pycache__/
+*.pyc
+target/
+*.o
+gmon.out
+.DS_Store
+
+# RustAssure libcsv/u8c end-to-end: generated system-under-test sources and build outputs
+systems/rustassure/libcsv_e2e/csv_sut.rs
+systems/rustassure/libcsv_e2e/sut_crate/src/main.rs
+systems/rustassure/libcsv_e2e/sut_crate/target/
+systems/rustassure/libcsv_e2e/sut_crate/Cargo.lock
+systems/rustassure/u8c_e2e/u8c_sut.rs

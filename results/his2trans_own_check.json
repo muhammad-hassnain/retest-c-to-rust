@@ -1,0 +1,382 @@
+{
+ "command_run": "/usr/bin/python3 /art/data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/scripts/run_oss_rq2_rust_tests.py --run-dir /b/own_check2/archived_deepseek_v4_pro_oss8_0613_rq2_100pct --projects urlparser,avl,ht,qsort,buffer,rgba,quadtree,genann --tests-dir /art/data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/tests/source_rq2_tests --timeout 240 --work-dir /b/own_check2/tmp/rq2_work --output /b/own_check2/results/oss8_rq2.json",
+ "exit_code": 0,
+ "log_tail": "JSON: /b/own_check2/results/oss8_rq2.json\nMarkdown: /b/own_check2/results/oss8_rq2.md\nRQ2 tests: 52/52 (100.00%)\n",
+ "per_project": {
+  "urlparser": {
+   "rerun": {
+    "passed": 3,
+    "total": 3,
+    "tests": {
+     "test_c2r::test_url_getters_match_reference": "ok",
+     "test_c2r::test_url_is_protocol": "ok",
+     "test_c2r::test_url_parse_fields_non_null": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_urlparser_harness_with_rust_native_api",
+     "correct_urlparser_file_scheme_oracle",
+     "compile_native_accessor_shims_for_tests"
+    ]
+   },
+   "shipped": {
+    "passed": 3,
+    "total": 3,
+    "tests": {
+     "test_c2r::test_url_getters_match_reference": "ok",
+     "test_c2r::test_url_is_protocol": "ok",
+     "test_c2r::test_url_parse_fields_non_null": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_urlparser_harness_with_rust_native_api",
+     "correct_urlparser_file_scheme_oracle",
+     "compile_native_accessor_shims_for_tests"
+    ]
+   },
+   "same_verdict": true
+  },
+  "avl": {
+   "rerun": {
+    "passed": 2,
+    "total": 2,
+    "tests": {
+     "test_c2r::test_avl_delete_updates_links": "ok",
+     "test_c2r::test_avl_insert_find_next_prev": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_avl_harness_with_rust_native_api"
+    ]
+   },
+   "shipped": {
+    "passed": 2,
+    "total": 2,
+    "tests": {
+     "test_c2r::test_avl_delete_updates_links": "ok",
+     "test_c2r::test_avl_insert_find_next_prev": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_avl_harness_with_rust_native_api"
+    ]
+   },
+   "same_verdict": true
+  },
+  "ht": {
+   "rerun": {
+    "passed": 1,
+    "total": 1,
+    "tests": {
+     "test_c2r::test_main_smoke": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_ht_harness_with_rust_native_api"
+    ]
+   },
+   "shipped": {
+    "passed": 1,
+    "total": 1,
+    "tests": {
+     "test_c2r::test_main_smoke": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_ht_harness_with_rust_native_api"
+    ]
+   },
+   "same_verdict": true
+  },
+  "qsort": {
+   "rerun": {
+    "passed": 6,
+    "total": 6,
+    "tests": {
+     "test_c2r::test_already_sorted": "ok",
+     "test_c2r::test_duplicates": "ok",
+     "test_c2r::test_negatives": "ok",
+     "test_c2r::test_reverse": "ok",
+     "test_c2r::test_single_element": "ok",
+     "test_c2r::test_small": "ok"
+    },
+    "adapter_actions": [
+     "qsort_safe_slice_bridge"
+    ]
+   },
+   "shipped": {
+    "passed": 6,
+    "total": 6,
+    "tests": {
+     "test_c2r::test_already_sorted": "ok",
+     "test_c2r::test_duplicates": "ok",
+     "test_c2r::test_negatives": "ok",
+     "test_c2r::test_reverse": "ok",
+     "test_c2r::test_single_element": "ok",
+     "test_c2r::test_small": "ok"
+    },
+    "adapter_actions": [
+     "qsort_safe_slice_bridge"
+    ]
+   },
+   "same_verdict": true
+  },
+  "buffer": {
+   "rerun": {
+    "passed": 14,
+    "total": 14,
+    "tests": {
+     "test_c2r::test_buffer_append": "ok",
+     "test_c2r::test_buffer_append_multiple": "ok",
+     "test_c2r::test_buffer_equals": "ok",
+     "test_c2r::test_buffer_indexof": "ok",
+     "test_c2r::test_buffer_indexof_not_found": "ok",
+     "test_c2r::test_buffer_new": "ok",
+     "test_c2r::test_buffer_new_with_size": "ok",
+     "test_c2r::test_buffer_new_with_string": "ok",
+     "test_c2r::test_buffer_prepend": "ok",
+     "test_c2r::test_buffer_resize": "ok",
+     "test_c2r::test_buffer_slice": "ok",
+     "test_c2r::test_buffer_trim": "ok",
+     "test_c2r::test_buffer_trim_left": "ok",
+     "test_c2r::test_buffer_trim_right": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_buffer_harness_with_rust_native_api"
+    ]
+   },
+   "shipped": {
+    "passed": 14,
+    "total": 14,
+    "tests": {
+     "test_c2r::test_buffer_append": "ok",
+     "test_c2r::test_buffer_append_multiple": "ok",
+     "test_c2r::test_buffer_equals": "ok",
+     "test_c2r::test_buffer_indexof": "ok",
+     "test_c2r::test_buffer_indexof_not_found": "ok",
+     "test_c2r::test_buffer_new": "ok",
+     "test_c2r::test_buffer_new_with_size": "ok",
+     "test_c2r::test_buffer_new_with_string": "ok",
+     "test_c2r::test_buffer_prepend": "ok",
+     "test_c2r::test_buffer_resize": "ok",
+     "test_c2r::test_buffer_slice": "ok",
+     "test_c2r::test_buffer_trim": "ok",
+     "test_c2r::test_buffer_trim_left": "ok",
+     "test_c2r::test_buffer_trim_right": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_buffer_harness_with_rust_native_api"
+    ]
+   },
+   "same_verdict": true
+  },
+  "rgba": {
+   "rerun": {
+    "passed": 10,
+    "total": 10,
+    "tests": {
+     "test_c2r::test_rgba_consistency": "ok",
+     "test_c2r::test_rgba_different_colors": "ok",
+     "test_c2r::test_rgba_from_string_hex3": "ok",
+     "test_c2r::test_rgba_from_string_hex6": "ok",
+     "test_c2r::test_rgba_from_string_named_color_red": "ok",
+     "test_c2r::test_rgba_from_string_rgb": "ok",
+     "test_c2r::test_rgba_from_string_rgba_alpha_zero": "ok",
+     "test_c2r::test_rgba_invalid_string_returns_none": "ok",
+     "test_c2r::test_rgba_to_string_hex_for_opaque": "ok",
+     "test_c2r::test_rgba_to_string_rgba_format_for_transparent": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_rgba_harness_with_rust_native_api"
+    ]
+   },
+   "shipped": {
+    "passed": 10,
+    "total": 10,
+    "tests": {
+     "test_c2r::test_rgba_consistency": "ok",
+     "test_c2r::test_rgba_different_colors": "ok",
+     "test_c2r::test_rgba_from_string_hex3": "ok",
+     "test_c2r::test_rgba_from_string_hex6": "ok",
+     "test_c2r::test_rgba_from_string_named_color_red": "ok",
+     "test_c2r::test_rgba_from_string_rgb": "ok",
+     "test_c2r::test_rgba_from_string_rgba_alpha_zero": "ok",
+     "test_c2r::test_rgba_invalid_string_returns_none": "ok",
+     "test_c2r::test_rgba_to_string_hex_for_opaque": "ok",
+     "test_c2r::test_rgba_to_string_rgba_format_for_transparent": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_rgba_harness_with_rust_native_api"
+    ]
+   },
+   "same_verdict": true
+  },
+  "quadtree": {
+   "rerun": {
+    "passed": 4,
+    "total": 4,
+    "tests": {
+     "test_c2r::test_quadtree_duplicate_insert": "ok",
+     "test_c2r::test_quadtree_insert_and_search": "ok",
+     "test_c2r::test_quadtree_multiple_points": "ok",
+     "test_c2r::test_quadtree_new_and_free": "ok"
+    },
+    "adapter_actions": [
+     "inject_quadtree_test_support_module",
+     "compile_native_accessor_shims_for_tests"
+    ]
+   },
+   "shipped": {
+    "passed": 4,
+    "total": 4,
+    "tests": {
+     "test_c2r::test_quadtree_duplicate_insert": "ok",
+     "test_c2r::test_quadtree_insert_and_search": "ok",
+     "test_c2r::test_quadtree_multiple_points": "ok",
+     "test_c2r::test_quadtree_new_and_free": "ok"
+    },
+    "adapter_actions": [
+     "inject_quadtree_test_support_module",
+     "compile_native_accessor_shims_for_tests"
+    ]
+   },
+   "same_verdict": true
+  },
+  "genann": {
+   "rerun": {
+    "passed": 12,
+    "total": 12,
+    "tests": {
+     "test_c2r::test_genann_act_linear": "ok",
+     "test_c2r::test_genann_act_sigmoid": "ok",
+     "test_c2r::test_genann_act_sigmoid_negative": "ok",
+     "test_c2r::test_genann_act_sigmoid_positive": "ok",
+     "test_c2r::test_genann_act_threshold": "ok",
+     "test_c2r::test_genann_copy": "ok",
+     "test_c2r::test_genann_init": "ok",
+     "test_c2r::test_genann_init_no_hidden": "ok",
+     "test_c2r::test_genann_multilayer": "ok",
+     "test_c2r::test_genann_randomize": "ok",
+     "test_c2r::test_genann_run": "ok",
+     "test_c2r::test_genann_sigmoid_cached": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_genann_harness_with_rust_native_api"
+    ]
+   },
+   "shipped": {
+    "passed": 12,
+    "total": 12,
+    "tests": {
+     "test_c2r::test_genann_act_linear": "ok",
+     "test_c2r::test_genann_act_sigmoid": "ok",
+     "test_c2r::test_genann_act_sigmoid_negative": "ok",
+     "test_c2r::test_genann_act_sigmoid_positive": "ok",
+     "test_c2r::test_genann_act_threshold": "ok",
+     "test_c2r::test_genann_copy": "ok",
+     "test_c2r::test_genann_init": "ok",
+     "test_c2r::test_genann_init_no_hidden": "ok",
+     "test_c2r::test_genann_multilayer": "ok",
+     "test_c2r::test_genann_randomize": "ok",
+     "test_c2r::test_genann_run": "ok",
+     "test_c2r::test_genann_sigmoid_cached": "ok"
+    },
+    "adapter_actions": [
+     "replace_c_pointer_genann_harness_with_rust_native_api"
+    ]
+   },
+   "same_verdict": true
+  }
+ },
+ "rerun_summary": {
+  "projects": 8,
+  "executed": 8,
+  "compilation_succeeded": 8,
+  "tests_passed": 52,
+  "total_tests": 52,
+  "pass_rate": 1.0,
+  "failure_assessments": {
+   "pass": 8
+  }
+ },
+ "shipped_summary": {
+  "projects": 8,
+  "executed": 8,
+  "compilation_succeeded": 8,
+  "tests_passed": 52,
+  "total_tests": 52,
+  "pass_rate": 1.0,
+  "failure_assessments": {
+   "pass": 8
+  }
+ },
+ "adapted_tests_run": {
+  "urlparser": {
+   "sha256": "3fbf01af68de04964e5c7df94b42d9fb67797a26a59c380f5f13220dd6484bd9",
+   "source": "// RQ2 adapter for urlparser Rust-native API.\n\nuse crate::src_url::*;\n\n#[test]\nfn test_url_is_protocol() {\n    assert!(url_is_protocol(\"http\"));\n    assert!(url_is_protocol(\"https\"));\n    // `file` is present in the source URL_SCHEMES table, so it is a valid protocol.\n    assert!(url_is_protocol(\"file\"));\n    assert!(!url_is_protocol(\"not-a-url-scheme\"));\n}\n\n#[test]\nfn test_url_getters_match_reference() {\n    let url = \"http://user:pass@subdomain.host.com:8080/p/a/t/h?query=string#hash\";\n\n    assert_eq!(url_get_protocol(url), Some(\"http\".to_string()));\n    assert_eq!(url_get_auth(url), Some(\"user:pass\".to_string()));\n    assert_eq!(url_get_hostname(url), Some(\"subdomain.host.com:8080\".to_string()));\n    assert_eq!(url_get_host(url), Some(\"subdomain.host.com\".to_string()));\n    assert_eq!(url_get_pathname(url), Some(\"/p/a/t/h\".to_string()));\n    assert_eq!(url_get_path(url), Some(\"/p/a/t/h?query=string#hash\".to_string()));\n    assert_eq!(url_get_search(url), Some(\"?query=string\".to_string()));\n    assert_eq!(url_get_query(url), Some(\"query=string\".to_string()));\n    assert_eq!(url_get_hash(url), Some(\"#hash\".to_string()));\n    assert_eq!(url_get_port(url), Some(\"8080\".to_string()));\n}\n\n#[test]\nfn test_url_parse_fields_non_null() {\n    let url = \"http://user:pass@subdomain.host.com:8080/p/a/t/h?query=string#hash\";\n    let parsed = url_parse(url).expect(\"url_parse should parse the reference URL\");\n\n    assert_eq!(parsed.href, url);\n    assert_eq!(parsed.protocol, \"http\");\n    assert_eq!(parsed.auth, \"user:pass\");\n    assert_eq!(parsed.hostname, \"subdomain.host.com:8080\");\n    assert_eq!(parsed.host, \"subdomain.host.com\");\n    assert_eq!(parsed.pathname, \"/p/a/t/h\");\n    assert_eq!(parsed.path, \"/p/a/t/h?query=string#hash\");\n    assert_eq!(parsed.search, \"?query=string\");\n    assert_eq!(parsed.query, \"query=string\");\n    assert_eq!(parsed.hash, \"#hash\");\n    assert_eq!(parsed.port, \"8080\");\n\n    let gh_url = \"git://git@github.com:jwerle/url.h.git\";\n    let gh_parsed = url_parse(gh_url).expect(\"url_parse should parse git-style URLs\");\n    assert_eq!(gh_parsed.href, gh_url);\n    assert_eq!(gh_parsed.protocol, \"git\");\n    assert_eq!(gh_parsed.auth, \"git\");\n    assert_eq!(gh_parsed.hostname, \"github.com\");\n    assert_eq!(gh_parsed.host, \"github.com\");\n    assert_eq!(gh_parsed.pathname, \"jwerle/url.h.git\");\n    assert_eq!(gh_parsed.path, \"jwerle/url.h.git\");\n}\n"
+  },
+  "avl": {
+   "sha256": "1fd7fa944957ce2fc2748d811af2ce3df524e1c28f610b4c6f0149de95279f97",
+   "source": "// RQ2 adapter for avl Rust-native API.\n\nuse crate::src_avl::*;\nuse crate::types::*;\n\nuse core::ffi::c_void;\nuse core::ptr;\n\n#[repr(C)]\nstruct NodeWithKey {\n    node: AVL3_NODE,\n    key: i32,\n}\n\nfn node_key_offsets() -> (u16, u16) {\n    let dummy: NodeWithKey = unsafe { core::mem::zeroed() };\n    let base = &dummy as *const NodeWithKey as usize;\n    let node_off = (&dummy.node as *const AVL3_NODE as usize) - base;\n    let key_off = (&dummy.key as *const i32 as usize) - base;\n    (key_off as u16, node_off as u16)\n}\n\nextern \"C\" fn compare_i32(a: *const c_void, b: *const c_void) -> core::ffi::c_int {\n    let av = unsafe { *(a as *const i32) };\n    let bv = unsafe { *(b as *const i32) };\n    if av < bv {\n        -1\n    } else if av > bv {\n        1\n    } else {\n        0\n    }\n}\n\nunsafe fn key_of_container(p: *mut c_void) -> i32 {\n    (*(p as *mut NodeWithKey)).key\n}\n\nunsafe fn container_from_node(node: *mut AVL3_NODE, node_off: u16) -> *mut NodeWithKey {\n    (node as *mut u8).offset(-(node_off as isize)) as *mut NodeWithKey\n}\n\n#[test]\nfn test_avl_insert_find_next_prev() {\n    let (key_off, node_off) = node_key_offsets();\n\n    let mut tree: AVL3_TREE = unsafe { core::mem::zeroed() };\n    let mut info: AVL3_TREE_INFO = unsafe { core::mem::zeroed() };\n    info.pfCompare = Some(compare_i32);\n    info.usKeyOffset = key_off;\n    info.usNodeOffset = node_off;\n\n    let mut n1: NodeWithKey = unsafe { core::mem::zeroed() };\n    let mut n2: NodeWithKey = unsafe { core::mem::zeroed() };\n    let mut n3: NodeWithKey = unsafe { core::mem::zeroed() };\n    n1.key = 1;\n    n2.key = 2;\n    n3.key = 3;\n\n    unsafe {\n        assert!(\n            VOS_AVL3_Insert_Or_Find(&mut tree, &mut n2.node, &info).is_null(),\n            \"insert(2) should return NULL\"\n        );\n        assert!(VOS_AVL3_Insert_Or_Find(&mut tree, &mut n1.node, &info).is_null());\n        assert!(VOS_AVL3_Insert_Or_Find(&mut tree, &mut n3.node, &info).is_null());\n\n        let key2: i32 = 2;\n        let found = VOS_AVL3_Find(&tree, &key2 as *const _ as *const c_void, &info);\n        assert!(!found.is_null());\n        assert_eq!(key_of_container(found), 2);\n\n        let n1_next = VOS_AVL3_Next(&n1.node, &info);\n        assert!(!n1_next.is_null());\n        assert_eq!(key_of_container(n1_next), 2, \"Next(1) \u5e94\u8be5\u662f 2\");\n\n        let n2_next = VOS_AVL3_Next(&n2.node, &info);\n        assert!(!n2_next.is_null());\n        assert_eq!(key_of_container(n2_next), 3, \"Next(2) \u5e94\u8be5\u662f 3\");\n\n        assert!(!tree.pstFirst.is_null());\n        assert!(!tree.pstLast.is_null());\n        let first = container_from_node(tree.pstFirst as *mut AVL3_NODE, node_off);\n        let last = container_from_node(tree.pstLast as *mut AVL3_NODE, node_off);\n        assert!(!first.is_null() && !last.is_null());\n        assert_eq!((*first).key, 1);\n        assert_eq!((*last).key, 3);\n    }\n}\n\n#[test]\nfn test_avl_delete_updates_links() {\n    let (key_off, node_off) = node_key_offsets();\n\n    let mut tree: AVL3_TREE = unsafe { core::mem::zeroed() };\n    let mut info: AVL3_TREE_INFO = unsafe { core::mem::zeroed() };\n    info.pfCompare = Some(compare_i32);\n    info.usKeyOffset = key_off;\n    info.usNodeOffset = node_off;\n\n    let mut n1: NodeWithKey = unsafe { core::mem::zeroed() };\n    let mut n2: NodeWithKey = unsafe { core::mem::zeroed() };\n    let mut n3: NodeWithKey = unsafe { core::mem::zeroed() };\n    n1.key = 1;\n    n2.key = 2;\n    n3.key = 3;\n\n    unsafe {\n        assert!(VOS_AVL3_Insert_Or_Find(&mut tree, &mut n2.node, &info).is_null());\n        assert!(VOS_AVL3_Insert_Or_Find(&mut tree, &mut n1.node, &info).is_null());\n        assert!(VOS_AVL3_Insert_Or_Find(&mut tree, &mut n3.node, &info).is_null());\n\n        VOS_AVL3_Delete(&mut tree, &mut n2.node);\n        let key2: i32 = 2;\n        let found = VOS_AVL3_Find(&tree, &key2 as *const _ as *const c_void, &info);\n        assert_eq!(found, ptr::null_mut(), \"\u5220\u9664\u540e\u4e0d\u5e94\u518d\u627e\u5230 key=2\");\n\n        let n1_next = VOS_AVL3_Next(&n1.node, &info);\n        assert!(!n1_next.is_null());\n        assert_eq!(key_of_container(n1_next), 3);\n\n        VOS_AVL3_Delete(&mut tree, &mut n1.node);\n        VOS_AVL3_Delete(&mut tree, &mut n3.node);\n        assert!(tree.pstRoot.is_null());\n        assert!(tree.pstFirst.is_null());\n        assert!(tree.pstLast.is_null());\n    }\n}\n"
+  },
+  "ht": {
+   "sha256": "d8f686795debd0eeabc1f13518e3b5c3ce9efdd5adf827ed47d5fc38f4e8c1b0",
+   "source": "// RQ2 adapter for ht private-main crate.\n\n#[test]\nfn test_main_smoke() {\n    let _ = core::mem::size_of::<crate::types::pthread_once_t>();\n}\n"
+  },
+  "qsort": {
+   "sha256": "6fe0453f5369779d588b5fdaae0745241bd8655c9699280d098dcf615d176674",
+   "source": "// C2R \u6846\u67b6\u6d4b\u8bd5\u6587\u4ef6 for qsort\n// \u76f4\u63a5\u8c03\u7528\u7ffb\u8bd1\u540e\u7684 Rust \u51fd\u6570\n//\n// \u4f7f\u7528\u65b9\u6cd5\uff1a\n// 1. \u590d\u5236\u6b64\u6587\u4ef6\u5230\u9879\u76ee\u7684 src/test_c2r.rs\n// 2. \u5728 main.rs \u4e2d\u6dfb\u52a0: #[cfg(test)] mod test_c2r;\n// 3. \u8fd0\u884c cargo test\n\nuse crate::src_qsort::quickSort;\n\nfn is_sorted(arr: &[i32]) -> bool {\n    for i in 1..arr.len() {\n        if arr[i - 1] > arr[i] {\n            return false;\n        }\n    }\n    true\n}\n\n#[test]\nfn test_small() {\n    let mut arr: [i32; 3] = [3, 1, 2];\n    unsafe {\n        quickSort(&mut arr, 0, 2);\n    }\n    assert_eq!(arr[0], 1);\n    assert_eq!(arr[1], 2);\n    assert_eq!(arr[2], 3);\n}\n\n#[test]\nfn test_reverse() {\n    let mut arr: [i32; 5] = [5, 4, 3, 2, 1];\n    unsafe {\n        quickSort(&mut arr, 0, 4);\n    }\n    assert_eq!(arr[0], 1);\n    assert_eq!(arr[1], 2);\n    assert_eq!(arr[2], 3);\n    assert_eq!(arr[3], 4);\n    assert_eq!(arr[4], 5);\n}\n\n#[test]\nfn test_negatives() {\n    let mut arr: [i32; 5] = [0, -1, 5, -3, 2];\n    unsafe {\n        quickSort(&mut arr, 0, 4);\n    }\n    assert_eq!(arr[0], -3);\n    assert_eq!(arr[1], -1);\n    assert_eq!(arr[2], 0);\n    assert_eq!(arr[3], 2);\n    assert_eq!(arr[4], 5);\n}\n\n#[test]\nfn test_duplicates() {\n    let mut arr: [i32; 4] = [7, 7, 7, 7];\n    unsafe {\n        quickSort(&mut arr, 0, 3);\n    }\n    assert_eq!(arr[0], 7);\n    assert_eq!(arr[1], 7);\n    assert_eq!(arr[2], 7);\n    assert_eq!(arr[3], 7);\n}\n\n#[test]\nfn test_single_element() {\n    let mut arr: [i32; 1] = [42];\n    unsafe {\n        quickSort(&mut arr, 0, 0);\n    }\n    assert_eq!(arr[0], 42);\n}\n\n#[test]\nfn test_already_sorted() {\n    let mut arr: [i32; 5] = [1, 2, 3, 4, 5];\n    unsafe {\n        quickSort(&mut arr, 0, 4);\n    }\n    assert!(is_sorted(&arr));\n}\n"
+  },
+  "buffer": {
+   "sha256": "a1fa753cbf9cbb45e35619ef77f086cb45a93bb34e4455b8e2ffeb32bd8345ca",
+   "source": "// RQ2 adapter for buffer Rust-native API.\n\nuse crate::src_buffer::*;\nuse crate::types::buffer_t;\n\nfn buffer_str(buf: &buffer_t) -> String {\n    let start = buf.data_offset;\n    let bytes = &buf.storage[start..];\n    let end = bytes.iter().position(|&b| b == 0).unwrap_or(bytes.len());\n    String::from_utf8_lossy(&bytes[..end]).to_string()\n}\n\nunsafe fn with_ref<'a>(ptr: *mut buffer_t) -> &'a buffer_t {\n    &*ptr\n}\n\nunsafe fn with_mut<'a>(ptr: *mut buffer_t) -> &'a mut buffer_t {\n    &mut *ptr\n}\n\n#[test]\nfn test_buffer_new() {\n    let buf = buffer_new();\n    assert!(!buf.is_null(), \"buffer_new \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u6307\u9488\");\n    unsafe {\n        assert_eq!(buffer_size(with_ref(buf)), 64);\n        assert_eq!(buffer_length(with_ref(buf)), 0);\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_new_with_size() {\n    let buf = buffer_new_with_size(64);\n    assert!(!buf.is_null(), \"buffer_new_with_size \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u6307\u9488\");\n    unsafe {\n        assert!(buffer_size(with_ref(buf)) >= 64, \"buffer \u5927\u5c0f\u5e94\u8be5\u81f3\u5c11\u662f\u8bf7\u6c42\u7684\u5927\u5c0f\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_new_with_string() {\n    let buf = buffer_new_with_string(b\"hello\");\n    assert!(!buf.is_null(), \"buffer_new_with_string \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u6307\u9488\");\n    unsafe {\n        assert_eq!(buffer_length(with_ref(buf)), 5, \"buffer \u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_append() {\n    let buf = buffer_new();\n    unsafe {\n        assert_eq!(buffer_append(with_mut(buf), b\"hello\"), 0);\n        assert_eq!(buffer_length(with_ref(buf)), 5, \"\u8ffd\u52a0\u540e\u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_append_multiple() {\n    let buf = buffer_new();\n    unsafe {\n        assert_eq!(buffer_append(with_mut(buf), b\"hello\"), 0);\n        assert_eq!(buffer_append(with_mut(buf), b\" world\"), 0);\n        assert_eq!(buffer_length(with_ref(buf)), 11, \"\u8ffd\u52a0\u591a\u4e2a\u5b57\u7b26\u4e32\u540e\u957f\u5ea6\u5e94\u8be5\u662f 11\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello world\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_prepend() {\n    let buf = buffer_new();\n    unsafe {\n        assert_eq!(buffer_append(with_mut(buf), b\"world\"), 0);\n        assert_eq!(buffer_prepend(with_mut(buf), b\"hello \"), 0);\n        assert_eq!(buffer_length(with_ref(buf)), 11, \"prepend \u540e\u957f\u5ea6\u5e94\u8be5\u662f 11\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello world\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_equals() {\n    let buf1 = buffer_new_with_string(b\"hello\");\n    let buf2 = buffer_new_with_string(b\"hello\");\n    unsafe {\n        assert_eq!(buffer_equals(with_ref(buf1), with_ref(buf2)), 1, \"\u76f8\u540c\u5185\u5bb9\u7684 buffer \u5e94\u8be5\u76f8\u7b49\");\n    }\n    buffer_free(buf1);\n    buffer_free(buf2);\n}\n\n#[test]\nfn test_buffer_trim() {\n    let buf = buffer_new_with_string(b\"  hello  \");\n    unsafe {\n        buffer_trim(with_mut(buf));\n        assert_eq!(buffer_length(with_ref(buf)), 5, \"trim \u540e\u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_trim_left() {\n    let buf = buffer_new_with_string(b\"  hello\");\n    unsafe {\n        buffer_trim_left(with_mut(buf));\n        assert_eq!(buffer_length(with_ref(buf)), 5, \"trim_left \u540e\u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_trim_right() {\n    let buf = buffer_new_with_string(b\"hello  \");\n    unsafe {\n        buffer_trim_right(with_mut(buf));\n        assert_eq!(buffer_length(with_ref(buf)), 5, \"trim_right \u540e\u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(buf)), \"hello\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_resize() {\n    let buf = buffer_new_with_size(10);\n    unsafe {\n        assert_eq!(buffer_resize(with_mut(buf), 100), 0);\n        assert!(buffer_size(with_ref(buf)) >= 100, \"resize \u540e\u5927\u5c0f\u5e94\u8be5\u81f3\u5c11\u662f 100\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_slice() {\n    let buf = buffer_new_with_string(b\"hello world\");\n    unsafe {\n        let sliced = buffer_slice(with_ref(buf), 0, 5);\n        assert!(!sliced.is_null());\n        assert_eq!(buffer_length(with_ref(sliced)), 5, \"slice \u540e\u957f\u5ea6\u5e94\u8be5\u662f 5\");\n        assert_eq!(buffer_str(with_ref(sliced)), \"hello\");\n        buffer_free(sliced);\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_indexof() {\n    let buf = buffer_new_with_string(b\"hello world\");\n    unsafe {\n        let idx = buffer_indexof(with_ref(buf), b\"world\");\n        assert_eq!(idx, 6, \"world \u5728 hello world \u4e2d\u7684\u7d22\u5f15\u5e94\u8be5\u662f 6\");\n    }\n    buffer_free(buf);\n}\n\n#[test]\nfn test_buffer_indexof_not_found() {\n    let buf = buffer_new_with_string(b\"hello\");\n    unsafe {\n        let idx = buffer_indexof(with_ref(buf), b\"xyz\");\n        assert_eq!(idx, -1, \"\u627e\u4e0d\u5230\u7684\u5b57\u7b26\u4e32\u5e94\u8be5\u8fd4\u56de -1\");\n    }\n    buffer_free(buf);\n}\n"
+  },
+  "rgba": {
+   "sha256": "cdd71dfc55edbac181f92ef906bf57a91a9166ab461f6deca79b3ca4d021aa76",
+   "source": "// RQ2 adapter for rgba Rust-native API.\n\nuse crate::src_rgba::*;\n\nfn pack_rgba(r: u8, g: u8, b: u8, a: u8) -> u32 {\n    (u32::from(r) << 24) | (u32::from(g) << 16) | (u32::from(b) << 8) | u32::from(a)\n}\n\n#[test]\nfn test_rgba_from_string_hex6() {\n    assert_eq!(rgba_from_string(b\"#ff8040\"), Some(pack_rgba(255, 128, 64, 255)));\n}\n\n#[test]\nfn test_rgba_from_string_hex3() {\n    assert_eq!(rgba_from_string(b\"#f84\"), Some(pack_rgba(255, 136, 68, 255)));\n}\n\n#[test]\nfn test_rgba_from_string_rgb() {\n    assert_eq!(rgba_from_string(b\"rgb(255, 128, 64)\"), Some(pack_rgba(255, 128, 64, 255)));\n}\n\n#[test]\nfn test_rgba_from_string_rgba_alpha_zero() {\n    assert_eq!(rgba_from_string(b\"rgba(255, 128, 64, 0.0)\"), Some(pack_rgba(255, 128, 64, 0)));\n}\n\n#[test]\nfn test_rgba_to_string_rgba_format_for_transparent() {\n    let color = rgba_new(0xFF804020);\n    let out = rgba_to_string(color);\n\n    assert!(out.starts_with(\"rgba(255, 128, 64,\"), \"rgba_to_string output mismatch: {out}\");\n    assert!(out.contains(\"0.13\"), \"alpha should be rounded to two decimals: {out}\");\n}\n\n#[test]\nfn test_rgba_to_string_hex_for_opaque() {\n    let color = rgba_new(0xFF8040FF);\n    let out = rgba_to_string(color);\n\n    assert!(out.starts_with(\"#\"), \"opaque color should use hex: {out}\");\n    assert!(out.to_lowercase().contains(\"ff8040\"), \"hex content mismatch: {out}\");\n}\n\n#[test]\nfn test_rgba_from_string_named_color_red() {\n    assert_eq!(rgba_from_string(b\"red\"), Some(pack_rgba(255, 0, 0, 255)));\n}\n\n#[test]\nfn test_rgba_consistency() {\n    let c1 = rgba_from_string(b\"#6496c8\");\n    let c2 = rgba_from_string(b\"#6496c8\");\n\n    assert!(c1.is_some());\n    assert_eq!(c1, c2);\n}\n\n#[test]\nfn test_rgba_different_colors() {\n    let r = rgba_from_string(b\"#ff0000\").expect(\"red should parse\");\n    let g = rgba_from_string(b\"#00ff00\").expect(\"green should parse\");\n    let b = rgba_from_string(b\"#0000ff\").expect(\"blue should parse\");\n\n    assert_ne!(r, g);\n    assert_ne!(g, b);\n    assert_ne!(r, b);\n}\n\n#[test]\nfn test_rgba_invalid_string_returns_none() {\n    assert_eq!(rgba_from_string(b\"not-a-color\"), None);\n}\n"
+  },
+  "quadtree": {
+   "sha256": "fef350a775b240c0d1602fc674d6ccb8af2940787e6ae2542b31a8508c190bb6",
+   "source": "// C2R \u6846\u67b6\u6d4b\u8bd5\u6587\u4ef6 for quadtree\n//\n// \u76ee\u6807\uff1a\u8986\u76d6 new/insert/search/duplicate/length \u7684\u57fa\u672c\u8bed\u4e49\u3002\n//\n// \u6ce8\u610f\uff1a\u8be5 quadtree \u5b9e\u73b0\u7684 `quadtree_search()` \u4ec5\u5bf9\u201c\u5df2\u63d2\u5165\u7684\u70b9\u201d\u5b89\u5168\uff1b\n// \u5bf9\u4e0d\u5b58\u5728\u7684\u70b9\u8fdb\u884c search \u53ef\u80fd\u4f1a\u9012\u5f52\u5230 NULL \u5b50\u8282\u70b9\u5e76\u5d29\u6e83\uff08\u4e0a\u6e38 C \u6d4b\u8bd5\u4e5f\u4f1a\u907f\u514d\u8fd9\u7c7b\u67e5\u8be2\uff09\u3002\n\nuse crate::src_quadtree::*;\nuse core::ffi::c_void;\n\nunsafe fn qt_length(qt: *mut crate::types::quadtree_t) -> u32 {\n    // quadtree.h: `unsigned int length`\n    *(crate::compat::c2r_field_ptr_quadtree_t__length(qt as *mut c_void) as *mut u32)\n}\n\nunsafe fn qt_root_nonnull(qt: *mut crate::types::quadtree_t) -> bool {\n    let root_ptr = *(crate::compat::c2r_field_ptr_quadtree_t__root(qt as *mut c_void) as *mut *mut c_void);\n    !root_ptr.is_null()\n}\n\nunsafe fn pt_x(p: *mut crate::types::quadtree_point_t) -> f64 {\n    *(crate::compat::c2r_field_ptr_quadtree_point_t__x(p as *mut c_void) as *mut f64)\n}\n\nunsafe fn pt_y(p: *mut crate::types::quadtree_point_t) -> f64 {\n    *(crate::compat::c2r_field_ptr_quadtree_point_t__y(p as *mut c_void) as *mut f64)\n}\n\n#[test]\nfn test_quadtree_new_and_free() {\n    unsafe {\n        // \u4f7f\u7528\u975e\u6574\u6570\u8fb9\u754c\uff0c\u907f\u514d\u70b9\u843d\u5728 split line \u4e0a\uff08node_contains_ \u4f7f\u7528\u4e25\u683c\u4e0d\u7b49\u5f0f\uff09\u3002\n        let qt = quadtree_new(-1.0, -1.0, 1000.0, 1000.0);\n        assert!(!qt.is_null(), \"quadtree_new \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u6307\u9488\");\n        assert!(qt_root_nonnull(qt), \"root \u4e0d\u5e94\u4e3a null\");\n        assert_eq!(qt_length(qt), 0u32, \"\u65b0\u5efa\u6811\u7684 length \u5e94\u4e3a 0\");\n        quadtree_free(qt);\n    }\n}\n\n#[test]\nfn test_quadtree_insert_and_search() {\n    unsafe {\n        let qt = quadtree_new(-1.0, -1.0, 1000.0, 1000.0);\n        assert!(!qt.is_null());\n\n        let key = 0x1234usize as *mut c_void;\n        let rc = quadtree_insert(qt, 10.0, 20.0, key);\n        assert_eq!(rc, 1, \"insert \u5e94\u8be5\u6210\u529f\");\n        assert_eq!(qt_length(qt), 1u32, \"length \u5e94\u589e\u52a0\");\n\n        let p = quadtree_search(qt, 10.0, 20.0);\n        assert!(!p.is_null(), \"search \u5e94\u8be5\u80fd\u627e\u5230\u5df2\u63d2\u5165\u70b9\");\n        assert_eq!(pt_x(p), 10.0);\n        assert_eq!(pt_y(p), 20.0);\n\n        quadtree_free(qt);\n    }\n}\n\n#[test]\nfn test_quadtree_duplicate_insert() {\n    unsafe {\n        let qt = quadtree_new(-1.0, -1.0, 1000.0, 1000.0);\n        assert!(!qt.is_null());\n\n        let key1 = 0x1111usize as *mut c_void;\n        let key2 = 0x2222usize as *mut c_void;\n\n        assert_eq!(quadtree_insert(qt, 1.0, 2.0, key1), 1);\n        assert_eq!(qt_length(qt), 1u32);\n\n        // \u540c\u5750\u6807\u91cd\u590d\u63d2\u5165\u5e94\u5931\u8d25\uff0c\u4e14\u4e0d\u6539\u53d8\u5df2\u6709\u70b9\n        assert_eq!(quadtree_insert(qt, 1.0, 2.0, key2), 0);\n        assert_eq!(qt_length(qt), 1u32);\n\n        let p = quadtree_search(qt, 1.0, 2.0);\n        assert!(!p.is_null());\n        assert_eq!(pt_x(p), 1.0);\n        assert_eq!(pt_y(p), 2.0);\n\n        quadtree_free(qt);\n    }\n}\n\n#[test]\nfn test_quadtree_multiple_points() {\n    unsafe {\n        let qt = quadtree_new(-1.0, -1.0, 1000.0, 1000.0);\n        assert!(!qt.is_null());\n\n        let a = 0xaaaausize as *mut c_void;\n        let b = 0xbbbbusize as *mut c_void;\n        let c = 0xccccusize as *mut c_void;\n\n        assert_eq!(quadtree_insert(qt, 10.0, 10.0, a), 1);\n        assert_eq!(quadtree_insert(qt, 90.0, 10.0, b), 1);\n        assert_eq!(quadtree_insert(qt, 50.0, 90.0, c), 1);\n        assert_eq!(qt_length(qt), 3u32);\n\n        let pa = quadtree_search(qt, 10.0, 10.0);\n        let pb = quadtree_search(qt, 90.0, 10.0);\n        let pc = quadtree_search(qt, 50.0, 90.0);\n        assert!(!pa.is_null() && !pb.is_null() && !pc.is_null());\n        assert_eq!(pt_x(pa), 10.0);\n        assert_eq!(pt_y(pa), 10.0);\n        assert_eq!(pt_x(pb), 90.0);\n        assert_eq!(pt_y(pb), 10.0);\n        assert_eq!(pt_x(pc), 50.0);\n        assert_eq!(pt_y(pc), 90.0);\n\n        quadtree_free(qt);\n    }\n}\n"
+  },
+  "genann": {
+   "sha256": "0c0210b111cee7a78b445ca66db08b15b51c233f9f1783ad9f291bf108e2dca2",
+   "source": "// RQ2 adapter for genann Rust-native API.\n\nuse crate::src_genann::*;\n\n#[test]\nfn test_genann_act_sigmoid() {\n    let result = genann_act_sigmoid(0.0);\n    assert!((result - 0.5).abs() < 0.001, \"sigmoid(0) \u5e94\u8be5\u7ea6\u7b49\u4e8e 0.5\");\n}\n\n#[test]\nfn test_genann_act_sigmoid_positive() {\n    let result = genann_act_sigmoid(10.0);\n    assert!(result > 0.99, \"sigmoid(10) \u5e94\u8be5\u63a5\u8fd1 1\");\n}\n\n#[test]\nfn test_genann_act_sigmoid_negative() {\n    let result = genann_act_sigmoid(-10.0);\n    assert!(result < 0.01, \"sigmoid(-10) \u5e94\u8be5\u63a5\u8fd1 0\");\n}\n\n#[test]\nfn test_genann_act_threshold() {\n    assert_eq!(genann_act_threshold(1.0), 1.0, \"threshold(1) \u5e94\u8be5\u662f 1\");\n    assert_eq!(genann_act_threshold(-1.0), 0.0, \"threshold(-1) \u5e94\u8be5\u662f 0\");\n    assert_eq!(genann_act_threshold(0.0), 0.0, \"threshold(0) \u5e94\u8be5\u662f 0\");\n}\n\n#[test]\nfn test_genann_act_linear() {\n    assert_eq!(genann_act_linear(5.0), 5.0, \"linear(5) \u5e94\u8be5\u662f 5\");\n    assert_eq!(genann_act_linear(-3.0), -3.0, \"linear(-3) \u5e94\u8be5\u662f -3\");\n    assert_eq!(genann_act_linear(0.0), 0.0, \"linear(0) \u5e94\u8be5\u662f 0\");\n}\n\n#[test]\nfn test_genann_init() {\n    let ann = genann_init(1, 1, 2, 1).expect(\"genann_init \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u7f51\u7edc\");\n    assert_eq!(ann.inputs, 1);\n    assert_eq!(ann.hidden_layers, 1);\n    assert_eq!(ann.hidden, 2);\n    assert_eq!(ann.outputs, 1);\n    assert_eq!(ann.weight.len(), 7);\n    assert_eq!(ann.output.len(), 4);\n    assert_eq!(ann.delta.len(), 3);\n}\n\n#[test]\nfn test_genann_init_no_hidden() {\n    let ann = genann_init(2, 0, 0, 1).expect(\"\u6ca1\u6709\u9690\u85cf\u5c42\u7684\u7f51\u7edc\u4e5f\u5e94\u8be5\u521b\u5efa\u6210\u529f\");\n    assert_eq!(ann.inputs, 2);\n    assert_eq!(ann.hidden_layers, 0);\n    assert_eq!(ann.hidden, 0);\n    assert_eq!(ann.outputs, 1);\n    assert_eq!(ann.weight.len(), 3);\n    assert_eq!(ann.output.len(), 3);\n    assert_eq!(ann.delta.len(), 1);\n}\n\n#[test]\nfn test_genann_copy() {\n    let ann = genann_init(2, 1, 3, 1).expect(\"genann_init \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u7f51\u7edc\");\n    let copy = genann_copy(&ann);\n\n    assert_eq!(copy.inputs, ann.inputs);\n    assert_eq!(copy.hidden_layers, ann.hidden_layers);\n    assert_eq!(copy.hidden, ann.hidden);\n    assert_eq!(copy.outputs, ann.outputs);\n    assert_eq!(copy.weight, ann.weight);\n    assert_eq!(copy.output, ann.output);\n    assert_eq!(copy.delta, ann.delta);\n}\n\n#[test]\nfn test_genann_randomize() {\n    let mut ann = genann_init(2, 1, 3, 1).expect(\"genann_init \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u7f51\u7edc\");\n    for weight in &mut ann.weight {\n        *weight = 0.0;\n    }\n\n    genann_randomize(&mut ann);\n    assert!(ann.weight.iter().any(|weight| *weight != 0.0), \"randomize \u5e94\u8be5\u66f4\u65b0\u6743\u91cd\");\n}\n\n#[test]\nfn test_genann_run() {\n    let mut ann = genann_init(2, 1, 2, 1).expect(\"genann_init \u5e94\u8be5\u8fd4\u56de\u6709\u6548\u7f51\u7edc\");\n    let inputs = [0.5, 0.5];\n\n    let output = genann_run(&mut ann, &inputs);\n    assert_eq!(output.len(), 1, \"genann_run \u5e94\u8be5\u8fd4\u56de 1 \u4e2a\u8f93\u51fa\");\n    assert!(output[0].is_finite(), \"\u8f93\u51fa\u5e94\u8be5\u662f\u6709\u9650\u6570\");\n    assert!((0.0..=1.0).contains(&output[0]), \"\u9ed8\u8ba4 sigmoid \u8f93\u51fa\u5e94\u8be5\u5728 [0, 1]\");\n}\n\n#[test]\nfn test_genann_sigmoid_cached() {\n    let x = 0.5;\n    let cached = genann_act_sigmoid_cached(x);\n    let normal = genann_act_sigmoid(x);\n\n    assert!((cached - normal).abs() < 0.1, \"\u7f13\u5b58\u548c\u975e\u7f13\u5b58\u7684 sigmoid \u5e94\u8be5\u7ed3\u679c\u76f8\u8fd1\");\n}\n\n#[test]\nfn test_genann_multilayer() {\n    let ann = genann_init(4, 3, 5, 2).expect(\"\u591a\u9690\u85cf\u5c42\u7f51\u7edc\u5e94\u8be5\u521b\u5efa\u6210\u529f\");\n    assert_eq!(ann.inputs, 4);\n    assert_eq!(ann.hidden_layers, 3);\n    assert_eq!(ann.hidden, 5);\n    assert_eq!(ann.outputs, 2);\n    assert_eq!(ann.weight.len(), 97);\n    assert_eq!(ann.output.len(), 21);\n    assert_eq!(ann.delta.len(), 17);\n}\n"
+  }
+ },
+ "provenance": {
+  "script": "systems/his2trans/own_check.py",
+  "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/own_check.py /b/own_check2 (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "801e8c7",
+  "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:25:05+00:00",
+  "artifact_script": "data/paper_artifacts/deepseek_v4_pro_oss8_0613_rq2_100pct_minimal/scripts/run_oss_rq2_rust_tests.py (steps 1-2 of reproduce.sh)"
+ }
+}

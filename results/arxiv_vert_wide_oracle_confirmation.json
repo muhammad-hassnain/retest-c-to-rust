@@ -1,0 +1,793 @@
+{
+ "provenance": {
+  "script": "systems/vert/arxiv_wide_oracle_check.py (systems/vert/oracle_check.py's procedure; make_main imported unchanged)",
+  "command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -w /work -e GIT_REV=... -e GIT_DIRTY=... -e HOST_DESC=... -e IMAGE_DESC=... crust-stable python3 -I systems/vert/arxiv_wide_oracle_check.py",
+  "inputs_from": [
+   "results/arxiv_vert_diff_grid2_wide.json",
+   "results/arxiv_vert_wide_ub_recheck.json"
+  ],
+  "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_note": "working tree: 40 uncommitted paths + this run's new files; systems/vert/oracle_check.py unchanged vs HEAD",
+  "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+  "arch": "aarch64",
+  "image": "crust-stable sha256:9428070fb0fd44727fcc35447919f65b8acc8ef20c73dedfdbdbb523aa557951",
+  "toolchains": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "python": "3.10.12",
+   "note": "no rust-toolchain.toml is copied into the project (as oracle_check.py), so the image's default rustc builds it"
+  },
+  "date_start_utc": "2026-11-17T16:04:40.857847+00:00",
+  "date_end_utc": "2026-11-17T16:04:51.885654+00:00"
+ },
+ "summary": {
+  "functions": 8,
+  "built": 8,
+  "confirmed": 0,
+  "single_param_functions": 7,
+  "single_param_confirmed": 0,
+  "oracle_ignores_params": [
+   "DICE_THROW_PROBLEM_1"
+  ],
+  "oracle_panics_on_every_input_by_construction": [
+   "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+   "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+   "COUNT_DIGITS_FACTORIAL_SET_2"
+  ],
+  "oracle_agrees_with_on_exposing_input": {
+   "neither": 5,
+   "rust": 3
+  },
+  "functions_by_oracle_agreement_on_exposing_input": {
+   "neither": [
+    "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+    "DICE_THROW_PROBLEM_1",
+    "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+    "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+    "COUNT_DIGITS_FACTORIAL_SET_2"
+   ],
+   "rust": [
+    "SUM_PAIRWISE_PRODUCTS",
+    "SUM_PAIRWISE_PRODUCTS_1",
+    "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS"
+   ]
+  },
+  "rule": "confirmed = on at least one input, VERT's oracle equals the original C's answer and VERT's LLM output differs (oracle_check.py's rule)",
+  "method": "VERT's own out-rwasm-bolero project, unchanged except the bolero test replaced by a main printing f_gold (VERT's LLM translation) and f_gold_wasm_thread_unsafe (VERT's rWasm oracle of the same C) on our counterexample inputs; built with cargo --release (overflow wraps, as in our harness); systems/vert/oracle_check.make_main"
+ },
+ "rows": [
+  {
+   "function": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+   "c_return": "long long",
+   "c_f_gold_original": "long long f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "long long f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      31
+     ],
+     "source": "value_samples",
+     "c_gcc": "2620797529",
+     "rust_our_harness": "-1674169767",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-1674169767",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": -1674169767,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      32
+     ],
+     "source": "value_samples",
+     "c_gcc": "5029557817",
+     "rust_our_harness": "734590521",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "734590521",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 734590521,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      33
+     ],
+     "source": "value_samples",
+     "c_gcc": "9651169213",
+     "rust_our_harness": "1061234621",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "1061234621",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 1061234621,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i64",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": true,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     31
+    ],
+    "source": "value_samples",
+    "c_gcc": "2620797529",
+    "rust_our_harness": "-1674169767",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "-1674169767",
+    "vert_rwasm_oracle": "panic",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": false,
+    "oracle_agrees_with": "neither",
+    "c_value_mod_2_32_as_i32": -1674169767,
+    "oracle_equals_c_mod_2_32": false,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": true
+   },
+   "oracle_agrees_with_on_exposing_input": "neither"
+  },
+  {
+   "function": "DICE_THROW_PROBLEM_1",
+   "c_return": "long",
+   "c_f_gold_original": "long f_gold ( int f, int d, int s )",
+   "c_f_gold_compiled_to_wasm_by_vert": "long f_gold ( int f, int d, int s )",
+   "rust_signature": "fn f_gold(f: i32, d: i32, s: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      257,
+      15,
+      64
+     ],
+     "source": "value_samples",
+     "c_gcc": "37387265592825",
+     "rust_our_harness": "-424718855",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-424718855",
+     "vert_rwasm_oracle": "28",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": -424718855,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      128,
+      7,
+      512
+     ],
+     "source": "value_samples",
+     "c_gcc": "1884153039916",
+     "rust_our_harness": "-1337603028",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-1337603028",
+     "vert_rwasm_oracle": "28",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": -1337603028,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i32",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": false,
+   "declared_params": 3,
+   "oracle_ignores_params": true,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     257,
+     15,
+     64
+    ],
+    "source": "value_samples",
+    "c_gcc": "37387265592825",
+    "rust_our_harness": "-424718855",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "-424718855",
+    "vert_rwasm_oracle": "28",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": false,
+    "oracle_agrees_with": "neither",
+    "c_value_mod_2_32_as_i32": -424718855,
+    "oracle_equals_c_mod_2_32": false,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": true
+   },
+   "oracle_agrees_with_on_exposing_input": "neither"
+  },
+  {
+   "function": "SUM_PAIRWISE_PRODUCTS",
+   "c_return": "long long int",
+   "c_f_gold_original": "long long int f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "int f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      381
+     ],
+     "source": "value_samples",
+     "c_gcc": "2657063266",
+     "rust_our_harness": "-1637904030",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-1637904030",
+     "vert_rwasm_oracle": "-1637904030",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": -1637904030,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      414
+     ],
+     "source": "value_samples",
+     "c_gcc": "3701703720",
+     "rust_our_harness": "-593263576",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-593263576",
+     "vert_rwasm_oracle": "-593263576",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": -593263576,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      446
+     ],
+     "source": "value_samples",
+     "c_gcc": "4982986736",
+     "rust_our_harness": "688019440",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "688019440",
+     "vert_rwasm_oracle": "688019440",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": 688019440,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i32",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": false,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     381
+    ],
+    "source": "value_samples",
+    "c_gcc": "2657063266",
+    "rust_our_harness": "-1637904030",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "-1637904030",
+    "vert_rwasm_oracle": "-1637904030",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": true,
+    "oracle_agrees_with": "rust",
+    "c_value_mod_2_32_as_i32": -1637904030,
+    "oracle_equals_c_mod_2_32": true,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": false
+   },
+   "oracle_agrees_with_on_exposing_input": "rust"
+  },
+  {
+   "function": "SUM_PAIRWISE_PRODUCTS_1",
+   "c_return": "long long int",
+   "c_f_gold_original": "long long int f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "int f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      381
+     ],
+     "source": "value_samples",
+     "c_gcc": "2657063266",
+     "rust_our_harness": "-1637904030",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-1637904030",
+     "vert_rwasm_oracle": "-1637904030",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": -1637904030,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      414
+     ],
+     "source": "value_samples",
+     "c_gcc": "3701703720",
+     "rust_our_harness": "-593263576",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "-593263576",
+     "vert_rwasm_oracle": "-593263576",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": -593263576,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      446
+     ],
+     "source": "value_samples",
+     "c_gcc": "4982986736",
+     "rust_our_harness": "688019440",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "688019440",
+     "vert_rwasm_oracle": "688019440",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": 688019440,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i32",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": false,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     381
+    ],
+    "source": "value_samples",
+    "c_gcc": "2657063266",
+    "rust_our_harness": "-1637904030",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "-1637904030",
+    "vert_rwasm_oracle": "-1637904030",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": true,
+    "oracle_agrees_with": "rust",
+    "c_value_mod_2_32_as_i32": -1637904030,
+    "oracle_equals_c_mod_2_32": true,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": false
+   },
+   "oracle_agrees_with_on_exposing_input": "rust"
+  },
+  {
+   "function": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+   "c_return": "long int",
+   "c_f_gold_original": "long int f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "int f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      14
+     ],
+     "source": "value_samples",
+     "c_gcc": "90420300490",
+     "rust_our_harness": "2147483647",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "2147483647",
+     "vert_rwasm_oracle": "-2147483648",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 225987274,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      15
+     ],
+     "source": "value_samples",
+     "c_gcc": "1360989424211",
+     "rust_our_harness": "2147483647",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "2147483647",
+     "vert_rwasm_oracle": "-2147483648",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": -515208621,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      16
+     ],
+     "source": "value_samples",
+     "c_gcc": "21849965489916",
+     "rust_our_harness": "2147483647",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "2147483647",
+     "vert_rwasm_oracle": "-2147483648",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 1466855164,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i32",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": false,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     14
+    ],
+    "source": "value_samples",
+    "c_gcc": "90420300490",
+    "rust_our_harness": "2147483647",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "2147483647",
+    "vert_rwasm_oracle": "-2147483648",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": false,
+    "oracle_agrees_with": "neither",
+    "c_value_mod_2_32_as_i32": 225987274,
+    "oracle_equals_c_mod_2_32": false,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": true
+   },
+   "oracle_agrees_with_on_exposing_input": "neither"
+  },
+  {
+   "function": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+   "c_return": "long long",
+   "c_f_gold_original": "long long f_gold ( long long n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "long long f_gold ( long long n )",
+   "rust_signature": "fn f_gold(mut n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      9
+     ],
+     "source": "value_samples",
+     "c_gcc": "3",
+     "rust_our_harness": "9",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "9",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 3,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      15
+     ],
+     "source": "value_samples",
+     "c_gcc": "5",
+     "rust_our_harness": "15",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "15",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 5,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      18
+     ],
+     "source": "value_samples",
+     "c_gcc": "3",
+     "rust_our_harness": "9",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "9",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 3,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i64",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": true,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     9
+    ],
+    "source": "value_samples",
+    "c_gcc": "3",
+    "rust_our_harness": "9",
+    "c_value_fits_i32": true,
+    "vert_llm_f_gold": "9",
+    "vert_rwasm_oracle": "panic",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": false,
+    "oracle_agrees_with": "neither",
+    "c_value_mod_2_32_as_i32": 3,
+    "oracle_equals_c_mod_2_32": false,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": true
+   },
+   "oracle_agrees_with_on_exposing_input": "neither"
+  },
+  {
+   "function": "COUNT_DIGITS_FACTORIAL_SET_2",
+   "c_return": "long long",
+   "c_f_gold_original": "long long f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "long long f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      3
+     ],
+     "source": "value_samples",
+     "c_gcc": "1",
+     "rust_our_harness": "2",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "2",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 1,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      4
+     ],
+     "source": "value_samples",
+     "c_gcc": "2",
+     "rust_our_harness": "4",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "4",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 2,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    },
+    {
+     "input": [
+      5
+     ],
+     "source": "value_samples",
+     "c_gcc": "3",
+     "rust_our_harness": "5",
+     "c_value_fits_i32": true,
+     "vert_llm_f_gold": "5",
+     "vert_rwasm_oracle": "panic",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": false,
+     "oracle_agrees_with": "neither",
+     "c_value_mod_2_32_as_i32": 3,
+     "oracle_equals_c_mod_2_32": false,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": true
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i64",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": true,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     3
+    ],
+    "source": "value_samples",
+    "c_gcc": "1",
+    "rust_our_harness": "2",
+    "c_value_fits_i32": true,
+    "vert_llm_f_gold": "2",
+    "vert_rwasm_oracle": "panic",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": false,
+    "oracle_agrees_with": "neither",
+    "c_value_mod_2_32_as_i32": 1,
+    "oracle_equals_c_mod_2_32": false,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": true
+   },
+   "oracle_agrees_with_on_exposing_input": "neither"
+  },
+  {
+   "function": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+   "c_return": "long",
+   "c_f_gold_original": "long f_gold ( int n )",
+   "c_f_gold_compiled_to_wasm_by_vert": "long f_gold ( int n )",
+   "rust_signature": "fn f_gold(n: i32) -> i32",
+   "oracle_wrapper_signature": "fn f_gold_wasm_thread_unsafe() -> i32",
+   "build_ok": true,
+   "inputs": [
+    {
+     "input": [
+      25
+     ],
+     "source": "value_samples",
+     "c_gcc": "4478554083",
+     "rust_our_harness": "183586787",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "183586787",
+     "vert_rwasm_oracle": "183586787",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": 183586787,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      29
+     ],
+     "source": "value_samples",
+     "c_gcc": "152139002499",
+     "rust_our_harness": "1815147139",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "1815147139",
+     "vert_rwasm_oracle": "1815147139",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": 1815147139,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    },
+    {
+     "input": [
+      31
+     ],
+     "source": "value_samples",
+     "c_gcc": "886731088897",
+     "rust_our_harness": "1967825921",
+     "c_value_fits_i32": false,
+     "vert_llm_f_gold": "1967825921",
+     "vert_rwasm_oracle": "1967825921",
+     "oracle_matches_c": false,
+     "oracle_matches_our_rust": true,
+     "oracle_agrees_with": "rust",
+     "c_value_mod_2_32_as_i32": 1967825921,
+     "oracle_equals_c_mod_2_32": true,
+     "llm_matches_our_rust": true,
+     "llm_differs_from_vert_oracle": false
+    }
+   ],
+   "oracle_reads_params": [
+    "PARAM1"
+   ],
+   "oracle_wasm_f_gold_returns": "i32",
+   "oracle_result_static": "i32",
+   "oracle_panics_on_every_input_by_construction": false,
+   "declared_params": 1,
+   "oracle_ignores_params": false,
+   "confirmed": false,
+   "on_our_exposing_input": {
+    "input": [
+     25
+    ],
+    "source": "value_samples",
+    "c_gcc": "4478554083",
+    "rust_our_harness": "183586787",
+    "c_value_fits_i32": false,
+    "vert_llm_f_gold": "183586787",
+    "vert_rwasm_oracle": "183586787",
+    "oracle_matches_c": false,
+    "oracle_matches_our_rust": true,
+    "oracle_agrees_with": "rust",
+    "c_value_mod_2_32_as_i32": 183586787,
+    "oracle_equals_c_mod_2_32": true,
+    "llm_matches_our_rust": true,
+    "llm_differs_from_vert_oracle": false
+   },
+   "oracle_agrees_with_on_exposing_input": "rust"
+  }
+ ]
+}

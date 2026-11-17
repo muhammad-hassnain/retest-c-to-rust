@@ -1,0 +1,1108 @@
+{
+ "provenance": {
+  "script": "harness/heldout_flourine.py",
+  "command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -w /work -e FL_LOGS=/work/flourine_logs/extract crust-syzygy python3 -I harness/heldout_flourine.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "host": "Linux x86_64 box (20 cores), Docker --cpus 4",
+  "arch": "x86_64",
+  "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)"
+  },
+  "date": "2026-11-13T22:55:01.415799+00:00",
+  "logs_archive": {
+   "url": "https://d34gtk3knhjgeg.cloudfront.net/translations.tar.gz",
+   "bytes": 5669337068,
+   "sha256": "45a4f7e3540bad32a0bb2b02796a78d981b4072fef7705dc06325a52e229c1c4",
+   "listing_members": 408361,
+   "members_extracted": "translations/success/c/<proj>/<fn>/<llm>/<strategy>/ for the 6 rows below",
+   "member_types": "337453 regular files, 70908 directories, no links, no absolute or .. paths"
+  },
+  "grid": "enumerate_cases(ptypes, cap=2000) as systems/flourine/run.py",
+  "struct_overlap": {
+   "command": "python3 -I harness/heldout_flourine.py struct-overlap",
+   "date": "2026-11-14T04:01:28.365550+00:00"
+  }
+ },
+ "translations": [
+  {
+   "translation": "libopenaptx/clip/claude2/BaseRepair",
+   "label": "min>max (not counted as wrong answer)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/libopenaptx/clip/claude2/BaseRepair/clip.rs",
+    "shipped_sha256": "c475af1be3e2c493113b5ec0edbff25ff59e6056be0f29393b02023c01f5dea4",
+    "logs_results_rs_sha256": "c475af1be3e2c493113b5ec0edbff25ff59e6056be0f29393b02023c01f5dea4",
+    "logs_candidates": {
+     "prog_0.rs": "c475af1be3e2c493113b5ec0edbff25ff59e6056be0f29393b02023c01f5dea4",
+     "prog_0_5_0.rs": "8839f8f149d4f84c0e7f28ff1303e3ef3c29128423d546cf0d75bebfab7dfb0c"
+    },
+    "logs_wspace_src_lib_rs_sha256": "8839f8f149d4f84c0e7f28ff1303e3ef3c29128423d546cf0d75bebfab7dfb0c",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying clip",
+    "Transpilation is not equivalent: candidate score = 0.4985044865403789.",
+    "Start soft-verifying clip",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying clip",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "-1",
+      "-1",
+      "-1979770625"
+     ],
+     "expected": "-1979770625",
+     "actual": "-1",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "-1",
+      "-1",
+      "-1987444737"
+     ],
+     "expected": "-1987444737",
+     "actual": "-1",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "0",
+      "0",
+      "-1922208507"
+     ],
+     "expected": "-1922208507",
+     "actual": "0",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "-1",
+      "-1",
+      "-1979711489"
+     ],
+     "expected": "-1979711489",
+     "actual": "-1",
+     "prompt": "prog_0_5_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "47.4k"
+   ],
+   "signature": {
+    "ptypes": [
+     "i32",
+     "i32",
+     "i32"
+    ],
+    "ret": "i32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 4,
+   "logged_inputs_distinct": 4,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 1937,
+    "value": 63
+   },
+   "shipped_divergent_inputs": 63,
+   "shipped_divergent_iso_c_clean": 63,
+   "shipped_divergent_iso_c_ub": 0,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 63,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      -1,
+      -1,
+      -1979770625
+     ],
+     "v": "value",
+     "c": "-1979770625",
+     "rust": "-1",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      -1,
+      -1,
+      -1987444737
+     ],
+     "v": "value",
+     "c": "-1987444737",
+     "rust": "-1",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      0,
+      0,
+      -1922208507
+     ],
+     "v": "value",
+     "c": "-1922208507",
+     "rust": "0",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      -1,
+      -1,
+      -1979711489
+     ],
+     "v": "value",
+     "c": "-1979711489",
+     "rust": "-1",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      1,
+      1,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      65,
+      65,
+      0
+     ],
+     "v": "value",
+     "c": "0",
+     "rust": "65"
+    },
+    {
+     "in": [
+      98,
+      98,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "98"
+    }
+   ]
+  },
+  {
+   "translation": "libopenaptx/clip/claude2/CAPR",
+   "label": "min>max (not counted as wrong answer)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/libopenaptx/clip/claude2/CAPR/clip.rs",
+    "shipped_sha256": "c6f51c3d0f4cc457b7ea12ec2f51ca667b58c942e17c2a30ee05f6b6483e4a6b",
+    "logs_results_rs_sha256": "c6f51c3d0f4cc457b7ea12ec2f51ca667b58c942e17c2a30ee05f6b6483e4a6b",
+    "logs_candidates": {
+     "prog_0.rs": "c6f51c3d0f4cc457b7ea12ec2f51ca667b58c942e17c2a30ee05f6b6483e4a6b",
+     "prog_0_5_0.rs": "e24f4f819aa5e2bd714cbe7510b15638e9ecb327c50df6bdae82ffbf01cd7436"
+    },
+    "logs_wspace_src_lib_rs_sha256": "e24f4f819aa5e2bd714cbe7510b15638e9ecb327c50df6bdae82ffbf01cd7436",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying clip",
+    "Transpilation is not equivalent: candidate score = 0.49925112331502747.",
+    "Start soft-verifying clip",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying clip",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "184224266",
+      "184224266",
+      "168430331"
+     ],
+     "expected": "168430331",
+     "actual": "184224266",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "184224266",
+      "184224266",
+      "266"
+     ],
+     "expected": "266",
+     "actual": "184224266",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "184224266",
+      "184224266",
+      "174066186"
+     ],
+     "expected": "174066186",
+     "actual": "184224266",
+     "prompt": "prog_0_5_0.ans"
+    },
+    {
+     "args": [
+      "168491786",
+      "168491786",
+      "266"
+     ],
+     "expected": "266",
+     "actual": "168491786",
+     "prompt": "prog_0_5_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "47.6k"
+   ],
+   "signature": {
+    "ptypes": [
+     "i32",
+     "i32",
+     "i32"
+    ],
+    "ret": "i32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 4,
+   "logged_inputs_distinct": 4,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 1937,
+    "value": 63
+   },
+   "shipped_divergent_inputs": 63,
+   "shipped_divergent_iso_c_clean": 63,
+   "shipped_divergent_iso_c_ub": 0,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 63,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      184224266,
+      184224266,
+      168430331
+     ],
+     "v": "value",
+     "c": "168430331",
+     "rust": "184224266",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      184224266,
+      184224266,
+      266
+     ],
+     "v": "value",
+     "c": "266",
+     "rust": "184224266",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      184224266,
+      184224266,
+      174066186
+     ],
+     "v": "value",
+     "c": "174066186",
+     "rust": "184224266",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      168491786,
+      168491786,
+      266
+     ],
+     "v": "value",
+     "c": "266",
+     "rust": "168491786",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      1,
+      1,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      65,
+      65,
+      0
+     ],
+     "v": "value",
+     "c": "0",
+     "rust": "65"
+    },
+    {
+     "in": [
+      98,
+      98,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "98"
+    }
+   ]
+  },
+  {
+   "translation": "opl/opl_emu_clamp/claude2/BaseRepair",
+   "label": "min>max (not counted as wrong answer)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_clamp/claude2/BaseRepair/opl_emu_clamp.rs",
+    "shipped_sha256": "4ba0dff89ae3a5001ba944bd43a12b47b5be915fbe3b4e1a6dfa0da7185bd98f",
+    "logs_results_rs_sha256": "4ba0dff89ae3a5001ba944bd43a12b47b5be915fbe3b4e1a6dfa0da7185bd98f",
+    "logs_candidates": {
+     "prog_0.rs": "4ba0dff89ae3a5001ba944bd43a12b47b5be915fbe3b4e1a6dfa0da7185bd98f",
+     "prog_0_10_0.rs": "c61ce362fb606cb38f808390587601384d5f259c36bf72852d621627d1385912",
+     "prog_0_9_0.rs": "9e52d68d54b9fd0bb59d7a7beffd59506f9e56bfe55727e46c6fd4349183de2b"
+    },
+    "logs_wspace_src_lib_rs_sha256": "9e52d68d54b9fd0bb59d7a7beffd59506f9e56bfe55727e46c6fd4349183de2b",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": false
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_clamp",
+    "Transpilation is not equivalent: candidate score = 0.499001996007984.",
+    "Start soft-verifying opl_emu_clamp",
+    "1 many (potentially new) candidates expanded. Highest score = 0.8493013972055888",
+    "Start soft-verifying opl_emu_clamp",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_clamp",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "1247824480",
+      "1247824480",
+      "1241533024"
+     ],
+     "expected": "1241533024",
+     "actual": "1247824480",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "1247824480",
+      "1247824480",
+      "1247805514"
+     ],
+     "expected": "1247805514",
+     "actual": "1247824480",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "1615481440",
+      "1615481440",
+      "2424873"
+     ],
+     "expected": "2424873",
+     "actual": "1615481440",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "-1",
+      "-1",
+      "-16646145"
+     ],
+     "expected": "-16646145",
+     "actual": "-1",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "0",
+      "1616969727",
+      "1478844490"
+     ],
+     "expected": "1616969727",
+     "actual": "1478844490",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "-16120320",
+      "131071",
+      "-65280"
+     ],
+     "expected": "131071",
+     "actual": "-65280",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "90186",
+      "3080192",
+      "139264"
+     ],
+     "expected": "3080192",
+     "actual": "139264",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "1247830090",
+      "1616923232",
+      "2449482"
+     ],
+     "expected": "1616923232",
+     "actual": "2449482",
+     "prompt": "prog_0_9_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "47.7k"
+   ],
+   "signature": {
+    "ptypes": [
+     "i32",
+     "i32",
+     "i32"
+    ],
+    "ret": "i32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 8,
+   "logged_inputs_distinct": 8,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 1937,
+    "value": 63
+   },
+   "shipped_divergent_inputs": 63,
+   "shipped_divergent_iso_c_clean": 63,
+   "shipped_divergent_iso_c_ub": 0,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 63,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      0,
+      1616969727,
+      1478844490
+     ],
+     "v": "agree",
+     "c": "1616969727",
+     "rust": "1616969727",
+     "iso_c": null
+    },
+    {
+     "in": [
+      -16120320,
+      131071,
+      -65280
+     ],
+     "v": "agree",
+     "c": "131071",
+     "rust": "131071",
+     "iso_c": null
+    },
+    {
+     "in": [
+      90186,
+      3080192,
+      139264
+     ],
+     "v": "agree",
+     "c": "3080192",
+     "rust": "3080192",
+     "iso_c": null
+    },
+    {
+     "in": [
+      1247830090,
+      1616923232,
+      2449482
+     ],
+     "v": "agree",
+     "c": "1616923232",
+     "rust": "1616923232",
+     "iso_c": null
+    },
+    {
+     "in": [
+      1247824480,
+      1247824480,
+      1241533024
+     ],
+     "v": "value",
+     "c": "1241533024",
+     "rust": "1247824480",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      1247824480,
+      1247824480,
+      1247805514
+     ],
+     "v": "value",
+     "c": "1247805514",
+     "rust": "1247824480",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      1615481440,
+      1615481440,
+      2424873
+     ],
+     "v": "value",
+     "c": "2424873",
+     "rust": "1615481440",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      -1,
+      -1,
+      -16646145
+     ],
+     "v": "value",
+     "c": "-16646145",
+     "rust": "-1",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      1,
+      1,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      65,
+      65,
+      0
+     ],
+     "v": "value",
+     "c": "0",
+     "rust": "65"
+    },
+    {
+     "in": [
+      98,
+      98,
+      -1
+     ],
+     "v": "value",
+     "c": "-1",
+     "rust": "98"
+    }
+   ]
+  },
+  {
+   "translation": "opl/opl_emu_registers_operator_list/claude2/BaseRepair",
+   "label": "byte-pack (counted wrong answer)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs",
+    "shipped_sha256": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+    "logs_results_rs_sha256": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+    "logs_candidates": {
+     "prog_0.rs": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+     "prog_0_10_0.rs": "ea720f35b7795b45ca986a4acc6fde500ac176650f7b49bbb86269ae0c688e4d"
+    },
+    "logs_wspace_src_lib_rs_sha256": "ea720f35b7795b45ca986a4acc6fde500ac176650f7b49bbb86269ae0c688e4d",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_registers_operator_list",
+    "Transpilation is not equivalent: candidate score = 0.0185546875.",
+    "Start soft-verifying opl_emu_registers_operator_list",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_registers_operator_list",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "10",
+      "59",
+      "138",
+      "59"
+     ],
+     "expected": "998914826",
+     "actual": "266",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "42",
+      "47",
+      "38",
+      "93"
+     ],
+     "expected": "1562783530",
+     "actual": "220",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "42",
+      "47",
+      "38",
+      "35"
+     ],
+     "expected": "589705002",
+     "actual": "162",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "10",
+      "59",
+      "10",
+      "10"
+     ],
+     "expected": "168442634",
+     "actual": "89",
+     "prompt": "prog_0_10_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "47.1k"
+   ],
+   "signature": {
+    "ptypes": [
+     "u8",
+     "u8",
+     "u8",
+     "u8"
+    ],
+    "ret": "u32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 4,
+   "logged_inputs_distinct": 4,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 2,
+    "value": 1998
+   },
+   "shipped_divergent_inputs": 1998,
+   "shipped_divergent_iso_c_clean": 988,
+   "shipped_divergent_iso_c_ub": 1010,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 988,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      10,
+      59,
+      138,
+      59
+     ],
+     "v": "value",
+     "c": "998914826",
+     "rust": "266",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      42,
+      47,
+      38,
+      93
+     ],
+     "v": "value",
+     "c": "1562783530",
+     "rust": "220",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      42,
+      47,
+      38,
+      35
+     ],
+     "v": "value",
+     "c": "589705002",
+     "rust": "162",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      10,
+      59,
+      10,
+      10
+     ],
+     "v": "value",
+     "c": "168442634",
+     "rust": "89",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      0,
+      1,
+      0,
+      0
+     ],
+     "v": "value",
+     "c": "256",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "v": "value",
+     "c": "16777217",
+     "rust": "2"
+    },
+    {
+     "in": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "v": "value",
+     "c": "16843009",
+     "rust": "4"
+    }
+   ]
+  },
+  {
+   "translation": "opl/opl_emu_registers_operator_list/claude2/CAPR",
+   "label": "byte-pack (counted wrong answer)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_operator_list/claude2/CAPR/opl_emu_registers_operator_list.rs",
+    "shipped_sha256": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+    "logs_results_rs_sha256": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+    "logs_candidates": {
+     "prog_0.rs": "1cf646059cf178c7cb3f21d5c8d68b585f870d91920cbd86b3f38a660309729d",
+     "prog_0_10_0.rs": "ea720f35b7795b45ca986a4acc6fde500ac176650f7b49bbb86269ae0c688e4d"
+    },
+    "logs_wspace_src_lib_rs_sha256": "ea720f35b7795b45ca986a4acc6fde500ac176650f7b49bbb86269ae0c688e4d",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_registers_operator_list",
+    "Transpilation is not equivalent: candidate score = 0.0234375.",
+    "Start soft-verifying opl_emu_registers_operator_list",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_registers_operator_list",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "64",
+      "104",
+      "42",
+      "50"
+     ],
+     "expected": "841640000",
+     "actual": "260",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "67",
+      "62",
+      "67",
+      "192"
+     ],
+     "expected": "3225632323",
+     "actual": "388",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "67",
+      "104",
+      "42",
+      "50"
+     ],
+     "expected": "841640003",
+     "actual": "263",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "186",
+      "42",
+      "186",
+      "46"
+     ],
+     "expected": "783952570",
+     "actual": "460",
+     "prompt": "prog_0_10_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "43.7k"
+   ],
+   "signature": {
+    "ptypes": [
+     "u8",
+     "u8",
+     "u8",
+     "u8"
+    ],
+    "ret": "u32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 4,
+   "logged_inputs_distinct": 4,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 2,
+    "value": 1998
+   },
+   "shipped_divergent_inputs": 1998,
+   "shipped_divergent_iso_c_clean": 988,
+   "shipped_divergent_iso_c_ub": 1010,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 988,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      64,
+      104,
+      42,
+      50
+     ],
+     "v": "value",
+     "c": "841640000",
+     "rust": "260",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      67,
+      62,
+      67,
+      192
+     ],
+     "v": "value",
+     "c": "3225632323",
+     "rust": "388",
+     "iso_c": "ub"
+    },
+    {
+     "in": [
+      67,
+      104,
+      42,
+      50
+     ],
+     "v": "value",
+     "c": "841640003",
+     "rust": "263",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      186,
+      42,
+      186,
+      46
+     ],
+     "v": "value",
+     "c": "783952570",
+     "rust": "460",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 3,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      0,
+      1,
+      0,
+      0
+     ],
+     "v": "value",
+     "c": "256",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "v": "value",
+     "c": "16777217",
+     "rust": "2"
+    },
+    {
+     "in": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "v": "value",
+     "c": "16843009",
+     "rust": "4"
+    }
+   ]
+  },
+  {
+   "translation": "opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair",
+   "label": "struct mask (counted wrong answer; identity only)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+    "shipped_sha256": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+    "logs_results_rs_sha256": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+    "logs_candidates": {
+     "prog_0.rs": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+     "prog_0_10_0.rs": "2bfffa8ac828e6fa34f4e06867784160f74898b7247c86c5f2d019f0f700b1c7"
+    },
+    "logs_wspace_src_lib_rs_sha256": "2bfffa8ac828e6fa34f4e06867784160f74898b7247c86c5f2d019f0f700b1c7",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_registers_lfo_pm_depth",
+    "Transpilation is not equivalent: candidate score = 0.0.",
+    "Start soft-verifying opl_emu_registers_lfo_pm_depth",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_registers_lfo_pm_depth",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [46774, 46774, 46774, 46774, 46774, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [34486, 36874, 7434, 7068, 40458, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [6582, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [51524, 46774, 46774, 46774, 46774, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [46774, 46774, 46774, 46774, 46774, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [6582, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [0, 37636, 51524, 46774, 46774, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "267",
+    "267",
+    "267"
+   ],
+   "our_inputs": 8,
+   "our_inputs_source": "systems/flourine/run_struct.py (SEEDS, register fill; other fields zero)",
+   "logged_inputs": 4,
+   "logged_inputs_per_example": [
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    }
+   ],
+   "overlap_ours_logged": 0,
+   "overlap_method": "field-by-field on the fields the log records (the log truncates m_regdata/m_waveform)",
+   "counted_divergences_inside_logged_inputs": 0,
+   "shipped_diverges_on_logged_inputs_iso_c_clean": null,
+   "shipped_diverges_on_logged_inputs_reason": "not computable: every logged example records only the first 5 of 512 m_regdata bytes, and the function reads byte 0xbd, so our comparison cannot be run on the logged inputs. Flourine's own log reports 'Runtime crash' (expected '0') for the shipped content on all of them, consistent with the unconditional `(1u32 >> 1) - 1` overflow panic in a debug build; that is the check failing on the defect's line, not a divergence under our (release-build, value) comparison"
+  }
+ ]
+}

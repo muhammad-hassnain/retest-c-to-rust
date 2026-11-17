@@ -1,0 +1,126 @@
+{
+ "provenance": {
+  "script": "scripts/plot_results.py (harness_power)",
+  "command": "python3 -I scripts/plot_results.py",
+  "arxiv_ub_filter": {
+   "C2SaferRust coreutils": "results/arxiv_mutation_ubfilter_c2saferrust.json",
+   "ACTOR": "results/arxiv_mutation_ubfilter_actor.json",
+   "FLOURINE scalar": "results/arxiv_mutation_ubfilter_flourine_fuzzprofile.json"
+  }
+ },
+ "kill_rule": "a mutant is killed if OUR harness, on OUR inputs, reports a wrong answer (value, stdout, exit code or output file) or a crash; not counted: stderr-only differences, hangs/timeouts, kills by the system's own test; a kill counts only on an input where the C is UB-clean under the rule the defect count uses (FLOURINE: and min <= max, as the defect count)",
+ "label_marks": {
+  "*": "lower bound: `undetermined` mutants are not counted as killed",
+  "\u2020": "upper bound: the per-mutant record cannot separate stderr-only and timeout kills (rule_separable false)"
+ },
+ "rows": [
+  {
+   "label": "VERT scalar",
+   "killed": 1527,
+   "built": 1966,
+   "rate": 0.7767,
+   "undetermined": 51,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT translation (the 115 functions with no divergence on grid v2; systems/vert/mutate_primary.py --grid v2)",
+   "source": "results/vert_mutation_primary_grid2.json per_function[].mutants[] (headline ops)",
+   "note": "54 hang-only and 13 UB-only mutants not killed; 51 not-killed mutants have slow inputs that were not re-checked"
+  },
+  {
+   "label": "VERT array/float",
+   "killed": 845,
+   "built": 1416,
+   "rate": 0.5968,
+   "undetermined": 30,
+   "rule_separable": true,
+   "mutated_program": "each agreeing VERT array/float translation (systems/vert/mutate_primary.py)",
+   "source": "results/vert_arrays_mutation_primary.json per_function[].mutants[] (headline ops)",
+   "note": "30 mutants hit the 25 s Rust batch timeout; the array harness then reports a crash on every row (no per-input fallback), so whether they also give a wrong answer is unknown; not counted"
+  },
+  {
+   "label": "FLOURINE scalar",
+   "killed": 556,
+   "built": 632,
+   "rate": 0.8797,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "FLOURINE's shipped success translations that agree with the C on every counted input in FLOURINE's own build profile (fuzz: opt-level 3, overflow checks on; harness/arxiv_mutate_full_flourine_ubfilter.py --profile fuzz)",
+   "source": "results/flourine_mutation.json mutants[].status",
+   "note": "statuses {'killed_value': 613, 'survived': 43, 'noncompile': 43}; value or Rust panic only | arXiv: results/arxiv_mutation_ubfilter_flourine_fuzzprofile.json, treatment B (B_translation_agrees_on_counted_inputs), count 'UB-clean, not min > max': every mutant rebuilt in FLOURINE's fuzz profile; a kill counts only on an input where the C is UB-clean and min <= max (the defect count's domain); treatment B drops the translations whose unmutated build diverges from the C on a counted input (the two compute_phase_step files, now counted defects), so the pool is translations that agree with the C (shipped scan: 613/656)",
+   "killed_shipped_scan": 613,
+   "built_shipped_scan": 656,
+   "source_arxiv": "results/arxiv_mutation_ubfilter_flourine_fuzzprofile.json summary.variants.B_translation_agrees_on_counted_inputs.ub_clean_and_not_min_gt_max.killed"
+  },
+  {
+   "label": "C2SaferRust coreutils",
+   "killed": 378,
+   "built": 1892,
+   "rate": 0.1998,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "C2Rust's starting translation (coreutils/src/<util>/rust), not C2SaferRust's output (harness/mutate_full.py:12-14, 96)",
+   "source": "results/cli_mutation_full.json mutants[].status",
+   "note": "11 stderr-only and 3 hang-only mutants not counted; on C2SaferRust's own output (rust_WIP, cases where it agrees): 231/1074 | arXiv: results/arxiv_mutation_ubfilter_c2saferrust.json (harness/arxiv_mutate_full_ubfilter.py): kills whose first killing case is not UB-clean re-scanned over the UB-clean cases only (all in uniq: clang's NULL+0 at linebuffer.c:65) (shipped scan: 421/1892); on C2SaferRust's own output (rust_WIP) under the same rule: 206/1074",
+   "killed_shipped_scan": 421,
+   "built_shipped_scan": 1892,
+   "source_arxiv": "results/arxiv_mutation_ubfilter_c2saferrust.json summary.rust.killed_new"
+  },
+  {
+   "label": "SACTOR, pooled",
+   "killed": 69,
+   "built": 109,
+   "rate": 0.633,
+   "undetermined": 0,
+   "rule_separable": false,
+   "mutated_program": "SACTOR's agreeing translations (libogg gpt-5 framing.c, gpt-4o bitwise.c; CRUST samples)",
+   "source": "results/sactor_libogg_mutation.json targets[].mutants[], results/sactor_crust_mutation.json samples[].mutants[].killed_by_grid",
+   "note": "kills by SACTOR's own test excluded; both harnesses kill on any (stdout, stderr, exit code) difference and a timeout also differs (systems/sactor/libogg/mutate.py:147-148, systems/sactor/crust/mutate.py:90); the per-mutant records keep only killing case ids / a boolean, so stderr-only and timeout kills cannot be separated: upper bound"
+  },
+  {
+   "label": "His2Trans",
+   "killed": 60,
+   "built": 113,
+   "rate": 0.531,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "His2Trans's OSS8 crates for avl, qsort, quadtree, urlparser, on the cases where the unmutated crate agrees (systems/his2trans/power.py:100-102)",
+   "source": "results/his2trans_power.json mutation[].mutants[].status",
+   "note": "statuses {'killed': 60, 'survived': 53}: no 'killed(hang)' (power.py:123), so every kill has a non-hang difference. power.py:115-118 also kills on a raw stderr difference and the record keeps no channel; from code, neither the drivers (systems/his2trans/drivers) nor the mutated crates write to stderr, so Rust stderr is non-empty only on a panic/abort, which also changes the exit code: no stderr-only kill is possible"
+  },
+  {
+   "label": "AdaTrans",
+   "killed": 311,
+   "built": 410,
+   "rate": 0.7585,
+   "undetermined": 17,
+   "rule_separable": true,
+   "mutated_program": "AdaTrans run1 translations that agree with the C on all our inputs (systems/adatrans/mutate.py:1-8)",
+   "source": "results/adatrans_mutation_run1.json mutants_detail[].kind",
+   "note": "mutate.py stops at the first non-agreeing input (eval_mutant); 17 mutants stopped at a hang and 0 at a stderr/whitespace-only difference, so whether a later input gives a wrong answer is unknown; not counted"
+  },
+  {
+   "label": "PtrTrans",
+   "killed": 58,
+   "built": 64,
+   "rate": 0.9062,
+   "undetermined": 0,
+   "rule_separable": true,
+   "mutated_program": "PtrTrans's shipped quadtree crate plus a one-line find_ repair, not the shipped crate itself; 24 cases where that baseline disagrees are excluded",
+   "source": "results/ptrtrans_quadtree_mutation.json mutants[].kill_kinds",
+   "note": "kills are wrong_output/panic; no batch timeout among killed mutants"
+  },
+  {
+   "label": "ACTOR",
+   "killed": 166,
+   "built": 393,
+   "rate": 0.4224,
+   "undetermined": 4,
+   "rule_separable": true,
+   "mutated_program": "ACTOR translations that agree with the C on all our inputs (19 executables, 65 libraries; systems/actoruw/mutate.py)",
+   "source": "results/actoruw_mutation.json mutants[].status/kill_kind",
+   "note": "every input is run (no stop at a hang); 4 mutants hang on some input and give no wrong answer or crash on any input: undetermined, not counted; stderr-only differences are not kills | arXiv: results/arxiv_mutation_ubfilter_actor.json (systems/actoruw/arxiv_mutate_ubfilter.py): the C checked under the full UB rule on every recorded killing input; mutants killed only on inputs that are not UB-clean re-scanned (shipped scan: 183/393)",
+   "killed_shipped_scan": 183,
+   "built_shipped_scan": 393,
+   "source_arxiv": "results/arxiv_mutation_ubfilter_actor.json summary.killed_new"
+  }
+ ]
+}

@@ -1,0 +1,124 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+   --> src/main.rs:939:5
+    |
+939 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:942:31
+    |
+942 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+942 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+942 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:942:59
+    |
+942 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+942 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+942 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `max` is never used
+   --> src/main.rs:917:4
+    |
+917 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:918:4
+    |
+918 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:919:4
+    |
+919 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:920:4
+    |
+920 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:942:60
+    |
+942 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero` (bin "c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero" test) generated 8 warnings (run `cargo fix --bin "c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 4161871177
+INFO: Loaded 1 modules   (362416 inline 8-bit counters): 362416 [0x5c7a8a443290, 0x5c7a8a49ba40), 
+INFO: Loaded 1 PC tables (362416 PCs): 362416 [0x5c7a8a49ba40,0x5c7a8aa23540), 
+INFO:        0 files found in /tmp/fzr_njgk8le0/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_njgk8le0/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+==17402== ERROR: libFuzzer: out-of-memory (malloc(5298441400))
+   To change the out-of-memory limit use -rss_limit_mb=<N>
+
+    #0 0x5c7a88d70431  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xa67431) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #1 0x5c7a8994903e  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x164003e) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #2 0x5c7a899543f8  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x164b3f8) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #3 0x5c7a89954465  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x164b465) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #4 0x5c7a88d77522  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xa6e522) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #5 0x5c7a88ccfb67  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x9c6b67) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #6 0x5c7a88ccf4c3  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x9c64c3) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #7 0x5c7a88d6591e  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xa5c91e) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #8 0x5c7a88e21802  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xb18802) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #9 0x5c7a88daac37  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xaa1c37) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #10 0x5c7a88dbda96  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xab4a96) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #11 0x5c7a88e24e67  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xb1be67) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #12 0x5c7a88db8e8e  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xaafe8e) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #13 0x5c7a88e1621c  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xb0d21c) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #14 0x5c7a8992161e  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x161861e) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #15 0x5c7a89954b25  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x164bb25) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #16 0x5c7a89959673  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x1650673) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #17 0x5c7a8995a5a8  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x16515a8) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #18 0x5c7a8995c8a7  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x16538a7) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #19 0x5c7a8992fe32  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x1626e32) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #20 0x5c7a89921976  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x1618976) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #21 0x5c7a88dbc091  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xab3091) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #22 0x5c7a88e15c37  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xb0cc37) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #23 0x5c7a88e24811  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xb1b811) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #24 0x5c7a88dc20c5  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0xab90c5) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #25 0x5c7a89907fce  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15fefce) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #26 0x5c7a89906fc1  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15fdfc1) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #27 0x5c7a898ca523  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15c1523) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #28 0x5c7a898d0bda  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15c7bda) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #29 0x5c7a89f94cd4  (/tmp/fzr_njgk8le0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x1c8bcd4) (BuildId: 6281bb123da20d57d48dd0991ca596b22044f6b7)
+    #30 0x7f9cc14509e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #31 0x7f9cc14e1a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+MS: 5 ChangeBinInt-ShuffleBytes-InsertByte-CopyPart-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0x2d,0xf3,0xf3,0x4e,
+-\363\363N
+artifact_prefix='/tmp/fzr_njgk8le0/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_njgk8le0/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-e3068727235275c886ab345f8309ced533327405
+Base64: LfPzTg==
+SUMMARY: libFuzzer: out-of-memory
+error: process exited with status 71

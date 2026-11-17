@@ -1,0 +1,2713 @@
+{
+ "system": "SACTOR",
+ "target": "CRUST-Bench samples (qsdrqs/CRUST-bench fork, 69970f9c)",
+ "provenance": {
+  "script": "systems/sactor/crust/run.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/crust/run.py --only 42-Kocaeli-Printf,Phills_DHT,SimpleXML,aes128-SIMD,amp,approxidate,bhshell,bostree,cfsm,clog,csyncmers,dict,emlang,expr,inversion_list,jccc,razz_simulation,totp --out /work/results/sactor_crust_partial.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-14T00:05:22+00:00",
+  "c_variants": [
+   "ref",
+   "o0",
+   "o1",
+   "uchar",
+   "schar",
+   "san_gcc",
+   "san_clang",
+   "san_clang_nz"
+  ],
+  "ccwrap": "systems/sactor/crust/ccwrap.sh"
+ },
+ "samples": {
+  "Phills_DHT": {
+   "sample": "Phills_DHT",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 6,
+     "failure_info_functions": 8,
+     "failure_info_success": 6,
+     "failure_info_failed": [
+      "dht_init_table",
+      "dht_write"
+     ],
+     "c_functions_without_rust": [
+      "dht_init_table",
+      "dht_write"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "dht_get_lower_bound",
+      "dht_get_size",
+      "dht_get_upper_bound",
+      "dht_init",
+      "dht_init_table",
+      "dht_is_initialised",
+      "dht_read",
+      "dht_write"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 8,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": " 29. PASSED\nTest 20 of 29. PASSED\nTest 21 of 29. PASSED\nTest 22 of 29. PASSED\nTest 23 of 29. PASSED\nTest 24 of 29. PASSED\nTest 25 of 29. PASSED\nTest 26 of 29. PASSED\nTest 27 of 29. PASSED\nTest 28 of 29. PASSED\nforgotten... todo remap send to peer\nTest 29 of 29. PASSED\nfinished. 29 passed. 0 failed.\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 1.3
+  },
+  "42-Kocaeli-Printf": {
+   "sample": "42-Kocaeli-Printf",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 6,
+     "failure_info_functions": 7,
+     "failure_info_success": 6,
+     "failure_info_failed": [
+      "format"
+     ],
+     "c_functions_without_rust": [
+      "format",
+      "ft_printf"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "format",
+      "ft_printf",
+      "writechar",
+      "writehex",
+      "writeint",
+      "writepoint",
+      "writestring",
+      "writeuint"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 8,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "42-420-21474836484202a2A00x1234(nil)All tests passed successfully.\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 1.4
+  },
+  "SimpleXML": {
+   "sample": "SimpleXML",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 20,
+     "failure_info_functions": 22,
+     "failure_info_success": 19,
+     "failure_info_failed": [
+      "XMLParser_release",
+      "parser_get_text_token",
+      "vector_insert_at_index"
+     ],
+     "c_functions_without_rust": [
+      "XMLParser_release",
+      "parse_xml_from_text",
+      "parser_get_next_token",
+      "parser_get_text_token"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "StackElement_create",
+      "StackElement_release",
+      "XMLElement_create",
+      "XMLElement_release",
+      "XMLParser_create",
+      "XMLParser_release",
+      "parse_xml_from_text",
+      "parser_get_next_token",
+      "parser_get_text_token",
+      "vector_create",
+      "vector_get_element_at",
+      "vector_index_of",
+      "vector_index_of_with_start",
+      "vector_insert_at_index",
+      "vector_pop_back",
+      "vector_pop_front",
+      "vector_push_back",
+      "vector_push_front",
+      "vector_release",
+      "vector_remove_element_at_index",
+      "vector_size",
+      "vector_top_back",
+      "vector_top_front",
+      "vector_validated"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 24,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "PASSED Test vector1\nPASSED Test vector2\nPASSED Test parser xml\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: ==550==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x506000000060 at pc 0x5f59dda466da bp 0x7fff1565ab30 sp 0x7fff1565ab20",
+      "san_clang: ==551==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x606000000060 at pc 0x0000004ddf69 bp 0x7ffe045692d0 sp 0x7ffe045692c8"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==550==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x506000000060 at pc 0x5f59dda466da bp 0x7fff1565ab30 sp 0x7fff1565ab20",
+      "san_clang_nz: ==552==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x606000000060 at pc 0x0000004ddf69 bp 0x7ffd9b75b650 sp 0x7ffd9b75b648"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.0
+  },
+  "amp": {
+   "sample": "amp",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 4,
+     "failure_info_functions": 4,
+     "failure_info_success": 4,
+     "failure_info_failed": [],
+     "c_functions_without_rust": [
+      "amp_encode"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "amp_decode",
+      "amp_decode_arg",
+      "amp_encode",
+      "read_u32_be",
+      "write_u32_be"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 5,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "ok\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: ==585==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000014 at pc 0x7fda11255712 bp 0x7ffff61d3da0 sp 0x7ffff61d3548",
+      "san_clang: ==590==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000014 at pc 0x000000433110 bp 0x7ffda1296c70 sp 0x7ffda1296420"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==585==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000014 at pc 0x7fda11255712 bp 0x7ffff61d3da0 sp 0x7ffff61d3548",
+      "san_clang_nz: ==591==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000014 at pc 0x000000433110 bp 0x7ffc896f9e10 sp 0x7ffc896f95c0"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 1.0
+  },
+  "bhshell": {
+   "sample": "bhshell",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 15,
+     "failure_info_functions": 17,
+     "failure_info_success": 15,
+     "failure_info_failed": [
+      "bhshell_loop",
+      "bhshell_parse"
+     ],
+     "c_functions_without_rust": [
+      "bhshell_loop",
+      "bhshell_parse"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "bhshell_cd",
+      "bhshell_execute",
+      "bhshell_exit",
+      "bhshell_help",
+      "bhshell_launch",
+      "bhshell_loop",
+      "bhshell_num_builtins",
+      "bhshell_parse",
+      "bhshell_read_line",
+      "destroy_args",
+      "destroy_command",
+      "get_args",
+      "get_string",
+      "new_command",
+      "write_to_redirect",
+      "xmalloc",
+      "xrealloc"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 17,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Running Tests for dynamic arrays...\nRunning Tests for parser...\n1\n2\n3\n4\n5\n6\n7\ninvalid pipe 8\nnew line 9\nvalid pipe 10\nAll Tests ran successfully...\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: ==966==ERROR: AddressSanitizer: ABRT on unknown address 0x0000000003c6 (pc 0x7968c815f9bc bp 0x0000000003c6 sp 0x7ffe86ac33b0 T0)",
+      "san_clang: ==971==ERROR: AddressSanitizer: ABRT on unknown address 0x0000000003cb (pc 0x7cc7cd43b9bc bp 0x0000000003cb sp 0x7ffefceea770 T0)"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==966==ERROR: AddressSanitizer: ABRT on unknown address 0x0000000003c6 (pc 0x7968c815f9bc bp 0x0000000003c6 sp 0x7ffe86ac33b0 T0)",
+      "san_clang_nz: ==972==ERROR: AddressSanitizer: ABRT on unknown address 0x0000000003cc (pc 0x7db4a09659bc bp 0x0000000003cc sp 0x7ffef75aa590 T0)"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.1
+  },
+  "bostree": {
+   "sample": "bostree",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 11,
+     "failure_info_functions": 17,
+     "failure_info_success": 11,
+     "failure_info_failed": [
+      "_bostree_rotate_left",
+      "_bostree_rotate_right",
+      "bostree_node_count",
+      "bostree_node_weak_unref",
+      "bostree_print",
+      "bostree_select"
+     ],
+     "c_functions_without_rust": [
+      "_bostree_rotate_left",
+      "_bostree_rotate_right",
+      "bostree_destroy",
+      "bostree_insert",
+      "bostree_node_count",
+      "bostree_node_weak_unref",
+      "bostree_print",
+      "bostree_remove",
+      "bostree_select",
+      "test_tree_sanity"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "_actual_count",
+      "_actual_depth",
+      "_bostree_balance",
+      "_bostree_print_helper",
+      "_bostree_rotate_left",
+      "_bostree_rotate_right",
+      "_imax",
+      "bostree_destroy",
+      "bostree_insert",
+      "bostree_lookup",
+      "bostree_new",
+      "bostree_next_node",
+      "bostree_node_count",
+      "bostree_node_weak_ref",
+      "bostree_node_weak_unref",
+      "bostree_previous_node",
+      "bostree_print",
+      "bostree_rank",
+      "bostree_remove",
+      "bostree_select",
+      "test_tree_sanity"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o",
+    "test2.o",
+    "test3.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {
+    "ref": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_ref/test1.o: in function `main':\nremove_bug_2.c:(.text.startup+0x57): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_ref/test2.o: in function `main':\nremove_bug.c:(.text.startup+0x8f): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_ref/test3.o: in function `main':\nsanity.c:(.text.startup+0xa2): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text.startup+0xef): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "o0": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_o0/test1.o: in function `main':\nremove_bug_2.c:(.text+0x103): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_o0/test2.o: in function `main':\nremove_bug.c:(.text+0xdb): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_o0/test3.o: in function `main':\nsanity.c:(.text+0xeb): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text+0x1a7): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "o1": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_o1/test1.o: in function `main':\nremove_bug_2.c:(.text+0xaf): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_o1/test2.o: in function `main':\nremove_bug.c:(.text+0xa5): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_o1/test3.o: in function `main':\nsanity.c:(.text+0xbe): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text+0x137): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "uchar": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_uchar/test1.o: in function `main':\nremove_bug_2.c:(.text.startup+0x57): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_uchar/test2.o: in function `main':\nremove_bug.c:(.text.startup+0x8f): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_uchar/test3.o: in function `main':\nsanity.c:(.text.startup+0xa2): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text.startup+0xef): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "schar": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_schar/test1.o: in function `main':\nremove_bug_2.c:(.text.startup+0x57): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_schar/test2.o: in function `main':\nremove_bug.c:(.text.startup+0x8f): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_schar/test3.o: in function `main':\nsanity.c:(.text.startup+0xa2): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text.startup+0xef): undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "san_gcc": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_san_gcc/test1.o: in function `main':\n/build/crust/bostree/c_san_gcc/tests/remove_bug_2.c:40: undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_san_gcc/test2.o: in function `main':\n/build/crust/bostree/c_san_gcc/tests/remove_bug.c:52: undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_san_gcc/test3.o: in function `main':\n/build/crust/bostree/c_san_gcc/tests/sanity.c:27: undefined reference to `test_tree_sanity'\n/usr/bin/ld: /build/crust/bostree/c_san_gcc/tests/sanity.c:48: undefined reference to `test_tree_sanity'\ncollect2: error: ld returned 1 exit status\n"
+    },
+    "san_clang": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang/test1.o: in function `main':\nremove_bug_2.c:(.text+0x27d): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang/test2.o: in function `main':\nremove_bug.c:(.text+0x40b): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang/test3.o: in function `main':\nsanity.c:(.text+0x40f): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text+0x624): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n"
+    },
+    "san_clang_nz": {
+     "test1.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang_nz/test1.o: in function `main':\nremove_bug_2.c:(.text+0x27d): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n",
+     "test2.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang_nz/test2.o: in function `main':\nremove_bug.c:(.text+0x40b): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n",
+     "test3.o": "/usr/bin/ld: /build/crust/bostree/c_san_clang_nz/test3.o: in function `main':\nsanity.c:(.text+0x40f): undefined reference to `test_tree_sanity'\n/usr/bin/ld: sanity.c:(.text+0x624): undefined reference to `test_tree_sanity'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n"
+    }
+   },
+   "c_builds": {
+    "ref": [],
+    "o0": [],
+    "o1": [],
+    "uchar": [],
+    "schar": [],
+    "san_gcc": [],
+    "san_clang": [],
+    "san_clang_nz": []
+   },
+   "rust_builds": {},
+   "c_function_definitions": 21,
+   "cases": [
+    {
+     "case": "own0",
+     "obj": "test1.o",
+     "skipped": "C ref did not build"
+    },
+    {
+     "case": "own0",
+     "obj": "test2.o",
+     "skipped": "C ref did not build"
+    },
+    {
+     "case": "own0",
+     "obj": "test3.o",
+     "skipped": "C ref did not build"
+    }
+   ],
+   "elapsed_s": 2.8
+  },
+  "cfsm": {
+   "sample": "cfsm",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 2,
+     "failure_info_functions": 2,
+     "failure_info_success": 2,
+     "failure_info_failed": [],
+     "c_functions_without_rust": [
+      "cfsm_event",
+      "cfsm_process"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "cfsm_event",
+      "cfsm_init",
+      "cfsm_process",
+      "cfsm_transition"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 4,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "_safe_to_use:PASS\nbuild/../tests/test_c_fsm.c:234:test_cfsm_init_should_clear_handler:PASS\nbuild/../tests/test_c_fsm.c:235:test_cfsm_transition_should_set_enter_handler_only:PASS\nbuild/../tests/test_c_fsm.c:236:test_cfs_transition_A_B_A:PASS\n\n-----------------------\n4 Tests 0 Failures 0 Ignored \nOK\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.2
+  },
+  "approxidate": {
+   "sample": "approxidate",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 24,
+     "failure_info_functions": 28,
+     "failure_info_success": 24,
+     "failure_info_failed": [
+      "approxidate",
+      "approxidate_relative",
+      "match_alpha",
+      "parse_date_basic"
+     ],
+     "c_functions_without_rust": [
+      "approxidate",
+      "approxidate_relative",
+      "match_alpha",
+      "parse_date_basic"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "approxidate",
+      "approxidate_alpha",
+      "approxidate_digit",
+      "approxidate_relative",
+      "approxidate_str",
+      "date_am",
+      "date_midnight",
+      "date_never",
+      "date_noon",
+      "date_now",
+      "date_pm",
+      "date_tea",
+      "date_time",
+      "date_yesterday",
+      "is_date",
+      "match_alpha",
+      "match_digit",
+      "match_multi_number",
+      "match_object_header_date",
+      "match_string",
+      "match_tz",
+      "nodate",
+      "parse_date_basic",
+      "pending_number",
+      "sane_case",
+      "skip_alpha",
+      "tm_to_time_t",
+      "update_tm"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 28,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": false,
+     "determinism_shim": true,
+     "c_deterministic": true,
+     "c_stdout_tail": "approxidate time: 0.000000\nstrptime time: 0.000000\n",
+     "c_stderr_tail": "All tests passed\n",
+     "c_ub": [
+      "san_gcc: ==1510==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffdeba66a70 at pc 0x75369833d7a3 bp 0x7ffdeba66140 sp 0x7ffdeba658f8",
+      "san_clang: ==1528==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffe5273d5b0 at pc 0x000000439b91 bp 0x7ffe5273cd10 sp 0x7ffe5273c4e8"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==1510==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffdeba66a70 at pc 0x75369833d7a3 bp 0x7ffdeba66140 sp 0x7ffdeba658f8",
+      "san_clang_nz: ==1531==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fffb94a2190 at pc 0x000000439b91 bp 0x7fffb94a18f0 sp 0x7fffb94a10c8"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 7.7
+  },
+  "aes128-SIMD": {
+   "sample": "aes128-SIMD",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 12,
+     "failure_info_functions": 14,
+     "failure_info_success": 12,
+     "failure_info_failed": [
+      "Cipher",
+      "InvCipher"
+     ],
+     "c_functions_without_rust": [
+      "Cipher",
+      "InvCipher"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "Add",
+      "Cipher",
+      "Columns",
+      "Expansion",
+      "InvCipher",
+      "InvColumns",
+      "InvShift",
+      "InvSub",
+      "PadBuffer",
+      "RemovePadding",
+      "Shift",
+      "Sub",
+      "base64_encode",
+      "g_mult"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 14,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "run-tests",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "20 53 65 64 20 64 6F 20 65 69 75 73 6D 6F 64 20 74 65 6D 70 6F 72 20 2E 2E 2E \nDecrypted str : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor ...\nbase64 : TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gU2VkIGRvIGVpdXNtb2QgdGVtcG9yIC4uLg==\n",
+     "c_stderr_tail": "",
+     "c_matches_expected": true,
+     "c_ub": [
+      "san_gcc: ==1845==ERROR: AddressSanitizer: unknown-crash on address 0x7ffc38900c84 at pc 0x62dd09f8b9a8 bp 0x7ffc38900b60 sp 0x7ffc38900b50",
+      "san_clang: ==1846==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fffce6488b3 at pc 0x0000004de5e1 bp 0x7fffce648610 sp 0x7fffce648608"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==1845==ERROR: AddressSanitizer: unknown-crash on address 0x7ffc38900c84 at pc 0x62dd09f8b9a8 bp 0x7ffc38900b60 sp 0x7ffc38900b50",
+      "san_clang_nz: ==1847==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffcc56c7c33 at pc 0x0000004de5e1 bp 0x7ffcc56c7990 sp 0x7ffcc56c7988"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 12.4
+  },
+  "clog": {
+   "sample": "clog",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 6,
+     "failure_info_functions": 19,
+     "failure_info_success": 6,
+     "failure_info_failed": [
+      "_clog_err",
+      "_clog_log",
+      "clog_debug",
+      "clog_error",
+      "clog_free",
+      "clog_info",
+      "clog_init_fd",
+      "clog_init_path",
+      "clog_set_date_fmt",
+      "clog_set_fmt",
+      "clog_set_level",
+      "clog_set_time_fmt",
+      "clog_warn"
+     ],
+     "c_functions_without_rust": [
+      "_clog_err",
+      "_clog_log",
+      "clog_debug",
+      "clog_error",
+      "clog_free",
+      "clog_info",
+      "clog_init_fd",
+      "clog_init_path",
+      "clog_set_date_fmt",
+      "clog_set_fmt",
+      "clog_set_level",
+      "clog_set_time_fmt",
+      "clog_warn"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "_clog_append_int",
+      "_clog_append_str",
+      "_clog_append_time",
+      "_clog_basename",
+      "_clog_err",
+      "_clog_format",
+      "_clog_log",
+      "clog_debug",
+      "clog_error",
+      "clog_force_link",
+      "clog_free",
+      "clog_info",
+      "clog_init_fd",
+      "clog_init_path",
+      "clog_set_date_fmt",
+      "clog_set_fmt",
+      "clog_set_level",
+      "clog_set_time_fmt",
+      "clog_warn"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 19,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 1,
+     "c_timed_out": false,
+     "c_deterministic_plain": false,
+     "determinism_shim": true,
+     "c_deterministic": true,
+     "c_stdout_tail": "le_write_nonexistent: OK\ntest_fd_write: OK\ntest_all_levels: OK\ntest_level_filtering: OK\ntest_multiple_loggers: OK\ntest_bad_format: OK\ntest_long_message: OK\ntest_reuse_logger_id: OK\ntest_performance: FAIL\n  Target 100000 msgs/sec, got 0.\n\n10 successes, 1 failures.\nFailing cases:\n    test_performance\n",
+     "c_stderr_tail": "Logger 0 already initialized.\nUnable to open path-doesnt-exist/log.out: No such file or directory\nclog_set_fmt: Format specifier too long.\n",
+     "c_ub": [
+      "san_gcc: clog_test_c.c:275:36: runtime error: inf is outside the range of representable values of type 'long unsigned int'",
+      "san_clang: clog_test_c.c:275:27: runtime error: inf is outside the range of representable values of type 'unsigned long'"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: clog_test_c.c:275:36: runtime error: inf is outside the range of representable values of type 'long unsigned int'",
+      "san_clang_nz: clog_test_c.c:275:27: runtime error: inf is outside the range of representable values of type 'unsigned long'"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 6.8
+  },
+  "emlang": {
+   "sample": "emlang",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 7,
+     "failure_info_functions": 43,
+     "failure_info_success": 6,
+     "failure_info_failed": [
+      "data_fprintf",
+      "data_new",
+      "data_new_int",
+      "data_new_str",
+      "em_fprintf",
+      "em_new",
+      "em_new_with_data",
+      "env_destroy",
+      "env_gc",
+      "env_new",
+      "env_run",
+      "parser_advance",
+      "parser_cross_ref",
+      "parser_destroy",
+      "parser_err",
+      "parser_load_file",
+      "parser_load_mem",
+      "parser_new",
+      "parser_ok",
+      "parser_parse",
+      "parser_parse_next",
+      "parser_parse_plain",
+      "parser_parse_quotes",
+      "program_destroy",
+      "program_push",
+      "runtime_result_err",
+      "runtime_result_ok",
+      "stack_add_popped",
+      "stack_clear",
+      "stack_destroy",
+      "stack_dup",
+      "stack_gc",
+      "stack_new",
+      "stack_pop",
+      "stack_push",
+      "stack_shrink_to",
+      "stack_swap"
+     ],
+     "c_functions_without_rust": [
+      "data_fprintf",
+      "data_new",
+      "data_new_int",
+      "data_new_str",
+      "em_fprintf",
+      "em_new",
+      "em_new_with_data",
+      "env_destroy",
+      "env_gc",
+      "env_new",
+      "env_run",
+      "parser_advance",
+      "parser_cross_ref",
+      "parser_destroy",
+      "parser_load_file",
+      "parser_load_mem",
+      "parser_new",
+      "parser_ok",
+      "parser_parse",
+      "parser_parse_next",
+      "parser_parse_plain",
+      "parser_parse_quotes",
+      "program_destroy",
+      "program_push",
+      "runtime_result_err",
+      "runtime_result_ok",
+      "stack_add_popped",
+      "stack_clear",
+      "stack_destroy",
+      "stack_dup",
+      "stack_gc",
+      "stack_new",
+      "stack_pop",
+      "stack_push",
+      "stack_shrink_to",
+      "stack_swap"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "data_fprintf",
+      "data_new",
+      "data_new_int",
+      "data_new_str",
+      "data_type_to_cstr",
+      "em_fprintf",
+      "em_new",
+      "em_new_with_data",
+      "em_type_to_cstr",
+      "env_destroy",
+      "env_gc",
+      "env_new",
+      "env_run",
+      "parser_advance",
+      "parser_cross_ref",
+      "parser_destroy",
+      "parser_err",
+      "parser_err_to_cstr",
+      "parser_load_file",
+      "parser_load_mem",
+      "parser_new",
+      "parser_ok",
+      "parser_parse",
+      "parser_parse_next",
+      "parser_parse_plain",
+      "parser_parse_quotes",
+      "program_destroy",
+      "program_new",
+      "program_push",
+      "runtime_err_to_cstr",
+      "runtime_result_err",
+      "runtime_result_ok",
+      "stack_add_popped",
+      "stack_clear",
+      "stack_destroy",
+      "stack_dup",
+      "stack_gc",
+      "stack_new",
+      "stack_pop",
+      "stack_push",
+      "stack_shrink_to",
+      "stack_swap",
+      "strcpy_to_heap"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 43,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "uccessfully ran if.eml\nRunning test: math.eml\n2 + 7 = 9\n2 - 7 = -5\n2 * 7 = 14\n2 / 7 = 0\n\u2714 Successfully ran math.eml\nRunning test: negative_nums.eml\n-3\n\u2714 Successfully ran negative_nums.eml\nRunning test: runtime_error.eml\n\u2714 Expected runtime error in runtime_error.eml\nAll tests completed successfully.\n",
+     "c_stderr_tail": "Error!\n",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.7
+  },
+  "csyncmers": {
+   "sample": "csyncmers",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 4,
+     "failure_info_functions": 6,
+     "failure_info_success": 4,
+     "failure_info_failed": [
+      "compute_closed_syncmers",
+      "compute_closed_syncmers_naive"
+     ],
+     "c_functions_without_rust": [
+      "compute_closed_syncmers",
+      "compute_closed_syncmers_naive"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "add_minimizer",
+      "base_to_bits",
+      "complement_base",
+      "compute_closed_syncmers",
+      "compute_closed_syncmers_naive",
+      "csyncmers_force_link"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 6,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": false,
+     "determinism_shim": true,
+     "c_deterministic": true,
+     "c_stdout_tail": "8                  8388                \n549                  33554               \n601                  39170               \n780                  20309               \n\nNumber of closed syncmers matches: 7\nTest 10 passed. All closed syncmers match between original and naive method.\n\nAll tests passed.\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 9.7
+  },
+  "dict": {
+   "sample": "dict",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 3,
+     "failure_info_functions": 17,
+     "failure_info_success": 2,
+     "failure_info_failed": [
+      "dict_create",
+      "dict_deserialize",
+      "dict_destroy",
+      "dict_free_key",
+      "dict_free_node",
+      "dict_free_val",
+      "dict_get",
+      "dict_get_hash",
+      "dict_get_key",
+      "dict_has",
+      "dict_key",
+      "dict_len",
+      "dict_new",
+      "dict_remove",
+      "dict_serialize"
+     ],
+     "c_functions_without_rust": [
+      "dict_create",
+      "dict_deserialize",
+      "dict_destroy",
+      "dict_free_key",
+      "dict_free_val",
+      "dict_get",
+      "dict_get_hash",
+      "dict_get_key",
+      "dict_has",
+      "dict_key",
+      "dict_len",
+      "dict_new",
+      "dict_remove",
+      "dict_serialize"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "dict_create",
+      "dict_delete_node",
+      "dict_deserialize",
+      "dict_destroy",
+      "dict_free_key",
+      "dict_free_node",
+      "dict_free_val",
+      "dict_get",
+      "dict_get_hash",
+      "dict_get_key",
+      "dict_has",
+      "dict_key",
+      "dict_len",
+      "dict_new",
+      "dict_remove",
+      "dict_reshape",
+      "dict_serialize"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o",
+    "test2.o",
+    "test3.o",
+    "test4.o",
+    "test5.o",
+    "test6.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "o0": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "o1": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "uchar": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "schar": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "san_gcc": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "san_clang": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ],
+    "san_clang_nz": [
+     "test1.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 17,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "val]: 17.00\n[key]: 18, [val]: 18.00\n[key]: 19, [val]: 19.00\n[key]: 20, [val]: 20.00\n[key]: 21, [val]: 21.00\n[key]: 22, [val]: 22.00\n[key]: 23, [val]: 23.00\n[key]: 24, [val]: 24.00\n[key]: 25, [val]: 25.00\n[key]: 26, [val]: 26.00\n[key]: 27, [val]: 27.00\n[key]: 28, [val]: 28.00\n[key]: 29, [val]: 29.00\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: tests/test0.c:16:32: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang: tests/test0.c:16:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: tests/test0.c:16:32: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang_nz: tests/test0.c:16:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test2.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "69, 3.140000\nWorld\nHello\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test3.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "val: 4\nremove: 1\nkey amount: 4\nkey[0]: s1\nkey[1]: s2\nkey[2]: s4\nkey[3]: s5\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test4.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "[val]: 488.00\n[key]: 489, [val]: 489.00\n[key]: 490, [val]: 490.00\n[key]: 491, [val]: 491.00\n[key]: 492, [val]: 492.00\n[key]: 493, [val]: 493.00\n[key]: 494, [val]: 494.00\n[key]: 495, [val]: 495.00\n[key]: 496, [val]: 496.00\n[key]: 497, [val]: 497.00\n[key]: 498, [val]: 498.00\n[key]: 499, [val]: 499.00\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: tests/test3.c:18:33: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang: tests/test3.c:18:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: tests/test3.c:18:33: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang_nz: tests/test3.c:18:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test5.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": " 481.000000\nyes: 482.000000\nyes: 483.000000\nyes: 484.000000\nyes: 485.000000\nyes: 486.000000\nyes: 487.000000\nyes: 488.000000\nyes: 489.000000\nyes: 490.000000\nyes: 491.000000\nyes: 492.000000\nyes: 493.000000\nyes: 494.000000\nyes: 495.000000\nyes: 496.000000\nyes: 497.000000\nyes: 498.000000\nyes: 499.000000\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: tests/test4.c:12:32: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang: tests/test4.c:12:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: tests/test4.c:12:32: runtime error: store to misaligned address 0x50400000002c for type 'double', which requires 8 byte alignment",
+      "san_clang_nz: tests/test4.c:12:9: runtime error: store to misaligned address 0x6040000000ac for type 'double', which requires 8 byte alignment"
+     ],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test6.o",
+     "args": [],
+     "c_exit": -11,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: ==2861==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7ae8edc208b7 bp 0x000000000000 sp 0x7fff4ad1b6b0 T0)",
+      "san_clang: ==2864==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x78b70f7698b7 bp 0x000000000000 sp 0x7ffd92212900 T0)"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==2861==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7ae8edc208b7 bp 0x000000000000 sp 0x7fff4ad1b6b0 T0)",
+      "san_clang_nz: ==2867==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7ed3150468b7 bp 0x000000000000 sp 0x7fff508785a0 T0)"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 7.2
+  },
+  "expr": {
+   "sample": "expr",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 4,
+     "failure_info_functions": 12,
+     "failure_info_success": 4,
+     "failure_info_failed": [
+      "collapse_expr_to_left",
+      "expr_lex",
+      "exprnode_free",
+      "exprnode_new",
+      "mapper_expr_evaluate",
+      "mapper_expr_free",
+      "mapper_expr_new_from_string",
+      "trace_eval"
+     ],
+     "c_functions_without_rust": [
+      "collapse_expr_to_left",
+      "expr_lex",
+      "exprnode_free",
+      "exprnode_new",
+      "mapper_expr_evaluate",
+      "mapper_expr_free",
+      "mapper_expr_new_from_string",
+      "trace_eval"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "collapse_expr_to_left",
+      "expr_lex",
+      "exprnode_free",
+      "exprnode_new",
+      "function_lookup",
+      "mapper_expr_evaluate",
+      "mapper_expr_free",
+      "mapper_expr_new_from_string",
+      "maxf",
+      "minf",
+      "pif",
+      "trace_eval"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 12,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Parsing y=26*2/2+log10(pi)+2.*pow(2,1*(3+7*.1)*1.1+x{-6*2+12})*3*4+cos(2.)\n\nEvaluate with x=3.000000: 3250.810791 (expected: 3250.810791)\n\nParsing y=26*2/2+x*30/(20*1)\n\nEvaluate with x=3: 30 (expected: 30)\nEvaluate with x=321: 507 (expected: 507)\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.2
+  },
+  "razz_simulation": {
+   "sample": "razz_simulation",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 14,
+     "failure_info_functions": 30,
+     "failure_info_success": 14,
+     "failure_info_failed": [
+      "append_into_collection",
+      "card_printer",
+      "count_cards_in_hand",
+      "create_hand",
+      "create_shuffled_deck",
+      "deal_from_deck",
+      "destroy_card_payload",
+      "destroy_collection",
+      "detach_from_collection",
+      "duplicated_rank_remover",
+      "get_max_of_hand",
+      "insert_into_collection",
+      "is_card_in_deck",
+      "iterate_collection",
+      "strip_card_from_deck",
+      "strtocard"
+     ],
+     "c_functions_without_rust": [
+      "append_into_collection",
+      "card_printer",
+      "complete_hand",
+      "count_cards_in_hand",
+      "create_hand",
+      "create_shuffled_deck",
+      "deal_from_deck",
+      "destroy_card_payload",
+      "destroy_collection",
+      "destroy_hand",
+      "detach_from_collection",
+      "duplicated_rank_remover",
+      "get_max_of_hand",
+      "get_max_rank_of_hand",
+      "get_razz_rank",
+      "insert_into_collection",
+      "insert_into_hand",
+      "is_card_in_deck",
+      "iterate_collection",
+      "iterate_hand",
+      "remove_from_collection_under_itr",
+      "remove_from_hand",
+      "remove_from_hand_under_itr",
+      "reset_hand",
+      "simulate_razz_game",
+      "strip_card_from_deck",
+      "strip_deck",
+      "strtocard"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "append_into_collection",
+      "card_printer",
+      "cardtostr",
+      "complete_hand",
+      "count_cards_in_hand",
+      "create_card",
+      "create_hand",
+      "create_shuffled_deck",
+      "deal_from_deck",
+      "destroy_card",
+      "destroy_card_payload",
+      "destroy_collection",
+      "destroy_collection_entry",
+      "destroy_deck",
+      "destroy_hand",
+      "detach_from_collection",
+      "duplicated_rank_remover",
+      "get_card_rank",
+      "get_card_suit",
+      "get_card_suit_rank",
+      "get_max_of_hand",
+      "get_max_rank_of_hand",
+      "get_razz_rank",
+      "insert_into_collection",
+      "insert_into_hand",
+      "is_card_in_deck",
+      "iterate_collection",
+      "iterate_hand",
+      "length_trimmer",
+      "ranktostr",
+      "remove_from_collection_under_itr",
+      "remove_from_hand",
+      "remove_from_hand_under_itr",
+      "reset_hand",
+      "simulate_razz_game",
+      "sort_card_after",
+      "sort_card_by_rank",
+      "strip_card_from_deck",
+      "strip_deck",
+      "strtocard",
+      "strtorank",
+      "write_card"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 42,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 2.4
+  },
+  "jccc": {
+   "sample": "jccc",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 55,
+     "failure_info_functions": 58,
+     "failure_info_success": 55,
+     "failure_info_failed": [
+      "create_hashmap",
+      "parse_expr",
+      "parse_funccall"
+     ],
+     "c_functions_without_rust": [
+      "create_hashmap",
+      "parse_expr",
+      "parse_funccall",
+      "test_hash_init",
+      "test_hash_init_and_store",
+      "test_hash_set_and_double_get",
+      "test_hash_set_and_get"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "code_gen_init",
+      "create_bucket",
+      "create_hashmap",
+      "create_list",
+      "destroy_hashmap",
+      "destroy_list",
+      "double_cap",
+      "end_func",
+      "end_main",
+      "end_main_custom_return",
+      "equal_key",
+      "fnva1",
+      "hm_get",
+      "hm_set",
+      "in_string",
+      "init_int_literal",
+      "is_valid_numeric_or_id_char",
+      "jccc_assert_fail",
+      "ladd_element",
+      "lex",
+      "lexer_getchar",
+      "lexer_ungetchar",
+      "lfind_index",
+      "lget_element",
+      "literate",
+      "lset_element",
+      "make_cst",
+      "new_block",
+      "op_on_rax_with_rdi",
+      "parse",
+      "parse_blockstmt",
+      "parse_expr",
+      "parse_funccall",
+      "parse_funcdecl",
+      "parse_simple_main_func",
+      "r_code_gen_init",
+      "r_start_main",
+      "real_lex",
+      "skip_to_token",
+      "start_func",
+      "start_main",
+      "starts_operator",
+      "test_hash_init",
+      "test_hash_init_and_store",
+      "test_hash_set_and_double_get",
+      "test_hash_set_and_get",
+      "test_init_int_literal",
+      "test_op_on_rax_with_rdi",
+      "test_ttype_from_string",
+      "test_ttype_many_chars",
+      "test_ttype_name",
+      "test_ttype_one_char",
+      "testing_cleanup_internal",
+      "testing_setup_internal",
+      "testing_single_test_internal",
+      "ttype_from_string",
+      "ttype_many_chars",
+      "ttype_name",
+      "ttype_one_char",
+      "ttype_to_op",
+      "unlex",
+      "valid_operator_sequence"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 62,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Running tests from  ...\nRunning \nRunning \nRunning \nRunning \nConcluded tests from \nRunning tests from  ...\nRunning \nRunning \nConcluded tests from \nRunning tests from  ...\nConcluded tests from \nRunning tests from  ...\nRunning \nRunning \nRunning \nRunning \nConcluded tests from \n",
+     "c_stderr_tail": "\u001b[0m\u001b[32m\"test_init_int_literal\"\u001b[0m\u001b[32m\"test_op_on_rax_with_rdi\"\u001b[0m\u001b[32m\"test_x86\"\u001b[0m\u001b[32m\"test_list\"\u001b[0m\u001b[32m\"test_list\"\u001b[0m\u001b[32m\"test_util\"\u001b[0m\u001b[32m\"test_hash_init\"\u001b[0m\u001b[32m\"test_hash_init_and_store\"\u001b[0m\u001b[32m\"test_hash_set_and_get\"\u001b[0m\u001b[32m\"test_hash_set_and_double_get\"\u001b[0m\u001b[32m\"test_util\"\u001b[0m",
+     "c_ub": [
+      "san_gcc: ==4075==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x64975452c325 bp 0x7fff1fdab710 sp 0x7fff1fdab700",
+      "san_clang: ==4076==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000018 at pc 0x0000004e3642 bp 0x7ffdd84aff10 sp 0x7ffdd84aff08"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==4075==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x64975452c325 bp 0x7fff1fdab710 sp 0x7fff1fdab700",
+      "san_clang_nz: ==4078==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000018 at pc 0x0000004e3642 bp 0x7ffd02026af0 sp 0x7ffd02026ae8"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 3.6
+  },
+  "totp": {
+   "sample": "totp",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 7,
+     "failure_info_functions": 9,
+     "failure_info_success": 7,
+     "failure_info_failed": [
+      "hotp",
+      "totp"
+     ],
+     "c_functions_without_rust": [
+      "hotp",
+      "totp"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "from_base32",
+      "hmac_sha1",
+      "hotp",
+      "pack32",
+      "rotl",
+      "sha1",
+      "totp",
+      "unpack32",
+      "unpack64"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 9,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "All tests passed.\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: totp.h:30:15: runtime error: left shift of 128 by 24 places cannot be represented in type 'int'",
+      "san_clang: totp.h:30:15: runtime error: left shift of 128 by 24 places cannot be represented in type 'int'"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: totp.h:30:15: runtime error: left shift of 128 by 24 places cannot be represented in type 'int'",
+      "san_clang_nz: totp.h:30:15: runtime error: left shift of 128 by 24 places cannot be represented in type 'int'"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 1.2
+  },
+  "inversion_list": {
+   "sample": "inversion_list",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 8,
+     "failure_info_functions": 8,
+     "failure_info_success": 8,
+     "failure_info_failed": [],
+     "c_functions_without_rust": [
+      "_add_string",
+      "_bound",
+      "_difference",
+      "_in_list",
+      "_intersection",
+      "_lower_bound",
+      "_search",
+      "_union",
+      "_upper_bound",
+      "inversion_list_clone",
+      "inversion_list_complement",
+      "inversion_list_couple_iterator_create",
+      "inversion_list_couple_iterator_get_inf",
+      "inversion_list_couple_iterator_get_sup",
+      "inversion_list_couple_iterator_next",
+      "inversion_list_couple_iterator_rewind",
+      "inversion_list_create",
+      "inversion_list_difference",
+      "inversion_list_disjoint",
+      "inversion_list_equal",
+      "inversion_list_finish",
+      "inversion_list_greater",
+      "inversion_list_greater_equal",
+      "inversion_list_intersection",
+      "inversion_list_iterator_couple_destroy",
+      "inversion_list_iterator_couple_valid",
+      "inversion_list_iterator_create",
+      "inversion_list_iterator_destroy",
+      "inversion_list_iterator_get",
+      "inversion_list_iterator_next",
+      "inversion_list_iterator_rewind",
+      "inversion_list_iterator_valid",
+      "inversion_list_less",
+      "inversion_list_less_equal",
+      "inversion_list_member",
+      "inversion_list_not_equal",
+      "inversion_list_symmetric_difference",
+      "inversion_list_to_string",
+      "inversion_list_union"
+     ],
+     "rust_source": null
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "c_functions_without_rust": [
+      "_add_string",
+      "_bound",
+      "_compare_unsigned_int",
+      "_difference",
+      "_get_buffer",
+      "_in_list",
+      "_index_of",
+      "_intersection",
+      "_lower_bound",
+      "_search",
+      "_union",
+      "_upper_bound",
+      "_verify",
+      "inversion_list_capacity",
+      "inversion_list_clone",
+      "inversion_list_complement",
+      "inversion_list_couple_iterator_create",
+      "inversion_list_couple_iterator_get_inf",
+      "inversion_list_couple_iterator_get_sup",
+      "inversion_list_couple_iterator_next",
+      "inversion_list_couple_iterator_rewind",
+      "inversion_list_create",
+      "inversion_list_destroy",
+      "inversion_list_difference",
+      "inversion_list_disjoint",
+      "inversion_list_equal",
+      "inversion_list_finish",
+      "inversion_list_greater",
+      "inversion_list_greater_equal",
+      "inversion_list_init",
+      "inversion_list_intersection",
+      "inversion_list_iterator_couple_destroy",
+      "inversion_list_iterator_couple_valid",
+      "inversion_list_iterator_create",
+      "inversion_list_iterator_destroy",
+      "inversion_list_iterator_get",
+      "inversion_list_iterator_next",
+      "inversion_list_iterator_rewind",
+      "inversion_list_iterator_valid",
+      "inversion_list_less",
+      "inversion_list_less_equal",
+      "inversion_list_member",
+      "inversion_list_not_equal",
+      "inversion_list_support",
+      "inversion_list_symmetric_difference",
+      "inversion_list_to_string",
+      "inversion_list_union"
+     ],
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o",
+    "test2.o",
+    "test3.o",
+    "test4.o",
+    "test5.o",
+    "test6.o",
+    "test7.o",
+    "test8.o",
+    "test9.o",
+    "test10.o",
+    "test11.o",
+    "test12.o",
+    "test13.o",
+    "test14.o",
+    "test15.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "o0": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "o1": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "uchar": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "schar": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_gcc": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_clang": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_clang_nz": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ]
+   },
+   "rust_builds": {},
+   "c_function_definitions": 47,
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test2.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test3.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test4.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test5.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test6.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test7.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test8.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test9.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test10.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test11.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test12.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\n0: 0\n4: 0\n10: 0\n11: 0\n1: 1\n2: 1\n3: 1\n5: 1\n7: 1\n8: 1\n9: 1\n2: 1\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test13.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test14.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test15.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 9.5
+  }
+ },
+ "elapsed_s": 29.4
+}

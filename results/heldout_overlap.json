@@ -1,0 +1,4097 @@
+{
+ "provenance": {
+  "script": "harness/heldout_overlap.py",
+  "command": "python3 -I harness/heldout_overlap.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_dirty": true,
+  "host": "mac-host",
+  "arch": "arm64",
+  "python": "3.9.6",
+  "date": "2026-11-13T23:04:16.428240+00:00",
+  "helper_results": {
+   "heldout_vert.json": {
+    "script": "harness/heldout_vert.py",
+    "command": "docker run --rm -v \"$PWD:/work\" -w /work crust-stable python3 -I harness/heldout_vert.py",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "Mac (Apple silicon) Docker Desktop",
+    "arch": "aarch64",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "clang": null,
+     "python": "3.10.12"
+    },
+    "image": "crust-stable:latest sha256:9428070fb0fd44727fcc35447919f65b8acc8ef20c73dedfdbdbb523aa557951",
+    "date": "2026-11-13T22:13:04.263765+00:00",
+    "inputs_read": [
+     "artifacts/vert/benchmark/c_transcoder/<F>/{out-rwasm-mutated,out-rwasm-bolero}/src/main.rs",
+     "artifacts/vert/benchmark/c_transcoder/<F>/<F>_towasm_mutated.c",
+     "artifacts/vert/benchmark/c_transcoder/<F>/<F>.c",
+     "results/vert_diff.json",
+     "results/vert_arrays.json",
+     "results/vert_arrays_adjusted.json"
+    ]
+   },
+   "heldout_c2saferrust.json": {
+    "script": "harness/heldout_c2saferrust.py",
+    "command": "docker run --rm -v \"$PWD:/work\" -w /work crust-heldout python3 -I harness/heldout_c2saferrust.py all",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "Linux x86_64 box (20 cores), Docker",
+    "arch": "x86_64",
+    "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+     "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+    },
+    "date": "2026-11-13T22:09:31.182746+00:00",
+    "sut": "coreutils/src/<util>/rust_WIP (cargo build --bin <util>, debug)",
+    "baseline": "coreutils/src/<util>/rust (starting C2Rust translation), for attribution only",
+    "oracle": "coreutils/src/<util>/c (make)",
+    "procedure": "translate.py select_tests replicated (shebang exec from artifact root, timeout 25 s); <code_dir>/target/debug replaced by a logging shim directory"
+   },
+   "heldout_rustassure.json": {
+    "script": "harness/heldout_rustassure.py",
+    "command": "docker run --rm -v \"$PWD:/work\" -w /work crust-heldout python3 -I harness/heldout_rustassure.py",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "Linux x86_64 box (20 cores), Docker",
+    "arch": "x86_64",
+    "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)"
+    },
+    "date": "2026-11-13T22:21:59.295614+00:00",
+    "artifact_file": "artifacts/rustassure/src/Link/csv_link/src/main.rs",
+    "artifact_sha256": "d2fa0c7b37d250b15868d2d7fc5a473f913d9d36a267a121d7768234cda923b6"
+   },
+   "heldout_rustmap.json": {
+    "script": "harness/heldout_rustmap.py",
+    "command": "docker run --rm --platform linux/amd64 -v \"$PWD:/work\" -w /work crust-syzygy python3 -I harness/heldout_rustmap.py",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "Linux x86_64 box (20 cores), Docker",
+    "arch": "x86_64",
+    "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)"
+    },
+    "build": "C: make clean; make bzip2 bzip2recover (c-code/bzip2-1.0.8); Rust: cargo build (debug), README 4.1.1",
+    "date": "2026-11-13T22:01:54.387677+00:00"
+   },
+   "heldout_flourine.json": {
+    "script": "harness/heldout_flourine.py",
+    "command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -w /work -e FL_LOGS=/work/flourine_logs/extract crust-syzygy python3 -I harness/heldout_flourine.py",
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+    "host": "Linux x86_64 box (20 cores), Docker --cpus 4",
+    "arch": "x86_64",
+    "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)"
+    },
+    "date": "2026-11-13T22:55:01.415799+00:00",
+    "logs_archive": {
+     "url": "https://d34gtk3knhjgeg.cloudfront.net/translations.tar.gz",
+     "bytes": 5669337068,
+     "sha256": "45a4f7e3540bad32a0bb2b02796a78d981b4072fef7705dc06325a52e229c1c4",
+     "listing_members": 408361,
+     "members_extracted": "translations/success/c/<proj>/<fn>/<llm>/<strategy>/ for the 6 rows below",
+     "member_types": "337453 regular files, 70908 directories, no links, no absolute or .. paths"
+    },
+    "grid": "enumerate_cases(ptypes, cap=2000) as systems/flourine/run.py"
+   }
+  },
+  "artifact_hashes": {
+   "flourine artifact.tar.gz": "87e570d4ee6dabd6905d6573f8da10d1645051e521d5ee9d6a19704cd87f0a32",
+   "vert c_results.csv": "5cd7f6bcf9911efa7c955533156223d87581fd6436ef59a810bd04c55954dc15",
+   "syzygy git HEAD": "e0e7666d5c5b6872894ba0909700a7cbaafcf4ec",
+   "rustassure git HEAD": "39618406bd0c6acb1c5ca2cd697c3781a8e4c296",
+   "vert git HEAD": "3270ceccb63a28acd611c8fa6105ed37dc76de07"
+  }
+ },
+ "definition": "An input is 'in the system's input set' if the system's own shipped check ran exactly that input (all arguments equal; for CLIs argv, stdin bytes and the contents of argv-named files equal). 'Outside' means not in that set. Where the artifact does not record the inputs its check ran, the status is 'not measurable'.",
+ "summary": {
+  "VERT_scalar_wrong_answers": {
+   "functions": 25,
+   "one_argument_functions": 20,
+   "our_inputs": 2000,
+   "our_inputs_in_kani_oracle_side_domain": 40,
+   "functions_with_overlap_kani_oracle_side": 20,
+   "our_inputs_equal_to_kani_rust_side_point": 0,
+   "functions_with_bolero_corpus": 0,
+   "our_inputs_in_transcoder_test_tuples": 47,
+   "functions_diverging_outside_vert_inputs": 25,
+   "functions_with_a_diverging_input_inside_vert_inputs": [
+    "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+    "NTH_PENTAGONAL_NUMBER",
+    "NTH_NON_FIBONACCI_NUMBER",
+    "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+    "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES"
+   ],
+   "diverge_under_our_comparison_on_kani_oracle_side_inputs": [
+    {
+     "function": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+     "inputs": [
+      [
+       [
+        1
+       ],
+       "value",
+       "1",
+       "0"
+      ]
+     ]
+    },
+    {
+     "function": "NTH_PENTAGONAL_NUMBER",
+     "inputs": [
+      [
+       [
+        1
+       ],
+       "value",
+       "1",
+       "3"
+      ]
+     ]
+    },
+    {
+     "function": "NTH_NON_FIBONACCI_NUMBER",
+     "inputs": [
+      [
+       [
+        1
+       ],
+       "value",
+       "4",
+       "1647462400"
+      ]
+     ]
+    },
+    {
+     "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+     "inputs": [
+      [
+       [
+        1
+       ],
+       "value",
+       "0",
+       "1"
+      ]
+     ]
+    },
+    {
+     "function": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+     "inputs": [
+      [
+       [
+        1,
+        2,
+        3,
+        29
+       ],
+       "rust_panic",
+       "-1",
+       "__PANIC__"
+      ]
+     ]
+    },
+    {
+     "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+     "inputs": [
+      [
+       [
+        0
+       ],
+       "value",
+       "1",
+       "0"
+      ],
+      [
+       [
+        1
+       ],
+       "value",
+       "2",
+       "1"
+      ]
+     ]
+    }
+   ],
+   "kani_oracle_side_inputs_where_c_has_ub": 8,
+   "diverge_on_kani_rust_side_point": 17,
+   "diverge_on_any_kani_input": 17,
+   "diverge_on_transcoder_test_tuples": 22,
+   "diverge_on_first_transcoder_tuple": 15
+  },
+  "VERT_scalar_rust_hangs": [
+   {
+    "function": "SQUARE_ROOT_OF_AN_INTEGER_1",
+    "diverging_inputs": 76,
+    "inside_vert_inputs": [],
+    "outside_vert_inputs": 76
+   },
+   {
+    "function": "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X",
+    "diverging_inputs": 1,
+    "inside_vert_inputs": [
+     [
+      0
+     ]
+    ],
+    "outside_vert_inputs": 0
+   }
+  ],
+  "VERT_array_counted": {
+   "functions": 12,
+   "diverging_inputs_equal_to_kani_rust_side_point": 0,
+   "diverge_on_kani_rust_side_point": 2,
+   "functions_with_bolero_corpus": 0
+  },
+  "C2SaferRust": {
+   "sh_tests": 42,
+   "acceptance_set_tests": 11,
+   "traced_invocations": 96,
+   "traced_invocations_acceptance_set": 47,
+   "distinct_traced_inputs": 89,
+   "our_cases": 8574,
+   "overlap": 0,
+   "counted_divergences": 1651,
+   "counted_divergences_inside_system_inputs": 0,
+   "replay_mismatch_all_tests": 16,
+   "replay_mismatch_by_kind_all_tests": {
+    "wrong": 8,
+    "segv": 7,
+    "panic": 1
+   },
+   "replay_mismatch_only_in_c2saferrust_output": 14,
+   "replay_mismatch_acceptance_set": 3,
+   "replay_mismatch_acceptance_set_tests": [
+    "head/head-write-error.sh",
+    "tail/big-4gb.sh"
+   ],
+   "test_outcomes_match_acceptance_suite": true
+  },
+  "RustAssure_libcsv": {
+   "system_inputs": 37,
+   "system_inputs_with_CSV_EMPTY_IS_NULL": 7,
+   "our_cases": 360,
+   "overlap": 2,
+   "overlap_items": [
+    {
+     "data_repr": "b''",
+     "options": 0
+    },
+    {
+     "data_repr": "b''",
+     "options": 16
+    }
+   ],
+   "counted_divergences": 12,
+   "counted_divergences_inside_system_inputs": 0,
+   "system_inputs_diverging_under_our_comparison": [
+    "test_19"
+   ],
+   "own_composed_test_run": {
+    "debug": {
+     "exit": -6,
+     "headers_reached": 9,
+     "last_header": "04a",
+     "reached_test_19": false
+    },
+    "release": {
+     "exit": -6,
+     "headers_reached": 9,
+     "last_header": "04a",
+     "reached_test_19": false
+    }
+   }
+  },
+  "RustMap_bzip2": {
+   "system_inputs": 5,
+   "our_inputs": 20,
+   "overlap": 0,
+   "counted_defects": 10,
+   "counted_defects_inside_system_inputs": 0,
+   "system_inputs_passing_rustmap_own_check": 4,
+   "system_inputs_rust_not_finished_60s": 1,
+   "system_inputs_rust_output_rejected_by_plain_bzip2_d": 5,
+   "system_inputs_rust_output_with_5000_leading_zero_bytes": 5
+  },
+  "RustMap_rosetta": {
+   "runner_exec_lines": [
+    [
+     "./main | tee -a \"../$LOGFILE\""
+    ],
+    [
+     "\"./$filename\" | tee -a \"$LOGFILE\""
+    ]
+   ],
+   "c_programs_indexing_argv": [
+    "command_line_arguments",
+    "fibonacci_word",
+    "jortsort",
+    "n_queens_problem",
+    "repeat"
+   ],
+   "status": "in-distribution: same runs (no arguments, no stdin redirection) as RustMap's scripts"
+  },
+  "Flourine": {
+   "translations_checked": 6,
+   "shipped_equals_first_candidate_that_flourine_rejected": 6,
+   "logged_inputs_per_scalar_translation": {
+    "libopenaptx/clip/claude2/BaseRepair": 4,
+    "libopenaptx/clip/claude2/CAPR": 4,
+    "opl/opl_emu_clamp/claude2/BaseRepair": 8,
+    "opl/opl_emu_registers_operator_list/claude2/BaseRepair": 4,
+    "opl/opl_emu_registers_operator_list/claude2/CAPR": 4
+   },
+   "overlap_ours_logged": 0,
+   "counted_divergences_iso_c_clean": {
+    "libopenaptx/clip/claude2/BaseRepair": 63,
+    "libopenaptx/clip/claude2/CAPR": 63,
+    "opl/opl_emu_clamp/claude2/BaseRepair": 63,
+    "opl/opl_emu_registers_operator_list/claude2/BaseRepair": 988,
+    "opl/opl_emu_registers_operator_list/claude2/CAPR": 988
+   },
+   "counted_divergences_inside_logged_inputs": 0,
+   "shipped_diverges_on_logged_inputs_iso_c_clean": {
+    "libopenaptx/clip/claude2/BaseRepair": 4,
+    "libopenaptx/clip/claude2/CAPR": 4,
+    "opl/opl_emu_clamp/claude2/BaseRepair": 4,
+    "opl/opl_emu_registers_operator_list/claude2/BaseRepair": 4,
+    "opl/opl_emu_registers_operator_list/claude2/CAPR": 3
+   }
+  },
+  "Syzygy": "not measurable: test inputs and generator not in the shipped artifact"
+ },
+ "systems": {
+  "VERT": {
+   "system_check_inputs": {
+    "bounded_kani": "per function: rWasm oracle on PARAM1 in {0,1} with the other arguments fixed at the C stub's literals; Rust translation on the static initial values (12, 12, ...). Parsed from each shipped out-rwasm-mutated/src/main.rs and <F>_towasm_mutated.c.",
+    "bolero": "evaluation.py runs `cargo bolero reduce bolero_wasm_eq`, which replays only a saved corpus; 2 of 506 c_transcoder benchmarks ship one (CALCULATE_AREA_TETRAHEDRON, SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER); none of the counted functions does",
+    "unbounded_kani": "symbolic; no concrete inputs recorded",
+    "transcoder_test_arrays": "shipped in <F>.c (10 tuples; the loop breaks after the first); not executed by VERT's evaluation.py; included as recorded inputs",
+    "static": {
+     "benchmarks": 506,
+     "kani_assume_forms": {
+      "(0..2).contains(&PARAM1)": 305,
+      "(0..2).contains(&PARAM1[0])": 263
+     },
+     "kani_unwind_attrs": {
+      "10": 478,
+      "1": 21
+     },
+     "bolero_harnesses_with_restricted_generator": [
+      "MAXIMUM_CONSECUTIVE_REPEATING_CHARACTER_STRING",
+      "NUMBER_OF_BINARY_TREES_FOR_GIVEN_PREORDER_SEQUENCE_LENGTH",
+      "SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER"
+     ],
+     "bolero_corpora": [
+      {
+       "function": "CALCULATE_AREA_TETRAHEDRON",
+       "files": 2
+      },
+      {
+       "function": "SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER",
+       "files": 177
+      }
+     ],
+     "evaluation_commands": [
+      "cargo bolero reduce bolero_wasm_eq",
+      "cargo kani --no-unwinding-checks --default-unwind 10",
+      "cargo kani"
+     ]
+    }
+   },
+   "our_inputs": "80-tuple grid per scalar function (enumerate_cases, nonneg, |x|<=512, spread); 240-row cap for arrays",
+   "overlap_scalar_counted": {
+    "functions": 27,
+    "our_inputs_total": 2160,
+    "in_kani_oracle_side": 44,
+    "in_kani_rust_side": 0,
+    "in_transcoder_tests": 55,
+    "per_function": {
+     "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        98
+       ]
+      ]
+     },
+     "MAXIMUM_GAMES_PLAYED_WINNER": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        73
+       ]
+      ]
+     },
+     "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        36
+       ],
+       [
+        69
+       ],
+       [
+        73
+       ]
+      ]
+     },
+     "SUM_SERIES_12_32_52_2N_12_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        7
+       ],
+       [
+        36
+       ],
+       [
+        47
+       ],
+       [
+        91
+       ]
+      ]
+     },
+     "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        87
+       ],
+       [
+        91
+       ]
+      ]
+     },
+     "NEWMAN_CONWAY_SEQUENCE_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        3
+       ],
+       [
+        29
+       ]
+      ]
+     },
+     "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        18
+       ],
+       [
+        83
+       ],
+       [
+        94
+       ]
+      ]
+     },
+     "NTH_PENTAGONAL_NUMBER": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        14
+       ],
+       [
+        21
+       ],
+       [
+        94
+       ]
+      ]
+     },
+     "HEXAGONAL_NUMBER": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        10
+       ],
+       [
+        58
+       ],
+       [
+        94
+       ]
+      ]
+     },
+     "NTH_NON_FIBONACCI_NUMBER": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        62
+       ],
+       [
+        65
+       ],
+       [
+        76
+       ],
+       [
+        83
+       ],
+       [
+        91
+       ]
+      ]
+     },
+     "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        10
+       ]
+      ]
+     },
+     "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION": {
+      "kani_oracle_side": [],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C": {
+      "kani_oracle_side": [],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M": {
+      "kani_oracle_side": [],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "NUMBER_TRIANGLES_N_MOVES_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        80
+       ]
+      ]
+     },
+     "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        1
+       ],
+       [
+        65
+       ],
+       [
+        94
+       ],
+       [
+        98
+       ]
+      ]
+     },
+     "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        10
+       ],
+       [
+        40
+       ],
+       [
+        73
+       ],
+       [
+        94
+       ]
+      ]
+     },
+     "NUMBER_RECTANGLES_NM_GRID": {
+      "kani_oracle_side": [],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        40
+       ]
+      ]
+     },
+     "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N": {
+      "kani_oracle_side": [],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        7
+       ]
+      ]
+     },
+     "SUM_BINOMIAL_COEFFICIENTS": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        25
+       ],
+       [
+        62
+       ]
+      ]
+     },
+     "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        14
+       ],
+       [
+        29
+       ],
+       [
+        40
+       ]
+      ]
+     },
+     "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        58
+       ],
+       [
+        83
+       ],
+       [
+        87
+       ]
+      ]
+     },
+     "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": []
+     },
+     "SQUARE_ROOT_OF_AN_INTEGER_1": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        1
+       ],
+       [
+        10
+       ],
+       [
+        40
+       ],
+       [
+        54
+       ]
+      ]
+     },
+     "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X": {
+      "kani_oracle_side": [
+       [
+        0
+       ],
+       [
+        1
+       ]
+      ],
+      "kani_rust_side": [],
+      "transcoder_tests": [
+       [
+        40
+       ],
+       [
+        43
+       ],
+       [
+        47
+       ],
+       [
+        83
+       ]
+      ]
+     }
+    }
+   },
+   "reproduction_check": {
+    "scalar_all_reproduced": true,
+    "array_all_reproduced": true,
+    "mismatches": []
+   },
+   "own_inputs_through_our_comparison": {
+    "scalar_wrong_answers": 25,
+    "diverge_on_kani_oracle_side_inputs": 6,
+    "diverge_on_kani_oracle_side_functions": [
+     "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+     "NTH_PENTAGONAL_NUMBER",
+     "NTH_NON_FIBONACCI_NUMBER",
+     "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+     "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+     "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES"
+    ],
+    "diverge_on_kani_rust_side_point": 17,
+    "diverge_on_any_kani_input": 17,
+    "diverge_on_transcoder_tests": 22,
+    "diverge_on_first_transcoder_tuple": 15,
+    "array_counted_diverge_on_kani_rust_side_point": 2
+   }
+  },
+  "Flourine": {
+   "system_check_inputs": {
+    "fuzzer": "cargo bolero test (libFuzzer engine), oracle.py verify(); inputs generated at run time",
+    "oracle_py_lines": {
+     "cargo bolero test": [
+      196
+     ],
+     "writes counter_examples.json only if result_path": [
+      235
+     ],
+     "soft_verify replays recorded I/O examples": [
+      573
+     ]
+    },
+    "semantics_py_lines": {
+     "requires_verification (fresh fuzz only without examples)": [
+      330,
+      332,
+      358
+     ]
+    },
+    "driver_py_lines": {
+     "re-verify after repair (fresh fuzz)": [
+      214
+     ]
+    },
+    "shipped_in_local_artifact": {
+     "files_in_tarball": 20992,
+     "prog_ans_logs": 0,
+     "counter/positive_examples files": 0,
+     "fuzz corpora": 0
+    },
+    "readme_says_logs_are_separate": true,
+    "separate_logs_download": {
+     "url": "https://d34gtk3knhjgeg.cloudfront.net/translations.tar.gz",
+     "content_length_bytes_from_HEAD": 5669337068,
+     "fetched": false,
+     "why_not": "multi-GB third-party download; not downloaded"
+    }
+   },
+   "status": "measured from the logs for the 6 listed translations",
+   "counted_translations_status_in_flourine_table": [
+    {
+     "benchmark": "opl_emu_registers_operator_list",
+     "llm": "claude2",
+     "strategy": "BaseRepair",
+     "our_count": "wrong_answer",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    },
+    {
+     "benchmark": "opl_emu_registers_operator_list",
+     "llm": "claude2",
+     "strategy": "CAPR",
+     "our_count": "wrong_answer",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    },
+    {
+     "benchmark": "opl_emu_registers_lfo_pm_depth",
+     "llm": "claude3",
+     "strategy": "BaseRepair",
+     "our_count": "wrong_answer",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    },
+    {
+     "benchmark": "clip",
+     "llm": "claude2",
+     "strategy": "BaseRepair",
+     "our_count": "not_counted:degenerate_range",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    },
+    {
+     "benchmark": "clip",
+     "llm": "claude2",
+     "strategy": "CAPR",
+     "our_count": "not_counted:degenerate_range",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    },
+    {
+     "benchmark": "opl_emu_clamp",
+     "llm": "claude2",
+     "strategy": "BaseRepair",
+     "our_count": "not_counted:degenerate_range",
+     "flourine_status": [
+      "Success",
+      "Success after feedback"
+     ]
+    }
+   ],
+   "overlap": null,
+   "from_logs": {
+    "archive": {
+     "url": "https://d34gtk3knhjgeg.cloudfront.net/translations.tar.gz",
+     "bytes": 5669337068,
+     "sha256": "45a4f7e3540bad32a0bb2b02796a78d981b4072fef7705dc06325a52e229c1c4",
+     "listing_members": 408361,
+     "members_extracted": "translations/success/c/<proj>/<fn>/<llm>/<strategy>/ for the 6 rows below",
+     "member_types": "337453 regular files, 70908 directories, no links, no absolute or .. paths"
+    },
+    "logged_inputs": "only the input/output examples quoted in the counterexample-fix prompts (wspace/logs/prog_*_*.ans); the fuzzer's example sets (up to 1,000 per run, oracle.py n_counter_examples) are not saved",
+    "per_translation": [
+     {
+      "translation": "libopenaptx/clip/claude2/BaseRepair",
+      "label": "min>max (not counted as wrong answer)",
+      "flourine_log_events": [
+       "Start verifying clip",
+       "Transpilation is not equivalent: candidate score = 0.4985044865403789.",
+       "Start soft-verifying clip",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying clip",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": 4,
+      "overlap_ours_logged": [],
+      "shipped_divergent_iso_c_clean": 63,
+      "counted_divergences_inside_logged_inputs": [],
+      "counted_divergences_outside_logged_inputs": 63,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+      "final_verification_coverage_count_on_fn_line": [
+       "47.4k"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     },
+     {
+      "translation": "libopenaptx/clip/claude2/CAPR",
+      "label": "min>max (not counted as wrong answer)",
+      "flourine_log_events": [
+       "Start verifying clip",
+       "Transpilation is not equivalent: candidate score = 0.49925112331502747.",
+       "Start soft-verifying clip",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying clip",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": 4,
+      "overlap_ours_logged": [],
+      "shipped_divergent_iso_c_clean": 63,
+      "counted_divergences_inside_logged_inputs": [],
+      "counted_divergences_outside_logged_inputs": 63,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+      "final_verification_coverage_count_on_fn_line": [
+       "47.6k"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     },
+     {
+      "translation": "opl/opl_emu_clamp/claude2/BaseRepair",
+      "label": "min>max (not counted as wrong answer)",
+      "flourine_log_events": [
+       "Start verifying opl_emu_clamp",
+       "Transpilation is not equivalent: candidate score = 0.499001996007984.",
+       "Start soft-verifying opl_emu_clamp",
+       "1 many (potentially new) candidates expanded. Highest score = 0.8493013972055888",
+       "Start soft-verifying opl_emu_clamp",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying opl_emu_clamp",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": 8,
+      "overlap_ours_logged": [],
+      "shipped_divergent_iso_c_clean": 63,
+      "counted_divergences_inside_logged_inputs": [],
+      "counted_divergences_outside_logged_inputs": 63,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+      "final_verification_coverage_count_on_fn_line": [
+       "47.7k"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     },
+     {
+      "translation": "opl/opl_emu_registers_operator_list/claude2/BaseRepair",
+      "label": "byte-pack (counted wrong answer)",
+      "flourine_log_events": [
+       "Start verifying opl_emu_registers_operator_list",
+       "Transpilation is not equivalent: candidate score = 0.0185546875.",
+       "Start soft-verifying opl_emu_registers_operator_list",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying opl_emu_registers_operator_list",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": 4,
+      "overlap_ours_logged": [],
+      "shipped_divergent_iso_c_clean": 988,
+      "counted_divergences_inside_logged_inputs": [],
+      "counted_divergences_outside_logged_inputs": 988,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": 4,
+      "final_verification_coverage_count_on_fn_line": [
+       "47.1k"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     },
+     {
+      "translation": "opl/opl_emu_registers_operator_list/claude2/CAPR",
+      "label": "byte-pack (counted wrong answer)",
+      "flourine_log_events": [
+       "Start verifying opl_emu_registers_operator_list",
+       "Transpilation is not equivalent: candidate score = 0.0234375.",
+       "Start soft-verifying opl_emu_registers_operator_list",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying opl_emu_registers_operator_list",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": 4,
+      "overlap_ours_logged": [],
+      "shipped_divergent_iso_c_clean": 988,
+      "counted_divergences_inside_logged_inputs": [],
+      "counted_divergences_outside_logged_inputs": 988,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": 3,
+      "final_verification_coverage_count_on_fn_line": [
+       "43.7k"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     },
+     {
+      "translation": "opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair",
+      "label": "struct mask (counted wrong answer; identity only)",
+      "flourine_log_events": [
+       "Start verifying opl_emu_registers_lfo_pm_depth",
+       "Transpilation is not equivalent: candidate score = 0.0.",
+       "Start soft-verifying opl_emu_registers_lfo_pm_depth",
+       "1 many (potentially new) candidates expanded. Highest score = 1.0",
+       "Current errors has been cleaned. Verifying again.",
+       "Start verifying opl_emu_registers_lfo_pm_depth",
+       "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+      ],
+      "logged_inputs": null,
+      "overlap_ours_logged": null,
+      "shipped_divergent_iso_c_clean": null,
+      "counted_divergences_inside_logged_inputs": null,
+      "counted_divergences_outside_logged_inputs": null,
+      "shipped_diverges_on_logged_inputs_iso_c_clean": null,
+      "final_verification_coverage_count_on_fn_line": [
+       "267",
+       "267",
+       "267"
+      ],
+      "shipped_equals_first_candidate_prog_0": true,
+      "shipped_equals_verified_candidate": false
+     }
+    ]
+   },
+   "shipped_vs_log_all_tested_success_files": {
+    "in_scope_static": 288,
+    "tested_by_our_harness": {
+     "scalar": 101,
+     "struct": 185
+    },
+    "shipped_equals": {
+     "first_candidate": 21,
+     "later_candidate+accepted": 73,
+     "first_candidate+accepted": 186,
+     "later_candidate": 6
+    },
+    "log_record_for_shipped_content": {
+     "not_equivalent": 20,
+     "equivalent": 259,
+     "undetermined": 7
+    },
+    "log_final_verdict": {
+     "fix": 19,
+     "restart": 10,
+     "initial": 257
+    },
+    "shipped_is_log_accepted_candidate": 259,
+    "shipped_is_log_rejected_candidate": 20,
+    "shipped_undetermined": 7,
+    "results_rs_equals_accepted": {
+     "false": 27,
+     "true": 259
+    },
+    "results_rs_equals_accepted_by_final_verdict": {
+     "initial": {
+      "true": 250,
+      "false": 7
+     },
+     "fix": {
+      "false": 19
+     },
+     "restart": {
+      "true": 9,
+      "false": 1
+     }
+    },
+    "shipped_equals_results_rs": {
+     "true": 286
+    },
+    "accepted_ambiguous": {
+     "false": 279,
+     "true": 7
+    },
+    "lib_rs_equals_accepted": {
+     "true": 203,
+     "false": 83
+    },
+    "our_verdict_x_log_record": {
+     "diverges_min_gt_max_only": {
+      "not_equivalent": 3
+     },
+     "agrees": {
+      "equivalent": 259,
+      "not_equivalent": 14,
+      "undetermined": 7
+     },
+     "wrong_answer": {
+      "not_equivalent": 3
+     }
+    },
+    "table_status_detail_x_log_final": {
+     "Success after feedback | log final: fix": 19,
+     "Success after feedback | log final: restart": 10,
+     "Success on first call | log final: initial": 257
+    }
+   }
+  },
+  "RustAssure": {
+   "system_check_inputs": {
+    "per_function_klee": "symbolic arguments only; function pointers not initialised (SymbolizerPass.cpp lines 396, 429); no concrete inputs or .ktest files shipped",
+    "composition_test": "csv_link/src/main.rs test_all_parse(): fixed inputs, events compared by length+bytes",
+    "tests_called": 37,
+    "tests_parsed": 37,
+    "distinct_inputs": 37,
+    "with_CSV_EMPTY_IS_NULL": 7
+   },
+   "our_inputs": {
+    "cases": 360,
+    "distinct": 360
+   },
+   "overlap": {
+    "exact_input_and_options": 2,
+    "items": [
+     {
+      "data_repr": "b''",
+      "options": 0
+     },
+     {
+      "data_repr": "b''",
+      "options": 16
+     }
+    ],
+    "same_bytes_any_options": 1,
+    "same_bytes_items": [
+     "b''"
+    ]
+   },
+   "own_inputs_through_our_comparison": {
+    "runs": 37,
+    "diverge": 1,
+    "diverge_null_vs_empty": 1,
+    "diverging_tests": [
+     "test_19"
+    ]
+   },
+   "own_check_run_unchanged": {
+    "debug": {
+     "built": true,
+     "exit": -6,
+     "headers_reached": 9,
+     "last_header": "04a",
+     "reached_test_19": false,
+     "stderr_tail": "malloc(): corrupted top size\n"
+    },
+    "release": {
+     "built": true,
+     "exit": -6,
+     "headers_reached": 9,
+     "last_header": "04a",
+     "reached_test_19": false,
+     "stderr_tail": "malloc(): corrupted top size\n"
+    }
+   },
+   "counted_defects": {
+    "reproduced": 12,
+    "inside_rustassure_set": 0,
+    "outside_rustassure_set": 12
+   }
+  },
+  "C2SaferRust": {
+   "system_check_inputs": "every invocation of cat/head/tail/uniq made by tests/<util>/*.sh, traced with a logging shim under translate.py's procedure (heldout_c2saferrust.json)",
+   "traced": {
+    "all_sh_tests": {
+     "tests": 42,
+     "invocations": 96,
+     "distinct_inputs": 89,
+     "replayed": 96,
+     "replay_mismatch": 16,
+     "replay_mismatch_by_kind": {
+      "wrong": 8,
+      "segv": 7,
+      "panic": 1
+     },
+     "replay_stderr_only": 15,
+     "replay_oracle_nondeterministic": 2,
+     "replay_mismatch_also_in_starting_translation": 2,
+     "replay_mismatch_only_in_c2saferrust_output": 14,
+     "tests_with_replay_mismatch": [
+      "head/head-pos.sh",
+      "head/head-write-error.sh",
+      "tail/big-4gb.sh",
+      "tail/pid.sh",
+      "tail/pipe-f.sh",
+      "tail/tail-c.sh"
+     ]
+    },
+    "acceptance_set_tests": {
+     "tests": 11,
+     "invocations": 47,
+     "distinct_inputs": 42,
+     "replayed": 47,
+     "replay_mismatch": 3,
+     "replay_mismatch_by_kind": {
+      "wrong": 3,
+      "segv": 0,
+      "panic": 0
+     },
+     "replay_stderr_only": 0,
+     "replay_oracle_nondeterministic": 2,
+     "replay_mismatch_also_in_starting_translation": 0,
+     "replay_mismatch_only_in_c2saferrust_output": 3,
+     "tests_with_replay_mismatch": [
+      "head/head-write-error.sh",
+      "tail/big-4gb.sh"
+     ]
+    }
+   },
+   "our_inputs": {
+    "cases": 8574,
+    "distinct_inputs_ignoring_locale": 3862
+   },
+   "overlap": {
+    "distinct_inputs_in_both": 0,
+    "items": []
+   },
+   "counted_defects": {
+    "total": 1651,
+    "by_kind": {
+     "wrong": 611,
+     "segv": 960,
+     "panic": 80
+    },
+    "inside_system_input_set": 0,
+    "outside_system_input_set": 1651
+   },
+   "own_inputs_through_our_comparison": {
+    "all_sh_tests": {
+     "tests": 42,
+     "invocations": 96,
+     "distinct_inputs": 89,
+     "replayed": 96,
+     "replay_mismatch": 16,
+     "replay_mismatch_by_kind": {
+      "wrong": 8,
+      "segv": 7,
+      "panic": 1
+     },
+     "replay_stderr_only": 15,
+     "replay_oracle_nondeterministic": 2,
+     "replay_mismatch_also_in_starting_translation": 2,
+     "replay_mismatch_only_in_c2saferrust_output": 14,
+     "tests_with_replay_mismatch": [
+      "head/head-pos.sh",
+      "head/head-write-error.sh",
+      "tail/big-4gb.sh",
+      "tail/pid.sh",
+      "tail/pipe-f.sh",
+      "tail/tail-c.sh"
+     ]
+    },
+    "acceptance_set": {
+     "tests": 11,
+     "invocations": 47,
+     "distinct_inputs": 42,
+     "replayed": 47,
+     "replay_mismatch": 3,
+     "replay_mismatch_by_kind": {
+      "wrong": 3,
+      "segv": 0,
+      "panic": 0
+     },
+     "replay_stderr_only": 0,
+     "replay_oracle_nondeterministic": 2,
+     "replay_mismatch_also_in_starting_translation": 0,
+     "replay_mismatch_only_in_c2saferrust_output": 3,
+     "tests_with_replay_mismatch": [
+      "head/head-write-error.sh",
+      "tail/big-4gb.sh"
+     ]
+    }
+   }
+  },
+  "Syzygy": {
+   "system_check_inputs": {
+    "run_equiv.py": {
+     "TEST_DIR": "/dev/test_folder",
+     "N_TESTS": 1000000,
+     "compares": "stderr of the C and Rust drivers only (ret1 = o1.stderr.decode())"
+    },
+    "rust_cfg_test": {
+     "reads": "tests_folder/test_{i}",
+     "TOTAL_TESTS": 85
+    },
+    "c_driver_length": {
+     "single_test_uses_strlen": true,
+     "read_stdin_to_bytes_writes_terminator": false
+    },
+    "files_in_artifact": [
+     "LICENSE",
+     "README.md",
+     "c_code/zopfli",
+     "c_code/zopfli.c",
+     "c_code/zopfli.h",
+     "custom_multi.py",
+     "requirements.txt",
+     "run_equiv.py",
+     "rust_code/Cargo.lock",
+     "rust_code/Cargo.toml",
+     "rust_code/src/main.rs"
+    ],
+    "generator_or_test_files_in_artifact": [],
+    "git_history": [
+     "e0e7666 Add test setup",
+     "3ea1b36 add translated zopfli",
+     "a80f277 Initial commit"
+    ]
+   },
+   "status": "not measurable: neither the test files (/dev/test_folder/test_<i>, tests_folder/test_<i>) nor a generator is in the artifact",
+   "empty_input_producible_by_shipped_generator": "not measurable (no generator shipped)"
+  },
+  "RustMap": {
+   "bzip2": {
+    "system_check_inputs": [
+     {
+      "name": "random_1_chars.txt",
+      "size": 2,
+      "sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+      "printable_ascii_only": true
+     },
+     {
+      "name": "random_10_chars.txt",
+      "size": 10,
+      "sha256": "46565925f701e8e24583fd0cbad547abe08d7893ee81a45b13860aff5dfb33c7",
+      "printable_ascii_only": true
+     },
+     {
+      "name": "random_100_chars.txt",
+      "size": 100,
+      "sha256": "66d925018463640f8bf693dbdf8b8aeb0e8c3fcfa91b5764d6d01a9ceff935f8",
+      "printable_ascii_only": false
+     },
+     {
+      "name": "random_1000_chars.txt",
+      "size": 1000,
+      "sha256": "eb506bf399df31a1d52d0b840d69911417c9891abf8d4d323c0babb800953da0",
+      "printable_ascii_only": false
+     },
+     {
+      "name": "random_5000_chars.txt",
+      "size": 5000,
+      "sha256": "dba2e453e8952cb6ff0e265934d04a1bfbcd7733c8ec58e9c899e94a90e52ed0",
+      "printable_ascii_only": false
+     }
+    ],
+    "our_inputs": 20,
+    "overlap_exact": [],
+    "own_inputs_through_our_comparison": [
+     {
+      "input": "random_1_chars.txt",
+      "size": 2,
+      "c_roundtrip_ok": true,
+      "rust_rc": 0,
+      "rust_panicked": false,
+      "rust_passes_rustmap_own_check": true,
+      "plain_bzip2_d_accepts_rust_output": {
+       "rc": 2,
+       "roundtrip": false,
+       "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+      },
+      "rust_bz2_equals_c_bz2": false,
+      "rust_bz2_leading_zero_bytes": 5000
+     },
+     {
+      "input": "random_10_chars.txt",
+      "size": 10,
+      "c_roundtrip_ok": true,
+      "rust_rc": 0,
+      "rust_panicked": false,
+      "rust_passes_rustmap_own_check": true,
+      "plain_bzip2_d_accepts_rust_output": {
+       "rc": 2,
+       "roundtrip": false,
+       "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+      },
+      "rust_bz2_equals_c_bz2": false,
+      "rust_bz2_leading_zero_bytes": 5000
+     },
+     {
+      "input": "random_100_chars.txt",
+      "size": 100,
+      "c_roundtrip_ok": true,
+      "rust_rc": 0,
+      "rust_panicked": false,
+      "rust_passes_rustmap_own_check": true,
+      "plain_bzip2_d_accepts_rust_output": {
+       "rc": 2,
+       "roundtrip": false,
+       "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+      },
+      "rust_bz2_equals_c_bz2": false,
+      "rust_bz2_leading_zero_bytes": 5000
+     },
+     {
+      "input": "random_1000_chars.txt",
+      "size": 1000,
+      "c_roundtrip_ok": true,
+      "rust_rc": 0,
+      "rust_panicked": false,
+      "rust_passes_rustmap_own_check": true,
+      "plain_bzip2_d_accepts_rust_output": {
+       "rc": 2,
+       "roundtrip": false,
+       "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+      },
+      "rust_bz2_equals_c_bz2": false,
+      "rust_bz2_leading_zero_bytes": 5000
+     },
+     {
+      "input": "random_5000_chars.txt",
+      "size": 5000,
+      "c_roundtrip_ok": true,
+      "rust_rc": 124,
+      "rust_panicked": false,
+      "rust_passes_rustmap_own_check": false,
+      "plain_bzip2_d_accepts_rust_output": {
+       "rc": 2,
+       "roundtrip": false,
+       "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+      },
+      "rust_bz2_equals_c_bz2": false,
+      "rust_bz2_leading_zero_bytes": 5000
+     }
+    ],
+    "shipped_bz2_files": {
+     "compress_output_bz2_files/random_1000_chars.txt.bz2": {
+      "size": 6148,
+      "leading_zero_bytes": 3,
+      "kind": "not bzip2: macOS Finder metadata ('Bud1' magic)"
+     },
+     "compress_output_bz2_files/random_100_chars.txt.bz2": {
+      "size": 6148,
+      "leading_zero_bytes": 3,
+      "kind": "not bzip2: macOS Finder metadata ('Bud1' magic)"
+     },
+     "compress_output_bz2_files/random_10_chars.txt.bz2": {
+      "size": 5052,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "compress_output_bz2_files/random_1_chars.txt.bz2": {
+      "size": 5039,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "compress_output_bz2_files/random_5000_chars.txt.bz2": {
+      "size": 9369,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "compress_output_bz2_files/rec00001random_100_chars.txt.bz2": {
+      "size": 146,
+      "leading_zero_bytes": 0,
+      "kind": "bzip2 stream at offset 0"
+     },
+     "random_1000_chars.txt.bz2": {
+      "size": 6001,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "random_100_chars.txt.bz2": {
+      "size": 5146,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "random_10_chars.txt.bz2": {
+      "size": 5052,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     },
+     "random_1_chars.txt.bz2": {
+      "size": 5039,
+      "leading_zero_bytes": 5000,
+      "kind": "bzip2 stream after 5000 zero bytes"
+     }
+    }
+   },
+   "rosetta": {
+    "c_runner_exec_lines": [
+     "./main | tee -a \"../$LOGFILE\""
+    ],
+    "rust_runner_exec_lines": [
+     "\"./$filename\" | tee -a \"$LOGFILE\""
+    ],
+    "c_programs": 124,
+    "c_programs_that_read_stdin_or_argv": {
+     "command_line_arguments": {
+      "stdin_calls": [],
+      "mentions_stdin": false,
+      "indexes_argv": true
+     },
+     "fibonacci_word": {
+      "stdin_calls": [],
+      "mentions_stdin": false,
+      "indexes_argv": true
+     },
+     "jortsort": {
+      "stdin_calls": [],
+      "mentions_stdin": false,
+      "indexes_argv": true
+     },
+     "n_queens_problem": {
+      "stdin_calls": [],
+      "mentions_stdin": false,
+      "indexes_argv": true
+     },
+     "repeat": {
+      "stdin_calls": [],
+      "mentions_stdin": false,
+      "indexes_argv": true
+     }
+    },
+    "our_runner": "systems/rustmap/run_rosetta.py runs each binary with no arguments and stdin = empty pipe"
+   }
+  }
+ },
+ "counted_defects": [
+  {
+   "system": "VERT",
+   "defect": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 64
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     1
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 63,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     1
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "0"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "value",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MAXIMUM_GAMES_PLAYED_WINNER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 77
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 77,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     7
+    ],
+    "v": "value",
+    "c": "3",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": null,
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "ub",
+     "c": "1",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "4",
+     "rust": "3"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "19",
+    "rust": "16"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "3",
+     "rust": "3"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "883",
+     "rust": "817"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SUM_SERIES_12_32_52_2N_12_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 17
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 17,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     167
+    ],
+    "v": "value",
+    "c": "6209895",
+    "rust": "6209894"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "2300",
+     "rust": "2300"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 77
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 77,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     7
+    ],
+    "v": "value",
+    "c": "22",
+    "rust": "15"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "46",
+     "rust": "30"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NEWMAN_CONWAY_SEQUENCE_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "2",
+    "rust": "1"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": "0",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "ub",
+     "c": "1",
+     "rust": "__PANIC__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "7",
+     "rust": "1"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "3",
+    "rust": "5"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": "0",
+     "rust": "__PANIC__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "13",
+     "rust": "34"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NTH_PENTAGONAL_NUMBER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 79
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     1
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     1
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "3"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "value",
+     "c": "1",
+     "rust": "3"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "210",
+     "rust": "426"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "HEXAGONAL_NUMBER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "15",
+    "rust": "9"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "276",
+     "rust": "144"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NTH_NON_FIBONACCI_NUMBER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 79
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     1
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     1
+    ],
+    "v": "value",
+    "c": "4",
+    "rust": "1647462400"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "2",
+     "rust": "2"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "value",
+     "c": "4",
+     "rust": "1647462400"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "18",
+     "rust": "1647462400"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 34
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     1
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 33,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     1
+    ],
+    "v": "value",
+    "c": "0",
+    "rust": "1"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "value",
+     "c": "0",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "76",
+     "rust": "77"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 39
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 39,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     194,
+     1,
+     0,
+     1
+    ],
+    "v": "value",
+    "c": "9",
+    "rust": "194"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     2,
+     3,
+     29
+    ],
+    [
+     1,
+     2,
+     3,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      2,
+      3,
+      29
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1,
+      2,
+      3,
+      29
+     ],
+     "verdict": "agree",
+     "c": "2",
+     "rust": "2"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "verdict": "value",
+     "c": "60",
+     "rust": "144"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 4,
+    "rust_panic": 64
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 68,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     2,
+     3,
+     29
+    ],
+    [
+     1,
+     2,
+     3,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      2,
+      3,
+      29
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1,
+      2,
+      3,
+      29
+     ],
+     "verdict": "rust_panic",
+     "c": "-1",
+     "rust": "__PANIC__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "verdict": "value",
+     "c": "1",
+     "rust": "2"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 26,
+    "rust_panic": 1
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 27,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     0
+    ],
+    "v": "value",
+    "c": "2",
+    "rust": "0"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     29
+    ],
+    [
+     1,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      29
+     ],
+     "verdict": "ub",
+     "c": "0",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      1,
+      29
+     ],
+     "verdict": "ub",
+     "c": "0",
+     "rust": "__PANIC__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NUMBER_TRIANGLES_N_MOVES_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 74
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 74,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     18
+    ],
+    "v": "value",
+    "c": "774840977",
+    "rust": "774840959"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "5",
+     "rust": "5"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "1062881",
+     "rust": "1062881"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 74
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 74,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     10
+    ],
+    "v": "value",
+    "c": "3",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "-1",
+     "rust": "-1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "3",
+     "rust": "2"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 39
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 39,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     7
+    ],
+    "v": "value",
+    "c": "3",
+    "rust": "4"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "15",
+     "rust": "15"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NUMBER_RECTANGLES_NM_GRID",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 17
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 17,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     97,
+     97
+    ],
+    "v": "value",
+    "c": "22591009",
+    "rust": "22591008"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     29
+    ],
+    [
+     1,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      29
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1,
+      29
+     ],
+     "verdict": "agree",
+     "c": "435",
+     "rust": "435"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12
+     ],
+     "verdict": "agree",
+     "c": "6084",
+     "rust": "6084"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 76
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 76,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "4",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "13",
+     "rust": "11"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 36
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 36,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     32
+    ],
+    "v": "value",
+    "c": "30",
+    "rust": "6"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0,
+     29
+    ],
+    [
+     1,
+     29
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0,
+      29
+     ],
+     "verdict": "agree",
+     "c": "6",
+     "rust": "6"
+    },
+    {
+     "in": [
+      1,
+      29
+     ],
+     "verdict": "agree",
+     "c": "6",
+     "rust": "6"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12,
+      12
+     ],
+     "verdict": "agree",
+     "c": "12",
+     "rust": "12"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "ub",
+     "c": "65535",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "3",
+     "rust": "11"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SUM_BINOMIAL_COEFFICIENTS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 1
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 1,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     29
+    ],
+    "v": "value",
+    "c": "536870912",
+    "rust": "536870920"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "2",
+     "rust": "2"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "4096",
+     "rust": "4096"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 80
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     0
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "0"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "value",
+     "c": "1",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "value",
+     "c": "2",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "79",
+     "rust": "78"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 78
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 78,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "value",
+     "c": "220",
+     "rust": "162341717"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 11
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 11,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     21
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "0"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": false,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SQUARE_ROOT_OF_AN_INTEGER_1",
+   "counted_as": "rust_hang",
+   "our_diverging_inputs": {
+    "rust_hang": 76
+   },
+   "diverging_inputs_in_system_set": [],
+   "diverging_inputs_outside_system_set": 76,
+   "all_diverging_inputs_outside": true,
+   "smallest_diverging_input": {
+    "in": [
+     3
+    ],
+    "v": "rust_hang",
+    "c": "1",
+    "rust": "__TIMEOUT__"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      0
+     ],
+     "verdict": "agree",
+     "c": "0",
+     "rust": "0"
+    },
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "rust_hang",
+     "c": "3",
+     "rust": "__TIMEOUT__"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": false,
+    "kani_rust_point": true,
+    "transcoder_tests": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "FIND_FIRST_NATURAL_NUMBER_WHOSE_FACTORIAL_DIVISIBLE_X",
+   "counted_as": "rust_hang",
+   "our_diverging_inputs": {
+    "rust_hang": 1
+   },
+   "diverging_inputs_in_system_set": [
+    [
+     0
+    ]
+   ],
+   "diverging_inputs_outside_system_set": 0,
+   "all_diverging_inputs_outside": false,
+   "smallest_diverging_input": {
+    "in": [
+     0
+    ],
+    "v": "rust_hang",
+    "c": "1",
+    "rust": "__TIMEOUT__"
+   },
+   "system_inputs_kani_oracle_side": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "our_comparison_on_kani_oracle_side": [
+    {
+     "in": [
+      1
+     ],
+     "verdict": "agree",
+     "c": "1",
+     "rust": "1"
+    },
+    {
+     "in": [
+      0
+     ],
+     "verdict": "rust_hang",
+     "c": "1",
+     "rust": "__TIMEOUT__"
+    }
+   ],
+   "our_comparison_on_kani_rust_side": [
+    {
+     "in": [
+      12
+     ],
+     "verdict": "agree",
+     "c": "4",
+     "rust": "4"
+    }
+   ],
+   "visible_on_system_inputs": {
+    "kani_n_in_0_1": true,
+    "kani_rust_point": false,
+    "transcoder_tests": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MINIMUM_LENGTH_SUBARRAY_SUM_GREATER_GIVEN_VALUE",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 18
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     1,
+     1
+    ],
+    "v": "value",
+    "c": "2",
+    "rust": "2147483647"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MINIMUM_OPERATIONS_MAKE_GCD_ARRAY_MULTIPLE_K",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 10
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     2,
+     1,
+     1,
+     1
+    ],
+    "v": "value",
+    "c": "0",
+    "rust": "1"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "BIRTHDAY_PARADOX",
+   "counted_as": "not_counted:ub_only",
+   "our_diverging_inputs": {
+    "value": 2
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     2
+    ],
+    "v": "value",
+    "c": "0",
+    "rust": "-516"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP_1",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "rust_panic": 12,
+    "value": 3
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     1
+    ],
+    "v": "rust_panic",
+    "c": "1",
+    "rust": "__PANIC__"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 18
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     1
+    ],
+    "v": "value",
+    "c": "0",
+    "rust": "-1"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MAXIMUM_SUM_SUBARRAY_REMOVING_ONE_ELEMENT",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 9
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     0,
+     2
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MINIMUM_SUM_PRODUCT_TWO_ARRAYS",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 22
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     0,
+     1,
+     0,
+     1,
+     1
+    ],
+    "v": "value",
+    "c": "-1",
+    "rust": "1"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "LARGEST_SUM_CONTIGUOUS_SUBARRAY_2",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 18
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     0,
+     1
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "MAXIMIZE_ARRAY_ELEMENTS_UPTO_GIVEN_NUMBER",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 7
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "-1"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 9
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     1,
+     1,
+     1,
+     2,
+     2
+    ],
+    "v": "value",
+    "c": "2",
+    "rust": "1"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "FIND_SMALLEST_VALUE_REPRESENTED_SUM_SUBSET_GIVEN_ARRAY",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": {
+    "value": 3
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     2,
+     1,
+     2
+    ],
+    "v": "value",
+    "c": "1",
+    "rust": "2"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "CEILING_IN_A_SORTED_ARRAY",
+   "counted_as": "rust_panic",
+   "our_diverging_inputs": {
+    "rust_panic": 5
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "v": "rust_panic",
+    "c": "-1",
+    "rust": "__PANIC__"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": true
+   }
+  },
+  {
+   "system": "VERT",
+   "defect": "SPACE_OPTIMIZED_DP_SOLUTION_0_1_KNAPSACK_PROBLEM_1",
+   "counted_as": "rust_panic",
+   "our_diverging_inputs": {
+    "rust_panic": 21
+   },
+   "diverging_inputs_equal_to_kani_rust_point": 0,
+   "all_diverging_inputs_outside": true,
+   "note": "array/float function: Kani oracle-side input is not a C input (see heldout_vert.json); bolero ships no corpus; so the recorded set is the Rust-side point only",
+   "smallest_diverging_input": {
+    "in": [
+     1,
+     0,
+     1,
+     0,
+     1,
+     1
+    ],
+    "v": "rust_panic",
+    "c": "1",
+    "rust": "__PANIC__"
+   },
+   "visible_on_system_inputs": {
+    "kani_rust_point": false
+   }
+  },
+  {
+   "system": "Flourine",
+   "defect": "libopenaptx/clip/claude2/BaseRepair/clip.rs",
+   "counted_as": "not_counted:degenerate_range",
+   "our_diverging_inputs": 15,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     -1
+    ],
+    "c": "-1",
+    "rust": "0"
+   },
+   "our_diverging_inputs_current_grid_iso_c_clean": 63,
+   "logged_inputs": 4,
+   "all_diverging_inputs_outside": true,
+   "visible_on_system_inputs": true,
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "Flourine",
+   "defect": "libopenaptx/clip/claude2/CAPR/clip.rs",
+   "counted_as": "not_counted:degenerate_range",
+   "our_diverging_inputs": 15,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     -1
+    ],
+    "c": "-1",
+    "rust": "0"
+   },
+   "our_diverging_inputs_current_grid_iso_c_clean": 63,
+   "logged_inputs": 4,
+   "all_diverging_inputs_outside": true,
+   "visible_on_system_inputs": true,
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "Flourine",
+   "defect": "opl/opl_emu_clamp/claude2/BaseRepair/opl_emu_clamp.rs",
+   "counted_as": "not_counted:degenerate_range",
+   "our_diverging_inputs": 15,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     -1
+    ],
+    "c": "-1",
+    "rust": "0"
+   },
+   "our_diverging_inputs_current_grid_iso_c_clean": 63,
+   "logged_inputs": 8,
+   "all_diverging_inputs_outside": true,
+   "visible_on_system_inputs": true,
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "Flourine",
+   "defect": "opl/opl_emu_registers_operator_list/claude2/BaseRepair/opl_emu_registers_operator_list.rs",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": 1998,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "c": "16777216",
+    "rust": "1"
+   },
+   "our_diverging_inputs_current_grid_iso_c_clean": 988,
+   "logged_inputs": 4,
+   "all_diverging_inputs_outside": true,
+   "visible_on_system_inputs": true,
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "Flourine",
+   "defect": "opl/opl_emu_registers_operator_list/claude2/CAPR/opl_emu_registers_operator_list.rs",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": 1998,
+   "smallest_diverging_input": {
+    "in": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "c": "16777216",
+    "rust": "1"
+   },
+   "our_diverging_inputs_current_grid_iso_c_clean": 988,
+   "logged_inputs": 4,
+   "all_diverging_inputs_outside": true,
+   "visible_on_system_inputs": true,
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "Flourine",
+   "defect": "opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+   "counted_as": "wrong_answer",
+   "our_diverging_inputs": 4,
+   "smallest_diverging_input": {
+    "line_in": "0 0",
+    "c": "1",
+    "rust": "3"
+   },
+   "all_diverging_inputs_outside": "not measured (struct harness)",
+   "shipped_translation_is_flourine_first_rejected_candidate": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv all_empty / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv mid_empty / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv lead_empty / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv trail_empty / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv only_delims / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv delim_as_data_only / empty_is_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv all_empty / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv mid_empty / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv lead_empty / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv trail_empty / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv only_delims / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustAssure",
+   "defect": "libcsv delim_as_data_only / append+empty_null",
+   "counted_as": "wrong_answer",
+   "tags": [
+    "field_event",
+    "null_vs_empty_field"
+   ],
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "C2SaferRust",
+   "defect": "all counted cat/head/tail/uniq divergences (results/<u>_diff_v4.json)",
+   "counted_as": {
+    "wrong": 611,
+    "segv": 960,
+    "panic": 80
+   },
+   "count": 1651,
+   "inside_system_input_set": 0,
+   "all_diverging_inputs_outside": true,
+   "inside_ids": []
+  },
+  {
+   "system": "Syzygy",
+   "defect": "empty input to ZopfliDeflate (results/syzygy_empty_deflate.json)",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": "not measurable (inputs not shipped)",
+   "visible_on_system_inputs": "not measurable"
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_1",
+   "counted_as": "panic",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_10",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_20",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_64",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_100",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_128",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_512",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_1000",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 binary_2048",
+   "counted_as": "fails RustMap's own check",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "bzip2 text_1",
+   "counted_as": "panic",
+   "all_diverging_inputs_outside": true
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta box_the_compass",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta floyds_triangle",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta isbn13_check_digit",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta knapsack_problem_0_1",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta knapsack_problem_continuous",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta roman_numerals_decode",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta sexy_primes",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta formatted_numeric_output",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta approximate_equility",
+   "counted_as": "wrong_answer",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta hailstone_sequence",
+   "counted_as": "rust_panic",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  },
+  {
+   "system": "RustMap",
+   "defect": "Rosetta matrix_chain_multiplication",
+   "counted_as": "rust_panic",
+   "all_diverging_inputs_outside": false,
+   "note": "in-distribution by construction: the same run (no arguments, no stdin) RustMap's documented whole-log diff performs"
+  }
+ ]
+}

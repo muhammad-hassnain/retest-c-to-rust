@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:276:31
+    |
+276 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+276 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+   --> src/main.rs:392:4
+    |
+392 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+
+warning: function `max` is never used
+   --> src/main.rs:393:4
+    |
+393 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:394:4
+    |
+394 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:525:39 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16440: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:525:39 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16441: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.7
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16442: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.8
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16443: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.9
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16444: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.10
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16445: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.11
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16446: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.12
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:533:67 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16447: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.13
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16448: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.14
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16449: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.15
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16450: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.16
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16451: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.17
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16452: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.18
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:535:23 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16453: alloc::raw_vec::RawVecInner::current_memory.pointer_dereference.19
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/raw_vec.rs:526:13 in function alloc::raw_vec::RawVecInner::current_memory
+
+Check 16454: f_gold.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: src/main.rs:401:5 in function f_gold
+
+
+SUMMARY:
+ ** 1 of 16454 failed (16453 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "src/main.rs", line 401, in f_gold
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 7.7661977s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u10 v1.0.1 (/tmp/kani_w8ez_45d/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.19s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

@@ -1,0 +1,212 @@
+[
+ {
+  "id": "SACTOR-L1",
+  "translation": "libogg gpt-4o bitwise.c unidiomatic",
+  "function": "oggpackB_write",
+  "where": "sactor-datasets ogg/translation/gpt-4o/bitwise.c/translated_code_unidiomatic/combined.rs:152-154 (functions/oggpackB_write.rs:28)",
+  "c_reference": "ogg/ogg/src/bitwise.c:140  value=(value&mask[bits])<<(32-bits);",
+  "mechanism": "The value is masked and shifted only under `if bits > 0`. The translation narrowed C's unsigned long to u32, where `<< 32` would overflow, and the guard also skips the mask. For a zero-bit write the unmasked value stays, and `ptr[0] |= value >> (24 + endbit)` ORs its top bits into the current byte. In C, value & mask[0] == 0 and a zero-bit write leaves the buffer unchanged.",
+  "severity": "S1",
+  "exposure_ub_clean_cases": 8,
+  "exposure_before_ub_filter": 8,
+  "exposing_inputs": "8 of 442 bitwise call sequences (MSb family, a zero-bit write of a value with high bits set): bw0220 bw0232 bw0237 bw0240 bw0266 bw0276 bw0300 bw0320; same 8 cases under both nightlies, debug and release",
+  "ub_rule": "all 8 exposing cases pass clang and gcc ASan+UBSan (incl. float-cast-overflow), -O0/-O1/-O2 agreement and -funsigned-char",
+  "acceptance": {
+   "status": "accepted",
+   "evidence": "Per-function record: functions/oggpackB_write.rs exists, and SACTOR writes a function file only on success (ogg/format_failure_info.py is_translated checks this). Whole-file record: combined.rs exists, written by program_combiner.py only after the combined E2E check passes. Re-run: test_bitwise.o linked with the Rust cdylib exits 0 under all 4 builds, with stdout/stderr identical to the C."
+  },
+  "heldout": {
+   "status": "outside",
+   "evidence": "We linked SACTOR's own test_bitwise.o against the C with -Wl,--wrap. It makes 9,093,036 API calls, and none is a zero-bit oggpackB_write with nonzero top bits (the trigger). Our 442 cases contain 11 trigger calls; all 8 exposing cases contain one."
+  },
+  "found_on": "our_inputs",
+  "harness": "libogg bitwise driver",
+  "counted": true
+ },
+ {
+  "id": "SACTOR-L2",
+  "translation": "libogg gpt-4o framing.c unidiomatic",
+  "function": "ogg_stream_flush_i",
+  "where": "sactor-datasets ogg/translation/gpt-4o/framing.c/translated_code_unidiomatic/combined.rs:2481-2488 (functions/ogg_stream_flush_i.rs:24-31)",
+  "c_reference": "ogg/ogg/src/framing.c:366-373 (for(vals=0;vals<maxvals;vals++){...} leaves vals == maxvals) and :399 (if(vals==255)force=1;)",
+  "mechanism": "Initial-header (BOS) page: the C loop leaves vals == maxvals (255) when none of the first 255 lacing values is < 255, i.e. the first packet is at least 65025 bytes. The Rust loop is `for v in 0..maxvals { if lacing < 255 { vals = v + 1; break; } }`, which leaves vals at 0 in that case, and the `vals == 255` force check sits only in the non-BOS branch. The stream emits an empty first page (27-byte header, 0 segments, 0 body bytes) where C emits a 255-segment page with the first 65025 bytes.",
+  "severity": "S1",
+  "exposure_ub_clean_cases": 19,
+  "exposure_before_ub_filter": 19,
+  "exposing_inputs": "19 of 343 framing call sequences (round trips whose first packet is >= 65025 bytes); same 19 under all 4 builds",
+  "ub_rule": "all 19 exposing cases pass every C check",
+  "acceptance": {
+   "status": "accepted",
+   "evidence": "functions/ogg_stream_flush_i.rs and combined.rs exist (same records as SACTOR-L1). Re-run: test_framing.o linked with the Rust cdylib exits 0 under all 4 builds, with output identical to the C."
+  },
+  "heldout": {
+   "status": "outside",
+   "evidence": "SACTOR's own test_framing.o (traced with -Wl,--wrap) makes 654 calls to packetin/iovecin/pageout/flush/_fill. No page emission happens on a BOS-pending stream whose first min(lacing_fill,255) lacing values are all 255 (trigger). All 19 exposing cases contain such an emission."
+  },
+  "found_on": "our_inputs",
+  "harness": "libogg framing driver",
+  "counted": true
+ },
+ {
+  "id": "SACTOR-L3",
+  "translation": "libogg gpt-5 bitwise.c unidiomatic",
+  "function": "oggpackB_look, oggpackB_writetrunc",
+  "where": "sactor-datasets ogg/translation/gpt-5/bitwise.c/translated_code_unidiomatic/functions/oggpackB_look.rs:30 (`let mask: libc::c_ulong = ...`) and functions/oggpackB_writetrunc.rs:8 (`let mask = mask8B[..]`)",
+  "c_reference": "n/a (build)",
+  "mechanism": "Both functions bind a local named `mask`, the same name as the file's static table global_vars/mask.rs. Rust rejects this when the items are combined into one crate: error[E0530] let bindings cannot shadow statics. Each function compiles on its own (SACTOR's per-function check), but the whole-file library does not, under either nightly.",
+  "severity": "S3",
+  "exposure_ub_clean_cases": null,
+  "exposure_before_ub_filter": null,
+  "exposing_inputs": "build",
+  "ub_rule": "n/a",
+  "acceptance": {
+   "status": "rejected (whole file); functions individually accepted",
+   "evidence": "All 37 function files exist (all accepted per function), but no combined.rs is shipped, unlike the other three unidiomatic libogg configurations. Re-running SACTOR's combine step (combined crate, cargo build) fails with E0530, so its own check fails the combined translation."
+  },
+  "heldout": {
+   "status": "n/a (S3)",
+   "evidence": ""
+  },
+  "found_on": "build",
+  "harness": "build",
+  "counted": true
+ },
+ {
+  "id": "SACTOR-C1",
+  "translation": "CRUST-Bench Holdem-Odds unidiomatic",
+  "function": "NewCard",
+  "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/Holdem-Odds/result/translated_code_unidiomatic/combined.rs:82-84 (functions/NewCard.rs:3-5)",
+  "c_reference": "Holdem-Odds/src/cards.c:46-52 (NewCard returns INVALID_CARD unless CardIsValid(&card))",
+  "mechanism": "NewCard defines a nested stub `fn CardIsValid(c: *const Card) -> bool { true }` that shadows the real CardIsValid (combined.rs:132). Every card is reported valid, so NewCard(InvalidRank, Spade), NewCard(Ace+1, ..) and NewCard(.., InvalidSuit) return the invalid card instead of INVALID_CARD.",
+  "severity": "S1",
+  "exposure_ub_clean_cases": 58,
+  "exposure_before_ub_filter": 58,
+  "exposing_inputs": "SACTOR's own test (test1.o = CuTest all_tests; 1 case): the Rust prints '...F....' and '1) TestNewCard: src/tests/test_cards.c:117: InvalidRank is an invalid rank / !!!FAILURES!!! Runs: 24 Passes: 23 Fails: 1' where the C prints 'OK (24 tests)'. Our grids (typed mode): 48 of 80 NewCard(rank, suit) inputs (every invalid rank or suit; e.g. NewCard(4, 5) gives C {0,0}, Rust {4,5}) and 9 of 80 NewCardFromChars inputs (e.g. ('9', '\\n') gives C {0,0}, Rust {8,0}). Same counts under all 4 builds.",
+  "ub_rule": "own test and all 57 grid inputs pass every C check (both sanitizers, -O0/-O1/-O2, char signedness)",
+  "acceptance": {
+   "status": "accepted",
+   "evidence": "result/unidiomatic_failure_info.json gives NewCard status 'success'; combined.rs is shipped. Re-run: SACTOR's check for this sample is test_cmd.json '%t', which passes on exit 0. CuTest's all_tests.c returns 0 even when a test fails, so the check passes while the test output reports the failure."
+  },
+  "heldout": {
+   "status": "inside and outside",
+   "evidence": "It diverges on SACTOR's own test, but SACTOR's check reads only the exit code, and CuTest's all_tests.c returns 0. We traced the own test with -Wl,--wrap: it makes 56 distinct NewCard calls. 4 of the 48 diverging NewCard grid inputs are among them (the test's own out-of-range checks, e.g. NewCard(14,4) = Ace+1). The other 44 are outside SACTOR's inputs. For NewCardFromChars the own test makes 2845 distinct calls; the trace kept 200, so membership of the 9 diverging inputs is not established."
+  },
+  "found_on": "own_inputs",
+  "harness": "CRUST own-test comparison; CRUST grid",
+  "counted": true,
+  "grid_functions": [
+   "Holdem-Odds:NewCard",
+   "Holdem-Odds:NewCardFromChars",
+   "Holdem-Odds:own_test"
+  ]
+ },
+ {
+  "id": "SACTOR-C2",
+  "translation": "CRUST-Bench c-string unidiomatic",
+  "function": "string_t_is_space_char",
+  "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/c-string/result/translated_code_unidiomatic/combined.rs:18-24 (`static STRING_T_SPACE_CHARS: [c_char; 5] = [' ', '\\t', '\\n', '\\r', 0]`) and :76 (`while idx < STRING_T_SPACE_CHARS.len()`)",
+  "c_reference": "c-string/lib.c:67 (const char STRING_T_SPACE_CHARS[] = \" \\t\\n\\r\") and :166-171 (loop to strlen(STRING_T_SPACE_CHARS))",
+  "mechanism": "The C loops to strlen() of \" \\t\\n\\r\", i.e. over 4 characters. The Rust table keeps the terminating NUL as a fifth element and loops to .len() == 5. So string_t_is_space_char('\\0') returns 1 where the C returns 0, and a NUL byte counts as whitespace.",
+  "severity": "S1",
+  "exposure_ub_clean_cases": 1,
+  "exposure_before_ub_filter": 1,
+  "exposing_inputs": "grid: string_t_is_space_char(0) -> C 0, Rust 1; all 4 builds",
+  "ub_rule": "the exposing input passes every C check",
+  "acceptance": {
+   "status": "accepted",
+   "evidence": "result/unidiomatic_failure_info.json gives string_t_is_space_char status 'success'. combined.rs is shipped. Re-run: the sample's own test (exit 0) passes and agrees with the C byte for byte."
+  },
+  "heldout": {
+   "status": "outside",
+   "evidence": "The own test never calls string_t_is_space_char directly (0 calls under -Wl,--wrap). Its strings come from new_string_from_bytes (strlen-terminated) and so never contain the trigger byte inside the string."
+  },
+  "found_on": "our_inputs",
+  "harness": "CRUST grid",
+  "counted": true,
+  "grid_functions": [
+   "c-string:string_t_is_space_char"
+  ]
+ },
+ {
+  "id": "SACTOR-C3",
+  "translation": "CRUST-Bench fs_c unidiomatic",
+  "function": "fs_chown (same mechanism: fs_error)",
+  "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/fs_c/result/translated_code_unidiomatic/combined.rs:112-115 (`pub unsafe fn fs_chown(path: &str, uid: i32, gid: i32) -> i32`) and :36 (`pub unsafe fn fs_error(prefix: &str)`)",
+  "c_reference": "fs_c/fs.h:116 `int fs_chown(const char *path, int uid, int gid)`, fs.h:38 `void fs_error(const char *prefix)`; lib.c:387-393",
+  "mechanism": "The exported C-API functions take a Rust `&str` (a pointer/length pair passed in two registers) where the C prototype has `const char *`. A C caller's (path, uid, gid) is received as path.ptr = path, path.len = uid, uid = gid, gid = an unset register. fs_chown then builds a CString from `uid` bytes starting at path. Depending on the bytes past the string, it panics in CString::new (interior NUL; a panic inside extern \"C\" aborts) or faults reading unmapped memory. The C returns chown()'s result, -1 for our paths.",
+  "severity": "S1 (crash)",
+  "crash": true,
+  "exposure_ub_clean_cases": 74,
+  "exposure_before_ub_filter": 74,
+  "exposing_inputs": "grid: 74 of 80 fs_chown(path, uid, gid) inputs abort (SIGABRT, 'non-unwinding panic') or segfault (SIGSEGV) where the C returns -1; all 4 builds",
+  "ub_rule": "all 74 exposing inputs pass every C check",
+  "acceptance": {
+   "status": "accepted (translation); defective functions not exercised",
+   "evidence": "unidiomatic_failure_info.json gives fs_chown and fs_error status 'success'. combined.rs is shipped. Re-run: the own test passes (exit 0) and agrees with the C. The own test never calls fs_chown (0 calls under -Wl,--wrap) or fs_error (not in test.c), so SACTOR's 'success' for them is vacuous."
+  },
+  "heldout": {
+   "status": "outside",
+   "evidence": "SACTOR's own test makes no call to either function."
+  },
+  "found_on": "our_inputs",
+  "harness": "CRUST grid",
+  "counted": true,
+  "grid_functions": [
+   "fs_c:fs_chown"
+  ]
+ },
+ {
+  "id": "SACTOR-P1",
+  "translation": "CRUST-Bench lib2bit unidiomatic",
+  "function": "byte2base",
+  "where": "lib2bit/result/translated_code_unidiomatic/combined.rs:104-105 (`let mask: uint8_t = 3 << (2 * rev)` on u8)",
+  "c_reference": "lib2bit/lib.c:203-209; doc comment lib.c:200-202 'Given a byte containing 4 bases, return the character representation of the offset'th base'",
+  "mechanism": "For offset < 0 the C computes `3 << (2*rev)` in int, so mask truncates to 0 and the result is 'T'. The Rust shifts a u8: debug builds panic (abort), release builds wrap the shift and return another base.",
+  "severity": "n/a (precondition_only)",
+  "exposure_ub_clean_cases": 5,
+  "exposure_before_ub_filter": 75,
+  "exposing_inputs": "offsets -1,-2,-3,-7,-8 (the other 70 divergent inputs are C UB: negative shift exponent)",
+  "ub_rule": "5 UB-clean",
+  "precondition": {
+   "status": "precondition_only",
+   "evidence": "every UB-clean exposing input has offset outside 0..3, which violates the stated contract (the offset'th of the 4 bases in a byte)"
+  },
+  "acceptance": {
+   "status": "n/a"
+  },
+  "heldout": {
+   "status": "n/a"
+  },
+  "counted": false,
+  "grid_functions": [
+   "lib2bit:byte2base"
+  ]
+ },
+ {
+  "id": "SACTOR-P2",
+  "translation": "CRUST-Bench c-aces unidiomatic",
+  "function": "randrange, randinverse",
+  "where": "c-aces/result/translated_code_unidiomatic/combined.rs:199-204 (randrange: `upper - lower + 1` in u64, panics on overflow in debug) and :206 (randinverse: `value - 1`)",
+  "c_reference": "c-aces/lib.c randrange `(rand() % (upper - lower + 1)) + lower` (unsigned wrap); doc 'within the specified range [lower, upper]'; randinverse doc 'a random number a within the range [2, value - 1]'",
+  "mechanism": "Unsigned wraparound in the C vs a debug overflow panic in the Rust (release agrees).",
+  "severity": "n/a (precondition_only)",
+  "exposure_ub_clean_cases": 42,
+  "exposure_before_ub_filter": 44,
+  "exposing_inputs": "randrange: 41 inputs, all with lower > upper; randinverse: value = 1; debug builds only",
+  "precondition": {
+   "status": "precondition_only",
+   "evidence": "all 42 UB-clean exposing inputs violate the documented range ([lower, upper] with lower <= upper; value - 1 >= 2)"
+  },
+  "acceptance": {
+   "status": "n/a"
+  },
+  "heldout": {
+   "status": "n/a"
+  },
+  "counted": false,
+  "grid_functions": [
+   "c-aces:randrange",
+   "c-aces:randinverse"
+  ]
+ }
+]

@@ -1,0 +1,11 @@
+COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1 ['test_failure'] 153.3 33554432
+HEXAGONAL_NUMBER ['test_failure'] 144.0 179699712
+MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION ['startup_crash', 'exit_1_no_test_failure_text'] 0.3 None
+NTH_PENTAGONAL_NUMBER ['test_failure'] 125.0 256
+NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES ['compile_error'] 130.4 None
+NUMBER_WAYS_NODE_MAKE_LOOP_SIZE_K_UNDIRECTED_COMPLETE_CONNECTED_GRAPH_N_NODES rename_diag ['startup_crash', 'test_failure'] (
+    0,
+    0,
+)
+PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT ['startup_crash', 'startup_crash', 'startup_crash', 'test_failure'] 0.1 256
+SUM_SERIES_12_32_52_2N_12_1 ['startup_crash', 'test_failure'] 0.1 16777216

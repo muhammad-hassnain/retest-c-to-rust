@@ -1,0 +1,1014 @@
+{
+ "provenance": {
+  "script": "harness/arxiv_heldout_flourine_fuzz.py",
+  "command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -w /work -e FL_LOGS=/work/flourine_logs/extract crust-syzygy python3 -I harness/arxiv_heldout_flourine_fuzz.py",
+  "git_rev": "40bc85c (arxiv branch) + uncommitted arXiv changes (Mac working tree rsynced: harness/ systems/ scripts/)",
+  "host": "Linux x86_64 box (20 cores), Docker --cpus 4",
+  "arch": "x86_64",
+  "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)"
+  },
+  "date": "2026-11-17T01:11:13.499640+00:00",
+  "logs_archive": {
+   "url": "https://d34gtk3knhjgeg.cloudfront.net/translations.tar.gz",
+   "bytes": 5669337068,
+   "sha256": "45a4f7e3540bad32a0bb2b02796a78d981b4072fef7705dc06325a52e229c1c4",
+   "listing_members": 408361,
+   "members_extracted": "translations/success/c/<proj>/<fn>/<llm>/<strategy>/ for every success row (the extraction results/flourine_shipped_vs_log.json reads)",
+   "member_types": "337453 regular files, 70908 directories, no links, no absolute or .. paths"
+  },
+  "grid": "enumerate_cases(ptypes, cap=2000) as systems/flourine/run.py",
+  "rust_profile": {
+   "name": "fuzz",
+   "rustc_flags": [
+    "-C",
+    "opt-level=3",
+    "-C",
+    "debug-assertions=on",
+    "-C",
+    "overflow-checks=on",
+    "-C",
+    "codegen-units=1",
+    "-C",
+    "debuginfo=2"
+   ],
+   "why": "FLOURINE's check builds with cargo-bolero's fuzz profile (results/arxiv_flourine_devprofile.json flourine_check_profile)"
+  },
+  "same_method_as": "results/heldout_flourine.json (harness/heldout_flourine.py one(), struct_overlap())"
+ },
+ "translations": [
+  {
+   "translation": "opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair",
+   "label": "struct mask (counted; crash in the fuzz profile)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_lfo_pm_depth/claude3/BaseRepair/opl_emu_registers_lfo_pm_depth.rs",
+    "shipped_sha256": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+    "logs_results_rs_sha256": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+    "logs_candidates": {
+     "prog_0.rs": "1e2464d6bdf1fd562c6522b289d7c02fcaba760b4cf19a9a1d9a46dd9ca0bab5",
+     "prog_0_10_0.rs": "2bfffa8ac828e6fa34f4e06867784160f74898b7247c86c5f2d019f0f700b1c7"
+    },
+    "logs_wspace_src_lib_rs_sha256": "2bfffa8ac828e6fa34f4e06867784160f74898b7247c86c5f2d019f0f700b1c7",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": true
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_registers_lfo_pm_depth",
+    "Transpilation is not equivalent: candidate score = 0.0.",
+    "Start soft-verifying opl_emu_registers_lfo_pm_depth",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_registers_lfo_pm_depth",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [46774, 46774, 46774, 46774, 46774, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [34486, 36874, 7434, 7068, 40458, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [6582, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [51524, 46774, 46774, 46774, 46774, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [46774, 46774, 46774, 46774, 46774, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 6425, 'm_lfo_pm_counter': 6425, 'm_noise_lfsr': 421075225, 'm_lfo_am': 25, 'm_regdata': [25, 25, 25, 25, 25, '... and 507 other elements'], 'm_waveform': [[6425, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [6425, 6425, 46736, 46774, 46774, '... and 1019 other elements'], [6582, 6425, 6425, 6425, 6425, '... and 1019 other elements'], [33410, 33410, 33410, 33410, 33410, '... and 1019 other elements'], [0, 37636, 51524, 46774, 46774, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "267",
+    "267",
+    "267"
+   ],
+   "our_inputs": 8,
+   "our_inputs_source": "systems/flourine/run_struct.py (SEEDS, register fill; other fields zero)",
+   "logged_inputs": 4,
+   "logged_inputs_per_example": [
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    }
+   ],
+   "overlap_ours_logged": 0,
+   "overlap_method": "field-by-field on the fields the log records (the log truncates m_regdata/m_waveform)",
+   "counted_divergences_inside_logged_inputs": 0,
+   "shipped_diverges_on_logged_inputs_iso_c_clean": null,
+   "shipped_diverges_on_logged_inputs_reason": "not computable: every logged example records only the first 5 of 512 m_regdata bytes and the function reads byte 0xbd, so our comparison cannot be run on the logged inputs. FLOURINE's own log reports 'Runtime crash' (expected ['0']) for the shipped content on 4 of its 4 logged examples; in the fuzz profile the shipped file panics on every call (`(1u32.shr(length)) - 1` with length 1 overflows whatever the register contents), which is that crash."
+  },
+  {
+   "translation": "opl/opl_emu_registers_lfo_am_depth/claude3/CAPR",
+   "label": "struct mask (counted; crash in the fuzz profile only)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_registers_lfo_am_depth/claude3/CAPR/opl_emu_registers_lfo_am_depth.rs",
+    "shipped_sha256": "68d6a173f3d745baca9f8cc6bc78101ebbe781cf3bed8cf7d6ee78fc4630c851",
+    "logs_results_rs_sha256": "68d6a173f3d745baca9f8cc6bc78101ebbe781cf3bed8cf7d6ee78fc4630c851",
+    "logs_candidates": {
+     "prog_0.rs": "68d6a173f3d745baca9f8cc6bc78101ebbe781cf3bed8cf7d6ee78fc4630c851",
+     "prog_0_10_0.rs": "1ccaa4b105ad62f6c9e8ec32cee17c5148e9e03fa4a9feaed8a93fcabf3ead66",
+     "prog_0_8_0.rs": "eba64b456205aa700c157726bae35c93e8f0180a555553f81fc0cb874c67f68e",
+     "prog_0_9_0.rs": "25b694930a3c3e09fac502b8e7ae75ee6a3f72aa4f8fbf1491b8ab8dec0ca985"
+    },
+    "logs_wspace_src_lib_rs_sha256": "eba64b456205aa700c157726bae35c93e8f0180a555553f81fc0cb874c67f68e",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": false
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_registers_lfo_am_depth",
+    "Transpilation is not equivalent: candidate score = 0.0.",
+    "Start soft-verifying opl_emu_registers_lfo_am_depth",
+    "1 many (potentially new) candidates expanded. Highest score = 0.0",
+    "Start soft-verifying opl_emu_registers_lfo_am_depth",
+    "1 many (potentially new) candidates expanded. Highest score = 0.0",
+    "Start soft-verifying opl_emu_registers_lfo_am_depth",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_registers_lfo_am_depth",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17733, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [17733, 17733, 6213, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17919, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17733, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [17733, 17733, 6213, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17919, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17733, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [17733, 17733, 6213, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 17919, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "{'m_lfo_am_counter': 17674, 'm_lfo_pm_counter': 17733, 'm_noise_lfsr': 1162167621, 'm_lfo_am': 69, 'm_regdata': [69, 24, 24, 24, 24, '... and 507 other elements'], 'm_waveform': [[6168, 6168, 6168, 6168, 65304, '... and 1019 other elements'], [17733, 17733, 17733, 17733, 17733, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], [65535, 65535, 65535, 65535, 65535, '... and 1019 other elements'], [6168, 6168, 6168, 6168, 6168, '... and 1019 other elements'], '... and 3 other elements']}"
+     ],
+     "expected": "0",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "280",
+    "280",
+    "280"
+   ],
+   "our_inputs": 8,
+   "our_inputs_source": "systems/flourine/run_struct.py (SEEDS, register fill; other fields zero)",
+   "logged_inputs": 12,
+   "logged_inputs_per_example": [
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_10_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_8_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_8_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_8_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_8_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_9_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_9_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_9_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    },
+    {
+     "prompt": "prog_0_9_0.ans",
+     "parsed": true,
+     "m_regdata_bytes_recorded": 5,
+     "byte_read_by_function": 189,
+     "byte_read_recorded": false,
+     "differs_from_every_input_of_ours": true
+    }
+   ],
+   "overlap_ours_logged": 0,
+   "overlap_method": "field-by-field on the fields the log records (the log truncates m_regdata/m_waveform)",
+   "counted_divergences_inside_logged_inputs": 0,
+   "shipped_diverges_on_logged_inputs_iso_c_clean": null,
+   "shipped_diverges_on_logged_inputs_reason": "not computable: every logged example records only the first 5 of 512 m_regdata bytes and the function reads byte 0xbd, so our comparison cannot be run on the logged inputs. FLOURINE's own log reports 'Runtime crash' (expected ['0']) for the shipped content on 12 of its 12 logged examples; in the fuzz profile the shipped file panics on every call (`(1u32.shr(length)) - 1` with length 1 overflows whatever the register contents), which is that crash."
+  },
+  {
+   "translation": "opl/opl_emu_opl_compute_phase_step/gpt4/BaseRepair",
+   "label": "u32 multiply overflow (counted; crash in the fuzz profile only)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_opl_compute_phase_step/gpt4/BaseRepair/opl_emu_opl_compute_phase_step.rs",
+    "shipped_sha256": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+    "logs_results_rs_sha256": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+    "logs_candidates": {
+     "prog_0.rs": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+     "prog_0_10_0.rs": "37096ddb08a1edffd23525f63a4de1296154bff89b24f2d1174602ea1d9ba119",
+     "prog_0_9_0.rs": "63ea04d044c4f6b6ee8eac38a347525737e1170ac5960f85f4ec484b2c7218e8"
+    },
+    "logs_wspace_src_lib_rs_sha256": "63ea04d044c4f6b6ee8eac38a347525737e1170ac5960f85f4ec484b2c7218e8",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": false
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_opl_compute_phase_step",
+    "Transpilation is not equivalent: candidate score = 0.4912543728135932.",
+    "Start soft-verifying opl_emu_opl_compute_phase_step",
+    "1 many (potentially new) candidates expanded. Highest score = 0.5027486256871564",
+    "Start soft-verifying opl_emu_opl_compute_phase_step",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_opl_compute_phase_step",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "4278230271",
+      "1644166913",
+      "-16714241"
+     ],
+     "expected": "1594965936",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "4286120064",
+      "2037983989",
+      "0"
+     ],
+     "expected": "1581956416",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "4294926847",
+      "4294291994",
+      "-33488897"
+     ],
+     "expected": "1975281638",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "7960953",
+      "2030043146",
+      "31097"
+     ],
+     "expected": "671403280",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "4278230271",
+      "1644166913",
+      "-16714241"
+     ],
+     "expected": "1594965936",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "167803257",
+      "2037972992",
+      "121"
+     ],
+     "expected": "933756928",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "30976",
+      "4278252800",
+      "1962934365"
+     ],
+     "expected": "963119104",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "4278230271",
+      "1644166913",
+      "-396033"
+     ],
+     "expected": "1595488176",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "100k",
+    "33.5k"
+   ],
+   "signature": {
+    "ptypes": [
+     "u32",
+     "u32",
+     "i32"
+    ],
+    "ret": "u32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 8,
+   "logged_inputs_distinct": 7,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 1863,
+    "rust_panic": 137
+   },
+   "shipped_divergent_inputs": 137,
+   "shipped_divergent_iso_c_clean": 137,
+   "shipped_divergent_iso_c_ub": 0,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 137,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      4278230271,
+      1644166913,
+      -16714241
+     ],
+     "v": "rust_panic",
+     "c": "1594965936",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      4286120064,
+      2037983989,
+      0
+     ],
+     "v": "rust_panic",
+     "c": "1581956416",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      4294926847,
+      4294291994,
+      -33488897
+     ],
+     "v": "rust_panic",
+     "c": "1975281638",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      7960953,
+      2030043146,
+      31097
+     ],
+     "v": "rust_panic",
+     "c": "671403280",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      4278230271,
+      1644166913,
+      -16714241
+     ],
+     "v": "rust_panic",
+     "c": "1594965936",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      167803257,
+      2037972992,
+      121
+     ],
+     "v": "rust_panic",
+     "c": "933756928",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      30976,
+      4278252800,
+      1962934365
+     ],
+     "v": "rust_panic",
+     "c": "963119104",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      4278230271,
+      1644166913,
+      -396033
+     ],
+     "v": "rust_panic",
+     "c": "1595488176",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 8,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      16383,
+      1,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "65408",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      16383,
+      27,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "1766016",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      16383,
+      54,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "3532032",
+     "rust": "__PANIC__"
+    }
+   ]
+  },
+  {
+   "translation": "opl/opl_emu_opl_compute_phase_step/gpt4/CAPR",
+   "label": "u32 multiply overflow (counted; crash in the fuzz profile only)",
+   "identity": {
+    "shipped_translation": "artifacts/flourine_dl/flourine-artifact/translations_only/success/c/opl/opl_emu_opl_compute_phase_step/gpt4/CAPR/opl_emu_opl_compute_phase_step.rs",
+    "shipped_sha256": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+    "logs_results_rs_sha256": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+    "logs_candidates": {
+     "prog_0.rs": "3451bf1e664f577ac06199032bbc979f1141b276458cb4a089f4b737b6fded4e",
+     "prog_0_10_0.rs": "6771cb57810129735feb04f9464bb4096abf1c2d2c317384c8d76731144b9e5c",
+     "prog_0_8_0.rs": "f62142e9fd7d114ad3efb7175ba0832eca2f87055ad406e430e5e2c7989b1623",
+     "prog_0_9_0.rs": "f0b1e70af93ed6f7a20ea793a6195b51834fe10c7cb42d7ce0d969ce2d5a2cea"
+    },
+    "logs_wspace_src_lib_rs_sha256": "f62142e9fd7d114ad3efb7175ba0832eca2f87055ad406e430e5e2c7989b1623",
+    "shipped_equals_first_candidate_prog_0": true,
+    "shipped_equals_verified_candidate": false,
+    "verified_candidate_equals_last_prog": false
+   },
+   "flourine_log_events": [
+    "Start verifying opl_emu_opl_compute_phase_step",
+    "Transpilation is not equivalent: candidate score = 0.32982917214191854.",
+    "Start soft-verifying opl_emu_opl_compute_phase_step",
+    "1 many (potentially new) candidates expanded. Highest score = 0.37385019710906703",
+    "Start soft-verifying opl_emu_opl_compute_phase_step",
+    "1 many (potentially new) candidates expanded. Highest score = 0.6773981603153745",
+    "Start soft-verifying opl_emu_opl_compute_phase_step",
+    "1 many (potentially new) candidates expanded. Highest score = 1.0",
+    "Current errors has been cleaned. Verifying again.",
+    "Start verifying opl_emu_opl_compute_phase_step",
+    "Equivalent transpilation has been found by fix strategy. Return Code: 2"
+   ],
+   "logged_examples": [
+    {
+     "args": [
+      "3402287651",
+      "3402255050",
+      "-892665857"
+     ],
+     "expected": "1370574962",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3402287818",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "969418"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_10_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3402255050",
+      "-892665857"
+     ],
+     "expected": "1370574962",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3402287818",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "969418"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_8_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3402255050",
+      "-892665857"
+     ],
+     "expected": "1370574962",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3402287818",
+      "-892679478"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    },
+    {
+     "args": [
+      "3402287651",
+      "3939158730",
+      "969418"
+     ],
+     "expected": "943207072",
+     "actual": "Runtime crash",
+     "prompt": "prog_0_9_0.ans"
+    }
+   ],
+   "final_verification_coverage_count_on_fn_line": [
+    "126k",
+    "42.1k"
+   ],
+   "signature": {
+    "ptypes": [
+     "u32",
+     "u32",
+     "i32"
+    ],
+    "ret": "u32"
+   },
+   "our_inputs": 2000,
+   "logged_inputs": 12,
+   "logged_inputs_distinct": 4,
+   "overlap_ours_logged": [],
+   "shipped_on_our_grid": {
+    "agree": 1863,
+    "rust_panic": 137
+   },
+   "shipped_divergent_inputs": 137,
+   "shipped_divergent_iso_c_clean": 137,
+   "shipped_divergent_iso_c_ub": 0,
+   "counted_divergences_inside_logged_inputs": [],
+   "counted_divergences_outside_logged_inputs": 137,
+   "shipped_on_logged_inputs": [
+    {
+     "in": [
+      3402287651,
+      3402255050,
+      -892665857
+     ],
+     "v": "rust_panic",
+     "c": "1370574962",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3402287818,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      969418
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3402255050,
+      -892665857
+     ],
+     "v": "rust_panic",
+     "c": "1370574962",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3402287818,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      969418
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3402255050,
+      -892665857
+     ],
+     "v": "rust_panic",
+     "c": "1370574962",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3402287818,
+      -892679478
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    },
+    {
+     "in": [
+      3402287651,
+      3939158730,
+      969418
+     ],
+     "v": "rust_panic",
+     "c": "943207072",
+     "rust": "__PANIC__",
+     "iso_c": "clean"
+    }
+   ],
+   "shipped_diverges_on_logged_inputs_iso_c_clean": 12,
+   "verified_candidate_executed": false,
+   "smallest_counted": [
+    {
+     "in": [
+      16383,
+      1,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "65408",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      16383,
+      27,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "1766016",
+     "rust": "__PANIC__"
+    },
+    {
+     "in": [
+      16383,
+      54,
+      -1
+     ],
+     "v": "rust_panic",
+     "c": "3532032",
+     "rust": "__PANIC__"
+    }
+   ]
+  }
+ ],
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": null,
+  "generated_utc": "2026-11-17T01:11:13Z",
+  "arch": "x86_64",
+  "os": "Linux 7.0.0-38-generic",
+  "in_container": true,
+  "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "step": null,
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "argv": [
+   "harness/arxiv_heldout_flourine_fuzz.py"
+  ]
+ }
+}

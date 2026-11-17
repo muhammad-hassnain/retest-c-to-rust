@@ -1,0 +1,4096 @@
+{
+ "provenance": {
+  "script": "harness/oracle_ub_rustmap_bzip2.py",
+  "command": "bash harness/oracle_ub_run.sh rustmap_bzip2 python3 harness/oracle_ub_rustmap_bzip2.py --phase c --build /oub/rustmap_bzip2 (docker image crust-heldout sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo working tree copied (rsync, artifacts excluded) to the run host; new oracle_ub_* files uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T22:13:58+00:00",
+  "artifact_source_digests": {
+   "bzip2-1.0.8": {
+    "files": 19,
+    "sha256": "7695d82ce962532fb09679ffa203ffaa57dc70344071baccb8bda9fa1ab80f1b"
+   },
+   "bzip2_rs_gpt": {
+    "files": 202,
+    "sha256": "cde76a1da43fde4e34a6c36feeae783b5baee09dda468f72db3f3c0af1f11963"
+   }
+  },
+  "rust_build": {
+   "ok": true,
+   "bin": "/oub/rustmap_bzip2/rs/target/debug/bzip2_rs_gpt",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "build": "cargo build (debug), as README 4.1.1",
+   "image": "crust-syzygy",
+   "image_id": "sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b"
+  },
+  "c_builds": {
+   "ref": "Makefile defaults (-O2 -g --coverage -pg)",
+   "o0": {
+    "CFLAGS": "-Wall -Winline -O0 -g -D_FILE_OFFSET_BITS=64"
+   },
+   "o1": {
+    "CFLAGS": "-Wall -Winline -O1 -g -D_FILE_OFFSET_BITS=64"
+   },
+   "san_clang": {
+    "CC": "clang",
+    "CFLAGS": "-O0 -g -fno-omit-frame-pointer -fsanitize=address,undefined,float-cast-overflow -fno-sanitize-recover=all -fno-pie -w -D_FILE_OFFSET_BITS=64",
+    "LDFLAGS": "-fsanitize=address,undefined,float-cast-overflow -no-pie"
+   },
+   "san_gcc": {
+    "CC": "gcc",
+    "CFLAGS": "-O0 -g -fno-omit-frame-pointer -fsanitize=address,undefined,float-cast-overflow -fno-sanitize-recover=all -w -D_FILE_OFFSET_BITS=64",
+    "LDFLAGS": "-fsanitize=address,undefined,float-cast-overflow"
+   },
+   "san_clang_nz": {
+    "CC": "clang",
+    "CFLAGS": "-O0 -g -fno-omit-frame-pointer -fsanitize=address,undefined,float-cast-overflow -fno-sanitize-recover=all -fno-pie -fsanitize-recover=pointer-overflow -w -D_FILE_OFFSET_BITS=64",
+    "LDFLAGS": "-fsanitize=address,undefined,float-cast-overflow -no-pie"
+   },
+   "uchar": {
+    "CFLAGS": "-Wall -Winline -O2 -g -D_FILE_OFFSET_BITS=64 -funsigned-char"
+   },
+   "schar": {
+    "CFLAGS": "-Wall -Winline -O2 -g -D_FILE_OFFSET_BITS=64 -fsigned-char"
+   },
+   "ubitfield": {
+    "CFLAGS": "-Wall -Winline -O2 -g -D_FILE_OFFSET_BITS=64 -funsigned-bitfields"
+   }
+  },
+  "compared_against": "results/rustmap_bzip2_check.json",
+  "wall_seconds": 365,
+  "sanitizer_positive_controls": {
+   "clang": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+   },
+   "gcc": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+   }
+  }
+ },
+ "summary": {
+  "n_inputs": 20,
+  "reproduced_rows": 20,
+  "counted_before": {
+   "binary_10B_2KB_fail_own_check": 8,
+   "one_byte_panic": 2
+  },
+  "counted_after": {
+   "binary_10B_2KB_fail_own_check": 8,
+   "one_byte_panic": 2
+  },
+  "binary_10B_2KB_check_outcome": {
+   "bzip2_data_integrity_error": 5,
+   "exit0_but_output_differs": 3
+  },
+  "c_roundtrip_ok_all_builds": {
+   "ref": 20,
+   "o0": 20,
+   "o1": 20,
+   "san_clang": 20,
+   "san_gcc": 20,
+   "san_clang_nz": 20,
+   "uchar": 20,
+   "schar": 20,
+   "ubitfield": 20
+  },
+  "rows_with_any_sanitizer_report": 0,
+  "distinct_reports": [],
+  "rows_with_opt_level_difference": 0,
+  "rows_char_signedness_dependent": 0,
+  "rows_bitfield_signedness_dependent": 0,
+  "san_infra_steps": 0
+ },
+ "verdicts": [
+  {
+   "kind": "binary",
+   "size": 1,
+   "rust_rc": 101,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 1,
+    "c_roundtrip_ok": true,
+    "rust_rc": 101,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 10,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 10,
+    "check_bytes_differing": 3,
+    "check_input_bytes_ge_0x80": 3,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 10,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 20,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 20,
+    "check_bytes_differing": 10,
+    "check_input_bytes_ge_0x80": 10,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 20,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 64,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "exit0_but_output_differs",
+    "check_output_len": 64,
+    "check_bytes_differing": 30,
+    "check_input_bytes_ge_0x80": 30,
+    "check_differing_positions_are_exactly_input_bytes_ge_0x80": true,
+    "check_values_at_differing_positions": [
+     255
+    ],
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 64,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 100,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_tvvv": [
+     "    [1: huff+mtf rt+rld {0xfb0ea55f, 0x6d52069a}]data integrity (CRC) error in data"
+    ],
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 100,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 128,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_tvvv": [
+     "    [1: huff+mtf rt+rld {0xa8b646c4, 0x56f838ac}]data integrity (CRC) error in data"
+    ],
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 128,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 512,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_tvvv": [
+     "    [1: huff+mtf rt+rld {0x8de70e80, 0x7c4e81a4}]data integrity (CRC) error in data"
+    ],
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 512,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 1000,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_tvvv": [
+     "    [1: huff+mtf rt+rld {0x97614b10, 0x00c5965d}]data integrity (CRC) error in data"
+    ],
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 1000,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 2048,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_tvvv": [
+     "    [1: huff+mtf rt+rld {0x4a400d58, 0xf0bfc6cd}]data integrity (CRC) error in data"
+    ],
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2_data_integrity_error",
+    "check_bzip2_d_stderr": "bzip2: Data integrity error when decompressing.\n\tInput file = rec00001data.bz2, output file = rec00001data\n\nIt is possible that the compressed file(s) have become corrupted.\nYou can use the -tvv optio",
+    "check_bzip2_d_rc": 2,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 2,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 2048,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "binary",
+   "size": 5000,
+   "rust_rc": 124,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "binary",
+    "size": 5000,
+    "c_roundtrip_ok": true,
+    "rust_rc": 124,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 1,
+   "rust_rc": 101,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 1,
+    "c_roundtrip_ok": true,
+    "rust_rc": 101,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "kind": "text",
+   "size": 10,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 10,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 20,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 20,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 64,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 64,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 100,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 100,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 128,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 128,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 512,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 512,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 1000,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 1000,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 2048,
+   "rust_rc": 0,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "libgcov profiling error:/oub/rustmap_bzip2/c_ref/huffman.gcda:Version mismatch - expected 11.4 (release) (B14*) got 11.3 (release) (B13*)\nlibgcov profiling error:/oub/rustmap_bzip2/c_ref/blocksort.gcd",
+    "check_tvvv": [],
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "passes",
+    "check_bzip2_d_stderr": "",
+    "check_bzip2_d_rc": 0,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": true,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 0,
+     "check_bzip2_d": 0,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 2048,
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_passes_rustmap_own_check": true
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "kind": "text",
+   "size": 5000,
+   "rust_rc": 124,
+   "rust_wrote_bz2": true,
+   "ref": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o0": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "o1": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_gcc": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "san_clang_nz": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "uchar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "schar": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "ubitfield": {
+    "c_roundtrip_ok": true,
+    "c_bz2_same_as_ref": true,
+    "check_outcome": "bzip2recover_failed",
+    "check_bzip2_d_rc": null,
+    "plain_bzip2_d_rc": 2,
+    "rust_passes_rustmap_own_check": false,
+    "san_reports": {},
+    "san_reports_other_than_null_plus_zero": {},
+    "san_infra": [],
+    "step_exits": {
+     "c_compress": 0,
+     "c_decompress": 0,
+     "check_bzip2recover": 1,
+     "plain_bzip2_dc_on_rust_output": 2
+    }
+   },
+   "before": {
+    "kind": "text",
+    "size": 5000,
+    "c_roundtrip_ok": true,
+    "rust_rc": 124,
+    "rust_passes_rustmap_own_check": false
+   },
+   "reproduced": true,
+   "c_ub_evidence": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  }
+ ]
+}

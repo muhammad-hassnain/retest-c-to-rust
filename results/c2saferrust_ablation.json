@@ -1,0 +1,154 @@
+{
+  "system": "C2SaferRust",
+  "ablation": "in-distribution (own repair tests) vs held-out",
+  "per_util": {
+    "cat": {
+      "n_tests": 4,
+      "c_pass": 3,
+      "rust_pass": 3,
+      "both_pass": 3,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    },
+    "head": {
+      "n_tests": 3,
+      "c_pass": 2,
+      "rust_pass": 1,
+      "both_pass": 1,
+      "rust_fails_where_c_passes": 1,
+      "skipped": 0
+    },
+    "tail": {
+      "n_tests": 33,
+      "c_pass": 12,
+      "rust_pass": 6,
+      "both_pass": 5,
+      "rust_fails_where_c_passes": 7,
+      "skipped": 9
+    },
+    "uniq": {
+      "n_tests": 2,
+      "c_pass": 2,
+      "rust_pass": 2,
+      "both_pass": 2,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    },
+    "split": {
+      "n_tests": 14,
+      "c_pass": 11,
+      "rust_pass": 8,
+      "both_pass": 8,
+      "rust_fails_where_c_passes": 3,
+      "skipped": 1
+    },
+    "truncate": {
+      "n_tests": 9,
+      "c_pass": 7,
+      "rust_pass": 6,
+      "both_pass": 6,
+      "rust_fails_where_c_passes": 1,
+      "skipped": 1
+    },
+    "pwd": {
+      "n_tests": 2,
+      "c_pass": 1,
+      "rust_pass": 1,
+      "both_pass": 1,
+      "rust_fails_where_c_passes": 0,
+      "skipped": 0
+    }
+  },
+  "totals": {
+    "tests": 56,
+    "c_pass": 38,
+    "rust_pass": 27,
+    "both_pass": 26,
+    "rust_fails_where_c_passes": 12,
+    "skipped": 11
+  },
+  "rust_fail_cases_in_distribution": [
+    {
+      "util": "head",
+      "test": "head-pos.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "follow-name.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "follow-stdin.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "pipe-f.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "pipe-f2.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "tail-c.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "tail-n0f.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "tail",
+      "test": "wait.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "b-chunk.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "r-chunk.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "split",
+      "test": "suffix-length.sh",
+      "c": "pass",
+      "rust": "fail"
+    },
+    {
+      "util": "truncate",
+      "test": "truncate-parameters.sh",
+      "c": "pass",
+      "rust": "fail"
+    }
+  ],
+  "interpretation": "Of the 26 shell tests the C2Rust starting translation passes in our environment (C2SaferRust's acceptance set), the shipped rust_WIP fails 1 (truncate/truncate-parameters.sh). The raw count of 12 tests that pass on the C but fail on rust_WIP is not an acceptance-suite failure count: 11 of them fail on the starting translation too.",
+  "sut": "rust_WIP (C2SaferRust output); baseline file: c2saferrust_ablation_c2rust_baseline.json (rust/, the C2Rust starting translation)",
+  "acceptance_set": {
+    "definition": "translate.py select_tests (231-248): the .sh tests that pass on the starting translation",
+    "size_in_our_env": 26,
+    "rust_WIP_fails": [
+      "truncate/truncate-parameters.sh"
+    ],
+    "note": "truncate-parameters.sh fails on rust_WIP in 3/3 runs and passes on the baseline in 3/3. The other 11 rust_WIP failures also fail on the baseline, so the tool would never have selected them; tail-sysfs.sh fails only on the baseline (environment-sensitive)."
+  }
+}

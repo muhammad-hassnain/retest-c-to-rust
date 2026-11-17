@@ -1,0 +1,17 @@
+[package]
+name = "csv_sut"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Pinned to a 2022-era libc: the translation only compiles on a pre-1.73 toolchain
+# (it takes unaligned references into a #[repr(C,packed)] struct, now a hard error),
+# and newer libc releases use `let...else`, which that toolchain can't parse.
+libc = "=0.2.126"
+
+[[bin]]
+name = "csv_sut"
+path = "src/main.rs"
+
+[profile.release]
+overflow-checks = true

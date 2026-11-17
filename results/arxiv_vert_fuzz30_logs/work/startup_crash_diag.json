@@ -1,0 +1,46 @@
+{
+ "n_runs_each": 100,
+ "vert_test_binaries_selection_mode": {
+  "c_transcoder_nth_pentagonal_number_out_rwasm_bolero-9dcd5f7fe352cf7a": {
+   "rc=-11 (no output)": 30,
+   "rc=0": 70
+  }
+ },
+ "minimal_rust_program": {
+  "plain": {
+   "rustc_flags": [
+    "-O"
+   ],
+   "file": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=e43de98aa1be5761a89a1392574709bb9e332182, for GNU/Linux 3.2.0, with debug_info, not stripped",
+   "outcomes": {
+    "rc=0": 100
+   }
+  },
+  "asan_pie_default": {
+   "rustc_flags": [
+    "-O",
+    "-Zsanitizer=address"
+   ],
+   "file": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0adfeb9ee23c07d54f29dd25bf7aa3e9d4c533c2, for GNU/Linux 3.2.0, with debug_info, not stripped",
+   "outcomes": {
+    "rc=-11 (no output)": 30,
+    "rc=0": 70
+   }
+  },
+  "asan_static_relocation_no_pie": {
+   "rustc_flags": [
+    "-O",
+    "-Zsanitizer=address",
+    "-C",
+    "relocation-model=static"
+   ],
+   "file": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=ee38b66861cd87e52de53f25121fcb7a541ebc64, for GNU/Linux 3.2.0, with debug_info, not stripped",
+   "outcomes": {
+    "rc=0": 100
+   }
+  }
+ },
+ "rustc": "rustc 1.73.0-nightly (04abc370b 2023-07-28)\nbinary: rustc\ncommit-hash: 04abc370b9f3855b28172b65a7f7d5a433f41412\ncommit-date: 2023-07-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.73.0-nightly\nLLVM version: 16.0.5\n",
+ "kernel": "7.0.0-38-generic",
+ "machine": "x86_64"
+}

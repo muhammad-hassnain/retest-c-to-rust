@@ -1,0 +1,173 @@
+{
+  "provenance": {
+    "inputs": [
+      "results/uniq_cases_v4.json",
+      "results/uniq_cases_v5.json",
+      "results/uniq_diff_v4.json",
+      "results/uniq_diff_v5.json",
+      "results/uniq_v5_outfile_ub.json",
+      "results/heldout_c2saferrust.json"
+    ],
+    "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e + uncommitted working tree"
+  },
+  "consistency_v4_v5": {
+    "cases": 3000,
+    "fields_compared": [
+      "assessable",
+      "stdout_match",
+      "exit_match",
+      "stderr_match",
+      "oracle_exit",
+      "sut_exit",
+      "timed_out",
+      "stderr_divergence"
+    ],
+    "cases_with_any_field_different": 0,
+    "ids": [],
+    "summary_v4": {
+      "util": "uniq",
+      "n_cases": 3000,
+      "assessable": 3000,
+      "not_assessable": 0,
+      "mismatches": 570,
+      "file_tree_divergences": 0,
+      "agree": 2430,
+      "held_out_pass_rate": 0.81,
+      "stderr_divergences": 1104,
+      "stderr_only_divergences": 630,
+      "any_divergences": 1200,
+      "any_agree_rate": 0.6
+    },
+    "summary_v5": {
+      "util": "uniq",
+      "n_cases": 3000,
+      "assessable": 3000,
+      "not_assessable": 0,
+      "mismatches": 570,
+      "file_tree_divergences": 40,
+      "agree": 2430,
+      "held_out_pass_rate": 0.81,
+      "stderr_divergences": 1104,
+      "stderr_only_divergences": 630,
+      "any_divergences": 1200,
+      "any_agree_rate": 0.6
+    }
+  },
+  "output_file_divergences": 40,
+  "new_mismatching_cases": 0,
+  "new_mismatching_case_ids": [],
+  "defects": [],
+  "defects_note": "zero new defects: every output-file divergence is on a case already counted in v4 (Rust segfault), from the already-counted uniq -i defect",
+  "output_file_divergences_on_already_counted_cases": [
+    {
+      "mechanism": "already-counted defect C2SR uniq -i (memcasecmp ABI mismatch): Rust segfaults (exit -11) in different() before the freopen'd stdout buffer is flushed, so the output file is left empty; C writes the uniq'd lines",
+      "rust_source": [
+        "artifacts/c2saferrust/coreutils/src/uniq/rust_WIP/src/memcasecmp.rs:9 (pub fn memcasecmp(vs1: &[u8], vs2: &[u8]))",
+        "artifacts/c2saferrust/coreutils/src/uniq/rust_WIP/src/uniq.rs:149-153 (extern \"C\" decl (ptr, ptr, n))",
+        "artifacts/c2saferrust/coreutils/src/uniq/rust_WIP/src/uniq.rs:840-844 (call in different())"
+      ],
+      "c_source": "artifacts/c2saferrust/coreutils/src/uniq/c/uniq.c:288",
+      "n_exposing_cases": 40,
+      "case_ids": [
+        "uniq-00656",
+        "uniq-00657-C.UTF-8",
+        "uniq-00658",
+        "uniq-00659-C.UTF-8",
+        "uniq-00692",
+        "uniq-00693-C.UTF-8",
+        "uniq-00694",
+        "uniq-00695-C.UTF-8",
+        "uniq-00704",
+        "uniq-00705-C.UTF-8",
+        "uniq-00706",
+        "uniq-00707-C.UTF-8",
+        "uniq-01436",
+        "uniq-01437-C.UTF-8",
+        "uniq-01438",
+        "uniq-01439-C.UTF-8",
+        "uniq-01472",
+        "uniq-01473-C.UTF-8",
+        "uniq-01474",
+        "uniq-01475-C.UTF-8",
+        "uniq-01484",
+        "uniq-01485-C.UTF-8",
+        "uniq-01486",
+        "uniq-01487-C.UTF-8",
+        "uniq-02096",
+        "uniq-02097-C.UTF-8",
+        "uniq-02098",
+        "uniq-02099-C.UTF-8",
+        "uniq-02528",
+        "uniq-02529-C.UTF-8",
+        "uniq-02530",
+        "uniq-02531-C.UTF-8",
+        "uniq-02564",
+        "uniq-02565-C.UTF-8",
+        "uniq-02566",
+        "uniq-02567-C.UTF-8",
+        "uniq-02576",
+        "uniq-02577-C.UTF-8",
+        "uniq-02578",
+        "uniq-02579-C.UTF-8"
+      ],
+      "by_flags": {
+        "-i": 12,
+        "-c -i": 12,
+        "-d -i": 4,
+        "-u -i": 12
+      },
+      "by_scenario": {
+        "two-files": 20,
+        "ok+missing": 20
+      },
+      "all_already_v4_mismatch": true,
+      "v4_and_v5_class": {
+        "oracle_exit=0 sut_exit=-11": 40
+      },
+      "example": {
+        "id": "uniq-00656",
+        "argv": [
+          "-i",
+          "in1.txt",
+          "in2.txt"
+        ],
+        "env": {},
+        "stdin": "one\ntwo\nthree\n",
+        "files": {
+          "in1.txt": "one\ntwo\nthree\n",
+          "in2.txt": "one\ntwo\nthree\n"
+        },
+        "c_output_file": "one\ntwo\nthree\n",
+        "rust_output_file": "",
+        "c_exit": 0,
+        "rust_exit": -11
+      },
+      "rust_output_file_empty_in_all": true,
+      "ub_verdict": {
+        "rule": "harness/oracle_ub_c2saferrust.py rule applied to the output-file channel by harness/uniq_v5_outfile_ub.py (each build in its own dir; -O1/-O2 compared on stdout, exit AND output tree)",
+        "final": {
+          "counted": 0,
+          "original_C_UB": 40
+        },
+        "final_excluding_null_plus_zero": {
+          "counted": 40,
+          "original_C_UB": 0
+        },
+        "evidence": [
+          "san_clang: linebuffer.c:65:22: runtime error: applying zero offset to null pointer",
+          "san_clang_nz: linebuffer.c:65:22: runtime error: applying zero offset to null pointer"
+        ],
+        "opt_level_output_tree_differs": 0,
+        "same_as_existing_results_oracle_ub_c2saferrust": "yes: strict rule original_C_UB (clang NULL+0 at gnulib linebuffer.c:65 only), crash_segv when NULL+0 is excluded"
+      },
+      "held_out": {
+        "status": "outside the system's test inputs",
+        "basis": "results/heldout_c2saferrust.json traced uniq invocations (uniq-collate.sh, uniq-perf.sh)",
+        "traced_uniq_invocations": 7,
+        "with_-i": 0,
+        "with_an_output_file_operand": 0,
+        "exposing_cases_whose_argv_matches_a_traced_invocation": 0
+      }
+    }
+  ]
+}

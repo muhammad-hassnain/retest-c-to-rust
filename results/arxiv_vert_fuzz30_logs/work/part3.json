@@ -1,0 +1,846 @@
+{
+ "partial": false,
+ "rows": [
+  {
+   "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "203dbae52218406d3f564915db90749ad47d374ee52f50643ffda3a452cbe458",
+     "copy_sha256": "203dbae52218406d3f564915db90749ad47d374ee52f50643ffda3a452cbe458"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "5cacf864fa575fd3981b5421430b1e563e84da9fda7f26bff8ca2356ed4cbaab",
+     "copy_sha256": "5cacf864fa575fd3981b5421430b1e563e84da9fda7f26bff8ca2356ed4cbaab"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     1230,
+     1250
+    ],
+    "bolero_test_fn": 1254,
+    "wasm_wrapper_fn": 1224,
+    "lines": 1265
+   },
+   "harness_line": "bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 152.4,
+     "outcome": "exit_1_no_test_failure_text",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 203046510,
+      "last_exec_count_printed": 11,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "2m 32s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "71"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M.fuzz_30s_real.a0.log",
+     "tail": "known-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x15d754a) (BuildId: 6184e18e2f7635eb07bc98ce2a0cd5403aed541c)\n    #29 0x567e86f2a644  (/tmp/fzr_ijh5emo0/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1c9b644) (BuildId: 6184e18e2f7635eb07bc98ce2a0cd5403aed541c)\n    #30 0x70311cb319e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n    #31 0x70311cbc2a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n\nMS: 5 ShuffleBytes-ChangeByte-InsertRepeatedBytes-ChangeBinInt-PersAutoDict- DE: \"\\000\\000\"-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x9c,0x38,0x31,0x38,0x38,0x0,0x0,0x38,\n\\2348188\\000\\0008\nartifact_prefix='/tmp/fzr_ijh5emo0/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_ijh5emo0/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-3131890f93e587db10ede24aa8f85a8ea563c4dd\nBase64: nDgxODgAADg=\nSUMMARY: libFuzzer: out-of-memory\nerror: process exited with status 71\n",
+     "failure_kind": null
+    }
+   ],
+   "first_attempt": {
+    "outcome": "exit_1_no_test_failure_text",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null
+   },
+   "final": {
+    "outcome": "exit_1_no_test_failure_text",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null,
+    "failure": null,
+    "attempt_index": 0
+   }
+  },
+  {
+   "function": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "71534441644ad0c8695911a165b50c61ab916e240080fe7b97818ffb47f57ec9",
+     "copy_sha256": "71534441644ad0c8695911a165b50c61ab916e240080fe7b97818ffb47f57ec9"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "23b202ad889d6b1533262c5c928d1be1a71f3a4237cd22757b9cb78b3aa3b6c7",
+     "copy_sha256": "23b202ad889d6b1533262c5c928d1be1a71f3a4237cd22757b9cb78b3aa3b6c7"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     409,
+     421
+    ],
+    "bolero_test_fn": 425,
+    "wasm_wrapper_fn": 403,
+    "lines": 435
+   },
+   "harness_line": "bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 140.0,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.02s",
+       "2m 19s"
+      ],
+      "signal": [
+       "11 SIGSEGV"
+      ],
+      "no_status_code": false,
+      "exited_with_status": [
+       "101"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a0.log",
+     "tail": ": function `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:426:60\n    |\n426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 2m 19s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: process exited with status 101\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 0.2,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.02s",
+       "0.02s"
+      ],
+      "signal": [
+       "11 SIGSEGV"
+      ],
+      "no_status_code": false,
+      "exited_with_status": [
+       "101"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a1.log",
+     "tail": "g: function `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:426:60\n    |\n426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 0.02s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: process exited with status 101\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 0.2,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.02s"
+      ],
+      "signal": [],
+      "no_status_code": true,
+      "exited_with_status": [],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a2.log",
+     "tail": "unction `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:426:60\n    |\n426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 0.02s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: process exited with no status code\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 0.2,
+     "outcome": "test_failure",
+     "readme_verdict": "fail",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 3588878047,
+      "last_exec_count_printed": 2,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.04s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "77"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": true,
+      "asan_report": false
+     },
+     "failure": {
+      "input_text": "16777216",
+      "input": [
+       16777216
+      ],
+      "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `2147483647`,\n right: `-4194304`', src/main.rs:433:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+      "left_rust": "2147483647",
+      "right_oracle": "-4194304",
+      "panic_line": 433,
+      "panic_message": "assertion failed: `(left == right)`\n  left: `2147483647`,\n right: `-4194304`"
+     },
+     "log": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.fuzz_30s_real.a3.log",
+     "tail": "gle_out_rwasm_bolero-0e44ebceb27a8c95+0x15c142a) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)\n    #25 0x5b804f7d1524  (/tmp/fzr_i8rzr71a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95+0x1c85524) (BuildId: 61d03f02b58494ae36518bcc4d89dc037c29fa8b)\n    #26 0x73061370b9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n    #27 0x73061379ca13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 5 InsertByte-ChangeBit-ChangeBit-InsertByte-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x1e,0xca,0x21,0xa,\n\\036\\312!\\012\nartifact_prefix='/tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_i8rzr71a/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-45df56fecc94d09ae7fe415cb69dcffe83a83f49\nBase64: HsohCg==\nerror: process exited with status 77\n",
+     "failure_kind": "assertion_mismatch"
+    }
+   ],
+   "first_attempt": {
+    "outcome": "startup_crash",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null
+   },
+   "final": {
+    "outcome": "test_failure",
+    "readme_verdict": "fail",
+    "torust_verdict": "fail",
+    "failure_kind": "assertion_mismatch",
+    "failure": {
+     "input_text": "16777216",
+     "input": [
+      16777216
+     ],
+     "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `2147483647`,\n right: `-4194304`', src/main.rs:433:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+     "left_rust": "2147483647",
+     "right_oracle": "-4194304",
+     "panic_line": 433,
+     "panic_message": "assertion failed: `(left == right)`\n  left: `2147483647`,\n right: `-4194304`"
+    },
+    "attempt_index": 3
+   }
+  },
+  {
+   "function": "NEWMAN_CONWAY_SEQUENCE_1",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "23c5e52bde213a6da65acf3c58281d48c2212cf4eed5fe01b71a0ad4191dd337",
+     "copy_sha256": "23c5e52bde213a6da65acf3c58281d48c2212cf4eed5fe01b71a0ad4191dd337"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "8336f4bbdfd748d8de101964784c0f6394f5f84197e1b5fd652fe44399a6d9ad",
+     "copy_sha256": "8336f4bbdfd748d8de101964784c0f6394f5f84197e1b5fd652fe44399a6d9ad"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     641,
+     660
+    ],
+    "bolero_test_fn": 664,
+    "wasm_wrapper_fn": 635,
+    "lines": 674
+   },
+   "harness_line": "bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 156.9,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "2m 36s"
+      ],
+      "signal": [],
+      "no_status_code": true,
+      "exited_with_status": [],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a0.log",
+     "tail": ".cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:645:4\n    |\n645 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:646:4\n    |\n646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:665:60\n    |\n665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 2m 36s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)\nerror: process exited with no status code\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 0.2,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.02s"
+      ],
+      "signal": [],
+      "no_status_code": true,
+      "exited_with_status": [],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a1.log",
+     "tail": "a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:645:4\n    |\n645 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:646:4\n    |\n646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:665:60\n    |\n665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 0.02s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)\nerror: process exited with no status code\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 0.3,
+     "outcome": "exit_1_no_test_failure_text",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 1908270908,
+      "last_exec_count_printed": 2,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.02s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "71"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "NEWMAN_CONWAY_SEQUENCE_1.fuzz_30s_real.a2.log",
+     "tail": "e5f33b197a531c7c46755f)\n    #28 0x572cbdfd368a  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x15c668a) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)\n    #29 0x572cbe697784  (/tmp/fzr_ullwokjz/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c+0x1c8a784) (BuildId: 13e56ddb8d4b93d33be5f33b197a531c7c46755f)\n    #30 0x75e68bcda9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n    #31 0x75e68bd6ba13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n\nMS: 5 ShuffleBytes-InsertByte-ChangeByte-InsertByte-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x2e,0xbf,0x60,0x4c,\n.\\277`L\nartifact_prefix='/tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_ullwokjz/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-f046a3b4bddac8ea8e537c7026ec61dd1f08237d\nBase64: Lr9gTA==\nSUMMARY: libFuzzer: out-of-memory\nerror: process exited with status 71\n",
+     "failure_kind": null
+    }
+   ],
+   "first_attempt": {
+    "outcome": "startup_crash",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null
+   },
+   "final": {
+    "outcome": "exit_1_no_test_failure_text",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null,
+    "failure": null,
+    "attempt_index": 2
+   }
+  },
+  {
+   "function": "NUMBER_RECTANGLES_NM_GRID",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "fd8445bcd3234fe1f51ebd6aa097000ddcfba0fb3dd0c5ee42d37b8df72560ec",
+     "copy_sha256": "fd8445bcd3234fe1f51ebd6aa097000ddcfba0fb3dd0c5ee42d37b8df72560ec"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "73f7788b7dede89d1fcebc037139003404e53c47a990d3e7111f8e18d6572402",
+     "copy_sha256": "73f7788b7dede89d1fcebc037139003404e53c47a990d3e7111f8e18d6572402"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     416,
+     430
+    ],
+    "bolero_test_fn": 434,
+    "wasm_wrapper_fn": 410,
+    "lines": 445
+   },
+   "harness_line": "bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 125.3,
+     "outcome": "test_failure",
+     "readme_verdict": "fail",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 2839215880,
+      "last_exec_count_printed": 505,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "2m 05s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "77"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": true,
+      "asan_report": false
+     },
+     "failure": {
+      "input_text": "(\n    16777216,\n    0,\n)",
+      "input": [
+       16777216,
+       0
+      ],
+      "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `0`,\n right: `427819008`', src/main.rs:443:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+      "left_rust": "0",
+      "right_oracle": "427819008",
+      "panic_line": 443,
+      "panic_message": "assertion failed: `(left == right)`\n  left: `0`,\n right: `427819008`"
+     },
+     "log": "NUMBER_RECTANGLES_NM_GRID.fuzz_30s_real.a0.log",
+     "tail": "id_out_rwasm_bolero-ff55e93940d4ec1e+0x15c82ea) (BuildId: b1dd9a8ac93646a1380a82b2067f71241ba65c34)\n    #25 0x644ef25ae3e4  (/tmp/fzr_k2m9v2w9/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e+0x1c8c3e4) (BuildId: b1dd9a8ac93646a1380a82b2067f71241ba65c34)\n    #26 0x7cdea0dab9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n    #27 0x7cdea0e3ca13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 4 ChangeBit-EraseBytes-ShuffleBytes-InsertRepeatedBytes-; base unit: 51eb47c13c8e0e6a3c5bd9a67821eef56b6114f8\n0xa,0xff,0xff,0xff,0xff,0xff,0xff,0x3d,\n\\012\\377\\377\\377\\377\\377\\377=\nartifact_prefix='/tmp/fzr_k2m9v2w9/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_k2m9v2w9/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-33805eff8aae2275f6cfff9f914dd6083517bac3\nBase64: Cv///////z0=\nerror: process exited with status 77\n",
+     "failure_kind": "assertion_mismatch"
+    }
+   ],
+   "first_attempt": {
+    "outcome": "test_failure",
+    "readme_verdict": "fail",
+    "torust_verdict": "fail",
+    "failure_kind": "assertion_mismatch"
+   },
+   "final": {
+    "outcome": "test_failure",
+    "readme_verdict": "fail",
+    "torust_verdict": "fail",
+    "failure_kind": "assertion_mismatch",
+    "failure": {
+     "input_text": "(\n    16777216,\n    0,\n)",
+     "input": [
+      16777216,
+      0
+     ],
+     "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `0`,\n right: `427819008`', src/main.rs:443:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+     "left_rust": "0",
+     "right_oracle": "427819008",
+     "panic_line": 443,
+     "panic_message": "assertion failed: `(left == right)`\n  left: `0`,\n right: `427819008`"
+    },
+    "attempt_index": 0
+   }
+  },
+  {
+   "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "0628d45ef1e0fcb865fe85b3ea3c43ed3823ef0fcb9f4d7019e36d777e47e8b3",
+     "copy_sha256": "0628d45ef1e0fcb865fe85b3ea3c43ed3823ef0fcb9f4d7019e36d777e47e8b3"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "23cfa259d138603a863cda3ade7052707d25fc527ffda1a85f0debde0cdea4f7",
+     "copy_sha256": "23cfa259d138603a863cda3ade7052707d25fc527ffda1a85f0debde0cdea4f7"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     387,
+     401
+    ],
+    "bolero_test_fn": 405,
+    "wasm_wrapper_fn": 381,
+    "lines": 415
+   },
+   "harness_line": "bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 144.3,
+     "outcome": "test_failure",
+     "readme_verdict": "fail",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 1746964703,
+      "last_exec_count_printed": 2,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "2m 16s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "77"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": true,
+      "asan_report": false
+     },
+     "failure": {
+      "input_text": "656876800",
+      "input": [
+       656876800
+      ],
+      "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `960500352`,\n right: `960500353`', src/main.rs:413:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+      "left_rust": "960500352",
+      "right_oracle": "960500353",
+      "panic_line": 413,
+      "panic_message": "assertion failed: `(left == right)`\n  left: `960500352`,\n right: `960500353`"
+     },
+     "log": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES.fuzz_30s_real.a0.log",
+     "tail": "pizza_cut_problem_circle_division_lines_out_rwasm_bolero-209cd6b265e6be6b+0x15c1c7a) (BuildId: 1b5e2c4d08ec546f78a0f9a93b0b5d13fe4764a6)\n    #25 0x5786a4b72d74  (/tmp/fzr__g458y7j/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_pizza_cut_problem_circle_division_lines_out_rwasm_bolero-209cd6b265e6be6b+0x1c85d74) (BuildId: 1b5e2c4d08ec546f78a0f9a93b0b5d13fe4764a6)\n    #26 0x71f71c3ec9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n    #27 0x71f71c47da13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 5 CopyPart-InsertByte-CopyPart-ChangeByte-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x25,0x25,0x27,0x27,\n%%''\nartifact_prefix='/tmp/fzr__g458y7j/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr__g458y7j/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-8a1ede4001763bdf4281fc29c968ee41e0489eca\nBase64: JSUnJw==\nerror: process exited with status 77\n",
+     "failure_kind": "assertion_mismatch"
+    }
+   ],
+   "first_attempt": {
+    "outcome": "test_failure",
+    "readme_verdict": "fail",
+    "torust_verdict": "fail",
+    "failure_kind": "assertion_mismatch"
+   },
+   "final": {
+    "outcome": "test_failure",
+    "readme_verdict": "fail",
+    "torust_verdict": "fail",
+    "failure_kind": "assertion_mismatch",
+    "failure": {
+     "input_text": "656876800",
+     "input": [
+      656876800
+     ],
+     "error_text": "panicked at 'assertion failed: `(left == right)`\n  left: `960500352`,\n right: `960500353`', src/main.rs:413:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.",
+     "left_rust": "960500352",
+     "right_oracle": "960500353",
+     "panic_line": 413,
+     "panic_message": "assertion failed: `(left == right)`\n  left: `960500352`,\n right: `960500353`"
+    },
+    "attempt_index": 0
+   }
+  },
+  {
+   "function": "SUM_BINOMIAL_COEFFICIENTS",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "2a38badc0dfba12e909006cc1c9b2eddecef134b40ef63b458bae3546d9b09d7",
+     "copy_sha256": "2a38badc0dfba12e909006cc1c9b2eddecef134b40ef63b458bae3546d9b09d7"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "b59267d3b8978715a6d895d27f63e1be71c0ab32a96b0a20e8c1b0246f79b216",
+     "copy_sha256": "b59267d3b8978715a6d895d27f63e1be71c0ab32a96b0a20e8c1b0246f79b216"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     1061,
+     1088
+    ],
+    "bolero_test_fn": 1092,
+    "wasm_wrapper_fn": 1055,
+    "lines": 1102
+   },
+   "harness_line": "bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 136.3,
+     "outcome": "startup_crash",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": false,
+      "running_1_test": false,
+      "libfuzzer_seed": null,
+      "last_exec_count_printed": null,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.04s",
+       "2m 16s"
+      ],
+      "signal": [
+       "11 SIGSEGV"
+      ],
+      "no_status_code": false,
+      "exited_with_status": [
+       "101"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "SUM_BINOMIAL_COEFFICIENTS.fuzz_30s_real.a0.log",
+     "tail": " ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1065:4\n     |\n1065 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1066:4\n     |\n1066 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1093:60\n     |\n1093 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_binomial_coefficients_out-rwasm-bolero` (bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 2m 16s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100)\nerror: process exited with status 101\n",
+     "failure_kind": null
+    },
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": 1,
+     "timeout": false,
+     "secs": 1.2,
+     "outcome": "exit_1_no_test_failure_text",
+     "readme_verdict": "pass",
+     "torust_verdict": "fail",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 223572049,
+      "last_exec_count_printed": 2,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "0.03s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [
+       "71"
+      ],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "SUM_BINOMIAL_COEFFICIENTS.fuzz_30s_real.a1.log",
+     "tail": "1b891)\n    #21 0x6479fc937e11  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb22e11) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)\n    #22 0x6479fc8d1315  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xabc315) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)\n    #23 0x6479fd41b5ce  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x16065ce) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)\n\nMS: 5 CrossOver-ChangeByte-ChangeBit-CrossOver-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xa,0xda,\n\\012\\012\\012\\332\nartifact_prefix='/tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-bf909b12d2b16fb16153823cb136ab4c682fa893\nBase64: CgoK2g==\nSUMMARY: libFuzzer: out-of-memory\nerror: process exited with status 71\n",
+     "failure_kind": null
+    }
+   ],
+   "first_attempt": {
+    "outcome": "startup_crash",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null
+   },
+   "final": {
+    "outcome": "exit_1_no_test_failure_text",
+    "readme_verdict": "pass",
+    "torust_verdict": "fail",
+    "failure_kind": null,
+    "failure": null,
+    "attempt_index": 1
+   }
+  },
+  {
+   "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+   "files": {
+    "src/main.rs": {
+     "artifact_sha256": "833a53f956477d359dfd2380236f5777a95549d356bf4e04d5e579a979185dce",
+     "copy_sha256": "833a53f956477d359dfd2380236f5777a95549d356bf4e04d5e579a979185dce"
+    },
+    "Cargo.toml": {
+     "artifact_sha256": "8d0178ff4dd1a6ecb242f6ff247b5b38a5027b448026d56145c39876c5f11352",
+     "copy_sha256": "8d0178ff4dd1a6ecb242f6ff247b5b38a5027b448026d56145c39876c5f11352"
+    },
+    "Cargo.lock": {
+     "artifact_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475",
+     "copy_sha256": "b4f80b14c13496a0f85eb10cf94fba1d553af51d7595bb1bf70b04aa21070475"
+    },
+    "src/guest_mem_wrapper.rs": {
+     "artifact_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced",
+     "copy_sha256": "253e2777d326332731903c522c970517ea61fae39657e448f12d42a1d66e2ced"
+    }
+   },
+   "unmodified": true,
+   "main_rs_regions": {
+    "llm_output": [
+     913,
+     930
+    ],
+    "bolero_test_fn": 934,
+    "wasm_wrapper_fn": 907,
+    "lines": 944
+   },
+   "harness_line": "bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{",
+   "attempts": [
+    {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "env": {
+      "RUSTFLAGS": "-C overflow-checks=false"
+     },
+     "rc": null,
+     "timeout": true,
+     "secs": 1200.1,
+     "outcome": "timeout",
+     "readme_verdict": "pass",
+     "torust_verdict": "pass",
+     "evidence": {
+      "libfuzzer_started": true,
+      "running_1_test": true,
+      "libfuzzer_seed": 780346383,
+      "last_exec_count_printed": 2,
+      "libfuzzer_done": null,
+      "cargo_finished": [
+       "2m 08s"
+      ],
+      "signal": [],
+      "no_status_code": false,
+      "exited_with_status": [],
+      "file_name_too_long": false,
+      "deadly_signal": false,
+      "asan_report": false
+     },
+     "failure": null,
+     "log": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS.fuzz_30s_real.a0.log",
+     "tail": "ositive_integers_out-rwasm-bolero` (bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 2m 08s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out_rwasm_bolero-bca2bb8364936241)\nINFO: Running with entropic power schedule (0xFF, 100).\nINFO: Seed: 780346383\nINFO: Loaded 1 modules   (362579 inline 8-bit counters): 362579 [0x5cabb5e2a210, 0x5cabb5e82a63), \nINFO: Loaded 1 PC tables (362579 PCs): 362579 [0x5cabb5e82a68,0x5cabb640af98), \nINFO:        0 files found in /tmp/fzr_43lhlhsj/p/src/__fuzz__/bolero_wasm_eq/corpus\nINFO:        0 files found in /tmp/fzr_43lhlhsj/p/src/__fuzz__/bolero_wasm_eq/crashes\nINFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes\nINFO: A corpus is not provided, starting from an empty corpus\n#2\tINITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb\n",
+     "failure_kind": null
+    }
+   ],
+   "first_attempt": {
+    "outcome": "timeout",
+    "readme_verdict": "pass",
+    "torust_verdict": "pass",
+    "failure_kind": null
+   },
+   "final": {
+    "outcome": "timeout",
+    "readme_verdict": "pass",
+    "torust_verdict": "pass",
+    "failure_kind": null,
+    "failure": null,
+    "attempt_index": 0
+   }
+  }
+ ]
+}

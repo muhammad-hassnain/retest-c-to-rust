@@ -1,0 +1,3139 @@
+{
+ "system": "SACTOR",
+ "provenance": {
+  "script": "systems/sactor/build_summary.py",
+  "command": "python3 systems/sactor/build_summary.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (systems/sactor/ uncommitted)",
+  "host": "mac-host",
+  "arch": "arm64",
+  "inputs": {
+   "sactor_libogg.json": "2026-11-13T23:50:28+00:00",
+   "sactor_libogg_heldout.json": "2026-11-13T23:51:14+00:00",
+   "sactor_libogg_mutation.json": "2026-11-14T00:02:42+00:00",
+   "sactor_crust_owntests.json": "2026-11-13T23:39:17+00:00",
+   "sactor_crust_owntests_assembled.json": "2026-11-13T23:50:10+00:00",
+   "sactor_crust_grid.json": "2026-11-13T23:42:09+00:00",
+   "sactor_crust_grid_assembled.json": "2026-11-13T23:50:24+00:00",
+   "sactor_crust_mutation.json": "2026-11-13T23:56:19+00:00"
+  },
+  "toolchains/images": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12",
+   "docker_image": "crust-heldout",
+   "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-14T00:06:18+00:00"
+ },
+ "not_shipped": "The 200 headline TransCoder-IR / CodeNet translations are not in any SACTOR repository (sactor-datasets .gitignore lists translated_data/ and data/; no .rs outside ogg/): that part does not meet the re-grade rule and is not counted below.",
+ "translations_shipped": {
+  "total": 86,
+  "libogg": 8,
+  "crust_bench": 78
+ },
+ "translations_tested": 35,
+ "translations_tested_list": [
+  "libogg gpt-4o bitwise.c unidiomatic",
+  "libogg gpt-5 bitwise.c unidiomatic",
+  "libogg gpt-4o framing.c unidiomatic",
+  "libogg gpt-5 framing.c unidiomatic",
+  "CRUST-Bench 2DPartInt unidiomatic",
+  "CRUST-Bench CircularBuffer unidiomatic",
+  "CRUST-Bench Holdem-Odds unidiomatic",
+  "CRUST-Bench Linear-Algebra-C unidiomatic",
+  "CRUST-Bench NandC unidiomatic",
+  "CRUST-Bench Simple-Sparsehash unidiomatic",
+  "CRUST-Bench avalanche unidiomatic",
+  "CRUST-Bench bitset unidiomatic",
+  "CRUST-Bench btree-map unidiomatic",
+  "CRUST-Bench c-aces unidiomatic",
+  "CRUST-Bench c-string unidiomatic",
+  "CRUST-Bench carrays unidiomatic",
+  "CRUST-Bench chtrie unidiomatic",
+  "CRUST-Bench cissy unidiomatic",
+  "CRUST-Bench cset unidiomatic",
+  "CRUST-Bench file2str unidiomatic",
+  "CRUST-Bench fs_c unidiomatic",
+  "CRUST-Bench geofence unidiomatic",
+  "CRUST-Bench gfc unidiomatic",
+  "CRUST-Bench gorilla-paper-encode unidiomatic",
+  "CRUST-Bench hydra unidiomatic",
+  "CRUST-Bench leftpad unidiomatic",
+  "CRUST-Bench lib2bit unidiomatic",
+  "CRUST-Bench libbase122 unidiomatic",
+  "CRUST-Bench libbeaufort unidiomatic",
+  "CRUST-Bench libwecan unidiomatic",
+  "CRUST-Bench morton unidiomatic",
+  "CRUST-Bench murmurhash_c unidiomatic",
+  "CRUST-Bench rhbloom unidiomatic",
+  "CRUST-Bench utf8 unidiomatic",
+  "CRUST-Bench vec unidiomatic"
+ ],
+ "translations_with_defect": 6,
+ "translations_with_defect_list": [
+  "CRUST-Bench Holdem-Odds unidiomatic",
+  "CRUST-Bench c-string unidiomatic",
+  "CRUST-Bench fs_c unidiomatic",
+  "libogg gpt-4o bitwise.c unidiomatic",
+  "libogg gpt-4o framing.c unidiomatic",
+  "libogg gpt-5 bitwise.c unidiomatic"
+ ],
+ "defects": [
+  {
+   "id": "SACTOR-L1",
+   "translation": "libogg gpt-4o bitwise.c unidiomatic",
+   "function": "oggpackB_write",
+   "where": "sactor-datasets ogg/translation/gpt-4o/bitwise.c/translated_code_unidiomatic/combined.rs:152-154 (functions/oggpackB_write.rs:28)",
+   "c_reference": "ogg/ogg/src/bitwise.c:140  value=(value&mask[bits])<<(32-bits);",
+   "mechanism": "The value is masked and shifted only under `if bits > 0`. The translation narrowed C's unsigned long to u32, where `<< 32` would overflow, and the guard also skips the mask. For a zero-bit write the unmasked value stays, and `ptr[0] |= value >> (24 + endbit)` ORs its top bits into the current byte. In C, value & mask[0] == 0 and a zero-bit write leaves the buffer unchanged.",
+   "severity": "S1",
+   "exposure_ub_clean_cases": 8,
+   "exposure_before_ub_filter": 8,
+   "exposing_inputs": "8 of 442 bitwise call sequences (MSb family, a zero-bit write of a value with high bits set): bw0220 bw0232 bw0237 bw0240 bw0266 bw0276 bw0300 bw0320; same 8 cases under both nightlies, debug and release",
+   "ub_rule": "all 8 exposing cases pass clang and gcc ASan+UBSan (incl. float-cast-overflow), -O0/-O1/-O2 agreement and -funsigned-char",
+   "acceptance": {
+    "status": "accepted",
+    "evidence": "Per-function record: functions/oggpackB_write.rs exists, and SACTOR writes a function file only on success (ogg/format_failure_info.py is_translated checks this). Whole-file record: combined.rs exists, written by program_combiner.py only after the combined E2E check passes. Re-run: test_bitwise.o linked with the Rust cdylib exits 0 under all 4 builds, with stdout/stderr identical to the C."
+   },
+   "heldout": {
+    "status": "outside",
+    "evidence": "We linked SACTOR's own test_bitwise.o against the C with -Wl,--wrap. It makes 9,093,036 API calls, and none is a zero-bit oggpackB_write with nonzero top bits (the trigger). Our 442 cases contain 11 trigger calls; all 8 exposing cases contain one."
+   },
+   "found_on": "our_inputs",
+   "harness": "libogg bitwise driver",
+   "counted": true
+  },
+  {
+   "id": "SACTOR-L2",
+   "translation": "libogg gpt-4o framing.c unidiomatic",
+   "function": "ogg_stream_flush_i",
+   "where": "sactor-datasets ogg/translation/gpt-4o/framing.c/translated_code_unidiomatic/combined.rs:2481-2488 (functions/ogg_stream_flush_i.rs:24-31)",
+   "c_reference": "ogg/ogg/src/framing.c:366-373 (for(vals=0;vals<maxvals;vals++){...} leaves vals == maxvals) and :399 (if(vals==255)force=1;)",
+   "mechanism": "Initial-header (BOS) page: the C loop leaves vals == maxvals (255) when none of the first 255 lacing values is < 255, i.e. the first packet is at least 65025 bytes. The Rust loop is `for v in 0..maxvals { if lacing < 255 { vals = v + 1; break; } }`, which leaves vals at 0 in that case, and the `vals == 255` force check sits only in the non-BOS branch. The stream emits an empty first page (27-byte header, 0 segments, 0 body bytes) where C emits a 255-segment page with the first 65025 bytes.",
+   "severity": "S1",
+   "exposure_ub_clean_cases": 19,
+   "exposure_before_ub_filter": 19,
+   "exposing_inputs": "19 of 343 framing call sequences (round trips whose first packet is >= 65025 bytes); same 19 under all 4 builds",
+   "ub_rule": "all 19 exposing cases pass every C check",
+   "acceptance": {
+    "status": "accepted",
+    "evidence": "functions/ogg_stream_flush_i.rs and combined.rs exist (same records as SACTOR-L1). Re-run: test_framing.o linked with the Rust cdylib exits 0 under all 4 builds, with output identical to the C."
+   },
+   "heldout": {
+    "status": "outside",
+    "evidence": "SACTOR's own test_framing.o (traced with -Wl,--wrap) makes 654 calls to packetin/iovecin/pageout/flush/_fill. No page emission happens on a BOS-pending stream whose first min(lacing_fill,255) lacing values are all 255 (trigger). All 19 exposing cases contain such an emission."
+   },
+   "found_on": "our_inputs",
+   "harness": "libogg framing driver",
+   "counted": true
+  },
+  {
+   "id": "SACTOR-L3",
+   "translation": "libogg gpt-5 bitwise.c unidiomatic",
+   "function": "oggpackB_look, oggpackB_writetrunc",
+   "where": "sactor-datasets ogg/translation/gpt-5/bitwise.c/translated_code_unidiomatic/functions/oggpackB_look.rs:30 (`let mask: libc::c_ulong = ...`) and functions/oggpackB_writetrunc.rs:8 (`let mask = mask8B[..]`)",
+   "c_reference": "n/a (build)",
+   "mechanism": "Both functions bind a local named `mask`, the same name as the file's static table global_vars/mask.rs. Rust rejects this when the items are combined into one crate: error[E0530] let bindings cannot shadow statics. Each function compiles on its own (SACTOR's per-function check), but the whole-file library does not, under either nightly.",
+   "severity": "S3",
+   "exposure_ub_clean_cases": null,
+   "exposure_before_ub_filter": null,
+   "exposing_inputs": "build",
+   "ub_rule": "n/a",
+   "acceptance": {
+    "status": "rejected (whole file); functions individually accepted",
+    "evidence": "All 37 function files exist (all accepted per function), but no combined.rs is shipped, unlike the other three unidiomatic libogg configurations. Re-running SACTOR's combine step (combined crate, cargo build) fails with E0530, so its own check fails the combined translation."
+   },
+   "heldout": {
+    "status": "n/a (S3)",
+    "evidence": ""
+   },
+   "found_on": "build",
+   "harness": "build",
+   "counted": true
+  },
+  {
+   "id": "SACTOR-C1",
+   "translation": "CRUST-Bench Holdem-Odds unidiomatic",
+   "function": "NewCard",
+   "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/Holdem-Odds/result/translated_code_unidiomatic/combined.rs:82-84 (functions/NewCard.rs:3-5)",
+   "c_reference": "Holdem-Odds/src/cards.c:46-52 (NewCard returns INVALID_CARD unless CardIsValid(&card))",
+   "mechanism": "NewCard defines a nested stub `fn CardIsValid(c: *const Card) -> bool { true }` that shadows the real CardIsValid (combined.rs:132). Every card is reported valid, so NewCard(InvalidRank, Spade), NewCard(Ace+1, ..) and NewCard(.., InvalidSuit) return the invalid card instead of INVALID_CARD.",
+   "severity": "S1",
+   "exposure_ub_clean_cases": 58,
+   "exposure_before_ub_filter": 58,
+   "exposing_inputs": "SACTOR's own test (test1.o = CuTest all_tests; 1 case): the Rust prints '...F....' and '1) TestNewCard: src/tests/test_cards.c:117: InvalidRank is an invalid rank / !!!FAILURES!!! Runs: 24 Passes: 23 Fails: 1' where the C prints 'OK (24 tests)'. Our grids (typed mode): 48 of 80 NewCard(rank, suit) inputs (every invalid rank or suit; e.g. NewCard(4, 5) gives C {0,0}, Rust {4,5}) and 9 of 80 NewCardFromChars inputs (e.g. ('9', '\\n') gives C {0,0}, Rust {8,0}). Same counts under all 4 builds.",
+   "ub_rule": "own test and all 57 grid inputs pass every C check (both sanitizers, -O0/-O1/-O2, char signedness)",
+   "acceptance": {
+    "status": "accepted",
+    "evidence": "result/unidiomatic_failure_info.json gives NewCard status 'success'; combined.rs is shipped. Re-run: SACTOR's check for this sample is test_cmd.json '%t', which passes on exit 0. CuTest's all_tests.c returns 0 even when a test fails, so the check passes while the test output reports the failure."
+   },
+   "heldout": {
+    "status": "inside and outside",
+    "evidence": "It diverges on SACTOR's own test, but SACTOR's check reads only the exit code, and CuTest's all_tests.c returns 0. We traced the own test with -Wl,--wrap: it makes 56 distinct NewCard calls. 4 of the 48 diverging NewCard grid inputs are among them (the test's own out-of-range checks, e.g. NewCard(14,4) = Ace+1). The other 44 are outside SACTOR's inputs. For NewCardFromChars the own test makes 2845 distinct calls; the trace kept 200, so membership of the 9 diverging inputs is not established."
+   },
+   "found_on": "own_inputs",
+   "harness": "CRUST own-test comparison; CRUST grid",
+   "counted": true,
+   "grid_functions": [
+    "Holdem-Odds:NewCard",
+    "Holdem-Odds:NewCardFromChars",
+    "Holdem-Odds:own_test"
+   ]
+  },
+  {
+   "id": "SACTOR-C2",
+   "translation": "CRUST-Bench c-string unidiomatic",
+   "function": "string_t_is_space_char",
+   "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/c-string/result/translated_code_unidiomatic/combined.rs:18-24 (`static STRING_T_SPACE_CHARS: [c_char; 5] = [' ', '\\t', '\\n', '\\r', 0]`) and :76 (`while idx < STRING_T_SPACE_CHARS.len()`)",
+   "c_reference": "c-string/lib.c:67 (const char STRING_T_SPACE_CHARS[] = \" \\t\\n\\r\") and :166-171 (loop to strlen(STRING_T_SPACE_CHARS))",
+   "mechanism": "The C loops to strlen() of \" \\t\\n\\r\", i.e. over 4 characters. The Rust table keeps the terminating NUL as a fifth element and loops to .len() == 5. So string_t_is_space_char('\\0') returns 1 where the C returns 0, and a NUL byte counts as whitespace.",
+   "severity": "S1",
+   "exposure_ub_clean_cases": 1,
+   "exposure_before_ub_filter": 1,
+   "exposing_inputs": "grid: string_t_is_space_char(0) -> C 0, Rust 1; all 4 builds",
+   "ub_rule": "the exposing input passes every C check",
+   "acceptance": {
+    "status": "accepted",
+    "evidence": "result/unidiomatic_failure_info.json gives string_t_is_space_char status 'success'. combined.rs is shipped. Re-run: the sample's own test (exit 0) passes and agrees with the C byte for byte."
+   },
+   "heldout": {
+    "status": "outside",
+    "evidence": "The own test never calls string_t_is_space_char directly (0 calls under -Wl,--wrap). Its strings come from new_string_from_bytes (strlen-terminated) and so never contain the trigger byte inside the string."
+   },
+   "found_on": "our_inputs",
+   "harness": "CRUST grid",
+   "counted": true,
+   "grid_functions": [
+    "c-string:string_t_is_space_char"
+   ]
+  },
+  {
+   "id": "SACTOR-C3",
+   "translation": "CRUST-Bench fs_c unidiomatic",
+   "function": "fs_chown (same mechanism: fs_error)",
+   "where": "qsdrqs/CRUST-bench datasets/CRUST_bench/CBench/fs_c/result/translated_code_unidiomatic/combined.rs:112-115 (`pub unsafe fn fs_chown(path: &str, uid: i32, gid: i32) -> i32`) and :36 (`pub unsafe fn fs_error(prefix: &str)`)",
+   "c_reference": "fs_c/fs.h:116 `int fs_chown(const char *path, int uid, int gid)`, fs.h:38 `void fs_error(const char *prefix)`; lib.c:387-393",
+   "mechanism": "The exported C-API functions take a Rust `&str` (a pointer/length pair passed in two registers) where the C prototype has `const char *`. A C caller's (path, uid, gid) is received as path.ptr = path, path.len = uid, uid = gid, gid = an unset register. fs_chown then builds a CString from `uid` bytes starting at path. Depending on the bytes past the string, it panics in CString::new (interior NUL; a panic inside extern \"C\" aborts) or faults reading unmapped memory. The C returns chown()'s result, -1 for our paths.",
+   "severity": "S1 (crash)",
+   "crash": true,
+   "exposure_ub_clean_cases": 74,
+   "exposure_before_ub_filter": 74,
+   "exposing_inputs": "grid: 74 of 80 fs_chown(path, uid, gid) inputs abort (SIGABRT, 'non-unwinding panic') or segfault (SIGSEGV) where the C returns -1; all 4 builds",
+   "ub_rule": "all 74 exposing inputs pass every C check",
+   "acceptance": {
+    "status": "accepted (translation); defective functions not exercised",
+    "evidence": "unidiomatic_failure_info.json gives fs_chown and fs_error status 'success'. combined.rs is shipped. Re-run: the own test passes (exit 0) and agrees with the C. The own test never calls fs_chown (0 calls under -Wl,--wrap) or fs_error (not in test.c), so SACTOR's 'success' for them is vacuous."
+   },
+   "heldout": {
+    "status": "outside",
+    "evidence": "SACTOR's own test makes no call to either function."
+   },
+   "found_on": "our_inputs",
+   "harness": "CRUST grid",
+   "counted": true,
+   "grid_functions": [
+    "fs_c:fs_chown"
+   ]
+  },
+  {
+   "id": "SACTOR-P1",
+   "translation": "CRUST-Bench lib2bit unidiomatic",
+   "function": "byte2base",
+   "where": "lib2bit/result/translated_code_unidiomatic/combined.rs:104-105 (`let mask: uint8_t = 3 << (2 * rev)` on u8)",
+   "c_reference": "lib2bit/lib.c:203-209; doc comment lib.c:200-202 'Given a byte containing 4 bases, return the character representation of the offset'th base'",
+   "mechanism": "For offset < 0 the C computes `3 << (2*rev)` in int, so mask truncates to 0 and the result is 'T'. The Rust shifts a u8: debug builds panic (abort), release builds wrap the shift and return another base.",
+   "severity": "n/a (precondition_only)",
+   "exposure_ub_clean_cases": 5,
+   "exposure_before_ub_filter": 75,
+   "exposing_inputs": "offsets -1,-2,-3,-7,-8 (the other 70 divergent inputs are C UB: negative shift exponent)",
+   "ub_rule": "5 UB-clean",
+   "precondition": {
+    "status": "precondition_only",
+    "evidence": "every UB-clean exposing input has offset outside 0..3, which violates the stated contract (the offset'th of the 4 bases in a byte)"
+   },
+   "acceptance": {
+    "status": "n/a"
+   },
+   "heldout": {
+    "status": "n/a"
+   },
+   "counted": false,
+   "grid_functions": [
+    "lib2bit:byte2base"
+   ]
+  },
+  {
+   "id": "SACTOR-P2",
+   "translation": "CRUST-Bench c-aces unidiomatic",
+   "function": "randrange, randinverse",
+   "where": "c-aces/result/translated_code_unidiomatic/combined.rs:199-204 (randrange: `upper - lower + 1` in u64, panics on overflow in debug) and :206 (randinverse: `value - 1`)",
+   "c_reference": "c-aces/lib.c randrange `(rand() % (upper - lower + 1)) + lower` (unsigned wrap); doc 'within the specified range [lower, upper]'; randinverse doc 'a random number a within the range [2, value - 1]'",
+   "mechanism": "Unsigned wraparound in the C vs a debug overflow panic in the Rust (release agrees).",
+   "severity": "n/a (precondition_only)",
+   "exposure_ub_clean_cases": 42,
+   "exposure_before_ub_filter": 44,
+   "exposing_inputs": "randrange: 41 inputs, all with lower > upper; randinverse: value = 1; debug builds only",
+   "precondition": {
+    "status": "precondition_only",
+    "evidence": "all 42 UB-clean exposing inputs violate the documented range ([lower, upper] with lower <= upper; value - 1 >= 2)"
+   },
+   "acceptance": {
+    "status": "n/a"
+   },
+   "heldout": {
+    "status": "n/a"
+   },
+   "counted": false,
+   "grid_functions": [
+    "c-aces:randrange",
+    "c-aces:randinverse"
+   ]
+  }
+ ],
+ "crashes": {
+  "defects": [
+   "SACTOR-C3"
+  ],
+  "count_primary_build": 74,
+  "count_all_builds": 296,
+  "detail": [
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 1,
+    "args": [
+     "tab\there",
+     512,
+     33
+    ],
+    "c": [
+     "1 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 2,
+    "args": [
+     "-42",
+     185,
+     4096
+    ],
+    "c": [
+     "2 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 3,
+    "args": [
+     "3.14159",
+     8,
+     -2147483647
+    ],
+    "c": [
+     "3 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 4,
+    "args": [
+     "hello",
+     -1,
+     555
+    ],
+    "c": [
+     "4 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 5,
+    "args": [
+     "Ã©tÃ©",
+     481,
+     3
+    ],
+    "c": [
+     "5 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 6,
+    "args": [
+     "  padded  ",
+     64,
+     65
+    ],
+    "c": [
+     "6 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 7,
+    "args": [
+     "x",
+     -256,
+     -1
+    ],
+    "c": [
+     "7 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 8,
+    "args": [
+     "a",
+     777,
+     111
+    ],
+    "c": [
+     "8 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 10,
+    "args": [
+     "0",
+     1073741824,
+     2
+    ],
+    "c": [
+     "10 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 11,
+    "args": [
+     "true",
+     296,
+     128
+    ],
+    "c": [
+     "11 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 12,
+    "args": [
+     "Hello, World!",
+     16,
+     -7
+    ],
+    "c": [
+     "12 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 13,
+    "args": [
+     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+     -7,
+     222
+    ],
+    "c": [
+     "13 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 14,
+    "args": [
+     "a,b,c",
+     592,
+     777
+    ],
+    "c": [
+     "14 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 15,
+    "args": [
+     "the quick brown fox jumps over the lazy dog",
+     127,
+     8
+    ],
+    "c": [
+     "15 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 16,
+    "args": [
+     "",
+     -2147483648,
+     511
+    ],
+    "c": [
+     "16 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 17,
+    "args": [
+     "tab\there",
+     888,
+     -100
+    ],
+    "c": [
+     "17 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 19,
+    "args": [
+     "3.14159",
+     65535,
+     888
+    ],
+    "c": [
+     "19 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 20,
+    "args": [
+     "Hello, World!",
+     370,
+     17
+    ],
+    "c": [
+     "20 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 21,
+    "args": [
+     "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+     32,
+     2147483646
+    ],
+    "c": [
+     "21 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 22,
+    "args": [
+     "a,b,c",
+     -100,
+     -256
+    ],
+    "c": [
+     "22 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 23,
+    "args": [
+     "the quick brown fox jumps over the lazy dog",
+     703,
+     444
+    ],
+    "c": [
+     "23 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 24,
+    "args": [
+     "a",
+     255,
+     999
+    ],
+    "c": [
+     "24 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 25,
+    "args": [
+     "line\nbreak",
+     74,
+     0
+    ],
+    "c": [
+     "25 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 26,
+    "args": [
+     "0",
+     999,
+     63
+    ],
+    "c": [
+     "26 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 28,
+    "args": [
+     "123",
+     2147483647,
+     -2147483647
+    ],
+    "c": [
+     "28 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 29,
+    "args": [
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+     222,
+     555
+    ],
+    "c": [
+     "29 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 30,
+    "args": [
+     "%s%d",
+     15,
+     7
+    ],
+    "c": [
+     "30 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 31,
+    "args": [
+     "\u0001",
+     -2,
+     100
+    ],
+    "c": [
+     "31 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -11
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 32,
+    "args": [
+     "",
+     518,
+     -2
+    ],
+    "c": [
+     "32 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   },
+   {
+    "sample": "fs_c",
+    "function": "fs_chown",
+    "build": "rust:nightly-2024-09-03:debug",
+    "input": 33,
+    "args": [
+     "tab\there",
+     65,
+     111
+    ],
+    "c": [
+     "33 -1\nend\n",
+     0
+    ],
+    "rust": [
+     "",
+     -6
+    ]
+   }
+  ],
+  "not_counted_precondition_only": {
+   "SACTOR-P1": {
+    "rust:nightly-2024-09-03:debug": 5,
+    "rust:nightly-2025-05-10:debug": 5
+   },
+   "SACTOR-P2": {
+    "rust:nightly-2024-09-03:debug": 42,
+    "rust:nightly-2025-05-10:debug": 42
+   }
+  }
+ },
+ "S2": {
+  "count_primary_build": 0,
+  "count_all_builds": 0,
+  "detail": []
+ },
+ "exposure_by_defect_and_build": {
+  "SACTOR-C1": {
+   "per_build": {
+    "rust:nightly-2024-09-03:debug": 57,
+    "rust:nightly-2024-09-03:release": 57,
+    "rust:nightly-2025-05-10:debug": 57,
+    "rust:nightly-2025-05-10:release": 57,
+    "unidiomatic:nightly-2024-09-03:debug": 1,
+    "unidiomatic:nightly-2024-09-03:release": 1,
+    "unidiomatic:nightly-2025-05-10:debug": 1,
+    "unidiomatic:nightly-2025-05-10:release": 1
+   },
+   "crash_per_build": {}
+  },
+  "SACTOR-C2": {
+   "per_build": {
+    "rust:nightly-2024-09-03:debug": 1,
+    "rust:nightly-2024-09-03:release": 1,
+    "rust:nightly-2025-05-10:debug": 1,
+    "rust:nightly-2025-05-10:release": 1
+   },
+   "crash_per_build": {}
+  },
+  "SACTOR-P1": {
+   "per_build": {
+    "rust:nightly-2024-09-03:debug": 5,
+    "rust:nightly-2024-09-03:release": 5,
+    "rust:nightly-2025-05-10:debug": 5,
+    "rust:nightly-2025-05-10:release": 5
+   },
+   "crash_per_build": {
+    "rust:nightly-2024-09-03:debug": 5,
+    "rust:nightly-2025-05-10:debug": 5
+   }
+  },
+  "SACTOR-C3": {
+   "per_build": {
+    "rust:nightly-2024-09-03:debug": 74,
+    "rust:nightly-2024-09-03:release": 74,
+    "rust:nightly-2025-05-10:debug": 74,
+    "rust:nightly-2025-05-10:release": 74
+   },
+   "crash_per_build": {
+    "rust:nightly-2024-09-03:debug": 74,
+    "rust:nightly-2024-09-03:release": 74,
+    "rust:nightly-2025-05-10:debug": 74,
+    "rust:nightly-2025-05-10:release": 74
+   }
+  },
+  "SACTOR-P2": {
+   "per_build": {
+    "rust:nightly-2024-09-03:debug": 42,
+    "rust:nightly-2025-05-10:debug": 42
+   },
+   "crash_per_build": {
+    "rust:nightly-2024-09-03:debug": 42,
+    "rust:nightly-2025-05-10:debug": 42
+   }
+  },
+  "SACTOR-L1": {
+   "per_build": {
+    "rust:gpt-4o:nightly-2024-09-03:debug": 8,
+    "rust:gpt-4o:nightly-2024-09-03:release": 8,
+    "rust:gpt-4o:nightly-2025-05-10:debug": 8,
+    "rust:gpt-4o:nightly-2025-05-10:release": 8
+   },
+   "crash_per_build": {}
+  },
+  "SACTOR-L2": {
+   "per_build": {
+    "rust:gpt-4o:nightly-2024-09-03:debug": 19,
+    "rust:gpt-4o:nightly-2024-09-03:release": 19,
+    "rust:gpt-4o:nightly-2025-05-10:debug": 19,
+    "rust:gpt-4o:nightly-2025-05-10:release": 19
+   },
+   "crash_per_build": {}
+  }
+ },
+ "unclassified_ub_clean_divergences": [],
+ "ub_excluded": {
+  "libogg_cases_flagged": {
+   "bitwise": 0,
+   "framing": 1
+  },
+  "libogg_divergent_cases_excluded": {
+   "bitwise": 0,
+   "framing": 0
+  },
+  "crust_own_test_programs": 33,
+  "crust_own_test_cases_flagged": 9,
+  "crust_own_test_flagged_list": [
+   "2DPartInt:test1.o: san_clang: did not build",
+   "Simple-Sparsehash:test1.o: san_gcc: src/simple_sparsehash.c:163:6: runtime error: load of misaligned address 0x503000",
+   "c-string:test1.o: san_gcc: ==8306==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50200000003f a",
+   "c-aces:test1.o: o0: output differs from ref",
+   "carrays:test1.o: san_gcc: tests/../src/carrays.h:96:1: runtime error: load of misaligned address 0x7fff5cea",
+   "cissy:test2.o: san_gcc: ==10587==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50200000007a ",
+   "cissy:test3.o: san_gcc: ==10601==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50200000003a ",
+   "cset:test1.o: san_gcc: tests/test.c:9:3: runtime error: null pointer passed as argument 2, which is decl",
+   "libbeaufort:test1.o: san_gcc: ==19783==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50600000005e "
+  ],
+  "crust_own_test_divergent_excluded": [],
+  "crust_grid_divergent_inputs_excluded": 344,
+  "crust_grid_excluded_by_function": {
+   "Linear-Algebra-C:roundn": {
+    "inputs_x_builds": 4,
+    "example_c_ub": [
+     "o0: output differs from ref",
+     "o1: output differs from ref"
+    ]
+   },
+   "2DPartInt:find_col": {
+    "inputs_x_builds": 52,
+    "example_c_ub": [
+     "san_gcc: src/collisions.c:15:19: runtime error: -nan is outside the range of representable values of type 'int'",
+     "san_clang: no build"
+    ]
+   },
+   "2DPartInt:find_row": {
+    "inputs_x_builds": 56,
+    "example_c_ub": [
+     "san_gcc: src/collisions.c:25:19: runtime error: -nan is outside the range of representable values of type 'int'",
+     "san_clang: no build"
+    ]
+   },
+   "Holdem-Odds:indexOf": {
+    "inputs_x_builds": 4,
+    "example_c_ub": [
+     "o1: output differs from ref",
+     "san_gcc: ==1956==ERROR: AddressSanitizer: global-buffer-overflow on address 0x63fbd1dca021 at pc 0x63fbd1dc83fb bp 0x7ffe57d4ef60 sp 0x7ffe57d4ef50"
+    ]
+   },
+   "lib2bit:byte2base": {
+    "inputs_x_builds": 194,
+    "example_c_ub": [
+     "san_gcc: 2bit.c:59:22: runtime error: shift exponent -1018 is negative",
+     "san_clang: 2bit.c:59:22: runtime error: shift exponent -1018 is negative"
+    ]
+   },
+   "murmurhash_c:murmurhash": {
+    "inputs_x_builds": 24,
+    "example_c_ub": [
+     "o0: output differs from ref",
+     "o1: output differs from ref"
+    ]
+   },
+   "c-aces:xgcd": {
+    "inputs_x_builds": 6,
+    "example_c_ub": [
+     "san_gcc: src/Common.c:63:21: runtime error: signed integer overflow: 2 * 9223372032559808509 cannot be represented in type 'long int'",
+     "san_clang: src/Common.c:63:21: runtime error: signed integer overflow: 2 * 9223372032559808509 cannot be represented in type 'long'"
+    ]
+   },
+   "c-aces:randinverse": {
+    "inputs_x_builds": 4,
+    "example_c_ub": [
+     "san_gcc: src/Common.c:59:21: runtime error: signed integer overflow: 16 * 1122407308881060907 cannot be represented in type 'long int'",
+     "san_clang: src/Common.c:59:21: runtime error: signed integer overflow: 16 * 1122407308881060907 cannot be represented in type 'long'"
+    ]
+   }
+  }
+ },
+ "grid_ub_clean_divergent_inputs": 632,
+ "grid_within_float_tolerance": {
+  "count": 216,
+  "functions": [
+   "c-aces:normal_rand"
+  ],
+  "note": "relative tolerance 1e-6 (systems/vert/run_arrays.py); e.g. c-aces normal_rand uses std::f64::consts::PI where the C #defines PI 3.14159265 (max relative difference 7.5e-9)"
+ },
+ "grid_rust_timeouts_c_finished": {
+  "count": 0,
+  "detail": [],
+  "note": "Rust did not finish within 60 s on inputs where the -O2 C finished within 3 s; reviewed by hand (slow debug build vs hang), not sent to the UB checks"
+ },
+ "heldout": {
+  "libogg": {
+   "bitwise": {
+    "own_test": {
+     "exit_on_C": 0,
+     "api_calls_logged": 9093036,
+     "distinct_call_signatures": 1296,
+     "calls_meeting_defect_trigger": 0,
+     "trigger": "COND_B0"
+    },
+    "ours": {
+     "cases": 442,
+     "distinct_call_signatures": 11948,
+     "distinct_signatures_also_in_own": 130,
+     "cases_identical_to_own_sequence": 0,
+     "cases_with_every_call_in_own": 44,
+     "cases_with_trigger_call": 11
+    },
+    "exposing_cases_with_trigger_call": 8,
+    "own_inputs_through_our_comparison": {
+     "C_exit": 0,
+     "C_stdout_bytes": 0,
+     "rust": {
+      "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2024-09-03_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2024-09-03_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2025-05-10_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_bitwise_unidiomatic_nightly-2025-05-10_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      }
+     }
+    }
+   },
+   "framing": {
+    "own_test": {
+     "exit_on_C": 0,
+     "api_calls_logged": 654,
+     "distinct_call_signatures": 33,
+     "calls_meeting_defect_trigger": 0,
+     "trigger": "COND_F1"
+    },
+    "ours": {
+     "cases": 343,
+     "distinct_call_signatures": 89,
+     "distinct_signatures_also_in_own": 4,
+     "cases_identical_to_own_sequence": 0,
+     "cases_with_every_call_in_own": 0,
+     "cases_with_trigger_call": 19
+    },
+    "exposing_cases_with_trigger_call": 19,
+    "own_inputs_through_our_comparison": {
+     "C_exit": 0,
+     "C_stdout_bytes": 0,
+     "rust": {
+      "sactortest_gpt-4o_framing_unidiomatic_nightly-2024-09-03_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_framing_unidiomatic_nightly-2024-09-03_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_framing_unidiomatic_nightly-2025-05-10_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-4o_framing_unidiomatic_nightly-2025-05-10_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-5_framing_unidiomatic_nightly-2024-09-03_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-5_framing_unidiomatic_nightly-2024-09-03_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-5_framing_unidiomatic_nightly-2025-05-10_debug": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      },
+      "sactortest_gpt-5_framing_unidiomatic_nightly-2025-05-10_release": {
+       "exit": 0,
+       "agree_with_C": true,
+       "stdout_same": true,
+       "stderr_same": true
+      }
+     }
+    }
+   }
+  },
+  "crust_grid": {
+   "our_inputs": 2898,
+   "our_inputs_also_passed_by_own_tests": 71,
+   "per_sample": {
+    "Linear-Algebra-C": {
+     "exclusiveOr": {
+      "own_distinct_calls": 3,
+      "our_inputs": 4,
+      "our_inputs_in_own": 3
+     },
+     "roundn": {
+      "own_distinct_calls": 3,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     }
+    },
+    "2DPartInt": {
+     "find_col": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "find_row": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "find_square": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     }
+    },
+    "NandC": {
+     "bll": {
+      "own_distinct_calls": 0,
+      "our_inputs": 2,
+      "our_inputs_in_own": 0
+     },
+     "add_u4": {
+      "own_distinct_calls": 225,
+      "our_inputs": 80,
+      "our_inputs_in_own": 3
+     },
+     "sub_u4": {
+      "own_distinct_calls": 225,
+      "our_inputs": 80,
+      "our_inputs_in_own": 3
+     }
+    },
+    "btree-map": {
+     "min_size": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     }
+    },
+    "Holdem-Odds": {
+     "indexOf": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "CharToRank": {
+      "own_distinct_calls": 62,
+      "our_inputs": 17,
+      "our_inputs_in_own": 6
+     },
+     "CharToSuit": {
+      "own_distinct_calls": 61,
+      "our_inputs": 17,
+      "our_inputs_in_own": 6
+     },
+     "NewCard": {
+      "own_distinct_calls": 56,
+      "our_inputs": 80,
+      "our_inputs_in_own": 35
+     },
+     "NewCardFromChars": {
+      "own_distinct_calls": 2845,
+      "our_inputs": 80,
+      "our_inputs_in_own": 8
+     },
+     "NewCardFromString": {
+      "own_distinct_calls": 55,
+      "our_inputs": 20,
+      "our_inputs_in_own": 1
+     }
+    },
+    "c-string": {
+     "string_t_is_space_char": {
+      "own_distinct_calls": 0,
+      "our_inputs": 17,
+      "our_inputs_in_own": 0
+     }
+    },
+    "carrays": {
+     "gca_calc_GCD": {
+      "own_distinct_calls": 504,
+      "our_inputs": 80,
+      "our_inputs_in_own": 1
+     }
+    },
+    "file2str": {
+     "file2str": {
+      "own_distinct_calls": 0,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     }
+    },
+    "geofence": {
+     "lat2y_m": {
+      "own_distinct_calls": 0,
+      "our_inputs": 23,
+      "our_inputs_in_own": 0
+     },
+     "lon2x_m": {
+      "own_distinct_calls": 0,
+      "our_inputs": 23,
+      "our_inputs_in_own": 0
+     }
+    },
+    "gorilla-paper-encode": {
+     "bitslen": {
+      "own_distinct_calls": 0,
+      "our_inputs": 64,
+      "our_inputs_in_own": 0
+     },
+     "leading_zero64": {
+      "own_distinct_calls": 0,
+      "our_inputs": 64,
+      "our_inputs_in_own": 0
+     },
+     "trailing_zero64": {
+      "own_distinct_calls": 0,
+      "our_inputs": 64,
+      "our_inputs_in_own": 0
+     }
+    },
+    "hydra": {
+     "getch": {
+      "own_distinct_calls": 0,
+      "our_inputs": 1,
+      "our_inputs_in_own": 0
+     },
+     "ReadFile": {
+      "own_distinct_calls": 0,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     }
+    },
+    "leftpad": {
+     "leftpad": {
+      "own_distinct_calls": 13,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     }
+    },
+    "lib2bit": {
+     "byte2base": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "getByteMaskFromOffset": {
+      "own_distinct_calls": 0,
+      "our_inputs": 74,
+      "our_inputs_in_own": 0
+     }
+    },
+    "fs_c": {
+     "fs_rename": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_truncate": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_chown": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_lchown": {
+      "own_distinct_calls": 0,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_size": {
+      "own_distinct_calls": 0,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     },
+     "fs_read": {
+      "own_distinct_calls": 4,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     },
+     "fs_nread": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_write": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_nwrite": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_mkdir": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "fs_rmdir": {
+      "own_distinct_calls": 1,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     },
+     "fs_exists": {
+      "own_distinct_calls": 5,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     }
+    },
+    "murmurhash_c": {
+     "murmurhash": {
+      "own_distinct_calls": 19,
+      "our_inputs": 80,
+      "our_inputs_in_own": 1
+     }
+    },
+    "utf8": {
+     "is_utf8_char_boundary": {
+      "own_distinct_calls": 10,
+      "our_inputs": 20,
+      "our_inputs_in_own": 0
+     }
+    },
+    "morton": {
+     "morton": {
+      "own_distinct_calls": 4000003,
+      "our_inputs": 80,
+      "our_inputs_in_own": 1
+     },
+     "unmorton": {
+      "own_distinct_calls": 3999998,
+      "our_inputs": 64,
+      "our_inputs_in_own": 0
+     }
+    },
+    "c-aces": {
+     "normal_rand": {
+      "own_distinct_calls": 2,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "gcd": {
+      "own_distinct_calls": 9,
+      "our_inputs": 80,
+      "our_inputs_in_own": 1
+     },
+     "xgcd": {
+      "own_distinct_calls": 6,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "are_coprime": {
+      "own_distinct_calls": 1,
+      "our_inputs": 80,
+      "our_inputs_in_own": 0
+     },
+     "randrange": {
+      "own_distinct_calls": 15,
+      "our_inputs": 80,
+      "our_inputs_in_own": 1
+     },
+     "randinverse": {
+      "own_distinct_calls": 1,
+      "our_inputs": 64,
+      "our_inputs_in_own": 1
+     }
+    }
+   }
+  }
+ },
+ "harness_power": {
+  "libogg_mutation": {
+   "gpt-5/framing.c": {
+    "candidate_sites": 152,
+    "selected": 40,
+    "build_fail": 0,
+    "valid": 40,
+    "killed": 25
+   },
+   "gpt-4o/bitwise.c": {
+    "candidate_sites": 140,
+    "selected": 40,
+    "build_fail": 0,
+    "valid": 40,
+    "killed": 36
+   }
+  },
+  "crust_mutation": {
+   "morton": {
+    "candidate_sites": 0,
+    "selected": 0,
+    "build_fail": 0,
+    "valid": 0,
+    "gridded_functions": 2,
+    "killed_own_test": 0,
+    "killed_grid": 0,
+    "killed_either": 0
+   },
+   "NandC": {
+    "candidate_sites": 5,
+    "selected": 5,
+    "build_fail": 0,
+    "valid": 5,
+    "gridded_functions": 3,
+    "killed_own_test": 5,
+    "killed_grid": 5,
+    "killed_either": 5
+   },
+   "murmurhash_c": {
+    "candidate_sites": 0,
+    "selected": 0,
+    "build_fail": 0,
+    "valid": 0,
+    "gridded_functions": 1,
+    "killed_own_test": 0,
+    "killed_grid": 0,
+    "killed_either": 0
+   },
+   "utf8": {
+    "candidate_sites": 48,
+    "selected": 12,
+    "build_fail": 0,
+    "valid": 12,
+    "gridded_functions": 1,
+    "killed_own_test": 12,
+    "killed_grid": 0,
+    "killed_either": 12
+   },
+   "geofence": {
+    "candidate_sites": 21,
+    "selected": 12,
+    "build_fail": 0,
+    "valid": 12,
+    "gridded_functions": 2,
+    "killed_own_test": 6,
+    "killed_grid": 3,
+    "killed_either": 8
+   }
+  },
+  "real_defects_turn_harness_red": [
+   "CRUST grid",
+   "CRUST own-test comparison; CRUST grid",
+   "build",
+   "libogg bitwise driver",
+   "libogg framing driver"
+  ],
+  "survivor_review": {
+   "gpt-4o/bitwise.c": "4 survivors, all equivalent: oggpack_look/oggpackB_look/oggpack_read `bits > 24` -> `>=` read one more byte that the mask removes (lines 345, 375, 454); writecopy_helper growth test `>=` -> `>` (211) only changes when the buffer grows",
+   "gpt-5/framing.c": "15 survivors. 4 provably equivalent: flush_i `lacing_fill > 255` -> `>=` (maxvals unchanged, 2477); flush_i granule/pageno header loops `< 14`/`< 22` -> `<=` (the extra byte is overwritten by the serial number or the CRC, 2540/2558); ogg_sync_buffer `fill > 0` -> `>= 0` (memmove of 0 bytes, 2698). 10 change only internal capacity, compaction or overflow guards reachable only with sizes near INT_MAX/LONG_MAX, which no API return value shows on our inputs: initial body_storage 2199, _os_body_expand guards 2264/2268/2273, _os_lacing_expand 2290 and 2927, ogg_sync_buffer size guard 2709, pagein compaction 2891/2903, iovecin loop bound 2425 (writes one unused slot). 1 real gap: flush_i `acc > nfill` -> `>=` (2501); acc == nfill with >= 4 packets done is never generated",
+   "CRUST geofence": "4 survivors, all boundary comparisons in is_point_in_polygon (`<`/`>` -> `<=`/`>=`, lines 75, 83). That function takes a polygon pointer, so only the own test reaches it, and the own test does not tell these boundaries apart (not checked whether any is equivalent)",
+   "CRUST morton, murmurhash_c": "no relational/arithmetic operator sites (bitwise and wrapping-method code only)"
+  }
+ },
+ "units": [
+  {
+   "unit": "libogg gpt-4o bitwise.c unidiomatic",
+   "part": "libogg",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "items": {
+    "functions": 37,
+    "structs": 1,
+    "global_vars": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "libogg gpt-4o bitwise.c idiomatic",
+   "part": "libogg",
+   "style": "idiomatic",
+   "rust_source": "per-item files combined (structs, global_vars, functions; merged uses)",
+   "items": {
+    "functions": 18,
+    "structs": 1,
+    "global_vars": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "libogg gpt-5 bitwise.c unidiomatic",
+   "part": "libogg",
+   "style": "unidiomatic",
+   "rust_source": "per-item files combined (structs, global_vars, functions; merged uses)",
+   "items": {
+    "functions": 37,
+    "structs": 1,
+    "global_vars": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": false,
+    "nightly-2024-09-03:release": false,
+    "nightly-2025-05-10:debug": false,
+    "nightly-2025-05-10:release": false
+   },
+   "scope": "tested: build only (does not build -> S3)"
+  },
+  {
+   "unit": "libogg gpt-5 bitwise.c idiomatic",
+   "part": "libogg",
+   "style": "idiomatic",
+   "rust_source": "per-item files combined (structs, global_vars, functions; merged uses)",
+   "items": {
+    "functions": 29,
+    "structs": 1,
+    "global_vars": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "libogg gpt-4o framing.c unidiomatic",
+   "part": "libogg",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "items": {
+    "functions": 40,
+    "structs": 5,
+    "global_vars": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "libogg gpt-4o framing.c idiomatic",
+   "part": "libogg",
+   "style": "idiomatic",
+   "rust_source": "per-item files combined (structs, global_vars, functions; merged uses)",
+   "items": {
+    "functions": 23,
+    "structs": 5,
+    "global_vars": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "libogg gpt-5 framing.c unidiomatic",
+   "part": "libogg",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "items": {
+    "functions": 40,
+    "structs": 5,
+    "global_vars": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "libogg gpt-5 framing.c idiomatic",
+   "part": "libogg",
+   "style": "idiomatic",
+   "rust_source": "per-item files combined (structs, global_vars, functions; merged uses)",
+   "items": {
+    "functions": 31,
+    "structs": 5,
+    "global_vars": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench 2DPartInt unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 15,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 15,
+    "failure_info_success": 15
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench 2DPartInt idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 15,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 15,
+    "failure_info_success": 13
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench 42-Kocaeli-Printf unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 6,
+   "c_functions_defined": 8,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 7,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench CircularBuffer unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 11,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 11,
+    "failure_info_success": 11
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench CircularBuffer idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 6,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench Holdem-Odds unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 29,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 29,
+    "failure_info_success": 29
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench Holdem-Odds idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 2,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 29,
+    "failure_info_success": 2
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench Linear-Algebra-C unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 87,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 87,
+    "failure_info_success": 87
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench Linear-Algebra-C idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 39,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 44,
+    "failure_info_success": 39
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench NandC unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 12,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 12
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench NandC idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 12,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 0
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench Phills_DHT unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 6,
+   "c_functions_defined": 8,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench Simple-Sparsehash unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 20,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 20,
+    "failure_info_success": 20
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench Simple-Sparsehash idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 8,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 20,
+    "failure_info_success": 8
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench SimpleXML unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 20,
+   "c_functions_defined": 24,
+   "c_functions_without_rust": 4,
+   "failure_info": {
+    "failure_info_functions": 22,
+    "failure_info_success": 19
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench aes128-SIMD unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 12,
+   "c_functions_defined": 14,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 14,
+    "failure_info_success": 12
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench amp unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": 5,
+   "c_functions_without_rust": 1,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 4
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": false,
+    "nightly-2024-09-03:release": false,
+    "nightly-2025-05-10:debug": false,
+    "nightly-2025-05-10:release": false
+   },
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench approxidate unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 24,
+   "c_functions_defined": 28,
+   "c_functions_without_rust": 4,
+   "failure_info": {
+    "failure_info_functions": 28,
+    "failure_info_success": 24
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench avalanche unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 4
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench avalanche idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 3,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 3
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench bhshell unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 15,
+   "c_functions_defined": 17,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 17,
+    "failure_info_success": 15
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench bitset unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 14,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 14,
+    "failure_info_success": 14
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench bitset idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 7,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 14,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench bostree unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 11,
+   "c_functions_defined": 21,
+   "c_functions_without_rust": 10,
+   "failure_info": {
+    "failure_info_functions": 17,
+    "failure_info_success": 11
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench btree-map unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 19,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 19,
+    "failure_info_success": 19
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench btree-map idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 5,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 4
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench c-aces unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 51,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 51,
+    "failure_info_success": 51
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench c-aces idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 2,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 2,
+    "failure_info_success": 2
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench c-string unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 17,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 17,
+    "failure_info_success": 17
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench c-string idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 5,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 5
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench carrays unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 89,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 89,
+    "failure_info_success": 89
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench carrays idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 61,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 62,
+    "failure_info_success": 61
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench cfsm unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 2,
+   "c_functions_defined": 4,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 2,
+    "failure_info_success": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": false,
+    "nightly-2024-09-03:release": false,
+    "nightly-2025-05-10:debug": false,
+    "nightly-2025-05-10:release": false
+   },
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench chtrie unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 4
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench cissy unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 21,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 21,
+    "failure_info_success": 21
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench cissy idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": null,
+    "failure_info_success": null
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench clog unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 6,
+   "c_functions_defined": 19,
+   "c_functions_without_rust": 13,
+   "failure_info": {
+    "failure_info_functions": 19,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench cset unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 16,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 16,
+    "failure_info_success": 16
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench cset idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 5,
+    "failure_info_success": 4
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench csyncmers unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": 6,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 4
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench dict unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 3,
+   "c_functions_defined": 17,
+   "c_functions_without_rust": 14,
+   "failure_info": {
+    "failure_info_functions": 17,
+    "failure_info_success": 2
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench emlang unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 7,
+   "c_functions_defined": 43,
+   "c_functions_without_rust": 36,
+   "failure_info": {
+    "failure_info_functions": 43,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench expr unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": 12,
+   "c_functions_without_rust": 8,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 4
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench file2str unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 2,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 2,
+    "failure_info_success": 2
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench file2str idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 2,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 2,
+    "failure_info_success": 0
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench fs_c unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 25,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 25,
+    "failure_info_success": 25
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench fs_c idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 15,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 18,
+    "failure_info_success": 15
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench geofence unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 6,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 6
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench geofence idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 6,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 0
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench gfc unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 11,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 11,
+    "failure_info_success": 11
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench gfc idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 6,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 11,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench gorilla-paper-encode unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 22,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 22,
+    "failure_info_success": 22
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench gorilla-paper-encode idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 2,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 4,
+    "failure_info_success": 2
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench hydra unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 14,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 14,
+    "failure_info_success": 14
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench hydra idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 7,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 10,
+    "failure_info_success": 6
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench inversion_list unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 8,
+   "c_functions_defined": 47,
+   "c_functions_without_rust": 39,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 8
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": false,
+    "nightly-2024-09-03:release": false,
+    "nightly-2025-05-10:debug": false,
+    "nightly-2025-05-10:release": false
+   },
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench jccc unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 55,
+   "c_functions_defined": 62,
+   "c_functions_without_rust": 7,
+   "failure_info": {
+    "failure_info_functions": 58,
+    "failure_info_success": 55
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench leftpad unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 1,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 1,
+    "failure_info_success": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench leftpad idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 1,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 1,
+    "failure_info_success": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench lib2bit unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 22,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 22,
+    "failure_info_success": 22
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench lib2bit idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 3,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 22,
+    "failure_info_success": 3
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench libbase122 unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 8,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 8
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench libbase122 idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 3,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 5,
+    "failure_info_success": 3
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench libbeaufort unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 6,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 6
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench libbeaufort idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 6,
+    "failure_info_success": 3
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench libwecan unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 12,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 12
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench libwecan idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 12,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 0
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench morton unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 3,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 3,
+    "failure_info_success": 3
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench morton idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 3,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 3,
+    "failure_info_success": 3
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench murmurhash_c unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 1,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 1,
+    "failure_info_success": 0
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench murmurhash_c idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 1,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 1,
+    "failure_info_success": 1
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "not differentially tested (Rust-native API, no C ABI); builds"
+  },
+  {
+   "unit": "CRUST-Bench razz_simulation unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 14,
+   "c_functions_defined": 42,
+   "c_functions_without_rust": 28,
+   "failure_info": {
+    "failure_info_functions": 30,
+    "failure_info_success": 14
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench rhbloom unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 12,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 12,
+    "failure_info_success": 12
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench rhbloom idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 9,
+    "failure_info_success": 4
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench totp unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": null,
+   "functions_shipped": 7,
+   "c_functions_defined": 9,
+   "c_functions_without_rust": 2,
+   "failure_info": {
+    "failure_info_functions": 9,
+    "failure_info_success": 7
+   },
+   "builds": {},
+   "scope": "out: incomplete per-function set, no combined.rs"
+  },
+  {
+   "unit": "CRUST-Bench utf8 unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 13,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 13,
+    "failure_info_success": 13
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  },
+  {
+   "unit": "CRUST-Bench utf8 idiomatic",
+   "part": "CRUST-Bench",
+   "style": "idiomatic",
+   "rust_source": null,
+   "functions_shipped": 4,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 3
+   },
+   "builds": {},
+   "scope": "not differentially tested (Rust-native API, no C ABI)"
+  },
+  {
+   "unit": "CRUST-Bench vec unidiomatic",
+   "part": "CRUST-Bench",
+   "style": "unidiomatic",
+   "rust_source": "combined.rs",
+   "functions_shipped": 8,
+   "c_functions_defined": null,
+   "c_functions_without_rust": null,
+   "failure_info": {
+    "failure_info_functions": 8,
+    "failure_info_success": 8
+   },
+   "builds": {
+    "nightly-2024-09-03:debug": true,
+    "nightly-2024-09-03:release": true,
+    "nightly-2025-05-10:debug": true,
+    "nightly-2025-05-10:release": true
+   },
+   "scope": "tested: differential"
+  }
+ ],
+ "partial_sets_assembled_anyway": {
+  "amp": {
+   "builds": {
+    "unidiomatic:nightly-2024-09-03:debug": true,
+    "unidiomatic:nightly-2024-09-03:release": true,
+    "unidiomatic:nightly-2025-05-10:debug": true,
+    "unidiomatic:nightly-2025-05-10:release": true
+   },
+   "errors_or_link": [
+    [
+     "/usr/bin/ld: /build/crust/amp/c_ref/test1.o: in function `main':\ntest.c:(.text.startup+0x52): undefined reference to `amp_encode'\ncollect2: error: ld returned 1 exit status\n"
+    ]
+   ]
+  },
+  "cfsm": {
+   "builds": {
+    "unidiomatic:nightly-2024-09-03:debug": false,
+    "unidiomatic:nightly-2024-09-03:release": false,
+    "unidiomatic:nightly-2025-05-10:debug": false,
+    "unidiomatic:nightly-2025-05-10:release": false
+   },
+   "errors_or_link": [
+    [
+     "error[E0061]: this function takes 0 arguments but 1 argument was supplied"
+    ]
+   ]
+  },
+  "inversion_list": {
+   "builds": {
+    "unidiomatic:nightly-2024-09-03:debug": true,
+    "unidiomatic:nightly-2024-09-03:release": true,
+    "unidiomatic:nightly-2025-05-10:debug": true,
+    "unidiomatic:nightly-2025-05-10:release": true
+   },
+   "errors_or_link": [
+    [
+     "/usr/bin/ld: /build/crust/inversion_list/c_ref/test1.o: in function `main':\ntest-clone.c:(.text.startup+0x6b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-clone.c:(.text.startup+0x76): undefined reference to `inversion_list_clone'\n/usr/bin/ld: test-clone.c:(.text.startup+0xde): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+    ]
+   ]
+  }
+ }
+}

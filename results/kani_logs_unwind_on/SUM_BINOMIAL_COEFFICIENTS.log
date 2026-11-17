@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:941:31
+    |
+941 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+941 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:89:7
+   |
+89 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1066:4
+     |
+1066 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+
+warning: function `max` is never used
+    --> src/main.rs:1067:4
+     |
+1067 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1068:4
+     |
+1068 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+...
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/result.rs:681:22 in function std::result::Result::<i32, std::io::Error>::err
+
+Check 16738: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16739: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16740: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16741: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16742: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16743: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:63 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16744: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.7
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16745: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.8
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16746: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.9
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16747: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.10
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16748: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.11
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16749: std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp.pointer_dereference.12
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/cmp.rs:1560:70 in function std::cmp::impls::<impl std::cmp::PartialOrd for i8>::partial_cmp
+
+Check 16750: std::option::Option::<&u32>::cloned.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:1923:15 in function std::option::Option::<&u32>::cloned
+
+Check 16751: write_mem_i32.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: src/main.rs:141:13 in function write_mem_i32
+
+Check 16752: std::vec::Vec::<f32>::extend_with.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2708:13 in function std::vec::Vec::<f32>::extend_with
+
+
+SUMMARY:
+ ** 1 of 16752 failed (16751 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "/github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs", line 2708, in std::vec::Vec::<f32>::extend_with
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 8.477629s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u9 v1.0.1 (/tmp/kani_y91gf2_b/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.50s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

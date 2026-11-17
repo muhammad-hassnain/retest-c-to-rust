@@ -1,0 +1,203 @@
+
+running 1 test
+   Compiling libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling quote v1.0.33
+   Compiling cfg-if v1.0.0
+   Compiling anyhow v1.0.75
+   Compiling syn v2.0.37
+   Compiling thiserror v1.0.49
+   Compiling syn v1.0.109
+   Compiling thiserror-impl v1.0.49
+   Compiling cc v1.0.83
+   Compiling equivalent v1.0.1
+   Compiling hashbrown v0.14.1
+   Compiling indexmap v2.0.2
+   Compiling getrandom v0.2.10
+   Compiling toml_datetime v0.6.3
+   Compiling leb128 v0.2.5
+   Compiling winnow v0.5.15
+   Compiling toml_edit v0.19.15
+   Compiling wast v22.0.0
+   Compiling rand_core v0.6.4
+   Compiling dirs-sys v0.3.7
+   Compiling unicode-segmentation v1.10.1
+   Compiling log v0.4.20
+   Compiling once_cell v1.18.0
+   Compiling proc-macro-crate v1.3.1
+   Compiling witx v0.8.8
+   Compiling heck v0.3.3
+   Compiling dirs v4.0.0
+   Compiling backtrace v0.3.69
+   Compiling memchr v2.6.3
+   Compiling ppv-lite86 v0.2.17
+   Compiling gimli v0.28.0
+   Compiling adler v1.0.2
+   Compiling miniz_oxide v0.7.1
+   Compiling addr2line v0.21.0
+   Compiling tracing-core v0.1.31
+   Compiling rand_chacha v0.3.1
+   Compiling object v0.32.1
+   Compiling shellexpand v2.1.2
+   Compiling bolero-generator-derive v0.10.0
+   Compiling tracing-attributes v0.1.26
+   Compiling either v1.9.0
+   Compiling rustc-demangle v0.1.23
+   Compiling lazy_static v1.4.0
+   Compiling pin-project-lite v0.2.13
+   Compiling tracing v0.1.37
+   Compiling bolero-generator v0.10.0
+   Compiling wiggle-generate v0.20.0
+   Compiling rand v0.8.5
+   Compiling bolero-libfuzzer v0.10.0
+   Compiling getrandom v0.1.16
+   Compiling pretty-hex v0.3.0
+   Compiling bolero-engine v0.10.0
+   Compiling wiggle-macro v0.20.0
+   Compiling filetime v0.2.22
+   Compiling bitflags v1.3.2
+   Compiling cfg-if v0.1.10
+   Compiling wasi-common v0.20.0
+   Compiling yanix v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling wig v0.20.0
+   Compiling bolero v0.10.0
+   Compiling c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero v1.0.1 (/tmp/fzr_0t_9c8uu/p)
+warning: unused import: `bolero::check`
+   --> src/main.rs:764:5
+    |
+764 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:767:31
+    |
+767 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+767 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+767 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:767:59
+    |
+767 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+767 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+767 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:747:4
+    |
+747 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:748:4
+    |
+748 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:749:4
+    |
+749 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:750:4
+    |
+750 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:751:4
+    |
+751 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:767:60
+    |
+767 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero` (bin "c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 2m 10s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 1697843749
+INFO: Loaded 1 modules   (362417 inline 8-bit counters): 362417 [0x59396560f310, 0x593965667ac1), 
+INFO: Loaded 1 PC tables (362417 PCs): 362417 [0x593965667ac8,0x593965bef5d8), 
+INFO:        0 files found in /tmp/fzr_0t_9c8uu/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_0t_9c8uu/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 50Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+168430080
+
+Error: 
+panicked at 'called `Option::unwrap()` on a `None` value', src/main.rs:742:26
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==31293== ERROR: libFuzzer: deadly signal
+    #0 0x593963f3baa1  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xa67aa1) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #1 0x593964b142be  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x16402be) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #2 0x593964b1f849  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x164b849) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #3 0x75ad07cef4af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x75ad07d4391b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x75ad07cef405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x75ad07cd57f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x593965161566  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x1c8d566) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #8 0x593963e95d46  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x9c1d46) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #9 0x593963fe2ea9  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xb0eea9) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #10 0x593964aec89e  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x161889e) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #11 0x593964b1fda5  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x164bda5) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #12 0x593964b248f3  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x16508f3) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #13 0x593964b25828  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x1651828) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #14 0x593964b27b27  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x1653b27) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #15 0x593964afb0b2  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x16270b2) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #16 0x593964aecbf6  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x1618bf6) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #17 0x593963f87461  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xab3461) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #18 0x593963fe1db7  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xb0ddb7) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #19 0x593963fefa91  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xb1ba91) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #20 0x593963f8d215  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0xab9215) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #21 0x593964ad324e  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x15ff24e) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #22 0x593964ad2241  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x15fe241) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #23 0x593964a957a3  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x15c17a3) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #24 0x593964a9be5a  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x15c7e5a) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #25 0x59396515ff54  (/tmp/fzr_0t_9c8uu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f+0x1c8bf54) (BuildId: 23b28758254abc6e8186c5fc7f7cef26ea7b4a52)
+    #26 0x75ad07d419e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x75ad07dd2a13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 2 CrossOver-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0xa,0xa,0xa,
+\012\012\012\012
+artifact_prefix='/tmp/fzr_0t_9c8uu/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_0t_9c8uu/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-3f3d2d8955322f325af6db2238355fa07007ebd9
+Base64: CgoKCg==
+error: process exited with status 77

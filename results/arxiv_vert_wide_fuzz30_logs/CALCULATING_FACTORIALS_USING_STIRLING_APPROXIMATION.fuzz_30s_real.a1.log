@@ -1,0 +1,86 @@
+warning: unused import: `bolero::check`
+    --> src/main.rs:1510:5
+     |
+1510 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+    --> src/main.rs:1513:31
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                  ^   ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+1513 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1513 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+     |
+
+warning: unnecessary parentheses around pattern
+    --> src/main.rs:1513:59
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                              ^       ^
+     |
+help: remove these parentheses
+     |
+1513 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1513 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+     |
+
+warning: value assigned to `z` is never read
+    --> src/main.rs:1504:13
+     |
+1504 |     let mut z =0.0;
+     |             ^
+     |
+     = help: maybe it is overwritten before being read?
+     = note: `#[warn(unused_assignments)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1492:4
+     |
+1492 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1493:4
+     |
+1493 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1494:4
+     |
+1494 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1495:4
+     |
+1495 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1496:4
+     |
+1496 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1513:60
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero` (bin "c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero" test) generated 10 warnings (run `cargo fix --bin "c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0)
+error: process exited with no status code

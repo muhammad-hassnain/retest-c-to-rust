@@ -1,0 +1,83 @@
+warning: unused import: `bolero::check`
+   --> src/main.rs:601:5
+    |
+601 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:604:31
+    |
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+604 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+604 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:604:59
+    |
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+604 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+604 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:581:4
+    |
+581 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:582:4
+    |
+582 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:583:4
+    |
+583 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:584:4
+    |
+584 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:585:4
+    |
+585 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `N` should have a snake case name
+   --> src/main.rs:589:11
+    |
+589 | fn f_gold(N: i32) -> i32 {
+    |           ^ help: convert the identifier to snake case: `n`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:604:60
+    |
+604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+
+warning: `c_transcoder_maximum_games_played_winner_out-rwasm-bolero` (bin "c_transcoder_maximum_games_played_winner_out-rwasm-bolero" test) generated 10 warnings (run `cargo fix --bin "c_transcoder_maximum_games_played_winner_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)
+error: process exited with no status code

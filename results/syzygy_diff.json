@@ -1,0 +1,502 @@
+{
+  "summary": {
+    "util": "zopfli",
+    "n_cases": 30,
+    "assessable": 30,
+    "not_assessable": 0,
+    "mismatches": 0,
+    "file_tree_divergences": 0,
+    "agree": 30,
+    "held_out_pass_rate": 1.0,
+    "stderr_divergences": 15,
+    "stderr_only_divergences": 15,
+    "any_divergences": 15,
+    "any_agree_rate": 0.5
+  },
+  "sanity": {
+    "status": "compiled",
+    "caught": true
+  },
+  "verdicts": [
+    {
+      "id": "zopfli-0000",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Original Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOrig"
+      }
+    },
+    {
+      "id": "zopfli-0001",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Original Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOrig"
+      }
+    },
+    {
+      "id": "zopfli-0002",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Original Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOriginal Size: 0, Deflate: 0, Compression: 0.00%\nOrig"
+      }
+    },
+    {
+      "id": "zopfli-0003",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0004",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Iteration 0: 93 bit\ncompressed block size: 2 (0k) (unc: 1)\nOriginal Size: 1, Deflate: 3, Compression: 1844674407370955161600.00%\ncompressed block size: 2 (0k) (unc: 1)\nOriginal Size: 1, Deflate: 3, Co"
+      }
+    },
+    {
+      "id": "zopfli-0005",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0006",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0007",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Iteration 0: 94 bit\ncompressed block size: 3 (0k) (unc: 2)\nOriginal Size: 2, Deflate: 4, Compression: 922337203685477580800.00%\ncompressed block size: 3 (0k) (unc: 2)\nOriginal Size: 2, Deflate: 4, Com"
+      }
+    },
+    {
+      "id": "zopfli-0008",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0009",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0010",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Iteration 0: 110 bit\nIteration 12: 99 bit\ncompressed block size: 3 (0k) (unc: 7)\nOriginal Size: 7, Deflate: 4, Compression: 42.86%\ncompressed block size: 3 (0k) (unc: 7)\nOriginal Size: 7, Deflate: 4, "
+      }
+    },
+    {
+      "id": "zopfli-0011",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0012",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0013",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "Iteration 0: 127 bit\ncompressed block size: 6 (0k) (unc: 31)\nOriginal Size: 31, Deflate: 7, Compression: 77.42%\ncompressed block size: 6 (0k) (unc: 31)\nOriginal Size: 31, Deflate: 7, Compression: 77.4"
+      }
+    },
+    {
+      "id": "zopfli-0014",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0015",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0016",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "block split points: (hex:)\nIteration 0: 160 bit\ncompressed block size: 16 (0k) (unc: 100)\nOriginal Size: 100, Deflate: 17, Compression: 83.00%\ncompressed block size: 16 (0k) (unc: 100)\nOriginal Size: "
+      }
+    },
+    {
+      "id": "zopfli-0017",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0018",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0019",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "block split points: 511 (hex: 1ff)\nIteration 0: 409 bit\nIteration 0: 101 bit\ntreesize: 15\ncompressed block size: 36 (0k) (unc: 511)\ncompressed block size: 2 (0k) (unc: 1)\nOriginal Size: 512, Deflate: "
+      }
+    },
+    {
+      "id": "zopfli-0020",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0021",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "block split points: (hex:)\nIteration 0: 10514 bit\nOriginal Size: 1282, Deflate: 1287, Compression: 1438903593893100800.00%\ncompressed block size: 1355 (1k) (unc: 1282)\nOriginal Size: 1282, Deflate: 13",
+        "sut_stderr": "block split points: (hex:)\nIteration 0: 16696 bit\nOriginal Size: 2048, Deflate: 2053, Compression: 900719925474099200.00%\ncompressed block size: 2163 (2k) (unc: 2048)\nOriginal Size: 2048, Deflate: 216"
+      }
+    },
+    {
+      "id": "zopfli-0022",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "block split points: (hex:)\nIteration 0: 1509 bit\ntreesize: 20\ncompressed block size: 168 (0k) (unc: 2048)\nOriginal Size: 2048, Deflate: 189, Compression: 90.77%\ncompressed block size: 318 (0k) (unc: 2"
+      }
+    },
+    {
+      "id": "zopfli-0023",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0024",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "block split points: (hex:)\nIteration 0: 10514 bit\nOriginal Size: 1282, Deflate: 1287, Compression: 1438903593893100800.00%\ncompressed block size: 1355 (1k) (unc: 1282)\nOriginal Size: 1282, Deflate: 13",
+        "sut_stderr": "block split points: (hex:)\nIteration 0: 65841 bit\nOriginal Size: 8192, Deflate: 8197, Compression: 225179981368524800.00%\ncompressed block size: 8645 (8k) (unc: 8192)\nOriginal Size: 8192, Deflate: 864"
+      }
+    },
+    {
+      "id": "zopfli-0025",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "block split points: 2143 3401 (hex: 85f d49)\nIteration 0: 1566 bit\nIteration 0: 925 bit\nIteration 0: 984 bit\nblock split points: 2143 3401 (hex: 85f d49)\ntreesize: 20\ncompressed block size: 175 (0k) ("
+      }
+    },
+    {
+      "id": "zopfli-0026",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    },
+    {
+      "id": "zopfli-0027",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "block split points: (hex:)\nIteration 0: 10514 bit\nOriginal Size: 1282, Deflate: 1287, Compression: 1438903593893100800.00%\ncompressed block size: 1355 (1k) (unc: 1282)\nOriginal Size: 1282, Deflate: 13",
+        "sut_stderr": "block split points: (hex:)\nIteration 0: 262470 bit\nIteration 8: 262466 bit\nOriginal Size: 32768, Deflate: 32773, Compression: 56294995342131200.00%\ncompressed block size: 34569 (33k) (unc: 32768)\nOrig"
+      }
+    },
+    {
+      "id": "zopfli-0028",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "mismatch": false,
+      "stderr_divergence": true,
+      "any_divergence": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false,
+      "stderr_detail": {
+        "oracle_stderr": "Iteration 0: 91 bit\nOriginal Size: 0, Deflate: 2, Compression: inf%\ncompressed block size: 1 (0k) (unc: 0)\nOriginal Size: 0, Deflate: 2, Compression: inf%\nOriginal Size: 0, Deflate: 5, Compression: in",
+        "sut_stderr": "block split points: 2143 3842 (hex: 85f f02)\nIteration 0: 1566 bit\nIteration 0: 1243 bit\nIteration 0: 1939 bit\nblock split points: 2143 3842 (hex: 85f f02)\ntreesize: 20\ncompressed block size: 175 (0k)"
+      }
+    },
+    {
+      "id": "zopfli-0029",
+      "argv": [],
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "mismatch": false,
+      "stderr_divergence": false,
+      "any_divergence": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "timed_out": false
+    }
+  ]
+}

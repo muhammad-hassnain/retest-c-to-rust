@@ -1,0 +1,1656 @@
+{
+ "about": "arXiv issues.md 47. VERT's pinned rustc (nightly-2023-07-29, artifacts/vert/benchmark/rust-toolchain.toml) vs the primary's 1.86.0, same session, same image, on grid v2, for the 16 functions whose C f_gold returns long / long long (run.py --wide-int; baseline results/arxiv_vert_diff_grid2_wide.json). 13 of them build and are tested in the baseline; 8 have value divergences there.",
+ "script": "systems/vert/arxiv_wide_pinned.py (wraps systems/vert/toolchain_pinned.py --wide-int --only, which calls systems/vert/run.py test_function(..., wide_int=True) unchanged)",
+ "scalar": {
+  "baseline": "results/arxiv_vert_diff_grid2_wide.json",
+  "grid": "v2 (systems/enumerate_inputs.py grid='v2', cap 80, non-negative, |x| <= 512)",
+  "functions_run": 16,
+  "tested_in_baseline": 13,
+  "compile_nightly": {
+   "rust_build_ok_among_in_scope": 13,
+   "rust_build_fail": 3,
+   "rust_build_fail_functions": [
+    "SUM_PAIRWISE_PRODUCTS_2",
+    "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+    "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1"
+   ],
+   "rust_build_errors": {
+    "SUM_PAIRWISE_PRODUCTS_2": {
+     "rc": 1,
+     "errors": [
+      "error[E0308]: mismatched types",
+      "error: aborting due to previous error"
+     ]
+    },
+    "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS": {
+     "rc": 1,
+     "errors": [
+      "error[E0308]: mismatched types",
+      "error: aborting due to previous error"
+     ]
+    },
+    "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1": {
+     "rc": 1,
+     "errors": [
+      "error[E0252]: the name `i32` is defined multiple times",
+      "error: aborting due to previous error"
+     ]
+    }
+   }
+  },
+  "compile_control_1.86.0": {
+   "rust_build_ok_among_in_scope": 13,
+   "rust_build_fail": 3,
+   "rust_build_fail_functions": [
+    "SUM_PAIRWISE_PRODUCTS_2",
+    "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+    "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1"
+   ],
+   "rust_build_errors": {
+    "SUM_PAIRWISE_PRODUCTS_2": {
+     "rc": 1,
+     "errors": [
+      "error[E0308]: mismatched types",
+      "error: aborting due to 1 previous error"
+     ]
+    },
+    "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS": {
+     "rc": 1,
+     "errors": [
+      "error[E0308]: mismatched types",
+      "error: aborting due to 1 previous error"
+     ]
+    },
+    "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1": {
+     "rc": 1,
+     "errors": [
+      "error[E0252]: the name `i32` is defined multiple times",
+      "error: aborting due to 1 previous error"
+     ]
+    }
+   }
+  },
+  "verdict_diffs_nightly": {
+   "primary": {
+    "baseline_file": "results/arxiv_vert_diff_grid2_wide.json",
+    "baseline_provenance": null,
+    "functions_compared": 16,
+    "verdict_changes": [],
+    "n_verdict_changes": 0,
+    "value_bug_in_both_but_different_smallest_samples": []
+   },
+   "control_1.86.0": {
+    "baseline_file": "../scratch/wide_scalar_control_1.86.0.json",
+    "baseline_provenance": {
+     "script": "systems/vert/toolchain_pinned.py",
+     "wraps": "systems/vert/run.py",
+     "command": "RUSTUP_TOOLCHAIN=1.86.0 python3 systems/vert/toolchain_pinned.py --harness scalar --out /scratch/wide_scalar_control_1.86.0.json --baseline results/arxiv_vert_diff_grid2_wide.json --jobs 4 --grid v2 --wide-int --only NUMBER_N_DIGIT_STEPPING_NUMBERS,DICE_THROW_PROBLEM_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,SUM_PAIRWISE_PRODUCTS_2,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER,COUNT_DIGITS_FACTORIAL_SET_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+     "harness_args": {
+      "n": 80,
+      "legacy": false,
+      "nonneg": true,
+      "max_abs": 512,
+      "grid": "v2",
+      "wide_int": true
+     },
+     "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+     "git_dirty_note": "working tree: 40 uncommitted paths + this run's new files; harness files used changed vs HEAD: systems/vert/run.py (opt-in --wide-int/--only), systems/vert/toolchain_pinned.py (opt-in --wide-int)",
+     "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+     "arch": "aarch64",
+     "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+     "toolchains": {
+      "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)\nbinary: rustc\ncommit-hash: 05f9846f893b09a1be1fc8560e33fc3c815cfecb\ncommit-date: 2025-03-31\nhost: aarch64-unknown-linux-gnu\nrelease: 1.86.0\nLLVM version: 19.1.7",
+      "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+      "RUSTUP_TOOLCHAIN": "1.86.0",
+      "clang_on_PATH": null
+     },
+     "jobs": 4,
+     "date_start_utc": "2026-11-17T16:00:29.180742+00:00",
+     "date_end_utc": "2026-11-17T16:01:57.096510+00:00"
+    },
+    "functions_compared": 16,
+    "verdict_changes": [],
+    "n_verdict_changes": 0,
+    "value_bug_in_both_but_different_smallest_samples": []
+   }
+  },
+  "verdict_diff_control_vs_baseline": {
+   "baseline_file": "results/arxiv_vert_diff_grid2_wide.json",
+   "baseline_provenance": null,
+   "functions_compared": 16,
+   "verdict_changes": [],
+   "n_verdict_changes": 0,
+   "value_bug_in_both_but_different_smallest_samples": []
+  },
+  "verdicts_nightly": {
+   "NUMBER_N_DIGIT_STEPPING_NUMBERS": "value_bug",
+   "DICE_THROW_PROBLEM_1": "value_bug",
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1": "ub_only",
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE": "agree",
+   "EFFICIENT_WAY_TO_MULTIPLY_WITH_7": "agree",
+   "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1": "rust-build-fail",
+   "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO": "ub_only",
+   "SUM_PAIRWISE_PRODUCTS_2": "rust-build-fail",
+   "SUM_PAIRWISE_PRODUCTS": "value_bug",
+   "SUM_PAIRWISE_PRODUCTS_1": "value_bug",
+   "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X": "agree",
+   "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION": "value_bug",
+   "FIND_LARGEST_PRIME_FACTOR_NUMBER": "value_bug",
+   "COUNT_DIGITS_FACTORIAL_SET_2": "value_bug",
+   "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS": "rust-build-fail",
+   "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS": "value_bug"
+  },
+  "verdicts_control_1.86.0": {
+   "NUMBER_N_DIGIT_STEPPING_NUMBERS": "value_bug",
+   "DICE_THROW_PROBLEM_1": "value_bug",
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1": "ub_only",
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE": "agree",
+   "EFFICIENT_WAY_TO_MULTIPLY_WITH_7": "agree",
+   "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1": "rust-build-fail",
+   "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO": "ub_only",
+   "SUM_PAIRWISE_PRODUCTS_2": "rust-build-fail",
+   "SUM_PAIRWISE_PRODUCTS": "value_bug",
+   "SUM_PAIRWISE_PRODUCTS_1": "value_bug",
+   "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X": "agree",
+   "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION": "value_bug",
+   "FIND_LARGEST_PRIME_FACTOR_NUMBER": "value_bug",
+   "COUNT_DIGITS_FACTORIAL_SET_2": "value_bug",
+   "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS": "rust-build-fail",
+   "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS": "value_bug"
+  },
+  "per_function_count_differences": [],
+  "planned_ledger_rows": [
+   {
+    "defect_id": "VERT-NUMBER_N_DIGIT_STEPPING_NUMBERS-1",
+    "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 3,
+      "rust_panic_c_ok": 0,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 3,
+      "rust_panic_c_ok": 0,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 3,
+      "rust_panic_c_ok": 0,
+      "ub_div": 58,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       31
+      ],
+      "c": "2620797529",
+      "rust": "-1674169767"
+     },
+     {
+      "in": [
+       32
+      ],
+      "c": "5029557817",
+      "rust": "734590521"
+     },
+     {
+      "in": [
+       33
+      ],
+      "c": "9651169213",
+      "rust": "1061234621"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-DICE_THROW_PROBLEM_1-1",
+    "func": "DICE_THROW_PROBLEM_1",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 80,
+      "value_div": 2,
+      "rust_panic_c_ok": 0,
+      "ub_div": 11,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 80,
+      "value_div": 2,
+      "rust_panic_c_ok": 0,
+      "ub_div": 11,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 80,
+      "value_div": 2,
+      "rust_panic_c_ok": 0,
+      "ub_div": 11,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       257,
+       15,
+       64
+      ],
+      "c": "37387265592825",
+      "rust": "-424718855"
+     },
+     {
+      "in": [
+       128,
+       7,
+       512
+      ],
+      "c": "1884153039916",
+      "rust": "-1337603028"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS-1",
+    "func": "SUM_PAIRWISE_PRODUCTS",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-SUM_PAIRWISE_PRODUCTS_1-1",
+    "func": "SUM_PAIRWISE_PRODUCTS_1",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 8,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION-1",
+    "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 90,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 90,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 90,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       14
+      ],
+      "c": "90420300490",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "1360989424211",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       16
+      ],
+      "c": "21849965489916",
+      "rust": "2147483647"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-FIND_LARGEST_PRIME_FACTOR_NUMBER-1",
+    "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       9
+      ],
+      "c": "3",
+      "rust": "9"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "5",
+      "rust": "15"
+     },
+     {
+      "in": [
+       18
+      ],
+      "c": "3",
+      "rust": "9"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-COUNT_DIGITS_FACTORIAL_SET_2-1",
+    "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 97,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 97,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 97,
+      "rust_panic_c_ok": 0,
+      "ub_div": 0,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       3
+      ],
+      "c": "1",
+      "rust": "2"
+     },
+     {
+      "in": [
+       4
+      ],
+      "c": "2",
+      "rust": "4"
+     },
+     {
+      "in": [
+       5
+      ],
+      "c": "3",
+      "rust": "5"
+     }
+    ],
+    "value_samples_equal_control": true
+   },
+   {
+    "defect_id": "VERT-COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS-1",
+    "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+    "severity": "S1",
+    "count_status": "planned (not yet in results/defect_ledger.json)",
+    "shows_in_baseline": true,
+    "shows_under_control_1.86.0": true,
+    "shows_under_nightly": true,
+    "verdict_control_1.86.0": "value_bug",
+    "verdict_nightly": "value_bug",
+    "counts": {
+     "baseline": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 76,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "control_1.86.0": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 76,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     },
+     "nightly": {
+      "status": "tested",
+      "cases": 100,
+      "value_div": 9,
+      "rust_panic_c_ok": 0,
+      "ub_div": 76,
+      "timeout_div": 0,
+      "rust_hang": 0,
+      "san_infra": 0
+     }
+    },
+    "value_samples_nightly": [
+     {
+      "in": [
+       25
+      ],
+      "c": "4478554083",
+      "rust": "183586787"
+     },
+     {
+      "in": [
+       29
+      ],
+      "c": "152139002499",
+      "rust": "1815147139"
+     },
+     {
+      "in": [
+       31
+      ],
+      "c": "886731088897",
+      "rust": "1967825921"
+     }
+    ],
+    "value_samples_equal_control": true
+   }
+  ],
+  "rows_nightly": [
+   {
+    "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 3,
+    "rust_panic_c_ok": 0,
+    "ub_div": 58,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       31
+      ],
+      "c": "2620797529",
+      "rust": "-1674169767"
+     },
+     {
+      "in": [
+       32
+      ],
+      "c": "5029557817",
+      "rust": "734590521"
+     },
+     {
+      "in": [
+       33
+      ],
+      "c": "9651169213",
+      "rust": "1061234621"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "DICE_THROW_PROBLEM_1",
+    "status": "tested",
+    "nargs": 3,
+    "cases": 80,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 2,
+    "rust_panic_c_ok": 0,
+    "ub_div": 11,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       257,
+       15,
+       64
+      ],
+      "c": "37387265592825",
+      "rust": "-424718855"
+     },
+     {
+      "in": [
+       128,
+       7,
+       512
+      ],
+      "c": "1884153039916",
+      "rust": "-1337603028"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 5,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO",
+    "status": "tested",
+    "nargs": 3,
+    "cases": 80,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 2,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_2",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_1",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+    "status": "tested",
+    "nargs": 2,
+    "cases": 80,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long int",
+    "san": true,
+    "msan": false,
+    "alt": false,
+    "value_div": 90,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       14
+      ],
+      "c": "90420300490",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "1360989424211",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       16
+      ],
+      "c": "21849965489916",
+      "rust": "2147483647"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       9
+      ],
+      "c": "3",
+      "rust": "9"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "5",
+      "rust": "15"
+     },
+     {
+      "in": [
+       18
+      ],
+      "c": "3",
+      "rust": "9"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": false,
+    "value_div": 97,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       3
+      ],
+      "c": "1",
+      "rust": "2"
+     },
+     {
+      "in": [
+       4
+      ],
+      "c": "2",
+      "rust": "4"
+     },
+     {
+      "in": [
+       5
+      ],
+      "c": "3",
+      "rust": "5"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "ub_div": 76,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       25
+      ],
+      "c": "4478554083",
+      "rust": "183586787"
+     },
+     {
+      "in": [
+       29
+      ],
+      "c": "152139002499",
+      "rust": "1815147139"
+     },
+     {
+      "in": [
+       31
+      ],
+      "c": "886731088897",
+      "rust": "1967825921"
+     }
+    ],
+    "rust_panic_samples": []
+   }
+  ],
+  "rows_control_1.86.0": [
+   {
+    "func": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 3,
+    "rust_panic_c_ok": 0,
+    "ub_div": 58,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       31
+      ],
+      "c": "2620797529",
+      "rust": "-1674169767"
+     },
+     {
+      "in": [
+       32
+      ],
+      "c": "5029557817",
+      "rust": "734590521"
+     },
+     {
+      "in": [
+       33
+      ],
+      "c": "9651169213",
+      "rust": "1061234621"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "DICE_THROW_PROBLEM_1",
+    "status": "tested",
+    "nargs": 3,
+    "cases": 80,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 2,
+    "rust_panic_c_ok": 0,
+    "ub_div": 11,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       257,
+       15,
+       64
+      ],
+      "c": "37387265592825",
+      "rust": "-424718855"
+     },
+     {
+      "in": [
+       128,
+       7,
+       512
+      ],
+      "c": "1884153039916",
+      "rust": "-1337603028"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 5,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO",
+    "status": "tested",
+    "nargs": 3,
+    "cases": 80,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 2,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_2",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_PAIRWISE_PRODUCTS_1",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 8,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       381
+      ],
+      "c": "2657063266",
+      "rust": "-1637904030"
+     },
+     {
+      "in": [
+       414
+      ],
+      "c": "3701703720",
+      "rust": "-593263576"
+     },
+     {
+      "in": [
+       446
+      ],
+      "c": "4982986736",
+      "rust": "688019440"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+    "status": "tested",
+    "nargs": 2,
+    "cases": 80,
+    "c_return": "long long int",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long int",
+    "san": true,
+    "msan": false,
+    "alt": false,
+    "value_div": 90,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       14
+      ],
+      "c": "90420300490",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "1360989424211",
+      "rust": "2147483647"
+     },
+     {
+      "in": [
+       16
+      ],
+      "c": "21849965489916",
+      "rust": "2147483647"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "FIND_LARGEST_PRIME_FACTOR_NUMBER",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       9
+      ],
+      "c": "3",
+      "rust": "9"
+     },
+     {
+      "in": [
+       15
+      ],
+      "c": "5",
+      "rust": "15"
+     },
+     {
+      "in": [
+       18
+      ],
+      "c": "3",
+      "rust": "9"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "COUNT_DIGITS_FACTORIAL_SET_2",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long long",
+    "san": true,
+    "msan": false,
+    "alt": false,
+    "value_div": 97,
+    "rust_panic_c_ok": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       3
+      ],
+      "c": "1",
+      "rust": "2"
+     },
+     {
+      "in": [
+       4
+      ],
+      "c": "2",
+      "rust": "4"
+     },
+     {
+      "in": [
+       5
+      ],
+      "c": "3",
+      "rust": "5"
+     }
+    ],
+    "rust_panic_samples": []
+   },
+   {
+    "func": "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+    "status": "rust-build-fail"
+   },
+   {
+    "func": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+    "status": "tested",
+    "nargs": 1,
+    "cases": 100,
+    "c_return": "long",
+    "san": true,
+    "msan": false,
+    "alt": true,
+    "value_div": 9,
+    "rust_panic_c_ok": 0,
+    "ub_div": 76,
+    "timeout_div": 0,
+    "san_infra": 0,
+    "rust_hang": 0,
+    "value_samples": [
+     {
+      "in": [
+       25
+      ],
+      "c": "4478554083",
+      "rust": "183586787"
+     },
+     {
+      "in": [
+       29
+      ],
+      "c": "152139002499",
+      "rust": "1815147139"
+     },
+     {
+      "in": [
+       31
+      ],
+      "c": "886731088897",
+      "rust": "1967825921"
+     }
+    ],
+    "rust_panic_samples": []
+   }
+  ],
+  "provenance_nightly": {
+   "script": "systems/vert/toolchain_pinned.py",
+   "wraps": "systems/vert/run.py",
+   "command": "RUSTUP_TOOLCHAIN=nightly-2023-07-29 python3 systems/vert/toolchain_pinned.py --harness scalar --out /scratch/wide_scalar_nightly.json --baseline results/arxiv_vert_diff_grid2_wide.json --jobs 4 --grid v2 --wide-int --only NUMBER_N_DIGIT_STEPPING_NUMBERS,DICE_THROW_PROBLEM_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,SUM_PAIRWISE_PRODUCTS_2,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER,COUNT_DIGITS_FACTORIAL_SET_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS --extra-baseline control_1.86.0=/scratch/wide_scalar_control_1.86.0.json --embed-control /scratch/wide_scalar_control_1.86.0.json",
+   "harness_args": {
+    "n": 80,
+    "legacy": false,
+    "nonneg": true,
+    "max_abs": 512,
+    "grid": "v2",
+    "wide_int": true
+   },
+   "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+   "git_dirty_note": "working tree: 40 uncommitted paths + this run's new files; harness files used changed vs HEAD: systems/vert/run.py (opt-in --wide-int/--only), systems/vert/toolchain_pinned.py (opt-in --wide-int)",
+   "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+   "arch": "aarch64",
+   "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+   "toolchains": {
+    "rustc": "rustc 1.73.0-nightly (04abc370b 2023-07-28)\nbinary: rustc\ncommit-hash: 04abc370b9f3855b28172b65a7f7d5a433f41412\ncommit-date: 2023-07-28\nhost: aarch64-unknown-linux-gnu\nrelease: 1.73.0-nightly\nLLVM version: 16.0.5",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "RUSTUP_TOOLCHAIN": "nightly-2023-07-29",
+    "clang_on_PATH": null
+   },
+   "jobs": 4,
+   "date_start_utc": "2026-11-17T16:01:57.378313+00:00",
+   "date_end_utc": "2026-11-17T16:03:25.940916+00:00"
+  },
+  "provenance_control_1.86.0": {
+   "script": "systems/vert/toolchain_pinned.py",
+   "wraps": "systems/vert/run.py",
+   "command": "RUSTUP_TOOLCHAIN=1.86.0 python3 systems/vert/toolchain_pinned.py --harness scalar --out /scratch/wide_scalar_control_1.86.0.json --baseline results/arxiv_vert_diff_grid2_wide.json --jobs 4 --grid v2 --wide-int --only NUMBER_N_DIGIT_STEPPING_NUMBERS,DICE_THROW_PROBLEM_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,SUM_PAIRWISE_PRODUCTS_2,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER,COUNT_DIGITS_FACTORIAL_SET_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+   "harness_args": {
+    "n": 80,
+    "legacy": false,
+    "nonneg": true,
+    "max_abs": 512,
+    "grid": "v2",
+    "wide_int": true
+   },
+   "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+   "git_dirty_note": "working tree: 40 uncommitted paths + this run's new files; harness files used changed vs HEAD: systems/vert/run.py (opt-in --wide-int/--only), systems/vert/toolchain_pinned.py (opt-in --wide-int)",
+   "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+   "arch": "aarch64",
+   "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+   "toolchains": {
+    "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)\nbinary: rustc\ncommit-hash: 05f9846f893b09a1be1fc8560e33fc3c815cfecb\ncommit-date: 2025-03-31\nhost: aarch64-unknown-linux-gnu\nrelease: 1.86.0\nLLVM version: 19.1.7",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "RUSTUP_TOOLCHAIN": "1.86.0",
+    "clang_on_PATH": null
+   },
+   "jobs": 4,
+   "date_start_utc": "2026-11-17T16:00:29.180742+00:00",
+   "date_end_utc": "2026-11-17T16:01:57.096510+00:00"
+  },
+  "runs": {
+   "1.86.0": {
+    "toolchain": "1.86.0",
+    "command": "RUSTUP_TOOLCHAIN=1.86.0 python3 -I systems/vert/toolchain_pinned.py --harness scalar --out /scratch/wide_scalar_control_1.86.0.json --baseline results/arxiv_vert_diff_grid2_wide.json --jobs 4 --grid v2 --wide-int --only NUMBER_N_DIGIT_STEPPING_NUMBERS,DICE_THROW_PROBLEM_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,SUM_PAIRWISE_PRODUCTS_2,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER,COUNT_DIGITS_FACTORIAL_SET_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+    "start_utc": "2026-11-17T16:00:29.137174+00:00",
+    "end_utc": "2026-11-17T16:01:57.256719+00:00",
+    "wall_clock_seconds": 88
+   },
+   "nightly-2023-07-29": {
+    "toolchain": "nightly-2023-07-29",
+    "command": "RUSTUP_TOOLCHAIN=nightly-2023-07-29 python3 -I systems/vert/toolchain_pinned.py --harness scalar --out /scratch/wide_scalar_nightly.json --baseline results/arxiv_vert_diff_grid2_wide.json --jobs 4 --grid v2 --wide-int --only NUMBER_N_DIGIT_STEPPING_NUMBERS,DICE_THROW_PROBLEM_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE_1,SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE,EFFICIENT_WAY_TO_MULTIPLY_WITH_7,TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1,MULTIPLY_LARGE_INTEGERS_UNDER_LARGE_MODULO,SUM_PAIRWISE_PRODUCTS_2,SUM_PAIRWISE_PRODUCTS,SUM_PAIRWISE_PRODUCTS_1,FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X,CALCULATING_FACTORIALS_USING_STIRLING_APPROXIMATION,FIND_LARGEST_PRIME_FACTOR_NUMBER,COUNT_DIGITS_FACTORIAL_SET_2,SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS,COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS --extra-baseline control_1.86.0=/scratch/wide_scalar_control_1.86.0.json --embed-control /scratch/wide_scalar_control_1.86.0.json",
+    "start_utc": "2026-11-17T16:01:57.257045+00:00",
+    "end_utc": "2026-11-17T16:03:26.117252+00:00",
+    "wall_clock_seconds": 89
+   }
+  }
+ },
+ "result": {
+  "verdict_changes_nightly_vs_baseline": 0,
+  "verdict_changes_nightly_vs_control": 0,
+  "verdict_changes_control_vs_baseline": 0,
+  "nightly_vs_baseline_changes_equal_control_vs_baseline": true,
+  "functions_with_nightly_counts_different_from_control": [],
+  "functions_with_control_counts_different_from_baseline": [],
+  "rust_build_fail_nightly": [
+   "SUM_PAIRWISE_PRODUCTS_2",
+   "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+   "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1"
+  ],
+  "rust_build_fail_control_1.86.0": [
+   "SUM_PAIRWISE_PRODUCTS_2",
+   "SUM_SUBSETS_SET_FORMED_FIRST_N_NATURAL_NUMBERS",
+   "TOTAL_NUMBER_OF_NON_DECREASING_NUMBERS_WITH_N_DIGITS_1"
+  ],
+  "planned_rows": 8,
+  "planned_rows_shown_under_nightly": 8,
+  "planned_rows_shown_under_control": 8
+ },
+ "_provenance": {
+  "git_commit": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T16:03:26Z",
+  "arch": "aarch64",
+  "os": "Linux 6.10.14-linuxkit",
+  "in_container": true,
+  "image": "crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653",
+  "step": "arxiv_wide_pinned",
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "argv": [
+   "systems/vert/arxiv_wide_pinned.py",
+   "--scratch",
+   "/scratch",
+   "--jobs",
+   "4",
+   "--out",
+   "results/arxiv_vert_wide_pinned.json"
+  ],
+  "host": "macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4",
+  "note": "stamp() taken in the assembly step (its rustc is the container default); the toolchain of each run is in scalar.provenance_*.toolchains",
+  "docker_command": "docker run --rm --cpus 4 -v \"$PWD:/work\" -v <scratch>:/scratch -w /work -e GIT_REV=<rev> -e GIT_DIRTY=<note> -e HOST_DESC=\"macOS 26.6.2 arm64, Docker Desktop 27.4.0, docker --cpus 4\" -e IMAGE_DESC=\"crust-vert-toolchain sha256:b0c14638c464754590eb666be8ae65f476a1c439fb39f81caefd743a78a11653\" crust-vert-toolchain python3 -I systems/vert/arxiv_wide_pinned.py --scratch /scratch --jobs 4 --out results/arxiv_vert_wide_pinned.json"
+ }
+}

@@ -1,0 +1,14 @@
+# Coverage-guided fuzzing environment: the stable image (gcc + rustc 1.86) plus AFL++.
+# Built for the host arch (arm64 here) so fuzzing runs natively/fast rather than under emulation.
+# Base: the local image crust-stable, itself built FROM a digest-pinned ubuntu:22.04 (see its Dockerfile);
+# a local tag has no registry digest to pin, so build crust-stable first (scripts/provision.sh images).
+# apt here uses the sources crust-stable set up (the 2026-10-19 snapshot archive on amd64).
+FROM crust-stable
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends afl++ \
+    && rm -rf /var/lib/apt/lists/* \
+    && (afl-fuzz -h >/dev/null 2>&1 || true) && which afl-cc afl-fuzz
+
+WORKDIR /work
+CMD ["bash"]

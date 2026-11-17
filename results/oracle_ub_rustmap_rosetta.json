@@ -1,0 +1,1113 @@
+{
+ "provenance": {
+  "script": "harness/oracle_ub_rustmap_rosetta.py",
+  "command": "bash harness/oracle_ub_run.sh rustmap_rosetta python3 harness/oracle_ub_rustmap_rosetta.py --phase c --build /oub/rustmap_rosetta (docker image crust-heldout sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo working tree copied (rsync, artifacts excluded) to the run host; new oracle_ub_* files uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T21:53:09+00:00",
+  "rust_build": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "image": "crust-syzygy",
+   "image_id": "sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+   "cmd": "rustc -A warnings <task>-c.rs -o r_bin"
+  },
+  "artifact_source_digests": {
+   "rosseta-125": {
+    "files": 126,
+    "sha256": "910445c6f9335fe73ed138f7e52ab2ec78913fab4b238e382b963d5badab3505"
+   },
+   "125-rosetta-code-gpt": {
+    "files": 126,
+    "sha256": "7b2a5021198185cd57e3bfabb38125a47d92e5f99dc059e089cae60ba6973af5"
+   }
+  },
+  "c_builds": {
+   "ref": [
+    "gcc",
+    "-w"
+   ],
+   "o1": [
+    "gcc",
+    "-w",
+    "-O1"
+   ],
+   "o2": [
+    "gcc",
+    "-w",
+    "-O2"
+   ],
+   "san_clang": [
+    "clang",
+    "-w",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie"
+   ],
+   "san_gcc": [
+    "gcc",
+    "-w",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fsanitize=address,undefined,float-cast-overflow"
+   ],
+   "san_clang_nz": [
+    "clang",
+    "-w",
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie",
+    "-fsanitize-recover=pointer-overflow",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-no-pie"
+   ],
+   "uchar": [
+    "gcc",
+    "-w",
+    "-funsigned-char"
+   ],
+   "schar": [
+    "gcc",
+    "-w",
+    "-fsigned-char"
+   ],
+   "ubitfield": [
+    "gcc",
+    "-w",
+    "-funsigned-bitfields"
+   ]
+  },
+  "compared_against": [
+   "results/rustmap_rosetta.json",
+   "results/rustmap_rosetta_triage.json"
+  ],
+  "wall_seconds": 8,
+  "sanitizer_positive_controls": {
+   "clang": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+   },
+   "gcc": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+   }
+  }
+ },
+ "summary": {
+  "tasks": 13,
+  "counted_before": {
+   "wrong_output_S1": 9,
+   "rust_panic": 2
+  },
+  "counted_after": {
+   "wrong_output_S1": 9,
+   "rust_panic": 2
+  },
+  "counted_with_sanitizer_report": [],
+  "counted_char_signedness_dependent": [],
+  "counted_bitfield_signedness_dependent": [],
+  "reproduced_divergence": 13,
+  "not_reproduced": [],
+  "set_aside": {
+   "machine_code": {
+    "label": "nondeterministic_C_not_counted",
+    "c_ub_evidence": [
+     "opt-level: -O1 output differs from -O0",
+     "opt-level: -O2 output differs from -O0"
+    ],
+    "ref_repeat_identical": false
+   },
+   "chaocipher": {
+    "label": "excluded_C_UB",
+    "c_ub_evidence": [
+     "san_clang: ==687==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7fffd42ff5b0 sp 0x7fffd42fed38",
+     "san_gcc: ==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128",
+     "san_clang_nz: ==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8"
+    ],
+    "ref_repeat_identical": true
+   }
+  }
+ },
+ "verdicts": [
+  {
+   "task": "box_the_compass",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "6de0f90e441673227ba5935b5c762d6c28ccf991ecc6eb386f93ace66b45b1fb",
+   "rust_digest": "299f7399d96a3120570432ddef8d232df47a80a74f55f91b995c6f0b4a8c5e75",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": " 1  North                     0.00\n 2  North by east            16.87\n 3  North-northeast          16.88\n 4  Northeast by north       33.75\n 5  Northeast       ",
+   "rust_stdout_head": " 2  North by east           0.00\n 3  North-northeast         16.87\n 3  North-northeast         16.88\n 5  Northeast               33.75\n 6  Northeast by east    ",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "floyds_triangle",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "7b5ddf4e8b463214ba5699adff52d81aaab016f59d4e751f7d313ebff6efa8af",
+   "rust_digest": "73d81503f22947a9108364451217fe1c155351c558d2140a1191ae5ab570aaaf",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": " 1\n 2  3\n 4  5  6\n 7  8  9 10\n11 12 13 14 15\n 1\n 2  3\n 4  5  6\n 7  8  9 10\n11 12 13 14 15\n16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31 32 33 34 35 36\n37 38 3",
+   "rust_stdout_head": "11\n12 13\n14 15 16\n17 18 19 20\n21 22 23 24 25\n92\n93 94\n95 96 97\n98 99 100 101\n102 103 104 105 106\n107 108 109 110 111 112\n113 114 115 116 117 118 119\n120 121 122",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "isbn13_check_digit",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "145012a2b3a1161485a063859218f08e9c4714824a1f896fd592b4f2dbcf8609",
+   "rust_digest": "89d74065fe3fff3847f2fd79c9d273eecd7056ad3ed158ca6ade071953dae2f7",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "978-1734314502: good\n978-1734314509: bad\n978-1788399081: good\n978-1788399083: bad\n",
+   "rust_stdout_head": "978-1734314502: bad\n978-1734314509: bad\n978-1788399081: bad\n978-1788399083: bad\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "knapsack_problem_0_1",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "c0d6cdab2bc7ef10d5bf60f775d1e418e48fea10da64ccf483dbb49fb1746e85",
+   "rust_digest": "babee8d2d04fc019828877a0c02a9993f5155b603aeb29539201cb6405c45818",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "map                        9   150\ncompass                   13    35\nwater                    153   200\nsandwich                  50   160\nglucose             ",
+   "rust_stdout_head": "map                        9   150\ntotals:                    9   150\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "knapsack_problem_continuous",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "28a7b67d81c4c59e7788cb4f3bae303ad3488f88dac06838144521574002695e",
+   "rust_digest": "663008a09e8eef21665859ada53593681aac2d264782c3f43c7993068fd4a7cb",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "take all salami\ntake all ham\ntake all brawn\ntake all greaves\ntake 3.5kg of 3.7 kg of welt\n",
+   "rust_stdout_head": "take all beef\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "roman_numerals_decode",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "f0000cd92c0844c5d0f4d29eb014c33b9b0068093256d08b823e6fb01967e89c",
+   "rust_digest": "a944c9457e24c5632b5b9eddb6bba2614f097dab18286f8c52ed9379a6765fed",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "MCmxC\t1990\nMMVIII\t2008\nMDClXVI\t1666\nMCXLUJ\t1146\n",
+   "rust_stdout_head": "MCmxC\t1000\nMMVIII\t2008\nMDClXVI\t1666\nMCXLUJ\t1106\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "sexy_primes",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "5fc0b8ed5056ff4612f52ff53503e578306cf909405f4bcb290c6c642f8ec35e",
+   "rust_digest": "debe2fe6dbc9efba8773c66f058a95c7fd933e5a86044078103ddb928e13f920",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "Number of sexy prime pairs less than 1000035 = 16386\nThe last 5 are:\n  [[999371 999377 \b]\b] [999431 999437 \b]\b] [999721 999727 \b]\b] [999763 999769 \b]\b] [999953 ",
+   "rust_stdout_head": "",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "formatted_numeric_output",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "bfbc869a51fa2bbc715662de3b5f308d2022be83eda210d1e7bbdcd7c18967f8",
+   "rust_digest": "100efcc9dae941e28cd9fb0d447305c62fdbdae57cf96ad291e9de9fc2a0b947",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "    -7.125\n     7.125\n 7.125    \n -0007.125\n 00007.125\n 7.125    \n",
+   "rust_stdout_head": "   -7.125\n    7.125\n7.125    \n000-7.125\n00007.125\n7.1250000\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "approximate_equility",
+   "triage_label": "wrong_output_S1",
+   "c_digest": "7f6cfc20d956dcbdbe8274498c4a321e39cdee20bdd303d9f11000f669b36d8e",
+   "rust_digest": "a658ec0c20fd29ffc688c9a8d5585f2753955e95934523ad62e795b3110197d9",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "100000000000000.015625, 100000000000000.015625 => 1\n100.010000, 100.011000 => 0\n1000000000.000000, 1000000000.000000 => 0\n0.001000, 0.001000 => 0\n0.000000, 0.00",
+   "rust_stdout_head": "100000000000000.02, 100000000000000.02 => true\n100.01, 100.011 => false\n1000000000.0000002, 1000000000.0000001 => false\n0.001, 0.0010000001 => false\n0.000000000",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "hailstone_sequence",
+   "triage_label": "rust_panic",
+   "c_digest": "89467bef1f2a2851cb8010b0681b657efbd99a72931ff51e308f1020b3cb2eb7",
+   "rust_digest": "c4912999b7244077fe6e2c3f92cc79df2b4ef3d07c9e46d3e43c5b163a520642",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 101,
+   "c_stdout_head": "[ 27, 82, 41, 124, ...., 8, 4, 2, 1] len=112\nMax 351 at j= 77031\n",
+   "rust_stdout_head": "",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "matrix_chain_multiplication",
+   "triage_label": "rust_panic",
+   "c_digest": "08b5486dd56ee88899f18b455aaaacbf668dc350556e71aba80bc848437342d3",
+   "rust_digest": "b1a92019834330f679e58e41f7c065520de6963b1160d5785f2cdb2dcab49569",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 101,
+   "c_stdout_head": "Dims  : [5, 6, 3, 1]\nOrder : (A(BC))\nCost  : 48\n\nDims  : [1, 5, 25, 30, 100, 70, 2, 1, 100, 250, 1, 1000, 2]\nOrder : ((((((((AB)C)D)E)F)G)(H(IJ)))(KL))\nCost  : ",
+   "rust_stdout_head": "Dims  : [[5, 6, 3, 1]]\n",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": true,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [],
+   "c_ub_evidence_excluding_null_plus_zero": [],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": true,
+   "counted_after": true
+  },
+  {
+   "task": "machine_code",
+   "triage_label": "nondeterministic_C_not_counted",
+   "c_digest": "60070ffe43c112603e501cb8758d9454945d3b8fac8d5b323e6571dd0ca1bc10",
+   "rust_digest": "e5c1a30e7881f04196e76aa55db5673a0fcf31d77725169d06d3a23df99d90c5",
+   "ref_repeat_identical": false,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "27103\n",
+   "rust_stdout_head": "19\n",
+   "o1": {
+    "same_as_ref": false,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": false,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": false,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_gcc": {
+    "same_as_ref": false,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "san_clang_nz": {
+    "same_as_ref": false,
+    "exit": 0,
+    "report": null,
+    "reports": [],
+    "infra": false,
+    "other_than_null_plus_zero": []
+   },
+   "uchar": {
+    "same_as_ref": false,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": false,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": false,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [
+    "opt-level: -O1 output differs from -O0",
+    "opt-level: -O2 output differs from -O0"
+   ],
+   "c_ub_evidence_excluding_null_plus_zero": [
+    "opt-level: -O1 output differs from -O0",
+    "opt-level: -O2 output differs from -O0"
+   ],
+   "char_signedness_dependent": true,
+   "bitfield_signedness_dependent": true,
+   "counted_before": false,
+   "counted_after": false
+  },
+  {
+   "task": "chaocipher",
+   "triage_label": "excluded_C_UB",
+   "c_digest": "39dae6f2f890974dbfab76f6b2ac7419386f72853fc07856f8f1da4649e72c15",
+   "rust_digest": "05403653bad3a2a035faf8037fe33f0c1a2c4af1b68975c416e1e5a0b8558f70",
+   "ref_repeat_identical": true,
+   "fresh_class": "divergent_real",
+   "before_divergent_real": true,
+   "reproduced": true,
+   "c_exit": 0,
+   "rust_exit": 0,
+   "c_stdout_head": "The original plaintext is : WELLDONEISBETTERTHANWELLSAID\n\nThe left and right alphabets after each permutation during encryption are :\n\nHXUCZVAMDSLKPEFJRIGTWOBNY",
+   "rust_stdout_head": "The original plaintext is: WELLDONEISBETTERTHANWELLSAID\nThe left and right alphabets after each permutation during encryption are:\n['H', 'X', 'U', 'C', 'Z', 'V'",
+   "o1": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "o2": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "san_clang": {
+    "same_as_ref": false,
+    "exit": 87,
+    "report": "==687==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7fffd42ff5b0 sp 0x7fffd42fed38",
+    "reports": [
+     "==687==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7fffd42ff5b0 sp 0x7fffd42fed38",
+     "SUMMARY: AddressSanitizer: heap-buffer-overflow (/oub/rustmap_rosetta/chaocipher/c_san_clang+0x43df5c) (BuildId: 191f45220fa1b1c441b41e9b1aced7894aa067b2)"
+    ],
+    "infra": false,
+    "other_than_null_plus_zero": [
+     "==687==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7fffd42ff5b0 sp 0x7fffd42fed38"
+    ]
+   },
+   "san_gcc": {
+    "same_as_ref": false,
+    "exit": 86,
+    "report": "==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128",
+    "reports": [
+     "==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128",
+     "SUMMARY: AddressSanitizer: heap-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_format.inc:553 in printf_common"
+    ],
+    "infra": false,
+    "other_than_null_plus_zero": [
+     "==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128"
+    ]
+   },
+   "san_clang_nz": {
+    "same_as_ref": false,
+    "exit": 87,
+    "report": "==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8",
+    "reports": [
+     "==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8",
+     "SUMMARY: AddressSanitizer: heap-buffer-overflow (/oub/rustmap_rosetta/chaocipher/c_san_clang_nz+0x43df5c) (BuildId: 538ce8d9d1f2507fe873fa697288c5f6c63d1db6)"
+    ],
+    "infra": false,
+    "other_than_null_plus_zero": [
+     "==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8"
+    ]
+   },
+   "uchar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "schar": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "ubitfield": {
+    "same_as_ref": true,
+    "exit": 0,
+    "class_vs_rust": "divergent_real"
+   },
+   "c_ub_evidence": [
+    "san_clang: ==687==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7fffd42ff5b0 sp 0x7fffd42fed38",
+    "san_gcc: ==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128",
+    "san_clang_nz: ==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8"
+   ],
+   "c_ub_evidence_excluding_null_plus_zero": [
+    "san_gcc: ==688==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005d at pc 0x79d414c01f89 bp 0x7ffd2dfd69b0 sp 0x7ffd2dfd6128",
+    "san_clang_nz: ==689==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000005d at pc 0x00000043df5d bp 0x7ffda5b75130 sp 0x7ffda5b748b8"
+   ],
+   "char_signedness_dependent": false,
+   "bitfield_signedness_dependent": false,
+   "counted_before": false,
+   "counted_after": false
+  }
+ ]
+}

@@ -1,0 +1,4193 @@
+{
+ "provenance": {
+  "script": "systems/adatrans/pipeline.sh -> systems/adatrans/summarize.py (assembly) <- measurement scripts below",
+  "command": "bash systems/adatrans/pipeline.sh summarize  (in Docker: python3 -I systems/adatrans/summarize.py --work /b --inputs-manifest /inputs/inputs_manifest.json --results /work/results --runs run1)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (study repo; systems/adatrans/ uncommitted, copied to the run host)",
+  "host": {
+   "measurement": "desktop (x86-64 Linux box, kernel 7.0.0-38-generic, 20 cores; docker --cpus 14 for the last pipeline run; earlier stages (fetch..gen) at 3)",
+   "assembly": "adatrans-pipeline (x86_64)"
+  },
+  "arch": "x86_64 (all builds and runs); assembly on x86_64",
+  "docker_image": {
+   "name": "crust-heldout-plus186",
+   "id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+   "flags": "--network none, --cpus <=3, run as the invoking uid"
+  },
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31) via rustup in the image",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "crates (vendored offline, Cargo.lock)": "rand 0.8.8, regex 1.13.1, libc 0.2.191, lazy_static 1.5.1",
+   "python_in_image": "3.10.12"
+  },
+  "artifact": {
+   "repo": "https://github.com/SlainTroyard/adatrans_dev",
+   "commit": "31f4031aadb7ee9d4a2fb1a180e78ae9b45e5578",
+   "git_archive_sha256": "49e132b5991856c92deedab7e96d171ac2b6b6bf1c30d7cb6cc7cf632ba99231",
+   "zenodo": "10.5281/zenodo.22258998 adatrans-artifacts.tar.zst sha256 03110aba3b469b37c56daf931dd6bb0e2ead37ac8462900da39c5e795493d6fe (matches published); only dataset_fuzz_outputs/ extracted"
+  },
+  "measurement_scripts": [
+   "systems/adatrans/fetch.sh",
+   "systems/adatrans/extract_final.py",
+   "systems/adatrans/gen_inputs.py",
+   "systems/adatrans/run_diff.py",
+   "systems/adatrans/analyze.py",
+   "systems/adatrans/confirm.py",
+   "systems/adatrans/heldout.py",
+   "systems/adatrans/mutate.py",
+   "harness/oracle_ub_common.py (sanitizer flags, run_san)"
+  ],
+  "date": "2026-11-14T03:18:15+00:00"
+ },
+ "system": "AdaTrans (arXiv 2606.31706)",
+ "scope": {
+  "primary": "run1 (results/adatrans_full/run1): all 104 programs re-graded and triaged",
+  "secondary": "run2, run3: same pipeline, automated counts only, divergences NOT triaged into defects",
+  "subset_rule": "every program; translations that do not build are S3 build failures"
+ },
+ "rule_check": {
+  "holds": true,
+  "original_C": {
+   "programs": 104,
+   "gcc_ref_builds": 104,
+   "all_7_ub_rule_builds": 101,
+   "clang_cannot_compile (GCC nested functions)": [
+    "C_424_4",
+    "C_428_2",
+    "C_430_3"
+   ],
+   "runs": "every C program ran on its inputs (see diff files: no C build or start failure)"
+  },
+  "systems_own_rust": {
+   "rule_for_final": "last non-empty extracted_code in conversations/<inst>.json (analysis/metrics.py::read_run)",
+   "per_run": {
+    "run1": {
+     "artifact_final_iteration_compile_error": [
+      "C_416_2",
+      "C_419_2",
+      "C_433_2",
+      "C_437_3"
+     ],
+     "our_build_fails": [
+      "C_416_2",
+      "C_419_2",
+      "C_433_2",
+      "C_437_3"
+     ],
+     "identical": true,
+     "built": 100,
+     "of": 104
+    },
+    "run2": {
+     "artifact_final_iteration_compile_error": [
+      "C_416_2",
+      "C_419_2",
+      "C_421_3",
+      "C_434_2"
+     ],
+     "our_build_fails": [
+      "C_416_2",
+      "C_419_2",
+      "C_421_3",
+      "C_434_2"
+     ],
+     "identical": true,
+     "built": 100,
+     "of": 104
+    },
+    "run3": {
+     "artifact_final_iteration_compile_error": [
+      "C_417_3",
+      "C_419_2",
+      "C_419_4",
+      "C_427_4",
+      "C_433_2",
+      "C_434_4"
+     ],
+     "our_build_fails": [
+      "C_417_3",
+      "C_419_2",
+      "C_419_4",
+      "C_427_4",
+      "C_433_2",
+      "C_434_4"
+     ],
+     "identical": true,
+     "built": 98,
+     "of": 104
+    }
+   },
+   "c_in_first_prompt_equals_dataset_c": {
+    "run1": 104,
+    "run2": 104,
+    "run3": 104
+   }
+  },
+  "toolchain": "artifact pins only 'a stable Rust toolchain' (README); 1.86.0 used. The artifact's recorded panic sites match ours (e.g. C_421_2 'attempt to add with overflow' at library/core/src/iter/traits/accum.rs:149:1 in both).",
+  "own_check_rerun_reproduces_artifact_verdicts_run1": {
+   "translations_failing_own_check_rerun_or_build": [
+    "C_415_4",
+    "C_416_2",
+    "C_416_4",
+    "C_417_2",
+    "C_417_3",
+    "C_419_2",
+    "C_420_1",
+    "C_421_2",
+    "C_426_1",
+    "C_430_2",
+    "C_433_2",
+    "C_433_3",
+    "C_434_2",
+    "C_434_4",
+    "C_437_3",
+    "C_438_3"
+   ],
+   "artifact_not_solved": [
+    "C_415_4",
+    "C_416_2",
+    "C_416_4",
+    "C_417_2",
+    "C_417_3",
+    "C_419_2",
+    "C_420_1",
+    "C_421_2",
+    "C_426_1",
+    "C_430_2",
+    "C_433_2",
+    "C_433_3",
+    "C_434_2",
+    "C_434_4",
+    "C_437_3",
+    "C_438_3"
+   ],
+   "identical": true
+  }
+ },
+ "inputs": {
+  "generator": "systems/adatrans/gen_inputs.py",
+  "programs": 104,
+  "total_inputs": 8310,
+  "programs_below_80": {
+   "C_428_2": 79,
+   "C_434_2": 71
+  },
+  "systems_own_inputs_also_run": "examples (loop) + fuzz oracle, parsed as src/runner.py does"
+ },
+ "translations_tested": 104,
+ "translations_built": 100,
+ "translations_with_defect": 11,
+ "translations_with_defect_list": [
+  "run1/C_415_4",
+  "run1/C_416_4",
+  "run1/C_417_2",
+  "run1/C_421_2",
+  "run1/C_425_4",
+  "run1/C_426_1",
+  "run1/C_430_2",
+  "run1/C_432_4",
+  "run1/C_434_2",
+  "run1/C_434_4",
+  "run1/C_438_3"
+ ],
+ "defects_count": 11,
+ "defects_by_severity": {
+  "panic": 3,
+  "S1": 7,
+  "S3": 1
+ },
+ "accepted_translations_with_defect": [
+  "run1/C_425_4",
+  "run1/C_432_4"
+ ],
+ "defects": [
+  {
+   "id": "run1-C_432_4",
+   "translation": "run1/C_432_4",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Ring-buffer deque sized exactly n with emptiness tested as front == rear and no size field: after n pushes rear wraps onto front, the full deque reads as empty, front() returns None and unwrap panics. The C keeps an explicit size (dequeIsEmpty: size == 0).",
+   "rust_location": "C_432_4.rs:45-47 (is_empty: self.front == self.rear), :130 (Deque::new(n)), panic at :138 (q.front().unwrap()) -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_432_4.json history[15].extracted_code (sha256 da10d2d93470e83a9b16bfaef829e9a861c55d2bb29f59053df3b81b18f45581), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_432_p4.c:75-76 (dequeIsEmpty: size == 0), :184 (createDeque(numsSize))",
+   "severity": "panic",
+   "example": {
+    "case": "run1/C_432_4/ours/000.in",
+    "input": "1 1\n1\n",
+    "C": {
+     "stdout_head": "1\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "",
+     "exit": 101,
+     "stderr_head": "\nthread 'main' panicked at run1_c_432_4/src/main.rs:138:31:\ncalled `Option::unwrap()` on a `None` value\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+    }
+   },
+   "exposure": {
+    "cases": 1,
+    "by_source_kind": {
+     "ours:panic": 1
+    },
+    "our_inputs_diverging": 1,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 0
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "logs/C_432_4.json status SUCCESS; validation/C_432_4.json PASSED 20/20; our re-run of its check on its own inputs: 22/22 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 1,
+    "diverges_on_systems_own_inputs": false,
+    "systems_own_input_cases": 0
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "Deque::new(n) -> Deque::new(n + 1)",
+    "result": {
+     "rerun": 1,
+     "now_agree": 1,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "panic": 1
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_425_4",
+   "translation": "run1/C_425_4",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Reads edge lines until EOF/blank line and sets n = max node + 1, instead of reading exactly n-1 edges after the header 'n k' as the C does. Differs only when stdin carries more than n-1 edge lines; the two diverging inputs are AdaTrans's own LeetCode example inputs, whose header gives the edge count (4) where the C expects the node count, so the C reads 3 of the 4 edges. The Rust's own comments say the change was made to 'fix input semantic mismatch' with 'the C test example'.",
+   "rust_location": "C_425_4.rs:39 (while let Some(Ok(line)) = lines.next()), :59 (let n = max_node + 1) -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_425_4.json history[1].extracted_code (sha256 6f56b3f1710c8f28e47e22a0c8ef7a723748ca6ef5c711b95a0676350f45e6f4), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_425_p4.c:201 (int edgesSize = n - 1)",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_425_4/examples/1",
+    "input": "4 2\n0 1 4\n0 2 2\n2 3 12\n2 4 6",
+    "C": {
+     "stdout_head": "18\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "22\n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 2,
+    "by_source_kind": {
+     "examples:S1": 2
+    },
+    "our_inputs_diverging": 0,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 2
+   },
+   "acceptance_status": "accepted",
+   "acceptance_evidence": "logs/C_425_4.json status SUCCESS; validation/C_425_4.json PASSED 20/20; our re-run of its check on its own inputs: 22/22 pass",
+   "heldout": {
+    "diverges_on_heldout_input": false,
+    "heldout_cases": 0,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 2
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "stop after n_input-1 edge lines",
+    "result": {
+     "rerun": 2,
+     "now_agree": 2,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 2
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   },
+   "only_on_format_violating_inputs": true
+  },
+  {
+   "id": "run1-C_426_1",
+   "translation": "run1/C_426_1",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Bit count computed as ceil(log2 n) instead of floor(log2 n)+1, wrong exactly when n is a power of two (n=32: C 63, Rust 31).",
+   "rust_location": "C_426_1.rs:4 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_426_1.json history[0].extracted_code (sha256 f2c106ad9f16fc575f74bde6b8fd67f7889d7650e13a84af235b315dbea3ca9f), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_426_p1.c:8",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_426_1/ours/000.in",
+    "input": "1\n",
+    "C": {
+     "stdout_head": "1\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "0\n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 10,
+    "by_source_kind": {
+     "ours:S1": 9,
+     "fuzz:S1": 1
+    },
+    "our_inputs_diverging": 9,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 1
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_426_1.json FAILED 99/100 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 102/103 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 9,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 1
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "(n as f64).log2() as i32 + 1",
+    "result": {
+     "rerun": 10,
+     "now_agree": 10,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 10
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_438_3",
+   "translation": "run1/C_438_3",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Prints the boolean result as 1/0; the C prints true/false. AdaTrans's example file for this problem records 1/0 as the expected outputs, the fuzz oracle (generated from the C) records true/false.",
+   "rust_location": "C_438_3.rs:100 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_438_3.json history[1].extracted_code (sha256 1bb41ec7a95d9e344ba532eb5ff7b4ed40b4e44477cc04697c10d6e338372aa3), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_438_p3.c:97",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_438_3/ours/000.in",
+    "input": "000\n",
+    "C": {
+     "stdout_head": "true\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "1\n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 182,
+    "by_source_kind": {
+     "ours:S1": 80,
+     "examples:S1": 2,
+     "fuzz:S1": 100
+    },
+    "our_inputs_diverging": 80,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 102
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_438_3.json FAILED 0/100 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 2/102 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 80,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 102
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "print \"true\"/\"false\"",
+    "result": {
+     "rerun": 182,
+     "now_agree": 182,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 182
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_421_2",
+   "translation": "run1/C_421_2",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Final answer summed as lst.iter().sum::<i32>() and reduced modulo afterwards; the 26 counts (each < 1e9+7) overflow i32 and the debug build panics ('attempt to add with overflow'). The C reduces after every addition.",
+   "rust_location": "C_421_2.rs:25 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_421_2.json history[2].extracted_code (sha256 e7a487fce102bc4f4a0f39b4a6bea317b4935cb1c94f79c4e043924562d4d52e), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_421_p2.c:18",
+   "severity": "panic",
+   "example": {
+    "case": "run1/C_421_2/ours/029.in",
+    "input": "fv\n45358\n",
+    "C": {
+     "stdout_head": "413033501",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "",
+     "exit": 101,
+     "stderr_head": "\nthread 'main' panicked at /rustc/05f9846f893b09a1be1fc8560e33fc3c815cfecb/library/core/src/iter/traits/accum.rs:149:1:\nattempt to add with overflow\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+    }
+   },
+   "exposure": {
+    "cases": 81,
+    "by_source_kind": {
+     "ours:panic": 61,
+     "fuzz:panic": 20
+    },
+    "our_inputs_diverging": 61,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 20
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_421_2.json FAILED 0/20 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 2/22 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 61,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 20
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "fold with % after each addition",
+    "result": {
+     "rerun": 102,
+     "now_agree": 83,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "panic": 81,
+      "panic(C-UB)": 2
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_430_2",
+   "translation": "run1/C_430_2",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Returns &word[ans..ans + n] without clamping to the string end; the C truncates only when ans + n < len. When the best start lies within n of the end the slice is out of bounds and the program panics.",
+   "rust_location": "C_430_2.rs:18 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_430_2.json history[1].extracted_code (sha256 09e366439ded1222b996ea7efe1444e8a658b582cf4c14b713faab30c77a65a5), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_430_p2.c:14",
+   "severity": "panic",
+   "example": {
+    "case": "run1/C_430_2/ours/017.in",
+    "input": "lazj\n2\n",
+    "C": {
+     "stdout_head": "zj\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "",
+     "exit": 101,
+     "stderr_head": "\nthread 'main' panicked at run1_c_430_2/src/main.rs:18:10:\nbyte index 5 is out of bounds of `lazj`\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+    }
+   },
+   "exposure": {
+    "cases": 75,
+    "by_source_kind": {
+     "ours:panic": 28,
+     "fuzz:panic": 47
+    },
+    "our_inputs_diverging": 28,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 47
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_430_2.json FAILED 55/102 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 57/104 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 28,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 47
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "&word[ans..(ans + n).min(len)]",
+    "result": {
+     "rerun": 75,
+     "now_agree": 75,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "panic": 75
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   },
+   "note": "Rust also compares whole suffixes (:13) where the C uses strncmp(.., n); with the clamp patch every divergent case agrees, so that difference is not observed on our inputs."
+  },
+  {
+   "id": "run1-C_417_2",
+   "translation": "run1/C_417_2",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Counts substrings that contain the vowels PRESENT in the word, not all five vowels as the C requires; differs whenever the word lacks some vowel. AdaTrans's example file records the wrong expected output 1 for the LeetCode example 'aeioqq', k=1 (LeetCode and the C give 0).",
+   "rust_location": "C_417_2.rs:28-34 (vowels_present), :59 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_417_2.json history[1].extracted_code (sha256 358bc381a77907b086a9994c8b400dc847d2b7f81b83b33c4da73ab87e83b3f8), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_417_p2.c:27",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_417_2/ours/000.in",
+    "input": "5\naaaaa\n0\n",
+    "C": {
+     "stdout_head": "0\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "15\n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 31,
+    "by_source_kind": {
+     "ours:S1": 17,
+     "examples:S1": 1,
+     "fuzz:S1": 13
+    },
+    "our_inputs_diverging": 17,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 14
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_417_2.json FAILED 87/100 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 89/102 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 17,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 14
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "require all five vowel counts > 0",
+    "result": {
+     "rerun": 31,
+     "now_agree": 31,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 31
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_434_4",
+   "translation": "run1/C_434_4",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Sorts the valid subsets ascending before printing; the C prints them in its enumeration order (descending submasks of mask1). Output rows come out in a different order whenever more than one subset is valid.",
+   "rust_location": "C_434_4.rs:132 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_434_4.json history[4].extracted_code (sha256 6dcf17a80fe69efcd626474109cb433c70d819658c4a6ae9cec06f579cc34521), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_434_p4.c:106-135 (no sort)",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_434_4/ours/005.in",
+    "input": "4\nza\nez\npa\nae\n",
+    "C": {
+     "stdout_head": "2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 \n1 0 0 0 2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 \n1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 2 \n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 2 \n1 0 0 0 2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 \n2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 \n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 40,
+    "by_source_kind": {
+     "ours:S1": 20,
+     "examples:S1": 1,
+     "fuzz:S1": 19
+    },
+    "our_inputs_diverging": 20,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 20
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_434_4.json FAILED 81/100 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 83/102 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 20,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 20
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "remove the sort",
+    "result": {
+     "rerun": 40,
+     "now_agree": 40,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 40
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_416_4",
+   "translation": "run1/C_416_4",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Indexes the string with word1.chars().nth(i) inside the sliding-window loop, an O(n) scan per access, so the O(n) C algorithm becomes O(n^2); on large inputs the Rust does not finish (hang: no result within 60 s of CPU while the C finishes within 10 s).",
+   "rust_location": "C_416_4.rs:32, :39 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_416_4.json history[0].extracted_code (sha256 2879eb3bbb6e4cfec992466213588a72ed33e9da438a4d7474985b447418e6e9), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_416_p4.c:33, :39 (word1[r], word1[l])",
+   "severity": "S3",
+   "example": {
+    "case": "run1/C_416_4/ours/025.in",
+    "input": "(66575 bytes; sha256 9a694c516d75b2dfc95b26f7b3fca770a7b06288d5f83eea9c71c4f65692236c)",
+    "C": {
+     "stdout_head": "2051328477\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "",
+     "exit": -1,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 69,
+    "by_source_kind": {
+     "ours:hang": 51,
+     "fuzz:hang": 18
+    },
+    "our_inputs_diverging": 51,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 18
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_416_4.json FAILED 1/20 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 4/22 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 51,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 18
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "byte indexing",
+    "result": {
+     "rerun": 69,
+     "now_agree": 69,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "hang": 69
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   }
+  },
+  {
+   "id": "run1-C_415_4",
+   "translation": "run1/C_415_4",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "Greedy cover extends the reach only from the start of the current segment (while cur_r < n ...), not from every position i as the C's for-loop does; returns -1 where the C finds a cover.",
+   "rust_location": "C_415_4.rs:48-66 -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_415_4.json history[7].extracted_code (sha256 1927499399def5a32fca9d3f5adf4117b14a8e103cdc00911e58aada2cb115ec), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_415_p4.c:144-160 (for i in 0..n, jump when i == cur_r)",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_415_4/ours/028.in",
+    "input": "(84614 bytes; sha256 06f975164d5b7b3d89ba805d807169de3392de549fbb53e307694d493276e815)",
+    "C": {
+     "stdout_head": "6\n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "-1\n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 15,
+    "by_source_kind": {
+     "ours:S1": 14,
+     "fuzz:S1": 1
+    },
+    "our_inputs_diverging": 14,
+    "our_inputs_run": 80,
+    "systems_own_inputs_diverging": 1
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs SUCCESS (examples) but validation/C_415_4.json FAILED 1/20 (fuzz oracle); not counted as solved by analysis/metrics.py::read_run; our re-run: 21/22 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 14,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 1
+   },
+   "confirmed_by": {
+    "method": "fix-and-rerun: one-mechanism patch (systems/adatrans/patches_run1.json), rebuilt, every divergent input of the translation re-run (confirm.py)",
+    "patch": "C's loop structure (patch A) together with rolling prefix hashes (patch B). B only removes quadratic hashing (a speed-up that cannot change a result); it is needed so the patched program finishes within confirm.py's 10 s CPU limit.",
+    "result": {
+     "rerun": 15,
+     "now_agree": 15,
+     "still_diverge": 0,
+     "now_agree_by_orig_kind": {
+      "S1": 15
+     },
+     "still_by_orig_kind": {},
+     "still_diverge_detail": []
+    }
+   },
+   "note": "Single patches (adatrans_confirm_run1.json): A alone makes no case agree within 10 s CPU (the quadratic hashing remains); B alone leaves every S1 case wrong; A+B makes every counted case agree. The quadratic hashing itself (C_415_4.rs:37, :50; the C rolls prefix hashes) makes the Rust slow but it finishes within the 60 s CPU hang limit on every input, so it is not counted as a defect."
+  },
+  {
+   "id": "run1-C_434_2",
+   "translation": "run1/C_434_2",
+   "function": "whole program (stdin/stdout)",
+   "mechanism": "count_mentions is not a translation of the C's countMentions: ALL/HERE mentions are never counted (extract_id_number of 'ALL'/'HERE' is None), and after every event every user whose online counter is 0 gains a mention; events are read one per line where the C reads exactly three tokens per event. Several mechanisms in one rewritten function; counted as ONE defect (lower bound). Rejected by AdaTrans's own loop (status FAILURE).",
+   "rust_location": "C_434_2.rs:7-72 (count_mentions; :26-43 MESSAGE, :61-69 per-event increment), :85-90 (line-based event parse) -- source: artifacts/adatrans/results/adatrans_full/run1/conversations/C_434_2.json history[19].extracted_code (sha256 ea548f8bbfb2526ad6ce275f4add984ee45d2b71e376801c0a5882914e0d6c34), extracted by systems/adatrans/extract_final.py",
+   "c_location": "artifacts/adatrans/dataset/C_CPP/C/src/weekly_contest_434_p2.c:67-69 (ALL/HERE), :144 (scanf %s per token)",
+   "severity": "S1",
+   "example": {
+    "case": "run1/C_434_2/ours/041.in",
+    "input": "4 1\nMESSAGE 912 id1 id1 id2 id2\n",
+    "C": {
+     "stdout_head": "Mentions: 0 1 0 0 \n",
+     "exit": 0
+    },
+    "Rust": {
+     "stdout_head": "Mentions: 1 2 1 1 \n",
+     "exit": 0,
+     "stderr_head": ""
+    }
+   },
+   "exposure": {
+    "cases": 158,
+    "by_source_kind": {
+     "ours:S1": 63,
+     "examples:S1": 3,
+     "fuzz:S1": 92
+    },
+    "our_inputs_diverging": 63,
+    "our_inputs_run": 71,
+    "systems_own_inputs_diverging": 95
+   },
+   "acceptance_status": "rejected",
+   "acceptance_evidence": "logs/C_434_2.json status FAILURE after 20 iterations (last: RUNTIME_ERROR); never fuzz-validated; our re-run: 8/103 pass",
+   "heldout": {
+    "diverges_on_heldout_input": true,
+    "heldout_cases": 62,
+    "diverges_on_systems_own_inputs": true,
+    "systems_own_input_cases": 95
+   },
+   "confirmed_by": {
+    "method": "source reading only (rewritten function; no single-mechanism patch)"
+   }
+  }
+ ],
+ "crashes": {
+  "note": "Rust panics/crashes on UB-clean C inputs, reported separately from S1",
+  "counted": 3,
+  "ids": [
+   "run1-C_432_4",
+   "run1-C_421_2",
+   "run1-C_430_2"
+  ],
+  "cases": 157
+ },
+ "S2": {
+  "counted": 0,
+  "ids": [],
+  "note": "no stderr-only divergence observed"
+ },
+ "S3": {
+  "build_failures_run1": [
+   "C_416_2",
+   "C_419_2",
+   "C_433_2",
+   "C_437_3"
+  ],
+  "hang_defects": [
+   "run1-C_416_4"
+  ]
+ },
+ "whitespace_only_not_counted": {
+  "translations_run1": [
+   "C_413_2",
+   "C_415_1",
+   "C_418_3",
+   "C_419_1",
+   "C_419_4",
+   "C_420_1",
+   "C_420_4",
+   "C_421_2",
+   "C_426_3",
+   "C_426_4",
+   "C_436_1",
+   "C_436_2"
+  ],
+  "note": "stdout equal after whitespace folding (mostly a trailing space the C prints, or the C's missing final newline); the artifact's own check folds whitespace"
+ },
+ "ub_excluded": {
+  "cases_by_translation_run1": {
+   "C_416_3": 13,
+   "C_418_3": 1,
+   "C_420_4": 1,
+   "C_421_2": 2,
+   "C_424_4": 3,
+   "C_433_3": 34
+  },
+  "not_counted_detail": [
+   {
+    "inst": "C_424_4",
+    "why": "Rust panics ('attempt to subtract with overflow', C_424_4.rs:28) on 3 of our inputs where the C prints a value and passes gcc ASan+UBSan, -O1/-O2 and char-signedness checks; the clang leg of the UB rule cannot run because the C uses GCC nested functions (clang: 'function definition is not allowed here'). Not counted under the rule; candidate panic."
+   },
+   {
+    "inst": "C_433_3",
+    "why": "Rust overflows its stack (deep recursion) on 26 of our and 8 of AdaTrans's fuzz inputs where the plain C prints a value; clang ASan reports stack-overflow in the C on the same inputs, so the UB rule excludes them."
+   },
+   {
+    "inst": "C_416_3",
+    "why": "C itself segfaults (stack overflow, ASan stack-overflow) on 12 of our and 1 fuzz input; Rust prints a value. C-UB, excluded."
+   },
+   {
+    "inst": "C_418_3",
+    "why": "1 input: C heap-buffer-overflow (ASan), Rust panics index out of bounds. C-UB, excluded."
+   },
+   {
+    "inst": "C_420_4",
+    "why": "1 input: Rust stack overflow; clang ASan stack-overflow in the C. Excluded."
+   },
+   {
+    "inst": "C_421_2",
+    "why": "2 of its panic cases: input longer than the C's fixed buffer (stack-buffer-overflow). Excluded; the other 81 panics are counted."
+   },
+   {
+    "inst": "C_415_4, C_416_4",
+    "why": "1 hang case each where the C output depends on -O2 or char signedness. Excluded."
+   }
+  ]
+ },
+ "heldout": {
+  "status": "measured (AdaTrans records both check input sets: loop examples and fuzz oracle, in the Zenodo bundle)",
+  "overlap_of_our_inputs_with_checks": {
+   "ours": 8310,
+   "examples": 227,
+   "fuzz": 7250,
+   "ours_in_check_exact": 31,
+   "ours_in_check_tokens": 31,
+   "programs_with_check_inputs": 104,
+   "examples_also_in_fuzz_tokens": 30
+  },
+  "accepted_defects_diverging_on_heldout_inputs": [
+   "run1-C_432_4"
+  ],
+  "defects_diverging_only_on_systems_own_inputs": [
+   "run1-C_425_4"
+  ],
+  "systems_inputs_through_our_comparison": {
+   "kind:examples:S1": 9,
+   "kind:examples:agree": 187,
+   "kind:examples:rust_build_fail": 8,
+   "kind:examples:whitespace_only": 23,
+   "kind:fuzz:S1": 227,
+   "kind:fuzz:agree": 6098,
+   "kind:fuzz:crash": 8,
+   "kind:fuzz:hang": 18,
+   "kind:fuzz:panic": 67,
+   "kind:fuzz:rust_build_fail": 240,
+   "kind:fuzz:whitespace_only": 592
+  },
+  "loop_examples_disagree_with_C": {
+   "problems": [
+    "C_417_2",
+    "C_417_3",
+    "C_420_1",
+    "C_425_4",
+    "C_434_2",
+    "C_434_4",
+    "C_438_3"
+   ],
+   "detail": {
+    "C_417_2": {
+     "examples": [
+      1,
+      2
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    },
+    "C_417_3": {
+     "examples": [
+      1,
+      2
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    },
+    "C_420_1": {
+     "examples": [
+      1,
+      2
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    },
+    "C_425_4": {
+     "examples": [
+      2,
+      2
+     ],
+     "fuzz": [
+      0,
+      20
+     ]
+    },
+    "C_434_2": {
+     "examples": [
+      3,
+      3
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    },
+    "C_434_4": {
+     "examples": [
+      1,
+      2
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    },
+    "C_438_3": {
+     "examples": [
+      2,
+      2
+     ],
+     "fuzz": [
+      0,
+      100
+     ]
+    }
+   },
+   "note": "AdaTrans's loop compares the Rust against the recorded example outputs (LeetCode's), not against the C; on these problems the C does not produce the recorded output"
+  }
+ },
+ "harness_power": {
+  "fault_injection": "every confirm.py patch is the converse experiment: removing one mechanism turns the harness green on its cases; the mutation analysis below injects faults into agreeing translations",
+  "mutation_run1": {
+   "by_class": {
+    "arithmetic": {
+     "killed": 128,
+     "stillborn": 0,
+     "survived": 14
+    },
+    "constant": {
+     "killed": 108,
+     "stillborn": 3,
+     "survived": 35
+    },
+    "relational": {
+     "killed": 92,
+     "stillborn": 0,
+     "survived": 33
+    }
+   },
+   "kill_rate": 0.8,
+   "mutants": 413,
+   "per_class_sites": 2,
+   "run": "run1",
+   "seconds": 62,
+   "total": {
+    "killed": 328,
+    "stillborn": 3,
+    "survived": 82
+   },
+   "translations": 76
+  }
+ },
+ "runs": {
+  "run1": {
+   "translations": 104,
+   "built": 100,
+   "with_counted_divergence": 11,
+   "with_counted_divergence_on_our_inputs": 10,
+   "accepted_with_counted_divergence": [
+    "C_425_4",
+    "C_432_4"
+   ],
+   "rejected_with_counted_divergence": [
+    "C_415_4",
+    "C_416_4",
+    "C_417_2",
+    "C_421_2",
+    "C_426_1",
+    "C_430_2",
+    "C_434_2",
+    "C_434_4",
+    "C_438_3"
+   ],
+   "acceptance_of_divergent": {
+    "rejected": 9,
+    "accepted": 2
+   },
+   "agree_on_all_our_inputs_strict": 76,
+   "whitespace_only_translations": [
+    "C_413_2",
+    "C_415_1",
+    "C_418_3",
+    "C_419_1",
+    "C_419_4",
+    "C_420_1",
+    "C_420_4",
+    "C_421_2",
+    "C_426_3",
+    "C_426_4",
+    "C_436_1",
+    "C_436_2"
+   ],
+   "aggregate": {
+    "all_agree_on_ours": 76,
+    "counted_cases:examples:S1": 9,
+    "counted_cases:fuzz:S1": 226,
+    "counted_cases:fuzz:hang": 18,
+    "counted_cases:fuzz:panic": 67,
+    "counted_cases:ours:S1": 203,
+    "counted_cases:ours:hang": 51,
+    "counted_cases:ours:panic": 90,
+    "kind:examples:S1": 9,
+    "kind:examples:agree": 187,
+    "kind:examples:rust_build_fail": 8,
+    "kind:examples:whitespace_only": 23,
+    "kind:fuzz:S1": 227,
+    "kind:fuzz:agree": 6098,
+    "kind:fuzz:crash": 8,
+    "kind:fuzz:hang": 18,
+    "kind:fuzz:panic": 67,
+    "kind:fuzz:rust_build_fail": 240,
+    "kind:fuzz:whitespace_only": 592,
+    "kind:ours:S1": 215,
+    "kind:ours:agree": 6706,
+    "kind:ours:crash": 27,
+    "kind:ours:hang": 51,
+    "kind:ours:panic": 96,
+    "kind:ours:rust_build_fail": 320,
+    "kind:ours:whitespace_only": 895,
+    "rust_build_fail": 4,
+    "translations": 104,
+    "ub_excluded_cases:fuzz:S1": 1,
+    "ub_excluded_cases:fuzz:crash": 8,
+    "ub_excluded_cases:ours:S1": 12,
+    "ub_excluded_cases:ours:crash": 27,
+    "ub_excluded_cases:ours:panic": 6,
+    "with_counted_divergence": 11,
+    "with_counted_divergence_on_ours": 10,
+    "with_whitespace_only": 12
+   }
+  }
+ },
+ "per_translation": {
+  "run1/C_413_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_413_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 12,
+    "of": 12
+   }
+  },
+  "run1/C_413_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_413_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 17
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 17
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 17,
+    "fuzz_total": 17,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 19,
+    "of": 19
+   }
+  },
+  "run1/C_414_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_414_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 22
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 22
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 22,
+    "fuzz_total": 22,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 24,
+    "of": 24
+   }
+  },
+  "run1/C_414_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 22
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 22
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 22,
+    "fuzz_total": 22,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 24,
+    "of": 24
+   }
+  },
+  "run1/C_414_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 103
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 103
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 103,
+    "fuzz_total": 103,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 106,
+    "of": 106
+   }
+  },
+  "run1/C_415_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_415_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 22
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 22
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 22,
+    "fuzz_total": 22,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 24,
+    "of": 24
+   }
+  },
+  "run1/C_415_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_415_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 66,
+    "ours:S1": 14,
+    "examples:agree": 2,
+    "fuzz:agree": 19,
+    "fuzz:S1": 1
+   },
+   "divergent_counted": 15,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_415_4"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 1,
+    "fuzz_total": 20,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 21,
+    "of": 22
+   }
+  },
+  "run1/C_416_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_416_2": {
+   "built": false,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:rust_build_fail": 80,
+    "examples:rust_build_fail": 2,
+    "fuzz:rust_build_fail": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 0,
+    "of": 0
+   }
+  },
+  "run1/C_416_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 68,
+    "ours:S1": 12,
+    "examples:agree": 2,
+    "fuzz:agree": 19,
+    "fuzz:S1": 1
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 13,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_416_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 29,
+    "ours:hang": 51,
+    "examples:agree": 2,
+    "fuzz:hang": 18,
+    "fuzz:agree": 2
+   },
+   "divergent_counted": 69,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_416_4"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 1,
+    "fuzz_total": 20,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 4,
+    "of": 22
+   }
+  },
+  "run1/C_417_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_417_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:S1": 17,
+    "ours:agree": 63,
+    "examples:S1": 1,
+    "examples:agree": 1,
+    "fuzz:agree": 87,
+    "fuzz:S1": 13
+   },
+   "divergent_counted": 31,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_417_2"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 87,
+    "fuzz_total": 100,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 89,
+    "of": 102
+   }
+  },
+  "run1/C_417_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 101,
+    "of": 102
+   }
+  },
+  "run1/C_417_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_418_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_418_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 7
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 7
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 7,
+    "fuzz_total": 7,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 9,
+    "of": 9
+   }
+  },
+  "run1/C_418_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:whitespace_only": 79,
+    "ours:panic": 1,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 1,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_418_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_419_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_419_2": {
+   "built": false,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:rust_build_fail": 80,
+    "examples:rust_build_fail": 2,
+    "fuzz:rust_build_fail": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 0,
+    "of": 0
+   }
+  },
+  "run1/C_419_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_419_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 1,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 1,
+    "fuzz:whitespace_only": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 11,
+    "of": 11
+   }
+  },
+  "run1/C_420_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 101,
+    "of": 102
+   }
+  },
+  "run1/C_420_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_420_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_420_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:whitespace_only": 79,
+    "ours:crash": 1,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 1,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_421_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_421_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:whitespace_only": 17,
+    "ours:panic": 63,
+    "examples:whitespace_only": 2,
+    "fuzz:panic": 20
+   },
+   "divergent_counted": 81,
+   "original_C_UB_excluded": 2,
+   "defects": [
+    "run1-C_421_2"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 0,
+    "fuzz_total": 20,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 2,
+    "of": 22
+   }
+  },
+  "run1/C_421_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_421_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_422_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_422_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_422_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 13,
+    "of": 13
+   }
+  },
+  "run1/C_422_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_423_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_423_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_423_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_423_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_424_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_424_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_424_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_424_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 77,
+    "ours:panic": 3,
+    "examples:agree": 3,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 3,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 23,
+    "of": 23
+   }
+  },
+  "run1/C_425_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_425_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_425_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_425_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:S1": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 2,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_425_4"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_426_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:S1": 9,
+    "ours:agree": 71,
+    "examples:agree": 3,
+    "fuzz:agree": 99,
+    "fuzz:S1": 1
+   },
+   "divergent_counted": 10,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_426_1"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 99,
+    "fuzz_total": 100,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 103
+   }
+  },
+  "run1/C_426_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_426_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_426_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 12,
+    "of": 12
+   }
+  },
+  "run1/C_427_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_427_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_427_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 13,
+    "of": 13
+   }
+  },
+  "run1/C_427_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_428_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_428_2": {
+   "built": true,
+   "cases": {
+    "ours": 79,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 79,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_428_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_428_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_429_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_429_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 10
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 10
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 10,
+    "fuzz_total": 10,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 12,
+    "of": 12
+   }
+  },
+  "run1/C_429_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_429_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 103,
+    "of": 103
+   }
+  },
+  "run1/C_430_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_430_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 52,
+    "ours:panic": 28,
+    "examples:agree": 2,
+    "fuzz:agree": 55,
+    "fuzz:panic": 47
+   },
+   "divergent_counted": 75,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_430_2"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 55,
+    "fuzz_total": 102,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 57,
+    "of": 104
+   }
+  },
+  "run1/C_430_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 102
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 102
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 102,
+    "fuzz_total": 102,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 104,
+    "of": 104
+   }
+  },
+  "run1/C_430_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 3,
+    "fuzz": 103
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 3,
+    "fuzz:agree": 103
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 103,
+    "fuzz_total": 103,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 106,
+    "of": 106
+   }
+  },
+  "run1/C_431_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_431_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_431_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_431_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_432_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_432_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_432_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_432_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:panic": 1,
+    "ours:agree": 79,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 1,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_432_4"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_433_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_433_2": {
+   "built": false,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:rust_build_fail": 80,
+    "examples:rust_build_fail": 2,
+    "fuzz:rust_build_fail": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 0,
+    "of": 0
+   }
+  },
+  "run1/C_433_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 54,
+    "ours:crash": 26,
+    "examples:agree": 2,
+    "fuzz:crash": 8,
+    "fuzz:agree": 12
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 34,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 12,
+    "fuzz_total": 20,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 14,
+    "of": 22
+   }
+  },
+  "run1/C_433_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_434_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_434_2": {
+   "built": true,
+   "cases": {
+    "ours": 71,
+    "examples": 3,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:S1": 63,
+    "ours:agree": 8,
+    "examples:S1": 3,
+    "fuzz:S1": 92,
+    "fuzz:agree": 8
+   },
+   "divergent_counted": 158,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_434_2"
+   ],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 8,
+    "of": 103
+   }
+  },
+  "run1/C_434_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_434_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 60,
+    "ours:S1": 20,
+    "examples:S1": 1,
+    "examples:agree": 1,
+    "fuzz:S1": 19,
+    "fuzz:agree": 81
+   },
+   "divergent_counted": 40,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_434_4"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 81,
+    "fuzz_total": 100,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 83,
+    "of": 102
+   }
+  },
+  "run1/C_435_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_435_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_435_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_435_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_436_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_436_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:whitespace_only": 80,
+    "examples:whitespace_only": 2,
+    "fuzz:whitespace_only": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_436_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_436_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_437_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 200
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 200
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 200,
+    "fuzz_total": 200,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 202,
+    "of": 202
+   }
+  },
+  "run1/C_437_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_437_3": {
+   "built": false,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:rust_build_fail": 80,
+    "examples:rust_build_fail": 2,
+    "fuzz:rust_build_fail": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "FAILURE",
+    "fuzz": null,
+    "fuzz_passed": null,
+    "fuzz_total": null,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 0,
+    "of": 0
+   }
+  },
+  "run1/C_437_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_438_1": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  },
+  "run1/C_438_2": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 20
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 20
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 20,
+    "fuzz_total": 20,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 22,
+    "of": 22
+   }
+  },
+  "run1/C_438_3": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:S1": 80,
+    "examples:S1": 2,
+    "fuzz:S1": 100
+   },
+   "divergent_counted": 182,
+   "original_C_UB_excluded": 0,
+   "defects": [
+    "run1-C_438_3"
+   ],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "FAILED",
+    "fuzz_passed": 0,
+    "fuzz_total": 100,
+    "solved": false
+   },
+   "acceptance_status": "rejected",
+   "own_check_rerun": {
+    "pass": 2,
+    "of": 102
+   }
+  },
+  "run1/C_438_4": {
+   "built": true,
+   "cases": {
+    "ours": 80,
+    "examples": 2,
+    "fuzz": 100
+   },
+   "kinds": {
+    "ours:agree": 80,
+    "examples:agree": 2,
+    "fuzz:agree": 100
+   },
+   "divergent_counted": 0,
+   "original_C_UB_excluded": 0,
+   "defects": [],
+   "artifact_verdict": {
+    "loop": "SUCCESS",
+    "fuzz": "PASSED",
+    "fuzz_passed": 100,
+    "fuzz_total": 100,
+    "solved": true
+   },
+   "acceptance_status": "accepted",
+   "own_check_rerun": {
+    "pass": 102,
+    "of": 102
+   }
+  }
+ },
+ "determinism": {
+  "summarize_twice_identical_excluding_provenance": true,
+  "stage_recheck": {
+   "cases_run1.jsonl (diff stage)": {
+    "differences": [
+     [
+      "C_415_4",
+      "ours",
+      "028.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "ours",
+      "033.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "ours",
+      "048.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "fuzz",
+      3,
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "fuzz",
+      13,
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ]
+    ],
+    "duration_fields_ignored": [
+     "rust_rerun_long_timeout"
+    ],
+    "first": "36c90cb9b3a2dcef173025e7d6a29655b5fb20acf4ab88dd5f401e191031493c",
+    "identical": false,
+    "identical_ignoring_duration_fields": true,
+    "rows": 15787,
+    "rows_differing": 5,
+    "second": "fa1a8700761c029bcbe33566d7ef19f0f51339a6eb9c865bcd46de8bb24f3f91"
+   },
+   "cases_run1_ub.jsonl (UB-rule stage)": {
+    "differences": [
+     [
+      "C_415_4",
+      "ours",
+      "028.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "ours",
+      "033.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "ours",
+      "048.in",
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "fuzz",
+      3,
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ],
+     [
+      "C_415_4",
+      "fuzz",
+      13,
+      [
+       "rust_rerun_long_timeout"
+      ]
+     ]
+    ],
+    "duration_fields_ignored": [
+     "rust_rerun_long_timeout"
+    ],
+    "first": "567f90f3c315d6fcb8c3e86a04ec32d4802b645dec25608246d1c2f02e3b3ea5",
+    "identical": false,
+    "identical_ignoring_duration_fields": true,
+    "rows": 15787,
+    "rows_differing": 5,
+    "second": "061f4c32c9b87ea2ac238aa33d4db0a8551e62594002931659cb676fecf71f31"
+   },
+   "diff_run1.json (analyze stage)": {
+    "first": "ba398330a5677f040c750aeef43e534de2b3c243dab10b63b93586ee50fd7aea",
+    "identical": true,
+    "second": "ba398330a5677f040c750aeef43e534de2b3c243dab10b63b93586ee50fd7aea"
+   },
+   "inputs (tree)": {
+    "first": "0742f46687edfb86ffd1963875b9df6470a8517ccad398dba1540f11b6a8ba26",
+    "identical": true,
+    "second": "0742f46687edfb86ffd1963875b9df6470a8517ccad398dba1540f11b6a8ba26"
+   }
+  },
+  "seeds": "none: inputs are a function of (fuzz script, input index k, draw index c) only (Kronecker frac(k*sqrt(p_c)), splitmix64(k, c) beyond 3000 draws); rand::random in a translation (C_415_4) and srand(time(NULL)) in the C (415_4) are the programs' own randomness",
+  "nondeterminism_sources_left": [
+   "timeouts (10 s / 60 s) decide 'hang'; a program near the limit can flip",
+   "sanitizer report text is normalised (PIDs, addresses) before it is stored"
+  ]
+ }
+}

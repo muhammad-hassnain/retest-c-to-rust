@@ -1,0 +1,463 @@
+{
+ "provenance": {
+  "script": "systems/adatrans/pipeline.sh -> systems/adatrans/summarize.py (assembly) <- measurement scripts below",
+  "command": "bash systems/adatrans/pipeline.sh summarize  (in Docker: python3 -I systems/adatrans/summarize.py --work /b --inputs-manifest /inputs/inputs_manifest.json --results /work/results --runs run1)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (study repo; systems/adatrans/ uncommitted, copied to the run host)",
+  "host": {
+   "measurement": "desktop (x86-64 Linux box, kernel 7.0.0-38-generic, 20 cores; docker --cpus 14 for the last pipeline run; earlier stages (fetch..gen) at 3)",
+   "assembly": "adatrans-pipeline (x86_64)"
+  },
+  "arch": "x86_64 (all builds and runs); assembly on x86_64",
+  "docker_image": {
+   "name": "crust-heldout-plus186",
+   "id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+   "flags": "--network none, --cpus <=3, run as the invoking uid"
+  },
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31) via rustup in the image",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "crates (vendored offline, Cargo.lock)": "rand 0.8.8, regex 1.13.1, libc 0.2.191, lazy_static 1.5.1",
+   "python_in_image": "3.10.12"
+  },
+  "artifact": {
+   "repo": "https://github.com/SlainTroyard/adatrans_dev",
+   "commit": "31f4031aadb7ee9d4a2fb1a180e78ae9b45e5578",
+   "git_archive_sha256": "49e132b5991856c92deedab7e96d171ac2b6b6bf1c30d7cb6cc7cf632ba99231",
+   "zenodo": "10.5281/zenodo.22258998 adatrans-artifacts.tar.zst sha256 03110aba3b469b37c56daf931dd6bb0e2ead37ac8462900da39c5e795493d6fe (matches published); only dataset_fuzz_outputs/ extracted"
+  },
+  "measurement_scripts": [
+   "systems/adatrans/fetch.sh",
+   "systems/adatrans/extract_final.py",
+   "systems/adatrans/gen_inputs.py",
+   "systems/adatrans/run_diff.py",
+   "systems/adatrans/analyze.py",
+   "systems/adatrans/confirm.py",
+   "systems/adatrans/heldout.py",
+   "systems/adatrans/mutate.py",
+   "harness/oracle_ub_common.py (sanitizer flags, run_san)"
+  ],
+  "date": "2026-11-14T03:18:15+00:00",
+  "source": "confirm.py"
+ },
+ "patches": {
+  "run1-C_432_4": {
+   "id": "run1-C_432_4",
+   "inst": "C_432_4",
+   "patch": [
+    [
+     "    let mut q = Deque::new(n);",
+     "    let mut q = Deque::new(n + 1);"
+    ]
+   ]
+  },
+  "run1-C_426_1": {
+   "id": "run1-C_426_1",
+   "inst": "C_426_1",
+   "patch": [
+    [
+     "let b = (n as f64).log(2.0).ceil() as i32;",
+     "let b = (n as f64).log2() as i32 + 1;"
+    ]
+   ]
+  },
+  "run1-C_438_3": {
+   "id": "run1-C_438_3",
+   "inst": "C_438_3",
+   "patch": [
+    [
+     "println!(\"{}\", if result { 1 } else { 0 });",
+     "println!(\"{}\", if result { \"true\" } else { \"false\" });"
+    ]
+   ]
+  },
+  "run1-C_421_2": {
+   "id": "run1-C_421_2",
+   "inst": "C_421_2",
+   "patch": [
+    [
+     "let ans: i32 = lst.iter().sum::<i32>() % mod_value;",
+     "let ans: i32 = lst.iter().fold(0i32, |a, &v| (a + v) % mod_value);"
+    ]
+   ]
+  },
+  "run1-C_430_2": {
+   "id": "run1-C_430_2",
+   "inst": "C_430_2",
+   "patch": [
+    [
+     "    &word[ans..ans + n]",
+     "    &word[ans..(ans + n).min(len)]"
+    ]
+   ]
+  },
+  "run1-C_417_2": {
+   "id": "run1-C_417_2",
+   "inst": "C_417_2",
+   "patch": [
+    [
+     "if vowels_present.iter().enumerate().all(|(idx, &vp)| !vp || vowel_counts[idx] > 0)",
+     "if vowel_counts.iter().all(|&c| c > 0)"
+    ]
+   ]
+  },
+  "run1-C_434_4": {
+   "id": "run1-C_434_4",
+   "inst": "C_434_4",
+   "patch": [
+    [
+     "    valid_subsets.sort_unstable();",
+     "    // sort removed (confirm.py)"
+    ]
+   ]
+  },
+  "run1-C_425_4": {
+   "id": "run1-C_425_4",
+   "inst": "C_425_4",
+   "patch": [
+    [
+     "    while let Some(Ok(line)) = lines.next() {",
+     "    while let Some(Ok(line)) = (if edges_vec.len() + 1 < n_input { lines.next() } else { None }) {"
+    ]
+   ]
+  },
+  "run1-C_416_4": {
+   "id": "run1-C_416_4",
+   "inst": "C_416_4",
+   "patch": [
+    [
+     "word1.chars().nth(r).unwrap()",
+     "(word1.as_bytes()[r] as char)"
+    ],
+    [
+     "word1.chars().nth(l).unwrap()",
+     "(word1.as_bytes()[l] as char)"
+    ]
+   ]
+  },
+  "run1-C_415_4-A": {
+   "id": "run1-C_415_4-A",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "    while cur_r < n {\n        while nxt_r < n && (nxt_r - cur_r) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - cur_r;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if cur_r == nxt_r {\n            return -1;\n        }\n\n        cur_r = nxt_r;\n        ans += 1;\n    }",
+     "    for i in 0..n {\n        while nxt_r < n && (nxt_r - i) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[i..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - i;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if i == cur_r {\n            if i == nxt_r {\n                return -1;\n            }\n            cur_r = nxt_r;\n            ans += 1;\n        }\n    }"
+    ]
+   ]
+  },
+  "run1-C_415_4-B": {
+   "id": "run1-C_415_4-B",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "        let len = word.len();\n        for j in 0..len {\n            let prefix_hash = get_hash_rem(base, &base_powers, &word[..=j]);",
+     "        let len = word.len();\n        let mut wh = 0u64;\n        for j in 0..len {\n            wh = (wh * base + word.as_bytes()[j] as u64) % MOD;\n            let prefix_hash = wh;"
+    ],
+    [
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n",
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n    let tb = target.as_bytes();\n    let mut pre = vec![0u64; n + 1];\n    for i in 0..n {\n        pre[i + 1] = (pre[i] * base + tb[i] as u64) % MOD;\n    }\n"
+    ],
+    [
+     "let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;",
+     "let current_hash = (pre[nxt_r + 1] + MOD - (pre[cur_r] * base_powers[nxt_r + 1 - cur_r]) % MOD) % MOD;"
+    ]
+   ]
+  },
+  "run1-C_415_4-AB": {
+   "id": "run1-C_415_4-AB",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "        let len = word.len();\n        for j in 0..len {\n            let prefix_hash = get_hash_rem(base, &base_powers, &word[..=j]);",
+     "        let len = word.len();\n        let mut wh = 0u64;\n        for j in 0..len {\n            wh = (wh * base + word.as_bytes()[j] as u64) % MOD;\n            let prefix_hash = wh;"
+    ],
+    [
+     "    while cur_r < n {\n        while nxt_r < n && (nxt_r - cur_r) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - cur_r;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if cur_r == nxt_r {\n            return -1;\n        }\n\n        cur_r = nxt_r;\n        ans += 1;\n    }",
+     "    for i in 0..n {\n        while nxt_r < n && (nxt_r - i) < max_len {\n            let current_hash = (pre[nxt_r + 1] + MOD - (pre[i] * base_powers[nxt_r + 1 - i]) % MOD) % MOD;\n            let prefix_len = nxt_r - i;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if i == cur_r {\n            if i == nxt_r {\n                return -1;\n            }\n            cur_r = nxt_r;\n            ans += 1;\n        }\n    }"
+    ],
+    [
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n",
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n    let tb = target.as_bytes();\n    let mut pre = vec![0u64; n + 1];\n    for i in 0..n {\n        pre[i + 1] = (pre[i] * base + tb[i] as u64) % MOD;\n    }\n"
+    ]
+   ]
+  }
+ },
+ "results": {
+  "run1-C_415_4-A": {
+   "built": true,
+   "now_agree": 0,
+   "now_agree_by_orig_kind": {},
+   "rerun": 15,
+   "still_by_orig_kind": {
+    "S1": 15
+   },
+   "still_diverge": 15,
+   "still_diverge_detail": [
+    {
+     "c_ub_clean": true,
+     "idx": "005.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "013.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "025.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "027.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "028.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "036.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "043.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "046.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "050.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "054.in",
+     "orig_kind": "S1",
+     "patched_kind": "hang",
+     "src": "ours"
+    }
+   ]
+  },
+  "run1-C_415_4-AB": {
+   "built": true,
+   "now_agree": 15,
+   "now_agree_by_orig_kind": {
+    "S1": 15
+   },
+   "rerun": 15,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_415_4-B": {
+   "built": true,
+   "now_agree": 0,
+   "now_agree_by_orig_kind": {},
+   "rerun": 15,
+   "still_by_orig_kind": {
+    "S1": 15
+   },
+   "still_diverge": 15,
+   "still_diverge_detail": [
+    {
+     "c_ub_clean": true,
+     "idx": "005.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "013.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "025.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "027.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "028.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "036.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "043.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "046.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "050.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    },
+    {
+     "c_ub_clean": true,
+     "idx": "054.in",
+     "orig_kind": "S1",
+     "patched_kind": "S1",
+     "src": "ours"
+    }
+   ]
+  },
+  "run1-C_416_4": {
+   "built": true,
+   "now_agree": 69,
+   "now_agree_by_orig_kind": {
+    "hang": 69
+   },
+   "rerun": 69,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_417_2": {
+   "built": true,
+   "now_agree": 31,
+   "now_agree_by_orig_kind": {
+    "S1": 31
+   },
+   "rerun": 31,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_421_2": {
+   "built": true,
+   "now_agree": 83,
+   "now_agree_by_orig_kind": {
+    "panic": 81,
+    "panic(C-UB)": 2
+   },
+   "rerun": 102,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_425_4": {
+   "built": true,
+   "now_agree": 2,
+   "now_agree_by_orig_kind": {
+    "S1": 2
+   },
+   "rerun": 2,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_426_1": {
+   "built": true,
+   "now_agree": 10,
+   "now_agree_by_orig_kind": {
+    "S1": 10
+   },
+   "rerun": 10,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_430_2": {
+   "built": true,
+   "now_agree": 75,
+   "now_agree_by_orig_kind": {
+    "panic": 75
+   },
+   "rerun": 75,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_432_4": {
+   "built": true,
+   "now_agree": 1,
+   "now_agree_by_orig_kind": {
+    "panic": 1
+   },
+   "rerun": 1,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_434_4": {
+   "built": true,
+   "now_agree": 40,
+   "now_agree_by_orig_kind": {
+    "S1": 40
+   },
+   "rerun": 40,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  },
+  "run1-C_438_3": {
+   "built": true,
+   "now_agree": 182,
+   "now_agree_by_orig_kind": {
+    "S1": 182
+   },
+   "rerun": 182,
+   "still_by_orig_kind": {},
+   "still_diverge": 0,
+   "still_diverge_detail": []
+  }
+ }
+}

@@ -1,0 +1,105 @@
+{
+ "old_summary": {
+  "tested": 176,
+  "agree": 119,
+  "value_bug": 23,
+  "rust_hang": 2,
+  "ub_only": 29,
+  "timeout_only": 3,
+  "rust-build-fail": 17
+ },
+ "new_summary": {
+  "tested": 176,
+  "agree": 117,
+  "value_bug": 25,
+  "rust_hang": 2,
+  "ub_only": 29,
+  "timeout_only": 3,
+  "rust-build-fail": 17
+ },
+ "changed_verdicts": [
+  {
+   "func": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+   "nargs": 4,
+   "old": "agree",
+   "new": "value_bug",
+   "new_samples": [
+    {
+     "in": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "c": "1",
+     "rust": "2"
+    },
+    {
+     "in": [
+      97,
+      1,
+      0,
+      0
+     ],
+     "c": "97",
+     "rust": "0"
+    },
+    {
+     "in": [
+      194,
+      1,
+      0,
+      1
+     ],
+     "c": "388",
+     "rust": "194"
+    }
+   ]
+  },
+  {
+   "func": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+   "nargs": 4,
+   "old": "agree",
+   "new": "value_bug",
+   "new_samples": [
+    {
+     "in": [
+      194,
+      1,
+      0,
+      1
+     ],
+     "c": "9",
+     "rust": "194"
+    },
+    {
+     "in": [
+      194,
+      1,
+      97,
+      0
+     ],
+     "c": "3",
+     "rust": "194"
+    },
+    {
+     "in": [
+      97,
+      194,
+      1,
+      97
+     ],
+     "c": "782",
+     "rust": "18722"
+    }
+   ]
+  }
+ ],
+ "changes_by_arity": {
+  "(4, 'agree', 'value_bug')": 2
+ },
+ "one_arg_unchanged": true,
+ "value_bugs_diverging_outside_0_1": 25,
+ "value_bugs": 25,
+ "value_bugs_only_in_0_1": []
+}

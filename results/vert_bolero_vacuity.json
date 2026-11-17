@@ -1,0 +1,1065 @@
+{
+ "summary": {
+  "vert_reduce": {
+   "pass": 25,
+   "fail": 0,
+   "compile_error": 1,
+   "timeout": 0
+  },
+  "planted_reduce": {
+   "pass": 24,
+   "fail": 1,
+   "compile_error": 1,
+   "timeout": 0
+  },
+  "fuzz_30s": {
+   "pass": 12,
+   "fail": 13,
+   "compile_error": 1,
+   "timeout": 0
+  },
+  "functions": 26,
+  "procedure": "VERT ARTIFACT_README 'How to Run Validation Directly' (PBT): mkdir -p src/__fuzz__; RUSTFLAGS='-C overflow-checks=false' cargo bolero reduce bolero_wasm_eq; pass iff no 'Test Failure'",
+  "outcomes_by_arm": {
+   "vert_reduce": {
+    "aborted_empty_corpus": 22,
+    "exit_1_no_test_failure_text": 2,
+    "compile_error": 1,
+    "clean_exit": 1
+   },
+   "planted_reduce": {
+    "aborted_empty_corpus": 16,
+    "exit_1_no_test_failure_text": 8,
+    "compile_error": 1,
+    "test_failure": 1
+   },
+   "fuzz_30s": {
+    "test_failure": 13,
+    "exit_1_no_test_failure_text": 12,
+    "compile_error": 1
+   }
+  },
+  "benchmarks_shipping_a_corpus": 2,
+  "vert_pbt_pass_total": 303,
+  "vert_pbt_pass_without_shipped_corpus": 302,
+  "tooling": "cargo-bolero from VERT's fork YoshikiTakashima/bolero@1d02eb8 (branch kani-unwind-0, per VERT readme.md); nightly-2023-07-29 per benchmark/rust-toolchain.toml; ubuntu:22.04 x86-64",
+  "reading": "Under VERT's documented rule (pass iff output lacks 'Test Failure'), every aborted run counts as a pass. Without a shipped corpus, `cargo bolero reduce` aborts before executing any input. Only the one function with a shipped corpus (SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER, 177 inputs) replayed inputs (see vert_bolero_debug.log). The fuzz_30s arm is a control on the planted-wrong translation; vert_bolero_debug.log also shows 20 s of fuzzing VERT's own unmodified MAXIMUM_GAMES_PLAYED_WINNER failing the equivalence assertion (left 0, right 1).",
+  "functions_note": "23 VERT scalar wrong answers (results/vert_diff.json) + 3 agreeing functions"
+ },
+ "rows": [
+  {
+   "function": "AREA_OF_A_HEXAGON",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 75.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "never used\n   --> src/main.rs:390:4\n    |\n390 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:393:4\n    |\n393 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:403:60\n    |\n403 |     bolero::check!().with_type::<(f32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_area_of_a_hexagon_out-rwasm-bolero` (bin \"c_transcoder_area_of_a_hexagon_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_area_of_a_hexagon_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 1m 14s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_area_of_a_hexagon_out_rwasm_bolero-847ee533155b9e73)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_ty1zgxzi/p/src/__fuzz__/bolero_wasm_eq/.tmpKopFd0\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 76.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "ever used\n   --> src/main.rs:390:4\n    |\n390 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:393:4\n    |\n393 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:403:60\n    |\n403 |     bolero::check!().with_type::<(f32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_area_of_a_hexagon_out-rwasm-bolero` (bin \"c_transcoder_area_of_a_hexagon_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_area_of_a_hexagon_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 1m 16s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_area_of_a_hexagon_out_rwasm_bolero-847ee533155b9e73)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_nreumgc6/p/src/__fuzz__/bolero_wasm_eq/.tmpM82I6L\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 49.1,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "_4x9c8fk6/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_area_of_a_hexagon_out_rwasm_bolero-847ee533155b9e73+0x15aa2c3) (BuildId: 7a9666dbe15c200fc3ac9ffac587fc9449febc8b)\n    #24 0x5bbddcf1497a  (/tmp/bolero_4x9c8fk6/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_area_of_a_hexagon_out_rwasm_bolero-847ee533155b9e73+0x15b097a) (BuildId: 7a9666dbe15c200fc3ac9ffac587fc9449febc8b)\n    #25 0x5bbddd5d8a74  (/tmp/bolero_4x9c8fk6/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_area_of_a_hexagon_out_rwasm_bolero-847ee533155b9e73+0x1c74a74) (BuildId: 7a9666dbe15c200fc3ac9ffac587fc9449febc8b)\n    #26 0x7da22a2a4a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x7da22a335a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 3 CopyPart-CrossOver-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xa,0xea,\n\\012\\012\\012\\352\nartifact_prefix='/tmp/bolero_4x9c8fk6/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_4x9c8fk6/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-8ae9beb26030ef1a4f00f595b46b0b93862fc427\nBase64: CgoK6g==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 46.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:597:4\n    |\n597 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:598:4\n    |\n598 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:599:4\n    |\n599 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:621:60\n    |\n621 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero` (bin \"c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 46.32s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_check_if_a_number_is_jumbled_or_not_out_rwasm_bolero-9b53a28a0f50a27b)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_dnun0zxc/p/src/__fuzz__/bolero_wasm_eq/.tmpAhx2aX\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 45.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:597:4\n    |\n597 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:598:4\n    |\n598 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:599:4\n    |\n599 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:610:60\n    |\n610 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero` (bin \"c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero\" test) generated 11 warnings (run `cargo fix --bin \"c_transcoder_check_if_a_number_is_jumbled_or_not_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 44.92s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_check_if_a_number_is_jumbled_or_not_out_rwasm_bolero-9b53a28a0f50a27b)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_l7dtiyy0/p/src/__fuzz__/bolero_wasm_eq/.tmpvXmI8W\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.9,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "u/release/deps/c_transcoder_check_if_a_number_is_jumbled_or_not_out_rwasm_bolero-9b53a28a0f50a27b+0x15bb3f3) (BuildId: ae9219441b318d0bde8c2114815176e79e05b617)\n    #24 0x5fb196c52aaa  (/tmp/bolero_yoa1tgt9/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_check_if_a_number_is_jumbled_or_not_out_rwasm_bolero-9b53a28a0f50a27b+0x15c1aaa) (BuildId: ae9219441b318d0bde8c2114815176e79e05b617)\n    #25 0x5fb197316ba4  (/tmp/bolero_yoa1tgt9/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_check_if_a_number_is_jumbled_or_not_out_rwasm_bolero-9b53a28a0f50a27b+0x1c85ba4) (BuildId: ae9219441b318d0bde8c2114815176e79e05b617)\n    #26 0x70bef955ea82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x70bef95efa93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 4 CrossOver-InsertByte-ShuffleBytes-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xaa,0x8c,\n\\012\\012\\252\\214\nartifact_prefix='/tmp/bolero_yoa1tgt9/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_yoa1tgt9/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-907a1f9f08922b21341a1ab42ff1bc16d6d0fa3c\nBase64: CgqqjA==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 43.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "pfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:618:4\n    |\n618 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:619:4\n    |\n619 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:639:60\n    |\n639 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero` (bin \"c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.98s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out_rwasm_bolero-bc84bc6bfd16effe)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_pp0gyxyr/p/src/__fuzz__/bolero_wasm_eq/.tmp86Gpm1\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.9,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "func(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:618:4\n    |\n618 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:619:4\n    |\n619 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:628:60\n    |\n628 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero` (bin \"c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.81s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out_rwasm_bolero-bc84bc6bfd16effe)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_ou_ozqt5/p/src/__fuzz__/bolero_wasm_eq/.tmpIDfBNP\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.5,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "sfy_inequality_xx_yy_n_2_1_out_rwasm_bolero-bc84bc6bfd16effe+0x15baf03) (BuildId: 633217f08d7a24fad85ccba24c9f0539025ec7b7)\n    #24 0x588eea53f5ba  (/tmp/bolero_68f5ravb/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out_rwasm_bolero-bc84bc6bfd16effe+0x15c15ba) (BuildId: 633217f08d7a24fad85ccba24c9f0539025ec7b7)\n    #25 0x588eeac036b4  (/tmp/bolero_68f5ravb/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_distinct_non_negative_pairs_x_y_satisfy_inequality_xx_yy_n_2_1_out_rwasm_bolero-bc84bc6bfd16effe+0x1c856b4) (BuildId: 633217f08d7a24fad85ccba24c9f0539025ec7b7)\n    #26 0x7cc180b82a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x7cc180c13a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 2 CopyPart-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xa,0xa,\n\\012\\012\\012\\012\nartifact_prefix='/tmp/bolero_68f5ravb/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_68f5ravb/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-3f3d2d8955322f325af6db2238355fa07007ebd9\nBase64: CgoKCg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.8,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "2) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:416:4\n    |\n416 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:417:4\n    |\n417 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:418:4\n    |\n418 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:433:60\n    |\n433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero` (bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.69s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.3,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "s never used\n   --> src/main.rs:416:4\n    |\n416 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:417:4\n    |\n417 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:418:4\n    |\n418 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:428:60\n    |\n428 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero` (bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.21s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_qen9anf3/p/src/__fuzz__/bolero_wasm_eq/.tmpA4mePO\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.8,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ") -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:416:4\n    |\n416 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:417:4\n    |\n417 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:418:4\n    |\n418 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:428:60\n    |\n428 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero` (bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.62s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.9,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "ort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1255:65\n     |\n1255 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n    --> src/main.rs:1255:73\n     |\n1255 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nwarning: `c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero` (bin \"c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero\" test) generated 8 warnings (run `cargo fix --bin \"c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero\" --tests` to apply 1 suggestion)\n    Finished release [optimized] target(s) in 42.78s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_i9pvlg4y/p/src/__fuzz__/bolero_wasm_eq/.tmpJNNOhG\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "t(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1245:65\n     |\n1245 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n    --> src/main.rs:1245:73\n     |\n1245 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nwarning: `c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero` (bin \"c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.62s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_4wz3e01a/p/src/__fuzz__/bolero_wasm_eq/.tmpGWoIju\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 44.0,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "sm_bolero-b83ab117f1babf53+0x15c7bb3) (BuildId: d661b6d1586cc4963bd31473d20aadf35b7e3193)\n    #24 0x5706e9cae26a  (/tmp/bolero_a5x158vb/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x15ce26a) (BuildId: d661b6d1586cc4963bd31473d20aadf35b7e3193)\n    #25 0x5706ea372364  (/tmp/bolero_a5x158vb/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_different_ways_sum_n_using_numbers_greater_equal_m_out_rwasm_bolero-b83ab117f1babf53+0x1c92364) (BuildId: d661b6d1586cc4963bd31473d20aadf35b7e3193)\n    #26 0x773d7e46fa82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x773d7e500a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 3 ChangeBinInt-ChangeByte-InsertRepeatedBytes-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x87,0x8e,0x8e,0x8e,0x8e,0x8e,0x8e,0x8e,\n\\207\\216\\216\\216\\216\\216\\216\\216\nartifact_prefix='/tmp/bolero_a5x158vb/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_a5x158vb/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-5636254ae45146fafbf143805392ab8646ec3470\nBase64: h46Ojo6Ojo4=\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 43.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:815:4\n    |\n815 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:816:4\n    |\n816 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `N` should have a snake case name\n   --> src/main.rs:819:11\n    |\n819 | fn f_gold(N: i32) -> i32 { \n    |           ^ help: convert the identifier to snake case: `n`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:834:60\n    |\n834 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n\nwarning: `c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero` (bin \"c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.85s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_height_complete_binary_tree_heap_n_nodes_out_rwasm_bolero-b1627481b6bfa375)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "\n\nwarning: function `len` is never used\n   --> src/main.rs:815:4\n    |\n815 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:816:4\n    |\n816 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `N` should have a snake case name\n   --> src/main.rs:819:11\n    |\n819 | fn f_gold(N: i32) -> i32 {\n    |           ^ help: convert the identifier to snake case: `n`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:826:60\n    |\n826 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n\nwarning: `c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero` (bin \"c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero\" test) generated 11 warnings (run `cargo fix --bin \"c_transcoder_height_complete_binary_tree_heap_n_nodes_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.95s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_height_complete_binary_tree_heap_n_nodes_out_rwasm_bolero-b1627481b6bfa375)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_5re047qa/p/src/__fuzz__/bolero_wasm_eq/.tmpmGnmEp\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.5,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "u/release/deps/c_transcoder_height_complete_binary_tree_heap_n_nodes_out_rwasm_bolero-b1627481b6bfa375+0x15bdde3) (BuildId: 5778deb3abf7fa28c34bf09a16539ff9d1f92a72)\n    #24 0x5ab0c26fc49a  (/tmp/bolero_ii8_a42b/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_height_complete_binary_tree_heap_n_nodes_out_rwasm_bolero-b1627481b6bfa375+0x15c449a) (BuildId: 5778deb3abf7fa28c34bf09a16539ff9d1f92a72)\n    #25 0x5ab0c2dc0594  (/tmp/bolero_ii8_a42b/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_height_complete_binary_tree_heap_n_nodes_out_rwasm_bolero-b1627481b6bfa375+0x1c88594) (BuildId: 5778deb3abf7fa28c34bf09a16539ff9d1f92a72)\n    #26 0x784d3130ba82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x784d3139ca93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 2 CrossOver-CMP- DE: \"\\377\\377\"-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xff,0xff,\n\\012\\012\\377\\377\nartifact_prefix='/tmp/bolero_ii8_a42b/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_ii8_a42b/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-d7203594480587254c34f199c2aa67b61e32c56f\nBase64: Cgr//w==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "HEXAGONAL_NUMBER",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 43.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "is never used\n   --> src/main.rs:381:4\n    |\n381 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:382:4\n    |\n382 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:383:4\n    |\n383 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:384:4\n    |\n384 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:402:60\n    |\n402 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_hexagonal_number_out-rwasm-bolero` (bin \"c_transcoder_hexagonal_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_hexagonal_number_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.94s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_qi91gljf/p/src/__fuzz__/bolero_wasm_eq/.tmpPQJB0I\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "is never used\n   --> src/main.rs:381:4\n    |\n381 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:382:4\n    |\n382 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:383:4\n    |\n383 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:384:4\n    |\n384 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:395:60\n    |\n395 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_hexagonal_number_out-rwasm-bolero` (bin \"c_transcoder_hexagonal_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_hexagonal_number_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.50s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_qcnpk_kl/p/src/__fuzz__/bolero_wasm_eq/.tmph1jt6D\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.7,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "fpng4/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d+0x15bab13) (BuildId: 1e4c02087ca4b402e4933fc8170d92a15b551287)\n    #24 0x5df6275851ca  (/tmp/bolero_gdtfpng4/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d+0x15c11ca) (BuildId: 1e4c02087ca4b402e4933fc8170d92a15b551287)\n    #25 0x5df627c492c4  (/tmp/bolero_gdtfpng4/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_hexagonal_number_out_rwasm_bolero-fb6569f2e0689a1d+0x1c852c4) (BuildId: 1e4c02087ca4b402e4933fc8170d92a15b551287)\n    #26 0x73a9982f8a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x73a998389a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 4 ChangeBit-CrossOver-InsertByte-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x21,0xa,0x30,0xe,\n!\\0120\\016\nartifact_prefix='/tmp/bolero_gdtfpng4/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_gdtfpng4/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-da94a74186bde7c9de93d0e83f7021bb60979560\nBase64: IQowDg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "MAXIMUM_GAMES_PLAYED_WINNER",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "2) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:584:4\n    |\n584 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:585:4\n    |\n585 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `N` should have a snake case name\n   --> src/main.rs:589:11\n    |\n589 | fn f_gold(N: i32) -> i32 {\n    |           ^ help: convert the identifier to snake case: `n`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:604:60\n    |\n604 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n\nwarning: `c_transcoder_maximum_games_played_winner_out-rwasm-bolero` (bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.50s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_8i_h80fq/p/src/__fuzz__/bolero_wasm_eq/.tmpef6WV2\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "c` is never used\n   --> src/main.rs:583:4\n    |\n583 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:584:4\n    |\n584 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:585:4\n    |\n585 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `N` should have a snake case name\n   --> src/main.rs:589:11\n    |\n589 | fn f_gold(N: i32) -> i32 {\n    |           ^ help: convert the identifier to snake case: `n`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:596:60\n    |\n596 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n\nwarning: `c_transcoder_maximum_games_played_winner_out-rwasm-bolero` (bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" test) generated 12 warnings (run `cargo fix --bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 42.52s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "c` is never used\n   --> src/main.rs:583:4\n    |\n583 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:584:4\n    |\n584 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:585:4\n    |\n585 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `N` should have a snake case name\n   --> src/main.rs:589:11\n    |\n589 | fn f_gold(N: i32) -> i32 {\n    |           ^ help: convert the identifier to snake case: `n`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:596:60\n    |\n596 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n\nwarning: `c_transcoder_maximum_games_played_winner_out-rwasm-bolero` (bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" test) generated 12 warnings (run `cargo fix --bin \"c_transcoder_maximum_games_played_winner_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 41.42s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_games_played_winner_out_rwasm_bolero-c49fdbc2865b56e5)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:413:4\n    |\n413 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:426:60\n    |\n426 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.50s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_p0b9mdqg/p/src/__fuzz__/bolero_wasm_eq/.tmpuiWB2L\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "| fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:413:4\n    |\n413 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:424:60\n    |\n424 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.10s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_5cwwnt35/p/src/__fuzz__/bolero_wasm_eq/.tmpgESFKy\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.3,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "arning: function `cmpfunc` is never used\n   --> src/main.rs:412:4\n    |\n412 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:413:4\n    |\n413 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:424:60\n    |\n424 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero` (bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.13s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_maximum_number_2x2_squares_can_fit_inside_right_isosceles_triangle_out_rwasm_bolero-0e44ebceb27a8c95)\nerror: process exited with no status code\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "by default\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:918:4\n    |\n918 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:919:4\n    |\n919 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:920:4\n    |\n920 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:942:60\n    |\n942 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero` (bin \"c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero\" test) generated 8 warnings (run `cargo fix --bin \"c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.65s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_6m37359p/p/src/__fuzz__/bolero_wasm_eq/.tmplyxjGm\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:918:4\n    |\n918 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:919:4\n    |\n919 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:920:4\n    |\n920 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:930:60\n    |\n930 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero` (bin \"c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_minimum_steps_minimize_n_per_given_condition_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.15s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_5tk48mh8/p/src/__fuzz__/bolero_wasm_eq/.tmpNUZdw8\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15bde33) (BuildId: c83d6d21d41c8ec17becd601e54a4c44c91cc4cc)\n    #24 0x57c4b06734ea  (/tmp/bolero_vcb0m8u9/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x15c44ea) (BuildId: c83d6d21d41c8ec17becd601e54a4c44c91cc4cc)\n    #25 0x57c4b0d375e4  (/tmp/bolero_vcb0m8u9/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_minimum_steps_minimize_n_per_given_condition_out_rwasm_bolero-5fa3ea83a2a8655f+0x1c885e4) (BuildId: c83d6d21d41c8ec17becd601e54a4c44c91cc4cc)\n    #26 0x780828a42a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x780828ad3a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 5 ChangeBit-InsertByte-ShuffleBytes-ShuffleBytes-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x2,0x2,0x2,0x2,\n\\002\\002\\002\\002\nartifact_prefix='/tmp/bolero_vcb0m8u9/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_vcb0m8u9/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-322862604601a5a17f8adbf96e318bf2adecf872\nBase64: AgICAg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NEWMAN_CONWAY_SEQUENCE_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "s:643:4\n    |\n643 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:644:4\n    |\n644 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:645:4\n    |\n645 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:646:4\n    |\n646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:665:60\n    |\n665 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.32s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero__ru1prmq/p/src/__fuzz__/bolero_wasm_eq/.tmp71x4zK\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "_code)]` on by default\n\nwarning: function `max` is never used\n   --> src/main.rs:643:4\n    |\n643 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:644:4\n    |\n644 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:645:4\n    |\n645 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:646:4\n    |\n646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:658:60\n    |\n658 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.54s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "e)]` on by default\n\nwarning: function `max` is never used\n   --> src/main.rs:643:4\n    |\n643 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:644:4\n    |\n644 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:645:4\n    |\n645 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:646:4\n    |\n646 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:658:60\n    |\n658 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_newman_conway_sequence_1_out-rwasm-bolero` (bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_newman_conway_sequence_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.83s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_newman_conway_sequence_1_out_rwasm_bolero-312cad612d156f1c)\nerror: process exited with no status code\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NTH_NON_FIBONACCI_NUMBER",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ":522:4\n    |\n522 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:523:4\n    |\n523 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:524:4\n    |\n524 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:525:4\n    |\n525 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:547:60\n    |\n547 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero` (bin \"c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.00s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_non_fibonacci_number_out_rwasm_bolero-4a1f6c822291e586)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_1yy7qsc5/p/src/__fuzz__/bolero_wasm_eq/.tmpb0i622\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ":522:4\n    |\n522 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:523:4\n    |\n523 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:524:4\n    |\n524 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:525:4\n    |\n525 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:537:60\n    |\n537 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero` (bin \"c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero\" test) generated 11 warnings (run `cargo fix --bin \"c_transcoder_nth_non_fibonacci_number_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 41.94s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_non_fibonacci_number_out_rwasm_bolero-4a1f6c822291e586)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_6losr_xw/p/src/__fuzz__/bolero_wasm_eq/.tmpv7pGOg\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.4,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_non_fibonacci_number_out_rwasm_bolero-4a1f6c822291e586+0x15baa03) (BuildId: 98c54c4abec359c80be26b4aa20c1d131fa1f9f7)\n    #24 0x55ba7b0e30ba  (/tmp/bolero_hlhr4g2y/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_non_fibonacci_number_out_rwasm_bolero-4a1f6c822291e586+0x15c10ba) (BuildId: 98c54c4abec359c80be26b4aa20c1d131fa1f9f7)\n    #25 0x55ba7b7a71b4  (/tmp/bolero_hlhr4g2y/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_non_fibonacci_number_out_rwasm_bolero-4a1f6c822291e586+0x1c851b4) (BuildId: 98c54c4abec359c80be26b4aa20c1d131fa1f9f7)\n    #26 0x772f13345a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x772f133d6a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 4 CopyPart-ChangeBit-CopyPart-CMP- DE: \"\\001\\000\"-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xe,0x1,0x0,0xe,\n\\016\\001\\000\\016\nartifact_prefix='/tmp/bolero_hlhr4g2y/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_hlhr4g2y/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-29d3e444062e20f35fb28931e32d7cdac512a854\nBase64: DgEADg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NTH_PENTAGONAL_NUMBER",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.5,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "> src/main.rs:390:4\n    |\n390 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:393:4\n    |\n393 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:404:60\n    |\n404 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_nth_pentagonal_number_out-rwasm-bolero` (bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.39s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_pentagonal_number_out_rwasm_bolero-9dcd5f7fe352cf7a)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_000p0_bo/p/src/__fuzz__/bolero_wasm_eq/.tmpYALb7k\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " src/main.rs:390:4\n    |\n390 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:393:4\n    |\n393 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:404:60\n    |\n404 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_nth_pentagonal_number_out-rwasm-bolero` (bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.35s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_pentagonal_number_out_rwasm_bolero-9dcd5f7fe352cf7a)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_504aps8e/p/src/__fuzz__/bolero_wasm_eq/.tmph8lZDi\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "arn(dead_code)]` on by default\n\nwarning: function `max` is never used\n   --> src/main.rs:390:4\n    |\n390 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:393:4\n    |\n393 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:404:60\n    |\n404 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_nth_pentagonal_number_out-rwasm-bolero` (bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_nth_pentagonal_number_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.85s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_nth_pentagonal_number_out_rwasm_bolero-9dcd5f7fe352cf7a)\nerror: process exited with no status code\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NUMBER_OF_BINARY_TREES_FOR_GIVEN_PREORDER_SEQUENCE_LENGTH",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ": &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:956:4\n    |\n956 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:957:4\n    |\n957 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:976:85\n    |\n976 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ \n    |                                                                                        ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero` (bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" test) generated 11 warnings (run `cargo fix --bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 41.98s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out_rwasm_bolero-7711365c78c63ca6)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_q9tx1gem/p/src/__fuzz__/bolero_wasm_eq/.tmpQlTVj1\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ": &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:956:4\n    |\n956 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:957:4\n    |\n957 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:968:85\n    |\n968 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ \n    |                                                                                        ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero` (bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" test) generated 12 warnings (run `cargo fix --bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" --tests` to apply 6 suggestions)\n    Finished release [optimized] target(s) in 42.37s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out_rwasm_bolero-7711365c78c63ca6)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_6mzfaoav/p/src/__fuzz__/bolero_wasm_eq/.tmpdUYoHn\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "nction `cmpfunc` is never used\n   --> src/main.rs:955:4\n    |\n955 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:956:4\n    |\n956 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:957:4\n    |\n957 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:968:85\n    |\n968 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ \n    |                                                                                        ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero` (bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" test) generated 12 warnings (run `cargo fix --bin \"c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out-rwasm-bolero\" --tests` to apply 6 suggestions)\n    Finished release [optimized] target(s) in 42.52s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_binary_trees_for_given_preorder_sequence_length_out_rwasm_bolero-7711365c78c63ca6)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.9,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "2, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:400:4\n    |\n400 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:401:4\n    |\n401 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:415:60\n    |\n415 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero` (bin \"c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.82s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_7wyy3wt1/p/src/__fuzz__/bolero_wasm_eq/.tmpVsJopg\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ", b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:400:4\n    |\n400 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:401:4\n    |\n401 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:411:60\n    |\n411 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero` (bin \"c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.01s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_5rqxwp_q/p/src/__fuzz__/bolero_wasm_eq/.tmpgmsxU8\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "r_out_rwasm_bolero-65561780bb1ff765+0x15babd3) (BuildId: 412ecb52dcc8c4f09842a3826c37604d06bfd3ff)\n    #24 0x563bb0cfb28a  (/tmp/bolero_rhmfa_5u/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x15c128a) (BuildId: 412ecb52dcc8c4f09842a3826c37604d06bfd3ff)\n    #25 0x563bb13bf384  (/tmp/bolero_rhmfa_5u/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_of_triangles_in_a_plane_if_no_more_than_two_points_are_collinear_out_rwasm_bolero-65561780bb1ff765+0x1c85384) (BuildId: 412ecb52dcc8c4f09842a3826c37604d06bfd3ff)\n    #26 0x740053c43a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x740053cd4a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 4 CopyPart-CopyPart-InsertByte-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0x3b,0xa,0xa,0xa,\n;\\012\\012\\012\nartifact_prefix='/tmp/bolero_rhmfa_5u/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_rhmfa_5u/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-096451d82ba06dfa4eeb21a02f1da94f84052907\nBase64: OwoKCg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NUMBER_RECTANGLES_NM_GRID",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "size {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:421:4\n    |\n421 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:435:65\n    |\n435 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n    |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n   --> src/main.rs:435:73\n    |\n435 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n    |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nwarning: `c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero` (bin \"c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero\" test) generated 12 warnings (run `cargo fix --bin \"c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 42.07s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_eano2jjy/p/src/__fuzz__/bolero_wasm_eq/.tmp2W1rvD\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "len` is never used\n   --> src/main.rs:420:4\n    |\n420 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:421:4\n    |\n421 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:431:65\n    |\n431 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n    |                                                                    ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n   --> src/main.rs:431:73\n    |\n431 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n    |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nwarning: `c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero` (bin \"c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_number_rectangles_nm_grid_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.07s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "se/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e+0x15c1e63) (BuildId: 3fa8e6511d9be1f0e3f174d2d0e01706f48be632)\n    #24 0x5f8453f5a51a  (/tmp/bolero_sbnt8t_m/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e+0x15c851a) (BuildId: 3fa8e6511d9be1f0e3f174d2d0e01706f48be632)\n    #25 0x5f845461e614  (/tmp/bolero_sbnt8t_m/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_rectangles_nm_grid_out_rwasm_bolero-ff55e93940d4ec1e+0x1c8c614) (BuildId: 3fa8e6511d9be1f0e3f174d2d0e01706f48be632)\n    #26 0x79ebeb993a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x79ebeba24a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 3 EraseBytes-ChangeBit-InsertRepeatedBytes-; base unit: 686cc7e75c911a645d8d69ae3d18fa8826ceea87\n0xbe,0xbe,0xbe,0xbe,0xbe,0xbe,0x1a,0xa,\n\\276\\276\\276\\276\\276\\276\\032\\012\nartifact_prefix='/tmp/bolero_sbnt8t_m/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_sbnt8t_m/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-0c085af63e52da6a53d2913ed9a03d25a25c771d\nBase64: vr6+vr6+Ggo=\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NUMBER_TRIANGLES_N_MOVES_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.3,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "2, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1408:4\n     |\n1408 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1409:4\n     |\n1409 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1410:4\n     |\n1410 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1424:60\n     |\n1424 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero` (bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.27s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_triangles_n_moves_1_out_rwasm_bolero-becce844a9a12e79)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_kzooc9lz/p/src/__fuzz__/bolero_wasm_eq/.tmp8vH5uL\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "2, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1408:4\n     |\n1408 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1409:4\n     |\n1409 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1410:4\n     |\n1410 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1421:60\n     |\n1421 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero` (bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.05s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_triangles_n_moves_1_out_rwasm_bolero-becce844a9a12e79)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_jh8gkwlp/p/src/__fuzz__/bolero_wasm_eq/.tmpwU3aB0\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "nction `max` is never used\n    --> src/main.rs:1407:4\n     |\n1407 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1408:4\n     |\n1408 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1409:4\n     |\n1409 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1410:4\n     |\n1410 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1421:60\n     |\n1421 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero` (bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_number_triangles_n_moves_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.96s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_triangles_n_moves_1_out_rwasm_bolero-becce844a9a12e79)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 38.6,
+     "test_failure": false,
+     "could_not_compile": true,
+     "vert_verdict": "compile_error",
+     "tail": "                                   ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n    --> src/main.rs:1064:73\n     |\n1064 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nerror: could not write output to /tmp/bolero_ap8ypdxu/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero-c48580548bb5a506.c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero.3bd0c07ced6f25cf-cgu.0.rcgu.o: File name too long\n\nwarning: `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) generated 8 warnings\nerror: could not compile `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) due to previous error; 8 warnings emitted\nerror: process exited with status 101\n",
+     "outcome": "compile_error"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 39.4,
+     "test_failure": false,
+     "could_not_compile": true,
+     "vert_verdict": "compile_error",
+     "tail": "                                 ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n    --> src/main.rs:1045:73\n     |\n1045 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nerror: could not write output to /tmp/bolero_sh3_t1yl/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero-c48580548bb5a506.c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero.3bd0c07ced6f25cf-cgu.0.rcgu.o: File name too long\n\nwarning: `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) generated 10 warnings\nerror: could not compile `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) due to previous error; 10 warnings emitted\nerror: process exited with status 101\n",
+     "outcome": "compile_error"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 39.1,
+     "test_failure": false,
+     "could_not_compile": true,
+     "vert_verdict": "compile_error",
+     "tail": "                                 ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: variable `PARAM_2` should have a snake case name\n    --> src/main.rs:1045:73\n     |\n1045 |     bolero::check!().with_type::<(i32, i32)>().cloned().for_each(|(PARAM_1,PARAM_2)|{ \n     |                                                                            ^^^^^^^ help: convert the identifier to snake case: `param_2`\n\nerror: could not write output to /tmp/bolero_hrppcp94/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero-c48580548bb5a506.c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out_rwasm_bolero.3bd0c07ced6f25cf-cgu.0.rcgu.o: File name too long\n\nwarning: `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) generated 10 warnings\nerror: could not compile `c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero` (bin \"c_transcoder_number_which_has_the_maximum_number_of_distinct_prime_factors_in_range_m_to_n_out-rwasm-bolero\" test) due to previous error; 10 warnings emitted\nerror: process exited with status 101\n",
+     "outcome": "compile_error"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "{ x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:390:4\n    |\n390 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:406:60\n    |\n406 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero` (bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.57s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_pizza_cut_problem_circle_division_lines_out_rwasm_bolero-209cd6b265e6be6b)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_eadw3451/p/src/__fuzz__/bolero_wasm_eq/.tmpobRPfN\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.9,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "d\n   --> src/main.rs:389:4\n    |\n389 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:390:4\n    |\n390 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:402:60\n    |\n402 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero` (bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.72s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_pizza_cut_problem_circle_division_lines_out_rwasm_bolero-209cd6b265e6be6b)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.8,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " --> src/main.rs:389:4\n    |\n389 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:390:4\n    |\n390 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:391:4\n    |\n391 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:392:4\n    |\n392 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:402:60\n    |\n402 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero` (bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_pizza_cut_problem_circle_division_lines_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.64s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_pizza_cut_problem_circle_division_lines_out_rwasm_bolero-209cd6b265e6be6b)\nerror: process exited with no status code\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.3,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "pfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:609:4\n    |\n609 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:610:4\n    |\n610 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:632:60\n    |\n632 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero` (bin \"c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.22s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_c6i98img/p/src/__fuzz__/bolero_wasm_eq/.tmp3yOroY\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "func(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:609:4\n    |\n609 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:610:4\n    |\n610 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:622:60\n    |\n622 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero` (bin \"c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.88s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_kh07irwc/p/src/__fuzz__/bolero_wasm_eq/.tmpaVLBkO\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.5,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "ts_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15baa43) (BuildId: 7492b85b810643b953bd50ca57a00f0e74865f2f)\n    #24 0x5776d144a0fa  (/tmp/bolero_x2c4budt/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x15c10fa) (BuildId: 7492b85b810643b953bd50ca57a00f0e74865f2f)\n    #25 0x5776d1b0e1f4  (/tmp/bolero_x2c4budt/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_program_to_check_if_a_given_number_is_lucky_all_digits_are_different_out_rwasm_bolero-a2fa6642159555ce+0x1c851f4) (BuildId: 7492b85b810643b953bd50ca57a00f0e74865f2f)\n    #26 0x7884eeb48a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x7884eebd9a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 3 CopyPart-CopyPart-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xa,0xa,\n\\012\\012\\012\\012\nartifact_prefix='/tmp/bolero_x2c4budt/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_x2c4budt/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-3f3d2d8955322f325af6db2238355fa07007ebd9\nBase64: CgoKCg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.6,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "ction `cmpfunc` is never used\n   --> src/main.rs:749:4\n    |\n749 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:750:4\n    |\n750 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:751:4\n    |\n751 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:767:60\n    |\n767 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero` (bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 41.48s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_z1rr0wtr/p/src/__fuzz__/bolero_wasm_eq/.tmpx3dymC\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "tion `cmpfunc` is never used\n   --> src/main.rs:749:4\n    |\n749 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:750:4\n    |\n750 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:751:4\n    |\n751 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:761:60\n    |\n761 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero` (bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.14s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_6lic48l_/p/src/__fuzz__/bolero_wasm_eq/.tmpNBSAqC\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.9,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "x(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:749:4\n    |\n749 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:750:4\n    |\n750 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:751:4\n    |\n751 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:761:60\n    |\n761 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero` (bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.79s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_recursively_break_number_3_parts_get_maximum_sum_1_out_rwasm_bolero-38c1c80e15c5b97f)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "SUM_BINOMIAL_COEFFICIENTS",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1064:4\n     |\n1064 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1065:4\n     |\n1065 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1066:4\n     |\n1066 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1093:60\n     |\n1093 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_binomial_coefficients_out-rwasm-bolero` (bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.30s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_wd7gxfv0/p/src/__fuzz__/bolero_wasm_eq/.tmpPIB2bx\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ": function `max` is never used\n    --> src/main.rs:1063:4\n     |\n1063 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1064:4\n     |\n1064 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1065:4\n     |\n1065 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1066:4\n     |\n1066 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1077:60\n     |\n1077 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_binomial_coefficients_out-rwasm-bolero` (bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.00s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.8,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": ": function `max` is never used\n    --> src/main.rs:1063:4\n     |\n1063 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1064:4\n     |\n1064 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1065:4\n     |\n1065 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1066:4\n     |\n1066 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1077:60\n     |\n1077 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_binomial_coefficients_out-rwasm-bolero` (bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_sum_binomial_coefficients_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.61s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "unction `cmpfunc` is never used\n    --> src/main.rs:1075:4\n     |\n1075 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1076:4\n     |\n1076 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1077:4\n     |\n1077 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1104:60\n     |\n1104 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero` (bin \"c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.29s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_largest_prime_factor_number_less_equal_n_out_rwasm_bolero-c4015f5f972513e1)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_gkptpbg8/p/src/__fuzz__/bolero_wasm_eq/.tmpFYjYRv\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.1,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "ax(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n     |    ^^^\n\nwarning: function `cmpfunc` is never used\n    --> src/main.rs:1075:4\n     |\n1075 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n     |    ^^^^^^^\n\nwarning: function `len` is never used\n    --> src/main.rs:1076:4\n     |\n1076 | fn len(arr: &[i32]) -> usize {arr.len()}\n     |    ^^^\n\nwarning: function `sort` is never used\n    --> src/main.rs:1077:4\n     |\n1077 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n     |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n    --> src/main.rs:1087:60\n     |\n1087 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n     |\n     = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero` (bin \"c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_sum_largest_prime_factor_number_less_equal_n_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.95s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_largest_prime_factor_number_less_equal_n_out_rwasm_bolero-c4015f5f972513e1)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.5,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "gest_prime_factor_number_less_equal_n_out_rwasm_bolero-c4015f5f972513e1+0x15c1583) (BuildId: 1f3a8003662052704399f17715e6ed4fbf870fd4)\n    #24 0x5ee863a29c3a  (/tmp/bolero_6c0fv8_a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_largest_prime_factor_number_less_equal_n_out_rwasm_bolero-c4015f5f972513e1+0x15c7c3a) (BuildId: 1f3a8003662052704399f17715e6ed4fbf870fd4)\n    #25 0x5ee8640edd34  (/tmp/bolero_6c0fv8_a/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_largest_prime_factor_number_less_equal_n_out_rwasm_bolero-c4015f5f972513e1+0x1c8bd34) (BuildId: 1f3a8003662052704399f17715e6ed4fbf870fd4)\n    #26 0x7c5c54aa8a82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x7c5c54b39a93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 5 ShuffleBytes-InsertByte-ChangeBit-ChangeBit-CopyPart-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xc7,0x8,0xc7,0x8,\n\\307\\010\\307\\010\nartifact_prefix='/tmp/bolero_6c0fv8_a/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_6c0fv8_a/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-93d6646cf41145905f0b634e0f352c45cafc7b5b\nBase64: xwjHCA==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 0,
+     "timeout": false,
+     "secs": 42.8,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "f_a_natural_number_out-rwasm-bolero` (bin \"c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.65s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170)\nINFO: Running with entropic power schedule (0xFF, 100).\nINFO: Seed: 1321564712\nINFO: Loaded 1 modules   (361854 inline 8-bit counters): 361854 [0x5ab1c278e0d0, 0x5ab1c27e664e), \nINFO: Loaded 1 PC tables (361854 PCs): 361854 [0x5ab1c27e6650,0x5ab1c2d6be30), \nINFO: -max_len is not provided; libFuzzer will not generate inputs larger than 1048576 bytes\nMERGE-INNER: using the control file '/tmp/.tmpyAjJIZ'\nMERGE-INNER: 177 total files; 0 processed earlier; will process 177 files now\n#1\tpulse  cov: 44 ft: 45 exec/s: 0 rss: 51Mb\n#2\tpulse  cov: 582 ft: 584 exec/s: 0 rss: 53Mb\n#4\tpulse  cov: 612 ft: 618 exec/s: 0 rss: 54Mb\n#8\tpulse  cov: 623 ft: 663 exec/s: 0 rss: 54Mb\n#16\tpulse  cov: 626 ft: 676 exec/s: 0 rss: 56Mb\n#32\tpulse  cov: 628 ft: 678 exec/s: 0 rss: 58Mb\n#64\tpulse  cov: 630 ft: 680 exec/s: 0 rss: 61Mb\n#128\tpulse  cov: 630 ft: 697 exec/s: 0 rss: 65Mb\n#177\tLOADED cov: 630 ft: 700 exec/s: 0 rss: 68Mb\n#177\tDONE   cov: 630 ft: 700 exec/s: 0 rss: 68Mb\n",
+     "outcome": "clean_exit"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "6ae5ae880203)\n    #21 0x562238a3e263  (/tmp/bolero_9tm36yph/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170+0x15b7263) (BuildId: 789417cc938141f8041a0314fabb6ae5ae880203)\n    #22 0x562238a4491a  (/tmp/bolero_9tm36yph/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170+0x15bd91a) (BuildId: 789417cc938141f8041a0314fabb6ae5ae880203)\n    #23 0x562239108a14  (/tmp/bolero_9tm36yph/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170+0x1c81a14) (BuildId: 789417cc938141f8041a0314fabb6ae5ae880203)\n    #24 0x7e7f6ff1da82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #25 0x7e7f6ffaea93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 0 ; base unit: 0000000000000000000000000000000000000000\n0x0,0x0,0x0,0x0,0x8,\n\\000\\000\\000\\000\\010\nartifact_prefix='./'; Test unit written to ./crash-01463f95233e2ebd4bd0ed4a42013f99b57d91aa\nBase64: AAAAAAg=\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 43.0,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:569:4\n    |\n569 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:570:4\n    |\n570 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:571:4\n    |\n571 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:581:85\n    |\n581 |     bolero::check!().with_type::<(i32)>().with_generator((0..100)).cloned().for_each(|(PARAM_1)|{ \n    |                                                                                        ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero` (bin \"c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero\" test) generated 11 warnings (run `cargo fix --bin \"c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out-rwasm-bolero\" --tests` to apply 5 suggestions)\n    Finished release [optimized] target(s) in 42.88s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_of_all_proper_divisors_of_a_natural_number_out_rwasm_bolero-3ad2ca4981901170)\nerror: process exited with no status code\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 177
+  },
+  {
+   "function": "SUM_SERIES_12_32_52_2N_12_1",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.3,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "|\n414 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:415:4\n    |\n415 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:416:4\n    |\n416 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:417:4\n    |\n417 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:432:60\n    |\n432 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero` (bin \"c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.18s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_series_12_32_52_2n_12_1_out_rwasm_bolero-6897b9e84477840e)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_ehlvl4fn/p/src/__fuzz__/bolero_wasm_eq/.tmps3KJgc\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "by default\n\nwarning: function `max` is never used\n   --> src/main.rs:414:4\n    |\n414 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:415:4\n    |\n415 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:416:4\n    |\n416 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:417:4\n    |\n417 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:428:60\n    |\n428 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero` (bin \"c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_sum_series_12_32_52_2n_12_1_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 42.28s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_series_12_32_52_2n_12_1_out_rwasm_bolero-6897b9e84477840e)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.9,
+     "test_failure": true,
+     "could_not_compile": false,
+     "vert_verdict": "fail",
+     "tail": "nown-linux-gnu/release/deps/c_transcoder_sum_series_12_32_52_2n_12_1_out_rwasm_bolero-6897b9e84477840e+0x15babe3) (BuildId: 597d3e28b31d6d7104d9249cc563b5c9b6e899a4)\n    #24 0x58e1194a529a  (/tmp/bolero_jgkqfhwd/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_series_12_32_52_2n_12_1_out_rwasm_bolero-6897b9e84477840e+0x15c129a) (BuildId: 597d3e28b31d6d7104d9249cc563b5c9b6e899a4)\n    #25 0x58e119b69394  (/tmp/bolero_jgkqfhwd/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_series_12_32_52_2n_12_1_out_rwasm_bolero-6897b9e84477840e+0x1c85394) (BuildId: 597d3e28b31d6d7104d9249cc563b5c9b6e899a4)\n    #26 0x7cc6146faa82  (/lib/x86_64-linux-gnu/libc.so.6+0x94a82) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n    #27 0x7cc61478ba93  (/lib/x86_64-linux-gnu/libc.so.6+0x125a93) (BuildId: 6a6cb5a80fd5e5bb5bf3aeaa111add98e88843a5)\n\nNOTE: libFuzzer has rudimentary signal handlers.\n      Combine libFuzzer with AddressSanitizer or similar for better crash reports.\nSUMMARY: libFuzzer: deadly signal\nMS: 5 CrossOver-ShuffleBytes-CrossOver-ShuffleBytes-InsertByte-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\n0xa,0xa,0xdb,0xa,\n\\012\\012\\333\\012\nartifact_prefix='/tmp/bolero_jgkqfhwd/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/bolero_jgkqfhwd/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-c9fdffe2d160967b8e9c7676427a08a187c16001\nBase64: CgrbCg==\nerror: process exited with status 77\n",
+     "outcome": "test_failure"
+    }
+   },
+   "shipped_corpus_files": 0
+  },
+  {
+   "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+   "arms": {
+    "vert_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 42.2,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": "ever used\n   --> src/main.rs:916:4\n    |\n916 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:917:4\n    |\n917 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:918:4\n    |\n918 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:935:60\n    |\n935 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero` (bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" test) generated 9 warnings (run `cargo fix --bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" --tests` to apply 3 suggestions)\n    Finished release [optimized] target(s) in 42.13s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out_rwasm_bolero-bca2bb8364936241)\nerror: No such file or directory (os error 2) at path \"/tmp/bolero_kls151hb/p/src/__fuzz__/bolero_wasm_eq/.tmpPxYLRw\"\n",
+     "outcome": "aborted_empty_corpus"
+    },
+    "planted_reduce": {
+     "cmd": "cargo bolero reduce bolero_wasm_eq",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.7,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:916:4\n    |\n916 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:917:4\n    |\n917 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:918:4\n    |\n918 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:928:60\n    |\n928 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero` (bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.57s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out_rwasm_bolero-bca2bb8364936241)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    },
+    "fuzz_30s": {
+     "cmd": "cargo bolero test bolero_wasm_eq -T 30s",
+     "rc": 1,
+     "timeout": false,
+     "secs": 41.4,
+     "test_failure": false,
+     "could_not_compile": false,
+     "vert_verdict": "pass",
+     "tail": " i32 {if x > y { x } else { y }}\n    |    ^^^\n\nwarning: function `cmpfunc` is never used\n   --> src/main.rs:916:4\n    |\n916 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}\n    |    ^^^^^^^\n\nwarning: function `len` is never used\n   --> src/main.rs:917:4\n    |\n917 | fn len(arr: &[i32]) -> usize {arr.len()}\n    |    ^^^\n\nwarning: function `sort` is never used\n   --> src/main.rs:918:4\n    |\n918 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}\n    |    ^^^^\n\nwarning: variable `PARAM_1` should have a snake case name\n   --> src/main.rs:928:60\n    |\n928 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ \n    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`\n    |\n    = note: `#[warn(non_snake_case)]` on by default\n\nwarning: `c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero` (bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" test) generated 10 warnings (run `cargo fix --bin \"c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out-rwasm-bolero\" --tests` to apply 4 suggestions)\n    Finished release [optimized] target(s) in 41.24s\n  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_ways_to_write_n_as_sum_of_two_or_more_positive_integers_out_rwasm_bolero-bca2bb8364936241)\nerror: process exited with status 101\n",
+     "outcome": "exit_1_no_test_failure_text"
+    }
+   },
+   "shipped_corpus_files": 0
+  }
+ ]
+}

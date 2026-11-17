@@ -1,0 +1,83 @@
+{
+  "provenance": {
+    "script": "systems/vert/arxiv_wide_kani_unwinding_on.py (procedure of systems/vert/kani_vacuity/unwinding_on.py)",
+    "command": "cd ~/work/arxiv-vertwide && docker run --rm --name arxiv_vertwide_kani --cpus 4 -v \"$PWD:/w\" -w /w -e IMAGE_DESC=\"crust-kani sha256:bd1bda23c66ba371d08a8b345583f291a82071e40ff312106b8c96c99e38f201\" -e HOST_DESC=\"Ubuntu 26.04 LTS x86_64 (kernel 7.0.0-38-generic), Docker 29.1.3, docker --cpus 4\" -e GIT_REV=\"b6cb48efe4633848a536232e5c019e27b11d4048 (+ uncommitted working tree; copy of the Mac scripts)\" -e RUN_COMMAND=... crust-kani python3 -I systems/vert/arxiv_wide_kani_unwinding_on.py",
+    "function_set": "results/arxiv_vert_diff_grid2_wide.json summary.value_bug_functions intersected with the bounded_kani=1 rows of results/vert_kani_vacuity.json",
+    "image": "crust-kani sha256:bd1bda23c66ba371d08a8b345583f291a82071e40ff312106b8c96c99e38f201",
+    "host": "Ubuntu 26.04 LTS x86_64 (kernel 7.0.0-38-generic), Docker 29.1.3, docker --cpus 4",
+    "arch": "x86_64",
+    "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048 (+ uncommitted working tree; copy of the Mac scripts)",
+    "toolchains": {
+      "cargo_kani": "cargo-kani 0.55.0",
+      "kani_rustc": "1.86.0-x86_64-unknown-linux-gnu\nnightly-2024-09-03-x86_64-unknown-linux-gnu",
+      "rustc_default": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+      "python": "3.10.12"
+    },
+    "date_start_utc": "2026-11-17T15:49:06+00:00",
+    "date_end_utc": "2026-11-17T15:52:08+00:00",
+    "logs": "results/arxiv_vert_wide_kani_logs_unwind_on/<F>.log: extract of each full Kani log (first 40 + last 120 lines, as results/kani_logs_unwind_on/); full logs (about 7 MB each) on the analysis machine, path and sha256 in each extract's first line",
+    "run_copy": "~/work/arxiv-vertwide on the x86_64 Linux box: rsync of the Mac's systems/vert, systems/{batch_diff,enumerate_inputs}.py, harness/oracle_ub_common.py, scripts/provenance.py, results/{arxiv_vert_diff_grid2_wide,defect_ledger,vert_kani_vacuity}.json and artifacts/vert/{c_results.csv,ARTIFACT_README,evaluation.py,torust.py,config.py,benchmark/rust-toolchain.toml} + the 8 wide-int value-bug function directories (142 files; sha256 over the sorted file list identical on Mac and box: 27d74b0e106f650fbba88ca977ed516c5b6da8589cc41bb62170fcb1ca37ac51)",
+    "os": "Ubuntu 26.04 LTS x86_64 host, container from crust-kani (Ubuntu 22.04 base)"
+  },
+  "summary": {
+    "kani_version": "cargo-kani 0.55.0",
+    "command": "cargo kani --default-unwind 10  (VERT's command without --no-unwinding-checks)",
+    "functions": 5,
+    "verdict_counts": {
+      "FAILED": 5
+    },
+    "failed_on_unwinding_assertion": 5
+  },
+  "rows": [
+    {
+      "function": "NUMBER_N_DIGIT_STEPPING_NUMBERS",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 51.2
+    },
+    {
+      "function": "DICE_THROW_PROBLEM_1",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 40.8
+    },
+    {
+      "function": "SUM_PAIRWISE_PRODUCTS",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 26.9
+    },
+    {
+      "function": "SUM_PAIRWISE_PRODUCTS_1",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 26.5
+    },
+    {
+      "function": "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS",
+      "verdict": "FAILED",
+      "failed_checks": [
+        "unwinding assertion loop 0"
+      ],
+      "unwinding_assertion_failed": true,
+      "equivalence_assertion": "UNDETERMINED",
+      "seconds": 36.4
+    }
+  ]
+}

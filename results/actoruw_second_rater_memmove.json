@@ -1,0 +1,266 @@
+{
+ "system": "ACTOR",
+ "translation": "B02_synthetic/memmove",
+ "mechanism": "PARSE_NUM",
+ "source": "blind second annotator's rating: docs/reviews/second-rater/ratings.json, case 11 (item10); inputs built from its cause",
+ "provenance": {
+  "script": "systems/actoruw/second_rater_memmove.py",
+  "command": "docker run crust-heldout:latest (ACTORUW_W=~/work/regrade-actoruw mounted read-only) python3 -I systems/actoruw/second_rater_memmove.py --out results/actoruw_second_rater_memmove.json",
+  "git_rev": "801e8c7 (uncommitted working tree)",
+  "git_worktree_note": "systems/actoruw/*.py, systems/enumerate_inputs.py and harness/oracle_ub_common.py copied from the study repo working tree to the run host; binaries reused read-only from the actoruw work root",
+  "host": "desktop",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout:latest",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-14T07:15:10+00:00",
+  "binaries": {
+   "c_oracle": "build/B02_synthetic/memmove/c/driver",
+   "rust": "build/B02_synthetic/memmove/target/release/driver",
+   "ub_variants": [
+    "o1",
+    "o2",
+    "ref",
+    "san_clang",
+    "san_gcc",
+    "schar",
+    "uchar"
+   ],
+   "built_by": "actoruw.build (c, rust) and actoruw.ub (ubvar); reused read-only",
+   "sha256": {
+    "c_oracle": "021fd01d6e5e8ac251e08adad6823d4458de4d5ceee59635d61aebd0582ce2fc",
+    "rust": "7ff90e243cac183509091bfb84d4308ebcc349ea45c5eaea856002e594e4ee5d",
+    "o1": "dec7cb5efdeab1d79017c2e5d59620a04b4bb71d72ce928b5547e2be85edf1e9",
+    "o2": "e6f33a6ffcb4f8e01c20423de4670b4b1f8132f54355a8af55e2ff01a87e7a39",
+    "ref": "021fd01d6e5e8ac251e08adad6823d4458de4d5ceee59635d61aebd0582ce2fc",
+    "san_clang": "2e5d1dc22edc24fe6d9a5f5c4463fa90f4d91376547b796f242cbe9cbc41f87f",
+    "san_gcc": "84c1f8fd7a18642ea3a0894cd0e1f45878f5c7da756db8fe16582c383dbe3dbd",
+    "schar": "021fd01d6e5e8ac251e08adad6823d4458de4d5ceee59635d61aebd0582ce2fc",
+    "uchar": "021fd01d6e5e8ac251e08adad6823d4458de4d5ceee59635d61aebd0582ce2fc"
+   }
+  },
+  "recorded_inputs": {
+   "log": "B02_synthetic/test.log",
+   "vectors": 82,
+   "truncated": 1
+  }
+ },
+ "inputs": [
+  {
+   "id": "sr_5x_last",
+   "argv": [],
+   "stdin": "0\n0\n0\n1\n5x\n",
+   "agree": false,
+   "class": "S1",
+   "c": {
+    "exit": 0,
+    "stdout": "1 5\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Error reading byte 0\n"
+   },
+   "c_reproducible": true,
+   "ub_filter": {
+    "counted": true,
+    "ub_reasons": [],
+    "variants": {
+     "o1": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "o2": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "uchar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "schar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "san_clang": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     },
+     "san_gcc": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     }
+    }
+   },
+   "in_recorded_set": "no"
+  },
+  {
+   "id": "sr_5x_second",
+   "argv": [],
+   "stdin": "0\n0\n0\n2\n1 5x\n",
+   "agree": false,
+   "class": "S1",
+   "c": {
+    "exit": 0,
+    "stdout": "2 1 5\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Error reading byte 1\n"
+   },
+   "c_reproducible": true,
+   "ub_filter": {
+    "counted": true,
+    "ub_reasons": [],
+    "variants": {
+     "o1": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "o2": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "uchar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "schar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "san_clang": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     },
+     "san_gcc": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     }
+    }
+   },
+   "in_recorded_set": "no"
+  },
+  {
+   "id": "sr_5x_rotate",
+   "argv": [],
+   "stdin": "1\n1\n0\n3\n1 2 5x\n",
+   "agree": false,
+   "class": "S1",
+   "c": {
+    "exit": 0,
+    "stdout": "3 5 1 2\n",
+    "stderr": ""
+   },
+   "rust": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Error reading byte 2\n"
+   },
+   "c_reproducible": true,
+   "ub_filter": {
+    "counted": true,
+    "ub_reasons": [],
+    "variants": {
+     "o1": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "o2": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "uchar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "schar": {
+      "rc": 0,
+      "timed_out": false,
+      "same_as_ref": true
+     },
+     "san_clang": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     },
+     "san_gcc": {
+      "rc": 0,
+      "timed_out": false,
+      "report": null,
+      "reports": [],
+      "infra": false,
+      "same_stdout_rc_as_ref": true
+     }
+    }
+   },
+   "in_recorded_set": "no"
+  }
+ ],
+ "summary": {
+  "inputs": 3,
+  "divergent": 3,
+  "divergent_ub_clean": 3
+ }
+}

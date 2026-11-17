@@ -1,0 +1,6385 @@
+{
+ "provenance": {
+  "script": "systems/vert/kani_vacuity/set_check_current.py (+ systems/vert/zero_one_current.py for the {0,1} section)",
+  "command": "python3 systems/vert/kani_vacuity/set_check_current.py $SCRATCH/work/zero_one.json $SCRATCH/work/zero_one_provenance.json results/vert_kani_current_check.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_dirty_files": [
+   " M docker/Dockerfile",
+   " M docker/Dockerfile.stable",
+   " M docker/Dockerfile.syzygy",
+   " M scripts/build_explorer.py",
+   " M scripts/claims_ledger.py",
+   " M scripts/explorer_template.html",
+   "?? docker/Dockerfile.artifact",
+   "?? docker/Dockerfile.kani",
+   "?? docker/build_artifact_image.sh",
+   "?? docker/manifests/",
+   "?? docker/quickstart.sh",
+   "?? harness/heldout_vert.py",
+   "?? harness/mutate_full.py",
+   "?? harness/mutate_full_cov.py",
+   "?? harness/mutate_full_run.sh",
+   "?? harness/oracle_ub_c2saferrust.py",
+   "?? harness/oracle_ub_common.py",
+   "?? harness/oracle_ub_run.sh",
+   "?? harness/oracle_ub_rustassure.py",
+   "?? harness/oracle_ub_rustmap_bzip2.py",
+   "?? harness/toolchain_audit.py",
+   "?? scripts/plot_results.py",
+   "?? scripts/provenance.py",
+   "?? systems/vert/bolero_vacuity/check_current.py",
+   "?? systems/vert/bolero_vacuity/rename_diag_current.sh",
+   "?? systems/vert/bolero_vacuity/run_in_container_current.sh",
+   "?? systems/vert/kani_vacuity/set_check_current.py",
+   "?? systems/vert/mutate_primary.py",
+   "?? systems/vert/toolchain_image.sh",
+   "?? systems/vert/toolchain_pinned.py",
+   "?? systems/vert/toolchain_run.sh",
+   "?? systems/vert/toolchain_rustmap.sh",
+   "?? systems/vert/toolchain_ub_recheck.py",
+   "?? systems/vert/zero_one_current.py"
+  ],
+  "host": "mac-host",
+  "arch": "arm64",
+  "python": "3.9.6",
+  "date": "2026-11-13T14:43:47-07:00",
+  "inputs": [
+   "results/vert_diff.json",
+   "artifacts/vert/c_results.csv",
+   "results/vert_kani_vacuity.json",
+   "results/vert_kani_unwinding_on.json",
+   "results/kani_logs/",
+   "results/kani_logs_unwind_on/"
+  ],
+  "kani": {
+   "bounded": "cargo-kani 0.55.0 (from results/vert_kani_vacuity.json; no Kani re-run was needed)",
+   "unwinding_on": "cargo-kani 0.55.0"
+  },
+  "zero_one_rerun": {
+   "script": "systems/vert/zero_one_current.py (imports systems/vert/run.py, systems/enumerate_inputs.py, systems/batch_diff.py unchanged)",
+   "command": "docker run -d --name vertchecks_zero_one --cpus=0.5 -v \"$PWD:/work\" -v <artifacts>:<artifacts>:ro -w /work crust-stable python3 systems/vert/zero_one_current.py work/zero_one.json  (in ~/work/vert-checks, an rsync of the Mac working tree at 801e8c7; artifacts/ symlinked read-only to ~/Desktop/c-to-rust-validation/artifacts after sha256 comparison of all 912 used files with the Mac copy: identical)",
+   "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e (working tree; uncommitted edits by other agents in scripts/ do not touch the files used)",
+   "host": "desktop (Linux 7.0.0-38-generic)",
+   "arch": "x86_64",
+   "image": "crust-stable sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba (Ubuntu 22.04.5 LTS)",
+   "toolchains": {
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+    "python3": "3.10.12"
+   },
+   "date": "2026-11-13T21:35:29Z to 2026-11-13T21:38:42Z (14:35-14:38 MST)",
+   "grid": "enumerate_cases(['i32']*nargs, cap=80, max_abs=512, nonneg=True, legacy=False) -- the spread grid of results/vert_diff.json",
+   "note": "vert_diff.json is the arm64 primary harness (san + -O0/-O1 alt); this re-run is x86-64. Its per-input value-divergence counts equal vert_diff.json's value_div for all 25 functions under both UB-filter configurations."
+  }
+ },
+ "set_comparison": {
+  "current_wrong_answers": 25,
+  "c_results_bounded_kani_1": 90,
+  "expected_set_current_and_bounded_kani_1": [
+   "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+   "HEXAGONAL_NUMBER",
+   "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+   "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+   "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+   "NEWMAN_CONWAY_SEQUENCE_1",
+   "NTH_NON_FIBONACCI_NUMBER",
+   "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+   "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+   "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+   "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+   "SUM_BINOMIAL_COEFFICIENTS",
+   "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+   "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS"
+  ],
+  "expected_size": 14,
+  "vert_kani_vacuity_json": {
+   "rows": 90,
+   "rows_equal_all_bounded_kani_1": true,
+   "missing_from_expected": [],
+   "flag_in_scalar_wrong_answers_count": 12,
+   "flag_missing": [
+    "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+    "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION"
+   ],
+   "flag_extra": [],
+   "summary_of_the_scalar_wrong_answers_stale": {
+    "bounded_kani_1": 12,
+    "vacuous_success": 12
+   },
+   "note": "the per-function verdicts for all 14 are present; only the in_scalar_wrong_answers flag and the 'of_the_scalar_wrong_answers' summary (12) predate the current set (2 functions newly wrong on the spread grid)"
+  },
+  "vert_kani_unwinding_on_json": {
+   "rows": 14,
+   "missing": [],
+   "extra": [],
+   "exact_match": true
+  },
+  "rerun_needed": [],
+  "rerun_verdicts": "none: no function missing or extra in either file's rows"
+ },
+ "current_14": {
+  "vacuous_pass": 14,
+  "fails_on_unwinding_assertion_when_on": 14,
+  "equivalence_assertion_status_unwinding_on_json": [
+   "UNDETERMINED"
+  ],
+  "equivalence_assertion_undetermined_derived_from_log_summary": 14,
+  "unwind_log_failing_loop_in_rust_std_vec": 4,
+  "unwind_std_vec_note": "the 4 failures in <rust std>/library/alloc/src/vec/mod.rs:2708 are in functions whose f_gold allocates vec![_; n+1] or vec![_; n+2]; at the harness's n=12 that fill loop runs 13-14 times, beyond unwind 10",
+  "logs_agree_with_json": 14,
+  "bounded_log_assert_line_matches_own_source": 14,
+  "unwind_log_failing_loop_in_own_f_gold": 10,
+  "rows": [
+   {
+    "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1262,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "<rust std>/library/alloc/src/vec/mod.rs",
+       "line": 2708,
+       "in_function": "std::vec::Vec::<std::vec::Vec<i32>>::extend_with",
+       "line_in_own_f_gold": false,
+       "source_line": null
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16828 failed (16827 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "HEXAGONAL_NUMBER",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 409,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 397,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 1..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16458 failed (16457 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1420,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "<rust std>/library/alloc/src/vec/mod.rs",
+       "line": 2708,
+       "in_function": "std::vec::Vec::<i32>::extend_with",
+       "line_in_own_f_gold": false,
+       "source_line": null
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16797 failed (16796 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 949,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 929,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 0..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16681 failed (16680 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1271,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 1258,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 1..=N {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16771 failed (16770 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "NEWMAN_CONWAY_SEQUENCE_1",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 672,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 660,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 3..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16621 failed (16620 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "NTH_NON_FIBONACCI_NUMBER",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 554,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 538,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "while n > 0  {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16443 failed (16442 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 422,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 410,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 2..n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16438 failed (16437 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1071,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "<rust std>/library/alloc/src/vec/mod.rs",
+       "line": 2708,
+       "in_function": "std::vec::Vec::<i32>::extend_with",
+       "line_in_own_f_gold": false,
+       "source_line": null
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16698 failed (16697 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 413,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 401,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 1..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16454 failed (16453 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 774,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 762,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for i in 2..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16659 failed (16658 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "SUM_BINOMIAL_COEFFICIENTS",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1100,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "<rust std>/library/alloc/src/vec/mod.rs",
+       "line": 2708,
+       "in_function": "std::vec::Vec::<f32>::extend_with",
+       "line_in_own_f_gold": false,
+       "source_line": null
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16752 failed (16751 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 1111,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 2",
+       "file": "src/main.rs",
+       "line": 1095,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for p in 2..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16680 failed (16679 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   },
+   {
+    "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+    "bounded_kani_no_unwinding_checks": {
+     "verdict": "SUCCESSFUL",
+     "equivalence_assertion": "UNREACHABLE",
+     "assert_line": 942,
+     "assert_line_matches_own_source": true
+    },
+    "unwinding_on": {
+     "verdict": "FAILED",
+     "failed_checks": [
+      {
+       "check": "unwinding assertion loop 0",
+       "file": "src/main.rs",
+       "line": 929,
+       "in_function": "f_gold",
+       "line_in_own_f_gold": true,
+       "source_line": "for j in i..=n {"
+      }
+     ],
+     "equivalence_assertion_in_extract": null,
+     "equivalence_assertion_derived_from_summary": "UNDETERMINED",
+     "summary_line": "** 1 of 16653 failed (16652 undetermined)"
+    },
+    "json_agrees_bounded": true,
+    "json_agrees_unwinding_on": true,
+    "vacuous_pass": true,
+    "fails_on_unwinding_assertion": true,
+    "equivalence_assertion_unwinding_on_json": "UNDETERMINED"
+   }
+  ]
+ },
+ "all_90": {
+  "verdict_counts_json": {
+   "COMPILE_ERROR": 5,
+   "SUCCESSFUL": 81,
+   "FAILED": 3,
+   "TIMEOUT": 1
+  },
+  "vacuous_success": 81,
+  "logs_agree_with_json": 90,
+  "assert_line_fingerprint_checked": 84,
+  "assert_line_matches_own_source": 84,
+  "note": "independent of the wrong-answer set: 81 of 90 is a statement about all bounded_kani=1 functions",
+  "rows": {
+   "AREA_OF_A_HEXAGON": {
+    "verdict": "COMPILE_ERROR",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "COMPILE_ERROR",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 877,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "BIRTHDAY_PARADOX": {
+    "verdict": "COMPILE_ERROR",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "COMPILE_ERROR",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "COMPUTE_NCR_P_SET_1_INTRODUCTION_AND_DYNAMIC_PROGRAMMING_SOLUTION": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1092,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNTING_PAIRS_PERSON_CAN_FORM_PAIR_ONE_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 636,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNTS_PATHS_POINT_REACH_ORIGIN_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 999,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_DERANGEMENTS_PERMUTATION_SUCH_THAT_NO_ELEMENT_APPEARS_IN_ITS_ORIGINAL_POSITION_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 644,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_EVEN_LENGTH_BINARY_SEQUENCES_WITH_SAME_SUM_OF_FIRST_AND_SECOND_HALF_BITS_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 523,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_INVERSIONS_OF_SIZE_THREE_IN_A_GIVE_ARRAY_1": {
+    "verdict": "FAILED",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 895,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "FAILED",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_BINARY_STRINGS_WITHOUT_CONSECUTIVE_1S": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 735,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_INCREASING_SUBSEQUENCES_SIZE_K": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1477,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_OF_WAYS_TO_COVER_A_DISTANCE_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 662,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_OF_WAYS_TO_FILL_A_N_X_4_GRID_USING_1_X_4_TILES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 791,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_WAYS_REACH_GIVEN_SCORE_GAME": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 939,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_NUMBER_WAYS_TILE_FLOOR_SIZE_N_X_M_USING_1_X_M_SIZE_TILES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 770,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1006,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_POSSIBLE_PATHS_TOP_LEFT_BOTTOM_RIGHT_NXM_MATRIX_3": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 529,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 585,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_STRINGS_ADJACENT_CHARACTERS_DIFFERENCE_ONE": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1343,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_STRINGS_WITH_CONSECUTIVE_1S": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 751,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "COUNT_WAYS_BUILD_STREET_GIVEN_CONSTRAINTS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 948,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "C_PROGRAM_FACTORIAL_NUMBER_2": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 491,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DELANNOY_NUMBER_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1058,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DICE_THROW_PROBLEM": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1333,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DICE_THROW_PROBLEM_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1303,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1262,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DYCK_PATH": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 526,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DYNAMIC_PROGRAMMING_SET_11_EGG_DROPPING_PUZZLE_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1357,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "DYNAMIC_PROGRAMMING_SET_8_MATRIX_CHAIN_MULTIPLICATION_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1282,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "EULERIAN_NUMBER_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1235,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIBONACCI_MODULO_P": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 479,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_MAXIMUM_DOT_PRODUCT_TWO_ARRAYS_INSERTION_0S": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1335,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_MINIMUM_NUMBER_OF_COINS_THAT_MAKE_A_CHANGE_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1000,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_N_TH_ELEMENT_FROM_STERNS_DIATOMIC_SERIES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 722,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_SUM_EVEN_INDEX_BINOMIAL_COEFFICIENTS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1097,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_SUM_MODULO_K_FIRST_N_NATURAL_NUMBER": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 488,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_THE_ELEMENT_BEFORE_WHICH_ALL_THE_ELEMENTS_ARE_SMALLER_THAN_IT_AND_AFTER_WHICH_ALL_ARE_GREATER_THAN_IT": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1137,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_UNIT_DIGIT_X_RAISED_POWER_Y": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 487,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FIND_WHETHER_AN_ARRAY_IS_SUBSET_OF_ANOTHER_ARRAY_SET_1_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 3971,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FRIENDS_PAIRING_PROBLEM": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 699,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "FRIENDS_PAIRING_PROBLEM_2": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 573,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "HEXAGONAL_NUMBER": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 409,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "HIGHWAY_BILLBOARD_PROBLEM": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1491,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "LEONARDO_NUMBER_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 628,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1226,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MAXIMIZE_VOLUME_CUBOID_GIVEN_SUM_SIDES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 701,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MAXIMUM_BINOMIAL_COEFFICIENT_TERM_VALUE": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1192,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1420,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1264,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MAXIMUM_VALUE_CHOICE_EITHER_DIVIDING_CONSIDERING": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 816,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MINIMIZE_THE_SUM_OF_DIGITS_OF_A_AND_B_SUCH_THAT_A_B_N": {
+    "verdict": "FAILED",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 531,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "FAILED",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 949,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1271,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NEWMAN_CONWAY_SEQUENCE_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 672,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NTH_NON_FIBONACCI_NUMBER": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 554,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NUMBER_NON_NEGATIVE_INTEGRAL_SOLUTIONS_B_C_N": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 682,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NUMBER_N_DIGITS_NON_DECREASING_INTEGERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 905,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NUMBER_N_DIGIT_STEPPING_NUMBERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1285,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 422,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1071,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "N_TH_NUMBER_WHOSE_SUM_OF_DIGITS_IS_TEN": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 609,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "ONE_LINE_FUNCTION_FOR_FACTORIAL_OF_A_NUMBER": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 491,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "PADOVAN_SEQUENCE": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 503,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 413,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "PROGRAM_CALCULATE_AREA_OCTAGON": {
+    "verdict": "COMPILE_ERROR",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "COMPILE_ERROR",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "PROGRAM_CALCULATE_VOLUME_OCTAHEDRON": {
+    "verdict": "COMPILE_ERROR",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "COMPILE_ERROR",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE": {
+    "verdict": "FAILED",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 848,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "FAILED",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "PROGRAM_FOR_FACTORIAL_OF_A_NUMBER_2": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 491,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "PROGRAM_FOR_SURFACE_AREA_OF_OCTAHEDRON": {
+    "verdict": "COMPILE_ERROR",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "COMPILE_ERROR",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "PROGRAM_PRINT_SUM_GIVEN_NTH_TERM": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 510,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 774,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SEQUENCES_GIVEN_LENGTH_EVERY_ELEMENT_EQUAL_TWICE_PREVIOUS_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1085,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SMALLEST_OF_THREE_INTEGERS_WITHOUT_COMPARISON_OPERATORS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 557,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SQUARE_ROOT_OF_AN_INTEGER_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 700,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_BINOMIAL_COEFFICIENTS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1100,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_DIVISORS_1_N_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 486,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_FIBONACCI_NUMBERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 717,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_K_TH_GROUP_ODD_POSITIVE_NUMBERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 484,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1111,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_MATRIX_ELEMENT_ABSOLUTE_DIFFERENCE_ROW_COLUMN_NUMBERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 867,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 544,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_MATRIX_ELEMENT_ELEMENT_INTEGER_DIVISION_ROW_COLUMN_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 727,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 472,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_PAIRWISE_PRODUCTS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 545,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_PAIRWISE_PRODUCTS_1": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 536,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "SUM_SQUARES_BINOMIAL_COEFFICIENTS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 1146,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "TILING_WITH_DOMINOES": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 759,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "TRIANGULAR_MATCHSTICK_NUMBER": {
+    "verdict": "TIMEOUT_OR_EMPTY",
+    "equivalence_assertion": null,
+    "assert_line": null,
+    "assert_line_matches_own_source": null,
+    "json_verdict": "TIMEOUT",
+    "json_assertion": null,
+    "json_agrees": true
+   },
+   "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 942,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   },
+   "WRITE_YOU_OWN_POWER_WITHOUT_USING_MULTIPLICATION_AND_DIVISION": {
+    "verdict": "SUCCESSFUL",
+    "equivalence_assertion": "UNREACHABLE",
+    "assert_line": 599,
+    "assert_line_matches_own_source": true,
+    "json_verdict": "SUCCESSFUL",
+    "json_assertion": "UNREACHABLE",
+    "json_agrees": true
+   }
+  }
+ },
+ "zero_one_domain": {
+  "claim": "Each counted wrong answer also diverges outside {0,1}, the harness's only inputs.",
+  "harness_inputs": "VERT's Kani harness draws only PARAM1, kani::assume((0..2).contains(&PARAM1)); other parameters are not symbolic",
+  "method": "per-input re-run of systems/vert/run.py's classifier (batch_diff.tally, one input at a time) on the current spread grid (n=80, non-negative, |x|<=512); a divergence counts only if it is a value divergence under BOTH UB filters (ASan/UBSan + -O0/-O1, and ASan/UBSan + MSan)",
+  "all_25": {
+   "functions": 25,
+   "diverges_with_PARAM1_outside_01": 25,
+   "diverges_with_some_arg_outside_01": 25,
+   "diverges_with_all_args_outside_01": 25,
+   "diverges_somewhere_inside_01k": 7,
+   "vert_diff_samples_alone_show_PARAM1_outside_01": 24,
+   "rerun_value_div_equals_vert_diff_primary_like": 25,
+   "rerun_value_div_equals_vert_diff_confirmed": 25
+  },
+  "bounded_kani_14": {
+   "functions": 14,
+   "diverges_with_PARAM1_outside_01": 14,
+   "diverges_with_some_arg_outside_01": 14,
+   "diverges_with_all_args_outside_01": 14,
+   "diverges_somewhere_inside_01k": 5,
+   "vert_diff_samples_alone_show_PARAM1_outside_01": 13,
+   "rerun_value_div_equals_vert_diff_primary_like": 14,
+   "rerun_value_div_equals_vert_diff_confirmed": 14
+  },
+  "rows": [
+   {
+    "function": "PROGRAM_TO_CHECK_IF_A_GIVEN_NUMBER_IS_LUCKY_ALL_DIGITS_ARE_DIFFERENT",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 64,
+    "value_div_rerun_primary_like": 64,
+    "value_div_rerun_confirmed_both_filters": 64,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      1
+     ],
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      268
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "MAXIMUM_GAMES_PLAYED_WINNER",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 77,
+    "value_div_rerun_primary_like": 77,
+    "value_div_rerun_confirmed_both_filters": 77,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     7
+    ],
+    "example_all_args_outside_01": [
+     7
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "COUNT_STRINGS_CAN_FORMED_USING_B_C_GIVEN_CONSTRAINTS_1",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "SUM_SERIES_12_32_52_2N_12_1",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 17,
+    "value_div_rerun_primary_like": 17,
+    "value_div_rerun_confirmed_both_filters": 17,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     167
+    ],
+    "example_all_args_outside_01": [
+     167
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "SUM_LARGEST_PRIME_FACTOR_NUMBER_LESS_EQUAL_N",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 77,
+    "value_div_rerun_primary_like": 77,
+    "value_div_rerun_confirmed_both_filters": 77,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     7
+    ],
+    "example_all_args_outside_01": [
+     7
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NEWMAN_CONWAY_SEQUENCE_1",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "RECURSIVELY_BREAK_NUMBER_3_PARTS_GET_MAXIMUM_SUM_1",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NTH_PENTAGONAL_NUMBER",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 79,
+    "value_div_rerun_primary_like": 79,
+    "value_div_rerun_confirmed_both_filters": 79,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      1
+     ],
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "HEXAGONAL_NUMBER",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NTH_NON_FIBONACCI_NUMBER",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 79,
+    "value_div_rerun_primary_like": 79,
+    "value_div_rerun_confirmed_both_filters": 79,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      1
+     ],
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "WAYS_TO_WRITE_N_AS_SUM_OF_TWO_OR_MORE_POSITIVE_INTEGERS",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 34,
+    "value_div_rerun_primary_like": 34,
+    "value_div_rerun_confirmed_both_filters": 34,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      1
+     ],
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ]
+    ]
+   },
+   {
+    "function": "MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION",
+    "nargs": 4,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 39,
+    "value_div_rerun_primary_like": 39,
+    "value_div_rerun_confirmed_both_filters": 39,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     194,
+     1,
+     0,
+     1
+    ],
+    "example_all_args_outside_01": [
+     194,
+     194,
+     194,
+     194
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      194,
+      194,
+      194,
+      194
+     ],
+     [
+      512,
+      97,
+      0,
+      194
+     ],
+     [
+      511,
+      1,
+      194,
+      1
+     ],
+     [
+      194,
+      512,
+      1,
+      511
+     ],
+     [
+      97,
+      194,
+      512,
+      1
+     ],
+     [
+      97,
+      97,
+      194,
+      511
+     ],
+     [
+      512,
+      194,
+      97,
+      97
+     ],
+     [
+      97,
+      511,
+      1,
+      0
+     ],
+     [
+      97,
+      194,
+      512,
+      194
+     ],
+     [
+      512,
+      511,
+      511,
+      1
+     ],
+     [
+      511,
+      97,
+      97,
+      511
+     ],
+     [
+      194,
+      1,
+      0,
+      1
+     ],
+     [
+      97,
+      512,
+      511,
+      511
+     ],
+     [
+      97,
+      194,
+      1,
+      97
+     ],
+     [
+      512,
+      512,
+      1,
+      512
+     ],
+     [
+      511,
+      194,
+      512,
+      194
+     ],
+     [
+      194,
+      1,
+      97,
+      0
+     ],
+     [
+      97,
+      511,
+      511,
+      0
+     ],
+     [
+      512,
+      512,
+      194,
+      511
+     ],
+     [
+      511,
+      511,
+      1,
+      1
+     ],
+     [
+      194,
+      97,
+      512,
+      511
+     ],
+     [
+      97,
+      512,
+      0,
+      512
+     ],
+     [
+      511,
+      512,
+      194,
+      0
+     ],
+     [
+      194,
+      194,
+      1,
+      194
+     ],
+     [
+      97,
+      1,
+      512,
+      0
+     ],
+     [
+      512,
+      1,
+      97,
+      1
+     ],
+     [
+      511,
+      512,
+      0,
+      511
+     ],
+     [
+      194,
+      511,
+      511,
+      97
+     ],
+     [
+      97,
+      97,
+      1,
+      512
+     ],
+     [
+      512,
+      97,
+      511,
+      0
+     ],
+     [
+      97,
+      194,
+      511,
+      194
+     ],
+     [
+      512,
+      194,
+      1,
+      511
+     ],
+     [
+      511,
+      1,
+      512,
+      97
+     ],
+     [
+      97,
+      511,
+      0,
+      97
+     ],
+     [
+      512,
+      511,
+      194,
+      194
+     ],
+     [
+      511,
+      97,
+      1,
+      0
+     ],
+     [
+      97,
+      512,
+      194,
+      1
+     ],
+     [
+      512,
+      511,
+      0,
+      97
+     ],
+     [
+      511,
+      194,
+      194,
+      512
+     ]
+    ]
+   },
+   {
+    "function": "MAXIMUM_NUMBER_SEGMENTS_LENGTHS_B_C",
+    "nargs": 4,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 4,
+    "value_div_rerun_primary_like": 4,
+    "value_div_rerun_confirmed_both_filters": 4,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      1,
+      1,
+      1,
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     97,
+     1,
+     0,
+     0
+    ],
+    "example_all_args_outside_01": [
+     194,
+     194,
+     194,
+     194
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      1,
+      1,
+      1,
+      1
+     ],
+     [
+      194,
+      194,
+      194,
+      194
+     ],
+     [
+      97,
+      1,
+      0,
+      0
+     ],
+     [
+      194,
+      1,
+      0,
+      1
+     ]
+    ]
+   },
+   {
+    "function": "DIFFERENT_WAYS_SUM_N_USING_NUMBERS_GREATER_EQUAL_M",
+    "nargs": 2,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 26,
+    "value_div_rerun_primary_like": 26,
+    "value_div_rerun_confirmed_both_filters": 26,
+    "grid_inputs_inside_01k": 4,
+    "divergent_inputs_inside_01k": [
+     [
+      1,
+      0
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     32,
+     1
+    ],
+    "example_all_args_outside_01": [
+     64,
+     32
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      64,
+      0
+     ],
+     [
+      268,
+      32
+     ],
+     [
+      268,
+      129
+     ],
+     [
+      162,
+      97
+     ],
+     [
+      64,
+      32
+     ],
+     [
+      511,
+      64
+     ],
+     [
+      1,
+      0
+     ],
+     [
+      511,
+      194
+     ],
+     [
+      194,
+      32
+     ],
+     [
+      194,
+      129
+     ],
+     [
+      97,
+      0
+     ],
+     [
+      97,
+      64
+     ],
+     [
+      512,
+      129
+     ],
+     [
+      32,
+      1
+     ],
+     [
+      512,
+      227
+     ],
+     [
+      227,
+      64
+     ],
+     [
+      227,
+      162
+     ],
+     [
+      512,
+      64
+     ],
+     [
+      512,
+      162
+     ],
+     [
+      268,
+      97
+     ],
+     [
+      268,
+      227
+     ],
+     [
+      162,
+      64
+     ],
+     [
+      64,
+      1
+     ],
+     [
+      511,
+      162
+     ],
+     [
+      511,
+      268
+     ],
+     [
+      194,
+      97
+     ]
+    ]
+   },
+   {
+    "function": "NUMBER_TRIANGLES_N_MOVES_1",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 74,
+    "value_div_rerun_primary_like": 74,
+    "value_div_rerun_confirmed_both_filters": 74,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     18
+    ],
+    "example_all_args_outside_01": [
+     18
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "HEIGHT_COMPLETE_BINARY_TREE_HEAP_N_NODES",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 74,
+    "value_div_rerun_primary_like": 74,
+    "value_div_rerun_confirmed_both_filters": 74,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     10
+    ],
+    "example_all_args_outside_01": [
+     10
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 39,
+    "value_div_rerun_primary_like": 39,
+    "value_div_rerun_confirmed_both_filters": 39,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     7
+    ],
+    "example_all_args_outside_01": [
+     7
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      7
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NUMBER_RECTANGLES_NM_GRID",
+    "nargs": 2,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 17,
+    "value_div_rerun_primary_like": 17,
+    "value_div_rerun_confirmed_both_filters": 17,
+    "grid_inputs_inside_01k": 4,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     97,
+     97
+    ],
+    "example_all_args_outside_01": [
+     97,
+     97
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      162,
+      162
+     ],
+     [
+      162,
+      268
+     ],
+     [
+      268,
+      129
+     ],
+     [
+      162,
+      97
+     ],
+     [
+      162,
+      194
+     ],
+     [
+      97,
+      129
+     ],
+     [
+      97,
+      227
+     ],
+     [
+      194,
+      129
+     ],
+     [
+      194,
+      227
+     ],
+     [
+      129,
+      194
+     ],
+     [
+      227,
+      162
+     ],
+     [
+      129,
+      129
+     ],
+     [
+      162,
+      227
+     ],
+     [
+      268,
+      97
+     ],
+     [
+      97,
+      97
+     ],
+     [
+      194,
+      97
+     ],
+     [
+      194,
+      194
+     ]
+    ]
+   },
+   {
+    "function": "COUNT_DISTINCT_NON_NEGATIVE_PAIRS_X_Y_SATISFY_INEQUALITY_XX_YY_N_2_1",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 76,
+    "value_div_rerun_primary_like": 76,
+    "value_div_rerun_confirmed_both_filters": 76,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NUMBER_WHICH_HAS_THE_MAXIMUM_NUMBER_OF_DISTINCT_PRIME_FACTORS_IN_RANGE_M_TO_N",
+    "nargs": 2,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 36,
+    "value_div_rerun_primary_like": 36,
+    "value_div_rerun_confirmed_both_filters": 36,
+    "grid_inputs_inside_01k": 4,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     32,
+     129
+    ],
+    "example_all_args_outside_01": [
+     32,
+     129
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": false,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      0,
+      194
+     ],
+     [
+      162,
+      268
+     ],
+     [
+      64,
+      97
+     ],
+     [
+      0,
+      512
+     ],
+     [
+      64,
+      194
+     ],
+     [
+      0,
+      32
+     ],
+     [
+      64,
+      511
+     ],
+     [
+      0,
+      129
+     ],
+     [
+      162,
+      194
+     ],
+     [
+      1,
+      268
+     ],
+     [
+      194,
+      511
+     ],
+     [
+      97,
+      129
+     ],
+     [
+      97,
+      227
+     ],
+     [
+      1,
+      64
+     ],
+     [
+      1,
+      194
+     ],
+     [
+      194,
+      227
+     ],
+     [
+      1,
+      511
+     ],
+     [
+      129,
+      194
+     ],
+     [
+      129,
+      511
+     ],
+     [
+      32,
+      129
+     ],
+     [
+      32,
+      227
+     ],
+     [
+      227,
+      511
+     ],
+     [
+      32,
+      512
+     ],
+     [
+      162,
+      227
+     ],
+     [
+      0,
+      511
+     ],
+     [
+      162,
+      512
+     ],
+     [
+      64,
+      162
+     ],
+     [
+      64,
+      268
+     ],
+     [
+      0,
+      97
+     ],
+     [
+      268,
+      512
+     ],
+     [
+      0,
+      227
+     ],
+     [
+      194,
+      268
+     ],
+     [
+      1,
+      512
+     ],
+     [
+      1,
+      32
+     ],
+     [
+      97,
+      512
+     ],
+     [
+      1,
+      162
+     ]
+    ]
+   },
+   {
+    "function": "MINIMUM_STEPS_MINIMIZE_N_PER_GIVEN_CONDITION",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "SUM_BINOMIAL_COEFFICIENTS",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 1,
+    "value_div_rerun_primary_like": 1,
+    "value_div_rerun_confirmed_both_filters": 1,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     29
+    ],
+    "example_all_args_outside_01": [
+     29
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      29
+     ]
+    ]
+   },
+   {
+    "function": "PIZZA_CUT_PROBLEM_CIRCLE_DIVISION_LINES",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 80,
+    "value_div_rerun_primary_like": 80,
+    "value_div_rerun_confirmed_both_filters": 80,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      0
+     ],
+     [
+      1
+     ],
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "NUMBER_OF_TRIANGLES_IN_A_PLANE_IF_NO_MORE_THAN_TWO_POINTS_ARE_COLLINEAR",
+    "nargs": 1,
+    "bounded_kani_1": true,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 78,
+    "value_div_rerun_primary_like": 78,
+    "value_div_rerun_confirmed_both_filters": 78,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     3
+    ],
+    "example_all_args_outside_01": [
+     3
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      3
+     ],
+     [
+      7
+     ],
+     [
+      10
+     ],
+     [
+      14
+     ],
+     [
+      18
+     ],
+     [
+      21
+     ],
+     [
+      25
+     ],
+     [
+      29
+     ],
+     [
+      32
+     ],
+     [
+      36
+     ],
+     [
+      40
+     ],
+     [
+      43
+     ],
+     [
+      47
+     ],
+     [
+      51
+     ],
+     [
+      54
+     ],
+     [
+      58
+     ],
+     [
+      62
+     ],
+     [
+      65
+     ],
+     [
+      69
+     ],
+     [
+      73
+     ],
+     [
+      76
+     ],
+     [
+      80
+     ],
+     [
+      83
+     ],
+     [
+      87
+     ],
+     [
+      91
+     ],
+     [
+      94
+     ],
+     [
+      98
+     ],
+     [
+      102
+     ],
+     [
+      105
+     ],
+     [
+      109
+     ],
+     [
+      113
+     ],
+     [
+      116
+     ],
+     [
+      120
+     ],
+     [
+      124
+     ],
+     [
+      127
+     ],
+     [
+      131
+     ],
+     [
+      135
+     ],
+     [
+      138
+     ],
+     [
+      142
+     ],
+     [
+      146
+     ],
+     [
+      149
+     ],
+     [
+      153
+     ],
+     [
+      156
+     ],
+     [
+      160
+     ],
+     [
+      164
+     ],
+     [
+      167
+     ],
+     [
+      171
+     ],
+     [
+      175
+     ],
+     [
+      178
+     ],
+     [
+      182
+     ],
+     [
+      186
+     ],
+     [
+      189
+     ],
+     [
+      193
+     ],
+     [
+      197
+     ],
+     [
+      200
+     ],
+     [
+      204
+     ],
+     [
+      208
+     ],
+     [
+      211
+     ],
+     [
+      215
+     ],
+     [
+      219
+     ],
+     [
+      222
+     ],
+     [
+      226
+     ],
+     [
+      229
+     ],
+     [
+      233
+     ],
+     [
+      237
+     ],
+     [
+      240
+     ],
+     [
+      244
+     ],
+     [
+      248
+     ],
+     [
+      251
+     ],
+     [
+      255
+     ],
+     [
+      268
+     ],
+     [
+      292
+     ],
+     [
+      325
+     ],
+     [
+      357
+     ],
+     [
+      381
+     ],
+     [
+      414
+     ],
+     [
+      446
+     ],
+     [
+      471
+     ]
+    ]
+   },
+   {
+    "function": "CHECK_IF_A_NUMBER_IS_JUMBLED_OR_NOT",
+    "nargs": 1,
+    "bounded_kani_1": false,
+    "grid_inputs": 80,
+    "value_div_vert_diff_json": 11,
+    "value_div_rerun_primary_like": 11,
+    "value_div_rerun_confirmed_both_filters": 11,
+    "grid_inputs_inside_01k": 2,
+    "divergent_inputs_inside_01k": [],
+    "diverges_with_PARAM1_outside_01": true,
+    "diverges_with_some_arg_outside_01": true,
+    "diverges_with_all_args_outside_01": true,
+    "example_PARAM1_outside_01": [
+     21
+    ],
+    "example_all_args_outside_01": [
+     21
+    ],
+    "vert_diff_samples_show_PARAM1_outside_01": true,
+    "vert_diff_samples_show_some_arg_outside_01": true,
+    "divergent_inputs_confirmed": [
+     [
+      21
+     ],
+     [
+      32
+     ],
+     [
+      43
+     ],
+     [
+      54
+     ],
+     [
+      65
+     ],
+     [
+      76
+     ],
+     [
+      87
+     ],
+     [
+      98
+     ],
+     [
+      211
+     ],
+     [
+      222
+     ],
+     [
+      233
+     ]
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,7 @@
+# extract of the full Kani log (verdict, summary, equivalence-assertion status, errors); full logs ~578MB not committed
+Kani Rust Verifier 0.55.0 (cargo plugin)
+error[E0277]: can't compare `{integer}` with `f32`
+error[E0277]: can't compare `f32` with `{integer}`
+error: aborting due to 2 previous errors; 1 warning emitted
+error: Failed to execute cargo (exit status: 101). Found 3 compilation errors.
+error: could not compile `k88` (bin "k88") due to 3 previous errors; 1 warning emitted

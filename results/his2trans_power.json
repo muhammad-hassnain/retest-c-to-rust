@@ -1,0 +1,1315 @@
+{
+ "inject": {
+  "avl": {
+   "status": "killed",
+   "killing_cases": 81,
+   "first_killing_case": "avl/VOS_AVL3_Find/grid/00160",
+   "fault": "VOS_AVL3_Find: > -> >=",
+   "file": "src/src_avl.rs",
+   "cases_used": 1122
+  },
+  "buffer": {
+   "status": "killed",
+   "killing_cases": 30,
+   "first_killing_case": "buffer/buffer_trim_left/grid/00533",
+   "fault": "trim: space no longer trimmed",
+   "file": "src/src_buffer.rs",
+   "cases_used": 1041
+  },
+  "genann": {
+   "status": "killed",
+   "killing_cases": 44,
+   "first_killing_case": "genann/genann_train/grid/00488",
+   "fault": "genann_train: output-delta derivative sign",
+   "file": "src/src_genann.rs",
+   "cases_used": 544
+  },
+  "ht": {
+   "status": "killed",
+   "killing_cases": 74,
+   "first_killing_case": "ht/hash_key/grid/00001",
+   "fault": "hash_key: xor input byte + 1",
+   "file": "src/src_ht.rs",
+   "cases_used": 75
+  },
+  "qsort": {
+   "status": "killed",
+   "killing_cases": 21,
+   "first_killing_case": "qsort/partition/grid/00082",
+   "fault": "partition: <= -> <",
+   "file": "src/src_qsort.rs",
+   "cases_used": 166
+  },
+  "quadtree": {
+   "status": "killed",
+   "killing_cases": 2,
+   "first_killing_case": "quadtree/quadtree_insert/grid/00250",
+   "fault": "node_contains_: strict -> non-strict on x",
+   "file": "src/src_quadtree.rs",
+   "cases_used": 350
+  },
+  "rgba": {
+   "status": "killed",
+   "killing_cases": 7,
+   "first_killing_case": "rgba/rgba_from_string/grid/00022",
+   "fault": "h(): hex digit a-f off by one",
+   "file": "src/src_rgba.rs",
+   "cases_used": 302
+  },
+  "urlparser": {
+   "status": "killed",
+   "killing_cases": 1,
+   "first_killing_case": "urlparser/url_is_ssh/grid/00037",
+   "fault": "url_is_ssh: git no longer ssh",
+   "file": "src/src_url.rs",
+   "cases_used": 145
+  }
+ },
+ "mutation": {
+  "avl": {
+   "candidates": 114,
+   "selected": 40,
+   "stillborn": 3,
+   "valid": 37,
+   "killed": 25,
+   "kill_rate": 0.676,
+   "cases_used": 1122,
+   "mutants": [
+    {
+     "status": "stillborn",
+     "log_tail": "de_driver.rs:166:31\n    |\n166 |             \"next2\" => pi(ixe(VOS_AVL_Next(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nerror[E0425]: cannot find function, tuple struct or tuple variant `VOS_AVL_Prev` in this scope\n   --> src/regrade_driver.rs:167:31\n    |\n167 |             \"prev2\" => pi(ixe(VOS_AVL_Prev(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `avl` (bin \"avl\") due to 19 previous errors\n",
+     "file": "src/src_avl.rs",
+     "line": 40,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "impl<T> NodePtr<T> {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "de_driver.rs:166:31\n    |\n166 |             \"next2\" => pi(ixe(VOS_AVL_Next(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nerror[E0425]: cannot find function, tuple struct or tuple variant `VOS_AVL_Prev` in this scope\n   --> src/regrade_driver.rs:167:31\n    |\n167 |             \"prev2\" => pi(ixe(VOS_AVL_Prev(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `avl` (bin \"avl\") due to 19 previous errors\n",
+     "file": "src/src_avl.rs",
+     "line": 74,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "impl<T> Copy for NodePtr<T> {}"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "de_driver.rs:166:31\n    |\n166 |             \"next2\" => pi(ixe(VOS_AVL_Next(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nerror[E0425]: cannot find function, tuple struct or tuple variant `VOS_AVL_Prev` in this scope\n   --> src/regrade_driver.rs:167:31\n    |\n167 |             \"prev2\" => pi(ixe(VOS_AVL_Prev(&el(rg_int(tok[1])).n2))),\n    |                               ^^^^^^^^^^^^ not found in this scope\n\nFor more information about this error, try `rustc --explain E0425`.\nerror: could not compile `avl` (bin \"avl\") due to 19 previous errors\n",
+     "file": "src/src_avl.rs",
+     "line": 81,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "impl<T> Eq for NodePtr<T> {}"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 33,
+     "first_killing_case": "avl/AVL3_Find_Or_Find_Next/grid/00241",
+     "file": "src/src_avl.rs",
+     "line": 168,
+     "kind": "relational",
+     "op": "< -> <=",
+     "source_line": "} else if iResult < 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 80,
+     "first_killing_case": "avl/AVL3_Find_Or_Find_Next/grid/00240",
+     "file": "src/src_avl.rs",
+     "line": 175,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "if bFlag != 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 208,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00002",
+     "file": "src/src_avl.rs",
+     "line": 217,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if iResult > 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 208,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00002",
+     "file": "src/src_avl.rs",
+     "line": 230,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "} else if iResult < 0 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 245,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "pstNode.sRHeight = -1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 81,
+     "first_killing_case": "avl/VOS_AVL3_Find/grid/00160",
+     "file": "src/src_avl.rs",
+     "line": 279,
+     "kind": "relational",
+     "op": "< -> <=",
+     "source_line": "} else if iResult < 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 68,
+     "first_killing_case": "avl/VOS_AVL3_Prev/grid/00561",
+     "file": "src/src_avl.rs",
+     "line": 388,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if parent_ref.pstRight == pstNodeTmp {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 532,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00001",
+     "file": "src/src_avl.rs",
+     "line": 442,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "parent_ref.sLHeight = 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 278,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00008",
+     "file": "src/src_avl.rs",
+     "line": 470,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "left_son_ref.sRHeight = 1 + new_height;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 392,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00004",
+     "file": "src/src_avl.rs",
+     "line": 495,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "right_son_ref.sLHeight = 1 + max_h;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 555,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "node_ref.sLHeight = 0;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 559,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "node_ref.sLHeight = 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 26,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00084",
+     "file": "src/src_avl.rs",
+     "line": 584,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if rh != 0 || lh > 1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 44,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00084",
+     "file": "src/src_avl.rs",
+     "line": 616,
+     "kind": "relational",
+     "op": "!= -> ==",
+     "source_line": "if lh != 0 || rh > 1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 616,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if lh != 0 || rh > 1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 74,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00084",
+     "file": "src/src_avl.rs",
+     "line": 644,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if rl > rr {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 34,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00084",
+     "file": "src/src_avl.rs",
+     "line": 654,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if lr > ll {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 714,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00004",
+     "file": "src/src_avl.rs",
+     "line": 683,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "node_tmp_ref.sRHeight = 1 + max_h;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 696,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "let max_h = if rh > lh { rh } else { lh };"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 796,
+     "first_killing_case": "avl/VOS_AVL3_Insert_Or_Find/grid/00003",
+     "file": "src/src_avl.rs",
+     "line": 706,
+     "kind": "relational",
+     "op": "!= -> ==",
+     "source_line": "if lh != rh {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 295,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00080",
+     "file": "src/src_avl.rs",
+     "line": 804,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if pstTree.last() == pstNode {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 247,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00081",
+     "file": "src/src_avl.rs",
+     "line": 827,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "let mut sNewHeight: i16 = 0;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 46,
+     "first_killing_case": "avl/VOS_AVL3_Delete/grid/00093",
+     "file": "src/src_avl.rs",
+     "line": 849,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "sNewHeight = (1i32 + core::cmp::max(lh, rh) as i32) as i16;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 881,
+     "kind": "relational",
+     "op": "!= -> ==",
+     "source_line": "if pstNode.sLHeight != -1 && pstNode.sRHeight != -1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 881,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if pstNode.sLHeight != -1 && pstNode.sRHeight != -1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 461,
+     "first_killing_case": "avl/VOS_AVL_Insert_Or_Find/grid/00640",
+     "file": "src/src_avl.rs",
+     "line": 885,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "pstNode.sRHeight = 0;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 156,
+     "first_killing_case": "avl/VOS_AVL_Insert_Or_Find/grid/00642",
+     "file": "src/src_avl.rs",
+     "line": 918,
+     "kind": "relational",
+     "op": "< -> <=",
+     "source_line": "} else if iResult < 0 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 935,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "pstNode.sRHeight = -1;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 950,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if pstNode.sLHeight == -1 || pstNode.sRHeight == -1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 80,
+     "first_killing_case": "avl/VOS_AVL_Find/grid/00800",
+     "file": "src/src_avl.rs",
+     "line": 968,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "if iResult > 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 103,
+     "first_killing_case": "avl/VOS_AVL_Find_Or_Find_Next/grid/00881",
+     "file": "src/src_avl.rs",
+     "line": 980,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if pstNode.sLHeight == -1 || pstNode.sRHeight == -1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 980,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if pstNode.sLHeight == -1 || pstNode.sRHeight == -1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 68,
+     "first_killing_case": "avl/VOS_AVL_Prev/grid/01041",
+     "file": "src/src_avl.rs",
+     "line": 1024,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if pstNode.sLHeight == -1 || pstNode.sRHeight == -1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 1024,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if pstNode.sLHeight == -1 || pstNode.sRHeight == -1 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 73,
+     "first_killing_case": "avl/VOS_AVL_Find_Or_Find_Next/grid/00880",
+     "file": "src/src_avl.rs",
+     "line": 1083,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "if iResult > 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 80,
+     "first_killing_case": "avl/VOS_AVL_Find_Or_Find_Next/grid/00880",
+     "file": "src/src_avl.rs",
+     "line": 1096,
+     "kind": "relational",
+     "op": "!= -> ==",
+     "source_line": "if bValue != 0 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_avl.rs",
+     "line": 1125,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "node.sRHeight = -1i16;"
+    }
+   ]
+  },
+  "qsort": {
+   "candidates": 13,
+   "selected": 13,
+   "stillborn": 0,
+   "valid": 13,
+   "killed": 10,
+   "kill_rate": 0.769,
+   "cases_used": 166,
+   "mutants": [
+    {
+     "status": "killed",
+     "killing_cases": 130,
+     "first_killing_case": "qsort/quickSort/grid/00002",
+     "file": "src/src_qsort.rs",
+     "line": 17,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "let mut i: isize = low as isize - 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 21,
+     "first_killing_case": "qsort/partition/grid/00082",
+     "file": "src/src_qsort.rs",
+     "line": 19,
+     "kind": "relational",
+     "op": "<= -> <",
+     "source_line": "if arr[j] <= pivot {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 90,
+     "first_killing_case": "qsort/quickSort/grid/00002",
+     "file": "src/src_qsort.rs",
+     "line": 20,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "i += 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 133,
+     "first_killing_case": "qsort/quickSort/grid/00002",
+     "file": "src/src_qsort.rs",
+     "line": 24,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let i1 = i + 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 133,
+     "first_killing_case": "qsort/quickSort/grid/00002",
+     "file": "src/src_qsort.rs",
+     "line": 24,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "let i1 = i + 1;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_qsort.rs",
+     "line": 30,
+     "kind": "relational",
+     "op": "< -> <=",
+     "source_line": "if low < high {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 9,
+     "first_killing_case": "qsort/quickSort/grid/00003",
+     "file": "src/src_qsort.rs",
+     "line": 32,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if i > low {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 37,
+     "first_killing_case": "qsort/quickSort/grid/00002",
+     "file": "src/src_qsort.rs",
+     "line": 33,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "quickSort(arr, low, i - 1);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 6,
+     "first_killing_case": "qsort/quickSort/grid/00003",
+     "file": "src/src_qsort.rs",
+     "line": 35,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "if i + 1 <= high {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_qsort.rs",
+     "line": 35,
+     "kind": "relational",
+     "op": "<= -> <",
+     "source_line": "if i + 1 <= high {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_qsort.rs",
+     "line": 35,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if i + 1 <= high {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 12,
+     "first_killing_case": "qsort/quickSort/grid/00003",
+     "file": "src/src_qsort.rs",
+     "line": 36,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "quickSort(arr, i + 1, high);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 22,
+     "first_killing_case": "qsort/quickSort/grid/00003",
+     "file": "src/src_qsort.rs",
+     "line": 36,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "quickSort(arr, i + 1, high);"
+    }
+   ]
+  },
+  "quadtree": {
+   "candidates": 34,
+   "selected": 34,
+   "stillborn": 1,
+   "valid": 33,
+   "killed": 23,
+   "kill_rate": 0.697,
+   "cases_used": 350,
+   "mutants": [
+    {
+     "status": "stillborn",
+     "log_tail": " if node_contains_(sw, point) { return Some(Quadrant::SW); } }\n29 | |     if let Some(se) = root.se_as_ref() { if node_contains_(se, point) { return Some(Quadrant::SE); } }\n30 | |     None\n31 | | }\n   | |_^\n   |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n   |\n25 ~ fn get_quadrant_(root: &quadtree_node_t, point: &quadtree_point_t) -> Option<Quadrant>{ {\n26 |     if let Some(nw) = root.nw_as_ref() { if node_contains_(nw, point) { return Some(Quadrant::NW); } }\n...\n30 |     None\n31 +  }\n   |\n\nerror: could not compile `quadtree` (bin \"quadtree\") due to 2 previous errors\n",
+     "file": "src/src_quadtree.rs",
+     "line": 25,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "fn get_quadrant_(root: &quadtree_node_t, point: &quadtree_point_t) -> Option<Quadrant> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 36,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 44,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 40,
+     "kind": "arithmetic",
+     "op": "/ -> *",
+     "source_line": "let hw = b.width / 2.0;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 43,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 41,
+     "kind": "arithmetic",
+     "op": "/ -> *",
+     "source_line": "let hh = b.height / 2.0;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 47,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 46,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 52,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let nw_child = make_child!(x, y - hh, x + hw, y);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 43,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 53,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let ne_child = make_child!(x + hw, y - hh, x + hw * 2.0, y);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 43,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 53,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let ne_child = make_child!(x + hw, y - hh, x + hw * 2.0, y);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 46,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 54,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let sw_child = make_child!(x, y - hh * 2.0, x + hw, y - hh);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 43,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 55,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let se_child = make_child!(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 45,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 55,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let se_child = make_child!(x + hw, y - hh * 2.0, x + hw * 2.0, y - hh);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 96,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 78,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "return 1;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 16,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 82,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "(Some(p), Some(pt)) => p.x == pt.x && p.y == pt.y,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 17,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 82,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "(Some(p), Some(pt)) => p.x == pt.x && p.y == pt.y,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 15,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 90,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "return 0;"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 46,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 92,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if split_node_(root, key_free) == 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 46,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 92,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "if split_node_(root, key_free) == 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 11,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 93,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "return 0;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 100,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 23,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 108,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 114,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "0"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 29,
+     "first_killing_case": "quadtree/quadtree_search/grid/00241",
+     "file": "src/src_quadtree.rs",
+     "line": 120,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if p.x == x && p.y == y {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 29,
+     "first_killing_case": "quadtree/quadtree_search/grid/00241",
+     "file": "src/src_quadtree.rs",
+     "line": 120,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "if p.x == x && p.y == y {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 190,
+     "first_killing_case": "quadtree/quadtree_new/grid/00000",
+     "file": "src/src_quadtree.rs",
+     "line": 152,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "length: 0,"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 189,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 195,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 90,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00242",
+     "file": "src/src_quadtree.rs",
+     "line": 198,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "return 0;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_quadtree.rs",
+     "line": 203,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => return 0,"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 96,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 207,
+     "kind": "relational",
+     "op": "!= -> ==",
+     "source_line": "if result != 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 96,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 207,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "if result != 0 {"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 96,
+     "first_killing_case": "quadtree/quadtree_insert/grid/00240",
+     "file": "src/src_quadtree.rs",
+     "line": 208,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "t.length += 1;"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_node.rs",
+     "line": 56,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => 0,"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_node.rs",
+     "line": 64,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => 0,"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_node.rs",
+     "line": 72,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "None => 0,"
+    }
+   ]
+  },
+  "urlparser": {
+   "candidates": 44,
+   "selected": 40,
+   "stillborn": 10,
+   "valid": 30,
+   "killed": 2,
+   "kill_rate": 0.067,
+   "cases_used": 145,
+   "mutants": [
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 20,
+     "kind": "constant+1",
+     "op": "8 -> 9",
+     "source_line": "((__bsx >> 8) & 0xff) | ((__bsx & 0xff) << 8)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 20,
+     "kind": "constant+1",
+     "op": "8 -> 9",
+     "source_line": "((__bsx >> 8) & 0xff) | ((__bsx & 0xff) << 8)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 25,
+     "kind": "constant+1",
+     "op": "24 -> 25",
+     "source_line": "let result: u32 = ((val & 0xff000000u32) >> 24)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 26,
+     "kind": "constant+1",
+     "op": "8 -> 9",
+     "source_line": "| ((val & 0x00ff0000u32) >> 8)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 27,
+     "kind": "constant+1",
+     "op": "8 -> 9",
+     "source_line": "| ((val & 0x0000ff00u32) << 8)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 28,
+     "kind": "constant+1",
+     "op": "24 -> 25",
+     "source_line": "| ((val & 0x000000ffu32) << 24);"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 34,
+     "kind": "constant+1",
+     "op": "56 -> 57",
+     "source_line": "let swapped = ((x & 0xff00000000000000) >> 56)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 35,
+     "kind": "constant+1",
+     "op": "40 -> 41",
+     "source_line": "| ((x & 0x00ff000000000000) >> 40)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 36,
+     "kind": "constant+1",
+     "op": "24 -> 25",
+     "source_line": "| ((x & 0x0000ff0000000000) >> 24)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 37,
+     "kind": "constant+1",
+     "op": "8 -> 9",
+     "source_line": "| ((x & 0x000000ff00000000) >> 8)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 39,
+     "kind": "constant+1",
+     "op": "24 -> 25",
+     "source_line": "| ((x & 0x0000000000ff0000) << 24)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 40,
+     "kind": "constant+1",
+     "op": "40 -> 41",
+     "source_line": "| ((x & 0x000000000000ff00) << 40)"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 41,
+     "kind": "constant+1",
+     "op": "56 -> 57",
+     "source_line": "| ((x & 0x00000000000000ff) << 56);"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 91,
+     "first_killing_case": "urlparser/url_is_protocol/grid/00000",
+     "file": "src/src_url.rs",
+     "line": 83,
+     "kind": "relational",
+     "op": "== -> !=",
+     "source_line": "let len = bytes.iter().position(|&b| b == 0).unwrap_or(bytes.len());"
+    },
+    {
+     "status": "killed",
+     "killing_cases": 90,
+     "first_killing_case": "urlparser/url_is_protocol/grid/00000",
+     "file": "src/src_url.rs",
+     "line": 83,
+     "kind": "constant+1",
+     "op": "0 -> 1",
+     "source_line": "let len = bytes.iter().position(|&b| b == 0).unwrap_or(bytes.len());"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "> {\n    | --- unexpected token\n\nerror: function body cannot be `= expression;`\n   --> src/src_url.rs:101:47\n    |\n101 |   pub fn url_parse(url: &str) -> Option<UrlData>= {\n    |  _______________________________________________^\n102 | |     let href = url.to_string();\n...   |\n199 | |     })\n200 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n101 ~ pub fn url_parse(url: &str) -> Option<UrlData>{ {\n102 |     let href = url.to_string();\n...\n199 |     })\n200 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 101,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_parse(url: &str) -> Option<UrlData> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 113,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "&url[sep_pos + 3..]"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 116,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "&url[sep_pos + 1..]"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 122,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "(a, &rest[at_pos + 1..])"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 140,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "hostname_full[colon_pos + 1..].to_string(),"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 150,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if path_part.len() > 1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 174,
+     "kind": "relational",
+     "op": "< -> <=",
+     "source_line": "let hash = if search_end < after_pathname.len() {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 182,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "search[q_start + 1..].to_string()"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "|  _____________________________________________________^\n203 | |     // C: sscanf(url, \"%[^://]\", protocol) \u2014 stops at first ':' or '/'\n204 | |     let sep = url.find(|c: char| c == ':' || c == '/')?;\n205 | |     let proto = &url[..sep];\n...   |\n211 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n202 ~ pub fn url_get_protocol(url: &str) -> Option<String>{ {\n203 |     // C: sscanf(url, \"%[^://]\", protocol) \u2014 stops at first ':' or '/'\n...\n210 |     }\n211 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 202,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_protocol(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": ": &str) -> Option<String>= {\n    |  _________________________________________________^\n214 | |     let proto = url_get_protocol(url)?;\n215 | |     let sep_len = if url[proto.len()..].starts_with(\"://\") { 3 } else { 1 };\n216 | |     let rest = &url[proto.len() + sep_len..];\n...   |\n222 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n213 ~ pub fn url_get_auth(url: &str) -> Option<String>{ {\n214 |     let proto = url_get_protocol(url)?;\n...\n221 |     }\n222 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 213,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_auth(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 216,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let rest = &url[proto.len() + sep_len..];"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "________^\n225 | |     let proto = url_get_protocol(url)?;\n226 | |     let is_ssh = url_is_ssh(&proto);\n227 | |     let sep_len = if url[proto.len()..].starts_with(\"://\") { 3 } else { 1 };\n...   |\n239 | |     Some(after_auth[..end].to_string())\n240 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n224 ~ pub fn url_get_hostname(url: &str) -> Option<String>{ {\n225 |     let proto = url_get_protocol(url)?;\n...\n239 |     Some(after_auth[..end].to_string())\n240 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 224,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_hostname(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 228,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let rest = &url[proto.len() + sep_len..];"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 230,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "&rest[at + 1..]"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "url.rs:242:49\n    |\n242 |   pub fn url_get_host(url: &str) -> Option<String>= {\n    |  _________________________________________________^\n243 | |     let hn = url_get_hostname(url)?;\n244 | |     if let Some(colon) = hn.find(':') {\n245 | |         Some(hn[..colon].to_string())\n...   |\n249 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n242 ~ pub fn url_get_host(url: &str) -> Option<String>{ {\n243 |     let hn = url_get_hostname(url)?;\n...\n248 |     }\n249 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 242,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_host(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 255,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "let rest = &url[proto.len() + sep_len..];"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 257,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "&rest[at + 1..]"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 269,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "if path_part.len() > 1 {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 269,
+     "kind": "constant+1",
+     "op": "1 -> 2",
+     "source_line": "if path_part.len() > 1 {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": " end = path.find(|c| c == '?' || c == '#' || c == ' ' || c == '|' || c == '^').unwrap_or(path.len());\n286 | |     Some(path[..end].to_string())\n287 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n283 ~ pub fn url_get_pathname(url: &str) -> Option<String>{ {\n284 |     let path = url_get_path(url)?;\n285 |     let end = path.find(|c| c == '?' || c == '#' || c == ' ' || c == '|' || c == '^').unwrap_or(path.len());\n286 |     Some(path[..end].to_string())\n287 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 283,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_pathname(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "ind(|c| c == '?' || c == '#' || c == ' ' || c == '|' || c == '^').unwrap_or(path.len());\n292 | |     let after = &path[pn_end..];\n293 | |     let search_end = after.find('#').unwrap_or(after.len());\n294 | |     Some(after[..search_end].to_string())\n295 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n289 ~ pub fn url_get_search(url: &str) -> Option<String>{ {\n290 |     let path = url_get_path(url)?;\n...\n294 |     Some(after[..search_end].to_string())\n295 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 289,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_search(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "50\n    |\n297 |   pub fn url_get_query(url: &str) -> Option<String>= {\n    |  __________________________________________________^\n298 | |     let search = url_get_search(url)?;\n299 | |     if let Some(q) = search.find('?') {\n300 | |         Some(search[q + 1..].to_string())\n...   |\n304 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n297 ~ pub fn url_get_query(url: &str) -> Option<String>{ {\n298 |     let search = url_get_search(url)?;\n...\n303 |     }\n304 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 297,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_query(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "survived",
+     "file": "src/src_url.rs",
+     "line": 300,
+     "kind": "arithmetic",
+     "op": "+ -> -",
+     "source_line": "Some(search[q + 1..].to_string())"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "ption<String>= {\n    |  _________________________________________________^\n307 | |     let path = url_get_path(url)?;\n308 | |     let pn_end = path.find(|c| c == '?' || c == '#' || c == ' ' || c == '|' || c == '^').unwrap_or(path.len());\n309 | |     let after = &path[pn_end..];\n...   |\n315 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n306 ~ pub fn url_get_hash(url: &str) -> Option<String>{ {\n307 |     let path = url_get_path(url)?;\n...\n314 |     }\n315 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 306,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_hash(url: &str) -> Option<String> {"
+    },
+    {
+     "status": "stillborn",
+     "log_tail": "rs:317:49\n    |\n317 |   pub fn url_get_port(url: &str) -> Option<String>= {\n    |  _________________________________________________^\n318 | |     let hn = url_get_hostname(url)?;\n319 | |     if let Some(colon) = hn.find(':') {\n320 | |         Some(hn[colon + 1..].to_string())\n...   |\n324 | | }\n    | |_^\n    |\nhelp: surround the expression with `{` and `}` instead of `=` and `;`\n    |\n317 ~ pub fn url_get_port(url: &str) -> Option<String>{ {\n318 |     let hn = url_get_hostname(url)?;\n...\n323 |     }\n324 +  }\n    |\n\nerror: could not compile `urlparser` (bin \"urlparser\") due to 2 previous errors\n",
+     "file": "src/src_url.rs",
+     "line": 317,
+     "kind": "relational",
+     "op": "> -> >=",
+     "source_line": "pub fn url_get_port(url: &str) -> Option<String> {"
+    }
+   ]
+  }
+ },
+ "inject_equivalent_note": {
+  "project": "genann",
+  "fault": "genann_act_sigmoid: `if a > 45.0` -> `if a > 44.0`",
+  "status": "survived (first run)",
+  "why": "equivalent in IEEE double: 1.0/(1.0+exp(-a)) rounds to exactly 1.0 for every a >= 37, so the clamp threshold can move anywhere in [37, 45] without changing any output; replaced by the genann_train fault"
+ },
+ "provenance": {
+  "script": "systems/his2trans/power.py",
+  "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/power.py --diff /work/results/his2trans_diff.json --auto qsort,quadtree,avl,urlparser --cap 40 --out /work/results/his2trans_power.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+  "git_rev": "801e8c7",
+  "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout-plus186",
+  "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:36:55+00:00",
+  "wall_seconds": 709,
+  "diff_inputs": [
+   "/work/results/his2trans_diff.json"
+  ],
+  "selection": "all candidates, thinned evenly to --cap (deterministic)"
+ }
+}

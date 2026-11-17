@@ -1,0 +1,146 @@
+[
+ {
+  "name": "blobs/",
+  "type": "5",
+  "size": 0,
+  "data_offset": 512
+ },
+ {
+  "name": "blobs/sha256/",
+  "type": "5",
+  "size": 0,
+  "data_offset": 1024
+ },
+ {
+  "name": "blobs/sha256/07f4b7694105de363e79d474fd1975e29e8ca24ce4bd8f3d0998a9e6a7d76751",
+  "type": "0",
+  "size": 563014204,
+  "data_offset": 1536
+ },
+ {
+  "name": "blobs/sha256/0e0051485c5cb9b154489c6a7f7ab12db3905c8189e02aa5638909696fbf9321",
+  "type": "0",
+  "size": 2233735979,
+  "data_offset": 563016704
+ },
+ {
+  "name": "blobs/sha256/1a4f17076a6e1098940ae99348da268d326d85a2bb6e493b38a89ffb493639ec",
+  "type": "0",
+  "size": 7532,
+  "data_offset": 2796753408
+ },
+ {
+  "name": "blobs/sha256/2933051265e9fca2d345083caaf576145dad90dddc8c95e3d0ad50e85c6ef4fb",
+  "type": "0",
+  "size": 27479184,
+  "data_offset": 2796761600
+ },
+ {
+  "name": "blobs/sha256/2ec224865c99a931dfa2b9711707f61edc85af720d4071fca392398305a8a106",
+  "type": "0",
+  "size": 2670095468,
+  "data_offset": 2824241664
+ },
+ {
+  "name": "blobs/sha256/2f577ab6ebf4f4017c75f0b093e84159f88144b0d94288f0ac0612092b1d7454",
+  "type": "0",
+  "size": 19192022,
+  "data_offset": 5494338048
+ },
+ {
+  "name": "blobs/sha256/39bb5cb0b32caa825c26b03760ba0465b13bb164ee9e8727396e493d508e043b",
+  "type": "0",
+  "size": 2027871024,
+  "data_offset": 5513530880
+ },
+ {
+  "name": "blobs/sha256/43dfecebb43337184437fb848cf34dec2e371edce53756f0d606344e4746fd8e",
+  "type": "0",
+  "size": 573956052,
+  "data_offset": 7541402624
+ },
+ {
+  "name": "blobs/sha256/4f7c7416c3234f5a560c70ef45bdf328b1d347e221403ca5f714a3a58df4b987",
+  "type": "0",
+  "size": 5287,
+  "data_offset": 8115359232
+ },
+ {
+  "name": "blobs/sha256/65611ef0f485883daa39c7d6b4408b237274e8cea8e61f88c1ee60ce28ce833b",
+  "type": "0",
+  "size": 3702818341,
+  "data_offset": 8115365376
+ },
+ {
+  "name": "blobs/sha256/6b243e4344030a2564981d14539f9790154a6d9e02fdd4b14a19648ec1b85caa",
+  "type": "0",
+  "size": 206221286,
+  "data_offset": 11818184704
+ },
+ {
+  "name": "blobs/sha256/6ba8e46dbf1a25058db778d0e78bf772e9b521e21aa83c7f97d51e61c79519ae",
+  "type": "0",
+  "size": 62057302,
+  "data_offset": 12024406528
+ },
+ {
+  "name": "blobs/sha256/6c0d7202adffca9d69f07ffc6c7aaa09431b33b0c3e9d045141d0fb24549ca98",
+  "type": "0",
+  "size": 100834392,
+  "data_offset": 12086464512
+ },
+ {
+  "name": "blobs/sha256/81e72d0ac121808a01a5888fcf76a45046ac5ce97025a213118ece9384238d59",
+  "type": "0",
+  "size": 351827244,
+  "data_offset": 12187299840
+ },
+ {
+  "name": "blobs/sha256/92d1340b9d37e4d55b70701ee09bcaa23c4525f5ed46bb6e637c93fada00ca2d",
+  "type": "0",
+  "size": 64497491,
+  "data_offset": 12539127808
+ },
+ {
+  "name": "blobs/sha256/95be0125a0b493a92320e61da3b6c2af87a033ff4a647499d533349d36e20e5b",
+  "type": "0",
+  "size": 5095912,
+  "data_offset": 12603625984
+ },
+ {
+  "name": "blobs/sha256/9d19ee268e0d7bcf6716e6658ee1b0384a71d6f2f9aa1ae2085610cf7c7b316f",
+  "type": "0",
+  "size": 30431229,
+  "data_offset": 12608722432
+ },
+ {
+  "name": "blobs/sha256/a5913cca4d73873936daf8e9af5989be72e8065faf1b866d8b91ede607d79815",
+  "type": "0",
+  "size": 3930,
+  "data_offset": 12639154176
+ },
+ {
+  "name": "blobs/sha256/eaf951a43ccf2a06cbd6c9ef2f1bf8da82ee25007811abb5e4fa286995b0fb1d",
+  "type": "0",
+  "size": 532015653,
+  "data_offset": 12639158784
+ },
+ {
+  "name": "index.json",
+  "type": "0",
+  "size": 438,
+  "data_offset": 13171175424
+ },
+ {
+  "name": "manifest.json",
+  "type": "0",
+  "size": 1501,
+  "data_offset": 13171176448
+ },
+ {
+  "name": "oci-layout",
+  "type": "0",
+  "size": 30,
+  "data_offset": 13171178496
+ }
+]

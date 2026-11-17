@@ -1,0 +1,2392 @@
+{
+ "provenance": {
+  "script": "harness/oracle_ub_pending.py",
+  "command": "bash harness/oracle_ub_run.sh pending python3 harness/oracle_ub_pending.py --phase c --build /oub/pending (docker image crust-heldout sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba)",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo working tree copied (rsync, artifacts excluded) to the run host; new oracle_ub_* files uncommitted",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "sanitizer_cflags": {
+   "clang": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all",
+    "-fno-pie"
+   ],
+   "gcc": [
+    "-O0",
+    "-g",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined,float-cast-overflow",
+    "-fno-sanitize-recover=all"
+   ]
+  },
+  "sanitizer_env": {
+   "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+   "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+  },
+  "date": "2026-11-13T23:15:16+00:00",
+  "rust_build": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "image": "crust-syzygy",
+   "image_id": "sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b"
+  },
+  "artifact_source_digests": {
+   "u8c": {
+    "files": 193,
+    "sha256": "559463415046cf28d94e01961ebc9889cfbdd729703446c1f097e11dff8fe4ff"
+   },
+   "u8c_link_main.rs": {
+    "files": 1,
+    "sha256": "bf8d4f58e181e4f4860b56153b2a0c42442c7b728cadfc204f07795bca10d82d"
+   },
+   "syzygy_clean_copy_c_code": {
+    "files": 2,
+    "sha256": "5abda7611c28d265dd85f68769147e56b153cbba79043dec7e38978f872663b3"
+   },
+   "syzygy_clean_copy_rust_code": {
+    "files": 3,
+    "sha256": "7b58702217edcea40d1a95d817b4872ab42b70a05bc4fff796e088f8a4f1166d"
+   },
+   "syzygy_artifacts_tree_c_code": {
+    "files": 2,
+    "sha256": "5abda7611c28d265dd85f68769147e56b153cbba79043dec7e38978f872663b3"
+   },
+   "syzygy_artifacts_tree_rust_code": {
+    "files": 3,
+    "sha256": "7b58702217edcea40d1a95d817b4872ab42b70a05bc4fff796e088f8a4f1166d"
+   },
+   "rosetta_number_names": {
+    "c": {
+     "files": 1,
+     "sha256": "c69c2e516ee2c5f0b9ea4d348ce6a69c4a708ee9ca63182c13383116013ddcfa"
+    },
+    "rust": {
+     "files": 1,
+     "sha256": "b1ba458743c48a497d25ac82642319fa4cbde019f54061f0fdf34b0538709ae1"
+    }
+   },
+   "rosetta_numerical_integration": {
+    "c": {
+     "files": 1,
+     "sha256": "a163914512340028a6c31b66cfb9efe4fa97bad3e6eaac55d4752d784bc83be3"
+    },
+    "rust": {
+     "files": 1,
+     "sha256": "14140b0612bb6c4e7cfc61c78969d9d3e476db2f14f872c51ebdf69f4838033f"
+    }
+   }
+  },
+  "syzygy_source": "clean rsync of the Mac artifacts/syzygy_zopfli (target/ excluded), digest above",
+  "head5_inputs": "capture blobs of harness/heldout_c2saferrust.py; each checked against its sha256 and the invocation record",
+  "rule": "clean input = diverges under the harness oracle AND no clang/gcc ASan+UBSan report AND -O0/-O1/-O2 outputs equal AND the Rust differs from the C under -O0/-O1/-O2/-funsigned-char/-fsigned-char/-funsigned-bitfields builds",
+  "wall_seconds": 14,
+  "sanitizer_positive_controls": {
+   "clang": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "fired"
+   },
+   "gcc": {
+    "heap_oob_read": "fired",
+    "stack_oob_read": "fired",
+    "signed_overflow": "fired",
+    "shift_overflow": "fired",
+    "float_cast_overflow": "fired",
+    "clean": "clean",
+    "all_as_expected": true,
+    "float_cast_overflow_with_only_-fsanitize=address,undefined": "clean"
+   }
+  }
+ },
+ "builder_note": "Each defects[<defect_id>].ub_rule has the ledger's ub_rule shape {status, clean_inputs, of, evidence}.",
+ "defects": {
+  "RUSTASSURE-u8c-u8next_-1": {
+   "ub_rule": {
+    "status": "clean",
+    "clean_inputs": 13,
+    "of": 13,
+    "evidence": "results/oracle_ub_pending.json: 13 of 13 exposing inputs clean (clang+gcc ASan/UBSan, -O0/-O1/-O2 agree, Rust differs under -fsigned-char and -funsigned-char); the C's printed value for an invalid lead byte depends on char signedness on 13 of them"
+   },
+   "exposing_inputs": [
+    "overlong_3",
+    "overlong_4",
+    "out_of_range_4",
+    "surrogate_d800",
+    "surrogate_dfff",
+    "trunc_2",
+    "trunc_3",
+    "trunc_4",
+    "lead_then_ascii",
+    "double_lead",
+    "c0_alone",
+    "sweep_high",
+    "mix_valid_invalid"
+   ],
+   "summary": {
+    "corpus_inputs": 36,
+    "diverge_under_ref_x86_signed_char": 19,
+    "diverge_under_-funsigned-char": 13,
+    "exposing_checked": 13,
+    "exposing_sanitizer_clean": 13,
+    "exposing_opt_level_agree": 13,
+    "exposing_C_output_char_signedness_dependent": 13,
+    "exposing_divergent_under_both_char_signedness": 13,
+    "exposing_clean": 13,
+    "non_exposing_that_diverge_under_some_build": [
+     "all_continuation",
+     "f8",
+     "fe",
+     "ff",
+     "overlong_c1",
+     "stray_cont"
+    ]
+   },
+   "per_input": [
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "ascii",
+     "hex": "68656c6c6f",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 104 1",
+      "D 101 1"
+     ],
+     "c_uchar_first_lines": [
+      "D 104 1",
+      "D 101 1"
+     ],
+     "rust_first_lines": [
+      "D 104 1",
+      "D 101 1"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "ascii_sym",
+     "hex": "41217e203039",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 65 1",
+      "D 33 1"
+     ],
+     "c_uchar_first_lines": [
+      "D 65 1",
+      "D 33 1"
+     ],
+     "rust_first_lines": [
+      "D 65 1",
+      "D 33 1"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "two_byte",
+     "hex": "c3a9",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 233 2",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 233 2",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 233 2",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "two_byte2",
+     "hex": "c3b1cebb",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 241 2",
+      "D 955 2"
+     ],
+     "c_uchar_first_lines": [
+      "D 241 2",
+      "D 955 2"
+     ],
+     "rust_first_lines": [
+      "D 241 2",
+      "D 955 2"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "three_byte",
+     "hex": "e282ac",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 8364 3",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 8364 3",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 8364 3",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "three_byte_cjk",
+     "hex": "e697a5e69cace8aa9e",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 26085 3",
+      "D 26412 3"
+     ],
+     "c_uchar_first_lines": [
+      "D 26085 3",
+      "D 26412 3"
+     ],
+     "rust_first_lines": [
+      "D 26085 3",
+      "D 26412 3"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "four_byte",
+     "hex": "f09f9880",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 128512 4",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 128512 4",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 128512 4",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "mixed",
+     "hex": "61c3a9e697a5f09f98807a",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 97 1",
+      "D 233 2"
+     ],
+     "c_uchar_first_lines": [
+      "D 97 1",
+      "D 233 2"
+     ],
+     "rust_first_lines": [
+      "D 97 1",
+      "D 233 2"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "max_4byte",
+     "hex": "f48fbfbf",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 1114111 4",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 1114111 4",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 1114111 4",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "min_2byte",
+     "hex": "c280",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 128 2",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 128 2",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 128 2",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "min_3byte",
+     "hex": "e0a080",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 2048 3",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 2048 3",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 2048 3",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "min_4byte",
+     "hex": "f0908080",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 65536 4",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 65536 4",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 65536 4",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "mutf8_nul",
+     "hex": "c080",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 0 2",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 0 2",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 0 2",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "mutf8_nul_then",
+     "hex": "c08041",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 0 2",
+      "D 65 1"
+     ],
+     "c_uchar_first_lines": [
+      "D 0 2",
+      "D 65 1"
+     ],
+     "rust_first_lines": [
+      "D 0 2",
+      "D 65 1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "overlong_c1",
+     "hex": "c1bf",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D -63 -1",
+      "D -65 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 193 -1",
+      "D 191 -1"
+     ],
+     "rust_first_lines": [
+      "D 193 -1",
+      "D 191 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "overlong_3",
+     "hex": "e08080",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -32 -1",
+      "D -128 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 224 -1",
+      "D 128 -1"
+     ],
+     "rust_first_lines": [
+      "D 0 -1",
+      "D 128 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "overlong_4",
+     "hex": "f0808080",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -16 -1",
+      "D -128 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 240 -1",
+      "D 128 -1"
+     ],
+     "rust_first_lines": [
+      "D 0 -1",
+      "D 128 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "out_of_range_4",
+     "hex": "f4908080",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -12 -1",
+      "D -112 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 244 -1",
+      "D 144 -1"
+     ],
+     "rust_first_lines": [
+      "D 4 -1",
+      "D 144 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "surrogate_d800",
+     "hex": "eda080",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -19 -1",
+      "D -96 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 237 -1",
+      "D 160 -1"
+     ],
+     "rust_first_lines": [
+      "D 13 -1",
+      "D 160 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "surrogate_dfff",
+     "hex": "edbfbf",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -19 -1",
+      "D -65 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 237 -1",
+      "D 191 -1"
+     ],
+     "rust_first_lines": [
+      "D 13 -1",
+      "D 191 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "just_below_surrogate",
+     "hex": "ed9fbf",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 55295 3",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 55295 3",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 55295 3",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "trunc_2",
+     "hex": "c3",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -61 -1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 195 -1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 3 -1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "trunc_3",
+     "hex": "e282",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -30 -1",
+      "D -126 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 226 -1",
+      "D 130 -1"
+     ],
+     "rust_first_lines": [
+      "D 130 -1",
+      "D 130 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "trunc_4",
+     "hex": "f09f98",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -16 -1",
+      "D -97 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 240 -1",
+      "D 159 -1"
+     ],
+     "rust_first_lines": [
+      "D 2008 -1",
+      "D 159 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "stray_cont",
+     "hex": "418042",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 65 1",
+      "D -128 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 65 1",
+      "D 128 -1"
+     ],
+     "rust_first_lines": [
+      "D 65 1",
+      "D 128 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "lead_then_ascii",
+     "hex": "c341",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -61 -1",
+      "D 65 1"
+     ],
+     "c_uchar_first_lines": [
+      "D 195 -1",
+      "D 65 1"
+     ],
+     "rust_first_lines": [
+      "D 3 -1",
+      "D 65 1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "double_lead",
+     "hex": "e2e282ac",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -30 -1",
+      "D 8364 3"
+     ],
+     "c_uchar_first_lines": [
+      "D 226 -1",
+      "D 8364 3"
+     ],
+     "rust_first_lines": [
+      "D 2 -1",
+      "D 8364 3"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "ff",
+     "hex": "ff",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D -1 -1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 255 -1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 255 -1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "fe",
+     "hex": "fe",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D -2 -1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 254 -1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 254 -1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "f8",
+     "hex": "f8",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D -8 -1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 248 -1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 248 -1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "c0_alone",
+     "hex": "c0",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -64 -1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 192 -1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 0 -1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "all_continuation",
+     "hex": "8081bf",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D -128 -1",
+      "D -127 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 128 -1",
+      "D 129 -1"
+     ],
+     "rust_first_lines": [
+      "D 128 -1",
+      "D 129 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "sweep_high",
+     "hex": "808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D -128 -1",
+      "D -127 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 128 -1",
+      "D 129 -1"
+     ],
+     "rust_first_lines": [
+      "D 128 -1",
+      "D 129 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": false,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": true,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "input": "mix_valid_invalid",
+     "hex": "61ffc3a9c07a",
+     "exposing_in_ledger": true,
+     "c_ref_first_lines": [
+      "D 97 1",
+      "D -1 -1"
+     ],
+     "c_uchar_first_lines": [
+      "D 97 1",
+      "D 255 -1"
+     ],
+     "rust_first_lines": [
+      "D 97 1",
+      "D 255 -1"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "interior_nul",
+     "hex": "610062",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 97 1",
+      "D 0 0"
+     ],
+     "c_uchar_first_lines": [
+      "D 97 1",
+      "D 0 0"
+     ],
+     "rust_first_lines": [
+      "D 97 1",
+      "D 0 0"
+     ]
+    },
+    {
+     "diverges_under_ref": false,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": false,
+      "o1": false,
+      "o2": false,
+      "uchar": false,
+      "schar": false,
+      "ubitfield": false
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": false,
+     "clean_except_null_plus_zero": false,
+     "input": "empty",
+     "hex": "",
+     "exposing_in_ledger": false,
+     "c_ref_first_lines": [
+      "D 0 0",
+      "END 1"
+     ],
+     "c_uchar_first_lines": [
+      "D 0 0",
+      "END 1"
+     ],
+     "rust_first_lines": [
+      "D 0 0",
+      "END 1"
+     ]
+    }
+   ],
+   "builds": {
+    "ref": [
+     "gcc",
+     [
+      "-w",
+      "-O2"
+     ]
+    ],
+    "o0": [
+     "gcc",
+     [
+      "-w",
+      "-O0"
+     ]
+    ],
+    "o1": [
+     "gcc",
+     [
+      "-w",
+      "-O1"
+     ]
+    ],
+    "o2": [
+     "gcc",
+     [
+      "-w",
+      "-O2"
+     ]
+    ],
+    "san_clang": [
+     "clang",
+     [
+      "-w",
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-no-pie"
+     ]
+    ],
+    "san_gcc": [
+     "gcc",
+     [
+      "-w",
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fsanitize=address,undefined,float-cast-overflow"
+     ]
+    ],
+    "san_clang_nz": [
+     "clang",
+     [
+      "-w",
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie",
+      "-fsanitize-recover=pointer-overflow",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-no-pie"
+     ]
+    ],
+    "uchar": [
+     "gcc",
+     [
+      "-w",
+      "-O2",
+      "-funsigned-char"
+     ]
+    ],
+    "schar": [
+     "gcc",
+     [
+      "-w",
+      "-O2",
+      "-fsigned-char"
+     ]
+    ],
+    "ubitfield": [
+     "gcc",
+     [
+      "-w",
+      "-O2",
+      "-funsigned-bitfields"
+     ]
+    ]
+   }
+  },
+  "SYZYGY-zopfli-ZopfliDeflate-1": {
+   "ub_rule": {
+    "status": "clean",
+    "clean_inputs": 3,
+    "of": 3,
+    "evidence": "results/oracle_ub_pending.json: 3 of 3 btypes clean (empty input)"
+   },
+   "per_input": [
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "btype": 0,
+     "c_hex": "010000ffff",
+     "rust_hex": "",
+     "c_inflate_ok": true,
+     "rust_inflate_ok": false
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "btype": 1,
+     "c_hex": "0300",
+     "rust_hex": "",
+     "c_inflate_ok": true,
+     "rust_inflate_ok": false
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "btype": 2,
+     "c_hex": "0300",
+     "rust_hex": "",
+     "c_inflate_ok": true,
+     "rust_inflate_ok": false
+    }
+   ],
+   "rust_exit": 0,
+   "summary": {
+    "exposing_checked": 3,
+    "clean": 3,
+    "c_valid_deflate": 3,
+    "rust_rejected_by_zlib": 3
+   }
+  },
+  "C2SR-head-5": {
+   "ub_rule": {
+    "status": "clean",
+    "clean_inputs": 3,
+    "of": 3,
+    "evidence": "results/oracle_ub_pending.json: 3 of 3 own-input invocations clean"
+   },
+   "per_input": [
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "test": "head/head-pos.sh",
+     "invocation": 2,
+     "argv": [
+      "-n-50000"
+     ],
+     "stdin": "regular file 408894 B at offset 0",
+     "files": {},
+     "c_stdout_len": 108894,
+     "rust_stdout_len": 106896,
+     "recorded_c_len": 108894,
+     "recorded_rust_len": 106896,
+     "reproduced": true
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "test": "head/head-write-error.sh",
+     "invocation": 3,
+     "argv": [
+      "--lines=-1"
+     ],
+     "stdin": "pipe, 65536 B",
+     "files": {},
+     "c_stdout_len": 65534,
+     "rust_stdout_len": 61439,
+     "recorded_c_len": 65534,
+     "recorded_rust_len": 63487,
+     "reproduced": false
+    },
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "test": "head/head-write-error.sh",
+     "invocation": 4,
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "stdin": null,
+     "files": {
+      "bigseek": "10485760 B sha256 054c421cae3e7a47"
+     },
+     "c_stdout_len": 10485758,
+     "rust_stdout_len": 10481663,
+     "recorded_c_len": 10485758,
+     "recorded_rust_len": 10481663,
+     "reproduced": true
+    }
+   ],
+   "binaries_sha256": {
+    "ref": "7fda4cb905fa9295",
+    "o1": "c36fcc448c305472",
+    "o2": "4cb72312f4102c7f",
+    "san_clang": "da5ecd620ff469f2",
+    "san_gcc": "97e50d5ddd1c750e",
+    "san_clang_nz": "c342f1b716762c93",
+    "uchar": "92c7e2385441c822",
+    "schar": "c3a66e8db4b1cf09",
+    "ubitfield": "cf21cadae6ab238f",
+    "sut": "381b15db77555b57"
+   },
+   "binaries_from": "harness/oracle_ub_c2saferrust.py build dir /oub/c2sr/head (crust-heldout)",
+   "summary": {
+    "exposing_checked": 3,
+    "clean": 3,
+    "reproduced": 2
+   }
+  },
+  "RUSTMAP-rosetta-number_names-1": {
+   "ub_rule": {
+    "status": "clean",
+    "clean_inputs": 1,
+    "of": 1,
+    "evidence": "results/oracle_ub_pending.json: C clean, deterministic, -O0/-O1/-O2 and char/bit-field toggles agree"
+   },
+   "per_input": [
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "ref_repeat_identical": true,
+     "run_rosetta_class": "divergent_real",
+     "c_head": "minus forty-two\none thousand, nine hundred eighty-four\nten thousand, \none thousand, and twenty-four\none trillion, one billion, one million, one thousand, and one\none hundred twenty-three million four ",
+     "rust_head": "three hundred and twenty-one\n",
+     "c_exit": 0,
+     "rust_exit": 0
+    }
+   ],
+   "summary": {
+    "exposing_checked": 1,
+    "clean": 1
+   }
+  },
+  "RUSTMAP-rosetta-numerical_integration-1": {
+   "ub_rule": {
+    "status": "clean",
+    "clean_inputs": 1,
+    "of": 1,
+    "evidence": "results/oracle_ub_pending.json: C clean, deterministic, -O0/-O1/-O2 and char/bit-field toggles agree"
+   },
+   "per_input": [
+    {
+     "diverges_under_ref": true,
+     "sanitizer_reports": {},
+     "sanitizer_reports_other_than_null_plus_zero": {},
+     "san_infra": [],
+     "san_output_same_as_ref_when_clean": {
+      "san_clang": true,
+      "san_gcc": true,
+      "san_clang_nz": true
+     },
+     "build_output_same_as_ref": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "diverges_under": {
+      "o0": true,
+      "o1": true,
+      "o2": true,
+      "uchar": true,
+      "schar": true,
+      "ubitfield": true
+     },
+     "opt_level_agree": true,
+     "char_signedness_dependent_C": false,
+     "bitfield_signedness_dependent_C": false,
+     "sanitizer_clean": true,
+     "clean": true,
+     "clean_except_null_plus_zero": true,
+     "ref_repeat_identical": true,
+     "run_rosetta_class": "divergent_real",
+     "c_head": "  leftrect [ 0,1] num: +0.235322, an: 0.250000\n rightrect [ 0,1] num: +0.245025, an: 0.250000\n   midrect [ 0,1] num: +0.240137, an: 0.250000\n trapezium [ 0,1] num: +0.250025, an: 0.250000\n   simpson [",
+     "rust_head": "leftrect [0, 1] num: 0.4985010000000003, an: 1\nrightrect [0, 1] num: 0.49950000000000033, an: 1\nmidrect [0, 1] num: 0.4990005000000004, an: 1\ntrapezium [0, 1] num: 0.5000000000000001, an: 1\nsimpson [0",
+     "c_exit": 0,
+     "rust_exit": 0
+    }
+   ],
+   "summary": {
+    "exposing_checked": 1,
+    "clean": 1
+   }
+  }
+ }
+}

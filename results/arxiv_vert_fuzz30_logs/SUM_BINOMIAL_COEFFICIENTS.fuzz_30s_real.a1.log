@@ -1,0 +1,152 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+    --> src/main.rs:1090:5
+     |
+1090 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+    --> src/main.rs:1093:31
+     |
+1093 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                  ^   ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+1093 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1093 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+     |
+
+warning: unnecessary parentheses around pattern
+    --> src/main.rs:1093:59
+     |
+1093 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                              ^       ^
+     |
+help: remove these parentheses
+     |
+1093 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1093 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+     |
+
+warning: function `min` is never used
+    --> src/main.rs:1062:4
+     |
+1062 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1063:4
+     |
+1063 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1064:4
+     |
+1064 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1065:4
+     |
+1065 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1066:4
+     |
+1066 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1093:60
+     |
+1093 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_sum_binomial_coefficients_out-rwasm-bolero` (bin "c_transcoder_sum_binomial_coefficients_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_sum_binomial_coefficients_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.03s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 223572049
+INFO: Loaded 1 modules   (362832 inline 8-bit counters): 362832 [0x6479fdf57290, 0x6479fdfafbe0), 
+INFO: Loaded 1 PC tables (362832 PCs): 362832 [0x6479fdfafbe0,0x6479fe5390e0), 
+INFO:        0 files found in /tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+==28110== ERROR: libFuzzer: out-of-memory (used: 2852Mb; limit: 2048Mb)
+   To change the out-of-memory limit use -rss_limit_mb=<N>
+
+Live Heap Allocations: 3379663094 bytes in 192 chunks; quarantined: 233752 bytes in 466 chunks; 9308 other chunks; total chunks: 9966; showing top 95% (at most 8 unique contexts)
+2885681324 byte(s) (85%) in 43 allocation(s)
+    #0 0x6479fc874afe  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xa5fafe) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #1 0x6479fc9125ef  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xafd5ef) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #2 0x6479fc91d8ca  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb088ca) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #3 0x6479fc934b8c  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb1fb8c) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #4 0x6479fc8ba067  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaa5067) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #5 0x6479fc8cca36  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab7a36) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #6 0x6479fc938467  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb23467) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #7 0x6479fc8c69ce  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab19ce) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #8 0x6479fc8df8ea  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaca8ea) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #9 0x6479fc8bf57e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaaa57e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #10 0x6479fc8c3e7e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaaee7e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #11 0x6479fc8b9861  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaa4861) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #12 0x6479fc928895  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb13895) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #13 0x6479fd434c1e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x161fc1e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #14 0x6479fd468125  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1653125) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #15 0x6479fd46cc73  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1657c73) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #16 0x6479fd46dba8  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1658ba8) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #17 0x6479fd46fea7  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x165aea7) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #18 0x6479fd443432  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x162e432) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #19 0x6479fd434f76  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x161ff76) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #20 0x6479fc8cb031  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab6031) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #21 0x6479fc927f57  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb12f57) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #22 0x6479fc937e11  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb22e11) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #23 0x6479fc8d1315  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xabc315) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #24 0x6479fd41b5ce  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x16065ce) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+
+402653208 byte(s) (11%) in 1 allocation(s)
+    #0 0x6479fc874afe  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xa5fafe) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #1 0x6479fc91d80d  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb0880d) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #2 0x6479fc934b8c  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb1fb8c) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #3 0x6479fc8ba067  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaa5067) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #4 0x6479fc8cca36  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab7a36) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #5 0x6479fc938467  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb23467) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #6 0x6479fc8c69ce  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab19ce) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #7 0x6479fc8df8ea  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaca8ea) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #8 0x6479fc8bf57e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaaa57e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #9 0x6479fc8c3e7e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaaee7e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #10 0x6479fc8b9861  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xaa4861) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #11 0x6479fc928895  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb13895) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #12 0x6479fd434c1e  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x161fc1e) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #13 0x6479fd468125  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1653125) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #14 0x6479fd46cc73  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1657c73) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #15 0x6479fd46dba8  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x1658ba8) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #16 0x6479fd46fea7  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x165aea7) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #17 0x6479fd443432  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x162e432) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #18 0x6479fd434f76  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x161ff76) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #19 0x6479fc8cb031  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xab6031) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #20 0x6479fc927f57  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb12f57) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #21 0x6479fc937e11  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xb22e11) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #22 0x6479fc8d1315  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0xabc315) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+    #23 0x6479fd41b5ce  (/tmp/fzr_d4icmdkf/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_sum_binomial_coefficients_out_rwasm_bolero-fabb65a30393d100+0x16065ce) (BuildId: 4e434af454666cb8ca6162e5686343d7d771b891)
+
+MS: 5 CrossOver-ChangeByte-ChangeBit-CrossOver-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0xa,0xa,0xda,
+\012\012\012\332
+artifact_prefix='/tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_d4icmdkf/p/src/__fuzz__/bolero_wasm_eq/crashes/oom-bf909b12d2b16fb16153823cb136ab4c682fa893
+Base64: CgoK2g==
+SUMMARY: libFuzzer: out-of-memory
+error: process exited with status 71

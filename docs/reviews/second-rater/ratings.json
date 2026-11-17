@@ -1,0 +1,110 @@
+{
+ "item06": {
+  "case": 8,
+  "cause": "When value equals minval, the Rust returns it without checking maxval, so inverted bounds like (5, 5, 3) give 5 instead of 3.",
+  "cls": "edge",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:53:20.964Z"
+ },
+ "item10": {
+  "case": 11,
+  "cause": "Rust requires every whitespace-separated token to be a whole number, so input like a final byte of 5x makes it error out where the C reads the 5 and prints the result.",
+  "cls": "edge",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:58:53.806Z"
+ },
+ "item14": {
+  "case": 4,
+  "cause": "the Rust reads the option\u2019s argument before checking whether the option has one, so any flag without an argument, like -q, crashes.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:48:01.582Z"
+ },
+ "item17": {
+  "case": 1,
+  "cause": "The Rust starts the backward pass with the forward maximum instead of the last element, so [1, 2] gives 4 instead of 3.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:46:18.302Z"
+ },
+ "item19": {
+  "case": 6,
+  "cause": "After every event, the Rust gives a mention to every user it thinks is offline, so even a single direct mention like MESSAGE 10 id0 counts twice.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:51:26.758Z"
+ },
+ "item20": {
+  "case": 2,
+  "cause": "The Rust\u2019s homemade number parser doesn\u2019t skip leading spaces like strtol does, so \" 12\" prints an error instead of the totals.",
+  "cls": "edge",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:46:29.234Z"
+ },
+ "item28": {
+  "case": 10,
+  "cause": "Rust adds 0.5 and then also calls .round(), so it rounds twice, and 0.0 comes out as \u201cNorth by east\u201d instead of \u201cNorth\u201d.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:56:45.217Z"
+ },
+ "item30": {
+  "case": 12,
+  "cause": "Rust\u2019s whitespace check also matches the array\u2019s terminating zero byte, so stripping a zero-padded string like \"ab\\0\\0\" gives size 2 instead of 4.",
+  "cls": "edge",
+  "conf": "",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T07:00:03.571Z"
+ },
+ "item31": {
+  "case": 9,
+  "cause": "The Rust\u2019s buffer_append_n ignores its length argument, so appending the first 2 bytes of \"hello\" adds all 5.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:54:57.676Z"
+ },
+ "item34": {
+  "case": 5,
+  "cause": "Rust passes the same promoted value to the same libc functions and prints with the same formats, so there\u2019s nothing to differetiate.",
+  "cls": "",
+  "conf": "high",
+  "counted": "no",
+  "rule": "none",
+  "updated": "2026-11-14T06:50:26.761Z"
+ },
+ "item38": {
+  "case": 3,
+  "cause": "The Rust shifts each byte while it\u2019s still 8 bits wide, so the shifts do nothing and (0, 1, 0, 0) gives 1 instead of 256.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:46:39.291Z"
+ },
+ "item41": {
+  "case": 7,
+  "cause": "Rust uses f32 instead of double, so for n = 8 the result loses precision and comes out as 61719996 instead of 61719994.",
+  "cls": "outright",
+  "conf": "high",
+  "counted": "yes",
+  "rule": "",
+  "updated": "2026-11-14T06:52:34.799Z"
+ }
+}

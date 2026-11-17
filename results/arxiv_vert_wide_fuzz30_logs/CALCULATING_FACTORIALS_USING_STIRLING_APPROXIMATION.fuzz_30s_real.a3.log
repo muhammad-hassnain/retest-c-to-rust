@@ -1,0 +1,150 @@
+
+running 1 test
+warning: unused import: `bolero::check`
+    --> src/main.rs:1510:5
+     |
+1510 | use bolero::check;
+     |     ^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+    --> src/main.rs:1513:31
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                  ^   ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+1513 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1513 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+     |
+
+warning: unnecessary parentheses around pattern
+    --> src/main.rs:1513:59
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                              ^       ^
+     |
+help: remove these parentheses
+     |
+1513 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+1513 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+     |
+
+warning: value assigned to `z` is never read
+    --> src/main.rs:1504:13
+     |
+1504 |     let mut z =0.0;
+     |             ^
+     |
+     = help: maybe it is overwritten before being read?
+     = note: `#[warn(unused_assignments)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1492:4
+     |
+1492 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+     |
+     = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+    --> src/main.rs:1493:4
+     |
+1493 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1494:4
+     |
+1494 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+     |    ^^^^^^^
+
+warning: function `len` is never used
+    --> src/main.rs:1495:4
+     |
+1495 | fn len(arr: &[i32]) -> usize {arr.len()}
+     |    ^^^
+
+warning: function `sort` is never used
+    --> src/main.rs:1496:4
+     |
+1496 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+     |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+    --> src/main.rs:1513:60
+     |
+1513 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+     |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+     |
+     = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero` (bin "c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero" test) generated 10 warnings (run `cargo fix --bin "c_transcoder_calculating_factorials_using_stirling_approximation_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.02s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0)
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2777830957
+INFO: Loaded 1 modules   (362287 inline 8-bit counters): 362287 [0x5a7f281eb2b0, 0x5a7f282439df), 
+INFO: Loaded 1 PC tables (362287 PCs): 362287 [0x5a7f282439e0,0x5a7f287cacd0), 
+INFO:        0 files found in /tmp/fzr_zvst7l9e/p/src/__fuzz__/bolero_wasm_eq/corpus
+INFO:        0 files found in /tmp/fzr_zvst7l9e/p/src/__fuzz__/bolero_wasm_eq/crashes
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 36 ft: 37 corp: 1/1b exec/s: 0 rss: 51Mb
+test failed; shrinking input...
+
+======================== Test Failure ========================
+
+Input: 
+16777216
+
+Error: 
+panicked at 'assertion failed: `(left == right)`
+  left: `2147483647`,
+ right: `-2147483648`', src/main.rs:1520:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+
+==============================================================
+
+==9114== ERROR: libFuzzer: deadly signal
+    #0 0x5a7f26b16841  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xa66841) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #1 0x5a7f276ee51e  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x163e51e) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #2 0x5a7f276f9aa9  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1649aa9) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #3 0x75f2f29494af  (/lib/x86_64-linux-gnu/libc.so.6+0x424af) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #4 0x75f2f299d91b  (/lib/x86_64-linux-gnu/libc.so.6+0x9691b) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #5 0x75f2f2949405  (/lib/x86_64-linux-gnu/libc.so.6+0x42405) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #6 0x75f2f292f7f2  (/lib/x86_64-linux-gnu/libc.so.6+0x287f2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #7 0x5a7f27d3b7c6  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1c8b7c6) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #8 0x5a7f26a70ae6  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x9c0ae6) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #9 0x5a7f26bbbe69  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xb0be69) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #10 0x5a7f276c6afe  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1616afe) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #11 0x5a7f276fa005  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x164a005) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #12 0x5a7f276feb53  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x164eb53) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #13 0x5a7f276ffa88  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x164fa88) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #14 0x5a7f27701d87  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1651d87) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #15 0x5a7f276d5312  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1625312) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #16 0x5a7f276c6e56  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1616e56) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #17 0x5a7f26b620d1  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xab20d1) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #18 0x5a7f26bbad77  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xb0ad77) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #19 0x5a7f26bc9c81  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xb19c81) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #20 0x5a7f26b68175  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0xab8175) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #21 0x5a7f276ad4ae  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x15fd4ae) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #22 0x5a7f276ac4a1  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x15fc4a1) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #23 0x5a7f2766fa03  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x15bfa03) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #24 0x5a7f276760ba  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x15c60ba) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #25 0x5a7f27d3a1b4  (/tmp/fzr_zvst7l9e/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_calculating_factorials_using_stirling_approximation_out_rwasm_bolero-5cf6528c0e166fa0+0x1c8a1b4) (BuildId: db953d1fcb0305b1c8d5c81fdaf8931c9df841e6)
+    #26 0x75f2f299b9e2  (/lib/x86_64-linux-gnu/libc.so.6+0x949e2) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+    #27 0x75f2f2a2ca13  (/lib/x86_64-linux-gnu/libc.so.6+0x125a13) (BuildId: 12b87db2df813df96f66d6f02dd18ea5c8b7cf8d)
+
+NOTE: libFuzzer has rudimentary signal handlers.
+      Combine libFuzzer with AddressSanitizer or similar for better crash reports.
+SUMMARY: libFuzzer: deadly signal
+MS: 4 InsertByte-InsertByte-CopyPart-CrossOver-; base unit: adc83b19e793491b1c6ea0fd8b46cd9f32e592fc
+0xa,0xa,0x83,0x83,
+\012\012\203\203
+artifact_prefix='/tmp/fzr_zvst7l9e/p/src/__fuzz__/bolero_wasm_eq/crashes/'; Test unit written to /tmp/fzr_zvst7l9e/p/src/__fuzz__/bolero_wasm_eq/crashes/crash-a78f6ed34ff4301e04aa8ce014200f5ee6331fea
+Base64: CgqDgw==
+error: process exited with status 77

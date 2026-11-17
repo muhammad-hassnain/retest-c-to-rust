@@ -1,0 +1,18 @@
+{
+ "zenodo_record": "https://zenodo.org/records/15453515 (newest version of concept 10927703, linked from the VERT paper as records/10927704)",
+ "file": "torust.tar, 13171180032 bytes, md5 2a2badb58b02e6ae5819080444de0d48 (verified after download)",
+ "what_it_is": "OCI/Docker image aidanben/torust:latest, last layer 2025-04-29; contains two VERT checkouts, /vert and /root/vert",
+ "github_compared": "artifacts/vert at commit 3270cec (2025-05-20)",
+ "harness_and_oracle_files_compared": 2024,
+ "identical_in_/vert": 2024,
+ "identical_in_/root/vert": 2024,
+ "c_results.csv": "identical (md5 39b4fa78fbaab03c98a5ad1baa1d1920) in GitHub, /vert and /root/vert",
+ "evaluation.py": "identical (md5 2a4e657038f92a24b5ae8c87c6b228ae)",
+ "generate_utils.py_and_torust.py": "differ: GitHub 3270cec (2025-05-20, after the image) adds `mkdir -p src/__fuzz__/bolero_wasm_eq/corpus; touch .../corpus/empty` before `cargo bolero reduce` (generate_utils.py:47-48) and runs cargo with --offline (torust.py:595, :633); the image's copies have neither",
+ "fuzz_corpora_in_image": {
+  "/vert": "2 (same as GitHub: CALCULATE_AREA_TETRAHEDRON 2 files, SUM_OF_ALL_PROPER_DIVISORS_OF_A_NATURAL_NUMBER 177 files)",
+  "/root/vert": "same 2 bolero corpora + 4 empty corpus dirs under translation/tests (not the bolero harness)"
+ },
+ "empty_corpus_test": "results/vert_empty_corpus.log: with GitHub's latest corpus/empty, `cargo bolero reduce` replays exactly 1 input; a planted translation returning 12345 for every input exits 0 (`#1 DONE`) on MAXIMUM_GAMES_PLAYED_WINNER, i.e. still passes",
+ "reproduce": "systems/vert/zenodo/pfetch.sh (download+md5), unpack.sh (rebuild image filesystem without docker load), tar_walk.py (HTTP-range listing); systems/vert/own_checks/empty_corpus.sh"
+}

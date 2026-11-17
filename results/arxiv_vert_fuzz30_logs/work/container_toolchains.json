@@ -1,0 +1,17 @@
+{
+ "os_release": "Ubuntu 22.04.5 LTS",
+ "uname_m": "x86_64",
+ "kernel": "7.0.0-38-generic",
+ "rustc_project_toolchain": "rustc 1.73.0-nightly (04abc370b 2023-07-28)",
+ "rustc_project_toolchain_llvm": "LLVM version: 16.0.5",
+ "cargo_project_toolchain": "cargo 1.73.0-nightly (7ac9416d8 2023-07-24)",
+ "rustup_default_rustc": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+ "cargo_bolero": "cargo-bolero 0.9.0 (git YoshikiTakashima/bolero rev 1d02eb853af3dad36eba5f03a9a8c41e5488cfef)",
+ "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+ "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+ "python3": "Python 3.10.12",
+ "nproc_in_container": "20",
+ "cpu_quota": "400000 100000",
+ "cargo_build_jobs": "1",
+ "date_start_utc": "2026-11-17T00:11:22Z"
+}

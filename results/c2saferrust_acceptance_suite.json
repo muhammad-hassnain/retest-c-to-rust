@@ -1,0 +1,334 @@
+{
+ "procedure": "translate.py select_tests, replicated: shebang exec from artifact root, timeout 25 s, pass = exit 0",
+ "runs_per_test": 3,
+ "per_util": {
+  "cat": {
+   "sh_tests": 4,
+   "selected_on_start": 3,
+   "wip_fails_selected": [],
+   "rows": {
+    "cat-E.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "cat-buf.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "cat-proc.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "cat-self.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   }
+  },
+  "head": {
+   "sh_tests": 3,
+   "selected_on_start": 2,
+   "wip_fails_selected": [],
+   "rows": {
+    "head-c.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "head-pos.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "head-write-error.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   }
+  },
+  "tail": {
+   "sh_tests": 33,
+   "selected_on_start": 4,
+   "wip_fails_selected": [
+    "big-4gb.sh"
+   ],
+   "rows": {
+    "F-headers.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "F-vs-missing.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "F-vs-rename.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "append-only.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "assert-2.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "assert.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "big-4gb.sh": {
+     "start_pass": 3,
+     "wip_pass": 0
+    },
+    "descriptor-vs-rename.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "end-of-device.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "flush-initial.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "follow-name.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "follow-stdin.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-dir-recreate.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-hash-abuse.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-hash-abuse2.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "inotify-only-regular.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-race.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-race2.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-rotate-resources.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "inotify-rotate.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "overlay-headers.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "pid.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "pipe-f.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "pipe-f2.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "proc-ksyms.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "retry.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "start-middle.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "symlink.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "tail-c.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "tail-n0f.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "tail-sysfs.sh": {
+     "start_pass": 0,
+     "wip_pass": 3
+    },
+    "truncate.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "wait.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    }
+   }
+  },
+  "uniq": {
+   "sh_tests": 2,
+   "selected_on_start": 2,
+   "wip_fails_selected": [],
+   "rows": {
+    "uniq-collate.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "uniq-perf.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   }
+  },
+  "split": {
+   "sh_tests": 14,
+   "selected_on_start": 8,
+   "wip_fails_selected": [],
+   "rows": {
+    "additional-suffix.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "b-chunk.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "fail.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "filter.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "guard-input.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "l-chunk-root.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "l-chunk.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "line-bytes.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "lines.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "numeric.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "r-chunk.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "record-sep.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "suffix-auto-length.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "suffix-length.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    }
+   }
+  },
+  "truncate": {
+   "sh_tests": 9,
+   "selected_on_start": 7,
+   "wip_fails_selected": [
+    "truncate-parameters.sh"
+   ],
+   "rows": {
+    "truncate-dangling-symlink.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "truncate-dir-fail.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "truncate-fail-diag.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "truncate-fifo.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "truncate-no-create-missing.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "truncate-overflow.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "truncate-owned-by-other.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "truncate-parameters.sh": {
+     "start_pass": 3,
+     "wip_pass": 0
+    },
+    "truncate-relative.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   }
+  },
+  "pwd": {
+   "sh_tests": 2,
+   "selected_on_start": 1,
+   "wip_fails_selected": [],
+   "rows": {
+    "pwd-long.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "pwd-option.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   }
+  }
+ },
+ "totals": {
+  "acceptance_set": 27,
+  "wip_fails": [
+   "tail/big-4gb.sh",
+   "truncate/truncate-parameters.sh"
+  ]
+ }
+}

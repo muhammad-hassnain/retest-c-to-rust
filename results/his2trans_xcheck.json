@@ -1,0 +1,282 @@
+{
+ "base": {
+  "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+  "profile": "release",
+  "file": "his2trans_xcheck_186_release.json"
+ },
+ "comparisons": [
+  {
+   "other": {
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "profile": "release",
+    "file": "his2trans_xcheck_199_release.json",
+    "build_rc": {
+     "qsort": 0,
+     "ht": 0,
+     "rgba": 0,
+     "genann": 0,
+     "buffer": 0,
+     "quadtree": 0,
+     "urlparser": 0,
+     "avl": 0
+    },
+    "rustc_warning_lines": {
+     "qsort": 0,
+     "ht": 0,
+     "rgba": 2,
+     "genann": 4,
+     "buffer": 7,
+     "quadtree": 2,
+     "urlparser": 0,
+     "avl": 10
+    }
+   },
+   "cases_compared": 5126,
+   "cases_differing": 2,
+   "differing_by_project": {
+    "buffer": 2
+   },
+   "panics_in_other": 2,
+   "differing": [
+    {
+     "id": "buffer/pair:buffer_trim_left+buffer_prepend/pair/01129",
+     "base": {
+      "out": "fbb2c95b12e948e3",
+      "rc": 101,
+      "err": "344fbccaeacb8495",
+      "panic": [
+       "thread 'main' panicked at src/src_buffer.rs:189:10:"
+      ],
+      "timeout": false
+     },
+     "other": {
+      "out": "fbb2c95b12e948e3",
+      "rc": 101,
+      "err": "c98e46b31f533882",
+      "panic": [
+       "thread 'main' (3054) panicked at src/src_buffer.rs:189:10:"
+      ],
+      "timeout": false
+     }
+    },
+    {
+     "id": "buffer/pair:buffer_trim+buffer_append_n/pair/01194",
+     "base": {
+      "out": "f19b30eb74c60115",
+      "rc": 101,
+      "err": "6a6fc5359e3236c0",
+      "panic": [
+       "thread 'main' panicked at src/src_buffer.rs:172:14:"
+      ],
+      "timeout": false
+     },
+     "other": {
+      "out": "f19b30eb74c60115",
+      "rc": 101,
+      "err": "dff53d12dfe9047c",
+      "panic": [
+       "thread 'main' (3117) panicked at src/src_buffer.rs:172:14:"
+      ],
+      "timeout": false
+     }
+    }
+   ]
+  },
+  {
+   "other": {
+    "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+    "profile": "debug",
+    "file": "his2trans_xcheck_186_debug.json",
+    "build_rc": {
+     "qsort": 0,
+     "ht": 0,
+     "rgba": 0,
+     "genann": 0,
+     "buffer": 0,
+     "quadtree": 0,
+     "urlparser": 0,
+     "avl": 0
+    },
+    "rustc_warning_lines": {
+     "qsort": 0,
+     "ht": 0,
+     "rgba": 0,
+     "genann": 2,
+     "buffer": 0,
+     "quadtree": 0,
+     "urlparser": 0,
+     "avl": 10
+    }
+   },
+   "cases_compared": 5126,
+   "cases_differing": 2,
+   "differing_by_project": {
+    "genann": 2
+   },
+   "panics_in_other": 2,
+   "differing": [
+    {
+     "id": "genann/genann_train/grid/00525",
+     "base": {
+      "out": "1d1a58ab0c74f430",
+      "rc": 0,
+      "err": "e3b0c44298fc1c14",
+      "panic": [],
+      "timeout": false
+     },
+     "other": {
+      "out": "9d069bb2a4ac3937",
+      "rc": 0,
+      "err": "e3b0c44298fc1c14",
+      "panic": [],
+      "timeout": false
+     }
+    },
+    {
+     "id": "genann/genann_train/grid/00555",
+     "base": {
+      "out": "1d1a58ab0c74f430",
+      "rc": 0,
+      "err": "e3b0c44298fc1c14",
+      "panic": [],
+      "timeout": false
+     },
+     "other": {
+      "out": "9d069bb2a4ac3937",
+      "rc": 0,
+      "err": "e3b0c44298fc1c14",
+      "panic": [],
+      "timeout": false
+     }
+    }
+   ]
+  }
+ ],
+ "provenance": {
+  "script": "systems/his2trans/xcheck.py",
+  "command": "systems/his2trans/xcheck.py combine results/his2trans_xcheck_186_release.json results/his2trans_xcheck_199_release.json results/his2trans_xcheck_186_debug.json --out results/his2trans_xcheck.json",
+  "inputs_provenance": {
+   "his2trans_xcheck_186_release.json": {
+    "script": "systems/his2trans/xcheck.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile release --build /b/xc3 --out /work/results/his2trans_xcheck_186_release.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "801e8c7",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-14T00:03:57+00:00"
+   },
+   "his2trans_xcheck_199_release.json": {
+    "script": "systems/his2trans/xcheck.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile release --build /b/xc3_199 --out /work/results/his2trans_xcheck_199_release.json (docker image rust:1.99.1-bookworm sha256:7085845219c18e7c5b1f34ed9ce89b84f822f2e3d54a02774cedc996ac0f304f)",
+    "git_rev": "801e8c7",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "rust:1.99.1-bookworm",
+    "docker_image_id": "sha256:7085845219c18e7c5b1f34ed9ce89b84f822f2e3d54a02774cedc996ac0f304f",
+    "toolchains": {
+     "gcc": "gcc (Debian 12.2.0-14+deb12u1) 12.2.0",
+     "clang": "ABSENT",
+     "rustc_in_this_container": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+     "cargo_in_this_container": "cargo 1.99.1 (5f94df478 2026-08-27)",
+     "python": "3.11.2"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-14T00:04:58+00:00"
+   },
+   "his2trans_xcheck_186_debug.json": {
+    "script": "systems/his2trans/xcheck.py",
+    "command": "bash systems/his2trans/run_in_docker.sh systems/his2trans/xcheck.py dump --profile debug --build /b/xc3 --out /work/results/his2trans_xcheck_186_debug.json (docker image crust-heldout-plus186 sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503)",
+    "git_rev": "801e8c7",
+    "git_worktree_note": "study files copied to the x86 box; systems/his2trans uncommitted",
+    "host": "desktop (x86_64, 20 cores)",
+    "arch": "x86_64",
+    "kernel": "7.0.0-38-generic",
+    "docker_image": "crust-heldout-plus186",
+    "docker_image_id": "sha256:db473e6761446908cc684aef7d5e5ef3326b7f022f9fd0b00f3f20e7a5660503",
+    "toolchains": {
+     "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+     "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+     "rustc_in_this_container": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+     "cargo_in_this_container": "cargo 1.86.0 (adf9b6ad1 2025-02-28)",
+     "python": "3.10.12"
+    },
+    "sanitizer_cflags": {
+     "clang": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all",
+      "-fno-pie"
+     ],
+     "gcc": [
+      "-O0",
+      "-g",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined,float-cast-overflow",
+      "-fno-sanitize-recover=all"
+     ]
+    },
+    "sanitizer_env": {
+     "ASAN_OPTIONS": "detect_leaks=0:exitcode=86:abort_on_error=0:handle_abort=1",
+     "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1:exitcode=87"
+    },
+    "date": "2026-11-14T00:04:12+00:00"
+   }
+  },
+  "date": "2026-11-14T00:05:12+00:00"
+ }
+}

@@ -1,0 +1,289 @@
+warning: unused import: `bolero::check`
+   --> src/main.rs:430:5
+    |
+430 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:433:31
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+433 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+433 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:433:59
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+433 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+433 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:414:4
+    |
+414 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:415:4
+    |
+415 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:416:4
+    |
+416 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:417:4
+    |
+417 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:418:4
+    |
+418 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:433:60
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero` (bin "c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 0.04s
+     Running unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873)
+error: test failed, to rerun pass `--bin c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero`
+
+Caused by:
+  process didn't exit successfully: `/tmp/bolero_teay57y_/p/target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873 bolero_wasm_eq --nocapture --exact` (signal: 11, SIGSEGV: invalid memory reference)
+    Updating crates.io index
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+ Downloading crates ...
+  Downloaded addr2line v0.21.0
+  Downloaded backtrace v0.3.69
+  Downloaded lazy_static v1.4.0
+  Downloaded leb128 v0.2.5
+  Downloaded equivalent v1.0.1
+  Downloaded dirs v4.0.0
+  Downloaded anyhow v1.0.75
+  Downloaded adler v1.0.2
+  Downloaded wiggle-macro v0.20.0
+  Downloaded dirs-sys v0.3.7
+  Downloaded cfg-if v1.0.0
+  Downloaded heck v0.3.3
+  Downloaded cfg-if v0.1.10
+  Downloaded bolero-generator-derive v0.10.0
+  Downloaded bitflags v1.3.2
+  Downloaded pretty-hex v0.3.0
+  Downloaded wig v0.20.0
+  Downloaded wiggle v0.20.0
+  Downloaded rand_chacha v0.3.1
+  Downloaded proc-macro-crate v1.3.1
+  Downloaded yanix v0.20.0
+  Downloaded thiserror-impl v1.0.49
+  Downloaded bolero v0.10.0
+  Downloaded toml_datetime v0.6.3
+  Downloaded ppv-lite86 v0.2.17
+  Downloaded bolero-engine v0.10.0
+  Downloaded getrandom v0.1.16
+  Downloaded filetime v0.2.22
+  Downloaded either v1.9.0
+  Downloaded quote v1.0.33
+  Downloaded thiserror v1.0.49
+  Downloaded rand_core v0.6.4
+  Downloaded wiggle-generate v0.20.0
+  Downloaded tracing-attributes v0.1.26
+  Downloaded shellexpand v2.1.2
+  Downloaded rustc-demangle v0.1.23
+  Downloaded unicode-ident v1.0.12
+  Downloaded witx v0.8.8
+  Downloaded proc-macro2 v1.0.67
+  Downloaded once_cell v1.18.0
+  Downloaded miniz_oxide v0.7.1
+  Downloaded bolero-generator v0.10.0
+  Downloaded getrandom v0.2.10
+  Downloaded indexmap v2.0.2
+  Downloaded pin-project-lite v0.2.13
+  Downloaded log v0.4.20
+  Downloaded tracing-core v0.1.31
+  Downloaded cc v1.0.83
+  Downloaded tracing v0.1.37
+  Downloaded toml_edit v0.19.15
+  Downloaded wast v22.0.0
+  Downloaded winnow v0.5.15
+  Downloaded unicode-segmentation v1.10.1
+  Downloaded wasi-common v0.20.0
+  Downloaded rand v0.8.5
+  Downloaded hashbrown v0.14.1
+  Downloaded bolero-libfuzzer v0.10.0
+  Downloaded syn v2.0.37
+  Downloaded syn v1.0.109
+  Downloaded object v0.32.1
+  Downloaded libc v0.2.148
+  Downloaded gimli v0.28.0
+  Downloaded memchr v2.6.4
+    Blocking waiting for file lock on package cache
+   Compiling libc v0.2.148
+   Compiling proc-macro2 v1.0.67
+   Compiling unicode-ident v1.0.12
+   Compiling cfg-if v1.0.0
+   Compiling anyhow v1.0.75
+   Compiling thiserror v1.0.49
+   Compiling quote v1.0.33
+   Compiling syn v2.0.37
+   Compiling syn v1.0.109
+   Compiling cc v1.0.83
+   Compiling thiserror-impl v1.0.49
+   Compiling equivalent v1.0.1
+   Compiling hashbrown v0.14.1
+   Compiling indexmap v2.0.2
+   Compiling getrandom v0.2.10
+   Compiling leb128 v0.2.5
+   Compiling toml_datetime v0.6.3
+   Compiling winnow v0.5.15
+   Compiling wast v22.0.0
+   Compiling toml_edit v0.19.15
+   Compiling rand_core v0.6.4
+   Compiling dirs-sys v0.3.7
+   Compiling log v0.4.20
+   Compiling once_cell v1.18.0
+   Compiling unicode-segmentation v1.10.1
+   Compiling heck v0.3.3
+   Compiling witx v0.8.8
+   Compiling dirs v4.0.0
+   Compiling backtrace v0.3.69
+   Compiling proc-macro-crate v1.3.1
+   Compiling gimli v0.28.0
+   Compiling memchr v2.6.4
+   Compiling adler v1.0.2
+   Compiling ppv-lite86 v0.2.17
+   Compiling rand_chacha v0.3.1
+   Compiling miniz_oxide v0.7.1
+   Compiling addr2line v0.21.0
+   Compiling object v0.32.1
+   Compiling tracing-core v0.1.31
+   Compiling bolero-generator-derive v0.10.0
+   Compiling shellexpand v2.1.2
+   Compiling tracing-attributes v0.1.26
+   Compiling rustc-demangle v0.1.23
+   Compiling either v1.9.0
+   Compiling lazy_static v1.4.0
+   Compiling pin-project-lite v0.2.13
+   Compiling tracing v0.1.37
+   Compiling bolero-generator v0.10.0
+   Compiling wiggle-generate v0.20.0
+   Compiling rand v0.8.5
+   Compiling bolero-libfuzzer v0.10.0
+   Compiling pretty-hex v0.3.0
+   Compiling getrandom v0.1.16
+   Compiling bolero-engine v0.10.0
+   Compiling wiggle-macro v0.20.0
+   Compiling filetime v0.2.22
+   Compiling wasi-common v0.20.0
+   Compiling bitflags v1.3.2
+   Compiling cfg-if v0.1.10
+   Compiling yanix v0.20.0
+   Compiling wiggle v0.20.0
+   Compiling wig v0.20.0
+   Compiling bolero v0.10.0
+   Compiling c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero v1.0.1 (/tmp/bolero_teay57y_/p)
+warning: unused import: `bolero::check`
+   --> src/main.rs:430:5
+    |
+430 | use bolero::check;
+    |     ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around type
+   --> src/main.rs:433:31
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                  ^   ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+433 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+433 +     bolero::check!().with_type::<i32>().cloned().for_each(|(PARAM_1)|{ 
+    |
+
+warning: unnecessary parentheses around pattern
+   --> src/main.rs:433:59
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                              ^       ^
+    |
+help: remove these parentheses
+    |
+433 -     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+433 +     bolero::check!().with_type::<(i32)>().cloned().for_each(|PARAM_1|{ 
+    |
+
+warning: function `min` is never used
+   --> src/main.rs:414:4
+    |
+414 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+    |    ^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `max` is never used
+   --> src/main.rs:415:4
+    |
+415 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+    |    ^^^
+
+warning: function `cmpfunc` is never used
+   --> src/main.rs:416:4
+    |
+416 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+    |    ^^^^^^^
+
+warning: function `len` is never used
+   --> src/main.rs:417:4
+    |
+417 | fn len(arr: &[i32]) -> usize {arr.len()}
+    |    ^^^
+
+warning: function `sort` is never used
+   --> src/main.rs:418:4
+    |
+418 | fn sort(arr: &mut [i32]) {arr.sort_by(cmpfunc);}
+    |    ^^^^
+
+warning: variable `PARAM_1` should have a snake case name
+   --> src/main.rs:433:60
+    |
+433 |     bolero::check!().with_type::<(i32)>().cloned().for_each(|(PARAM_1)|{ 
+    |                                                               ^^^^^^^ help: convert the identifier to snake case: `param_1`
+    |
+    = note: `#[warn(non_snake_case)]` on by default
+
+warning: `c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero` (bin "c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero" test) generated 9 warnings (run `cargo fix --bin "c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out-rwasm-bolero" --tests` to apply 3 suggestions)
+    Finished release [optimized] target(s) in 2m 55s
+  Executable unittests src/main.rs (target/fuzz/build_13bef39a73936392/x86_64-unknown-linux-gnu/release/deps/c_transcoder_count_strings_can_formed_using_b_c_given_constraints_1_out_rwasm_bolero-99ba4a4322fd8873)
+error: process exited with status 101

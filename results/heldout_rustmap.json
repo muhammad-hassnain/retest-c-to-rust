@@ -1,0 +1,759 @@
+{
+ "provenance": {
+  "script": "harness/heldout_rustmap.py",
+  "command": "docker run --rm --platform linux/amd64 -v \"$PWD:/work\" -w /work crust-syzygy python3 -I harness/heldout_rustmap.py",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "host": "Linux x86_64 box (20 cores), Docker",
+  "arch": "x86_64",
+  "image": "crust-syzygy:latest sha256:807b161a09f5189d5845d5d109f7cf81f7b8d05e152a7ec4d3b79c7a6c6d9e2b",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "cargo": "cargo 1.86.0 (adf9b6ad1 2025-02-28)"
+  },
+  "build": "C: make clean; make bzip2 bzip2recover (c-code/bzip2-1.0.8); Rust: cargo build (debug), README 4.1.1",
+  "date": "2026-11-13T22:01:54.387677+00:00"
+ },
+ "bzip2": {
+  "system_inputs": [
+   {
+    "name": "random_1_chars.txt",
+    "size": 2,
+    "sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "printable_ascii_only": true
+   },
+   {
+    "name": "random_10_chars.txt",
+    "size": 10,
+    "sha256": "46565925f701e8e24583fd0cbad547abe08d7893ee81a45b13860aff5dfb33c7",
+    "printable_ascii_only": true
+   },
+   {
+    "name": "random_100_chars.txt",
+    "size": 100,
+    "sha256": "66d925018463640f8bf693dbdf8b8aeb0e8c3fcfa91b5764d6d01a9ceff935f8",
+    "printable_ascii_only": false
+   },
+   {
+    "name": "random_1000_chars.txt",
+    "size": 1000,
+    "sha256": "eb506bf399df31a1d52d0b840d69911417c9891abf8d4d323c0babb800953da0",
+    "printable_ascii_only": false
+   },
+   {
+    "name": "random_5000_chars.txt",
+    "size": 5000,
+    "sha256": "dba2e453e8952cb6ff0e265934d04a1bfbcd7733c8ec58e9c899e94a90e52ed0",
+    "printable_ascii_only": false
+   }
+  ],
+  "our_inputs": [
+   {
+    "name": "binary_1",
+    "size": 1,
+    "sha256": "e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8"
+   },
+   {
+    "name": "binary_10",
+    "size": 10,
+    "sha256": "a66273f78aa27166b1a5ce5e55fdc2fed61db785176ae653f4940bf9bbe573a9"
+   },
+   {
+    "name": "binary_20",
+    "size": 20,
+    "sha256": "bdcdbfd6833375fb02e7ccb9ecb6ae4d0575ee20fe451720fbeab442f3dff6db"
+   },
+   {
+    "name": "binary_64",
+    "size": 64,
+    "sha256": "a73d91971a0423ef81a26c71be2c95b3addb78d23391aee3940e704e44f6972c"
+   },
+   {
+    "name": "binary_100",
+    "size": 100,
+    "sha256": "fb5d121bd66468cc4103876550e41dfa665968f75c0163d5255d2d2369c0c7c0"
+   },
+   {
+    "name": "binary_128",
+    "size": 128,
+    "sha256": "9f17a2c67b8b887e1d25929cade4620001d6161cf917cbf506b407dbcce24607"
+   },
+   {
+    "name": "binary_512",
+    "size": 512,
+    "sha256": "6d5e5431501932c88383e81fc86d4df26dff29905c06ea835e975e24461d8146"
+   },
+   {
+    "name": "binary_1000",
+    "size": 1000,
+    "sha256": "a8b13e5cf446b9fe99f889cff8c9e91505aeffce4f6f26094d36d1297001d378"
+   },
+   {
+    "name": "binary_2048",
+    "size": 2048,
+    "sha256": "e2a5ec8980d628185a01c7209be634282eadf87b2c9e82e6009e40082f67a361"
+   },
+   {
+    "name": "binary_5000",
+    "size": 5000,
+    "sha256": "a478f941e021a569fc56a56d66a109c45446bb33ace1c20484411b491f109592"
+   },
+   {
+    "name": "text_1",
+    "size": 1,
+    "sha256": "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1"
+   },
+   {
+    "name": "text_10",
+    "size": 10,
+    "sha256": "85b4ed4934f0a760c2e68657789bfb4bb61db407fdc5ac3c0b032cba53a92357"
+   },
+   {
+    "name": "text_20",
+    "size": 20,
+    "sha256": "a1c86aa01041d51f45effc6defb968aa69b9899f280e5a5c207cab7ef0ea7003"
+   },
+   {
+    "name": "text_64",
+    "size": 64,
+    "sha256": "255f1ad21888546049091906beca98cd98c7708e071bc83c142f146a843a9b09"
+   },
+   {
+    "name": "text_100",
+    "size": 100,
+    "sha256": "7b64e54829b0cfc857d08717f8987e8226a85b437cdc723929fcbaedb92475de"
+   },
+   {
+    "name": "text_128",
+    "size": 128,
+    "sha256": "7ee15cbfd9d8bd934f0586d3571a915cc49016d441977e408be9a6c81aa1cbc5"
+   },
+   {
+    "name": "text_512",
+    "size": 512,
+    "sha256": "6e9fd9c1056423c58c8517a22814ed9d1fce9ab99487a517e1989ac612bb3bb8"
+   },
+   {
+    "name": "text_1000",
+    "size": 1000,
+    "sha256": "96900d2801067507fd0bde0b9f41e5a2797450b6e6012ae43ea2f9d8bcf19742"
+   },
+   {
+    "name": "text_2048",
+    "size": 2048,
+    "sha256": "fd3c3cc472fed1573d836deace2caf4ce7ac6387cddd7021dee16d1f573bd22c"
+   },
+   {
+    "name": "text_5000",
+    "size": 5000,
+    "sha256": "7ee2d231a017fc887c0a3a2e430d4c82325e75b6a5606638e0dc9412031058ab"
+   }
+  ],
+  "overlap_exact": [],
+  "our_comparison_on_system_inputs": [
+   {
+    "input": "random_1_chars.txt",
+    "size": 2,
+    "sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5039,
+    "c_bz2_size": 39,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "random_10_chars.txt",
+    "size": 10,
+    "sha256": "46565925f701e8e24583fd0cbad547abe08d7893ee81a45b13860aff5dfb33c7",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5052,
+    "c_bz2_size": 52,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "random_100_chars.txt",
+    "size": 100,
+    "sha256": "66d925018463640f8bf693dbdf8b8aeb0e8c3fcfa91b5764d6d01a9ceff935f8",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5146,
+    "c_bz2_size": 146,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "random_1000_chars.txt",
+    "size": 1000,
+    "sha256": "eb506bf399df31a1d52d0b840d69911417c9891abf8d4d323c0babb800953da0",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 6001,
+    "c_bz2_size": 1001,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "random_5000_chars.txt",
+    "size": 5000,
+    "sha256": "dba2e453e8952cb6ff0e265934d04a1bfbcd7733c8ec58e9c899e94a90e52ed0",
+    "c_roundtrip_ok": true,
+    "rust_rc": 124,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5000,
+    "c_bz2_size": 4369,
+    "rust_bz2_leading_zero_bytes": 5000
+   }
+  ],
+  "our_comparison_on_our_inputs": [
+   {
+    "input": "binary_1",
+    "size": 1,
+    "sha256": "e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8",
+    "c_roundtrip_ok": true,
+    "rust_rc": 101,
+    "rust_panicked": true,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5000,
+    "c_bz2_size": 37,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_10",
+    "size": 10,
+    "sha256": "a66273f78aa27166b1a5ce5e55fdc2fed61db785176ae653f4940bf9bbe573a9",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5056,
+    "c_bz2_size": 60,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_20",
+    "size": 20,
+    "sha256": "bdcdbfd6833375fb02e7ccb9ecb6ae4d0575ee20fe451720fbeab442f3dff6db",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5060,
+    "c_bz2_size": 74,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_64",
+    "size": 64,
+    "sha256": "a73d91971a0423ef81a26c71be2c95b3addb78d23391aee3940e704e44f6972c",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5107,
+    "c_bz2_size": 136,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_100",
+    "size": 100,
+    "sha256": "fb5d121bd66468cc4103876550e41dfa665968f75c0163d5255d2d2369c0c7c0",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5122,
+    "c_bz2_size": 181,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_128",
+    "size": 128,
+    "sha256": "9f17a2c67b8b887e1d25929cade4620001d6161cf917cbf506b407dbcce24607",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5154,
+    "c_bz2_size": 210,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_512",
+    "size": 512,
+    "sha256": "6d5e5431501932c88383e81fc86d4df26dff29905c06ea835e975e24461d8146",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5466,
+    "c_bz2_size": 672,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_1000",
+    "size": 1000,
+    "sha256": "a8b13e5cf446b9fe99f889cff8c9e91505aeffce4f6f26094d36d1297001d378",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5842,
+    "c_bz2_size": 1292,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_2048",
+    "size": 2048,
+    "sha256": "e2a5ec8980d628185a01c7209be634282eadf87b2c9e82e6009e40082f67a361",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 6572,
+    "c_bz2_size": 2465,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "binary_5000",
+    "size": 5000,
+    "sha256": "a478f941e021a569fc56a56d66a109c45446bb33ace1c20484411b491f109592",
+    "c_roundtrip_ok": true,
+    "rust_rc": 124,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5000,
+    "c_bz2_size": 5489,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_1",
+    "size": 1,
+    "sha256": "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
+    "c_roundtrip_ok": true,
+    "rust_rc": 101,
+    "rust_panicked": true,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5000,
+    "c_bz2_size": 37,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_10",
+    "size": 10,
+    "sha256": "85b4ed4934f0a760c2e68657789bfb4bb61db407fdc5ac3c0b032cba53a92357",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5051,
+    "c_bz2_size": 51,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_20",
+    "size": 20,
+    "sha256": "a1c86aa01041d51f45effc6defb968aa69b9899f280e5a5c207cab7ef0ea7003",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5060,
+    "c_bz2_size": 60,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_64",
+    "size": 64,
+    "sha256": "255f1ad21888546049091906beca98cd98c7708e071bc83c142f146a843a9b09",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5109,
+    "c_bz2_size": 109,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_100",
+    "size": 100,
+    "sha256": "7b64e54829b0cfc857d08717f8987e8226a85b437cdc723929fcbaedb92475de",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5147,
+    "c_bz2_size": 147,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_128",
+    "size": 128,
+    "sha256": "7ee15cbfd9d8bd934f0586d3571a915cc49016d441977e408be9a6c81aa1cbc5",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5183,
+    "c_bz2_size": 183,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_512",
+    "size": 512,
+    "sha256": "6e9fd9c1056423c58c8517a22814ed9d1fce9ab99487a517e1989ac612bb3bb8",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5530,
+    "c_bz2_size": 530,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_1000",
+    "size": 1000,
+    "sha256": "96900d2801067507fd0bde0b9f41e5a2797450b6e6012ae43ea2f9d8bcf19742",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5965,
+    "c_bz2_size": 965,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_2048",
+    "size": 2048,
+    "sha256": "fd3c3cc472fed1573d836deace2caf4ce7ac6387cddd7021dee16d1f573bd22c",
+    "c_roundtrip_ok": true,
+    "rust_rc": 0,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": true,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 6863,
+    "c_bz2_size": 1863,
+    "rust_bz2_leading_zero_bytes": 5000
+   },
+   {
+    "input": "text_5000",
+    "size": 5000,
+    "sha256": "7ee2d231a017fc887c0a3a2e430d4c82325e75b6a5606638e0dc9412031058ab",
+    "c_roundtrip_ok": true,
+    "rust_rc": 124,
+    "rust_panicked": false,
+    "rust_passes_rustmap_own_check": false,
+    "plain_bzip2_d_accepts_rust_output": {
+     "rc": 2,
+     "roundtrip": false,
+     "stderr": "bzip2: x.bz2 is not a bzip2 file.\n"
+    },
+    "rust_bz2_equals_c_bz2": false,
+    "rust_bz2_size": 5000,
+    "c_bz2_size": 4307,
+    "rust_bz2_leading_zero_bytes": 5000
+   }
+  ],
+  "counted_defects": [
+   {
+    "input": "binary_1",
+    "size": 1,
+    "sha256": "e3b98a4da31a127d4bde6e43033f66ba274cab0eb7eb1c70ec41402bf6273dd8",
+    "kind": "panic",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_10",
+    "size": 10,
+    "sha256": "a66273f78aa27166b1a5ce5e55fdc2fed61db785176ae653f4940bf9bbe573a9",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_20",
+    "size": 20,
+    "sha256": "bdcdbfd6833375fb02e7ccb9ecb6ae4d0575ee20fe451720fbeab442f3dff6db",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_64",
+    "size": 64,
+    "sha256": "a73d91971a0423ef81a26c71be2c95b3addb78d23391aee3940e704e44f6972c",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_100",
+    "size": 100,
+    "sha256": "fb5d121bd66468cc4103876550e41dfa665968f75c0163d5255d2d2369c0c7c0",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_128",
+    "size": 128,
+    "sha256": "9f17a2c67b8b887e1d25929cade4620001d6161cf917cbf506b407dbcce24607",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_512",
+    "size": 512,
+    "sha256": "6d5e5431501932c88383e81fc86d4df26dff29905c06ea835e975e24461d8146",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_1000",
+    "size": 1000,
+    "sha256": "a8b13e5cf446b9fe99f889cff8c9e91505aeffce4f6f26094d36d1297001d378",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "binary_2048",
+    "size": 2048,
+    "sha256": "e2a5ec8980d628185a01c7209be634282eadf87b2c9e82e6009e40082f67a361",
+    "kind": "fails RustMap's own check",
+    "in_system_input_set": false
+   },
+   {
+    "input": "text_1",
+    "size": 1,
+    "sha256": "8a5edab282632443219e051e4ade2d1d5bbc671c781051bf1437897cbdfea0f1",
+    "kind": "panic",
+    "in_system_input_set": false
+   }
+  ],
+  "shipped_author_outputs": {
+   "rust-code/bzip2_testcases/compress_output_bz2_files/random_1000_chars.txt.bz2": {
+    "size": 6148,
+    "leading_zero_bytes": 3
+   },
+   "rust-code/bzip2_testcases/compress_output_bz2_files/random_100_chars.txt.bz2": {
+    "size": 6148,
+    "leading_zero_bytes": 3
+   },
+   "rust-code/bzip2_testcases/compress_output_bz2_files/random_10_chars.txt.bz2": {
+    "size": 5052,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/compress_output_bz2_files/random_1_chars.txt.bz2": {
+    "size": 5039,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/compress_output_bz2_files/random_5000_chars.txt.bz2": {
+    "size": 9369,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/compress_output_bz2_files/rec00001random_100_chars.txt.bz2": {
+    "size": 146,
+    "leading_zero_bytes": 0
+   },
+   "rust-code/bzip2_testcases/random_1000_chars.txt.bz2": {
+    "size": 6001,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/random_100_chars.txt.bz2": {
+    "size": 5146,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/random_10_chars.txt.bz2": {
+    "size": 5052,
+    "leading_zero_bytes": 5000
+   },
+   "rust-code/bzip2_testcases/random_1_chars.txt.bz2": {
+    "size": 5039,
+    "leading_zero_bytes": 5000
+   }
+  }
+ },
+ "rosetta": {
+  "c_runner_exec_lines": [
+   "./main | tee -a \"../$LOGFILE\""
+  ],
+  "rust_runner_exec_lines": [
+   "\"./$filename\" | tee -a \"$LOGFILE\""
+  ],
+  "c_programs": 124,
+  "c_programs_that_read_stdin_or_argv": {
+   "command_line_arguments": {
+    "stdin_calls": [],
+    "mentions_stdin": false,
+    "indexes_argv": true
+   },
+   "fibonacci_word": {
+    "stdin_calls": [],
+    "mentions_stdin": false,
+    "indexes_argv": true
+   },
+   "jortsort": {
+    "stdin_calls": [],
+    "mentions_stdin": false,
+    "indexes_argv": true
+   },
+   "n_queens_problem": {
+    "stdin_calls": [],
+    "mentions_stdin": false,
+    "indexes_argv": true
+   },
+   "repeat": {
+    "stdin_calls": [],
+    "mentions_stdin": false,
+    "indexes_argv": true
+   }
+  },
+  "our_runner": "systems/rustmap/run_rosetta.py runs each binary with no arguments and stdin = empty pipe"
+ }
+}

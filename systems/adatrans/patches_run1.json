@@ -1,0 +1,145 @@
+{
+ "run": "run1",
+ "defects": [
+  {
+   "id": "run1-C_432_4",
+   "inst": "C_432_4",
+   "patch": [
+    [
+     "    let mut q = Deque::new(n);",
+     "    let mut q = Deque::new(n + 1);"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_426_1",
+   "inst": "C_426_1",
+   "patch": [
+    [
+     "let b = (n as f64).log(2.0).ceil() as i32;",
+     "let b = (n as f64).log2() as i32 + 1;"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_438_3",
+   "inst": "C_438_3",
+   "patch": [
+    [
+     "println!(\"{}\", if result { 1 } else { 0 });",
+     "println!(\"{}\", if result { \"true\" } else { \"false\" });"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_421_2",
+   "inst": "C_421_2",
+   "patch": [
+    [
+     "let ans: i32 = lst.iter().sum::<i32>() % mod_value;",
+     "let ans: i32 = lst.iter().fold(0i32, |a, &v| (a + v) % mod_value);"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_430_2",
+   "inst": "C_430_2",
+   "patch": [
+    [
+     "    &word[ans..ans + n]",
+     "    &word[ans..(ans + n).min(len)]"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_417_2",
+   "inst": "C_417_2",
+   "patch": [
+    [
+     "if vowels_present.iter().enumerate().all(|(idx, &vp)| !vp || vowel_counts[idx] > 0)",
+     "if vowel_counts.iter().all(|&c| c > 0)"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_434_4",
+   "inst": "C_434_4",
+   "patch": [
+    [
+     "    valid_subsets.sort_unstable();",
+     "    // sort removed (confirm.py)"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_425_4",
+   "inst": "C_425_4",
+   "patch": [
+    [
+     "    while let Some(Ok(line)) = lines.next() {",
+     "    while let Some(Ok(line)) = (if edges_vec.len() + 1 < n_input { lines.next() } else { None }) {"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_416_4",
+   "inst": "C_416_4",
+   "patch": [
+    [
+     "word1.chars().nth(r).unwrap()",
+     "(word1.as_bytes()[r] as char)"
+    ],
+    [
+     "word1.chars().nth(l).unwrap()",
+     "(word1.as_bytes()[l] as char)"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_415_4-A",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "    while cur_r < n {\n        while nxt_r < n && (nxt_r - cur_r) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - cur_r;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if cur_r == nxt_r {\n            return -1;\n        }\n\n        cur_r = nxt_r;\n        ans += 1;\n    }",
+     "    for i in 0..n {\n        while nxt_r < n && (nxt_r - i) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[i..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - i;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if i == cur_r {\n            if i == nxt_r {\n                return -1;\n            }\n            cur_r = nxt_r;\n            ans += 1;\n        }\n    }"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_415_4-B",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "        let len = word.len();\n        for j in 0..len {\n            let prefix_hash = get_hash_rem(base, &base_powers, &word[..=j]);",
+     "        let len = word.len();\n        let mut wh = 0u64;\n        for j in 0..len {\n            wh = (wh * base + word.as_bytes()[j] as u64) % MOD;\n            let prefix_hash = wh;"
+    ],
+    [
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n",
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n    let tb = target.as_bytes();\n    let mut pre = vec![0u64; n + 1];\n    for i in 0..n {\n        pre[i + 1] = (pre[i] * base + tb[i] as u64) % MOD;\n    }\n"
+    ],
+    [
+     "let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;",
+     "let current_hash = (pre[nxt_r + 1] + MOD - (pre[cur_r] * base_powers[nxt_r + 1 - cur_r]) % MOD) % MOD;"
+    ]
+   ]
+  },
+  {
+   "id": "run1-C_415_4-AB",
+   "inst": "C_415_4",
+   "patch": [
+    [
+     "        let len = word.len();\n        for j in 0..len {\n            let prefix_hash = get_hash_rem(base, &base_powers, &word[..=j]);",
+     "        let len = word.len();\n        let mut wh = 0u64;\n        for j in 0..len {\n            wh = (wh * base + word.as_bytes()[j] as u64) % MOD;\n            let prefix_hash = wh;"
+    ],
+    [
+     "    while cur_r < n {\n        while nxt_r < n && (nxt_r - cur_r) < max_len {\n            let current_hash = (get_hash_rem(base, &base_powers, &target[cur_r..=nxt_r]) + MOD) % MOD;\n            let prefix_len = nxt_r - cur_r;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if cur_r == nxt_r {\n            return -1;\n        }\n\n        cur_r = nxt_r;\n        ans += 1;\n    }",
+     "    for i in 0..n {\n        while nxt_r < n && (nxt_r - i) < max_len {\n            let current_hash = (pre[nxt_r + 1] + MOD - (pre[i] * base_powers[nxt_r + 1 - i]) % MOD) % MOD;\n            let prefix_len = nxt_r - i;\n\n            if prefix_len < max_len && sets[prefix_len].contains(&current_hash) {\n                nxt_r += 1;\n            } else {\n                break;\n            }\n        }\n\n        if i == cur_r {\n            if i == nxt_r {\n                return -1;\n            }\n            cur_r = nxt_r;\n            ans += 1;\n        }\n    }"
+    ],
+    [
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n",
+     "        base_powers[i] = base_powers[i - 1] * base % MOD;\n    }\n    let tb = target.as_bytes();\n    let mut pre = vec![0u64; n + 1];\n    for i in 0..n {\n        pre[i + 1] = (pre[i] * base + tb[i] as u64) % MOD;\n    }\n"
+    ]
+   ]
+  }
+ ]
+}

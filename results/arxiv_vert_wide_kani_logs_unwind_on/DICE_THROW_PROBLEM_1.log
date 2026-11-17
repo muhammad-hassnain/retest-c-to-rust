@@ -1,0 +1,162 @@
+extract of the full Kani log (first 40 + last 120 lines); full log on the analysis machine (~/work/arxiv-vertwide/results/arxiv_vert_wide_kani_logs_unwind_on/DICE_THROW_PROBLEM_1.log, 83476 lines, sha256 2506373fd4df2482d7f7d64ccdc0435f1114f9c42c242110fa77a6ed58268023)
+Kani Rust Verifier 0.55.0 (cargo plugin)
+warning: creating a shared reference to mutable static is discouraged
+   --> src/main.rs:904:31
+    |
+904 |     kani::assume((0..2).contains(&PARAM1));
+    |                                  ^^^^^^^ shared reference to mutable static
+    |
+    = note: for more information, see issue #114447 <https://github.com/rust-lang/rust/issues/114447>
+    = note: this will be a hard error in the 2024 edition
+    = note: this shared reference has lifetime `'static`, but if the static ever gets mutated, or a mutable reference is created, then any further use of this shared reference is Undefined Behavior
+    = note: `#[warn(static_mut_refs)]` on by default
+help: use `addr_of!` instead to create a raw pointer
+    |
+904 |     kani::assume((0..2).contains(addr_of!(PARAM1)));
+    |                                  ~~~~~~~~~      +
+
+warning: trait `SafeFloatConv` is never used
+  --> src/main.rs:91:7
+   |
+91 | trait SafeFloatConv<T> {
+   |       ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `min` is never used
+    --> src/main.rs:1276:4
+     |
+1276 | fn min(x: i32, y: i32) -> i32 {if x < y { x } else { y } }
+     |    ^^^
+
+warning: function `max` is never used
+    --> src/main.rs:1277:4
+     |
+1277 | fn max(x: i32, y: i32) -> i32 {if x > y { x } else { y }}
+     |    ^^^
+
+warning: function `cmpfunc` is never used
+    --> src/main.rs:1278:4
+     |
+1278 | fn cmpfunc(a: &i32, b: &i32) -> std::cmp::Ordering {a.cmp(b)}
+[...]
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16811: std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16812: std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16813: std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16814: std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16815: std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:574:1 in function std::ptr::drop_in_place::<wiggle::tracing::callsite::dispatchers::Rebuilder<'_>>
+
+Check 16816: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer NULL"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16817: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer invalid"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16818: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.3
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: deallocated dynamic object"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16819: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.4
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16820: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.5
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: pointer outside object bounds"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16821: wiggle::tracing::subscriber::Interest::is_always.pointer_dereference.6
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: invalid integer address"
+	 - Location: ../../../../opt/cargo/registry/src/index.crates.io-6f17d22bba15001f/tracing-core-0.1.31/src/subscriber.rs:652:18 in function wiggle::tracing::subscriber::Interest::is_always
+
+Check 16822: <u32 as std::ops::Div>::div.division-by-zero.1
+	 - Status: UNDETERMINED
+	 - Description: "division by zero"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/arith.rs:481:45 in function <u32 as std::ops::Div>::div
+
+Check 16823: std::option::Option::<&std::cell::OnceCell<std::thread::Thread>>::ok_or::<std::thread::AccessError>.pointer_dereference.1
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:1239:15 in function std::option::Option::<&std::cell::OnceCell<std::thread::Thread>>::ok_or::<std::thread::AccessError>
+
+Check 16824: std::option::Option::<&std::cell::OnceCell<std::thread::Thread>>::ok_or::<std::thread::AccessError>.pointer_dereference.2
+	 - Status: UNDETERMINED
+	 - Description: "dereference failure: dead object"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:1241:21 in function std::option::Option::<&std::cell::OnceCell<std::thread::Thread>>::ok_or::<std::thread::AccessError>
+
+Check 16825: std::vec::Vec::<std::vec::Vec<i32>>::extend_with.unwind.0
+	 - Status: FAILURE
+	 - Description: "unwinding assertion loop 0"
+	 - Location: ../../../../github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2708:13 in function std::vec::Vec::<std::vec::Vec<i32>>::extend_with
+
+
+SUMMARY:
+ ** 1 of 16825 failed (16824 undetermined)
+Failed Checks: unwinding assertion loop 0
+ File: "/github/home/.rustup/toolchains/nightly-2024-09-03-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs", line 2708, in std::vec::Vec::<std::vec::Vec<i32>>::extend_with
+
+VERIFICATION:- FAILED
+[Kani] info: Verification output shows one or more unwinding failures.
+[Kani] tip: Consider increasing the unwinding value or disabling `--unwinding-assertions`.
+Verification Time: 13.051987s
+
+Summary:
+Verification failed for - kani_wasm_eq
+Complete - 0 successfully verified harnesses, 1 failures, 1 total.
+   Compiling u1 v1.0.1 (/tmp/kani_f5s4gyk9/h)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.59s
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.
+Division by zero.

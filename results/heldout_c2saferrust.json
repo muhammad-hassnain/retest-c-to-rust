@@ -1,0 +1,4989 @@
+{
+ "provenance": {
+  "script": "harness/heldout_c2saferrust.py",
+  "command": "docker run --rm -v \"$PWD:/work\" -w /work crust-heldout python3 -I harness/heldout_c2saferrust.py all",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "host": "Linux x86_64 box (20 cores), Docker",
+  "arch": "x86_64",
+  "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+  },
+  "date": "2026-11-13T22:09:31.182746+00:00",
+  "sut": "coreutils/src/<util>/rust_WIP (cargo build --bin <util>, debug)",
+  "baseline": "coreutils/src/<util>/rust (starting C2Rust translation), for attribution only",
+  "oracle": "coreutils/src/<util>/c (make)",
+  "procedure": "translate.py select_tests replicated (shebang exec from artifact root, timeout 25 s); <code_dir>/target/debug replaced by a logging shim directory"
+ },
+ "definition_of_equal_input": "same util, identical argv list, identical stdin bytes, and for every argv element the same file kind/contents (sha256); locale reported separately",
+ "system_inputs": {
+  "all_sh_tests": {
+   "tests": 42,
+   "invocations": 96,
+   "distinct_inputs": 89,
+   "replayed": 96,
+   "replay_mismatch": 16,
+   "replay_mismatch_by_kind": {
+    "wrong": 8,
+    "segv": 7,
+    "panic": 1
+   },
+   "replay_stderr_only": 15,
+   "replay_oracle_nondeterministic": 2,
+   "replay_mismatch_also_in_starting_translation": 2,
+   "replay_mismatch_only_in_c2saferrust_output": 14,
+   "tests_with_replay_mismatch": [
+    "head/head-pos.sh",
+    "head/head-write-error.sh",
+    "tail/big-4gb.sh",
+    "tail/pid.sh",
+    "tail/pipe-f.sh",
+    "tail/tail-c.sh"
+   ]
+  },
+  "acceptance_set_tests": {
+   "tests": 11,
+   "invocations": 47,
+   "distinct_inputs": 42,
+   "replayed": 47,
+   "replay_mismatch": 3,
+   "replay_mismatch_by_kind": {
+    "wrong": 3,
+    "segv": 0,
+    "panic": 0
+   },
+   "replay_stderr_only": 0,
+   "replay_oracle_nondeterministic": 2,
+   "replay_mismatch_also_in_starting_translation": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 3,
+   "tests_with_replay_mismatch": [
+    "head/head-write-error.sh",
+    "tail/big-4gb.sh"
+   ]
+  }
+ },
+ "our_inputs": {
+  "cases": 8574,
+  "distinct_inputs_ignoring_locale": 3862
+ },
+ "overlap": {
+  "distinct_inputs_in_both": 0,
+  "items": []
+ },
+ "counted_defects": {
+  "total": 1651,
+  "by_kind": {
+   "wrong": 611,
+   "segv": 960,
+   "panic": 80
+  },
+  "inside_system_input_set": 0,
+  "outside_system_input_set": 1651,
+  "inside_ids": []
+ },
+ "per_test": {
+  "cat/cat-E.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 3,
+   "distinct_inputs": 3,
+   "replayed": 3,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-E",
+      "in"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out",
+     "stdin": null,
+     "files": {
+      "in": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 11,
+       "offset": 0,
+       "sha256": "028209d1fca2de13d9371a9312bbab156c2a6b20c48973c2e9beb89fd83c0845",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 16,
+      "sut_stdout_len": 16,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-E",
+      "in2",
+      "in2b"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out",
+     "stdin": null,
+     "files": {
+      "in2": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "1092f3da081f46047853850eaeeae92393bc1e307b2916a1e6ed70b100fbb2d5",
+       "complete": true
+      },
+      "in2b": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 4,
+       "offset": 0,
+       "sha256": "a85f36e7552b85970065fe71778f1d9b53d36eda8fac1deb18ce4be6be253541",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 10,
+      "sut_stdout_len": 10,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-E",
+      "in2",
+      "in2b"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out",
+     "stdin": null,
+     "files": {
+      "in2": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "1092f3da081f46047853850eaeeae92393bc1e307b2916a1e6ed70b100fbb2d5",
+       "complete": true
+      },
+      "in2b": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 3,
+       "offset": 0,
+       "sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 7,
+      "sut_stdout_len": 7,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-E.sh.hndv/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "cat/cat-buf.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "cat/cat-proc.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 2,
+   "distinct_inputs": 2,
+   "replayed": 2,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-E",
+      "/proc/cpuinfo"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201366494]",
+     "stdin": null,
+     "files": {
+      "/proc/cpuinfo": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "c5ab155675f8bb622f2018e08e910e13a72260f258bfbd1528942933dc71ae5c"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 35356,
+      "sut_stdout_len": 35356,
+      "first_stdout_diff": 1932,
+      "replayable": true,
+      "oracle_deterministic": false,
+      "notes": [
+       "absolute path /proc/cpuinfo read live",
+       "oracle output differs between two runs on this input (nondeterministic input, e.g. a live /proc file): not counted"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "/proc/cpuinfo"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201368527]",
+     "stdin": null,
+     "files": {
+      "/proc/cpuinfo": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "e4a28d28d1fa087b79168e1bffc7bbcd867c6c1791a2230f1ed5342fee354884"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 34796,
+      "sut_stdout_len": 34796,
+      "first_stdout_diff": 165,
+      "replayable": true,
+      "oracle_deterministic": false,
+      "notes": [
+       "absolute path /proc/cpuinfo read live",
+       "oracle output differs between two runs on this input (nondeterministic input, e.g. a live /proc file): not counted"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "cat/cat-self.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 15,
+   "distinct_inputs": 10,
+   "replayed": 15,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "out"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/out",
+     "stdin": null,
+     "files": {
+      "out": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "doc",
+      "doc.end"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/doc",
+     "stdin": null,
+     "files": {
+      "doc": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      },
+      "doc.end": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "3bb2abb69ebb27fbfe63c7639624c6ec5e331b841a5bc8c3ebc10b9285e90877",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/doc; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx",
+      "fy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      },
+      "fy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "3bb2abb69ebb27fbfe63c7639624c6ec5e331b841a5bc8c3ebc10b9285e90877",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 4,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy1",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy2",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy2; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx3",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx3; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx4",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx4; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx5",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx5; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx6",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx6; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-",
+      "fy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy1",
+     "stdin": {
+      "size": 2,
+      "offset": 0,
+      "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {
+      "fy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "3bb2abb69ebb27fbfe63c7639624c6ec5e331b841a5bc8c3ebc10b9285e90877",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 4,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fxy2",
+      "fy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy2",
+     "stdin": null,
+     "files": {
+      "fxy2": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      },
+      "fy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "3bb2abb69ebb27fbfe63c7639624c6ec5e331b841a5bc8c3ebc10b9285e90877",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 4,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fxy2; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx",
+      "fx3"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx3",
+     "stdin": null,
+     "files": {
+      "fx": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      },
+      "fx3": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 4,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx3; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-",
+      "fx4"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx4",
+     "stdin": {
+      "size": 2,
+      "offset": 0,
+      "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {
+      "fx4": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 4,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx4; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "fx5"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx5",
+     "stdin": null,
+     "files": {
+      "fx5": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx5; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx6",
+     "stdin": {
+      "size": 2,
+      "offset": 0,
+      "sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-cat-self.sh.8kT1/fx6; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "head/head-c.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 7,
+   "distinct_inputs": 7,
+   "replayed": 7,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-c1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out",
+     "stdin": {
+      "size": 4,
+      "offset": 0,
+      "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out",
+     "stdin": {
+      "size": 4,
+      "offset": 1,
+      "sha256": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c-4"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1",
+     "stdin": {
+      "size": 8,
+      "offset": 1,
+      "sha256": "924d391c158a46409fdff363063d718ea0bc00b14556f129984942af91233bbe",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1",
+     "stdin": null,
+     "files": {
+      "copy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 211,
+       "offset": 0,
+       "sha256": "45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c",
+      "-1",
+      "/proc/version"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1",
+     "stdin": null,
+     "files": {
+      "/proc/version": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /proc/version read live",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1",
+     "stdin": null,
+     "files": {
+      "copy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 2,
+       "offset": 0,
+       "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c",
+      "-1",
+      "/sys/kernel/profiling"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1",
+     "stdin": null,
+     "files": {
+      "/sys/kernel/profiling": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "head/head-pos.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 3,
+   "distinct_inputs": 3,
+   "replayed": 3,
+   "replay_mismatch": 2,
+   "replay_mismatch_kinds": [
+    "panic",
+    "wrong"
+   ],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 2,
+   "invocation_list": [
+    {
+     "argv": [
+      "-n",
+      "-1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/dev/null",
+     "stdin": {
+      "size": 4,
+      "offset": 0,
+      "sha256": "911169ddaaf146aff539f58c26c489af3b892dff0fe283c1c264c65ae5aa59a2",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 0,
+      "sut_exit": 101,
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": 0,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was chr /dev/null; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "610a",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-n",
+      "1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/dev/null",
+     "stdin": {
+      "size": 4,
+      "offset": 0,
+      "sha256": "911169ddaaf146aff539f58c26c489af3b892dff0fe283c1c264c65ae5aa59a2",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was chr /dev/null; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-n-50000"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/dev/null",
+     "stdin": {
+      "size": 408894,
+      "offset": 0,
+      "sha256": "2be1a556264f4e1c94c3f2c50f99d3d6eb5defef09818fa0582bdc12c05d40da",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "first_stdout_diff": 106896,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was chr /dev/null; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "310a320a330a340a350a360a370a380a390a31300a31310a31320a31330a31340a31350a31360a31370a31380a31390a32300a32310a32320a32330a32340a32350a32360a32370a32380a32390a3330",
+      "sut_stdout_head": "310a320a330a340a350a360a370a380a390a31300a31310a31320a31330a31340a31350a31360a31370a31380a31390a32300a32310a32320a32330a32340a32350a32360a32370a32380a32390a3330"
+     }
+    }
+   ]
+  },
+  "head/head-write-error.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 9,
+   "distinct_inputs": 9,
+   "replayed": 9,
+   "replay_mismatch": 2,
+   "replay_mismatch_kinds": [
+    "wrong"
+   ],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 2,
+   "invocation_list": [
+    {
+     "argv": [
+      "-c10M"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 10510336,
+      "source_eof": false,
+      "child_stopped_reading": true,
+      "sha256_delivered": "e59917c2701437be8a506f3aaa166fda34cd7281805f310a7198a58243dc2f9f",
+      "kept_sha256": "e59917c2701437be8a506f3aaa166fda34cd7281805f310a7198a58243dc2f9f",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 10510336 bytes delivered",
+       "stdout was reg /work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--lines=-0"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/dev/full",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 73728,
+      "source_eof": false,
+      "child_stopped_reading": true,
+      "sha256_delivered": "06503f138bbf1085a6e0e154af64dd86637a56963696a03fef622086b170ee16",
+      "kept_sha256": "06503f138bbf1085a6e0e154af64dd86637a56963696a03fef622086b170ee16",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 73728 bytes delivered",
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--lines=-0",
+      "bigseek"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/dev/full",
+     "stdin": null,
+     "files": {
+      "bigseek": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 10485760,
+       "offset": 0,
+       "sha256": "054c421cae3e7a47460d367e6040cf5292ce79350dee220fec2c5bbe9615b755",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--lines=-1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/dev/full",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 65536,
+      "source_eof": false,
+      "child_stopped_reading": true,
+      "sha256_delivered": "a84d98377aa3891a1fec90edceff89f1c8680ba082fe84c8900ad5158efdfff0",
+      "kept_sha256": "a84d98377aa3891a1fec90edceff89f1c8680ba082fe84c8900ad5158efdfff0",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 63487,
+      "first_stdout_diff": 63487,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a",
+      "sut_stdout_head": "790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a"
+     }
+    },
+    {
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/dev/full",
+     "stdin": null,
+     "files": {
+      "bigseek": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 10485760,
+       "offset": 0,
+       "sha256": "054c421cae3e7a47460d367e6040cf5292ce79350dee220fec2c5bbe9615b755",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "first_stdout_diff": 10481663,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a",
+      "sut_stdout_head": "790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a790a"
+     }
+    },
+    {
+     "argv": [
+      "--bytes=-0"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/dev/full",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 106496,
+      "source_eof": false,
+      "child_stopped_reading": true,
+      "sha256_delivered": "f04c97026796b35ac233c36882340f0acaca5480a1c2cd678d8d3ee045498d67",
+      "kept_sha256": "f04c97026796b35ac233c36882340f0acaca5480a1c2cd678d8d3ee045498d67",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 106496 bytes delivered",
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--bytes=-0",
+      "bigseek"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/dev/full",
+     "stdin": null,
+     "files": {
+      "bigseek": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 10485760,
+       "offset": 0,
+       "sha256": "054c421cae3e7a47460d367e6040cf5292ce79350dee220fec2c5bbe9615b755",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--bytes=-1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/dev/full",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 65536,
+      "source_eof": false,
+      "child_stopped_reading": true,
+      "sha256_delivered": "a84d98377aa3891a1fec90edceff89f1c8680ba082fe84c8900ad5158efdfff0",
+      "kept_sha256": "a84d98377aa3891a1fec90edceff89f1c8680ba082fe84c8900ad5158efdfff0",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--bytes=-1",
+      "bigseek"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/dev/full",
+     "stdin": null,
+     "files": {
+      "bigseek": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 10485760,
+       "offset": 0,
+       "sha256": "054c421cae3e7a47460d367e6040cf5292ce79350dee220fec2c5bbe9615b755",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was chr /dev/full; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/F-headers.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/F-vs-missing.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/F-vs-rename.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/append-only.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/assert-2.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/assert.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/big-4gb.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 1,
+   "replay_mismatch_kinds": [
+    "wrong"
+   ],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 1,
+   "invocation_list": [
+    {
+     "argv": [
+      "-c1",
+      "big"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-big-4gb.sh.c4bw/out",
+     "stdin": null,
+     "files": {
+      "big": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 4294967296,
+       "offset": 0,
+       "extents": [
+        [
+         0,
+         4096,
+         "79aed6830702d2305de7fe70b65d0f7604e606f8a7037108813e2a10f8f7842a"
+        ],
+        [
+         4294963200,
+         4096,
+         "6ddfc205fb1fd2546f636659f3a0fa6b80ace363138b2d71f9d541d891d22456"
+        ]
+       ],
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 4294967296,
+      "first_stdout_diff": 0,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "big: sparse file recreated from data extents",
+       "stdout was reg /work/artifacts/c2saferrust/gt-big-4gb.sh.c4bw/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "31",
+      "sut_stdout_head": "6162636465666768000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+     }
+    }
+   ]
+  },
+  "tail/descriptor-vs-rename.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/end-of-device.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-n1"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "pipe:[201389296]",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 26,
+      "source_eof": true,
+      "child_stopped_reading": false,
+      "sha256_delivered": "2898b90ad911cfce1ef91c77661a06624e9533e6e6f382062b5faaa7e478c83c",
+      "kept_sha256": "2898b90ad911cfce1ef91c77661a06624e9533e6e6f382062b5faaa7e478c83c",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 15,
+      "sut_stdout_len": 15,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/flush-initial.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/follow-name.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 1,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "--follow=name",
+      "no-such"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-follow-name.sh.dtNz/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-follow-name.sh.dtNz/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/follow-stdin.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 1,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-f",
+      "-"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "closed",
+     "fd1": "pipe:[201395709]",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin closed (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/inotify-dir-recreate.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-hash-abuse.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-hash-abuse2.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 2,
+   "distinct_inputs": 2,
+   "replayed": 2,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "f"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201395974]",
+     "stdin": null,
+     "files": {
+      "f": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "f"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201395974]",
+     "stdin": null,
+     "files": {
+      "f": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/inotify-only-regular.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-race.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-race2.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-rotate-resources.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 77,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/inotify-rotate.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/overlay-headers.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 1,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "---dis",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "--pid=1860",
+      "-f",
+      "file1",
+      "file2"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-overlay-headers.sh.Av81/out",
+     "stdin": null,
+     "files": {
+      "file1": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 16,
+       "offset": 0,
+       "sha256": "e74ee04603e679aaf199a60b685ae40099ffe545eec96447fcf3fc19ad873ef6",
+       "complete": true
+      },
+      "file2": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 16,
+       "offset": 0,
+       "sha256": "e74ee04603e679aaf199a60b685ae40099ffe545eec96447fcf3fc19ad873ef6",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 61,
+      "sut_stdout_len": 61,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-overlay-headers.sh.Av81/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/pid.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 10,
+   "distinct_inputs": 10,
+   "replayed": 10,
+   "replay_mismatch": 6,
+   "replay_mismatch_kinds": [
+    "segv"
+   ],
+   "replay_stderr_only": 2,
+   "replay_mismatch_only_in_c2saferrust_output": 6,
+   "invocation_list": [
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=1908",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=",
+      "--pid=1908",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=",
+      "empty"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "empty": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s10",
+      "--pid=",
+      "empty"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "empty": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "---disable-inotify",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=3492",
+      "---disable-inotify",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=",
+      "--pid=3492",
+      "---disable-inotify",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--pid=",
+      "---disable-inotify",
+      "empty"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "empty": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s10",
+      "--pid=",
+      "---disable-inotify",
+      "empty"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201408579]",
+     "stdin": null,
+     "files": {
+      "empty": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "",
+      "sut_stdout_head": ""
+     }
+    }
+   ]
+  },
+  "tail/pipe-f.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 10,
+   "distinct_inputs": 8,
+   "replayed": 10,
+   "replay_mismatch": 4,
+   "replay_mismatch_kinds": [
+    "wrong"
+   ],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 2,
+   "invocation_list": [
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-c3"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 4,
+      "source_eof": true,
+      "child_stopped_reading": false,
+      "sha256_delivered": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+      "kept_sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": 0,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": "6f6f0a",
+      "sut_stdout_head": "666f6f0a"
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-c3",
+      "-",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 4,
+      "source_eof": true,
+      "child_stopped_reading": false,
+      "sha256_delivered": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+      "kept_sha256": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 26,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": 23,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "3d3d3e207374616e6461726420696e707574203c3d3d0a61720a",
+      "sut_stdout_head": "3d3d3e207374616e6461726420696e707574203c3d3d0a6261720a"
+     }
+    },
+    {
+     "argv": [
+      "-n2",
+      "-f",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "out"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201409062]",
+     "stdin": null,
+     "files": {
+      "out": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 27,
+       "offset": 0,
+       "sha256": "dcb140f4251a15390702c6ae3a3fc991db7a8adb13c79da77f2052d878470d0d",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 27,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-n2",
+      "-f",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "out"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201414025]",
+     "stdin": null,
+     "files": {
+      "out": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 27,
+       "offset": 0,
+       "sha256": "dcb140f4251a15390702c6ae3a3fc991db7a8adb13c79da77f2052d878470d0d",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 27,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "/dev/null"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "closed",
+     "stdin": null,
+     "files": {
+      "/dev/null": {
+       "kind": "chr",
+       "symlink": false,
+       "abs": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /dev/null read live",
+       "stdout was closed ; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-c3"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 4,
+      "source_eof": true,
+      "child_stopped_reading": false,
+      "sha256_delivered": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+      "kept_sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 4,
+      "first_stdout_diff": 0,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": "6f6f0a",
+      "sut_stdout_head": "666f6f0a"
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-c3",
+      "-",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "fifo",
+     "fd1": "/work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out",
+     "stdin": {
+      "kind": "pipe",
+      "delivered_bytes": 4,
+      "source_eof": true,
+      "child_stopped_reading": false,
+      "sha256_delivered": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+      "kept_sha256": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+      "kept_complete": true
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "stderr_only": false,
+      "oracle_stdout_len": 26,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": 23,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-pipe-f.sh.Impx/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "3d3d3e207374616e6461726420696e707574203c3d3d0a61720a",
+      "sut_stdout_head": "3d3d3e207374616e6461726420696e707574203c3d3d0a6261720a"
+     }
+    },
+    {
+     "argv": [
+      "-n2",
+      "-f",
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "out"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201427793]",
+     "stdin": null,
+     "files": {
+      "out": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 27,
+       "offset": 0,
+       "sha256": "dcb140f4251a15390702c6ae3a3fc991db7a8adb13c79da77f2052d878470d0d",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 27,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-n2",
+      "-f",
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "out"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201438394]",
+     "stdin": null,
+     "files": {
+      "out": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 27,
+       "offset": 0,
+       "sha256": "dcb140f4251a15390702c6ae3a3fc991db7a8adb13c79da77f2052d878470d0d",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 27,
+      "sut_stdout_len": 27,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-f",
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "/dev/null"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "closed",
+     "stdin": null,
+     "files": {
+      "/dev/null": {
+       "kind": "chr",
+       "symlink": false,
+       "abs": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /dev/null read live",
+       "stdout was closed ; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/pipe-f2.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/proc-ksyms.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/retry.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 8,
+   "distinct_inputs": 8,
+   "replayed": 8,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 8,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "--retry",
+      "file"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {
+      "file": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--retry",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "--follow=descriptor",
+      "--retry",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {
+      "missing": {
+       "kind": "dir",
+       "symlink": false,
+       "abs": false
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "missing: directory recreated empty",
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--follow=descriptor",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--follow=name",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "---disable-inotify",
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "--follow=descriptor",
+      "--retry",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {
+      "missing": {
+       "kind": "dir",
+       "symlink": false,
+       "abs": false
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "missing: directory recreated empty",
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "---disable-inotify",
+      "--follow=descriptor",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "---disable-inotify",
+      "--follow=name",
+      "missing"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-retry.sh.oQSJ/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/start-middle.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "/work/artifacts/c2saferrust/gt-start-middle.sh.2HnM/out",
+     "stdin": {
+      "size": 4,
+      "offset": 2,
+      "sha256": "a6e2b7a040683432de03a18fd8a1939a2fdf82585b364bfc874bdd4095c4cae1",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 2 (as in the test)",
+       "stdout was reg /work/artifacts/c2saferrust/gt-start-middle.sh.2HnM/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/symlink.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/tail-c.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 99,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 1,
+   "replay_mismatch_kinds": [
+    "segv"
+   ],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 1,
+   "invocation_list": [
+    {
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-tail-c.sh.0G1J/exp",
+     "stdin": null,
+     "files": {
+      "copy": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 211,
+       "offset": 0,
+       "sha256": "45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": false,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": -11,
+      "mismatch": true,
+      "mismatch_kind": "segv",
+      "stderr_only": false,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": 0,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdout was reg /work/artifacts/c2saferrust/gt-tail-c.sh.0G1J/exp; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": "0a",
+      "sut_stdout_head": ""
+     }
+    }
+   ]
+  },
+  "tail/tail-n0f.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 3,
+   "distinct_inputs": 3,
+   "replayed": 3,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-c0",
+      "unreadable"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201430269]",
+     "stdin": null,
+     "files": {
+      "unreadable": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-n0",
+      "unreadable"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201430269]",
+     "stdin": null,
+     "files": {
+      "unreadable": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "--sleep=4",
+      "-c",
+      "0",
+      "-f",
+      "---disable-inotify",
+      "nonempty"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201430269]",
+     "stdin": null,
+     "files": {
+      "nonempty": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 9,
+       "offset": 0,
+       "sha256": "ce32b18ae7f79e70f7cde4cf6077ae8b4195044307a78a4ea8761ddfedf9badc",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/tail-sysfs.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 2,
+   "distinct_inputs": 2,
+   "replayed": 2,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-n1",
+      "/sys/kernel/profiling"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-tail-sysfs.sh.yhhw/out",
+     "stdin": null,
+     "files": {
+      "/sys/kernel/profiling": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdout was reg /work/artifacts/c2saferrust/gt-tail-sysfs.sh.yhhw/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-c2",
+      "/sys/kernel/profiling"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "/work/artifacts/c2saferrust/gt-tail-sysfs.sh.yhhw/out",
+     "stdin": null,
+     "files": {
+      "/sys/kernel/profiling": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": true,
+       "live_snapshot_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdout was reg /work/artifacts/c2saferrust/gt-tail-sysfs.sh.yhhw/out; captured via a pipe (our comparison)"
+      ],
+      "baseline_rust_mismatch": true,
+      "baseline_rust_mismatch_kind": "wrong",
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "tail/truncate.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 0,
+   "distinct_inputs": 0,
+   "replayed": 0,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": []
+  },
+  "tail/wait.sh": {
+   "in_acceptance_set": false,
+   "test_exit_with_shim": 1,
+   "acceptance_suite_wip_pass_runs": 0,
+   "invocations": 8,
+   "distinct_inputs": 8,
+   "replayed": 8,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 2,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-f",
+      "not_here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-f",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "not_here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-f",
+      "---disable-inotify",
+      "not_here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": 1,
+      "sut_exit": 1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": true,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-f",
+      "---disable-inotify",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": false,
+      "stderr_match": true,
+      "oracle_exit": -1,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "---disable-inotify",
+      "here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {
+      "here": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 0,
+       "offset": 0,
+       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [
+      "-s.1",
+      "--max-unchanged-stats=1",
+      "-F",
+      "---disable-inotify",
+      "not_here"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201445422]",
+     "stdin": null,
+     "files": {},
+     "replay": {
+      "assessable": false,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": false,
+      "oracle_exit": -1,
+      "sut_exit": -1,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 0,
+      "sut_stdout_len": 0,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "uniq/uniq-collate.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 6,
+   "distinct_inputs": 6,
+   "replayed": 6,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201447567]",
+     "stdin": {
+      "size": 22,
+      "offset": 0,
+      "sha256": "99726f8f28816991fa741405a81848bb3fd665e2a35c252e74f93bbdc1232c54",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 22,
+      "sut_stdout_len": 22,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201453634]",
+     "stdin": {
+      "size": 7,
+      "offset": 0,
+      "sha256": "65ab5ef0dda945fe8ebba775b2a08de3e4843f97fced70ab0b6f2af54c1f45aa",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 7,
+      "sut_stdout_len": 7,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "ko_KR.utf8",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201451883]",
+     "stdin": {
+      "size": 14,
+      "offset": 0,
+      "sha256": "eef2cdca82293a4e39b6a25cb8ef87e5336bbdef34226a9151a933aa6517b568",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 14,
+      "sut_stdout_len": 14,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "en_US.utf8",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201449143]",
+     "stdin": {
+      "size": 8,
+      "offset": 0,
+      "sha256": "d5e58fe87c0468165b207f3e89691bad08a5c44fbb4b5207c21551845d658c09",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 8,
+      "sut_stdout_len": 8,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "en_US.utf8",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201457740]",
+     "stdin": {
+      "size": 8,
+      "offset": 0,
+      "sha256": "86a1850a7d8722c883170c8641d52be7dbf38efe0600f6cb283cd4d89299371c",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 8,
+      "sut_stdout_len": 8,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    },
+    {
+     "argv": [],
+     "env": {
+      "LC_ALL": "",
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "reg",
+     "fd1": "pipe:[201465011]",
+     "stdin": {
+      "size": 6,
+      "offset": 0,
+      "sha256": "3d7b0e3d3efb698b68982b57d90e177a4e301ed588fe60a44f8852621f2a0a85",
+      "complete": true,
+      "kind": "reg"
+     },
+     "files": {},
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 6,
+      "sut_stdout_len": 6,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)"
+      ],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  },
+  "uniq/uniq-perf.sh": {
+   "in_acceptance_set": true,
+   "test_exit_with_shim": 0,
+   "acceptance_suite_wip_pass_runs": 3,
+   "invocations": 1,
+   "distinct_inputs": 1,
+   "replayed": 1,
+   "replay_mismatch": 0,
+   "replay_mismatch_kinds": [],
+   "replay_stderr_only": 0,
+   "replay_mismatch_only_in_c2saferrust_output": 0,
+   "invocation_list": [
+    {
+     "argv": [
+      "-f",
+      "10000000000",
+      "in"
+     ],
+     "env": {
+      "LC_CTYPE": "C.UTF-8"
+     },
+     "fd0": "chr",
+     "fd1": "pipe:[201431940]",
+     "stdin": null,
+     "files": {
+      "in": {
+       "kind": "reg",
+       "symlink": false,
+       "abs": false,
+       "size": 292,
+       "offset": 0,
+       "sha256": "93d4e5c77838e0aa5cb6647c385c810a7c2782bf769029e6c420052048ab22bb",
+       "complete": true
+      }
+     },
+     "replay": {
+      "assessable": true,
+      "stdout_match": true,
+      "exit_match": true,
+      "stderr_match": true,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "mismatch": false,
+      "mismatch_kind": null,
+      "stderr_only": false,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "first_stdout_diff": -1,
+      "replayable": true,
+      "oracle_deterministic": true,
+      "notes": [],
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "oracle_stdout_head": null,
+      "sut_stdout_head": null
+     }
+    }
+   ]
+  }
+ }
+}

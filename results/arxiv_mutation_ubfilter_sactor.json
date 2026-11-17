@@ -1,0 +1,139 @@
+{
+ "samples": {
+  "NandC": {
+   "functions": {
+    "bll": {
+     "index": 0,
+     "inputs": 2,
+     "whole_run_ref_exit": 0,
+     "whole_run_ref_exit_recorded": 0,
+     "ub_clean_inputs": 2,
+     "not_ub_clean": []
+    },
+    "add_u4": {
+     "index": 1,
+     "inputs": 80,
+     "whole_run_ref_exit": 0,
+     "whole_run_ref_exit_recorded": 0,
+     "ub_clean_inputs": 80,
+     "not_ub_clean": []
+    },
+    "sub_u4": {
+     "index": 2,
+     "inputs": 80,
+     "whole_run_ref_exit": 0,
+     "whole_run_ref_exit_recorded": 0,
+     "ub_clean_inputs": 80,
+     "not_ub_clean": []
+    }
+   },
+   "c_bins": [
+    "o0",
+    "o1",
+    "ref",
+    "san_clang",
+    "san_clang_nz",
+    "san_gcc",
+    "schar",
+    "uchar"
+   ],
+   "grid_kills_in_mutation_file": 5,
+   "built_mutants": 5,
+   "all_inputs_ub_clean": true
+  },
+  "geofence": {
+   "functions": {
+    "lat2y_m": {
+     "index": 0,
+     "inputs": 23,
+     "whole_run_ref_exit": 0,
+     "whole_run_ref_exit_recorded": 0,
+     "ub_clean_inputs": 23,
+     "not_ub_clean": []
+    },
+    "lon2x_m": {
+     "index": 1,
+     "inputs": 23,
+     "whole_run_ref_exit": 0,
+     "whole_run_ref_exit_recorded": 0,
+     "ub_clean_inputs": 23,
+     "not_ub_clean": []
+    }
+   },
+   "c_bins": [
+    "o0",
+    "o1",
+    "ref",
+    "san_clang",
+    "san_clang_nz",
+    "san_gcc",
+    "schar",
+    "uchar"
+   ],
+   "grid_kills_in_mutation_file": 3,
+   "built_mutants": 12,
+   "all_inputs_ub_clean": true
+  }
+ },
+ "summary": {
+  "NandC": {
+   "all_inputs_ub_clean": true,
+   "inputs": 162,
+   "ub_clean_inputs": 162,
+   "grid_kills_in_mutation_file": 5
+  },
+  "geofence": {
+   "all_inputs_ub_clean": true,
+   "inputs": 46,
+   "ub_clean_inputs": 46,
+   "grid_kills_in_mutation_file": 3
+  }
+ },
+ "provenance": {
+  "script": "systems/sactor/crust/arxiv_grid_ub_all_inputs.py",
+  "command": "bash harness/arxiv_mutub_run.sh sactor_grid",
+  "git_commit_of_study_repo": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "host": "Linux x86_64 box (20 cores)",
+  "arch": "x86_64",
+  "image": "crust-heldout",
+  "image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "c_builds": "build/crust/<sample>/grid/c_<variant> copied from the original re-grade's work dir (~/work/regrade-sactor), built there by grid.py",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rustc_in_this_container": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+   "cargo_in_this_container": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)",
+   "python": "3.10.12"
+  },
+  "ub_checks": [
+   "o0",
+   "o1",
+   "uchar",
+   "schar",
+   "san_gcc",
+   "san_clang"
+  ],
+  "seconds": 1.6,
+  "date": "2026-11-17T00:24:59+0000"
+ },
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": null,
+  "generated_utc": "2026-11-17T00:24:59Z",
+  "arch": "x86_64",
+  "os": "Linux 7.0.0-38-generic",
+  "in_container": true,
+  "image": "crust-heldout",
+  "step": null,
+  "python": "3.10.12",
+  "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+  "argv": [
+   "systems/sactor/crust/arxiv_grid_ub_all_inputs.py",
+   "--samples",
+   "NandC,geofence",
+   "--out",
+   "/out/sactor_grid_ub.json"
+  ]
+ }
+}

@@ -1,0 +1,977 @@
+{
+ "system": "SACTOR",
+ "target": "CRUST-Bench samples (qsdrqs/CRUST-bench fork, 69970f9c)",
+ "provenance": {
+  "script": "systems/sactor/crust/run.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/crust/run.py --only amp,cfsm,inversion_list --out /work/results/sactor_crust_owntests_assembled.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-13T23:50:10+00:00",
+  "c_variants": [
+   "ref",
+   "o0",
+   "o1",
+   "uchar",
+   "schar",
+   "san_gcc",
+   "san_clang",
+   "san_clang_nz"
+  ],
+  "ccwrap": "systems/sactor/crust/ccwrap.sh"
+ },
+ "samples": {
+  "amp": {
+   "sample": "amp",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 4,
+     "failure_info_functions": 4,
+     "failure_info_success": 4,
+     "failure_info_failed": [],
+     "rust_source": "assembled from the complete per-function set"
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {
+    "unidiomatic:nightly-2024-09-03:debug": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/amp/c_ref/test1.o: in function `main':\ntest.c:(.text.startup+0x52): undefined reference to `amp_encode'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2024-09-03:release": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/amp/c_ref/test1.o: in function `main':\ntest.c:(.text.startup+0x52): undefined reference to `amp_encode'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2025-05-10:debug": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/amp/c_ref/test1.o: in function `main':\ntest.c:(.text.startup+0x52): undefined reference to `amp_encode'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2025-05-10:release": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/amp/c_ref/test1.o: in function `main':\ntest.c:(.text.startup+0x52): undefined reference to `amp_encode'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    }
+   },
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "ok\n",
+     "c_stderr_tail": "",
+     "c_ub": [
+      "san_gcc: ==1339==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000014 at pc 0x7b8b2612c712 bp 0x7fff76e2f0a0 sp 0x7fff76e2e848",
+      "san_clang: ==1343==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000014 at pc 0x000000433110 bp 0x7ffc28c715d0 sp 0x7ffc28c70d80"
+     ],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [
+      "san_gcc: ==1339==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000014 at pc 0x7b8b2612c712 bp 0x7fff76e2f0a0 sp 0x7fff76e2e848",
+      "san_clang_nz: ==1344==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000014 at pc 0x000000433110 bp 0x7ffd6ab33810 sp 0x7ffd6ab32fc0"
+     ],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 4.4
+  },
+  "cfsm": {
+   "sample": "cfsm",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 2,
+     "failure_info_functions": 2,
+     "failure_info_success": 2,
+     "failure_info_failed": [],
+     "rust_source": "assembled from the complete per-function set"
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o"
+   ],
+   "link_libs": [
+    "-lm"
+   ],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o"
+    ],
+    "o0": [
+     "test1.o"
+    ],
+    "o1": [
+     "test1.o"
+    ],
+    "uchar": [
+     "test1.o"
+    ],
+    "schar": [
+     "test1.o"
+    ],
+    "san_gcc": [
+     "test1.o"
+    ],
+    "san_clang": [
+     "test1.o"
+    ],
+    "san_clang_nz": [
+     "test1.o"
+    ]
+   },
+   "rust_builds": {
+    "unidiomatic:nightly-2024-09-03:debug": {
+     "ok": false,
+     "n_errors": 2,
+     "errors": [
+      "error[E0061]: this function takes 0 arguments but 1 argument was supplied",
+      "error: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted"
+     ],
+     "log_tail": "     Locking 1 package to latest compatible version\n   Compiling libc v0.2.191\n   Compiling build_attempt v0.1.0 (/build/crust/cfsm/crates/unidiomatic_nightly-2024-09-03_debug)\nwarning: type `cfsm_TransitionFunction` should have an upper camel case name\n  --> src/lib.rs:10:6\n   |\n10 | type cfsm_TransitionFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmTransitionFunction`\n   |\n   = note: `#[warn(non_camel_case_types)]` on by default\n\nwarning: type `cfsm_ProcessFunction` should have an upper camel case name\n  --> src/lib.rs:11:6\n   |\n11 | type cfsm_ProcessFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmProcessFunction`\n\nwarning: type `cfsm_EventFunction` should have an upper camel case name\n  --> src/lib.rs:12:6\n   |\n12 | type cfsm_EventFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmEventFunction`\n\nerror[E0061]: this function takes 0 arguments but 1 argument was supplied\n  --> src/lib.rs:28:13\n   |\n28 |             f(fsm);\n   |             ^ --- unexpected argument of type `*mut cfsm_Ctx`\n   |\nhelp: remove the extra argument\n   |\n28 -             f(fsm);\n28 +             f();\n   |\n\nFor more information about this error, try `rustc --explain E0061`.\nwarning: `build_attempt` (lib) generated 3 warnings\nerror: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted\n"
+    },
+    "unidiomatic:nightly-2024-09-03:release": {
+     "ok": false,
+     "n_errors": 2,
+     "errors": [
+      "error[E0061]: this function takes 0 arguments but 1 argument was supplied",
+      "error: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted"
+     ],
+     "log_tail": "     Locking 1 package to latest compatible version\n   Compiling libc v0.2.191\n   Compiling build_attempt v0.1.0 (/build/crust/cfsm/crates/unidiomatic_nightly-2024-09-03_release)\nwarning: type `cfsm_TransitionFunction` should have an upper camel case name\n  --> src/lib.rs:10:6\n   |\n10 | type cfsm_TransitionFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmTransitionFunction`\n   |\n   = note: `#[warn(non_camel_case_types)]` on by default\n\nwarning: type `cfsm_ProcessFunction` should have an upper camel case name\n  --> src/lib.rs:11:6\n   |\n11 | type cfsm_ProcessFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmProcessFunction`\n\nwarning: type `cfsm_EventFunction` should have an upper camel case name\n  --> src/lib.rs:12:6\n   |\n12 | type cfsm_EventFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmEventFunction`\n\nerror[E0061]: this function takes 0 arguments but 1 argument was supplied\n  --> src/lib.rs:28:13\n   |\n28 |             f(fsm);\n   |             ^ --- unexpected argument of type `*mut cfsm_Ctx`\n   |\nhelp: remove the extra argument\n   |\n28 -             f(fsm);\n28 +             f();\n   |\n\nFor more information about this error, try `rustc --explain E0061`.\nwarning: `build_attempt` (lib) generated 3 warnings\nerror: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted\n"
+    },
+    "unidiomatic:nightly-2025-05-10:debug": {
+     "ok": false,
+     "n_errors": 2,
+     "errors": [
+      "error[E0061]: this function takes 0 arguments but 1 argument was supplied",
+      "error: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted"
+     ],
+     "log_tail": "     Locking 1 package to latest compatible version\n   Compiling libc v0.2.191\n   Compiling build_attempt v0.1.0 (/build/crust/cfsm/crates/unidiomatic_nightly-2025-05-10_debug)\nwarning: type `cfsm_TransitionFunction` should have an upper camel case name\n  --> src/lib.rs:10:6\n   |\n10 | type cfsm_TransitionFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmTransitionFunction`\n   |\n   = note: `#[warn(non_camel_case_types)]` on by default\n\nwarning: type `cfsm_ProcessFunction` should have an upper camel case name\n  --> src/lib.rs:11:6\n   |\n11 | type cfsm_ProcessFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmProcessFunction`\n\nwarning: type `cfsm_EventFunction` should have an upper camel case name\n  --> src/lib.rs:12:6\n   |\n12 | type cfsm_EventFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmEventFunction`\n\nerror[E0061]: this function takes 0 arguments but 1 argument was supplied\n  --> src/lib.rs:28:13\n   |\n28 |             f(fsm);\n   |             ^ --- unexpected argument of type `*mut cfsm_Ctx`\n   |\nhelp: remove the extra argument\n   |\n28 -             f(fsm);\n28 +             f();\n   |\n\nFor more information about this error, try `rustc --explain E0061`.\nwarning: `build_attempt` (lib) generated 3 warnings\nerror: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted\n"
+    },
+    "unidiomatic:nightly-2025-05-10:release": {
+     "ok": false,
+     "n_errors": 2,
+     "errors": [
+      "error[E0061]: this function takes 0 arguments but 1 argument was supplied",
+      "error: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted"
+     ],
+     "log_tail": "     Locking 1 package to latest compatible version\n   Compiling libc v0.2.191\n   Compiling build_attempt v0.1.0 (/build/crust/cfsm/crates/unidiomatic_nightly-2025-05-10_release)\nwarning: type `cfsm_TransitionFunction` should have an upper camel case name\n  --> src/lib.rs:10:6\n   |\n10 | type cfsm_TransitionFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmTransitionFunction`\n   |\n   = note: `#[warn(non_camel_case_types)]` on by default\n\nwarning: type `cfsm_ProcessFunction` should have an upper camel case name\n  --> src/lib.rs:11:6\n   |\n11 | type cfsm_ProcessFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmProcessFunction`\n\nwarning: type `cfsm_EventFunction` should have an upper camel case name\n  --> src/lib.rs:12:6\n   |\n12 | type cfsm_EventFunction = Option<unsafe extern \"C\" fn() -> i32>;\n   |      ^^^^^^^^^^^^^^^^^^ help: convert the identifier to upper camel case: `CfsmEventFunction`\n\nerror[E0061]: this function takes 0 arguments but 1 argument was supplied\n  --> src/lib.rs:28:13\n   |\n28 |             f(fsm);\n   |             ^ --- unexpected argument of type `*mut cfsm_Ctx`\n   |\nhelp: remove the extra argument\n   |\n28 -             f(fsm);\n28 +             f();\n   |\n\nFor more information about this error, try `rustc --explain E0061`.\nwarning: `build_attempt` (lib) generated 3 warnings\nerror: could not compile `build_attempt` (lib) due to 1 previous error; 3 warnings emitted\n"
+    }
+   },
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "_safe_to_use:PASS\nbuild/../tests/test_c_fsm.c:234:test_cfsm_init_should_clear_handler:PASS\nbuild/../tests/test_c_fsm.c:235:test_cfsm_transition_should_set_enter_handler_only:PASS\nbuild/../tests/test_c_fsm.c:236:test_cfs_transition_A_B_A:PASS\n\n-----------------------\n4 Tests 0 Failures 0 Ignored \nOK\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {}
+    }
+   ],
+   "elapsed_s": 5.6
+  },
+  "inversion_list": {
+   "sample": "inversion_list",
+   "inventory": {
+    "unidiomatic": {
+     "combined_rs": false,
+     "functions": 8,
+     "failure_info_functions": 8,
+     "failure_info_success": 8,
+     "failure_info_failed": [],
+     "rust_source": "assembled from the complete per-function set"
+    },
+    "idiomatic": {
+     "combined_rs": false,
+     "functions": 0,
+     "rust_source": null
+    },
+    "test_harness_functions": 0
+   },
+   "test_objects": [
+    "test1.o",
+    "test2.o",
+    "test3.o",
+    "test4.o",
+    "test5.o",
+    "test6.o",
+    "test7.o",
+    "test8.o",
+    "test9.o",
+    "test10.o",
+    "test11.o",
+    "test12.o",
+    "test13.o",
+    "test14.o",
+    "test15.o"
+   ],
+   "link_libs": [],
+   "c_build_failures": {},
+   "c_builds": {
+    "ref": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "o0": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "o1": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "uchar": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "schar": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_gcc": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_clang": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ],
+    "san_clang_nz": [
+     "test1.o",
+     "test10.o",
+     "test11.o",
+     "test12.o",
+     "test13.o",
+     "test14.o",
+     "test15.o",
+     "test2.o",
+     "test3.o",
+     "test4.o",
+     "test5.o",
+     "test6.o",
+     "test7.o",
+     "test8.o",
+     "test9.o"
+    ]
+   },
+   "rust_builds": {
+    "unidiomatic:nightly-2024-09-03:debug": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test1.o: in function `main':\ntest-clone.c:(.text.startup+0x6b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-clone.c:(.text.startup+0x76): undefined reference to `inversion_list_clone'\n/usr/bin/ld: test-clone.c:(.text.startup+0xde): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test2.o": "e to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x80): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x11d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x128): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x200): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x20b): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2e4): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2ef): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x35a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test3.o": "version_list_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x5f): undefined reference to `inversion_list_couple_iterator_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x7e): undefined reference to `inversion_list_couple_iterator_get_inf'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x96): undefined reference to `inversion_list_couple_iterator_get_sup'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xa2): undefined reference to `inversion_list_couple_iterator_next'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xad): undefined reference to `inversion_list_iterator_couple_valid'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc3): undefined reference to `inversion_list_iterator_couple_destroy'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc8): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test4.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test4.o: in function `main':\ntest-create-destroy-2.c:(.text.startup+0x60): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-2.c:(.text.startup+0xbc): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test5.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test5.o: in function `main':\ntest-create-destroy-3.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-3.c:(.text.startup+0xc4): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test6.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test6.o: in function `main':\ntest-create-destroy-4.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-4.c:(.text.startup+0x7c): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test7.o": "sion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0x8d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0xa2): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xad): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0xdb): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x110): undefined reference to `inversion_list_symmetric_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0x11b): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x15a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test8.o": " reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x29f): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2b2): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2c5): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2d8): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2eb): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2fe): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x311): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x33a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test9.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test9.o: in function `main':\ntest-getters.c:(.text.startup+0x69): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-getters.c:(.text.startup+0x93): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test10.o": "st10.o: in function `main':\ntest-intersection.c:(.text.startup+0x98): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xaf): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xc6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xdb): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x10c): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x117): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x152): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test11.o": "list/c_ref/test11.o: in function `main':\ntest-iterator.c:(.text.startup+0x4b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x56): undefined reference to `inversion_list_iterator_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x64): undefined reference to `inversion_list_iterator_get'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x6e): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x7a): undefined reference to `inversion_list_iterator_next'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x85): undefined reference to `inversion_list_iterator_valid'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x99): undefined reference to `inversion_list_iterator_destroy'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x9e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test12.o": "tup+0x76): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-member.c:(.text.startup+0x83): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xa1): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xb6): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xda): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xef): undefined reference to `inversion_list_member'\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o:test-member.c:(.text.startup+0x113): more undefined references to `inversion_list_member' follow\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o: in function `main':\ntest-member.c:(.text.startup+0x19e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test14.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test14.o: in function `main':\ntest-to-string.c:(.text.startup+0x67): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x72): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x92): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test15.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test15.o: in function `main':\ntest-union.c:(.text.startup+0x8f): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xa6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xbd): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xd2): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0xdd): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x107): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0x112): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x151): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2024-09-03:release": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test1.o: in function `main':\ntest-clone.c:(.text.startup+0x6b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-clone.c:(.text.startup+0x76): undefined reference to `inversion_list_clone'\n/usr/bin/ld: test-clone.c:(.text.startup+0xde): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test2.o": "list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x80): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x11d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x128): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x200): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x20b): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2e4): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2ef): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x35a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test3.o": "ate'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x5f): undefined reference to `inversion_list_couple_iterator_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x7e): undefined reference to `inversion_list_couple_iterator_get_inf'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x96): undefined reference to `inversion_list_couple_iterator_get_sup'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xa2): undefined reference to `inversion_list_couple_iterator_next'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xad): undefined reference to `inversion_list_iterator_couple_valid'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc3): undefined reference to `inversion_list_iterator_couple_destroy'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc8): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test4.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test4.o: in function `main':\ntest-create-destroy-2.c:(.text.startup+0x60): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-2.c:(.text.startup+0xbc): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test5.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test5.o: in function `main':\ntest-create-destroy-3.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-3.c:(.text.startup+0xc4): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test6.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test6.o: in function `main':\ntest-create-destroy-4.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-4.c:(.text.startup+0x7c): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test7.o": "'\n/usr/bin/ld: test-difference.c:(.text.startup+0x8d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0xa2): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xad): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0xdb): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x110): undefined reference to `inversion_list_symmetric_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0x11b): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x15a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test8.o": "nversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x29f): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2b2): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2c5): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2d8): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2eb): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2fe): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x311): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x33a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test9.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test9.o: in function `main':\ntest-getters.c:(.text.startup+0x69): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-getters.c:(.text.startup+0x93): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test10.o": "ion `main':\ntest-intersection.c:(.text.startup+0x98): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xaf): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xc6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xdb): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x10c): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x117): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x152): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test11.o": "1.o: in function `main':\ntest-iterator.c:(.text.startup+0x4b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x56): undefined reference to `inversion_list_iterator_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x64): undefined reference to `inversion_list_iterator_get'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x6e): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x7a): undefined reference to `inversion_list_iterator_next'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x85): undefined reference to `inversion_list_iterator_valid'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x99): undefined reference to `inversion_list_iterator_destroy'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x9e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test12.o": "ined reference to `inversion_list_create'\n/usr/bin/ld: test-member.c:(.text.startup+0x83): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xa1): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xb6): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xda): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xef): undefined reference to `inversion_list_member'\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o:test-member.c:(.text.startup+0x113): more undefined references to `inversion_list_member' follow\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o: in function `main':\ntest-member.c:(.text.startup+0x19e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test14.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test14.o: in function `main':\ntest-to-string.c:(.text.startup+0x67): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x72): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x92): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test15.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test15.o: in function `main':\ntest-union.c:(.text.startup+0x8f): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xa6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xbd): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xd2): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0xdd): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x107): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0x112): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x151): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2024-09-03_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2025-05-10:debug": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test1.o: in function `main':\ntest-clone.c:(.text.startup+0x6b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-clone.c:(.text.startup+0x76): undefined reference to `inversion_list_clone'\n/usr/bin/ld: test-clone.c:(.text.startup+0xde): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test2.o": "e to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x80): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x11d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x128): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x200): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x20b): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2e4): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2ef): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x35a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test3.o": "version_list_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x5f): undefined reference to `inversion_list_couple_iterator_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x7e): undefined reference to `inversion_list_couple_iterator_get_inf'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x96): undefined reference to `inversion_list_couple_iterator_get_sup'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xa2): undefined reference to `inversion_list_couple_iterator_next'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xad): undefined reference to `inversion_list_iterator_couple_valid'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc3): undefined reference to `inversion_list_iterator_couple_destroy'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc8): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test4.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test4.o: in function `main':\ntest-create-destroy-2.c:(.text.startup+0x60): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-2.c:(.text.startup+0xbc): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test5.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test5.o: in function `main':\ntest-create-destroy-3.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-3.c:(.text.startup+0xc4): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test6.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test6.o: in function `main':\ntest-create-destroy-4.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-4.c:(.text.startup+0x7c): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test7.o": "sion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0x8d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0xa2): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xad): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0xdb): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x110): undefined reference to `inversion_list_symmetric_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0x11b): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x15a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test8.o": " reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x29f): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2b2): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2c5): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2d8): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2eb): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2fe): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x311): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x33a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test9.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test9.o: in function `main':\ntest-getters.c:(.text.startup+0x69): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-getters.c:(.text.startup+0x93): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test10.o": "st10.o: in function `main':\ntest-intersection.c:(.text.startup+0x98): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xaf): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xc6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xdb): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x10c): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x117): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x152): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test11.o": "list/c_ref/test11.o: in function `main':\ntest-iterator.c:(.text.startup+0x4b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x56): undefined reference to `inversion_list_iterator_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x64): undefined reference to `inversion_list_iterator_get'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x6e): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x7a): undefined reference to `inversion_list_iterator_next'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x85): undefined reference to `inversion_list_iterator_valid'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x99): undefined reference to `inversion_list_iterator_destroy'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x9e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test12.o": "tup+0x76): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-member.c:(.text.startup+0x83): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xa1): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xb6): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xda): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xef): undefined reference to `inversion_list_member'\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o:test-member.c:(.text.startup+0x113): more undefined references to `inversion_list_member' follow\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o: in function `main':\ntest-member.c:(.text.startup+0x19e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test14.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test14.o: in function `main':\ntest-to-string.c:(.text.startup+0x67): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x72): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x92): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test15.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test15.o: in function `main':\ntest-union.c:(.text.startup+0x8f): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xa6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xbd): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xd2): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0xdd): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x107): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0x112): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x151): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_debug/target/debug/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    },
+    "unidiomatic:nightly-2025-05-10:release": {
+     "ok": true,
+     "link_fail": {
+      "test1.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test1.o: in function `main':\ntest-clone.c:(.text.startup+0x6b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-clone.c:(.text.startup+0x76): undefined reference to `inversion_list_clone'\n/usr/bin/ld: test-clone.c:(.text.startup+0xde): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test2.o": "list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x80): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x11d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x128): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x200): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x20b): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2e4): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-complement.c:(.text.startup+0x2ef): undefined reference to `inversion_list_complement'\n/usr/bin/ld: test-complement.c:(.text.startup+0x35a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test3.o": "ate'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x5f): undefined reference to `inversion_list_couple_iterator_create'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x7e): undefined reference to `inversion_list_couple_iterator_get_inf'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0x96): undefined reference to `inversion_list_couple_iterator_get_sup'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xa2): undefined reference to `inversion_list_couple_iterator_next'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xad): undefined reference to `inversion_list_iterator_couple_valid'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc3): undefined reference to `inversion_list_iterator_couple_destroy'\n/usr/bin/ld: test-couple-iterator.c:(.text.startup+0xc8): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test4.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test4.o: in function `main':\ntest-create-destroy-2.c:(.text.startup+0x60): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-2.c:(.text.startup+0xbc): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test5.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test5.o: in function `main':\ntest-create-destroy-3.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-3.c:(.text.startup+0xc4): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test6.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test6.o: in function `main':\ntest-create-destroy-4.c:(.text.startup+0x68): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-create-destroy-4.c:(.text.startup+0x7c): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test7.o": "'\n/usr/bin/ld: test-difference.c:(.text.startup+0x8d): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-difference.c:(.text.startup+0xa2): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xad): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0xdb): undefined reference to `inversion_list_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x110): undefined reference to `inversion_list_symmetric_difference'\n/usr/bin/ld: test-difference.c:(.text.startup+0x11b): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-difference.c:(.text.startup+0x15a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test8.o": "nversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x29f): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2b2): undefined reference to `inversion_list_greater'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2c5): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2d8): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2eb): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x2fe): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x311): undefined reference to `inversion_list_greater_equal'\n/usr/bin/ld: test-equals.c:(.text.startup+0x33a): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test9.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test9.o: in function `main':\ntest-getters.c:(.text.startup+0x69): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-getters.c:(.text.startup+0x93): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test10.o": "ion `main':\ntest-intersection.c:(.text.startup+0x98): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xaf): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xc6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xdb): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0xe6): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x10c): undefined reference to `inversion_list_intersection'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x117): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-intersection.c:(.text.startup+0x152): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test11.o": "1.o: in function `main':\ntest-iterator.c:(.text.startup+0x4b): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x56): undefined reference to `inversion_list_iterator_create'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x64): undefined reference to `inversion_list_iterator_get'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x6e): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x7a): undefined reference to `inversion_list_iterator_next'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x85): undefined reference to `inversion_list_iterator_valid'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x99): undefined reference to `inversion_list_iterator_destroy'\n/usr/bin/ld: test-iterator.c:(.text.startup+0x9e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test12.o": "ined reference to `inversion_list_create'\n/usr/bin/ld: test-member.c:(.text.startup+0x83): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xa1): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xb6): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xda): undefined reference to `inversion_list_member'\n/usr/bin/ld: test-member.c:(.text.startup+0xef): undefined reference to `inversion_list_member'\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o:test-member.c:(.text.startup+0x113): more undefined references to `inversion_list_member' follow\n/usr/bin/ld: /build/crust/inversion_list/c_ref/test12.o: in function `main':\ntest-member.c:(.text.startup+0x19e): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test14.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test14.o: in function `main':\ntest-to-string.c:(.text.startup+0x67): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x72): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-to-string.c:(.text.startup+0x92): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n",
+      "test15.o": "/usr/bin/ld: /build/crust/inversion_list/c_ref/test15.o: in function `main':\ntest-union.c:(.text.startup+0x8f): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xa6): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xbd): undefined reference to `inversion_list_create'\n/usr/bin/ld: test-union.c:(.text.startup+0xd2): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0xdd): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x107): undefined reference to `inversion_list_union'\n/usr/bin/ld: test-union.c:(.text.startup+0x112): undefined reference to `inversion_list_to_string'\n/usr/bin/ld: test-union.c:(.text.startup+0x151): undefined reference to `inversion_list_finish'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_buffer'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_size'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `_counter'\n/usr/bin/ld: /build/crust/inversion_list/crates/unidiomatic_nightly-2025-05-10_release/target/release/libbuild_attempt.so: undefined reference to `first'\ncollect2: error: ld returned 1 exit status\n"
+     }
+    }
+   },
+   "cases": [
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test1.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test2.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test3.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test4.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test5.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test6.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test7.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test8.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test9.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test10.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test11.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test12.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\n0: 0\n4: 0\n10: 0\n11: 0\n1: 1\n2: 1\n3: 1\n5: 1\n7: 1\n8: 1\n9: 1\n2: 1\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test13.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "agree": true,
+       "sactor_check_pass": true,
+       "exit": 0,
+       "timed_out": false
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "agree": true,
+       "sactor_check_pass": true,
+       "exit": 0,
+       "timed_out": false
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "agree": true,
+       "sactor_check_pass": true,
+       "exit": 0,
+       "timed_out": false
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "agree": true,
+       "sactor_check_pass": true,
+       "exit": 0,
+       "timed_out": false
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test14.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    },
+    {
+     "case": "own0",
+     "kind": "exit0",
+     "obj": "test15.o",
+     "args": [],
+     "c_exit": 0,
+     "c_timed_out": false,
+     "c_deterministic_plain": true,
+     "determinism_shim": false,
+     "c_deterministic": true,
+     "c_stdout_tail": "Inversion list initialised\nInversion list finished\n",
+     "c_stderr_tail": "",
+     "c_ub": [],
+     "san_output_differs_without_report": [],
+     "c_ub_excluding_null_plus_zero": [],
+     "rust": {
+      "unidiomatic:nightly-2024-09-03:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2024-09-03:release": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:debug": {
+       "missing": true
+      },
+      "unidiomatic:nightly-2025-05-10:release": {
+       "missing": true
+      }
+     }
+    }
+   ],
+   "elapsed_s": 14.0
+  }
+ },
+ "elapsed_s": 14.0
+}

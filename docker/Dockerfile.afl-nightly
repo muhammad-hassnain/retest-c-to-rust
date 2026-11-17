@@ -1,0 +1,12 @@
+# AFL++ fuzzing environment for C2SaferRust coreutils: its C2Rust-derived Rust needs the pinned
+# nightly-2022-08-08, so base on the coreutils image (which has it) and add AFL++.
+# Base: the local image crust-heldout, itself built FROM a digest-pinned ubuntu:22.04 (see its Dockerfile);
+# a local tag has no registry digest to pin, so build crust-heldout first (scripts/provision.sh images).
+# apt here uses the sources crust-heldout set up (the 2026-10-19 snapshot archive on amd64).
+FROM crust-heldout
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends afl++ \
+    && rm -rf /var/lib/apt/lists/* && which afl-cc afl-fuzz
+WORKDIR /work
+CMD ["bash"]

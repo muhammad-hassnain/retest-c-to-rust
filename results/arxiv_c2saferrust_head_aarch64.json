@@ -1,0 +1,5127 @@
+{
+ "_provenance": {
+  "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+  "git_dirty_code": true,
+  "generated_utc": "2026-11-17T00:30:59Z",
+  "arch": "arm64",
+  "os": "Darwin 25.6.0",
+  "in_container": false,
+  "image": null,
+  "step": null,
+  "python": "3.9.6",
+  "gcc": "Apple clang version 17.0.0 (clang-1700.6.3.2)",
+  "rustc": "rustc 1.98.0-nightly (beae78130 2026-06-09)",
+  "argv": [
+   "harness/arxiv_c2sr_head_platform.py",
+   "combine"
+  ]
+ },
+ "question": "Issue 11 / review A.12: the C2Rust starting tree C2SaferRust rewrites declares an aarch64 struct stat, so on x86-64 regular files take head's pipe path. Which counted head defects depend on that routing (inherited) and which are introduced by the rewrite?",
+ "script": "harness/arxiv_c2sr_head_platform.py (run per platform; `patch char` / `patch stat-x86` on a private copy; `combine` writes this file)",
+ "runs_explained": {
+  "aarch64_asshipped": "aarch64, shipped trees unchanged (rust_WIP does not compile; C and C2Rust baseline only)",
+  "aarch64_charport": "aarch64, rust_WIP with the `char` type-only port (i8 -> libc::c_char), C2Rust baseline unchanged",
+  "x86_64_asshipped": "x86-64 (the shipped platform), shipped trees unchanged: reproduces the shipped numbers",
+  "x86_64_statx86": "x86-64, struct stat in rust/ and rust_WIP/ head.rs replaced by the x86-64 layout, nothing else"
+ },
+ "runs": {
+  "aarch64_asshipped": {
+   "_provenance": {
+    "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+    "git_dirty_code": true,
+    "generated_utc": "2026-11-17T00:27:54Z",
+    "arch": "aarch64",
+    "os": "Linux 6.10.14-linuxkit",
+    "in_container": true,
+    "image": "crust-heldout-arxiv-arm64",
+    "step": null,
+    "python": "3.10.12",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "argv": [
+     "harness/arxiv_c2sr_head_platform.py",
+     "run"
+    ]
+   },
+   "host": "Mac (Apple silicon), Docker Desktop linux/arm64 VM, --cpus=3",
+   "image": "crust-heldout-arxiv-arm64 (docker/Dockerfile built locally for arm64) sha256:b8c899006532bb590237ebd616da402c296f41fed46badbb1ace291c1ed9d41e",
+   "arch": "aarch64",
+   "date": "2026-11-17T00:27:54.072683+00:00",
+   "patches_applied": [],
+   "toolchains": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+   },
+   "rust_WIP_build_ok": false,
+   "rust_WIP_build_errors": {
+    "errors": 22,
+    "error_kinds": [
+     "error",
+     "error[E0308]"
+    ],
+    "error_locations": [
+     "--> src/quotearg.rs:509:53",
+     "--> src/quotearg.rs:513:53",
+     "--> src/quotearg.rs:517:53",
+     "--> src/quotearg.rs:523:49",
+     "--> src/quotearg.rs:528:35",
+     "--> src/quotearg.rs:528:114",
+     "--> src/quotearg.rs:531:53",
+     "--> src/quotearg.rs:535:53",
+     "--> src/quotearg.rs:770:37",
+     "--> src/quotearg.rs:776:37",
+     "--> src/quotearg.rs:782:37",
+     "--> src/quotearg.rs:885:50",
+     "--> src/quotearg.rs:889:50",
+     "--> src/quotearg.rs:893:50",
+     "--> src/quotearg.rs:899:46",
+     "--> src/quotearg.rs:903:46",
+     "--> src/quotearg.rs:907:46",
+     "--> src/quotearg.rs:913:46",
+     "--> src/quotearg.rs:923:46",
+     "--> src/quotearg.rs:927:46",
+     "--> src/quotearg.rs:933:42",
+     "--> src/quotearg.rs:1513:93"
+    ],
+    "expected_found": [
+     "`i8`, found `u8`",
+     "`u8`, found `i8`"
+    ],
+    "summary_line": "error: could not compile `rust` due to 22 previous errors; 20 warnings emitted"
+   }
+  },
+  "aarch64_charport": {
+   "_provenance": {
+    "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+    "git_dirty_code": true,
+    "generated_utc": "2026-11-17T00:24:24Z",
+    "arch": "aarch64",
+    "os": "Linux 6.10.14-linuxkit",
+    "in_container": true,
+    "image": "crust-heldout-arxiv-arm64",
+    "step": null,
+    "python": "3.10.12",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "argv": [
+     "harness/arxiv_c2sr_head_platform.py",
+     "run"
+    ]
+   },
+   "host": "Mac (Apple silicon), Docker Desktop linux/arm64 VM, --cpus=3",
+   "image": "crust-heldout-arxiv-arm64 (docker/Dockerfile built locally for arm64) sha256:b8c899006532bb590237ebd616da402c296f41fed46badbb1ace291c1ed9d41e",
+   "arch": "aarch64",
+   "date": "2026-11-17T00:24:24.741525+00:00",
+   "patches_applied": [
+    {
+     "patch": "char",
+     "doc": "Diagnostic patches, applied ONLY to a private copy (C2SR_ROOT), never to artifacts/c2saferrust. char rust_WIP/src/{quotearg,head}.rs: `as i8` / `as *const i8` / `[i8; 8192]` -> libc::c_char (the rewrite hardcodes x86-64's signed c_char; on aarch64 c_char is u8 and the tree does not compile). Bit patterns are unchanged; the edited values are only stored, passed or compared for equality. stat-x86 rust/src/head.rs and rust_WIP/src/head.rs: the declared struct stat (aarch64/generic layout, 128 bytes) replaced by the x86-64 glibc layout (144 bytes), keeping the field names and the field types the code uses (st_blksize as the low half, a 32-bit pad as the high half), and the two struct literals' `__glibc_reserved: [0; 2]` -> `[0; 6]`. Nothing else changes.",
+     "changes": [
+      {
+       "file": "coreutils/src/head/rust_WIP/src/quotearg.rs",
+       "replacements": 22,
+       "edit": "' as i8' -> ' as libc::c_char'"
+      },
+      {
+       "file": "coreutils/src/head/rust_WIP/src/head.rs",
+       "replacements": 2,
+       "edit": "' as *const i8' -> ' as *const libc::c_char'"
+      },
+      {
+       "file": "coreutils/src/head/rust_WIP/src/head.rs",
+       "replacements": 1,
+       "edit": "'[i8; 8192]' -> '[libc::c_char; 8192]'"
+      },
+      {
+       "file": "coreutils/src/head/rust_WIP/src/head.rs",
+       "replacements": 1,
+       "edit": "' as i8' -> ' as libc::c_char'"
+      }
+     ]
+    }
+   ],
+   "toolchains": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+   },
+   "rust_WIP_build_ok": true,
+   "rust_WIP_build_errors": null
+  },
+  "x86_64_asshipped": {
+   "_provenance": {
+    "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+    "git_dirty_code": null,
+    "generated_utc": "2026-11-17T00:23:29Z",
+    "arch": "x86_64",
+    "os": "Linux 7.0.0-38-generic",
+    "in_container": true,
+    "image": "crust-heldout",
+    "step": null,
+    "python": "3.10.12",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "argv": [
+     "harness/arxiv_c2sr_head_platform.py",
+     "run"
+    ]
+   },
+   "host": "Linux x86_64 box (20 cores), Docker --cpus=2",
+   "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+   "arch": "x86_64",
+   "date": "2026-11-17T00:23:29.563314+00:00",
+   "patches_applied": [],
+   "toolchains": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+   },
+   "rust_WIP_build_ok": true,
+   "rust_WIP_build_errors": null
+  },
+  "x86_64_statx86": {
+   "_provenance": {
+    "git_commit": "40bc85c3b0d8f01e278c3c2e5b4a442b57cc1513",
+    "git_dirty_code": null,
+    "generated_utc": "2026-11-17T00:25:53Z",
+    "arch": "x86_64",
+    "os": "Linux 7.0.0-38-generic",
+    "in_container": true,
+    "image": "crust-heldout",
+    "step": null,
+    "python": "3.10.12",
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "argv": [
+     "harness/arxiv_c2sr_head_platform.py",
+     "run"
+    ]
+   },
+   "host": "Linux x86_64 box (20 cores), Docker --cpus=2",
+   "image": "crust-heldout:latest sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+   "arch": "x86_64",
+   "date": "2026-11-17T00:25:53.119735+00:00",
+   "patches_applied": [
+    {
+     "patch": "stat-x86",
+     "doc": "Diagnostic patches, applied ONLY to a private copy (C2SR_ROOT), never to artifacts/c2saferrust. char rust_WIP/src/{quotearg,head}.rs: `as i8` / `as *const i8` / `[i8; 8192]` -> libc::c_char (the rewrite hardcodes x86-64's signed c_char; on aarch64 c_char is u8 and the tree does not compile). Bit patterns are unchanged; the edited values are only stored, passed or compared for equality. stat-x86 rust/src/head.rs and rust_WIP/src/head.rs: the declared struct stat (aarch64/generic layout, 128 bytes) replaced by the x86-64 glibc layout (144 bytes), keeping the field names and the field types the code uses (st_blksize as the low half, a 32-bit pad as the high half), and the two struct literals' `__glibc_reserved: [0; 2]` -> `[0; 6]`. Nothing else changes.",
+     "changes": [
+      {
+       "file": "coreutils/src/head/rust/src/head.rs",
+       "struct_replaced": 1,
+       "literals_edited": 2,
+       "new_struct": "pub struct stat {\n    pub st_dev: __dev_t,\n    pub st_ino: __ino_t,\n    pub st_nlink: libc::c_ulong,\n    pub st_mode: __mode_t,\n    pub st_uid: __uid_t,\n    pub st_gid: __gid_t,\n    pub __pad2: libc::c_int,\n    pub st_rdev: __dev_t,\n    pub st_size: __off_t,\n    pub st_blksize: __blksize_t,\n    pub __pad1: libc::c_int,\n    pub st_blocks: __blkcnt_t,\n    pub st_atim: timespec,\n    pub st_mtim: timespec,\n    pub st_ctim: timespec,\n    pub __glibc_reserved: [libc::c_int; 6],\n}"
+      },
+      {
+       "file": "coreutils/src/head/rust_WIP/src/head.rs",
+       "struct_replaced": 1,
+       "literals_edited": 2,
+       "new_struct": "pub struct stat {\n    pub st_dev: __dev_t,\n    pub st_ino: __ino_t,\n    pub st_nlink: libc::c_ulong,\n    pub st_mode: __mode_t,\n    pub st_uid: __uid_t,\n    pub st_gid: __gid_t,\n    pub __pad2: libc::c_int,\n    pub st_rdev: __dev_t,\n    pub st_size: __off_t,\n    pub st_blksize: __blksize_t,\n    pub __pad1: libc::c_int,\n    pub st_blocks: __blkcnt_t,\n    pub st_atim: timespec,\n    pub st_mtim: timespec,\n    pub st_ctim: timespec,\n    pub __glibc_reserved: [libc::c_int; 6],\n}"
+      }
+     ]
+    }
+   ],
+   "toolchains": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "rustc": "rustc 1.65.0-nightly (d394408fb 2022-08-07)",
+    "cargo": "cargo 1.65.0-nightly (4fd148c47 2022-08-03)"
+   },
+   "rust_WIP_build_ok": true,
+   "rust_WIP_build_errors": null
+  }
+ },
+ "routing_claim": {
+  "verdict": "Confirmed. The struct stat that the C2Rust tree declares (rust/src/head.rs:186-203, with __nlink_t = c_uint and __blksize_t = c_int at :122-131) is the aarch64 glibc layout: on aarch64 the probe finds the same size (128) and offsets as glibc. On x86-64, glibc's struct stat is 144 bytes with st_nlink (8 bytes) at offset 16 and st_mode at 24, so after fstat() the Rust field st_mode (offset 16) reads st_nlink (1 for a regular file; probe: rust_field_st_mode_octal 1), usable_st_size() (rust/src/head.rs:246-252) is false, head() leaves current_pos at -1 (rust/src/head.rs:1965-1979) and elide_tail_lines_file() sends the file to elide_tail_lines_pipe() (rust/src/head.rs:1690-1704). strace on x86-64: neither rust/ nor rust_WIP/ makes any lseek() on a regular-file stdin for `head -n -1` (the C does lseek(0,0,SEEK_CUR) and seeks back); on aarch64, and on x86-64 with the struct replaced by the x86-64 layout, both make the same lseek() calls as the C. fstat() also writes 144 bytes into the 128-byte struct on x86-64 (16 bytes past it on the stack). C2SaferRust's output keeps the same struct, fstat declaration, usable_st_size and routing (rust_WIP/src/head.rs:213-230, 65, 273-279, 1612-1626, 1367-1381), so the routing is inherited from the C2Rust tree, not introduced by the rewrite.",
+  "code_path": [
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:122-131 (C2Rust type aliases: __nlink_t = c_uint, __blksize_t = c_int, the aarch64/asm-generic sizes; x86-64 glibc has 64-bit nlink_t and blksize_t)",
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:186-203 (struct stat: st_mode at offset 16, size 128; x86-64 glibc: st_nlink at 16, st_mode at 24, size 144)",
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:38 (extern fstat(fd, *mut stat) into that struct)",
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:246-252 (usable_st_size tests st_mode & S_IFMT == S_IFREG)",
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:1920 and 1965-1979 (head(): fstat; only if usable_st_size is current_pos set by elseek(fd, 0, SEEK_CUR); else it stays -1)",
+   "artifacts/c2saferrust/coreutils/src/head/rust/src/head.rs:1682-1707 (elide_tail_lines_file: current_pos < 0 -> elide_tail_lines_pipe)",
+   "artifacts/c2saferrust/coreutils/src/head/rust_WIP/src/head.rs:213-230, 65, 273-279, 1567, 1612-1626, 1359-1385 (the same struct, fstat, usable_st_size and routing, carried into C2SaferRust's output)",
+   "artifacts/c2saferrust/coreutils/src/head/c/head.c:837-866 (head(): fstat, usable_st_size at :853, elseek) and :755-760 (elide_tail_lines_file: presume_input_pipe || current_pos < 0 || size <= ST_BLKSIZE -> pipe path)"
+  ],
+  "layout_probe": {
+   "aarch64_asshipped": {
+    "structs": {
+     "glibc_sizeof_stat": 128,
+     "glibc_offsetof_st_mode": 16,
+     "glibc_offsetof_st_nlink": 20,
+     "glibc_sizeof_st_nlink": 4,
+     "glibc_offsetof_st_size": 48,
+     "glibc_offsetof_st_blksize": 56,
+     "rust_sizeof_stat": 128,
+     "rust_offsetof_st_mode": 16,
+     "rust_offsetof_st_nlink": 20,
+     "rust_offsetof_st_size": 48,
+     "rust_offsetof_st_blksize": 56
+    },
+    "fstat_reads": [
+     {
+      "input": "regular file",
+      "glibc_st_mode_octal": "100644",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 6,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "100644",
+      "rust_field_st_size": 6,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": true,
+      "bytes_written_by_fstat_at_least": 128
+     },
+     {
+      "input": "pipe",
+      "glibc_st_mode_octal": "10600",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 0,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "10600",
+      "rust_field_st_size": 0,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 128
+     },
+     {
+      "input": "directory",
+      "glibc_st_mode_octal": "40755",
+      "glibc_st_nlink": 2,
+      "glibc_st_size": 4096,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "40755",
+      "rust_field_st_size": 4096,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 128
+     }
+    ],
+    "strace_fd0": {
+     "oracle head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "oracle head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "rust head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ]
+    }
+   },
+   "aarch64_charport": {
+    "structs": {
+     "glibc_sizeof_stat": 128,
+     "glibc_offsetof_st_mode": 16,
+     "glibc_offsetof_st_nlink": 20,
+     "glibc_sizeof_st_nlink": 4,
+     "glibc_offsetof_st_size": 48,
+     "glibc_offsetof_st_blksize": 56,
+     "rust_sizeof_stat": 128,
+     "rust_offsetof_st_mode": 16,
+     "rust_offsetof_st_nlink": 20,
+     "rust_offsetof_st_size": 48,
+     "rust_offsetof_st_blksize": 56
+    },
+    "fstat_reads": [
+     {
+      "input": "regular file",
+      "glibc_st_mode_octal": "100644",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 6,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "100644",
+      "rust_field_st_size": 6,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": true,
+      "bytes_written_by_fstat_at_least": 128
+     },
+     {
+      "input": "pipe",
+      "glibc_st_mode_octal": "10600",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 0,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "10600",
+      "rust_field_st_size": 0,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 128
+     },
+     {
+      "input": "directory",
+      "glibc_st_mode_octal": "40755",
+      "glibc_st_nlink": 2,
+      "glibc_st_size": 4096,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "40755",
+      "rust_field_st_size": 4096,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 128
+     }
+    ],
+    "strace_fd0": {
+     "oracle head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "oracle head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "rust head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust_WIP head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 2, SEEK_SET)                   = 2"
+     ],
+     "rust_WIP head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ]
+    }
+   },
+   "x86_64_asshipped": {
+    "structs": {
+     "glibc_sizeof_stat": 144,
+     "glibc_offsetof_st_mode": 24,
+     "glibc_offsetof_st_nlink": 16,
+     "glibc_sizeof_st_nlink": 8,
+     "glibc_offsetof_st_size": 48,
+     "glibc_offsetof_st_blksize": 56,
+     "rust_sizeof_stat": 128,
+     "rust_offsetof_st_mode": 16,
+     "rust_offsetof_st_nlink": 20,
+     "rust_offsetof_st_size": 48,
+     "rust_offsetof_st_blksize": 56
+    },
+    "fstat_reads": [
+     {
+      "input": "regular file",
+      "glibc_st_mode_octal": "100644",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 6,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "1",
+      "rust_field_st_size": 6,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     },
+     {
+      "input": "pipe",
+      "glibc_st_mode_octal": "10600",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 0,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "1",
+      "rust_field_st_size": 0,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     },
+     {
+      "input": "directory",
+      "glibc_st_mode_octal": "40755",
+      "glibc_st_nlink": 2,
+      "glibc_st_size": 4096,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "2",
+      "rust_field_st_size": 4096,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     }
+    ],
+    "strace_fd0": {
+     "oracle head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "oracle head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0"
+     ],
+     "rust head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0"
+     ],
+     "rust_WIP head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0"
+     ],
+     "rust_WIP head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0"
+     ]
+    }
+   },
+   "x86_64_statx86": {
+    "structs": {
+     "glibc_sizeof_stat": 144,
+     "glibc_offsetof_st_mode": 24,
+     "glibc_offsetof_st_nlink": 16,
+     "glibc_sizeof_st_nlink": 8,
+     "glibc_offsetof_st_size": 48,
+     "glibc_offsetof_st_blksize": 56,
+     "rust_sizeof_stat": 128,
+     "rust_offsetof_st_mode": 16,
+     "rust_offsetof_st_nlink": 20,
+     "rust_offsetof_st_size": 48,
+     "rust_offsetof_st_blksize": 56
+    },
+    "fstat_reads": [
+     {
+      "input": "regular file",
+      "glibc_st_mode_octal": "100644",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 6,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "1",
+      "rust_field_st_size": 6,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     },
+     {
+      "input": "pipe",
+      "glibc_st_mode_octal": "10600",
+      "glibc_st_nlink": 1,
+      "glibc_st_size": 0,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "1",
+      "rust_field_st_size": 0,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     },
+     {
+      "input": "directory",
+      "glibc_st_mode_octal": "40755",
+      "glibc_st_nlink": 2,
+      "glibc_st_size": 4096,
+      "glibc_st_blksize": 4096,
+      "rust_field_st_mode_octal": "2",
+      "rust_field_st_size": 4096,
+      "rust_field_st_blksize": 4096,
+      "rust_usable_st_size": false,
+      "bytes_written_by_fstat_at_least": 144
+     }
+    ],
+    "strace_fd0": {
+     "oracle head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "oracle head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 4, SEEK_SET)                   = 4"
+     ],
+     "rust head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ],
+     "rust_WIP head -n -1 < reg": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=6, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 2, SEEK_SET)                   = 2"
+     ],
+     "rust_WIP head -n -1 < seq": [
+      "newfstatat(0, \"\", {st_mode=S_IFREG|0644, st_size=408894, ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 0, SEEK_CUR)                   = 0",
+      "lseek(0, 401408, SEEK_SET)              = 401408",
+      "lseek(0, 0, SEEK_SET)                   = 0",
+      "newfstatat(1, \"\", {st_mode=S_IFCHR|0666, st_rdev=makedev(0x1, 0x3), ...}, AT_EMPTY_PATH) = 0",
+      "lseek(0, 408888, SEEK_SET)              = 408888"
+     ]
+    }
+   }
+  }
+ },
+ "grid": {
+  "aarch64_asshipped": {
+   "rust": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 0,
+     "file_tree_divergences": 0,
+     "agree": 1404,
+     "held_out_pass_rate": 1.0,
+     "stderr_divergences": 676,
+     "stderr_only_divergences": 676,
+     "any_divergences": 676,
+     "any_agree_rate": 0.5185185185185185
+    },
+    "mismatch_by_defect": {}
+   }
+  },
+  "aarch64_charport": {
+   "rust_WIP": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 561,
+     "file_tree_divergences": 0,
+     "agree": 843,
+     "held_out_pass_rate": 0.6004273504273504,
+     "stderr_divergences": 694,
+     "stderr_only_divergences": 375,
+     "any_divergences": 936,
+     "any_agree_rate": 0.3333333333333333
+    },
+    "mismatch_by_defect": {
+     "C2SR-head-2": {
+      "cases": 169,
+      "kinds": {
+       "S1": 169
+      },
+      "rule_holds": 169,
+      "by_flags_and_input_source": {
+       "head  [is-a-directory]": 13,
+       "head -n 1 [is-a-directory]": 13,
+       "head -n 2 [is-a-directory]": 13,
+       "head -n 3 [is-a-directory]": 13,
+       "head -n 7 [is-a-directory]": 13,
+       "head -n -1 [is-a-directory]": 13,
+       "head -n -2 [is-a-directory]": 13,
+       "head -n 1000000 [is-a-directory]": 13,
+       "head -c 1 [is-a-directory]": 13,
+       "head -c 5 [is-a-directory]": 13,
+       "head -c -3 [is-a-directory]": 13,
+       "head -c +4 [is-a-directory]": 13,
+       "head -c 100 [is-a-directory]": 13
+      }
+     },
+     "C2SR-head-1": {
+      "cases": 109,
+      "kinds": {
+       "S1": 109
+      },
+      "rule_holds": 108,
+      "by_flags_and_input_source": {
+       "head  [two-files]": 12,
+       "head -n 1 [two-files]": 12,
+       "head -n 2 [two-files]": 12,
+       "head -n 3 [two-files]": 12,
+       "head -n 7 [two-files]": 12,
+       "head -n -1 [two-files]": 13,
+       "head -n -2 [two-files]": 13,
+       "head -n 1000000 [two-files]": 12,
+       "head -c -3 [two-files]": 11
+      }
+     },
+     "C2SR-head-4": {
+      "cases": 234,
+      "kinds": {
+       "crash-segv": 234
+      },
+      "rule_holds": 234,
+      "by_flags_and_input_source": {
+       "head -q [stdin]": 13,
+       "head -q [file]": 13,
+       "head -q [missing-file]": 13,
+       "head -q [is-a-directory]": 13,
+       "head -q [two-files]": 13,
+       "head -q [ok+missing]": 13,
+       "head -z [stdin]": 13,
+       "head -z [file]": 13,
+       "head -z [missing-file]": 13,
+       "head -z [is-a-directory]": 13,
+       "head -z [two-files]": 13,
+       "head -z [ok+missing]": 13,
+       "head -q -z [stdin]": 13,
+       "head -q -z [file]": 13,
+       "head -q -z [missing-file]": 13,
+       "head -q -z [is-a-directory]": 13,
+       "head -q -z [two-files]": 13,
+       "head -q -z [ok+missing]": 13
+      }
+     },
+     "C2SR-head-3": {
+      "cases": 18,
+      "kinds": {
+       "crash-panic": 18
+      },
+      "rule_holds": 18,
+      "by_flags_and_input_source": {
+       "head -n -1 [stdin]": 10,
+       "head -n -2 [stdin]": 8
+      }
+     },
+     "unassigned:S1:file": {
+      "cases": 16,
+      "kinds": {
+       "S1": 16
+      },
+      "rule_holds": 0,
+      "by_flags_and_input_source": {
+       "head -n -1 [file]": 9,
+       "head -n -2 [file]": 7
+      }
+     },
+     "unassigned:S1:ok+missing": {
+      "cases": 15,
+      "kinds": {
+       "S1": 15
+      },
+      "rule_holds": 0,
+      "by_flags_and_input_source": {
+       "head -n -1 [ok+missing]": 8,
+       "head -n -2 [ok+missing]": 7
+      }
+     }
+    }
+   },
+   "rust": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 0,
+     "file_tree_divergences": 0,
+     "agree": 1404,
+     "held_out_pass_rate": 1.0,
+     "stderr_divergences": 676,
+     "stderr_only_divergences": 676,
+     "any_divergences": 676,
+     "any_agree_rate": 0.5185185185185185
+    },
+    "mismatch_by_defect": {}
+   }
+  },
+  "x86_64_asshipped": {
+   "rust_WIP": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 566,
+     "file_tree_divergences": 0,
+     "agree": 838,
+     "held_out_pass_rate": 0.5968660968660968,
+     "stderr_divergences": 738,
+     "stderr_only_divergences": 372,
+     "any_divergences": 938,
+     "any_agree_rate": 0.3319088319088319
+    },
+    "mismatch_by_defect": {
+     "C2SR-head-2": {
+      "cases": 169,
+      "kinds": {
+       "S1": 169
+      },
+      "rule_holds": 169,
+      "by_flags_and_input_source": {
+       "head  [is-a-directory]": 13,
+       "head -n 1 [is-a-directory]": 13,
+       "head -n 2 [is-a-directory]": 13,
+       "head -n 3 [is-a-directory]": 13,
+       "head -n 7 [is-a-directory]": 13,
+       "head -n -1 [is-a-directory]": 13,
+       "head -n -2 [is-a-directory]": 13,
+       "head -n 1000000 [is-a-directory]": 13,
+       "head -c 1 [is-a-directory]": 13,
+       "head -c 5 [is-a-directory]": 13,
+       "head -c -3 [is-a-directory]": 13,
+       "head -c +4 [is-a-directory]": 13,
+       "head -c 100 [is-a-directory]": 13
+      }
+     },
+     "C2SR-head-1": {
+      "cases": 83,
+      "kinds": {
+       "S1": 83
+      },
+      "rule_holds": 83,
+      "by_flags_and_input_source": {
+       "head  [two-files]": 12,
+       "head -n 1 [two-files]": 12,
+       "head -n 2 [two-files]": 12,
+       "head -n 3 [two-files]": 12,
+       "head -n 7 [two-files]": 12,
+       "head -n 1000000 [two-files]": 12,
+       "head -c -3 [two-files]": 11
+      }
+     },
+     "C2SR-head-4": {
+      "cases": 234,
+      "kinds": {
+       "crash-segv": 234
+      },
+      "rule_holds": 234,
+      "by_flags_and_input_source": {
+       "head -q [stdin]": 13,
+       "head -q [file]": 13,
+       "head -q [missing-file]": 13,
+       "head -q [is-a-directory]": 13,
+       "head -q [two-files]": 13,
+       "head -q [ok+missing]": 13,
+       "head -z [stdin]": 13,
+       "head -z [file]": 13,
+       "head -z [missing-file]": 13,
+       "head -z [is-a-directory]": 13,
+       "head -z [two-files]": 13,
+       "head -z [ok+missing]": 13,
+       "head -q -z [stdin]": 13,
+       "head -q -z [file]": 13,
+       "head -q -z [missing-file]": 13,
+       "head -q -z [is-a-directory]": 13,
+       "head -q -z [two-files]": 13,
+       "head -q -z [ok+missing]": 13
+      }
+     },
+     "C2SR-head-3": {
+      "cases": 80,
+      "kinds": {
+       "crash-panic": 80
+      },
+      "rule_holds": 80,
+      "by_flags_and_input_source": {
+       "head -n -1 [two-files]": 13,
+       "head -n -1 [stdin]": 10,
+       "head -n -1 [file]": 10,
+       "head -n -1 [ok+missing]": 10,
+       "head -n -2 [two-files]": 13,
+       "head -n -2 [stdin]": 8,
+       "head -n -2 [file]": 8,
+       "head -n -2 [ok+missing]": 8
+      }
+     }
+    }
+   },
+   "rust": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 0,
+     "file_tree_divergences": 0,
+     "agree": 1404,
+     "held_out_pass_rate": 1.0,
+     "stderr_divergences": 676,
+     "stderr_only_divergences": 676,
+     "any_divergences": 676,
+     "any_agree_rate": 0.5185185185185185
+    },
+    "mismatch_by_defect": {}
+   }
+  },
+  "x86_64_statx86": {
+   "rust_WIP": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 561,
+     "file_tree_divergences": 0,
+     "agree": 843,
+     "held_out_pass_rate": 0.6004273504273504,
+     "stderr_divergences": 694,
+     "stderr_only_divergences": 375,
+     "any_divergences": 936,
+     "any_agree_rate": 0.3333333333333333
+    },
+    "mismatch_by_defect": {
+     "C2SR-head-2": {
+      "cases": 169,
+      "kinds": {
+       "S1": 169
+      },
+      "rule_holds": 169,
+      "by_flags_and_input_source": {
+       "head  [is-a-directory]": 13,
+       "head -n 1 [is-a-directory]": 13,
+       "head -n 2 [is-a-directory]": 13,
+       "head -n 3 [is-a-directory]": 13,
+       "head -n 7 [is-a-directory]": 13,
+       "head -n -1 [is-a-directory]": 13,
+       "head -n -2 [is-a-directory]": 13,
+       "head -n 1000000 [is-a-directory]": 13,
+       "head -c 1 [is-a-directory]": 13,
+       "head -c 5 [is-a-directory]": 13,
+       "head -c -3 [is-a-directory]": 13,
+       "head -c +4 [is-a-directory]": 13,
+       "head -c 100 [is-a-directory]": 13
+      }
+     },
+     "C2SR-head-1": {
+      "cases": 109,
+      "kinds": {
+       "S1": 109
+      },
+      "rule_holds": 108,
+      "by_flags_and_input_source": {
+       "head  [two-files]": 12,
+       "head -n 1 [two-files]": 12,
+       "head -n 2 [two-files]": 12,
+       "head -n 3 [two-files]": 12,
+       "head -n 7 [two-files]": 12,
+       "head -n -1 [two-files]": 13,
+       "head -n -2 [two-files]": 13,
+       "head -n 1000000 [two-files]": 12,
+       "head -c -3 [two-files]": 11
+      }
+     },
+     "C2SR-head-4": {
+      "cases": 234,
+      "kinds": {
+       "crash-segv": 234
+      },
+      "rule_holds": 234,
+      "by_flags_and_input_source": {
+       "head -q [stdin]": 13,
+       "head -q [file]": 13,
+       "head -q [missing-file]": 13,
+       "head -q [is-a-directory]": 13,
+       "head -q [two-files]": 13,
+       "head -q [ok+missing]": 13,
+       "head -z [stdin]": 13,
+       "head -z [file]": 13,
+       "head -z [missing-file]": 13,
+       "head -z [is-a-directory]": 13,
+       "head -z [two-files]": 13,
+       "head -z [ok+missing]": 13,
+       "head -q -z [stdin]": 13,
+       "head -q -z [file]": 13,
+       "head -q -z [missing-file]": 13,
+       "head -q -z [is-a-directory]": 13,
+       "head -q -z [two-files]": 13,
+       "head -q -z [ok+missing]": 13
+      }
+     },
+     "C2SR-head-3": {
+      "cases": 18,
+      "kinds": {
+       "crash-panic": 18
+      },
+      "rule_holds": 18,
+      "by_flags_and_input_source": {
+       "head -n -1 [stdin]": 10,
+       "head -n -2 [stdin]": 8
+      }
+     },
+     "unassigned:S1:file": {
+      "cases": 16,
+      "kinds": {
+       "S1": 16
+      },
+      "rule_holds": 0,
+      "by_flags_and_input_source": {
+       "head -n -1 [file]": 9,
+       "head -n -2 [file]": 7
+      }
+     },
+     "unassigned:S1:ok+missing": {
+      "cases": 15,
+      "kinds": {
+       "S1": 15
+      },
+      "rule_holds": 0,
+      "by_flags_and_input_source": {
+       "head -n -1 [ok+missing]": 8,
+       "head -n -2 [ok+missing]": 7
+      }
+     }
+    }
+   },
+   "rust": {
+    "summary": {
+     "util": "head",
+     "n_cases": 1404,
+     "assessable": 1404,
+     "not_assessable": 0,
+     "mismatches": 0,
+     "file_tree_divergences": 0,
+     "agree": 1404,
+     "held_out_pass_rate": 1.0,
+     "stderr_divergences": 676,
+     "stderr_only_divergences": 676,
+     "any_divergences": 676,
+     "any_agree_rate": 0.5185185185185185
+    },
+    "mismatch_by_defect": {}
+   }
+  }
+ },
+ "grid_rust_WIP_vs_shipped_x86_ub_clean": {
+  "aarch64_charport": {
+   "C2SR-head-1": {
+    "shipped_x86_ub_clean_cases": 83,
+    "here_cases": 109,
+    "in_both": 83,
+    "only_shipped": 0,
+    "only_here": 26,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00706",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 41,
+        "sut_stdout_len": 35,
+        "first_diff_byte": 35,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00712",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 69,
+        "sut_stdout_len": 40,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c7068610a626574610a0a67616d6d610a2020737061636564200a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a616c7068616f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00718",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 49,
+        "sut_stdout_len": 37,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e650a74776f0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00724",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 83,
+        "sut_stdout_len": 36,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a006f6e"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 26
+   },
+   "C2SR-head-2": {
+    "shipped_x86_ub_clean_cases": 169,
+    "here_cases": 169,
+    "in_both": 169,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-3": {
+    "shipped_x86_ub_clean_cases": 80,
+    "here_cases": 18,
+    "in_both": 18,
+    "only_shipped": 62,
+    "only_here": 0,
+    "only_shipped_now_agree": 5,
+    "only_shipped_now_other_defect": [
+     "C2SR-head-1",
+     "unassigned:S1:file",
+     "unassigned:S1:ok+missing"
+    ],
+    "only_shipped_examples": [
+     {
+      "id": "head-00706",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files"
+     },
+     {
+      "id": "head-00709",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file"
+     },
+     {
+      "id": "head-00712",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files"
+     },
+     {
+      "id": "head-00713",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing"
+     }
+    ],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-4": {
+    "shipped_x86_ub_clean_cases": 234,
+    "here_cases": 234,
+    "in_both": 234,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "unassigned:S1:file": {
+    "shipped_x86_ub_clean_cases": 0,
+    "here_cases": 16,
+    "in_both": 0,
+    "only_shipped": 0,
+    "only_here": 16,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00709",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 28,
+        "sut_stdout_len": 5,
+        "first_diff_byte": 5,
+        "oracle_stdout_head": "616c7068610a626574610a0a67616d6d610a2020737061636564200a",
+        "sut_stdout_head": "616c706861"
+       }
+      }
+     },
+     {
+      "id": "head-00715",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 8,
+        "sut_stdout_len": 2,
+        "first_diff_byte": 2,
+        "oracle_stdout_head": "6f6e650a74776f0a",
+        "sut_stdout_head": "6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00721",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 42,
+        "sut_stdout_len": 1,
+        "first_diff_byte": 1,
+        "oracle_stdout_head": "00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a",
+        "sut_stdout_head": "00"
+       }
+      }
+     },
+     {
+      "id": "head-00727",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 40,
+        "sut_stdout_len": 4,
+        "first_diff_byte": 4,
+        "oracle_stdout_head": "636166c3a90a4d6f73636f77d09cd0bed181d0bad0b2d0b00ae697a5e69cace8aa9e0af09f98800a",
+        "sut_stdout_head": "636166c3"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 16
+   },
+   "unassigned:S1:ok+missing": {
+    "shipped_x86_ub_clean_cases": 0,
+    "here_cases": 15,
+    "in_both": 0,
+    "only_shipped": 0,
+    "only_here": 15,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00713",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 44,
+        "sut_stdout_len": 21,
+        "first_diff_byte": 21,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c7068610a626574610a0a67616d6d610a2020737061636564200a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c706861"
+       }
+      }
+     },
+     {
+      "id": "head-00719",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 24,
+        "sut_stdout_len": 18,
+        "first_diff_byte": 18,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00725",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 58,
+        "sut_stdout_len": 17,
+        "first_diff_byte": 17,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00"
+       }
+      }
+     },
+     {
+      "id": "head-00731",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 56,
+        "sut_stdout_len": 20,
+        "first_diff_byte": 20,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a636166c3a90a4d6f73636f77d09cd0bed181d0bad0b2d0b00ae697a5e69cace8aa9e0af09f98800a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a636166c3"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 15
+   }
+  },
+  "x86_64_asshipped": {
+   "C2SR-head-1": {
+    "shipped_x86_ub_clean_cases": 83,
+    "here_cases": 83,
+    "in_both": 83,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-2": {
+    "shipped_x86_ub_clean_cases": 169,
+    "here_cases": 169,
+    "in_both": 169,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-3": {
+    "shipped_x86_ub_clean_cases": 80,
+    "here_cases": 80,
+    "in_both": 80,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-4": {
+    "shipped_x86_ub_clean_cases": 234,
+    "here_cases": 234,
+    "in_both": 234,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   }
+  },
+  "x86_64_statx86": {
+   "C2SR-head-1": {
+    "shipped_x86_ub_clean_cases": 83,
+    "here_cases": 109,
+    "in_both": 83,
+    "only_shipped": 0,
+    "only_here": 26,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00706",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 41,
+        "sut_stdout_len": 35,
+        "first_diff_byte": 35,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00712",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 69,
+        "sut_stdout_len": 40,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c7068610a626574610a0a67616d6d610a2020737061636564200a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a616c7068616f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00718",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 49,
+        "sut_stdout_len": 37,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e650a74776f0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a6f6e6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00724",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "in2.txt"
+       ],
+       "note": "two-files",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 83,
+        "sut_stdout_len": 36,
+        "first_diff_byte": 16,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a0a3d3d3e20696e322e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a0a3d3d3e20696e322e747874203c3d3d0a006f6e"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 26
+   },
+   "C2SR-head-2": {
+    "shipped_x86_ub_clean_cases": 169,
+    "here_cases": 169,
+    "in_both": 169,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-3": {
+    "shipped_x86_ub_clean_cases": 80,
+    "here_cases": 18,
+    "in_both": 18,
+    "only_shipped": 62,
+    "only_here": 0,
+    "only_shipped_now_agree": 5,
+    "only_shipped_now_other_defect": [
+     "C2SR-head-1",
+     "unassigned:S1:file",
+     "unassigned:S1:ok+missing"
+    ],
+    "only_shipped_examples": [
+     {
+      "id": "head-00706",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files"
+     },
+     {
+      "id": "head-00709",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file"
+     },
+     {
+      "id": "head-00712",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "in2.txt"
+      ],
+      "note": "two-files"
+     },
+     {
+      "id": "head-00713",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing"
+     }
+    ],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "C2SR-head-4": {
+    "shipped_x86_ub_clean_cases": 234,
+    "here_cases": 234,
+    "in_both": 234,
+    "only_shipped": 0,
+    "only_here": 0,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [],
+    "only_here_with_shipped_ub_clean_verdict": 0
+   },
+   "unassigned:S1:file": {
+    "shipped_x86_ub_clean_cases": 0,
+    "here_cases": 16,
+    "in_both": 0,
+    "only_shipped": 0,
+    "only_here": 16,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00709",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 28,
+        "sut_stdout_len": 5,
+        "first_diff_byte": 5,
+        "oracle_stdout_head": "616c7068610a626574610a0a67616d6d610a2020737061636564200a",
+        "sut_stdout_head": "616c706861"
+       }
+      }
+     },
+     {
+      "id": "head-00715",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 8,
+        "sut_stdout_len": 2,
+        "first_diff_byte": 2,
+        "oracle_stdout_head": "6f6e650a74776f0a",
+        "sut_stdout_head": "6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00721",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 42,
+        "sut_stdout_len": 1,
+        "first_diff_byte": 1,
+        "oracle_stdout_head": "00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a",
+        "sut_stdout_head": "00"
+       }
+      }
+     },
+     {
+      "id": "head-00727",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt"
+      ],
+      "note": "file",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt"
+       ],
+       "note": "file",
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "detail": {
+        "oracle_stdout_len": 40,
+        "sut_stdout_len": 4,
+        "first_diff_byte": 4,
+        "oracle_stdout_head": "636166c3a90a4d6f73636f77d09cd0bed181d0bad0b2d0b00ae697a5e69cace8aa9e0af09f98800a",
+        "sut_stdout_head": "636166c3"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 16
+   },
+   "unassigned:S1:ok+missing": {
+    "shipped_x86_ub_clean_cases": 0,
+    "here_cases": 15,
+    "in_both": 0,
+    "only_shipped": 0,
+    "only_here": 15,
+    "only_shipped_now_agree": 0,
+    "only_shipped_now_other_defect": [],
+    "only_shipped_examples": [],
+    "only_here_examples": [
+     {
+      "id": "head-00713",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 44,
+        "sut_stdout_len": 21,
+        "first_diff_byte": 21,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c7068610a626574610a0a67616d6d610a2020737061636564200a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a616c706861"
+       }
+      }
+     },
+     {
+      "id": "head-00719",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 24,
+        "sut_stdout_len": 18,
+        "first_diff_byte": 18,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e650a74776f0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a6f6e"
+       }
+      }
+     },
+     {
+      "id": "head-00725",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 58,
+        "sut_stdout_len": 17,
+        "first_diff_byte": 17,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00070e151c232a31383f464d545b626970777e858c939aa1a8afb6bdc4cbd2d9e0e7eef5fc0000fffe0a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a00"
+       }
+      }
+     },
+     {
+      "id": "head-00731",
+      "argv": [
+       "-n",
+       "-1",
+       "in1.txt",
+       "missing.txt"
+      ],
+      "note": "ok+missing",
+      "here": {
+       "argv": [
+        "-n",
+        "-1",
+        "in1.txt",
+        "missing.txt"
+       ],
+       "note": "ok+missing",
+       "oracle_exit": 1,
+       "sut_exit": 1,
+       "detail": {
+        "oracle_stdout_len": 56,
+        "sut_stdout_len": 20,
+        "first_diff_byte": 20,
+        "oracle_stdout_head": "3d3d3e20696e312e747874203c3d3d0a636166c3a90a4d6f73636f77d09cd0bed181d0bad0b2d0b00ae697a5e69cace8aa9e0af09f98800a",
+        "sut_stdout_head": "3d3d3e20696e312e747874203c3d3d0a636166c3"
+       }
+      }
+     }
+    ],
+    "only_here_with_shipped_ub_clean_verdict": 15
+   }
+  }
+ },
+ "acceptance": {
+  "aarch64_asshipped": {
+   "rows": {
+    "head-c.sh": {
+     "start_pass": 3,
+     "wip_pass": null
+    },
+    "head-pos.sh": {
+     "start_pass": 3,
+     "wip_pass": null
+    },
+    "head-write-error.sh": {
+     "start_pass": 3,
+     "wip_pass": null
+    }
+   },
+   "rust_WIP_built": false,
+   "selected_on_start": [
+    "head-c.sh",
+    "head-pos.sh",
+    "head-write-error.sh"
+   ],
+   "wip_fails_selected": [],
+   "error": null,
+   "single_run_failures": {}
+  },
+  "aarch64_charport": {
+   "rows": {
+    "head-c.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "head-pos.sh": {
+     "start_pass": 3,
+     "wip_pass": 0
+    },
+    "head-write-error.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   },
+   "rust_WIP_built": true,
+   "selected_on_start": [
+    "head-c.sh",
+    "head-pos.sh",
+    "head-write-error.sh"
+   ],
+   "wip_fails_selected": [
+    "head-pos.sh"
+   ],
+   "error": null,
+   "single_run_failures": {
+    "head-pos.sh on rust_WIP": {
+     "rc": 1,
+     "stdout_tail": "Could not run init.cfg at /c2sr/../init.cfg\n--- exp\t2026-11-17 00:24:41.512336358 +0000\n+++ out\t2026-11-17 00:24:41.514540290 +0000\n@@ -1 +1,2 @@\n+\n b\n",
+     "stderr_tail": "bug\n+ test 1 != 0\n+ path_dir_=coreutils/src/head/rust_WIP/target/debug\n+ abs_path_dir_=/c2sr/coreutils/src/head/rust_WIP/target/debug\n+ PATH=/c2sr/coreutils/src/head/rust_WIP/target/debug:/opt/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n+ create_exe_shims_ /c2sr/coreutils/src/head/rust_WIP/target/debug\n+ return 0\n+ shift\n+ test 0 != 0\n+ export PATH\n+ echo a\n+ echo b\n+ echo b\n+ head -n -1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ fail=1\n+ head -n 1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ n_lines=50000\n+ seq 70000\n+ echo 50000\n+ head -n-50000\n+ wc -l\n+ compare exp-n n\n+ compare_dev_null_ exp-n n\n+ test 2 = 2\n+ test xexp-n = x/dev/null\n+ test xn = x/dev/null\n+ return 2\n+ compare_ exp-n n\n+ LC_ALL=C diff -u exp-n n\n+ Exit 1\n+ set +e\n+ exit 1\n+ exit 1\n+ remove_tmp_\n+ __st=1\n+ cleanup_\n+ :\n+ test  = yes\n+ cd /c2sr\n+ chmod -R u+rwx /c2sr/gt-head-pos.sh.k3s3\n+ rm -rf /c2sr/gt-head-pos.sh.k3s3\n+ exit 1\n"
+    }
+   }
+  },
+  "x86_64_asshipped": {
+   "rows": {
+    "head-c.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "head-pos.sh": {
+     "start_pass": 0,
+     "wip_pass": 0
+    },
+    "head-write-error.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   },
+   "rust_WIP_built": true,
+   "selected_on_start": [
+    "head-c.sh",
+    "head-write-error.sh"
+   ],
+   "wip_fails_selected": [],
+   "error": null,
+   "single_run_failures": {
+    "head-pos.sh on rust": {
+     "rc": 1,
+     "stdout_tail": "Could not run init.cfg at /c2sr/../init.cfg\n--- exp\t2026-11-17 00:23:59.166495152 +0000\n+++ out\t2026-11-17 00:23:59.166495152 +0000\n@@ -1 +0,0 @@\n-b\n--- exp-n\t2026-11-17 00:23:59.171495215 +0000\n+++ n\t2026-11-17 00:23:59.173495240 +0000\n@@ -1 +1 @@\n-50000\n+0\n",
+     "stderr_tail": "rget/debug\n+ test 1 != 0\n+ path_dir_=coreutils/src/head/rust/target/debug\n+ abs_path_dir_=/c2sr/coreutils/src/head/rust/target/debug\n+ PATH=/c2sr/coreutils/src/head/rust/target/debug:/opt/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n+ create_exe_shims_ /c2sr/coreutils/src/head/rust/target/debug\n+ return 0\n+ shift\n+ test 0 != 0\n+ export PATH\n+ echo a\n+ echo b\n+ echo b\n+ head -n -1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ fail=1\n+ head -n 1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ n_lines=50000\n+ seq 70000\n+ echo 50000\n+ head -n-50000\n+ wc -l\n+ compare exp-n n\n+ compare_dev_null_ exp-n n\n+ test 2 = 2\n+ test xexp-n = x/dev/null\n+ test xn = x/dev/null\n+ return 2\n+ compare_ exp-n n\n+ LC_ALL=C diff -u exp-n n\n+ fail=1\n+ Exit 1\n+ set +e\n+ exit 1\n+ exit 1\n+ remove_tmp_\n+ __st=1\n+ cleanup_\n+ :\n+ test  = yes\n+ cd /c2sr\n+ chmod -R u+rwx /c2sr/gt-head-pos.sh.MjCp\n+ rm -rf /c2sr/gt-head-pos.sh.MjCp\n+ exit 1\n"
+    },
+    "head-pos.sh on rust_WIP": {
+     "rc": 1,
+     "stdout_tail": "Could not run init.cfg at /c2sr/../init.cfg\n--- exp\t2026-11-17 00:23:59.188495429 +0000\n+++ out\t2026-11-17 00:23:59.188495429 +0000\n@@ -1 +0,0 @@\n-b\n--- exp-n\t2026-11-17 00:23:59.193495492 +0000\n+++ n\t2026-11-17 00:23:59.195495518 +0000\n@@ -1 +1 @@\n-50000\n+0\n",
+     "stderr_tail": "d/rust_WIP/target/debug:/opt/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n+ create_exe_shims_ /c2sr/coreutils/src/head/rust_WIP/target/debug\n+ return 0\n+ shift\n+ test 0 != 0\n+ export PATH\n+ echo a\n+ echo b\n+ echo b\n+ head -n -1\nthread 'main' panicked at 'attempt to add with overflow', src/head.rs:1253:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ fail=1\n+ head -n 1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ n_lines=50000\n+ seq 70000\n+ echo 50000\n+ head -n-50000\n+ wc -l\n+ compare exp-n n\n+ compare_dev_null_ exp-n n\n+ test 2 = 2\n+ test xexp-n = x/dev/null\n+ test xn = x/dev/null\n+ return 2\n+ compare_ exp-n n\n+ LC_ALL=C diff -u exp-n n\n+ fail=1\n+ Exit 1\n+ set +e\n+ exit 1\n+ exit 1\n+ remove_tmp_\n+ __st=1\n+ cleanup_\n+ :\n+ test  = yes\n+ cd /c2sr\n+ chmod -R u+rwx /c2sr/gt-head-pos.sh.12ag\n+ rm -rf /c2sr/gt-head-pos.sh.12ag\n+ exit 1\n"
+    }
+   }
+  },
+  "x86_64_statx86": {
+   "rows": {
+    "head-c.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    },
+    "head-pos.sh": {
+     "start_pass": 3,
+     "wip_pass": 0
+    },
+    "head-write-error.sh": {
+     "start_pass": 3,
+     "wip_pass": 3
+    }
+   },
+   "rust_WIP_built": true,
+   "selected_on_start": [
+    "head-c.sh",
+    "head-pos.sh",
+    "head-write-error.sh"
+   ],
+   "wip_fails_selected": [
+    "head-pos.sh"
+   ],
+   "error": null,
+   "single_run_failures": {
+    "head-pos.sh on rust_WIP": {
+     "rc": 1,
+     "stdout_tail": "Could not run init.cfg at /c2sr/../init.cfg\n--- exp\t2026-11-17 00:26:30.503404512 +0000\n+++ out\t2026-11-17 00:26:30.505404537 +0000\n@@ -1 +1,2 @@\n+\n b\n",
+     "stderr_tail": "bug\n+ test 1 != 0\n+ path_dir_=coreutils/src/head/rust_WIP/target/debug\n+ abs_path_dir_=/c2sr/coreutils/src/head/rust_WIP/target/debug\n+ PATH=/c2sr/coreutils/src/head/rust_WIP/target/debug:/opt/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n+ create_exe_shims_ /c2sr/coreutils/src/head/rust_WIP/target/debug\n+ return 0\n+ shift\n+ test 0 != 0\n+ export PATH\n+ echo a\n+ echo b\n+ echo b\n+ head -n -1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ fail=1\n+ head -n 1\n+ cat\n+ compare exp out\n+ compare_dev_null_ exp out\n+ test 2 = 2\n+ test xexp = x/dev/null\n+ test xout = x/dev/null\n+ return 2\n+ compare_ exp out\n+ LC_ALL=C diff -u exp out\n+ n_lines=50000\n+ seq 70000\n+ echo 50000\n+ head -n-50000\n+ wc -l\n+ compare exp-n n\n+ compare_dev_null_ exp-n n\n+ test 2 = 2\n+ test xexp-n = x/dev/null\n+ test xn = x/dev/null\n+ return 2\n+ compare_ exp-n n\n+ LC_ALL=C diff -u exp-n n\n+ Exit 1\n+ set +e\n+ exit 1\n+ exit 1\n+ remove_tmp_\n+ __st=1\n+ cleanup_\n+ :\n+ test  = yes\n+ cd /c2sr\n+ chmod -R u+rwx /c2sr/gt-head-pos.sh.AG0j\n+ rm -rf /c2sr/gt-head-pos.sh.AG0j\n+ exit 1\n"
+    }
+   }
+  }
+ },
+ "own_inputs": {
+  "aarch64_asshipped": {
+   "replays": [
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c-4"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": false,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": null,
+     "why_not": "input bytes not regenerable here (sha256 ['45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65']); e.g. a copy of the x86 host's /proc/version"
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/proc/version"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 167,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "absolute path /proc/version read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/sys/kernel/profiling"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "sut_exit": 101,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n-50000"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "-c10M"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 10510336 bytes delivered",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 73728 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 63487,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 106496 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": null,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": null,
+      "oracle_exit": 0,
+      "sut_exit": null,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": null,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    }
+   ],
+   "head_pos_next_reader": {
+    "head -n -1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n 1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n-50000 then wc -l (in2 = seq 70000)": {
+     "head-pos.sh expects": "50000\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     }
+    }
+   }
+  },
+  "aarch64_charport": {
+   "replays": [
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c-4"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": false,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": null,
+     "why_not": "input bytes not regenerable here (sha256 ['45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65']); e.g. a copy of the x86 host's /proc/version"
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/proc/version"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 167,
+      "sut_stdout_len": 167,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /proc/version read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/sys/kernel/profiling"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "sut_exit": 101,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n-50000"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 108894,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "-c10M"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 10510336 bytes delivered",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 73728 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 63487,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 61439,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 61439,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10485758,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 106496 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    }
+   ],
+   "head_pos_next_reader": {
+    "head -n -1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "\nb\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n 1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n-50000 then wc -l (in2 = seq 70000)": {
+     "head-pos.sh expects": "50000\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     }
+    }
+   }
+  },
+  "x86_64_asshipped": {
+   "replays": [
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c-4"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": false,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": null,
+     "why_not": "input bytes not regenerable here (sha256 ['45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65']); e.g. a copy of the x86 host's /proc/version"
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/proc/version"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /proc/version read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/sys/kernel/profiling"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "sut_exit": 101,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "oracle_exit": 0,
+      "sut_exit": 101,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 0,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n-50000"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 106896,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "-c10M"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 10510336 bytes delivered",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 73728 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 63487,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 61439,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 61439,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 10481663,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 106496 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    }
+   ],
+   "head_pos_next_reader": {
+    "head -n -1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "",
+      "stderr_tail": "thread 'main' panicked at 'attempt to add with overflow', src/head.rs:1253:9\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+     }
+    },
+    "head -n 1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n-50000 then wc -l (in2 = seq 70000)": {
+     "head-pos.sh expects": "50000\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "0\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "0\n",
+      "stderr_tail": ""
+     }
+    }
+   }
+  },
+  "x86_64_statx86": {
+   "replays": [
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c-4"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 3,
+      "sut_stdout_len": 3,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 1 (as in the test)",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": false,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": null,
+     "why_not": "input bytes not regenerable here (sha256 ['45783e355597c0ead9d005ebe27cccc01e46bd0940c2479e9102d65bd1d56d65']); e.g. a copy of the x86 host's /proc/version"
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/proc/version"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 210,
+      "sut_stdout_len": 210,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /proc/version read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "copy"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/exp1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-c.sh",
+     "argv": [
+      "-c",
+      "-1",
+      "/sys/kernel/profiling"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 1,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "absolute path /sys/kernel/profiling read live",
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-c.sh.BTLF/out1; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "panic",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 0,
+      "sut_exit": 101,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 1,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n",
+      "1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 2,
+      "sut_stdout_len": 2,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-pos.sh",
+     "argv": [
+      "-n-50000"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 106896,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 108894,
+      "sut_stdout_len": 108894,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin: regular file, opened at offset 0 (as in the test)",
+       "stdout was other /dev/null; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "-c10M"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 10510336 bytes delivered",
+       "stdout was other /work/artifacts/c2saferrust/gt-head-write-error.sh.pDlE/bigseek; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 73728,
+      "sut_stdout_len": 73728,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 73728 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 63487,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 65534,
+      "sut_stdout_len": 61439,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": 61439,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--lines=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10481663,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": true,
+      "mismatch_kind": "wrong",
+      "oracle_stdout_len": 10485758,
+      "sut_stdout_len": 10485758,
+      "oracle_exit": 0,
+      "sut_exit": 1,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 106496,
+      "sut_stdout_len": 106496,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 106496 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-0",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485760,
+      "sut_stdout_len": 10485760,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 65535,
+      "sut_stdout_len": 65535,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin pipe was not at EOF when the program stopped; replayed the 65536 bytes delivered",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    },
+    {
+     "test": "head/head-write-error.sh",
+     "argv": [
+      "--bytes=-1",
+      "bigseek"
+     ],
+     "replayed": true,
+     "x86_shipped": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false
+     },
+     "here": {
+      "mismatch": false,
+      "mismatch_kind": null,
+      "oracle_stdout_len": 10485759,
+      "sut_stdout_len": 10485759,
+      "oracle_exit": 0,
+      "sut_exit": 0,
+      "baseline_rust_mismatch": false,
+      "baseline_rust_mismatch_kind": null,
+      "first_stdout_diff": -1,
+      "notes": [
+       "stdin was chr ; replayed as an empty pipe",
+       "stdout was other /dev/full; captured via a pipe (our comparison)"
+      ]
+     },
+     "why_not": null
+    }
+   ],
+   "head_pos_next_reader": {
+    "head -n -1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "\nb\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n 1 then cat (in = a,b)": {
+     "head-pos.sh expects": "b\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "b\n",
+      "stderr_tail": ""
+     }
+    },
+    "head -n-50000 then wc -l (in2 = seq 70000)": {
+     "head-pos.sh expects": "50000\n",
+     "oracle": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     },
+     "rust_WIP": {
+      "rc": 0,
+      "next_reader_stdout": "50000\n",
+      "stderr_tail": ""
+     }
+    }
+   }
+  }
+ },
+ "per_counted_defect": {
+  "C2SR-head-1": {
+   "ledger_mechanism": "Multi-file headers: the rewritten write_header() prints '==> f <==' with Rust println! (Rust's own stdout buffer) while file contents go through C stdio fwrite_unlocked(stdout) (xwrite_stdout), so with two or more files all headers appear before any content. head -c N (written through Rust stdout too) is unaffected.",
+   "ledger_exposure": 83,
+   "ledger_introduced_by": "C2SaferRust's LLM rewrite: the C2Rust starting translation (rust/) agrees with the C on every exposing case (results/head_diff_v4_c2rust_baseline.json)",
+   "by_run": {
+    "aarch64_asshipped": null,
+    "aarch64_charport": {
+     "grid_cases": 109,
+     "kinds": {
+      "S1": 109
+     },
+     "by_flags_and_input_source": {
+      "head  [two-files]": 12,
+      "head -n 1 [two-files]": 12,
+      "head -n 2 [two-files]": 12,
+      "head -n 3 [two-files]": 12,
+      "head -n 7 [two-files]": 12,
+      "head -n -1 [two-files]": 13,
+      "head -n -2 [two-files]": 13,
+      "head -n 1000000 [two-files]": 12,
+      "head -c -3 [two-files]": 11
+     }
+    },
+    "x86_64_asshipped": {
+     "grid_cases": 83,
+     "kinds": {
+      "S1": 83
+     },
+     "by_flags_and_input_source": {
+      "head  [two-files]": 12,
+      "head -n 1 [two-files]": 12,
+      "head -n 2 [two-files]": 12,
+      "head -n 3 [two-files]": 12,
+      "head -n 7 [two-files]": 12,
+      "head -n 1000000 [two-files]": 12,
+      "head -c -3 [two-files]": 11
+     }
+    },
+    "x86_64_statx86": {
+     "grid_cases": 109,
+     "kinds": {
+      "S1": 109
+     },
+     "by_flags_and_input_source": {
+      "head  [two-files]": 12,
+      "head -n 1 [two-files]": 12,
+      "head -n 2 [two-files]": 12,
+      "head -n 3 [two-files]": 12,
+      "head -n 7 [two-files]": 12,
+      "head -n -1 [two-files]": 13,
+      "head -n -2 [two-files]": 13,
+      "head -n 1000000 [two-files]": 12,
+      "head -c -3 [two-files]": 11
+     }
+    }
+   },
+   "conclusion": "Present unchanged with correct routing (the same 83 cases). Introduced by the rewrite (write_header). The 26 extra two-files cases the ledger's rule would assign to head-1 on aarch64 are head -n -1/-2 on two small files, which the head-3/head-5 final-buffer block truncates (they were head-3 panics on x86-64)."
+  },
+  "C2SR-head-2": {
+   "ledger_mechanism": "Read errors become EOF: the rewritten safe_read() returns total_read (0) when read() fails instead of SAFE_READ_ERROR, so head on a directory prints nothing, reports no error and exits 0 (C: \"error reading 'adir': Is a directory\", exit 1).",
+   "ledger_exposure": 169,
+   "ledger_introduced_by": "C2SaferRust's LLM rewrite: the C2Rust starting translation (rust/) agrees with the C on every exposing case (results/head_diff_v4_c2rust_baseline.json)",
+   "by_run": {
+    "aarch64_asshipped": null,
+    "aarch64_charport": {
+     "grid_cases": 169,
+     "kinds": {
+      "S1": 169
+     },
+     "by_flags_and_input_source": {
+      "head  [is-a-directory]": 13,
+      "head -n 1 [is-a-directory]": 13,
+      "head -n 2 [is-a-directory]": 13,
+      "head -n 3 [is-a-directory]": 13,
+      "head -n 7 [is-a-directory]": 13,
+      "head -n -1 [is-a-directory]": 13,
+      "head -n -2 [is-a-directory]": 13,
+      "head -n 1000000 [is-a-directory]": 13,
+      "head -c 1 [is-a-directory]": 13,
+      "head -c 5 [is-a-directory]": 13,
+      "head -c -3 [is-a-directory]": 13,
+      "head -c +4 [is-a-directory]": 13,
+      "head -c 100 [is-a-directory]": 13
+     }
+    },
+    "x86_64_asshipped": {
+     "grid_cases": 169,
+     "kinds": {
+      "S1": 169
+     },
+     "by_flags_and_input_source": {
+      "head  [is-a-directory]": 13,
+      "head -n 1 [is-a-directory]": 13,
+      "head -n 2 [is-a-directory]": 13,
+      "head -n 3 [is-a-directory]": 13,
+      "head -n 7 [is-a-directory]": 13,
+      "head -n -1 [is-a-directory]": 13,
+      "head -n -2 [is-a-directory]": 13,
+      "head -n 1000000 [is-a-directory]": 13,
+      "head -c 1 [is-a-directory]": 13,
+      "head -c 5 [is-a-directory]": 13,
+      "head -c -3 [is-a-directory]": 13,
+      "head -c +4 [is-a-directory]": 13,
+      "head -c 100 [is-a-directory]": 13
+     }
+    },
+    "x86_64_statx86": {
+     "grid_cases": 169,
+     "kinds": {
+      "S1": 169
+     },
+     "by_flags_and_input_source": {
+      "head  [is-a-directory]": 13,
+      "head -n 1 [is-a-directory]": 13,
+      "head -n 2 [is-a-directory]": 13,
+      "head -n 3 [is-a-directory]": 13,
+      "head -n 7 [is-a-directory]": 13,
+      "head -n -1 [is-a-directory]": 13,
+      "head -n -2 [is-a-directory]": 13,
+      "head -n 1000000 [is-a-directory]": 13,
+      "head -c 1 [is-a-directory]": 13,
+      "head -c 5 [is-a-directory]": 13,
+      "head -c -3 [is-a-directory]": 13,
+      "head -c +4 [is-a-directory]": 13,
+      "head -c 100 [is-a-directory]": 13
+     }
+    }
+   },
+   "conclusion": "Present unchanged (169 cases). Introduced by the rewrite (safe_read). Independent of routing."
+  },
+  "C2SR-head-3": {
+   "ledger_mechanism": "head -n -N (elide_tail_lines_pipe): the rewritten final-buffer block adds to desired_pos with checked '+=' although desired_pos starts at (uintmax_t)-1 for a non-seekable input (the C relies on unsigned wrap-around), so the debug build panics 'attempt to add with overflow' (head.rs:1253); the same block also advances p one byte per line instead of to the next line end.",
+   "ledger_exposure": 80,
+   "ledger_introduced_by": "C2SaferRust's LLM rewrite: the C2Rust starting translation (rust/) agrees with the C on every exposing case (results/head_diff_v4_c2rust_baseline.json)",
+   "by_run": {
+    "aarch64_asshipped": null,
+    "aarch64_charport": {
+     "grid_cases": 18,
+     "kinds": {
+      "crash-panic": 18
+     },
+     "by_flags_and_input_source": {
+      "head -n -1 [stdin]": 10,
+      "head -n -2 [stdin]": 8
+     }
+    },
+    "x86_64_asshipped": {
+     "grid_cases": 80,
+     "kinds": {
+      "crash-panic": 80
+     },
+     "by_flags_and_input_source": {
+      "head -n -1 [two-files]": 13,
+      "head -n -1 [stdin]": 10,
+      "head -n -1 [file]": 10,
+      "head -n -1 [ok+missing]": 10,
+      "head -n -2 [two-files]": 13,
+      "head -n -2 [stdin]": 8,
+      "head -n -2 [file]": 8,
+      "head -n -2 [ok+missing]": 8
+     }
+    },
+    "x86_64_statx86": {
+     "grid_cases": 18,
+     "kinds": {
+      "crash-panic": 18
+     },
+     "by_flags_and_input_source": {
+      "head -n -1 [stdin]": 10,
+      "head -n -2 [stdin]": 8
+     }
+    }
+   },
+   "conclusion": "The rewritten block is still reached and still wrong, so the defect stays introduced by the rewrite (the baseline uses wrapping_add and agrees under both routings). But 62 of its 80 shipped exposures exist only because of the inherited routing: with correct routing only the 18 real-pipe (stdin) cases panic; of the 62 regular-file cases (18 file, 18 ok+missing, 26 two-files), 56 give a wrong stdout (files of at most 4096 bytes still take elide_tail_lines_pipe, now with current_pos 0, so the checked add does not overflow and the block writes one byte per line of the final buffer), 1 differs only in exit code (a 9006-byte file, which now takes elide_tail_lines_seekable; see new_divergence_with_correct_routing) and 5 agree. Its own-input mapping (head-pos.sh -n -1: panic) also becomes a wrong output."
+  },
+  "C2SR-head-4": {
+   "ledger_mechanism": "Option parsing: the rewritten getopt loop in main_0 builds CStr::from_ptr(optarg) before dispatching on the option, so any option without an argument (-q, -z, -v) dereferences a NULL optarg and segfaults (gdb: CStr::from_ptr(ptr=0x0) at head.rs:1920).",
+   "ledger_exposure": 234,
+   "ledger_introduced_by": "C2SaferRust's LLM rewrite: the C2Rust starting translation (rust/) agrees with the C on every exposing case (results/head_diff_v4_c2rust_baseline.json)",
+   "by_run": {
+    "aarch64_asshipped": null,
+    "aarch64_charport": {
+     "grid_cases": 234,
+     "kinds": {
+      "crash-segv": 234
+     },
+     "by_flags_and_input_source": {
+      "head -q [stdin]": 13,
+      "head -q [file]": 13,
+      "head -q [missing-file]": 13,
+      "head -q [is-a-directory]": 13,
+      "head -q [two-files]": 13,
+      "head -q [ok+missing]": 13,
+      "head -z [stdin]": 13,
+      "head -z [file]": 13,
+      "head -z [missing-file]": 13,
+      "head -z [is-a-directory]": 13,
+      "head -z [two-files]": 13,
+      "head -z [ok+missing]": 13,
+      "head -q -z [stdin]": 13,
+      "head -q -z [file]": 13,
+      "head -q -z [missing-file]": 13,
+      "head -q -z [is-a-directory]": 13,
+      "head -q -z [two-files]": 13,
+      "head -q -z [ok+missing]": 13
+     }
+    },
+    "x86_64_asshipped": {
+     "grid_cases": 234,
+     "kinds": {
+      "crash-segv": 234
+     },
+     "by_flags_and_input_source": {
+      "head -q [stdin]": 13,
+      "head -q [file]": 13,
+      "head -q [missing-file]": 13,
+      "head -q [is-a-directory]": 13,
+      "head -q [two-files]": 13,
+      "head -q [ok+missing]": 13,
+      "head -z [stdin]": 13,
+      "head -z [file]": 13,
+      "head -z [missing-file]": 13,
+      "head -z [is-a-directory]": 13,
+      "head -z [two-files]": 13,
+      "head -z [ok+missing]": 13,
+      "head -q -z [stdin]": 13,
+      "head -q -z [file]": 13,
+      "head -q -z [missing-file]": 13,
+      "head -q -z [is-a-directory]": 13,
+      "head -q -z [two-files]": 13,
+      "head -q -z [ok+missing]": 13
+     }
+    },
+    "x86_64_statx86": {
+     "grid_cases": 234,
+     "kinds": {
+      "crash-segv": 234
+     },
+     "by_flags_and_input_source": {
+      "head -q [stdin]": 13,
+      "head -q [file]": 13,
+      "head -q [missing-file]": 13,
+      "head -q [is-a-directory]": 13,
+      "head -q [two-files]": 13,
+      "head -q [ok+missing]": 13,
+      "head -z [stdin]": 13,
+      "head -z [file]": 13,
+      "head -z [missing-file]": 13,
+      "head -z [is-a-directory]": 13,
+      "head -z [two-files]": 13,
+      "head -z [ok+missing]": 13,
+      "head -q -z [stdin]": 13,
+      "head -q -z [file]": 13,
+      "head -q -z [missing-file]": 13,
+      "head -q -z [is-a-directory]": 13,
+      "head -q -z [two-files]": 13,
+      "head -q -z [ok+missing]": 13
+     }
+    }
+   },
+   "conclusion": "Present unchanged (234 cases). Introduced by the rewrite (main_0 getopt). Independent of routing."
+  },
+  "C2SR-head-5": {
+   "ledger_mechanism": "head -n -N, final partial buffer (elide_tail_lines_pipe): the rewritten loop advances p by one byte per counted line (`p = &p[1..]`) instead of to the byte after the next line end (C: p = memchr(...) + 1), so only one byte per line of the last partial buffer is written. It shows when at least one full buffer was written first (desired_pos has wrapped, so C2SR-head-3's checked add does not fire). The rewrite also routes regular files to this pipe path (current_pos -1), so it hits large files too: head --lines=-1 on the 10 MiB bigseek file drops 4,095 bytes.",
+   "ledger_exposure": 3,
+   "ledger_introduced_by": "C2SaferRust's LLM rewrite (the C2Rust starting translation agrees on these invocations: results/heldout_c2saferrust.json baseline_rust_mismatch=false)",
+   "by_run": {
+    "aarch64_asshipped": null,
+    "aarch64_charport": {
+     "own_invocations_with_truncated_stdout (this defect)": [
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1"
+       ],
+       "oracle_stdout_len": 65534,
+       "sut_stdout_len": 61439,
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "baseline_mismatch": false
+      }
+     ],
+     "own_invocations_with_equal_stdout_but_exit_1 (not this defect: elide_tail_lines_seekable, see new_divergence_with_correct_routing)": [
+      {
+       "test": "head/head-pos.sh",
+       "argv": [
+        "-n-50000"
+       ],
+       "oracle_stdout_len": 108894,
+       "sut_stdout_len": 108894,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-0",
+        "bigseek"
+       ],
+       "oracle_stdout_len": 10485760,
+       "sut_stdout_len": 10485760,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1",
+        "bigseek"
+       ],
+       "oracle_stdout_len": 10485758,
+       "sut_stdout_len": 10485758,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      }
+     ]
+    },
+    "x86_64_asshipped": {
+     "own_invocations_with_truncated_stdout (this defect)": [
+      {
+       "test": "head/head-pos.sh",
+       "argv": [
+        "-n-50000"
+       ],
+       "oracle_stdout_len": 108894,
+       "sut_stdout_len": 106896,
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1"
+       ],
+       "oracle_stdout_len": 65534,
+       "sut_stdout_len": 61439,
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1",
+        "bigseek"
+       ],
+       "oracle_stdout_len": 10485758,
+       "sut_stdout_len": 10481663,
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "baseline_mismatch": false
+      }
+     ],
+     "own_invocations_with_equal_stdout_but_exit_1 (not this defect: elide_tail_lines_seekable, see new_divergence_with_correct_routing)": []
+    },
+    "x86_64_statx86": {
+     "own_invocations_with_truncated_stdout (this defect)": [
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1"
+       ],
+       "oracle_stdout_len": 65534,
+       "sut_stdout_len": 61439,
+       "oracle_exit": 0,
+       "sut_exit": 0,
+       "baseline_mismatch": false
+      }
+     ],
+     "own_invocations_with_equal_stdout_but_exit_1 (not this defect: elide_tail_lines_seekable, see new_divergence_with_correct_routing)": [
+      {
+       "test": "head/head-pos.sh",
+       "argv": [
+        "-n-50000"
+       ],
+       "oracle_stdout_len": 108894,
+       "sut_stdout_len": 108894,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-0",
+        "bigseek"
+       ],
+       "oracle_stdout_len": 10485760,
+       "sut_stdout_len": 10485760,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      },
+      {
+       "test": "head/head-write-error.sh",
+       "argv": [
+        "--lines=-1",
+        "bigseek"
+       ],
+       "oracle_stdout_len": 10485758,
+       "sut_stdout_len": 10485758,
+       "oracle_exit": 0,
+       "sut_exit": 1,
+       "baseline_mismatch": false
+      }
+     ]
+    }
+   },
+   "conclusion": "Present with correct routing on the pipe case of its own acceptance test (head-write-error.sh `yes | head --lines=-1 > /dev/full`: 65534 B from the C, 61439 B from the Rust here; 63487 B in the shipped replay, so the shortfall depends on how the pipe reads are chunked). Introduced by the rewrite (elide_tail_lines_pipe final block, log.txt:159). Its two regular-file exposures (bigseek --lines=-1: 4,095 B lost; head-pos.sh -n-50000: 1,998 B lost) exist only because of the inherited routing: with correct routing those files take elide_tail_lines_seekable, whose stdout is correct (but see the exit-1 divergence below)."
+  }
+ },
+ "summary": "rust_WIP as shipped does not compile on aarch64 (22 E0308 errors, all in its rewritten quotearg.rs: it hardcodes i8 where aarch64's c_char is u8), so the aarch64 run of C2SaferRust's output uses a type-only port (25 lines: i8 -> libc::c_char, bit patterns unchanged). The same measurement on x86-64 with only the struct stat corrected (x86_64_statx86) gives identical results to aarch64 (561 grid mismatches, same per-defect splits, same acceptance and own-input outcomes), and x86-64 as shipped reproduces the shipped numbers (566; 83/169/80/234). So every x86/aarch64 difference comes from the routing. The C2Rust baseline agrees with the C on stdout and exit code on all 1404 head grid cases on aarch64 (676 stderr-only differences, the doubled error messages, as on x86-64), passes all three head .sh tests 3/3, agrees on every replayed own-test invocation and positions the shared stdin like the C. All five counted head defects are in code the rewrite changed and the baseline is correct under both routings, so all five stay introduced by the rewrite; what the routing changes is which inputs reach head-3/head-5's code and how it fails.",
+ "new_divergence_with_correct_routing": "Not in the ledger and not reachable on x86-64 as shipped: rust_WIP's rewritten elide_tail_lines_seekable returns `elseek(...) <= 0` (rust_WIP/src/head.rs:1333) where the C returns `0 <= elseek(...)` (c/head.c:721; the baseline has it right), so `head -n -N` on a regular file larger than one 4096-byte block prints the right bytes but exits 1 with no message. Seen on aarch64 and on x86_64_statx86: 2 grid cases (head-00751, exit only; head-00754, whose second, small file is also truncated; both with a 9006-byte in1.txt) and the own invocations head-pos.sh -n-50000, head-write-error.sh --lines=-0 bigseek and --lines=-1 bigseek; head-write-error.sh expects exit 1 there anyway (/dev/full). log.txt:161-162 record that function's chunks 0 and 1 as Success.",
+ "acceptance_with_correct_routing": "On aarch64 (and x86_64_statx86) head-pos.sh passes on the C2Rust starting tree (3/3), so the select_tests procedure selects 3 head tests instead of 2, and C2SaferRust's output fails head-pos.sh 3/3 (head -n -1 on a 4-byte file prints 'a' and leaves the offset at 1; the next reader sees '\\nb\\n'). On x86-64 as shipped head-pos.sh fails on the starting tree (the C2Rust routing leaves the shared offset at EOF), so it is not selected.",
+ "layout_probe_note": "layout_probe.*.structs.rust_* mirror the struct as shipped (rust/src/head.rs:186-203) in every run, including x86_64_statx86; that run's strace shows the patched binaries.",
+ "text_affected": [
+  "Paper results.tex:92-93 ('head drops a final partial buffer, losing 4,095 bytes of its own acceptance test's file'): the 4,095 bytes and 'file' come from the bigseek regular file, which reaches the faulty block only through the routing inherited from the C2Rust tree on x86-64. The routing-independent instance is the same test's piped input (yes | head --lines=-1 > /dev/full), which loses 2,047 B (shipped replay) or 4,095 B (these re-runs).",
+  "Ledger C2SR-head-5 mechanism: 'The rewrite also routes regular files to this pipe path (current_pos -1)' attributes the routing to the rewrite; it is the C2Rust tree's aarch64 struct stat read on x86-64. Its example (bigseek, 10485758 vs 10481663 B) and exposure entries for bigseek and head-pos.sh -n-50000 hold only under that routing; the head-write-error.sh pipe entry holds under both.",
+  "scripts/build_defect_ledger.py C2SR_OWN_MAP head-write-error.sh justification ('the 10 MiB regular file, which the rewrite also routes to elide_tail_lines_pipe') and the head-pos.sh -n -1 -> C2SR-head-3 panic entry: same routing dependence.",
+  "Ledger C2SR-head-3: exposure 80 (all panics) is 18 panics under correct routing (pipes); the other 62 are regular files routed to the pipe path by the inherited struct stat (under correct routing 56 wrong stdout, 1 exit only, 5 agree).",
+  "Unchanged: every head row's introduced_by (the baseline agrees with the C under both routings), the five counted head defects, and 'Four defects crash' (head-3 still panics on pipes).",
+  "Study notes (not the paper): systems/c2saferrust/notes.md 'head -n -N leaves a shared file position in the wrong place' and docs/reviews/c2saferrust-ablation-triage.md head-pos.sh 'REAL S1': on x86-64 that is the C2Rust tree's routing (the baseline mis-positions too); on aarch64 the baseline positions like the C."
+ ],
+ "limits": [
+  "The aarch64 run of rust_WIP needs the type-only port; the as-shipped tree does not compile there.",
+  "The UB filter was not re-run on aarch64; the 57 regular-file cases that still diverge (no longer as panics) all carry a UB-clean x86-64 verdict in results/oracle_ub_c2saferrust.json.",
+  "One head-c.sh invocation (a copy of the x86 host's /proc/version) cannot be regenerated and was not replayed.",
+  "Only head was re-run; cat, tail, uniq declare their own structs and were not checked here."
+ ]
+}

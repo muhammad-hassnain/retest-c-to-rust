@@ -1,0 +1,1680 @@
+{
+ "provenance": {
+  "script": "systems/vert/arxiv_wide_mutate.py (systems/vert/mutate_primary.py, unchanged, with the two substitutions below)",
+  "grid": "v2",
+  "command": "python3 systems/vert/arxiv_wide_mutate.py --grid v2 --jobs 5 --verify-every 25 --equiv --budgets 30,10,10 --out results/arxiv_vert_wide_mutation_primary.json",
+  "docker": "docker run --rm --cpus 5 --memory 4g -v $PWD:/work -v <scratch>:/scratch -w /work -e MUTPRIM_WORK=/scratch/mutprim_wide crust-stable python3 systems/vert/arxiv_wide_mutate.py --grid v2 --jobs 5 --verify-every 25 --equiv --budgets 30,10,10 --out results/arxiv_vert_wide_mutation_primary.json",
+  "git_rev": "b6cb48efe4633848a536232e5c019e27b11d4048",
+  "git_dirty_note": "uncommitted working tree: run.py --wide-int/--only (uncommitted), systems/vert/arxiv_wide_mutate.py new/untracked; mutate_primary.py, batch_diff.py, enumerate_inputs.py as committed",
+  "host": "macOS arm64 (Apple silicon), Docker Desktop linux/arm64, docker --cpus 5",
+  "arch": "aarch64",
+  "container_kernel": "6.10.14-linuxkit",
+  "image": {
+   "name": "crust-stable",
+   "id": "sha256:9428070fb0fd44727fcc35447919f65b8acc8ef20c73dedfdbdbb523aa557951"
+  },
+  "toolchains": {
+   "rustc": "rustc 1.86.0 (05f9846f8 2025-03-31)",
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "absent (so MSan unavailable; -O0/-O1 cross-check used, as in vert_diff.json)",
+   "python": "3.10.12"
+  },
+  "file_sha256": {
+   "systems/vert/mutate_primary.py": "60dee3d37ec677a24ea4ab7fe036247fde39819740ba0beac836ad24e03e6191",
+   "systems/vert/run.py": "cf9f0ab0d979d2307c8517417b3a4851e5f9a136dd4c7fbda624885d12c38f0b",
+   "systems/batch_diff.py": "3cc5f6e9a0a5f85378df8ce2b446dadb9a761592ccfe59f148f53f75a576ffb3",
+   "systems/enumerate_inputs.py": "5f9f89bc6ccf4ea323fb2da4ad2e351c18fccdad2c88d41da8164cfcd1ca12b9",
+   "results/arxiv_vert_diff_grid2_wide.json": "ea9d088dc63649147ecb5305938fb71648886c2ebe93fff6fb6077ab5e58ed9c",
+   "systems/vert/arxiv_wide_mutate.py": "86f8402e80450261575d976edd2784dcef57f6b3b773310e88b42cc1e76f6250"
+  },
+  "date": "2026-11-17T15:47:30+00:00",
+  "substitutions": {
+   "population_file": "results/arxiv_vert_diff_grid2_wide.json (instead of results/vert_diff_grid2.json; same selection rule)",
+   "run.test_function": "called with wide_int=True (the control); the C return-type gate admits long / long long"
+  }
+ },
+ "rules": "Mutation adequacy of the PRIMARY VERT scalar harness (run.py, spread grid, ASan/UBSan + -O0/-O1).\n\nWhy this exists. The older measure (mutate.py -> results/vert_mutation.json, 161/173) ran a\ndifferent harness from the one behind the headline (x86 + MSan, legacy truncated grid, the first 40\nfunctions in harness order, ROR/AOR only). This script measures the power of the harness that\nproduced results/vert_diff.json, on the population that harness calls \"agree\":\n\n  * Population: every function with status \"tested\" in results/vert_diff.json and no divergence of\n    any kind (value 0, panic 0, hang 0, ub 0, timeout 0) -- the 117 null results.\n  * Harness: exactly run.py's: build_c (gcc -O1 -fwrapv), build_c(mode=san) (gcc -O0 ASan+UBSan),\n    build_c(mode=alt) (gcc -O0 -fwrapv) when MSan is unavailable and the C has no float, rustc -O,\n    enumerate_cases(i32 x nargs, cap=80, max_abs=512, nonneg=True, spread grid), batch_diff.tally.\n    The unmutated translation is re-run through the same path first (control: it must agree).\n  * Kill rule (task): a mutant is KILLED iff tally reports value > 0 (wrong answer on an input\n    the C runs UB-free) or rust_panic > 0 (sanitizer-clean Rust panic). Rust hangs, C-UB-only and\n    C-timeout-only outcomes are recorded but are NOT kills. Mutants that fail to compile are\n    recorded separately and excluded from the rate.\n\nMutation sites (deterministic). The translated Rust is lexed (comments/strings skipped); sites are\ntaken from the body of f_gold and of every helper function f_gold reaches through direct calls\n(VERT's boilerplate min/max/cmpfunc/len/sort helpers are mutated only when f_gold actually calls\nthem). Signatures are never mutated. Operators:\n  ror   relational replacement, the same mapping as mutate.py: == -> !=, != -> ==, <= -> >,\n        >= -> <, < -> >=, > -> <= (generic angle brackets are excluded).\n  aor   arithmetic replacement, the same mapping as mutate.py: + -> -, - -> +, * -> /, / -> *,\n        on BINARY operators only (unary minus / deref excluded), plus the compound forms\n        += -> -=, -= -> +=, *= -> /=, /= -> *= (mutate.py's \" + \" text match skipped these).\n  const integer literal c -> c+1 and c -> c-1 (boundary shift); a result below 0 is written \"(-1)\".\n        Float literals and tuple indices (x.0) are excluded.\n  f32   every maximal integer arithmetic chain (operands joined by + - * / %, at one bracket level,\n        not itself the parenthesised operand of an enclosing chain) is evaluated in f32 and\n        converted back: every operand becomes `(operand as f32)` (parenthesised sub-chains are\n        converted recursively) and the chain becomes __vf(orig, f32expr), which returns the f32\n        value cast back to orig's integer type. __vf is implemented for integer types only, so a\n        chain that is really float typed fails to compile and is excluded. Chains with a float\n        literal or an `as f32/f64` at their top level are skipped as float chains.\n  bnd   (extra, reported separately; not in the headline) relational/range boundary:\n        < <-> <=, > <-> >=, .. <-> ..=\nIf an operator yields more than --cap mutants for one function, a fixed seeded sample of --cap is\ntaken (random.Random(f\"{seed}:{func}:{op}\").sample over the site-ordered list); the rule and the\ncounts before/after sampling are recorded per function.\n\nEquivalence analysis (--equiv). Every compiled, not-killed mutant is re-run against the C on a much\nlarger domain, in three phases with per-phase time budgets, smallest inputs first:\n  A  in-domain (the harness's own domain, non-negative, each arg <= 512): exhaustive for 1 and 2\n     arguments ([0,512]^k in max-norm shells); for k >= 3 exhaustive shells of [0,512]^k until the\n     budget runs out.\n  B  negative inputs: [-512,512]^k tuples with at least one negative component, shell order.\n  C  large magnitudes: the full-range i32 grid (enumerate_inputs.grid_for over [-2^31, 2^31-1]),\n     spread product capped at 4096 tuples.\nA candidate divergence (smallest first, up to 64 per phase) counts only if the C is clean under the\nASan/UBSan build and -O0 == -O1 on that input, exactly the primary harness's filter. Outcome per\nsurvivor: inequivalent_in_domain (grid missed a fault inside the domain it samples),\ninequivalent_out_of_domain, rust_hang_only, or no_divergence_found (with the exact coverage).\n\nRun (arm64 Mac, Docker, at most 6 CPUs):\n  docker run --rm --cpus 6 -v \"$PWD:/work\" -w /work -e GIT_REV=$(git rev-parse HEAD)       -e HOST_DESC=\"$(hostname) $(uname -m)\" -e IMAGE_ID=$(docker image inspect crust-stable -f '{{.Id}}')       crust-stable python3 systems/vert/mutate_primary.py --jobs 6 --verify-every 25 --equiv --budgets 30,10,10\n  ... and the same with --arrays --budgets 30 for the array/float harness (see ARRAYS_NOTE).\n",
+ "summary": {
+  "population": {
+   "definition": "results/arxiv_vert_diff_grid2_wide.json: status tested and value_div=rust_panic=rust_hang=ub_div=timeout_div=0",
+   "grid": "v2",
+   "functions": 3,
+   "run": 3,
+   "control_agree": 3,
+   "control_not_agree": []
+  },
+  "headline_ops": [
+   "ror",
+   "aor",
+   "const",
+   "f32"
+  ],
+  "overall_headline": {
+   "mutants": 18,
+   "compile_fail": 0,
+   "killed": 14,
+   "assessable": 18,
+   "rate": 0.7778,
+   "wilson95": [
+    0.5479,
+    0.91
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 0,
+   "cluster_bootstrap95_by_function": [
+    0.5714,
+    1.0
+   ],
+   "outcomes": {
+    "killed_value": 13,
+    "survived": 4,
+    "killed_panic": 1
+   },
+   "hang_counted_as_detected": {
+    "killed": 14,
+    "assessable": 18,
+    "rate": 0.7778,
+    "wilson95": [
+     0.5479,
+     0.91
+    ]
+   }
+  },
+  "by_operator": {
+   "ror": {
+    "mutants": 2,
+    "compile_fail": 0,
+    "killed": 2,
+    "assessable": 2,
+    "rate": 1.0,
+    "wilson95": [
+     0.3424,
+     1.0
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     1.0,
+     1.0
+    ],
+    "outcomes": {
+     "killed_value": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 2,
+     "assessable": 2,
+     "rate": 1.0,
+     "wilson95": [
+      0.3424,
+      1.0
+     ]
+    }
+   },
+   "aor": {
+    "mutants": 2,
+    "compile_fail": 0,
+    "killed": 2,
+    "assessable": 2,
+    "rate": 1.0,
+    "wilson95": [
+     0.3424,
+     1.0
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     1.0,
+     1.0
+    ],
+    "outcomes": {
+     "killed_value": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 2,
+     "assessable": 2,
+     "rate": 1.0,
+     "wilson95": [
+      0.3424,
+      1.0
+     ]
+    }
+   },
+   "const": {
+    "mutants": 12,
+    "compile_fail": 0,
+    "killed": 10,
+    "assessable": 12,
+    "rate": 0.8333,
+    "wilson95": [
+     0.552,
+     0.953
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.5,
+     1.0
+    ],
+    "outcomes": {
+     "killed_value": 9,
+     "survived": 2,
+     "killed_panic": 1
+    },
+    "hang_counted_as_detected": {
+     "killed": 10,
+     "assessable": 12,
+     "rate": 0.8333,
+     "wilson95": [
+      0.552,
+      0.953
+     ]
+    }
+   },
+   "f32": {
+    "mutants": 2,
+    "compile_fail": 0,
+    "killed": 0,
+    "assessable": 2,
+    "rate": 0.0,
+    "wilson95": [
+     0.0,
+     0.6576
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.0,
+     0.0
+    ],
+    "outcomes": {
+     "survived": 2
+    },
+    "hang_counted_as_detected": {
+     "killed": 0,
+     "assessable": 2,
+     "rate": 0.0,
+     "wilson95": [
+      0.0,
+      0.6576
+     ]
+    }
+   },
+   "bnd": {
+    "mutants": 3,
+    "compile_fail": 0,
+    "killed": 2,
+    "assessable": 3,
+    "rate": 0.6667,
+    "wilson95": [
+     0.2077,
+     0.9385
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.5,
+     1.0
+    ],
+    "outcomes": {
+     "killed_value": 2,
+     "survived": 1
+    },
+    "hang_counted_as_detected": {
+     "killed": 2,
+     "assessable": 3,
+     "rate": 0.6667,
+     "wilson95": [
+      0.2077,
+      0.9385
+     ]
+    }
+   }
+  },
+  "aor_binary_only_legacy_comparable": {
+   "mutants": 1,
+   "compile_fail": 0,
+   "killed": 1,
+   "assessable": 1,
+   "rate": 1.0,
+   "wilson95": [
+    0.2065,
+    1.0
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 0,
+   "cluster_bootstrap95_by_function": [
+    1.0,
+    1.0
+   ],
+   "outcomes": {
+    "killed_value": 1
+   },
+   "hang_counted_as_detected": {
+    "killed": 1,
+    "assessable": 1,
+    "rate": 1.0,
+    "wilson95": [
+     0.2065,
+     1.0
+    ]
+   }
+  },
+  "ror_plus_binary_aor_legacy_operator_set": {
+   "mutants": 3,
+   "compile_fail": 0,
+   "killed": 3,
+   "assessable": 3,
+   "rate": 1.0,
+   "wilson95": [
+    0.4385,
+    1.0
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 0,
+   "cluster_bootstrap95_by_function": [
+    1.0,
+    1.0
+   ],
+   "outcomes": {
+    "killed_value": 3
+   },
+   "hang_counted_as_detected": {
+    "killed": 3,
+    "assessable": 3,
+    "rate": 1.0,
+    "wilson95": [
+     0.4385,
+     1.0
+    ]
+   }
+  },
+  "headline_by_nargs": {
+   "1": {
+    "mutants": 11,
+    "compile_fail": 0,
+    "killed": 10,
+    "assessable": 11,
+    "rate": 0.9091,
+    "wilson95": [
+     0.6226,
+     0.9838
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.75,
+     1.0
+    ],
+    "outcomes": {
+     "killed_value": 10,
+     "survived": 1
+    },
+    "hang_counted_as_detected": {
+     "killed": 10,
+     "assessable": 11,
+     "rate": 0.9091,
+     "wilson95": [
+      0.6226,
+      0.9838
+     ]
+    }
+   },
+   "2": {
+    "mutants": 7,
+    "compile_fail": 0,
+    "killed": 4,
+    "assessable": 7,
+    "rate": 0.5714,
+    "wilson95": [
+     0.2505,
+     0.8418
+    ],
+    "not_killed_with_unrechecked_slow_inputs": 0,
+    "cluster_bootstrap95_by_function": [
+     0.5714,
+     0.5714
+    ],
+    "outcomes": {
+     "killed_value": 3,
+     "survived": 3,
+     "killed_panic": 1
+    },
+    "hang_counted_as_detected": {
+     "killed": 4,
+     "assessable": 7,
+     "rate": 0.5714,
+     "wilson95": [
+      0.2505,
+      0.8418
+     ]
+    }
+   }
+  },
+  "f_gold_only_headline": {
+   "mutants": 18,
+   "compile_fail": 0,
+   "killed": 14,
+   "assessable": 18,
+   "rate": 0.7778,
+   "wilson95": [
+    0.5479,
+    0.91
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 0,
+   "cluster_bootstrap95_by_function": [
+    0.5714,
+    1.0
+   ],
+   "outcomes": {
+    "killed_value": 13,
+    "survived": 4,
+    "killed_panic": 1
+   },
+   "hang_counted_as_detected": {
+    "killed": 14,
+    "assessable": 18,
+    "rate": 0.7778,
+    "wilson95": [
+     0.5479,
+     0.91
+    ]
+   }
+  },
+  "overall_including_bnd": {
+   "mutants": 21,
+   "compile_fail": 0,
+   "killed": 16,
+   "assessable": 21,
+   "rate": 0.7619,
+   "wilson95": [
+    0.5491,
+    0.8937
+   ],
+   "not_killed_with_unrechecked_slow_inputs": 0,
+   "cluster_bootstrap95_by_function": [
+    0.5556,
+    1.0
+   ],
+   "outcomes": {
+    "killed_value": 15,
+    "survived": 5,
+    "killed_panic": 1
+   },
+   "hang_counted_as_detected": {
+    "killed": 16,
+    "assessable": 21,
+    "rate": 0.7619,
+    "wilson95": [
+     0.5491,
+     0.8937
+    ]
+   }
+  },
+  "seconds": {
+   "mutation": 20,
+   "total": 31
+  },
+  "early_exit_verification": {
+   "rule": "every --verify-every'th mutant (global order) also run through the full batch_diff.tally",
+   "verified": 1,
+   "same_kill_decision": 1,
+   "disagreements": []
+  },
+  "per_function_distribution": {
+   "functions_with_assessable_mutants": 3,
+   "functions_with_no_assessable_mutant": [],
+   "min": 0.5714,
+   "median": 0.75,
+   "mean_of_function_rates": 0.7738,
+   "functions_at_100pct": 1,
+   "functions_below_50pct": [],
+   "lowest10": [
+    {
+     "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+     "nargs": 2,
+     "killed": 4,
+     "assessable": 7,
+     "rate": 0.5714,
+     "wilson95": [
+      0.2505,
+      0.8418
+     ]
+    },
+    {
+     "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+     "nargs": 1,
+     "killed": 3,
+     "assessable": 4,
+     "rate": 0.75,
+     "wilson95": [
+      0.3006,
+      0.9544
+     ]
+    },
+    {
+     "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+     "nargs": 1,
+     "killed": 7,
+     "assessable": 7,
+     "rate": 1.0,
+     "wilson95": [
+      0.6457,
+      1.0
+     ]
+    }
+   ]
+  },
+  "survivor_equivalence_headline": {
+   "by_outcome_and_verdict": {
+    "survived|killable_out_of_domain": 3,
+    "survived|no_difference_found|A_exhaustive": 1
+   },
+   "by_operator": {
+    "f32": {
+     "killable_out_of_domain": 2
+    },
+    "const": {
+     "killable_out_of_domain": 1,
+     "no_difference_found|A_exhaustive": 1
+    }
+   },
+   "budgets_seconds_ABC": "30,10,10"
+  },
+  "original_translation_extended_domain": {
+   "rule": "the unmutated translation vs the C on phases A (in-domain, exhaustive for 1-2 args), B (negatives), C (large); first UB-clean divergence per phase",
+   "functions": 3,
+   "diverge_in_domain_A": [],
+   "diverge_negative_B": [],
+   "diverge_large_C": [
+    "EFFICIENT_WAY_TO_MULTIPLY_WITH_7"
+   ],
+   "A_exhaustive_clean": 3
+  }
+ },
+ "per_function_rates": [
+  {
+   "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "nargs": 1,
+   "killed": 7,
+   "assessable": 7,
+   "rate": 1.0,
+   "wilson95": [
+    0.6457,
+    1.0
+   ]
+  },
+  {
+   "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "nargs": 1,
+   "killed": 3,
+   "assessable": 4,
+   "rate": 0.75,
+   "wilson95": [
+    0.3006,
+    0.9544
+   ]
+  },
+  {
+   "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+   "nargs": 2,
+   "killed": 4,
+   "assessable": 7,
+   "rate": 0.5714,
+   "wilson95": [
+    0.2505,
+    0.8418
+   ]
+  }
+ ],
+ "per_function": [
+  {
+   "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+   "nargs": 1,
+   "reached_functions": [
+    "f_gold"
+   ],
+   "sampling": {
+    "aor": {
+     "sites": 1,
+     "sampled": 1
+    },
+    "bnd": {
+     "sites": 1,
+     "sampled": 1
+    },
+    "const": {
+     "sites": 6,
+     "sampled": 6
+    }
+   },
+   "control": {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+    "id": "control",
+    "outcome": "survived",
+    "status": "tested",
+    "cases": 100,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san": true,
+    "msan": false,
+    "alt": true
+   },
+   "original_extended_domain": {
+    "func": "SUM_OF_ALL_ELEMENTS_UP_TO_NTH_ROW_IN_A_PASCALS_TRIANGLE",
+    "A_in_domain": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 513,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 0.0,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "B_negative": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 512,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 0.0,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "C_large": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 69,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 9.3,
+     "max_norm_reached": 2147483648,
+     "fallback_chunks": 0
+    }
+   },
+   "mutants": [
+    {
+     "id": "const:f_gold:L9:c+1@316",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 9,
+     "orig": "0",
+     "repl": "1",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 0,
+     "candidates": 100,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        0
+       ],
+       "c": "0",
+       "rust": "1"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "verify_full_tally": {
+      "outcome": "killed_value",
+      "value": 19,
+      "rust_panic": 0,
+      "rust_hang": 0,
+      "ub": 81,
+      "timeout": 0,
+      "same_kill_decision": true
+     },
+     "secs": 18.51
+    },
+    {
+     "id": "const:f_gold:L9:c-1@316",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 9,
+     "orig": "0",
+     "repl": "(-1)",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 0,
+     "candidates": 100,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        0
+       ],
+       "c": "0",
+       "rust": "-1"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.53
+    },
+    {
+     "id": "const:f_gold:L10:c+1@334",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "0",
+     "repl": "1",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 1,
+     "candidates": 99,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "1",
+       "rust": "0"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.42
+    },
+    {
+     "id": "const:f_gold:L10:c-1@334",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "0",
+     "repl": "(-1)",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 0,
+     "candidates": 100,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        0
+       ],
+       "c": "0",
+       "rust": "-2147483648"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.41
+    },
+    {
+     "id": "bnd:f_gold:L10:..->..=@335",
+     "op": "bnd",
+     "sub": "..->..=",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "..",
+     "repl": "..=",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 0,
+     "candidates": 100,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        0
+       ],
+       "c": "0",
+       "rust": "1"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.39
+    },
+    {
+     "id": "aor:f_gold:L11:+=->-=@353",
+     "op": "aor",
+     "sub": "+=->-=",
+     "fn": "f_gold",
+     "line": 11,
+     "orig": "+=",
+     "repl": "-=",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 3,
+     "candidates": 97,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "1",
+       "rust": "-1"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.33
+    },
+    {
+     "id": "const:f_gold:L11:c+1@356",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 11,
+     "orig": "1",
+     "repl": "2",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 3,
+     "candidates": 97,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "1",
+       "rust": "2"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.47
+    },
+    {
+     "id": "const:f_gold:L11:c-1@356",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 11,
+     "orig": "1",
+     "repl": "0",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 3,
+     "candidates": 97,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "1",
+       "rust": "0"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.46
+    }
+   ],
+   "headline_rate": {
+    "killed": 7,
+    "assessable": 7,
+    "rate": 1.0,
+    "wilson95": [
+     0.6457,
+     1.0
+    ]
+   }
+  },
+  {
+   "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+   "nargs": 1,
+   "reached_functions": [
+    "f_gold"
+   ],
+   "sampling": {
+    "aor": {
+     "sites": 1,
+     "sampled": 1
+    },
+    "const": {
+     "sites": 2,
+     "sampled": 2
+    },
+    "f32": {
+     "sites": 1,
+     "sampled": 1
+    }
+   },
+   "control": {
+    "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+    "id": "control",
+    "outcome": "survived",
+    "status": "tested",
+    "cases": 100,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san": true,
+    "msan": false,
+    "alt": true
+   },
+   "original_extended_domain": {
+    "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+    "A_in_domain": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 513,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 0.0,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "B_negative": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 512,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 0.0,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "C_large": {
+     "witness": {
+      "in": [
+       536870912
+      ],
+      "c": "3758096384",
+      "rust": "-536870912",
+      "kind": "value"
+     },
+     "diff_vs_orig": null,
+     "checked": 59,
+     "complete": false,
+     "ub_divergences": 1,
+     "orig_divergences": 0,
+     "secs": 0.9,
+     "max_norm_reached": 2147483648,
+     "fallback_chunks": 0,
+     "witness_confirmed_by_tally": "killed_value"
+    }
+   },
+   "mutants": [
+    {
+     "id": "f32:f_gold:L10:chain@315",
+     "op": "f32",
+     "sub": "chain",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "(n << 3) - n",
+     "repl": "__vf((n << 3) - n, (((n << 3)) as f32) - ((n) as f32))",
+     "outcome": "survived",
+     "value": 0,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 100,
+     "candidates": 0,
+     "early_exit": false,
+     "value_samples": [],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 0.55,
+     "equiv": {
+      "func": "EFFICIENT_WAY_TO_MULTIPLY_WITH_7",
+      "id": "f32:f_gold:L10:chain@315",
+      "A_in_domain": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 513,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 0.0,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "B_negative": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 512,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 0.0,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "C_large": {
+       "witness": {
+        "in": [
+         4194303
+        ],
+        "c": "29360121",
+        "rust": "29360120",
+        "kind": "value"
+       },
+       "diff_vs_orig": {
+        "in": [
+         -4194303
+        ],
+        "orig": "-29360121",
+        "mutant": "-29360120",
+        "c": "-29360121"
+       },
+       "checked": 51,
+       "complete": false,
+       "ub_divergences": 1,
+       "orig_divergences": 0,
+       "secs": 0.9,
+       "max_norm_reached": 2147483648,
+       "fallback_chunks": 0,
+       "witness_confirmed_by_tally": "killed_value",
+       "orig_on_witness_by_tally": "survived"
+      },
+      "verdict": "killable_out_of_domain"
+     }
+    },
+    {
+     "id": "const:f_gold:L10:c+1@321",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "3",
+     "repl": "4",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 1,
+     "candidates": 99,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "7",
+       "rust": "15"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.26
+    },
+    {
+     "id": "const:f_gold:L10:c-1@321",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "3",
+     "repl": "2",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 1,
+     "candidates": 99,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "7",
+       "rust": "3"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.27
+    },
+    {
+     "id": "aor:f_gold:L10:-->+@324",
+     "op": "aor",
+     "sub": "-->+",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "-",
+     "repl": "+",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 1,
+     "candidates": 99,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        1
+       ],
+       "c": "7",
+       "rust": "9"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.36
+    }
+   ],
+   "headline_rate": {
+    "killed": 3,
+    "assessable": 4,
+    "rate": 0.75,
+    "wilson95": [
+     0.3006,
+     0.9544
+    ]
+   }
+  },
+  {
+   "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+   "nargs": 2,
+   "reached_functions": [
+    "f_gold"
+   ],
+   "sampling": {
+    "bnd": {
+     "sites": 2,
+     "sampled": 2
+    },
+    "const": {
+     "sites": 4,
+     "sampled": 4
+    },
+    "f32": {
+     "sites": 1,
+     "sampled": 1
+    },
+    "ror": {
+     "sites": 2,
+     "sampled": 2
+    }
+   },
+   "control": {
+    "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+    "id": "control",
+    "outcome": "survived",
+    "status": "tested",
+    "cases": 80,
+    "value_div": 0,
+    "rust_panic_c_ok": 0,
+    "rust_hang": 0,
+    "ub_div": 0,
+    "timeout_div": 0,
+    "san": true,
+    "msan": false,
+    "alt": true
+   },
+   "original_extended_domain": {
+    "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+    "A_in_domain": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 263169,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 1.4,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "B_negative": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 787456,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 4.0,
+     "max_norm_reached": 512,
+     "fallback_chunks": 0
+    },
+    "C_large": {
+     "witness": null,
+     "hang_witness": null,
+     "diff_vs_orig": null,
+     "checked": 4096,
+     "complete": true,
+     "ub_divergences": 0,
+     "orig_divergences": 0,
+     "secs": 0.1,
+     "max_norm_reached": 2147483648,
+     "fallback_chunks": 0
+    }
+   },
+   "mutants": [
+    {
+     "id": "bnd:f_gold:L10:<-><=@361",
+     "op": "bnd",
+     "sub": "<-><=",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "<",
+     "repl": "<=",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 79,
+     "candidates": 1,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        256,
+        8
+       ],
+       "c": "0",
+       "rust": "256"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.35
+    },
+    {
+     "id": "ror:f_gold:L10:<->>=@361",
+     "op": "ror",
+     "sub": "<->>=",
+     "fn": "f_gold",
+     "line": 10,
+     "orig": "<",
+     "repl": ">=",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 59,
+     "candidates": 21,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        9,
+        2
+       ],
+       "c": "1",
+       "rust": "9"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.26
+    },
+    {
+     "id": "bnd:f_gold:L13:>->>=@408",
+     "op": "bnd",
+     "sub": ">->>=",
+     "fn": "f_gold",
+     "line": 13,
+     "orig": ">",
+     "repl": ">=",
+     "outcome": "survived",
+     "value": 0,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 80,
+     "candidates": 0,
+     "early_exit": false,
+     "value_samples": [],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 0.37,
+     "equiv": {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "id": "bnd:f_gold:L13:>->>=@408",
+      "A_in_domain": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 263169,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 2.2,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "B_negative": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 787456,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 6.4,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "C_large": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 4096,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 0.1,
+       "max_norm_reached": 2147483648,
+       "fallback_chunks": 0
+      },
+      "verdict": "no_difference_found",
+      "A_exhaustive": true
+     }
+    },
+    {
+     "id": "ror:f_gold:L13:>-><=@408",
+     "op": "ror",
+     "sub": ">-><=",
+     "fn": "f_gold",
+     "line": 13,
+     "orig": ">",
+     "repl": "<=",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 65,
+     "candidates": 15,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        9,
+        2
+       ],
+       "c": "1",
+       "rust": "9"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.33
+    },
+    {
+     "id": "const:f_gold:L13:c+1@410",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 13,
+     "orig": "63",
+     "repl": "64",
+     "outcome": "survived",
+     "value": 0,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 80,
+     "candidates": 0,
+     "early_exit": false,
+     "value_samples": [],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 0.43,
+     "equiv": {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "id": "const:f_gold:L13:c+1@410",
+      "A_in_domain": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 263169,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 2.2,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "B_negative": {
+       "witness": {
+        "in": [
+         -64,
+         64
+        ],
+        "c": "-64",
+        "rust": "0",
+        "kind": "value"
+       },
+       "diff_vs_orig": {
+        "in": [
+         -64,
+         64
+        ],
+        "orig": "-64",
+        "mutant": "0",
+        "c": "-64"
+       },
+       "checked": 12162,
+       "complete": false,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 1.1,
+       "max_norm_reached": 64,
+       "fallback_chunks": 0,
+       "witness_confirmed_by_tally": "killed_value",
+       "orig_on_witness_by_tally": "survived"
+      },
+      "verdict": "killable_out_of_domain"
+     }
+    },
+    {
+     "id": "const:f_gold:L13:c-1@410",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 13,
+     "orig": "63",
+     "repl": "62",
+     "outcome": "survived",
+     "value": 0,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 80,
+     "candidates": 0,
+     "early_exit": false,
+     "value_samples": [],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 0.44,
+     "equiv": {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "id": "const:f_gold:L13:c-1@410",
+      "A_in_domain": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 263169,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 2.2,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "B_negative": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 787456,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 6.5,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "C_large": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 4096,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 0.1,
+       "max_norm_reached": 2147483648,
+       "fallback_chunks": 0
+      },
+      "verdict": "no_difference_found",
+      "A_exhaustive": true
+     }
+    },
+    {
+     "id": "f32:f_gold:L16:chain@443",
+     "op": "f32",
+     "sub": "chain",
+     "fn": "f_gold",
+     "line": 16,
+     "orig": "y % (1 << x)",
+     "repl": "__vf(y % (1 << x), ((y) as f32) % (((1 << x)) as f32))",
+     "outcome": "survived",
+     "value": 0,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 80,
+     "candidates": 0,
+     "early_exit": false,
+     "value_samples": [],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 0.48,
+     "equiv": {
+      "func": "FIND_VALUE_OF_Y_MOD_2_RAISED_TO_POWER_X",
+      "id": "f32:f_gold:L16:chain@443",
+      "A_in_domain": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 263169,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 2.2,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "B_negative": {
+       "witness": null,
+       "hang_witness": null,
+       "diff_vs_orig": null,
+       "checked": 787456,
+       "complete": true,
+       "ub_divergences": 0,
+       "orig_divergences": 0,
+       "secs": 6.5,
+       "max_norm_reached": 512,
+       "fallback_chunks": 0
+      },
+      "C_large": {
+       "witness": {
+        "in": [
+         -67108865,
+         1
+        ],
+        "c": "-1",
+        "rust": "0",
+        "kind": "value"
+       },
+       "diff_vs_orig": {
+        "in": [
+         -67108865,
+         -67108865
+        ],
+        "orig": "-67108865",
+        "mutant": "-67108864",
+        "c": "-67108865"
+       },
+       "checked": 2430,
+       "complete": false,
+       "ub_divergences": 8,
+       "orig_divergences": 0,
+       "secs": 1.0,
+       "max_norm_reached": 67108865,
+       "fallback_chunks": 0,
+       "witness_confirmed_by_tally": "killed_value",
+       "orig_on_witness_by_tally": "survived"
+      },
+      "verdict": "killable_out_of_domain"
+     }
+    },
+    {
+     "id": "const:f_gold:L16:c+1@448",
+     "op": "const",
+     "sub": "c+1",
+     "fn": "f_gold",
+     "line": 16,
+     "orig": "1",
+     "repl": "2",
+     "outcome": "killed_value",
+     "value": 1,
+     "rust_panic": 0,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 71,
+     "candidates": 9,
+     "early_exit": true,
+     "value_samples": [
+      {
+       "in": [
+        227,
+        7
+       ],
+       "c": "99",
+       "rust": "227"
+      }
+     ],
+     "crash_samples": [],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.31
+    },
+    {
+     "id": "const:f_gold:L16:c-1@448",
+     "op": "const",
+     "sub": "c-1",
+     "fn": "f_gold",
+     "line": 16,
+     "orig": "1",
+     "repl": "0",
+     "outcome": "killed_panic",
+     "value": 0,
+     "rust_panic": 1,
+     "rust_hang": 0,
+     "ub": 0,
+     "timeout": 0,
+     "agree": 65,
+     "candidates": 15,
+     "early_exit": true,
+     "value_samples": [],
+     "crash_samples": [
+      {
+       "in": [
+        9,
+        2
+       ],
+       "c": "1"
+      }
+     ],
+     "unrechecked_slow": 0,
+     "rechecked_slow": 0,
+     "per_input_fallback": false,
+     "secs": 1.3
+    }
+   ],
+   "headline_rate": {
+    "killed": 4,
+    "assessable": 7,
+    "rate": 0.5714,
+    "wilson95": [
+     0.2505,
+     0.8418
+    ]
+   }
+  }
+ ]
+}

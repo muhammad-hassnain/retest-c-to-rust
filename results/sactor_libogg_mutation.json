@@ -1,0 +1,1157 @@
+{
+ "provenance": {
+  "script": "systems/sactor/libogg/mutate.py",
+  "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/libogg/mutate.py --n 40 --retry-build-fail --out /work/results/sactor_libogg_mutation.json",
+  "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+  "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+  "host": "desktop (x86_64, 20 cores)",
+  "arch": "x86_64",
+  "kernel": "7.0.0-38-generic",
+  "docker_image": "crust-heldout",
+  "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+  "toolchains": {
+   "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+   "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+   "rust": {
+    "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+    "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+   },
+   "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+   "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+   "python": "3.10.12"
+  },
+  "artifacts": {
+   "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+   "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+   "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+  },
+  "date": "2026-11-14T00:02:42+00:00",
+  "toolchain": "nightly-2024-09-03 debug",
+  "operators": {
+   "<": "<=",
+   "<=": "<",
+   ">": ">=",
+   ">=": ">",
+   "==": "!=",
+   "!=": "==",
+   "+": "-",
+   "-": "+",
+   "*": "/"
+  },
+  "first_run": {
+   "script": "systems/sactor/libogg/mutate.py",
+   "command": "bash systems/sactor/run_docker.sh python3 systems/sactor/libogg/mutate.py --n 40 --out /work/results/sactor_libogg_mutation.json",
+   "git_rev": "801e8c7bc7e332fe76cea0e087af1369bad2a82e",
+   "git_worktree_note": "study repo files copied to the run host (uncommitted systems/sactor/)",
+   "host": "desktop (x86_64, 20 cores)",
+   "arch": "x86_64",
+   "kernel": "7.0.0-38-generic",
+   "docker_image": "crust-heldout",
+   "docker_image_id": "sha256:d57dd28c18eea29cbcca12693e1da442f37be6ac4800c77ef7a0ed96f1ce46ba",
+   "toolchains": {
+    "gcc": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+    "clang": "Ubuntu clang version 14.0.0-1ubuntu1.1",
+    "rust": {
+     "nightly-2024-09-03": "rustc 1.83.0-nightly (bd53aa3bf 2024-09-02)",
+     "nightly-2025-05-10": "rustc 1.89.0-nightly (dcecb9917 2025-05-09)"
+    },
+    "rust_pinned_by_artifact": "nightly-2024-12-18 (not available offline; not used)",
+    "libc_crate": "0.2.191 (vendored offline from the host cargo cache, crates.io sha256 65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a). SACTOR's Cargo.toml asks libc = \"0.2.159\", i.e. the newest 0.2.x at build time; 0.2.191 is the newest cached (cached 2026-10-19, a day before the CRUST-bench results commit). An earlier run with 0.2.169 failed Linear-Algebra-C only because libc::backtrace_symbols first appears in libc 0.2.176.",
+    "python": "3.10.12"
+   },
+   "artifacts": {
+    "sactor": "github.com/qsdrqs/sactor@577c3d2b8074d5fed7c47b988c0acd175e498f98 (git-archive sha256 0d595857ee451bbb1e44434df994714480758d163f41be4af1ca29ae7ac0de61)",
+    "sactor-datasets": "github.com/qsdrqs/sactor-datasets@1060b3b27d151e2d4919dd2db69abcfa91153399 (git-archive sha256 1d180c10513d12749d497ec8bed1d56e1c01f4bd7aee0c3eeb3ed6686f92a8bf)",
+    "CRUST-bench": "github.com/qsdrqs/CRUST-bench@69970f9c9a583290f943145eada5e8948b1b91ff (git-archive sha256 3374c0ff570266411c4974aaf26333ea982ef8b06560f594c26b3ede85fe4cc3)"
+   },
+   "date": "2026-11-13T23:51:37+00:00",
+   "toolchain": "nightly-2024-09-03 debug",
+   "operators": {
+    "<": "<=",
+    "<=": "<",
+    ">": ">=",
+    ">=": ">",
+    "==": "!=",
+    "!=": "==",
+    "+": "-",
+    "-": "+",
+    "*": "/"
+   }
+  },
+  "note": "mutants recorded as build_fail in the first run were rebuilt and re-run (entries marked retried_after_transient_build_failure). During the first run the x86 box was at load ~77 with ~4 GB of 30 GB free (other jobs held ~20 GB), and the same mutants failed in contiguous blocks that differed between two runs."
+ },
+ "targets": {
+  "gpt-5/framing.c": {
+   "candidate_sites": 152,
+   "selected": 40,
+   "stride": 3,
+   "build_fail": 0,
+   "valid": 40,
+   "killed": 25,
+   "survived": [
+    {
+     "site": 1,
+     "line": 2199,
+     "fn": "ogg_stream_init",
+     "op": "* -> /",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 3,
+     "line": 2264,
+     "fn": "_os_body_expand",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 4,
+     "line": 2268,
+     "fn": "_os_body_expand",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 5,
+     "line": 2273,
+     "fn": "_os_body_expand",
+     "op": "< -> <=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 6,
+     "line": 2290,
+     "fn": "_os_lacing_expand",
+     "op": "<= -> <",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 10,
+     "line": 2425,
+     "fn": "ogg_stream_iovecin",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 12,
+     "line": 2477,
+     "fn": "ogg_stream_flush_i",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 14,
+     "line": 2501,
+     "fn": "ogg_stream_flush_i",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 17,
+     "line": 2540,
+     "fn": "ogg_stream_flush_i",
+     "op": "< -> <=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 18,
+     "line": 2558,
+     "fn": "ogg_stream_flush_i",
+     "op": "< -> <=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 24,
+     "line": 2698,
+     "fn": "ogg_sync_buffer",
+     "op": "> -> >=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 25,
+     "line": 2709,
+     "fn": "ogg_sync_buffer",
+     "op": "- -> +",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 35,
+     "line": 2891,
+     "fn": "ogg_stream_pagein",
+     "op": "!= -> ==",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 36,
+     "line": 2903,
+     "fn": "ogg_stream_pagein",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 38,
+     "line": 2927,
+     "fn": "ogg_stream_pagein",
+     "op": "+ -> -",
+     "status": "survived",
+     "killed_by": []
+    }
+   ],
+   "mutants": [
+    {
+     "site": 0,
+     "line": 2180,
+     "fn": "ogg_page_packets",
+     "op": "< -> <=",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 1,
+     "line": 2199,
+     "fn": "ogg_stream_init",
+     "op": "* -> /",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 2,
+     "line": 2208,
+     "fn": "ogg_stream_init",
+     "op": "* -> /",
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0003",
+      "fr0005"
+     ]
+    },
+    {
+     "site": 3,
+     "line": 2264,
+     "fn": "_os_body_expand",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 4,
+     "line": 2268,
+     "fn": "_os_body_expand",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 5,
+     "line": 2273,
+     "fn": "_os_body_expand",
+     "op": "< -> <=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 6,
+     "line": 2290,
+     "fn": "_os_lacing_expand",
+     "op": "<= -> <",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 7,
+     "line": 2384,
+     "fn": "ogg_stream_iovecin",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 8,
+     "line": 2396,
+     "fn": "ogg_stream_iovecin",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 9,
+     "line": 2404,
+     "fn": "ogg_stream_iovecin",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0004",
+      "fr0006"
+     ]
+    },
+    {
+     "site": 10,
+     "line": 2425,
+     "fn": "ogg_stream_iovecin",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 11,
+     "line": 2430,
+     "fn": "ogg_stream_iovecin",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 12,
+     "line": 2477,
+     "fn": "ogg_stream_flush_i",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 13,
+     "line": 2488,
+     "fn": "ogg_stream_flush_i",
+     "op": "< -> <=",
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0006",
+      "fr0014"
+     ]
+    },
+    {
+     "site": 14,
+     "line": 2501,
+     "fn": "ogg_stream_flush_i",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 15,
+     "line": 2516,
+     "fn": "ogg_stream_flush_i",
+     "op": "== -> !=",
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0004",
+      "fr0006"
+     ]
+    },
+    {
+     "site": 16,
+     "line": 2532,
+     "fn": "ogg_stream_flush_i",
+     "op": "== -> !=",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 17,
+     "line": 2540,
+     "fn": "ogg_stream_flush_i",
+     "op": "< -> <=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 18,
+     "line": 2558,
+     "fn": "ogg_stream_flush_i",
+     "op": "< -> <=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 19,
+     "line": 2576,
+     "fn": "ogg_stream_flush_i",
+     "op": "+ -> -",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 20,
+     "line": 2616,
+     "fn": "ogg_stream_pageout",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0003",
+      "fr0005"
+     ]
+    },
+    {
+     "site": 21,
+     "line": 2629,
+     "fn": "ogg_stream_pageout_fill",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 22,
+     "line": 2632,
+     "fn": "ogg_stream_pageout_fill",
+     "op": "!= -> ==",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0006",
+      "fr0014"
+     ]
+    },
+    {
+     "site": 23,
+     "line": 2684,
+     "fn": "ogg_sync_check",
+     "op": "< -> <=",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 24,
+     "line": 2698,
+     "fn": "ogg_sync_buffer",
+     "op": "> -> >=",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 25,
+     "line": 2709,
+     "fn": "ogg_sync_buffer",
+     "op": "- -> +",
+     "retried_after_transient_build_failure": true,
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 26,
+     "line": 2714,
+     "fn": "ogg_sync_buffer",
+     "op": "+ -> -",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0003",
+      "fr0005"
+     ]
+    },
+    {
+     "site": 27,
+     "line": 2735,
+     "fn": "ogg_sync_wrote",
+     "op": "+ -> -",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0258",
+      "fr0261",
+      "fr0267"
+     ]
+    },
+    {
+     "site": 28,
+     "line": 2749,
+     "fn": "ogg_sync_pageseek",
+     "op": "- -> +",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0002",
+      "fr0003",
+      "fr0005"
+     ]
+    },
+    {
+     "site": 29,
+     "line": 2760,
+     "fn": "ogg_sync_pageseek",
+     "op": "!= -> ==",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 30,
+     "line": 2777,
+     "fn": "ogg_sync_pageseek",
+     "op": "+ -> -",
+     "retried_after_transient_build_failure": true,
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 31,
+     "line": 2783,
+     "fn": "ogg_sync_pageseek",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 32,
+     "line": 2814,
+     "fn": "ogg_sync_pageseek",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 33,
+     "line": 2845,
+     "fn": "ogg_sync_pageseek",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 34,
+     "line": 2862,
+     "fn": "ogg_sync_pageout",
+     "op": "== -> !=",
+     "status": "killed",
+     "killed_by": [
+      "fr0000",
+      "fr0001",
+      "fr0002"
+     ]
+    },
+    {
+     "site": 35,
+     "line": 2891,
+     "fn": "ogg_stream_pagein",
+     "op": "!= -> ==",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 36,
+     "line": 2903,
+     "fn": "ogg_stream_pagein",
+     "op": "- -> +",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 37,
+     "line": 2913,
+     "fn": "ogg_stream_pagein",
+     "op": "* -> /",
+     "status": "killed",
+     "killed_by": [
+      "fr0297",
+      "fr0298",
+      "fr0301"
+     ]
+    },
+    {
+     "site": 38,
+     "line": 2927,
+     "fn": "ogg_stream_pagein",
+     "op": "+ -> -",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 39,
+     "line": 2932,
+     "fn": "ogg_stream_pagein",
+     "op": "< -> <=",
+     "status": "killed",
+     "killed_by": [
+      "fr0157",
+      "fr0195",
+      "fr0196"
+     ]
+    }
+   ]
+  },
+  "gpt-4o/bitwise.c": {
+   "candidate_sites": 140,
+   "selected": 40,
+   "stride": 3,
+   "build_fail": 0,
+   "valid": 40,
+   "killed": 36,
+   "survived": [
+    {
+     "site": 15,
+     "line": 211,
+     "fn": "oggpack_writecopy_helper",
+     "op": ">= -> >",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 22,
+     "line": 345,
+     "fn": "oggpack_look",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 28,
+     "line": 375,
+     "fn": "oggpackB_look",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 36,
+     "line": 454,
+     "fn": "oggpack_read",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    }
+   ],
+   "mutants": [
+    {
+     "site": 0,
+     "line": 53,
+     "fn": "oggpack_writecheck",
+     "op": "== -> !=",
+     "status": "killed",
+     "killed_by": [
+      "bw0000",
+      "bw0001",
+      "bw0002"
+     ]
+    },
+    {
+     "site": 1,
+     "line": 77,
+     "fn": "oggpackB_writetrunc",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0281",
+      "bw0282",
+      "bw0284"
+     ]
+    },
+    {
+     "site": 2,
+     "line": 91,
+     "fn": "oggpack_write",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0198",
+      "bw0199",
+      "bw0200"
+     ]
+    },
+    {
+     "site": 3,
+     "line": 101,
+     "fn": "oggpack_write",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0191",
+      "bw0193",
+      "bw0194"
+     ]
+    },
+    {
+     "site": 4,
+     "line": 115,
+     "fn": "oggpack_write",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0003",
+      "bw0004",
+      "bw0005"
+     ]
+    },
+    {
+     "site": 5,
+     "line": 118,
+     "fn": "oggpack_write",
+     "op": ">= -> >",
+     "status": "killed",
+     "killed_by": [
+      "bw0194"
+     ]
+    },
+    {
+     "site": 6,
+     "line": 121,
+     "fn": "oggpack_write",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "bw0004",
+      "bw0009",
+      "bw0010"
+     ]
+    },
+    {
+     "site": 7,
+     "line": 140,
+     "fn": "oggpackB_write",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0414",
+      "bw0415",
+      "bw0416"
+     ]
+    },
+    {
+     "site": 8,
+     "line": 150,
+     "fn": "oggpackB_write",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0407",
+      "bw0409",
+      "bw0410"
+     ]
+    },
+    {
+     "site": 9,
+     "line": 163,
+     "fn": "oggpackB_write",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0217",
+      "bw0218",
+      "bw0219"
+     ]
+    },
+    {
+     "site": 10,
+     "line": 166,
+     "fn": "oggpackB_write",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0217",
+      "bw0219",
+      "bw0221"
+     ]
+    },
+    {
+     "site": 11,
+     "line": 169,
+     "fn": "oggpackB_write",
+     "op": ">= -> >",
+     "status": "killed",
+     "killed_by": [
+      "bw0410"
+     ]
+    },
+    {
+     "site": 12,
+     "line": 173,
+     "fn": "oggpackB_write",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0221",
+      "bw0225",
+      "bw0226"
+     ]
+    },
+    {
+     "site": 13,
+     "line": 194,
+     "fn": "oggpackB_writealign",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0306",
+      "bw0307",
+      "bw0308"
+     ]
+    },
+    {
+     "site": 14,
+     "line": 210,
+     "fn": "oggpack_writecopy_helper",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0105",
+      "bw0106",
+      "bw0107"
+     ]
+    },
+    {
+     "site": 15,
+     "line": 211,
+     "fn": "oggpack_writecopy_helper",
+     "op": ">= -> >",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 16,
+     "line": 216,
+     "fn": "oggpack_writecopy_helper",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0109",
+      "bw0110",
+      "bw0112"
+     ]
+    },
+    {
+     "site": 17,
+     "line": 229,
+     "fn": "oggpack_writecopy_helper",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "bw0107",
+      "bw0108",
+      "bw0109"
+     ]
+    },
+    {
+     "site": 18,
+     "line": 243,
+     "fn": "oggpack_writecopy_helper",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0322",
+      "bw0323",
+      "bw0324"
+     ]
+    },
+    {
+     "site": 19,
+     "line": 333,
+     "fn": "oggpack_look",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0000",
+      "bw0001",
+      "bw0002"
+     ]
+    },
+    {
+     "site": 20,
+     "line": 334,
+     "fn": "oggpack_look",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0000",
+      "bw0001",
+      "bw0002"
+     ]
+    },
+    {
+     "site": 21,
+     "line": 342,
+     "fn": "oggpack_look",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0042",
+      "bw0043",
+      "bw0044"
+     ]
+    },
+    {
+     "site": 22,
+     "line": 345,
+     "fn": "oggpack_look",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 23,
+     "line": 347,
+     "fn": "oggpack_look",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "bw0060",
+      "bw0168"
+     ]
+    },
+    {
+     "site": 24,
+     "line": 362,
+     "fn": "oggpackB_look",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0216",
+      "bw0217",
+      "bw0218"
+     ]
+    },
+    {
+     "site": 25,
+     "line": 364,
+     "fn": "oggpackB_look",
+     "op": "> -> >=",
+     "status": "killed",
+     "killed_by": [
+      "bw0256",
+      "bw0257",
+      "bw0258"
+     ]
+    },
+    {
+     "site": 26,
+     "line": 366,
+     "fn": "oggpackB_look",
+     "op": "== -> !=",
+     "status": "killed",
+     "killed_by": [
+      "bw0256",
+      "bw0257",
+      "bw0258"
+     ]
+    },
+    {
+     "site": 27,
+     "line": 372,
+     "fn": "oggpackB_look",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0258",
+      "bw0259",
+      "bw0260"
+     ]
+    },
+    {
+     "site": 28,
+     "line": 375,
+     "fn": "oggpackB_look",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 29,
+     "line": 378,
+     "fn": "oggpackB_look",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0260",
+      "bw0279",
+      "bw0384"
+     ]
+    },
+    {
+     "site": 30,
+     "line": 394,
+     "fn": "oggpackB_look1",
+     "op": ">= -> >",
+     "status": "killed",
+     "killed_by": [
+      "bw0216",
+      "bw0217",
+      "bw0218"
+     ]
+    },
+    {
+     "site": 31,
+     "line": 402,
+     "fn": "oggpack_adv",
+     "op": "> -> >=",
+     "status": "killed",
+     "killed_by": [
+      "bw0040",
+      "bw0041",
+      "bw0042"
+     ]
+    },
+    {
+     "site": 32,
+     "line": 420,
+     "fn": "oggpack_adv1",
+     "op": "> -> >=",
+     "status": "killed",
+     "killed_by": [
+      "bw0058",
+      "bw0059",
+      "bw0060"
+     ]
+    },
+    {
+     "site": 33,
+     "line": 441,
+     "fn": "oggpack_read",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0000",
+      "bw0001",
+      "bw0002"
+     ]
+    },
+    {
+     "site": 34,
+     "line": 442,
+     "fn": "oggpack_read",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0000",
+      "bw0001",
+      "bw0002"
+     ]
+    },
+    {
+     "site": 35,
+     "line": 451,
+     "fn": "oggpack_read",
+     "op": "- -> +",
+     "status": "killed",
+     "killed_by": [
+      "bw0003",
+      "bw0004",
+      "bw0005"
+     ]
+    },
+    {
+     "site": 36,
+     "line": 454,
+     "fn": "oggpack_read",
+     "op": "> -> >=",
+     "status": "survived",
+     "killed_by": []
+    },
+    {
+     "site": 37,
+     "line": 456,
+     "fn": "oggpack_read",
+     "op": "!= -> ==",
+     "status": "killed",
+     "killed_by": [
+      "bw0009",
+      "bw0010",
+      "bw0015"
+     ]
+    },
+    {
+     "site": 38,
+     "line": 481,
+     "fn": "oggpackB_read",
+     "op": "+ -> -",
+     "status": "killed",
+     "killed_by": [
+      "bw0216",
+      "bw0217",
+      "bw0218"
+     ]
+    },
+    {
+     "site": 39,
+     "line": 483,
+     "fn": "oggpackB_read",
+     "op": "> -> >=",
+     "status": "killed",
+     "killed_by": [
+      "bw0216",
+      "bw0217",
+      "bw0218"
+     ]
+    }
+   ]
+  }
+ }
+}
