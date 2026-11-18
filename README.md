@@ -151,6 +151,22 @@ python3 -I scripts/build_defect_ledger.py          # rebuild results/defect_ledg
 Re-running a system end to end needs its public artifact (`systems/<system>/fetch.sh`) and the
 Docker images in `docker/`.
 
+## Citation
+
+If you use this artifact, please cite the paper
+([PDF](https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf)). GitHub's "Cite this
+repository" button gives the same reference from [`CITATION.cff`](CITATION.cff).
+
+```bibtex
+@misc{Hassnain2026RetestCtoRust,
+  author = {Hassnain, Muhammad},
+  title  = {Re-Testing {LLM}-Based {C}-to-{Rust} Translations Against Their Original {C}},
+  year   = {2026},
+  note   = {Preprint},
+  url    = {https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf}
+}
+```
+
 ## Licence
 
 - Code (`scripts/`, `harness/`, `systems/`, `explorer/`, `docker/`): MIT, see [`LICENSE`](LICENSE).

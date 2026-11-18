@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the paper below."
+title: "retest-c-to-rust: artifact for Re-Testing LLM-Based C-to-Rust Translations Against Their Original C"
+type: software
+authors:
+  - family-names: Hassnain
+    given-names: Muhammad
+    affiliation: "University of California, Davis"
+repository-code: "https://github.com/muhammad-hassnain/retest-c-to-rust"
+url: "https://muhammad-hassnain.github.io/projects/C-to-Rust-Validation/"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - Rust
+  - C-to-Rust translation
+  - large language models
+  - differential testing
+preferred-citation:
+  type: unpublished
+  title: "Re-Testing LLM-Based C-to-Rust Translations Against Their Original C"
+  authors:
+    - family-names: Hassnain
+      given-names: Muhammad
+      affiliation: "University of California, Davis"
+  year: 2026
+  notes: "Preprint"
+  url: "https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf"
