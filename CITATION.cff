@@ -17,12 +17,15 @@ keywords:
   - large language models
   - differential testing
 preferred-citation:
-  type: unpublished
+  type: article
   title: "Re-Testing LLM-Based C-to-Rust Translations Against Their Original C"
   authors:
-    - family-names: Hassnain
-      given-names: Muhammad
+    - family-names: "Hassnain"
+      given-names: "Muhammad"
       affiliation: "University of California, Davis"
   year: 2026
-  notes: "Preprint"
-  url: "https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf"
+  journal: "arXiv preprint"
+  identifiers:
+    - type: other
+      value: "arXiv:2611.23839"
+  url: "https://arxiv.org/abs/2611.23839"

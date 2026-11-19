@@ -154,16 +154,18 @@ Docker images in `docker/`.
 ## Citation
 
 If you use this artifact, please cite the paper
-([PDF](https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf)). GitHub's "Cite this
+([arXiv:2611.23839](https://arxiv.org/abs/2611.23839)). GitHub's "Cite this
 repository" button gives the same reference from [`CITATION.cff`](CITATION.cff).
 
 ```bibtex
 @misc{Hassnain2026RetestCtoRust,
-  author = {Hassnain, Muhammad},
-  title  = {Re-Testing {LLM}-Based {C}-to-{Rust} Translations Against Their Original {C}},
-  year   = {2026},
-  note   = {Preprint},
-  url    = {https://muhammad-hassnain.github.io/assets/pdf/Retest-C-to-Rust.pdf}
+  author        = {Hassnain, Muhammad},
+  title         = {Re-Testing {LLM}-Based {C}-to-{Rust} Translations Against Their Original {C}},
+  year          = {2026},
+  eprint        = {2611.23839},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SE},
+  url           = {https://arxiv.org/abs/2611.23839}
 }
 ```
 
